@@ -41,7 +41,7 @@ Dokumentet beskriver kraven för <Program X>, ett tidsrapportingssystem för pro
 < TOMT >
 \section{Bakgrund och mål}   
 \subsection{Huvudmål}
-Huvudmålet är att tillhandhålla ett system där olika användare, såsom projektledare och övriga projektmedlemmar, ska kunna tidsrapportera och loggföra det fortgågna arbetet. 
+Huvudmålet är att tillhandhålla ett system där olika användare, såsom projektledare och övriga projektmedlemmar, ska kunna tidsrapportera och loggföra det fortgående arbetet. 
 
 \subsection{Aktörer och deras mål}
 Följande aktörer kommer att använda systemet:
@@ -54,70 +54,93 @@ Följande aktörer kommer att använda systemet:
 
 %-------------------------------------------------------------------
 \pagebreak
-\section{Analys och bearbetning av experimentell data}
-%-------------------------------------------------------------------
-\subsection{Lysdiod - emission och absorption}
-\begin{figure}[htb]
-\centering
-\includegraphics[scale=.6]{osynligt.eps}
-\caption{Absorption (rött) och emission (blått) som funktion av våglängd (nm) - Osynligt ljus.}
-\end{figure} 
-
-\begin{figure}[htb]
-\centering
-\includegraphics[scale=.6]{synligt.eps}
-\caption{Emission (blått) som funktion av våglängd (nm) - Synligt ljus.}
-\end{figure} 
-
-Det synliga ljuset var blått och har våglängden 
-\begin{math} \lambda = 455*10^{-9} m.
-\end{math}
-
-Ur formeln 
-
-\begin{equation}
-E_{g}= \frac {hc}{\lambda} \label{ekv1} 
-\end{equation}
-
-fås $E_{g}=2,7eV$.
-
-Det osynliga ljusets våglängd är enligt mätvärden ca $950*10^{-9}m$.
-På samma sätt som ovan fås motsvarande bandgapet till $E_{g}=1,3 eV$.
-
-%-------------------------------------------------------------------
-
-\subsection{Solcellen}
-\begin{figure}[htb]
-\centering
-\includegraphics[scale=.6]{solcell1.eps}
-\caption{Ström (mA) som funktion av spänning (V). Kurvan representerar solcellens karakteristik.}
-\end{figure} 
-\begin{figure}[htb]
-\centering
-\includegraphics[scale=.6]{solcell2.eps}
-\caption{Effekt (mW) som funktion av resistans ($k\Omega)$. Kurvan representerar solcellens karakteristik.}
-\end{figure} 
-Ur figur 4 avläses maxeffekten till 8,6 mW.
-
-%--------------------------------------------------------------
-\pagebreak
-\subsection{Tillverkning och analys av en GaP-diod}
-Ström utan belysning: 3,5 mA.\\
-Ström vid belysning; 4,5 mA.\\
-Emitterat ljus: Orange.
-\begin{figure}[hb]
-\centering
-\includegraphics[scale=.5]{opt-GAP.png}
-\caption{Diodens karakteristik, ström (mA) som funktion av spänning (V). Pilen till vänster har värdet -4 V och pilen till höger cirka 0,4 V.}
-\end{figure} 
+\section{Terminologi}
+\section{Context diagram}
+%----------
+\section{Funktionella krav}
+\subsection{Autentisering}
+\subsection{Data}
+\subsection{Administration}
+\subsection{Generella krav}
+%-----------
+\section{Kvalitetskrav}
+\subsection{Underhåll}
+\subsection{Prestanda}
+%----------
+\section{Projektkrav}
+\subsection{Utvecklingsmiljö}
 
 
 
-\section{Sammanfattning}
-Dioders karakteristik stämde till stor del överens med teorin. I det första momentet blev det som förväntat emission och absorption inom en viss våglängd för en given diod. Nyckeln till fenomenen ligger i ämnets bandgap, med vars hjälp man kan identifiera det. Dioden med det osynliga ljuset är gjord av kisel (bandgap på 1,11 eV vid 302K) och den som ger synligt ljus är gjord av zinkselenid (bandgap på 2,7 eV vid 302K).
 
-Från det andra momentet kan det konstateras att man med en lämplig belastning kan utvinna ström och därmed tillverka en solcell. Detta sker då man teoretiskt sätt befinner sig i den fjärde kvadranten vilket medför till negativ ström. Den största arean mellan kurvan och axlarna (produkten av ström och spänning) ger den maximala effekten 8,6 mW.
 
-I det tredje momentet inträffade ett intressant fenomen vid negativ spänning, kallad \textit{break down}. I övrigt stämde diodens karakteristik överens med det förväntade, nämligen tröskelspänning vid 0,6 V (0,4 V på laborationen). Dioden påvisade ökad ström vid belysning och fungerade därför som solcell; den emitterade även orange ljus.
+
+
 
 \end{document}                 % The input file ends with this command.
+
+
+
+
+
+
+
+
+
+%   BETRAKTA NEDANFÖR SOM EXEMPEL PÅ HUR MAN KAN SKRIVA -------------------------------------------------------------------
+%\subsection{Lysdiod - emission och absorption}
+%\begin{figure}[htb]
+%\centering
+%\includegraphics[scale=.6]{osynligt.eps}
+%\caption{Absorption (rött) och emission (blått) som funktion av våglängd (nm) - Osynligt ljus.}
+%\end{figure} 
+%
+%\begin{figure}[htb]
+%\centering
+%\includegraphics[scale=.6]{synligt.eps}
+%\caption{Emission (blått) som funktion av våglängd (nm) - Synligt ljus.}
+%\end{figure} 
+%
+%Det synliga ljuset var blått och har våglängden 
+%\begin{math} \lambda = 455*10^{-9} m.
+%\end{math}
+%
+%Ur formeln 
+%
+%\begin{equation}
+%E_{g}= \frac {hc}{\lambda} \label{ekv1} 
+%\end{equation}
+%
+%fås $E_{g}=2,7eV$.
+%
+%Det osynliga ljusets våglängd är enligt mätvärden ca $950*10^{-9}m$.
+%På samma sätt som ovan fås motsvarande bandgapet till $E_{g}=1,3 eV$.
+%
+%%-------------------------------------------------------------------
+%
+%\subsection{Solcellen}
+%\begin{figure}[htb]
+%\centering
+%\includegraphics[scale=.6]{solcell1.eps}
+%\caption{Ström (mA) som funktion av spänning (V). Kurvan representerar solcellens karakteristik.}
+%\end{figure} 
+%\begin{figure}[htb]
+%\centering
+%\includegraphics[scale=.6]{solcell2.eps}
+%\caption{Effekt (mW) som funktion av resistans ($k\Omega)$. Kurvan representerar solcellens karakteristik.}
+%\end{figure} 
+%Ur figur 4 avläses maxeffekten till 8,6 mW.
+%
+%%--------------------------------------------------------------
+%\pagebreak
+%\begin{figure}[hb]
+%\centering
+%\includegraphics[scale=.5]{opt-GAP.png}
+%\caption{Diodens karakteristik, ström (mA) som funktion av spänning (V). Pilen till vänster har värdet -4 V och pilen till höger cirka 0,4 V.}
+%\end{figure} 
+%
+%
+%
+%\section{Sammanfattning}
+
+
