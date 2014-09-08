@@ -18,7 +18,8 @@
   {\the\value{#1}}%
 }  
 \newcommand\requirement[2]{
-	\textbf{\getcurrentref{section}.\getcurrentref{subsection}.#1} #2
+\noindent
+\textbf{\getcurrentref{section}.\getcurrentref{subsection}.#1} #2
 
 }
 
@@ -97,14 +98,14 @@ Här följer ord och uttryck som används i rapporten och är till för att öka
 \subsection{Projektledning}
 \section{Kvalitetskrav}
 \subsection{Underhåll}
+\requirement{1}{Grundläggande förståelse av Java, nivå av vad som lärs ut i kursen EDA016, samt grundläggande kunskap av SQL skall räcka för att underhålla samt vidareutvekla systemet.}
 \subsection{Prestanda}
+\requirement{1}{Programmet skall vara snabbast i världen!}
 \section{Projektkrav}
 \subsection{Utvecklingsmiljö}
-
-
-
-
-
+\requirement{1}{Systemet skall vara utveklat för Apache-Tomcat servern.}
+\requirement{2}{Systemet skall vara utveklat i Java.}
+\requirement{3}{Databaslösningen MySQL skall användas av programmet för lagring av data mellan sessioner.}
 
 
 
