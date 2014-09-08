@@ -4,21 +4,33 @@
 \marginsize{3cm}{3cm}{3cm}{3cm}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}       
+
 \usepackage[swedish]{babel}      
 \usepackage{epstopdf}     % För svensk avstavning och svenska
 \usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
 \usepackage[scaled]{helvet} % Helvetica, scaled 95%
+
 \usepackage{etoolbox}
 
 \newcommand\getcurrentref[1]{%
  \ifnumequal{\value{#1}}{0}
   {??}
   {\the\value{#1}}%
-}   
+}  
 \newcommand\requirement[2]{
 	\textbf{\getcurrentref{section}.\getcurrentref{subsection}.#1} #2
 
 }
+
+\usepackage{fancyhdr}
+
+\fancyhf{}% Clear header/footer
+\fancyhead[L]{Ansvarig: PG}
+\fancyhead[C]{Datum: \today}
+\fancyhead[R]{Version: 1.0}
+
+
+
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
@@ -26,14 +38,17 @@
 \date{}
 
 \begin{document}
+
 \maketitle
+\thispagestyle{fancy}
 \tableofcontents
 \newpage
 
 \section*{Dokumenthistorik}
+
 \begin{tabular}{ l l l l }
 Ver. & Datum & Ansv. & Beskrivning \\\hline
-1.0 & 2014-XX-XX & SG & Första baseline-versionen
+1.0 & \today & SG & Första baseline-versionen
 
 \end{tabular}
 \section{Inledning}          % Detta kommando gör en rubrik
@@ -54,10 +69,15 @@ Följande aktörer kommer att använda systemet:
 \begin{itemize}
 \item [] \textbf{Vanlig användare (User)} En användare kan logga in i systemet och tidsrapportera. Denne har även tillgång till statistik rörande den egna tidsrapporteringen.
 \item [] \textbf{Administrator (Admin)} En administratör är en specifik användare som har privligerade rättigheter. Denne kan lägga till och ta bort andra användare.
-\item [] \textbf{Projektledare (PL)} En administratör är en specifik användare som har privligerade rättigheter. Denne kan lägga till och ta bort andra användare.
+\item [] \textbf{Projektledare (PL)} Projektledare är en roll som kan tilldelas till en User vilket ger den administrativa rättigheter för ett givet projekt.
 \end{itemize}
 
 \section{Terminologi}
+Här följer ord och uttryck som används i rapporten och är till för att öka förståelsen.
+\begin{itemize}
+\item [Random word] Detta betyder något.
+\item [Other thing] Betyder inte direkt något men nått gör det nog.
+\end{itemize}
 \section{Context diagram}
 \section{Funktionella krav}
 \subsection{Generella krav}
