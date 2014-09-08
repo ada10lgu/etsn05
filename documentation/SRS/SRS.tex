@@ -8,9 +8,21 @@
 \usepackage{epstopdf}     % För svensk avstavning och svenska
 \usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
 \usepackage[scaled]{helvet} % Helvetica, scaled 95%
+\usepackage{etoolbox}
+
+\newcommand\getcurrentref[1]{%
+ \ifnumequal{\value{#1}}{0}
+  {??}
+  {\the\value{#1}}%
+}   
+\newcommand\requirement[2]{
+	\textbf{\getcurrentref{section}.\getcurrentref{subsection}.#1} #2
+
+}
+
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
-\author{Systemdesigngruppen - Lars Gustafsson}
+\author{Systemarkitektgruppen \\ Lars Gustafsson | Martin Lichota | Marcel Tovar Rascon}
 \date{}
 
 \begin{document}
@@ -19,9 +31,12 @@
 \newpage
 
 \section*{Dokumenthistorik}
+\begin{tabular}{ l l l l }
+Ver. & Datum & Ansv. & Beskrivning \\\hline
+1.0 & 2014-XX-XX & SG & Första baseline-versionen
 
+\end{tabular}
 \section{Inledning}          % Detta kommando gör en rubrik
-
 
 
 Dokumentet beskriver kraven för <Program X>, ett tidsrapportingssystem för projekt som diverse användare kan logga in på.
@@ -29,7 +44,7 @@ Dokumentet beskriver kraven för <Program X>, ett tidsrapportingssystem för pro
 
           % Detta blir en underrubrik
 \section{Referensdokument}
-< TOMT >
+I denna version används inget referensmaterial.
 \section{Bakgrund och mål}   
 \subsection{Huvudmål}
 Huvudmålet är att tillhandhålla ett system där olika användare, såsom projektledare och övriga projektmedlemmar, ska kunna tidsrapportera och loggföra det fortgående arbetet. 
@@ -46,12 +61,14 @@ Följande aktörer kommer att använda systemet:
 \section{Context diagram}
 \section{Funktionella krav}
 \subsection{Generella krav}
+ \requirement{1}{Alla scenarion beskrivna under kapitel \ref{scenarion} skall systemet stödja.}
 \subsection{Autentisering}
 \subsection{Data}
 \subsection{Administration}
 \subsection{Tidsraportering}
 \subsection{Projektledning}
 \section{Funktionella scenarion}
+\label{scenarion}
 \subsection{Generella scenarion}
 \subsection{Autentisering}
 \subsection{Data}
