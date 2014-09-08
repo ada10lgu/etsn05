@@ -1,38 +1,28 @@
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Detta är ett exempel på ett latexdokument.
-% 
-% Alla dokument består av följande delar:
-%
-%          \documentclass[optioner]{dokumentklass}
-%            ...inställningar...
-%          \begin{document}
-%            ...text...
-%          \end{document}
-%
-% Som ni kanske redan har förstått är används procent (%) för
-% kommentarer.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\documentclass[titlepage,a4paper]{article}
+\documentclass[a4paper]{article}
 \usepackage[pdftex]{graphicx}
 \usepackage{anysize}
 \marginsize{3cm}{3cm}{3cm}{3cm}
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}                % För svenska bokstäver
+\usepackage[T1]{fontenc}       
 \usepackage[swedish]{babel}      
 \usepackage{epstopdf}     % För svensk avstavning och svenska
 \usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
 \usepackage[scaled]{helvet} % Helvetica, scaled 95%
-                  
+
+\title{SRS - Software Requirements Specification: NewPussSystem}                  	
+\author{Systemdesigngruppen - Lars Gustafsson}
+\date{}
 
 \begin{document}
+\maketitle
+\tableofcontents
+\newpage
 
-\input{./title.tex}                   % Skriver ut rubriken som vi
-                                % deklarerade ovan med \title, \author
-                                % och eventuellt \date
+\section*{Dokumenthistorik}
 
 \section{Inledning}          % Detta kommando gör en rubrik
+
+
 
 Dokumentet beskriver kraven för <Program X>, ett tidsrapportingssystem för projekt som diverse användare kan logga in på.
 
@@ -46,28 +36,31 @@ Huvudmålet är att tillhandhålla ett system där olika användare, såsom proj
 
 \subsection{Aktörer och deras mål}
 Följande aktörer kommer att använda systemet:
+\begin{itemize}
+\item [] \textbf{Vanlig användare (User)} En användare kan logga in i systemet och tidsrapportera. Denne har även tillgång till statistik rörande den egna tidsrapporteringen.
+\item [] \textbf{Administrator (Admin)} En administratör är en specifik användare som har privligerade rättigheter. Denne kan lägga till och ta bort andra användare.
+\item [] \textbf{Projektledare (PL)} En administratör är en specifik användare som har privligerade rättigheter. Denne kan lägga till och ta bort andra användare.
+\end{itemize}
 
-\textbf{Vanlig användare (User)} En användare kan logga in i systemet och tidsrapportera. Denne har även tillgång till statistik rörande den egna tidsrapporteringen.
-
-\textbf{Administrator (Admin)} En administratör är en specifik användare som har privligerade rättigheter. Denne kan lägga till och ta bort andra användare.
-
-\textbf{Projektledare (PL)} En administratör är en specifik användare som har privligerade rättigheter. Denne kan lägga till och ta bort andra användare.
-
-%-------------------------------------------------------------------
-\pagebreak
 \section{Terminologi}
 \section{Context diagram}
-%----------
 \section{Funktionella krav}
+\subsection{Generella krav}
 \subsection{Autentisering}
 \subsection{Data}
 \subsection{Administration}
-\subsection{Generella krav}
-%-----------
+\subsection{Tidsraportering}
+\subsection{Projektledning}
+\section{Funktionella scenarion}
+\subsection{Generella scenarion}
+\subsection{Autentisering}
+\subsection{Data}
+\subsection{Administration}
+\subsection{Tidsraportering}
+\subsection{Projektledning}
 \section{Kvalitetskrav}
 \subsection{Underhåll}
 \subsection{Prestanda}
-%----------
 \section{Projektkrav}
 \subsection{Utvecklingsmiljö}
 
