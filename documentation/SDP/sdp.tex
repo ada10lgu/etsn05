@@ -1,0 +1,142 @@
+\documentclass[a4paper]{article}
+
+\usepackage[swedish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{verbatim}
+
+\title{Projektplan för mjukvaruutveckling}
+
+\author{Cornelia Jeppsson, \texttt{dat11cje@student.lu.se}\\
+Ludvig Nyqvist, \texttt{ada10lny@student.lu.se}}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Your abstract.
+\end{abstract}
+
+\newpage
+
+\section{Utvecklingsplan}
+\begin{comment}
+
+En utvecklingsplan som anger fasernas tidsbehov och händelser av betydelse (granskningar och baselines). I utvecklingsplanen beskrivs också eventuell anpassning av utvecklingsmodellen samt dokument till projektet (eng. tailoring)
+
+Det ska finnas referenser till utvecklingsmodellen kap 2 i boken och beskrivning av eventuella anpassningar.
+\end{comment}
+
+\subsection{Fas 1: Specifikaton}
+Projektplan, Kravspecifikation samt Testspecifikation produceras. Fasen avslutas med en formell granskning (SSR, Software Specification Reviw) samt en formell baseline (SBL, Specification Baseline).
+
+Tidsåtgång beräknas vara 3 veckor. 
+
+\section{Personalorganisation}
+\begin{comment}En beskrivning av personalorganisationen som anger hur mycket personal som behövs, när de behövs, och var de behövs. Ansvarsförhållande och ansvarsområde för respektive person skall också anges.
+
+Det ska vara tydligt vilka ansvarsområden som finns samt vem som har ansvar för vad.
+
+Beskriv t.ex. vem som är projektledare, vem som är med i systemgruppen, vem som är med i testgruppen, vem som är med i de olika testgrupperna osv. Beskriv även vilka externa intressenter det finns till projektet.\end{comment}
+
+Projektgruppen består av 18 medarbetare, varav två projektledare, tre systemarkitekter, 8 utvecklare samt 5 testare. Det finns även utvecklingsorganisationen att tillgå vilken består av tre experter, sektionschef samt en granskare under projektet.
+
+\subsection{Projektledare}
+Projektledarna är:
+\begin{itemize}
+\item{Cornelia Jeppsson}
+\item{Ludvig Nyqvist}
+\end{itemize}
+
+Dessa har det övergripande ansvaret för hela projektet och ska se till att gruppen presenterar ett resultat. De har ansvar för att producera och löpande uppdatera SDP (Software Development Plan, detta dokument) samt SSD (System specification document) och PFR (Project Final Report).
+
+\subsection{Systemarkitekter}
+Systemarkitekterna är:
+\begin{itemize}
+\item{{\bf Lars Gustafsson - Systemledare}}
+\item{Martin Lichota}
+\item{Marcel Tovar Rascon}
+\end{itemize}
+
+\subsection{Utvecklare}
+Utvecklingsgruppen består av:
+\begin{itemize}
+\item{{\bf Johan Rönnåker - Utvecklingsledare}}
+\item{Jonatan Broberg}
+\item{Fredrik Folkesson}
+\item{Gustav Johnsson Henningsson}
+\item{Nina Khayyami}
+\item{Henrik Nilsson}
+\item{Patrik Siljeholm}
+\item{Jonas Svalin}
+\end{itemize}
+
+Dessa har ansvar för utvecklingen av funktionalitet i projektet. Dessa är uppdelade i grupper om två personer som har hand om en funktionalitet vars. Utvecklarna ska producera delkapitel för sin funktionalitet i SRS (System Requirement Specification), STLDD (Software Top Level Design Document) samt SDDD (Software Detailed Design Document).
+
+\subsection{Testare}
+Testgruppen består av:
+\begin{itemize}
+\item{{\bf Axel Ulmestig - Testledare}}
+\item{Sefik Ceric}
+\item{Axel Goteman}
+\item{Victor Johnsson}
+\item{Johan Kellerth Fredlund}
+
+\end{itemize}
+
+Testgruppen ansvarar för testningen av det utvecklade systemet. De ska även producera SVVS (Software Verification and Validation Specification), SVVI (Software Verification and Validation Instructions) samt SVVR (Software Verification and Validation Report).
+
+\subsection{Utvecklingsorganisation}
+Experterna kan rådfrågas angående frågor inom deras respektive expertis. Sektionschefen hjälper till med problem kring SDP (Software Development Plan, detta dokument), SSD (Software Specification Document) samt PFR (Project Final Report).
+\begin{itemize}
+\item{Sektionschef och Kravexpert - Krzysztof Wnuk}
+\item{Testexpert - Markus Borg}
+\item{Designexpert - Jesper Pedersen Notander}
+\item{Granskare - Johan Linåker}
+\end{itemize}
+
+\section{Tidplan}
+\begin{comment} 
+I tidplanen ska det finnas en detaljerad nedbrytning av det arbete som ska ske i aktiviteter. Det ska också finnas skattningar av arbetstid (dvs "effort"), ledtid och datum för när aktiviteter ska vara färdiga. Det betyder att man ska kunna utläsa minst följande: 
+
+1. Skattad tidsåtgång för varje fas (hur fördelas arbetsinsatsen över projektets faser?)
+2. Skattad start- och slutdatum för varje fas (när blir olika delar klara?)
+3. Skattad tidsåtgång för varje dokument (vad kostar varje del?)
+4. Skattad start- och slutdatum för varje dokument (när blir olika dokument klara?)
+5. Skattad tidsåtgång för olika aktiviteter och aktivitetstyper i respektive fas (vad lägger man tiden på?). (Möten, granskningar, ändringshantering, rapportering, osv)
+6. Skattad tidåtgång för varje grupp, uppdelat per vecka (går det in på en 40-timmarsvecka?)
+7. En kalenderplan där man kan se vad varje grupp ska göra varje vecka (vem ska göra vad och när?) Detta kan tex åskådliggöras i ett gantt-schema.
+8. Det ska även vara tydligt vilka möten som är planerade under projektet, både interna möten och möten där externa intressenter är med.
+
+Ange även i projektplanen vilka metoder ni använt för att göra skattningar av tid och kostnad, samt vilka de största osäkerheterna är med skattningarna.
+
+\end{comment}
+
+Varje måndag skall projektledarna signera projektgruppens tidsrapporter för den gångna veckan. Det innebär att alla måste ha skickat in sina tidsrapporteringar senast dagen innan, det vill säga på söndagen. 
+
+\section{Hjälpmedel, Metoder och Stanarder}
+\begin{comment}En beskrivning av ovanstående som projektet avser att använda.\end{comment}
+
+\section{Konfigurationsstyrning}
+\begin{comment}En beskrivning av konfigurationsstyrningen (CM), se kapitel 4 i röda boken. Konfigurationsstyrningen beskriver hur projektbiblioteket är organiserat och hur ändringshanteringen fungerar.
+
+
+I samband med projektplanen är det också viktigt att tänka på att det i slutet av projektet skall skrivas en slutrapport. Detta betyder att man redan vid skrivandet av planen bör överväga hur slutrapporten skall se ut så att man enkelt kan stämma av med projektplanen.
+\end{comment}
+
+\section{Uppföljning och kvalitetsutvärdering}
+\begin{comment} 
+Det ska finnas en del i projektplanen som beskriver hur uppföljning, tex av tidsplanen, sker under projektet, samt vad som händer om arbetet inte verkar gå enligt plan. Det ska också finnas en beskrivning av de rutiner som finns för kvalitetsutvärdering under projektet.
+
+\end{comment}
+
+\section{Riskanalys}
+\begin{comment}
+I projektplanen ska även resultatet av en riskanalys för projektet presenteras. Ange hur riskanalys utförts i projektet, samt de viktigaste riskerna som identifierats. Rapportera åtminstone följande för varje rapporterad risk: skattad sannolikhet (tex låg, medel, hög), skattad effekt (tex låg, medel, hög), möjliga indikationer på att risken förverkligas, samt exempel på lösningar om risken förverkligas.
+
+\end{comment}
+\end{document}

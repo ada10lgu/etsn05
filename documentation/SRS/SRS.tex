@@ -1,85 +1,117 @@
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Detta är ett exempel på ett latexdokument.
-% 
-% Alla dokument består av följande delar:
-%
-%          \documentclass[optioner]{dokumentklass}
-%            ...inställningar...
-%          \begin{document}
-%            ...text...
-%          \end{document}
-%
-% Som ni kanske redan har förstått är används procent (%) för
-% kommentarer.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\documentclass[titlepage,a4paper]{article}
+\documentclass[a4paper]{article}
 \usepackage[pdftex]{graphicx}
 \usepackage{anysize}
 \marginsize{3cm}{3cm}{3cm}{3cm}
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}                % För svenska bokstäver
+\usepackage[T1]{fontenc}       
+
 \usepackage[swedish]{babel}      
 \usepackage{epstopdf}     % För svensk avstavning och svenska
 \usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
 \usepackage[scaled]{helvet} % Helvetica, scaled 95%
 
+<<<<<<< HEAD
                   
+=======
+\usepackage{etoolbox}
+
+\newcommand\getcurrentref[1]{%
+ \ifnumequal{\value{#1}}{0}
+  {??}
+  {\the\value{#1}}%
+}  
+\newcommand\requirement[2]{
+\noindent
+\textbf{\getcurrentref{section}.\getcurrentref{subsection}.#1} #2
+
+}
+
+\usepackage{fancyhdr}
+
+\fancyhf{}
+\fancyhead[L]{Ansvarig: SG}
+\fancyhead[C]{Datum: \today}
+\fancyhead[R]{Version: 1.0}
+
+
+
+
+
+\title{SRS - Software Requirements Specification: NewPussSystem}                  	
+\author{Systemarkitektgruppen \\ Lars Gustafsson | Martin Lichota | Marcel Tovar Rascon}
+\date{}
+>>>>>>> FETCH_HEAD
 
 \begin{document}
 
-\input{./title.tex}                   % Skriver ut rubriken som vi
-                                % deklarerade ovan med \title, \author
-                                % och eventuellt \date
+\maketitle
+\thispagestyle{fancy}
+\tableofcontents
+\newpage
 
-\section{Inledning}          % Detta kommando gör en rubrik
+\section*{Dokumenthistorik}
+
+\begin{tabular}{ l l l l }
+Ver. & Datum & Ansv. & Beskrivning \\\hline
+1.0 & \today & SG & Första baseline-versionen
+
+\end{tabular}
+\section{Inledning}       
+
 
 Dokumentet beskriver kraven för <Program X>, ett tidsrapportingssystem för projekt som diverse användare kan logga in på.
 
-
-          % Detta blir en underrubrik
 \section{Referensdokument}
-< TOMT >
+I denna version används inget referensmaterial.
 \section{Bakgrund och mål}   
 \subsection{Huvudmål}
 Huvudmålet är att tillhandhålla ett system där olika användare, såsom projektledare och övriga projektmedlemmar, ska kunna tidsrapportera och loggföra det fortgående arbetet. 
 
 \subsection{Aktörer och deras mål}
 Följande aktörer kommer att använda systemet:
+\begin{itemize}
+\item [] \textbf{Vanlig användare (User)} En användare kan logga in i systemet och tidsrapportera. Denne har även tillgång till statistik rörande den egna tidsrapporteringen.
+\item [] \textbf{Administrator (Admin)} En administratör är en specifik användare som har privligerade rättigheter. Denne kan lägga till och ta bort andra användare.
+\item [] \textbf{Projektledare (PL)} Projektledare är en roll som kan tilldelas till en User vilket ger den administrativa rättigheter för ett givet projekt.
+\end{itemize}
 
-\textbf{Vanlig användare (User)} En användare kan logga in i systemet och tidsrapportera. Denne har även tillgång till statistik rörande den egna tidsrapporteringen.
-
-\textbf{Administrator (Admin)} En administratör är en specifik användare som har privligerade rättigheter. Denne kan lägga till och ta bort andra användare.
-
-\textbf{Projektledare (PL)} En administratör är en specifik användare som har privligerade rättigheter. Denne kan lägga till och ta bort andra användare.
-
-%-------------------------------------------------------------------
-\pagebreak
 \section{Terminologi}
+Här följer ord och uttryck som används i rapporten och är till för att öka förståelsen.
+\begin{itemize}
+\item [Random word] Detta betyder något.
+\item [Other thing] Betyder inte direkt något men nått gör det nog.
+\end{itemize}
 \section{Context diagram}
-%----------
 \section{Funktionella krav}
+\subsection{Generella krav}
+ \requirement{1}{Alla scenarion beskrivna under kapitel \ref{scenarion} skall stödjas av systemet.}
 \subsection{Autentisering}
 \subsection{Data}
 \subsection{Administration}
-\subsection{Generella krav}
-%-----------
+\subsection{Tidsraportering}
+\subsection{Projektledning}
+\section{Funktionella scenarion}
+\label{scenarion}
+\subsection{Generella scenarion}
+\subsection{Autentisering}
+\subsection{Data}
+\subsection{Administration}
+\subsection{Tidsraportering}
+\subsection{Projektledning}
 \section{Kvalitetskrav}
 \subsection{Underhåll}
+\requirement{1}{Förståelse av Java, i nivå med vad som lärs ut i kursen EDA016, samt grundläggande kunskap av SQL skall räcka för att underhålla samt vidareutvekla systemet.}
 \subsection{Prestanda}
-%----------
+\requirement{1}{Programmet skall vara snabbast i världen!}
 \section{Projektkrav}
 \subsection{Utvecklingsmiljö}
+\requirement{1}{Systemet skall vara utveklat för Apache-Tomcat servern.}
+\requirement{2}{Systemet skall vara utveklat i Java.}
+\requirement{3}{Databaslösningen MySQL skall användas av programmet för lagring av data mellan sessioner.}
 
 
 
-
-
-
-
-
-\end{document}                 % The input file ends with this command.
+\end{document}
 
 
 

@@ -1,0 +1,5 @@
+\select@language {swedish}
+\contentsline {section}{\numberline {1}Inledning}{2}
+\contentsline {section}{\numberline {2}Referensdokument}{2}
+\contentsline {section}{\numberline {3}N\IeC {\r a}got mer...}{2}
+\contentsline {section}{Bilaga \numberline {A}Bacon}{2}
