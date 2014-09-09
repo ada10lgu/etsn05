@@ -6,7 +6,19 @@
 \usepackage{graphicx}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{verbatim}
+\usepackage{epstopdf} % För svensk avstavning och svenska
+\usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
+\usepackage[scaled]{helvet} % Helvetica, scaled 95%
 \usepackage{etoolbox}
+\newcommand\getcurrentref[1]{%
+\ifnumequal{\value{#1}}{0}
+{??}
+{\the\value{#1}}%
+}
+\newcommand\requirement[2]{
+\noindent
+\textbf{\getcurrentref{section}.\getcurrentref{subsection}.#1} #2
+}
 \usepackage[T1]{fontenc} 
 \usepackage{anysize}
 \marginsize{3cm}{3cm}{3cm}{3cm}
