@@ -18,20 +18,21 @@
   {\the\value{#1}}%
 }  
 \newcommand\requirement[2]{
+	\numberedrow{Krav}{#1}{#2}
+}
+\newcommand\scenario[2] {
+	\numberedrow{Scenario}{#1}{#2}
+}
+\newcommand\numberedrow[3]{
 \noindent
-\textbf{\getcurrentref{section}.\getcurrentref{subsection}.#1} #2
-
+\textbf{#1 \getcurrentref{section}.\getcurrentref{subsection}.#2.} #3
 }
 
 \usepackage{fancyhdr}
-
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 \fancyhead[C]{Datum: \today}
 \fancyhead[R]{Version: 1.0}
-
-
-
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
