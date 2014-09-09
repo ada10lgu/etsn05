@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+﻿\documentclass[a4paper]{article}
 
 \usepackage[swedish]{babel}
 \usepackage[utf8]{inputenc}
@@ -6,24 +6,56 @@
 \usepackage{graphicx}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{verbatim}
+\usepackage{epstopdf} % För svensk avstavning och svenska
+\usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
+\usepackage[scaled]{helvet} % Helvetica, scaled 95%
+\usepackage{etoolbox}
+\newcommand\getcurrentref[1]{%
+\ifnumequal{\value{#1}}{0}
+{??}
+{\the\value{#1}}%
+}
+\newcommand\requirement[2]{
+\noindent
+\textbf{\getcurrentref{section}.\getcurrentref{subsection}.#1} #2
+}
+\usepackage[T1]{fontenc} 
+\usepackage{anysize}
+\marginsize{3cm}{3cm}{3cm}{3cm}
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[L]{Ansvarig: PG}
+\fancyhead[C]{Datum: \today}
+\fancyhead[R]{Version: 1.0}
 
-\title{Projektplan för mjukvaruutveckling}
+\title{SDP - Software Development Plan (Projektplan)}
 
-\author{Cornelia Jeppsson, \texttt{dat11cje@student.lu.se}\\
+\author{Projektledarna\\Cornelia Jeppsson, \texttt{dat11cje@student.lu.se}\\
 Ludvig Nyqvist, \texttt{ada10lny@student.lu.se}}
-
-\date{\today}
 
 \begin{document}
 \maketitle
+\thispagestyle{fancy}
 
 \begin{abstract}
 Your abstract.
 \end{abstract}
 
+
+
+\tableofcontents
 \newpage
 
+\section*{Dokumenthistorik}
+\begin{tabular}{ l l l l }
+Ver. & Datum & Ansv. & Beskrivning \\\hline
+1.0 & \today & PG & Första utkast
+\end{tabular}
+
+
 \section{Utvecklingsplan}
+
+De olika faserna beskrivs utifrån utvecklingsmodellen kap 2 i projekthandledningen\cite{projekthandledning}. Tidsestimeringen för faserna och dokumenten har tagits fram med hjälp från tidslinjen för dokument som visades i föreläsning 3\cite{dokumenttidslinje}
 \begin{comment}
 
 En utvecklingsplan som anger fasernas tidsbehov och händelser av betydelse (granskningar och baselines). I utvecklingsplanen beskrivs också eventuell anpassning av utvecklingsmodellen samt dokument till projektet (eng. tailoring)
@@ -32,9 +64,40 @@ Det ska finnas referenser till utvecklingsmodellen kap 2 i boken och beskrivning
 \end{comment}
 
 \subsection{Fas 1: Specifikaton}
-Projektplan, Kravspecifikation samt Testspecifikation produceras. Fasen avslutas med en formell granskning (SSR, Software Specification Reviw) samt en formell baseline (SBL, Specification Baseline).
+Fasens beräknade tidsåtgång: 3 veckor.\newline
+Projektplan, Kravspecifikation samt Testspecifikation produceras. Produktkraven definieras och analyseras samt test planeras. Fasen avslutas med en formell granskning (SSR, Software Specification Review) samt en formell baseline (SBL, Specification Baseline).
 
-Tidsåtgång beräknas vara 3 veckor. 
+\begin{itemize}
+\item{Tidsåtgång för SDP: 3 veckor}
+\item{Tidsåtgång för SRS: 3 veckor}
+\item{Tidsåtgång för SVVS: 3 veckor}
+\end{itemize}
+
+\subsection{Fas 2: Högnivådesign}
+Fasens beräknade tidsåtgång: 4 veckor.\newline
+Under denna fas skall STLDD samt SVVI skapas. Mjukvaran skall struktureras i högnivåkomponenter och designen skall skapas utifrån varje testfall. Denna fas slutar med en formell granskning och en formell baseline.
+
+\begin{itemize}
+\item{Tidsåtgång för STLDD: 4 veckor}
+\item{Tidsåtgång för SVVI: 3 veckor}
+\end{itemize}
+
+\subsection{Fas 3: Lågnivådesign (kod)}
+Fasens beräknade tidsåtgång: 4 veckor.\newline
+Alla enheter/moduler ska specifieras komplett. Lågnivådesignen följs upp av en informell granskning. SG producerar SDDD med hjälp av UG.
+\begin{itemize}
+\item{Tidsåtgång för SDDD: 4 veckor}
+\end{itemize}
+
+\subsection{Fas 4: Integrering och Systemtest}
+Fasens beräknade tidsåtgång: 4 veckor.\newline
+Utför systemtest och se till att systemet uppfyller kraven. Utför även acceptanstest och visa för kunden att systemet uppfyller dennes behov och önskningar. Samla ihop erfarenhet ur projektet. Denna fas avslutas med en formell granskning (PDR) och en formell baseline. System Specification Document (SSD) skapas av projektledarna.
+\begin{itemize}
+\item{Tidsåtgång för SVVR: 3 veckor}
+\item{Tidsåtgång för PFR: 2 veckor}
+\item{Tidsåtgång för SSD: 2 veckor}
+\end{itemize}
+
 
 \section{Personalorganisation}
 \begin{comment}En beskrivning av personalorganisationen som anger hur mycket personal som behövs, när de behövs, och var de behövs. Ansvarsförhållande och ansvarsområde för respektive person skall också anges.
@@ -118,7 +181,7 @@ Ange även i projektplanen vilka metoder ni använt för att göra skattningar a
 
 Varje måndag skall projektledarna signera projektgruppens tidsrapporter för den gångna veckan. Det innebär att alla måste ha skickat in sina tidsrapporteringar senast dagen innan, det vill säga på söndagen. 
 
-\section{Hjälpmedel, Metoder och Stanarder}
+\section{Hjälpmedel, Metoder och Standarder}
 \begin{comment}En beskrivning av ovanstående som projektet avser att använda.\end{comment}
 
 \section{Konfigurationsstyrning}
@@ -139,4 +202,10 @@ Det ska finnas en del i projektplanen som beskriver hur uppföljning, tex av tid
 I projektplanen ska även resultatet av en riskanalys för projektet presenteras. Ange hur riskanalys utförts i projektet, samt de viktigaste riskerna som identifierats. Rapportera åtminstone följande för varje rapporterad risk: skattad sannolikhet (tex låg, medel, hög), skattad effekt (tex låg, medel, hög), möjliga indikationer på att risken förverkligas, samt exempel på lösningar om risken förverkligas.
 
 \end{comment}
+\newpage
+
+\begin{thebibliography}{1}
+\bibitem{dokumenttidslinje} Document Timeline, sida 19, http://cs.lth.se/fileadmin/serg/PUSS\_Lecture3\_2014.pdf 
+\bibitem{projekthandledning} Projekthandledning för Stora System, Projekthandledning, version 2.1 kapitel 2
+\end{thebibliography}
 \end{document}
