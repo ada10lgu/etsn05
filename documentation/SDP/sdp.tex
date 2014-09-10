@@ -1,4 +1,4 @@
-﻿\documentclass[a4paper]{article}
+\documentclass[a4paper]{article}
 
 \usepackage[swedish]{babel}
 \usepackage[utf8]{inputenc}
@@ -26,7 +26,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: PG}
 \fancyhead[C]{Datum: \today}
-\fancyhead[R]{Version: 0.1}
+\fancyhead[R]{Version: 0.2}
 
 \title{SDP - Software Development Plan (Projektplan)}
 
@@ -178,10 +178,16 @@ Ange även i projektplanen vilka metoder ni använt för att göra skattningar a
 
 \end{comment}
 
-Varje måndag skall projektledarna signera projektgruppens tidsrapporter för den gångna veckan. Det innebär att alla måste ha skickat in sina tidsrapporteringar senast dagen innan, det vill säga på söndagen. 
+Varje måndag skall projektledarna signera projektgruppens tidsrapporter för den gångna veckan. Det innebär att alla måste ha skickat in sina tidsrapporteringar senast dagen innan, det vill säga på söndagen.
 
 \section{Hjälpmedel, Metoder och Standarder}
 \begin{comment}En beskrivning av ovanstående som projektet avser att använda.\end{comment}
+
+\begin{itemize}
+\item Github - Webbtjänst för att versionshantera dokument och filer. Samtliga medlemmar i projektet har åtkomst för att kunna hämta senaste versionen av ett specifikt dokument eller en fil.
+\item Eclipse - Utvecklingsmiljö för programmering av systemet samt för whitebox tester.
+
+\end{itemize}
 
 \section{Konfigurationsstyrning}
 \begin{comment}En beskrivning av konfigurationsstyrningen (CM), se kapitel 4 i röda boken. Konfigurationsstyrningen beskriver hur projektbiblioteket är organiserat och hur ändringshanteringen fungerar.
@@ -189,12 +195,46 @@ Varje måndag skall projektledarna signera projektgruppens tidsrapporter för de
 
 I samband med projektplanen är det också viktigt att tänka på att det i slutet av projektet skall skrivas en slutrapport. Detta betyder att man redan vid skrivandet av planen bör överväga hur slutrapporten skall se ut så att man enkelt kan stämma av med projektplanen.
 \end{comment}
+\subsection{Projetbibliotek}
+
+Projektbiblioteket består utav ett dokumentbibliotek och ett arbetsbibliotek. Verktyget Github används för att alla projektets medlemmar skall ha åtkomst till samtliga dokument.
+
+De dokument som ingår i dokumentbilbioteket är:
+\begin{itemize}
+\item Dokument ingående i upprättad specifikationsbaseline (SBL).
+\item Dokument ingående i upprättad design- och testbaseline (DTBL).
+\item Dokument ingående i upprättad produktbaseline (PBL).
+\item Dokument rörande fel- och ändringshanteringen, både åtgärdade och icke åtgärdade.
+\item Granskningsprotokoll från de formella granskningarna.
+\item Mötesprotokoll och granskningsprotokoll från de informella granskningarna.
+\end{itemize}
+
+\subsection{Förändringskontrollsgruppen}
+Ansvariga för konfigurationshanteringen är förändringskontrollsgruppen (FKG).
+Denna grupp består utav följande personer:
+\begin{itemize}
+\item Projektledare - Cornelia Jeppsson
+\item Projektledare - Ludvig Nyqvist
+\item Systemarkitekt - Lars Gustafsson
+\item Systemarkitekt - Martin Lichota
+\item Systemarkitekt - Marcel Tovar Rascon
+\end{itemize}
+Huvudansvaret ligger hos systemgruppen men projektledarna är med för att kunna fatta beslut om åtgärder som kräver resurs- och tidsplanering.
+
+\subsection{Ändringshantering}
+\textbf{Problemrapport}: Denna rapport upprättas då ett problem upptäcks och ges sen till FKG. Om FKG anser att problemet måste åtgärdas görs en utredning om vad som bör åtgärdas samt om de resurser som krävs. Om resurser finns tillgängliga beslutar FKG att en ändring ska göras av en ändringsansvarig.\\
+\textbf{Statusrapport}:Det dokument som ger en bild över statusen hos en enhet. Statusrapporten skall ge en överblick över vilka ändringar som är gjorda eller ännu ej gjorda för en konfigurationsenhet.
+
 
 \section{Uppföljning och kvalitetsutvärdering}
 \begin{comment} 
 Det ska finnas en del i projektplanen som beskriver hur uppföljning, tex av tidsplanen, sker under projektet, samt vad som händer om arbetet inte verkar gå enligt plan. Det ska också finnas en beskrivning av de rutiner som finns för kvalitetsutvärdering under projektet.
 
 \end{comment}
+
+Uppföljning utav tidsplanen kommer att ske kontinuerligt under projektets gång. Detta främst genom god kontakt med de olika gruppernas ledare, men även med samtliga medlemmar i projektet. Vid tidsbrist kommer projektets resurser omfördelas, exempelvis kan vissa icke nödvändiga funktioner som ingår i projektplanen att läggas åt sidan. Även övertidsarbete kan komma att krävas utav gruppens medlemmar. %Tar jag i för mycket här?
+
+
 
 \section{Riskanalys}
 \begin{comment}
