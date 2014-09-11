@@ -6,7 +6,7 @@
 \usepackage[T1]{fontenc}       
 
 \usepackage[swedish]{babel}      
-\usepackage{epstopdf}     % F�r svensk avstavning och svenska
+\usepackage{epstopdf}     % För svensk avstavning och svenska
 \usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
 \usepackage[scaled]{helvet} % Helvetica, scaled 95%
 
@@ -18,20 +18,22 @@
   {\the\value{#1}}%
 }  
 \newcommand\requirement[2]{
-\noindent
-\textbf{\getcurrentref{section}.\getcurrentref{subsection}.#1} #2
-
+	\numberedrow{Krav}{#1}{#2}
+}
+\newcommand\scenario[2] {
+	\numberedrow{Scenario}{#1}{#2}
+}
+\newcommand\numberedrow[3]{
+	\noindent
+	\textbf{#1 \getcurrentref{section}.\getcurrentref{subsection}.#2.} #3
+	
 }
 
 \usepackage{fancyhdr}
-
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 \fancyhead[C]{Datum: \today}
 \fancyhead[R]{Version: 1.0}
-
-
-
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
@@ -49,65 +51,113 @@
 
 \begin{tabular}{ l l l l }
 Ver. & Datum & Ansv. & Beskrivning \\\hline
-1.0 & \today & SG & F�rsta baseline-versionen
+1.0 & \today & SG & Första baseline-versionen
 
 \end{tabular}
 \section{Inledning}       
 
 
-Dokumentet beskriver kraven f�r <Program X>, ett tidsrapportingssystem f�r projekt som diverse anv�ndare kan logga in p�.
+Dokumentet beskriver kraven för <Program X>, ett tidsrapportingssystem för projekt som diverse användare kan logga in på.
 
 \section{Referensdokument}
-I denna version anv�nds inget referensmaterial.
-\section{Bakgrund och m�l}   
-\subsection{Huvudm�l}
-Huvudm�let �r att tillhandh�lla ett system d�r olika anv�ndare, s�som projektledare och �vriga projektmedlemmar, ska kunna tidsrapportera och loggf�ra det fortg�ende arbetet. 
+I denna version används inget referensmaterial.
+\section{Bakgrund och mål}   
+\subsection{Huvudmål}
+Huvudmålet är att tillhandhålla ett system där olika användare, såsom projektledare och övriga projektmedlemmar, ska kunna tidsrapportera och loggföra det fortgående arbetet i sitt projekt. 
 
-\subsection{Akt�rer och deras m�l}
-F�ljande akt�rer kommer att anv�nda systemet:
+\subsection{Aktörer och deras mål}
+Följande aktörer kommer att använda systemet:
 \begin{itemize}
-\item [] \textbf{Vanlig anv�ndare (User)} En anv�ndare kan logga in i systemet och tidsrapportera. Denne har �ven tillg�ng till statistik r�rande den egna tidsrapporteringen.
-\item [] \textbf{Administrator (Admin)} En administrat�r �r en specifik anv�ndare som har privligerade r�ttigheter. Denne kan l�gga till och ta bort andra anv�ndare.
-\item [] \textbf{Projektledare (PL)} Projektledare �r en roll som kan tilldelas till en User vilket ger den administrativa r�ttigheter f�r ett givet projekt.
+\item [] \textbf{Vanlig användare (User)} En användare kan logga in i systemet och tidsrapportera. Denne har även tillgång till statistik rörande den egna tidsrapporteringen.
+\item [] \textbf{Administrator (Admin)} En administratör är en specifik användare som har privligerade rättigheter. Denne kan lägga till och ta bort andra användare.
+\item [] \textbf{Projektledare (PL)} Projektledare är en roll som kan tilldelas till en User vilket ger den administrativa rättigheter för ett givet projekt.
 \end{itemize}
 
 \section{Terminologi}
-H�r f�ljer ord och uttryck som anv�nds i rapporten och �r till f�r att �ka f�rst�elsen.
+Här följer ord och uttryck som används i rapporten och är till för att öka förståelsen.
 \begin{itemize}
-\item [Random word] Detta betyder n�got.
-\item [Other thing] Betyder inte direkt n�got men n�tt g�r det nog.
+\item [Användarnamn] Unik indentifikationsfras för att representera en användare i systemet..
+\item [Lösenord] Hemlig fras endast känd för var unik användare samt systemet så användaren kan påvisa sin identitet.
+\item [Inloggad] En användare som har identifierat sig mot systemet med användarnamn och lösenord, detta sker genom att användaren loggar in.
+\item [Logga in] Se inloggad.
+\item [Användarstatus] En indikation på var användare som avgör hur vida den får logga in eller ej.
+\item [Projektgrupp] En grupp bestående av vanliga användare och projektledare.
+\item [Tidsrapport] En rapport som innehåller arbetsbelasting för en användare under en fix tidsperiod bundet till en specefik projektgrupp.
 \end{itemize}
-\section{Context diagram}
+\section{Contextdiagram}
+Denna version innehålller inte ett contextdiagram.
 \section{Funktionella krav}
 \subsection{Generella krav}
- \requirement{1}{Alla scenarion beskrivna under kapitel \ref{scenarion} skall st�djas av systemet.}
+ \requirement{1}{Alla scenarion beskrivna under kapitel \ref{scenarion} skall stödjas av systemet.}
+ \requirement{2}{Systemet ska inte avbrytas eller låsa sig på grund av att användaren matar in en viss sekvens av data.}
+ \requirement{3}{Flera användare ska kunna logga in på systemet samtidigt.}
+ 
 \subsection{Autentisering}
+\requirement{1}{Man ska kunna logga in med användarnamn och lösenord.}
+\requirement{2}{En inloggad användare skall ha möjligheten att byta sitt lösenord.}
+\requirement{3}{Då en användare har varit inaktiv i mer än 15 minuter så är den inte längre inloggad.}
+\requirement{4}{Om en användare loggar in från en annan plats ska den första loggas ut samt ges ett meddelande om vad som skett.}
+
 \subsection{Data}
+\label{krav-funk-data}
+\requirement{1}{Alla uppdatering i systemet ska sparas omedelbart i databasen så att inga ändringar går förlorade vid systemkrasch.}
+\requirement{2}{Varje radering av information ska bekräftas av användaren innan den utförs.}
+\requirement{3}{Följande information skall vara lagrad om var användare; Användarnamn, lösenord, namn på personen, användarstatus}
+\requirement{4}{Följande information skall vara lagrad om var projektgrupp; Gruppnamn, och medlemmar med deras roll}
+\requirement{5}{Rätt data ska kunna nås av rätt användare.}
 \subsection{Administration}
+\requirement{1}{Det skall finnas ett och endast ett adminkonto i systemet.}
+\requirement{2}{Admin och endast admin ska kunna skapa nya användare i systemet.}
+\requirement{3}{Ny användare måste ha ett unikt användarnamn samt bli tildelad ett slumpmässigt lösenord från systemet.}
+\requirement{4}{Om admin försöker att lägga till en användare med ett användarnamn som redan existerar i systemet ska användaren inte läggas till och ett felmeddelande ska visas.}
+\requirement{5}{Admin och endast admin ska kunna inaktivera alla användarkonton förutom sitt eget.}
+\requirement{6}{Admin och endast admin ska kunna aktivera alla tidigare inaktiverade kontonon.}
+\requirement{7}{När en användare inaktiveras ska admin kunna välja mellan alla aktiva användare från en lista genererat av systemet.}
+\requirement{8}{När en användare läggs till, inaktiveras eller aktiveras ska en bekräftelseruta visas där admin kan välja att bekräfta och slutföra ändringen eller välja avbryt så att ingen ändring görs.}
+\requirement{9}{Admin och endast admin ska kunna skapa projektgrupper i systemet.}
+\requirement{10}{Då en ny användare skapas ska admin ange den information som är specifierat av Krav \ref{krav-funk-data}.3.}
+\requirement{11}{Då en ny projektgrupp skapas ska admin ange den information som är specifierat av Krav \ref{krav-funk-data}.4.}
+\requirement{12}{Om admin försöker skapa en projektgrupp med ett namn som redan existerar ska projektgruppen inte skapas och ett felmeddelande ska visas.}
+\requirement{13}{Admin och endast admin ska kunna ta bort projektgrupper i systemet.}
+\requirement{14}{När en projektgrupp tas bort ska admin kunna välja projektgrupp ur en lista på alla projektgrupper i systemet.}
+
 \subsection{Tidsraportering}
+\requirement{1}{Tidrapporter ska kunna sparas, uppdateras och raderas.}
 \subsection{Projektledning}
+\requirement{1}{En användare kan vara projektledare för flera olika projekt.}
+\requirement{2}{En projektledare har bara rätt att göra ändringar som en projektledare kan för det projektet den är projektledare för.}
+\requirement{2}{Projektledaren skall kunna se samtliga tidrapporter i projektgruppen.}
+\requirement{3}{Projektledaren skall kunna godkänna ej tidigare godkända tidrapporter.}
+\requirement{4}{Projektledaren skall kunna ta tillbaka sitt godkännande från en tidigare godkänd tidsrapport.}
+\requirement{5}{Projektledaren skall kunna lista alla projektmedlemmar.}
+\requirement{6}{Projektledaren kan hämta ut statestik om tidsrapporterna inom sitt projekt. Rapporterna skall kunnas summera per användare, roll, aktivitet eller vecka.}
+\requirement{7}{Projektledaren skall kunna Tilldela roller till medlemmarna i projektgruppen.}
+\requirement{8}{Admin kan göra allt som en projektledare kan för varje existerande projekt.}
 \section{Funktionella scenarion}
 \label{scenarion}
 \subsection{Generella scenarion}
+I denna version finns inga Generella scenarion.
 \subsection{Autentisering}
+I denna version finns inga scenarion gällande autentisering.
 \subsection{Data}
+I denna version finns inga scenarion gällande data.
 \subsection{Administration}
+I denna version finns inga scenarion gällande administration.
 \subsection{Tidsraportering}
+I denna version finns inga scenarion gällande tidsrapportering.
 \subsection{Projektledning}
+I denna version finns inga scenarion gällande projektledning.
 \section{Kvalitetskrav}
-\subsection{Underh�ll}
-\requirement{1}{F�rst�else av Java, i niv� med vad som l�rs ut i kursen EDA016, samt grundl�ggande kunskap av SQL skall r�cka f�r att underh�lla samt vidareutvekla systemet.}
+\subsection{Underhåll}
+\requirement{1}{Systemet skall vara väl dokumenterad så det underlättar vidareutvekling av systemet i framtiden.}
+\requirement{2}{Förståelse av Java, i nivå med vad som lärs ut i kursen EDA016, samt grundläggande kunskap av SQL skall räcka för att underhålla samt vidareutvekla systemet.}
 \subsection{Prestanda}
-\requirement{1}{Programmet skall vara snabbast i v�rlden!}
+\requirement{1}{Då systemet används i en av datorsalarna I “E-huset”, LTH, skall svaret på en godtycklig förfrågan i åtminstone 95\% av fallen ges inom 1,0 s.}
 \section{Projektkrav}
-\subsection{Utvecklingsmilj�}
-\requirement{1}{Systemet skall vara utveklat f�r Apache-Tomcat servern.}
+\subsection{Utvecklingsmiljö}
+\requirement{1}{Systemet skall vara utveklat för Apache-Tomcat servern.}
 \requirement{2}{Systemet skall vara utveklat i Java.}
-\requirement{3}{Databasl�sningen MySQL skall anv�ndas av programmet f�r lagring av data mellan sessioner.}
-
-
+\requirement{3}{Databaslösningen MySQL skall användas av programmet för lagring av data mellan sessioner.}
+\requirement{4}{Systemet samt projekt- och produktdokumentation ska skrivas på svenska. Java-koden ska följa standarden som finns på http://www.geosoft.no/development/javastyle.html, alla variabelnamn ska vara skrivna på engelska.}
 
 \end{document}
-
-
-
