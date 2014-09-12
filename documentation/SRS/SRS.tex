@@ -83,6 +83,7 @@ Här följer ord och uttryck som används i rapporten och är till för att öka
 \item [Användarstatus] En indikation på var användare som avgör hur vida den får logga in eller ej.
 \item [Projektgrupp] En grupp bestående av vanliga användare och projektledare.
 \item [Tidsrapport] En rapport som innehåller arbetsbelasting för en användare under en fix tidsperiod bundet till en specefik projektgrupp.
+\item [Huvudsida] Med huvudsida avses användarvyn då användaren är inloggad och har tillgång till sina funktionaliteter.
 \end{itemize}
 \section{Kontextdiagram}
 Denna version innehålller inte ett kontextdiagram.
@@ -92,16 +93,17 @@ Denna version innehålller inte ett kontextdiagram.
 
  \requirement{1}{Systemet ska inte avbrytas eller låsa sig på grund av att användaren matar in en viss sekvens av data.}
 \requirement{2}{Maximalt 50 användare kan vara inloggade på systemet samtidigt.}
-\requirement{3}{Samtliga användare ska ha tillgång till följande funktionaliteter: Start, tidrapportering, byta lösenord, hjälp samt utloggning.}
-\requirement{4}{Samtliga funktionaliter i krav \ref{krav-funk-gen}.4 ska vara tillgängliga i menyn.}
-\requirement{5}{Menyn ska vara tillgänglig på alla sidor som visas av systemet. }
+\requirement{3}{Samtliga användare ska ha tillgång till följande funktionaliteter: start, tidrapportering, byta lösenord, hjälp samt utloggning.}
+\requirement{4}{Samtliga funktionaliter i krav \ref{krav-funk-gen}.3 ska vara tillgängliga i menyn.}
+\requirement{5}{Systemarkitikter och projektledare ska utöver kraven i \ref{krav-funk-gen}.3 även ha tillgång till följande funktionaliteter från menyn: problemrapportering och statusrapportering.}
+\requirement{6}{Menyn ska vara tillgänglig på samtliga sidor som visas av systemet. }
  
 \subsection{Autentisering}
 \requirement{1}{För varje användare kan loginstatus vara antingen inloggad eller inte inloggad.}
 \requirement{2}{Systemet ska hålla loginstatus i en serversession.}
 \requirement{3}{När en användare når systemet och inte är inloggad ska denna få en förfrågan om användarnamn och lösenord. Ingen annan information ska vara tillgänglig för användaren.}
 \requirement{4}{När en användare skickar ett användarnamn och lösenord ska dessa parametrar jämföras med användarlistan och om användaren ska få tillgång till systemet , så ska serverstatus ändras till 'inloggad' och huvudsidan ska visas.}
-\requirement{5}{Om en inloggad användare är inaktiv för längre än 20 minuter ska denna loggas ut och tvingas att logga in igen innan vidare använding av systemet.}
+\requirement{5}{Om en inloggad användare är inaktiv i längre än 20 minuter ska denna loggas ut och tvingas att logga in igen innan vidare använding av systemet.}
 \requirement{6}{Ett användarkonto kan endast vara inloggad på en enhet åt gången.}
 \requirement{7}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan enhet, kommer den nya inloggingen att slutföras medan den andra enheten loggas ut.}
 
