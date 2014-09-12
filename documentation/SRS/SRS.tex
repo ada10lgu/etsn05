@@ -59,8 +59,8 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.6 & 12 november 2014 & SG & Lade till nya samt reviderade krav\\
 0.7 & 12 november 2014 & SG & Lade till nya samt reviderade krav\\
 0.8 & 12 november 2014 & SG & Lade till nya samt reviderade krav\\
-0.9 & 12 november 2014 & SG & Reviderade krav samt lade till scenarion
-
+0.9 & 12 november 2014 & SG & Reviderade krav samt lade till scenarion\\
+0.10 & 13 november 2014 & SG & Skapade scenarion för projektledning.\\
 \end{tabular}
 \section{Inledning}       
 
@@ -257,12 +257,42 @@ Denna version innehålller inte ett kontextdiagram.
 
 
 \subsection{Projektledning}
+\label{krav-funk-proj}
 \requirement{1}{Varje projekt skall ha två, och endast två användare, som besitter rollen som projektledare.}
 \requirement{2}{Projektledaren skall ha tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp.}
 \requirement{3}{Projektledaren skall kunna godkänna ej tidigare godkända tidrapporter i från medlemmar i sin projektgrupp.}
 \requirement{4}{Projektledaren skall kunna ta tillbaka sitt godkännande från en tidigare godkänd gruppmedlems tidsrapport, i sin projektgrupp.}
-\requirement{5}{Statistik (TASK)}
+\requirement{5}{Projektledaren skall kunna generera statestik över sitt projekt genom att göra något av följande; summera alla tidsrapporter, summera tidsrapporter per användare/roll/aktivitet/vecka.}
+
+%--------------SCENARIO
+
+\begin{table}[htbp]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{1}} \\
+    \textbf{Syfte} & Generera rapporter från systemet.\\
+    \textbf{Trigger} & En användare kommer in på statestiksidan för sitt projekt. \\
+    \textbf{Förutsättning} & Användaren måste vara projektledare för det givna projektet.\\
+    \textbf{Frequency} & \\
+    \textbf{Critical} & \\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer statestik i menyn.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren väljer från en lista vilken typ av rapport den vill generera.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. En rapport genereras med statestik efter användarens önskemål} \\	
+	\hline
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END
+
 \requirement{6}{Projektledaren skall kunna tilldela egenbestämda roller till gruppmedlemmarna i sin projektgrupp.}
+\requirement{7}{Scenario \ref{krav-funk-proj}.1 skall stödjas av systemet.}
 
 \section{Kvalitetskrav}
 \subsection{Underhåll}
