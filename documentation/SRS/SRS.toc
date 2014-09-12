@@ -5,7 +5,7 @@
 \contentsline {subsection}{\numberline {3.1}Huvudm\IeC {\r a}l}{2}
 \contentsline {subsection}{\numberline {3.2}Akt\IeC {\"o}rer och deras m\IeC {\r a}l}{2}
 \contentsline {section}{\numberline {4}Terminologi}{2}
-\contentsline {section}{\numberline {5}Contextdiagram}{3}
+\contentsline {section}{\numberline {5}Kontext diagram}{3}
 \contentsline {section}{\numberline {6}Funktionella krav}{3}
 \contentsline {subsection}{\numberline {6.1}Generella krav}{3}
 \contentsline {subsection}{\numberline {6.2}Autentisering}{3}
