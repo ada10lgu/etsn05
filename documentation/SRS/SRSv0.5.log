@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.9.8)  12 SEP 2014 14:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.9.8)  12 SEP 2014 14:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -381,7 +381,7 @@ Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
 \f@ncyO@olf=\skip50
 \f@ncyO@orf=\skip51
 )
-No file SRSv0.5.aux.
+(./SRSv0.5.aux)
 \openout1 = `SRSv0.5.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
@@ -397,10 +397,9 @@ LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Try loading font information for T1+pplj on input line 43.
-(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/t1pplj.fd
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/t1pplj.fd
 File: t1pplj.fd 2004/09/06 font definitions for T1/pplj.
-)
-(/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
+) (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count91
 \scratchdimen=\dimen110
@@ -445,54 +444,34 @@ File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
 LaTeX Font Info:    Font shape `T1/pplj/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/pplj/b/n' tried instead on input line 47.
-
-No file SRSv0.5.toc.
+ (./SRSv0.5.toc
+LaTeX Font Info:    Font shape `T1/pplj/bx/n' in size <10> not available
+(Font)              Font shape `T1/pplj/b/n' tried instead on input line 2.
+)
 \tf@toc=\write3
 \openout3 = `SRSv0.5.toc'.
 
-[1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+ [1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
 LaTeX Font Info:    Font shape `T1/pplj/bx/n' in size <12> not available
 (Font)              Font shape `T1/pplj/b/n' tried instead on input line 65.
-LaTeX Font Info:    Font shape `T1/pplj/bx/n' in size <10> not available
-(Font)              Font shape `T1/pplj/b/n' tried instead on input line 71.
 
-[2]
-
-LaTeX Warning: Reference `scenarion' on page 3 undefined on input line 91.
-
-[3]
-
-LaTeX Warning: Reference `krav-funk-data' on page 4 undefined on input line 118
-.
-
-
-LaTeX Warning: Reference `krav-funk-data' on page 4 undefined on input line 119
-.
-
-[4] [5] (./SRSv0.5.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[2] [3] [4] [5] (./SRSv0.5.aux) ) 
 Here is how much of TeX's memory you used:
- 3076 strings out of 493117
- 40145 string characters out of 6135434
- 105908 words of memory out of 5000000
+ 3080 strings out of 493117
+ 40193 string characters out of 6135434
+ 107926 words of memory out of 5000000
  6461 multiletter control sequences out of 15000+600000
  36696 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,10n,43p,772b,228s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2014/texmf-dist/fonts/type1/public/fpl/fplbj8a.pfb></usr/local/texlive/2
-014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texm
-f-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/
-fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on SRSv0.5.pdf (5 pages, 55941 bytes).
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/
+dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fp
+lbj8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pf
+b></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr
+/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
+Output written on SRSv0.5.pdf (5 pages, 56209 bytes).
 PDF statistics:
  37 PDF objects out of 1000 (max. 8388607)
  25 compressed objects within 1 object stream
