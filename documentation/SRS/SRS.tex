@@ -106,7 +106,7 @@ Denna version innehålller inte ett contextdiagram.
 \requirement{4}{Följande information skall vara lagrad om var projektgrupp; Gruppnamn, och medlemmar med deras roll}
 \requirement{5}{Rätt data ska kunna nås av rätt användare.}
 \subsection{Administration}
-\requirement{1}{Det skall finnas ett och endast ett adminkonto i systemet.}
+\requirement{1}{Det skall finnas ett och endast en administratör med användarnamnet "admin" och lösenordet "adminpw".}
 \requirement{2}{Endast administratören (admin) ska kunna skapa nya användare i systemet.}
 \requirement{3}{Ny användare måste ha ett unikt användarnamn samt bli tildelad ett slumpmässigt lösenord från systemet.}
 \requirement{4}{Om admin försöker att lägga till en användare med ett användarnamn som redan existerar i systemet ska användaren inte läggas till och ett felmeddelande ska visas.}
@@ -121,8 +121,11 @@ Denna version innehålller inte ett contextdiagram.
 \requirement{13}{Endast administratören (admin) ska kunna ta bort projektgrupper i systemet.}
 \requirement{14}{När en projektgrupp tas bort ska admin kunna välja projektgrupp ur en lista på alla projektgrupper i systemet.}
 
-\subsection{Tidsraportering}
-\requirement{1}{Tidrapporter ska kunna sparas, uppdateras och raderas.}
+\subsection{Tidrapportering}
+Förutsättning: Användaren är medlem i ett projekt.
+\requirement{1}{Nygenererade tidrapporter är alltid osignerade.}
+\requirement{2}{Användaren ska kunna skapa, uppdatera och ta bort sina egna osignerade tidrapporter.}
+\requirement{3}{Användaren kan inte ta bort eller redigera signerade rapporter.}
 \subsection{Projektledning}
 \requirement{1}{Varje projekt ska ha två, och endast två användare, som är projektledare.}
 \requirement{2}{Projektledaren skall ha tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp.}
