@@ -1,0 +1,65 @@
+Uppgift 1 Inloggning
+
+Purpose: Logga in användaren i systemet.
+Trigger: Användaren inkommer till systemet.
+Precondition: Användaren är inte inloggad.
+
+Subtask:
+
+1. Användaren får datafält för Användarnamn och lösenord. Ingen annan information meddelas om systemet.
+2. Användaren matar in användarnamn och läsernord och skickar data till servern genom Log in knappen.
+3. Användaren blir inloggad i serverstatus och är dirigerad till huvudsidan.
+
+
+Variants:
+
+3.a Det givna användarnamn och lösernord matchar inte nån par i systemets databas. Detta meddelas då till användaren och den får repetera inloggningen.
+
+ÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑ
+Uppgift 2 Logout
+
+Purpose: Logga ut användaren från servern.
+Trigger: Användaren väljer log out länken.
+Precondition: Användaren är inloggad.
+
+Subtasks:
+
+1 Användaren väljer log out länken från menyn och loggas ut, samt dirigeras till en logout sida där detta meddelas.
+
+Variants:
+
+1.a Användaren har redan blivit utloggad från servern. I denna fall meddelas detta till användaren och dirigeras till logout sidan.
+
+ÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑ
+
+Uppgift 3: Tidrapportering	
+
+Syfte: Dokumentera arbetstimmar i systemet
+
+Trigger: AnvŠndaren kommer in pŒ tidrapporteringssidan. 
+
+FšrutsŠttning: AnvŠndaren mŒste vara medlem i ett projekt.
+
+Freq
+Crit:
+
+
+Subuppgifter:
+
+1. AnvŠndaren vŠljer tidrapportering i menyn.
+2. Ett fŠlt var anvŠndaren kan fylla i veckonummer fšr veckan som ska rapporteras visas. Under fŠltet framgŒr det fšr vilken vecka senaste rapporten var skapad/reviderad. 
+3. AnvŠndaren fyller i veckonummer och trycker OK. 
+4. En ny tidrapport genereras och visas med veckonumret frŒn fšregŒende steg i fyllt. 
+5. AnvŠndaren kan nu fylla i tidinformation. 
+6. Systemet berŠknar totaltiden i realtid. Detta visas i ett specifikt fŠlt, i rapporten.
+7. AnvŠndaren bekrŠftar slutligen genom att trycka pŒ ÓSkickaÓ, lŠngst ner pŒ sidan.
+8. Rapporten sparas i databasen. En bekrŠftelse pŒ att sŒ har skett visas fšr anvŠndaren.
+
+Varianter:
+
+2a. Det finns ingen tidigare skapad rapport. Detta framgŒr under fŠltet.
+4a. En tidrapport fšr det ifyllda veckonumret existerar redan. Rapporten hŠmtas frŒn databasen och visas fšr anvŠndaren. Denne kan nu redigera rapporten. 
+8a. Rapporten sparades inte i databasen. AnvŠndaren fŒr information om detta.
+
+
+Task, bilder(kontextdiagram,och figurer frŒn BASE SRS:en)  och statistik fšr projektledare.
