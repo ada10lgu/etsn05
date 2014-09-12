@@ -4,24 +4,17 @@
 \contentsline {section}{\numberline {3}Bakgrund och m\IeC {\r a}l}{2}
 \contentsline {subsection}{\numberline {3.1}Huvudm\IeC {\r a}l}{2}
 \contentsline {subsection}{\numberline {3.2}Akt\IeC {\"o}rer och deras m\IeC {\r a}l}{2}
-\contentsline {section}{\numberline {4}Terminologi}{2}
-\contentsline {section}{\numberline {5}Contextdiagram}{3}
+\contentsline {section}{\numberline {4}Terminologi}{3}
+\contentsline {section}{\numberline {5}Kontextdiagram}{3}
 \contentsline {section}{\numberline {6}Funktionella krav}{3}
 \contentsline {subsection}{\numberline {6.1}Generella krav}{3}
-\contentsline {subsection}{\numberline {6.2}Autentisering}{3}
-\contentsline {subsection}{\numberline {6.3}Data}{3}
-\contentsline {subsection}{\numberline {6.4}Administration}{3}
-\contentsline {subsection}{\numberline {6.5}Tidsraportering}{4}
-\contentsline {subsection}{\numberline {6.6}Projektledning}{4}
-\contentsline {section}{\numberline {7}Funktionella scenarion}{4}
-\contentsline {subsection}{\numberline {7.1}Generella scenarion}{4}
-\contentsline {subsection}{\numberline {7.2}Autentisering}{4}
-\contentsline {subsection}{\numberline {7.3}Data}{4}
-\contentsline {subsection}{\numberline {7.4}Administration}{4}
-\contentsline {subsection}{\numberline {7.5}Tidsraportering}{5}
-\contentsline {subsection}{\numberline {7.6}Projektledning}{5}
-\contentsline {section}{\numberline {8}Kvalitetskrav}{5}
-\contentsline {subsection}{\numberline {8.1}Underh\IeC {\r a}ll}{5}
-\contentsline {subsection}{\numberline {8.2}Prestanda}{5}
-\contentsline {section}{\numberline {9}Projektkrav}{5}
-\contentsline {subsection}{\numberline {9.1}Utvecklingsmilj\IeC {\"o}}{5}
+\contentsline {subsection}{\numberline {6.2}Autentisering}{4}
+\contentsline {subsection}{\numberline {6.3}Data}{5}
+\contentsline {subsection}{\numberline {6.4}Administration}{5}
+\contentsline {subsection}{\numberline {6.5}Tidrapportering}{6}
+\contentsline {subsection}{\numberline {6.6}Projektledning}{6}
+\contentsline {section}{\numberline {7}Kvalitetskrav}{8}
+\contentsline {subsection}{\numberline {7.1}Underh\IeC {\r a}ll}{8}
+\contentsline {subsection}{\numberline {7.2}Prestanda}{8}
+\contentsline {section}{\numberline {8}Projektkrav}{8}
+\contentsline {subsection}{\numberline {8.1}Utvecklingsmilj\IeC {\"o}}{8}

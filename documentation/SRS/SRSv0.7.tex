@@ -1,0 +1,172 @@
+\documentclass[a4paper]{article}
+\usepackage[pdftex]{graphicx}
+\usepackage{anysize}
+\marginsize{3cm}{3cm}{3cm}{3cm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}       
+
+\usepackage[swedish]{babel}      
+\usepackage{epstopdf}     % För svensk avstavning och svenska
+\usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
+\usepackage[scaled]{helvet} % Helvetica, scaled 95%
+
+\usepackage{etoolbox}
+
+\newcommand\getcurrentref[1]{%
+ \ifnumequal{\value{#1}}{0}
+  {??}
+  {\the\value{#1}}%
+}  
+\newcommand\requirement[2]{
+	\numberedrow{Krav}{#1}{#2}
+}
+\newcommand\scenario[2] {
+	\numberedrow{Scenario}{#1}{#2}
+}
+\newcommand\numberedrow[3]{
+	\noindent
+	\textbf{#1 \getcurrentref{section}.\getcurrentref{subsection}.#2.} #3
+	
+}
+
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[L]{Ansvarig: SG}
+\fancyhead[C]{Datum: \today}
+\fancyhead[R]{Version: 0.7}
+
+
+\title{SRS - Software Requirements Specification: NewPussSystem}                  	
+\author{Systemarkitektgruppen \\ Lars Gustafsson | Martin Lichota | Marcel Tovar Rascon}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+\tableofcontents
+\newpage
+
+\section*{Dokumenthistorik}
+
+\begin{tabular}{ l l l l }
+Ver. & Datum & Ansv. & Beskrivning \\\hline
+1.0 & \today & SG & Första baseline-versionen
+
+\end{tabular}
+\section{Inledning}       
+
+
+Dokumentet beskriver kraven för <Program X>, ett tidsrapportingssystem för projekt som diverse användare kan logga in på.
+
+\section{Referensdokument}
+I denna version används inget referensmaterial.
+\section{Bakgrund och mål}   
+\subsection{Huvudmål}
+Huvudmålet är att tillhandhålla ett system där olika användare, såsom projektledare och övriga projektmedlemmar, ska kunna tidsrapportera och loggföra det fortgående arbetet i sitt projekt. 
+
+\subsection{Aktörer och deras mål}
+Följande aktörer kommer att använda systemet:
+\begin{itemize}
+\item [] \textbf{Vanlig användare (User)} En användare kan logga in i systemet och tidsrapportera. Denne har även tillgång till statistik rörande den egna tidsrapporteringen.
+\item [] \textbf{Administratör (Admin)} En administratör är en specifik användare som har privligerade rättigheter. Denne kan lägga till och ta bort andra användare.
+\item [] \textbf{Projektledare (PL)} Projektledare är en roll som kan tilldelas till en User vilket ger den administrativa rättigheter för ett givet projekt.
+\end{itemize}
+
+\section{Terminologi}
+Här följer ord och uttryck som används i rapporten och är till för att öka förståelsen.
+\begin{itemize}
+\item [Användarnamn] Unik indentifikationsfras för att representera en användare i systemet..
+\item [Lösenord] Hemlig fras endast känd för var unik användare samt systemet så användaren kan påvisa sin identitet.
+\item [Inloggad] En användare som har identifierat sig mot systemet med användarnamn och lösenord, detta sker genom att användaren loggar in.
+\item [Logga in] Se inloggad.
+\item [Användarstatus] En indikation på var användare som avgör hur vida den får logga in eller ej.
+\item [Projektgrupp] En grupp bestående av vanliga användare och projektledare.
+\item [Tidsrapport] En rapport som innehåller arbetsbelasting för en användare under en fix tidsperiod bundet till en specefik projektgrupp.
+\item [Huvudsida] Med huvudsida avses användarvyn då användaren är inloggad och har tillgång till sina funktionaliteter.
+\end{itemize}
+\section{Kontextdiagram}
+Denna version innehålller inte ett kontextdiagram.
+\section{Funktionella krav}
+\subsection{Generella krav}
+\label{krav-funk-gen}
+
+ \requirement{1}{Systemet ska inte avbrytas eller låsa sig på grund av att användaren matar in en viss sekvens av data.}
+\requirement{2}{Maximalt 50 användare kan vara inloggade på systemet samtidigt.}
+\requirement{3}{Samtliga användare ska ha tillgång till följande funktionaliteter: start, tidrapportering, byta lösenord, hjälp samt utloggning.}
+
+\requirement{4}{Systemarkitikter och projektledare ska utöver kraven i \ref{krav-funk-gen}.3 även ha tillgång till följande funktionaliteter: problemrapportering och statusrapportering.}
+\requirement{5}{Samtliga funktionaliter i krav \ref{krav-funk-gen}.3 och \ref{krav-funk-gen}.4 ska vara tillgängliga i menyn .}
+\requirement{6}{Menyn ska vara tillgänglig på samtliga sidor som visas av systemet. }
+ 
+\subsection{Autentisering}
+\requirement{1}{För varje användare kan loginstatus vara antingen inloggad eller inte inloggad.}
+\requirement{2}{Systemet ska hålla loginstatus i en serversession.}
+<KLISTRA IN INLOGGNINGSUPPGIFT>
+\requirement{3}{När en användare når systemet och inte är inloggad ska denna få en förfrågan om användarnamn och lösenord. Ingen annan information ska vara tillgänglig för användaren.}
+\requirement{4}{När en användare skickar ett användarnamn och lösenord ska dessa parametrar jämföras med användarlistan och om användaren ska få tillgång till systemet , så ska serverstatus ändras till 'inloggad' och huvudsidan ska visas.}
+<KLISTRA IN UTLOGGNINGSUPPGIFT>
+\requirement{5}{Om en inloggad användare är inaktiv i längre än 20 minuter ska denna loggas ut och tvingas att logga in igen innan vidare använding av systemet.}
+\requirement{6}{Ett användarkonto kan endast vara inloggad på en enhet åt gången.}
+\requirement{7}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan enhet, kommer den nya inloggingen att slutföras medan den andra enheten loggas ut.}
+
+\subsection{Data}
+\label{krav-funk-data}
+\requirement{1}{Användarnamn bör bestå av 5-10 tecken, ascii (decimal) värden 48-57, 65-90, och 97-122 är tillåtna.}
+\requirement{2}{Användarnamn ska vara unika.}
+\requirement{3}{Lösenord ska bestå av sex tecken, ascii (decimal) värden 97-122 är tillåtna.}
+
+\requirement{4}{Datamodellen för informationslagring om användarna ska ske enligt figur 2.
+}
+
+\subsection{Administration}
+\requirement{1}{Systemet ska stödja sekvensen för administrören som visas i figur 3}
+\requirement{2}{Det skall finnas en och endast en administratör med användarnamnet 'admin' och lösenordet 'adminpw'.}
+\requirement{3}{På huvudsidan ska det vara möjligt att välja administrationsvyn.}
+\requirement{4}{En ny användare, skapad av administratören, måste ha ett unikt användarnamn samt bli tilldelad ett slumpmässigt lösenord från systemet.}
+\requirement{5}{Om administratören försöker att lägga till en användare med ett användarnamn som redan existerar i systemet, ska användaren inte läggas till och ett felmeddelande ska visas.}
+\requirement{6}{Om en administratör väljer administrationsvyn ska denne få åtkomst till administationsverktygen, men om samma val görs av en ickeadministratör ska denne istället få åtkomst till huvudsidan.}
+\requirement{7}{I administrationsvyn ska alla användare listas med både användarnamn och lösenord.}
+\requirement{8}{I administrationsvyn ska det vara möjligt att ta bort vilken användare som helst förutom administratören.}
+\requirement{9}{Varje borttagning av en användare ska bekräftas av en dialogruta 'Är du säker på att du vill ta bort användaren X: Ja / Nej'. När administratören väljer 'Ja', tas användaren bort och administratören kommer tillbaka till en uppdaterad lista med användarna. Om 'Nej' väljs, går administratören tillbaka till nuvarande sida.}
+\requirement{10}{I administrationsvyn ska det vara möjligt att lägga till en ny användare.}
+\requirement{11}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav \ref{krav-funk-data}.1-2 ska ett felmeddelande visas och användaren ska inte läggas till.}
+
+\requirement{12}{Endast administratören ska kunna skapa projektgrupper i systemet.}
+
+\requirement{13}{Då en ny projektgrupp skapas ska administratören ange ett gruppnamn, projektledare och eventuella gruppmedlemmar.}
+
+\requirement{14}{Om administratören försöker skapa en projektgrupp med ett namn som redan existerar ska projektgruppen inte skapas och ett felmeddelande ska visas.}
+\requirement{15}{Endast administratören ska kunna ta bort projektgrupper i systemet.}
+\requirement{16}{När en projektgrupp tas bort ska administratör kunna välja projektgrupp ur en lista på alla projektgrupper i systemet.}
+
+
+
+\subsection{Tidrapportering}
+\textbf{Förutsättning: Användaren är medlem i ett projekt.}\newline
+\requirement{1}{Nygenererade tidrapporter är alltid osignerade.}
+\requirement{2}{Användaren ska kunna skapa, uppdatera och ta bort sina egna osignerade tidrapporter.}
+\requirement{3}{Användaren kan inte ta bort eller redigera signerade rapporter.}
+\scenario{1} <KLISTRA IN TIDRAPPORTERINGSUPPGIFT>
+\subsection{Projektledning}
+\requirement{1}{Varje projekt ska ha två, och endast två användare, som är projektledare.}
+\requirement{2}{Projektledaren skall ha tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp.}
+\requirement{3}{Projektledaren skall kunna godkänna ej tidigare godkända tidrapporter i från medlemmar sin projektgrupp.}
+\requirement{4}{Projektledaren skall kunna ta tillbaka sitt godkännande från en tidigare godkänd gruppmedlems tidsrapport, i sin projektgrupp.}
+\requirement{5}{Statistik (TASK)}
+\requirement{6}{Projektledaren skall kunna tilldela egenbestämda roller till gruppmedlemmarna i sin projektgrupp.}
+
+\section{Kvalitetskrav}
+\subsection{Underhåll}
+\requirement{1}{Systemet skall vara väl dokumenterad så det underlättar vidareutvekling av systemet i framtiden.}
+\requirement{2}{Förståelse av Java, i nivå med vad som lärs ut i kursen EDA016, samt grundläggande kunskap av SQL skall räcka för att underhålla samt vidareutvekla systemet.}
+\subsection{Prestanda}
+\requirement{1}{Då systemet används i en av datorsalarna I “E-huset”, LTH, skall svaret på en godtycklig förfrågan i åtminstone 95\% av fallen ges inom 1,0 s.}
+\section{Projektkrav}
+\subsection{Utvecklingsmiljö}
+\requirement{1}{Systemet skall vara utveklat för Apache-Tomcat servern.}
+\requirement{2}{Systemet skall vara utveklat i Java.}
+\requirement{3}{Databaslösningen MySQL skall användas av programmet för lagring av data mellan sessioner.}
+\requirement{4}{Systemet samt projekt- och produktdokumentation ska skrivas på svenska. Java-koden ska följa standarden som finns på http://www.geosoft.no/development/javastyle.html, alla variabelnamn ska vara skrivna på engelska.}
+
+\end{document}
