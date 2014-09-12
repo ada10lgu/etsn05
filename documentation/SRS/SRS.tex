@@ -100,11 +100,13 @@ Denna version innehålller inte ett kontext diagram.
 
 \subsection{Data}
 \label{krav-funk-data}
-\requirement{1}{Alla uppdatering i systemet ska sparas omedelbart i databasen så att inga ändringar går förlorade vid systemkrasch.}
-\requirement{2}{Varje radering av information ska bekräftas av användaren innan den utförs.}
-\requirement{3}{Följande information skall vara lagrad om var användare; Användarnamn, lösenord, namn på personen, användarstatus}
-\requirement{4}{Följande information skall vara lagrad om var projektgrupp; Gruppnamn, och medlemmar med deras roll}
-\requirement{5}{Rätt data ska kunna nås av rätt användare.}
+\requirement{1}{Användarnamn bör bestå av 5-10 tecken, ascii (dec- imal) värden 48-57, 65-90, och 97-122 är tillåtna.}
+\requirement{2}{Användarnamn ska vara unika.}
+\requirement{3}{Lösenord ska bestå av sex tecken, ascii (decimal) värden 97-122 är tillåtna.}
+
+\requirement{4}{Datamodellen för infornationslagring om användarna ska ske enligt figur 2.
+}
+\requirement{5}{Följande information skall vara lagrad om var projektgrupp; Gruppnamn, och medlemmar med deras roll}
 \subsection{Administration}
 \requirement{1}{Systemet ska stödja sekvensen för administrören som visas i figur 3}
 \requirement{2}{Det skall finnas en och endast en administratör med användarnamnet 'admin' och lösenordet 'adminpw'.}
@@ -116,11 +118,11 @@ Denna version innehålller inte ett kontext diagram.
 \requirement{8}{På administrationsvyn ska det vara möjligt att ta bort vilken användare som helst förutom administratören.}
 \requirement{9}{Varje borttagning av en användare ska bekräftas av en dialogruta 'Är du säker på att du vill ta bort användaren X: Ja / Nej'. När administratören väljer 'Ja', tas användaren bort och administratören kommer tillbaka till en uppdaterad lista med användarna. Om 'Nej' väljs, går administratören tillbaka till nuvarande sida.}
 \requirement{10}{På administrationsvyn ska det vara möjligt att lägga till en ny användare.}
-\requirement{11}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot KRAV X (SE BASEKRAV) ska ett felmeddelande visas och användaren ska inte läggas till.}
+\requirement{11}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav \ref{krav-funk-data}.4 ska ett felmeddelande visas och användaren ska inte läggas till.}
 
 \requirement{12}{Endast administratören ska kunna skapa projektgrupper i systemet.}
 
-\requirement{13}{Då en ny projektgrupp skapas ska admin ange den information som är specifierat av Krav \ref{krav-funk-data}.4.}
+\requirement{13}{Då en ny projektgrupp skapas ska admin ange den information som är specifierat av krav \ref{krav-funk-data}.4.}
 
 \requirement{14}{Om administratören försöker skapa en projektgrupp med ett namn som redan existerar ska projektgruppen inte skapas och ett felmeddelande ska visas.}
 \requirement{15}{Endast administratören ska kunna ta bort projektgrupper i systemet.}
