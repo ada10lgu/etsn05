@@ -93,20 +93,22 @@ Denna version innehålller inte ett kontextdiagram.
  \requirement{3}{Flera användare ska kunna logga in på systemet samtidigt.}
  
 \subsection{Autentisering}
-\requirement{1}{Man ska kunna logga in med användarnamn och lösenord.}
-\requirement{2}{En inloggad användare skall ha möjligheten att byta sitt lösenord.}
-\requirement{3}{Då en användare har varit inaktiv i mer än 15 minuter så är den inte längre inloggad.}
-\requirement{4}{Om en användare loggar in från en annan plats ska den första loggas ut samt ges ett meddelande om vad som skett.}
+\requirement{1}{För varje användare kan loginstatus vara antingen inloggad eller inte inloggad.}
+\requirement{2}{Systemet ska hålla loginstatus i en serversession.}
+\requirement{3}{När en användare når systemet och inte är inloggad ska denna få en förfrågan om användarnamn och lösenord. Ingen annan information ska vara tillgänglig för användaren.}
+\requirement{4}{När en användare skickar ett användarnamn och lösenord ska dessa parametrar jämföras med användarlistan och om användaren ska få tillgång till systemet , så ska serverstatus ändras till 'inloggad' och huvudsidan ska visas.}
+\requirement{5}{Om en inloggad användare är inaktiv för längre än 20 minuter ska denna loggas ut och tvingas att logga in igen innan vidare använding av systemet.}
+\requirement{4}{Om en användare loggar in från en annan plats ska denne försa loggas ut samt ges ett meddelande om vad som skett.}
 
 \subsection{Data}
 \label{krav-funk-data}
-\requirement{1}{Användarnamn bör bestå av 5-10 tecken, ascii (dec- imal) värden 48-57, 65-90, och 97-122 är tillåtna.}
+\requirement{1}{Användarnamn bör bestå av 5-10 tecken, ascii (decimal) värden 48-57, 65-90, och 97-122 är tillåtna.}
 \requirement{2}{Användarnamn ska vara unika.}
 \requirement{3}{Lösenord ska bestå av sex tecken, ascii (decimal) värden 97-122 är tillåtna.}
 
 \requirement{4}{Datamodellen för informationslagring om användarna ska ske enligt figur 2.
 }
-\requirement{5}{Följande information skall vara lagrad om var projektgrupp; Gruppnamn, och medlemmar med deras roll}
+
 \subsection{Administration}
 \requirement{1}{Systemet ska stödja sekvensen för administrören som visas i figur 3}
 \requirement{2}{Det skall finnas en och endast en administratör med användarnamnet 'admin' och lösenordet 'adminpw'.}
@@ -118,11 +120,11 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{8}{På administrationsvyn ska det vara möjligt att ta bort vilken användare som helst förutom administratören.}
 \requirement{9}{Varje borttagning av en användare ska bekräftas av en dialogruta 'Är du säker på att du vill ta bort användaren X: Ja / Nej'. När administratören väljer 'Ja', tas användaren bort och administratören kommer tillbaka till en uppdaterad lista med användarna. Om 'Nej' väljs, går administratören tillbaka till nuvarande sida.}
 \requirement{10}{På administrationsvyn ska det vara möjligt att lägga till en ny användare.}
-\requirement{11}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav \ref{krav-funk-data}.4 ska ett felmeddelande visas och användaren ska inte läggas till.}
+\requirement{11}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav \ref{krav-funk-data}.1-2 ska ett felmeddelande visas och användaren ska inte läggas till.}
 
 \requirement{12}{Endast administratören ska kunna skapa projektgrupper i systemet.}
 
-\requirement{13}{Då en ny projektgrupp skapas ska admin ange den information som är specifierat av krav \ref{krav-funk-data}.4.}
+\requirement{13}{Då en ny projektgrupp skapas ska administratören ange ett gruppnamn, projektledare och eventuella gruppmedlemmar.}
 
 \requirement{14}{Om administratören försöker skapa en projektgrupp med ett namn som redan existerar ska projektgruppen inte skapas och ett felmeddelande ska visas.}
 \requirement{15}{Endast administratören ska kunna ta bort projektgrupper i systemet.}
