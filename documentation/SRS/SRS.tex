@@ -2,13 +2,13 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{anysize}
 \marginsize{3cm}{3cm}{3cm}{3cm}
+\linespread{1.2}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}       
-
 \usepackage[swedish]{babel}      
 \usepackage{epstopdf}     % För svensk avstavning och svenska
 \usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
-\usepackage[scaled]{helvet} % Helvetica, scaled 95%
+\usepackage[scaled]{helvet}
 
 \usepackage{etoolbox}
 
@@ -93,19 +93,80 @@ Denna version innehålller inte ett kontextdiagram.
 
  \requirement{1}{Systemet ska inte avbrytas eller låsa sig på grund av att användaren matar in en viss sekvens av data.}
 \requirement{2}{Maximalt 50 användare kan vara inloggade på systemet samtidigt.}
-\requirement{3}{Samtliga användare ska ha tillgång till följande funktionaliteter: start, tidrapportering, , projektinformation, byta lösenord, hjälp samt utloggning.}
+\requirement{3}{Samtliga användare ska ha tillgång till följande funktionaliteter: start, tidrapportering, projektinformation, byta lösenord, hjälp samt utloggning.}
 
 \requirement{4}{Systemarkitikter och projektledare ska utöver kraven i \ref{krav-funk-gen}.3 även ha tillgång till följande funktionaliteter: problemrapportering och statusrapportering.}
-\requirement{5}{Samtliga funktionaliter i krav \ref{krav-funk-gen}.3 och \ref{krav-funk-gen}.4 ska vara tillgängliga i menyn .}
+\requirement{5}{Samtliga funktionaliter i krav \ref{krav-funk-gen}.3 och \ref{krav-funk-gen}.4 ska vara tillgängliga i menyn.}
 \requirement{6}{Menyn ska vara tillgänglig på samtliga sidor som visas av systemet. }
  
 \subsection{Autentisering}
 \requirement{1}{För varje användare kan loginstatus antingen vara inloggad eller inte inloggad.}
 \requirement{2}{Systemet ska hålla loginstatus i en serversession.}
-<KLISTRA IN INLOGGNINGSUPPGIFT>
+
+% ----------------------- SCENARIO
+
+\begin{table}[htbp]
+\begin{tabular}{   |p{13cm}| }
+   
+        \hline
+
+    \indent\scenario{1} \\ \\
+    \textbf{Syfte}: Logga in användaren i systemet.\\
+    \textbf{Trigger}: Användaren inkommer till systemet. \\
+    \textbf{Förutsättning}: Användaren är inte inloggad.\\
+    \textbf{Frequency}: \\
+    \textbf{Critical}: \\
+    \hline
+
+
+
+	\textbf{Subuppgifter}: \\
+
+	1. Användaren får datafält för Användarnamn och lösenord. Ingen annan information meddelas om systemet.\\
+	2. Användaren matar in användarnamn och lösernord och skickar data till servern genom Log in knappen. \\	
+	3. Användaren blir inloggad i serverstatus och är dirigerad till huvudsidan. \\ \hline
+    \textbf{Varianter}: \\
+	3.a Det givna användarnamn och lösernord matchar inte något par i systemets databas. Detta meddelas då till användaren och den får repetera inloggningen.\\
+	    \hline
+
+
+\end{tabular}
+\end{table}
+% ----------------------- /END
+
 \requirement{3}{När en användare når systemet och inte är inloggad ska denna få en förfrågan om användarnamn och lösenord. Ingen annan information ska vara tillgänglig för användaren.}
 \requirement{4}{När en användare skickar ett användarnamn och lösenord ska dessa parametrar jämföras med användarlistan och om användaren ska få tillgång till systemet , så ska serverstatus ändras till 'inloggad' och huvudsidan ska visas.}
-<KLISTRA IN UTLOGGNINGSUPPGIFT>
+
+
+% ----------------------- SCENARIO
+\begin{table}[htbp]
+\begin{tabular}{   |p{13cm}| }
+   
+        \hline
+
+    \indent\scenario{2} \\ \\
+    \textbf{Syfte}: Logga ut användaren från servern.\\
+    \textbf{Trigger}: Användaren trycker väljer att logga ut. \\
+    \textbf{Förutsättning}: Användaren är inloggad.\\
+    \textbf{Frequency}: \\
+    \textbf{Critical}: \\
+    \hline
+
+
+
+	\textbf{Subuppgifter}: \\
+
+	 1. Användaren väljer logga ut länken i menyn och loggas ut, samt dirigeras till en sida där utloggningen bekräftas.\\ \hline
+    \textbf{Varianter}: \\
+	1.a Användaren har redan blivit utloggad från servern. I sådana fall meddelas detta till användaren som dirigeras till utloggningssidan. \\
+	    \hline
+
+
+\end{tabular}
+\end{table}
+% ----------------------- /END
+
+
 \requirement{5}{Om en inloggad användare är inaktiv i längre än 20 minuter ska denne loggas ut och tvingas att logga in igen innan fortsatt användning av systemet.}
 \requirement{6}{Ett användarkonto kan endast vara inloggad på en enhet åt gången.}
 \requirement{7}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan enhet, kommer den nya inloggingen att genomföras medan den andra enheten loggas ut.}
@@ -124,32 +185,71 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{2}{Det skall finnas en och endast en administratör med användarnamnet 'admin' och lösenordet 'adminpw'.}
 \requirement{3}{På huvudsidan ska det vara möjligt att välja administrationsvyn.}
 \requirement{4}{En ny användare, skapad av administratören, måste ha ett unikt användarnamn samt bli tilldelad ett slumpmässigt lösenord från systemet.}
-\requirement{5}{Om administratören försöker att lägga till en användare med ett användarnamn som redan existerar i systemet, ska användaren inte läggas till och ett felmeddelande ska visas.}
-\requirement{6}{Om en administratör väljer administrationsvyn ska denne få åtkomst till administationsverktygen, men om samma val görs av en ickeadministratör ska denne istället få åtkomst till huvudsidan.}
-\requirement{7}{I administrationsvyn ska alla användare listas med både användarnamn och lösenord.}
-\requirement{8}{I administrationsvyn ska det vara möjligt att ta bort vilken användare som helst förutom administratören.}
-\requirement{9}{Varje borttagning av en användare ska bekräftas av en dialogruta 'Är du säker på att du vill ta bort användaren X: Ja / Nej'. När administratören väljer 'Ja', tas användaren bort och administratören kommer tillbaka till en uppdaterad lista med användarna. Om 'Nej' väljs, går administratören tillbaka till nuvarande sida.}
-\requirement{10}{I administrationsvyn ska det vara möjligt att lägga till en ny användare.}
-\requirement{11}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav \ref{krav-funk-data}.1-2 ska ett felmeddelande visas och användaren ska inte läggas till.}
+\requirement{5}{Om administratören försöker att lägga till en användare med ett användarnamn som redan existerar i systemet, skall användaren inte läggas till och ett felmeddelande skall visas.}
+\requirement{6}{Om en administratör väljer administrationsvyn skall denne få åtkomst till administationsverktygen, men om samma val görs av en ickeadministratör skall denne istället få åtkomst till huvudsidan.}
+\requirement{7}{I administrationsvyn skall alla användare listas med både användarnamn och lösenord.}
+\requirement{8}{I administrationsvyn skall det vara möjligt att ta bort vilken användare som helst förutom administratören.}
+\requirement{9}{Varje borttagning av en användare skall bekräftas av en dialogruta 'Är du säker på att du vill ta bort användaren X: Ja / Nej'. När administratören väljer 'Ja', tas användaren bort och administratören kommer tillbaka till en uppdaterad lista med användarna. Om 'Nej' väljs, går administratören tillbaka till nuvarande sida.}
+\requirement{10}{I administrationsvyn skall det vara möjligt att lägga till en ny användare.}
+\requirement{11}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav \ref{krav-funk-data}.1-2 skall ett felmeddelande visas och användaren skall inte läggas till.}
 
-\requirement{12}{Endast administratören ska kunna skapa projektgrupper i systemet.}
+\requirement{12}{Endast administratören skall kunna skapa projektgrupper i systemet.}
 
-\requirement{13}{Då en ny projektgrupp skapas ska administratören ange ett gruppnamn, projektledare och eventuella gruppmedlemmar.}
+\requirement{13}{Då en ny projektgrupp skapas skall administratören ange ett gruppnamn, projektledare och eventuella gruppmedlemmar.}
 
-\requirement{14}{Om administratören försöker skapa en projektgrupp med ett namn som redan existerar ska projektgruppen inte skapas och ett felmeddelande ska visas.}
-\requirement{15}{Endast administratören ska kunna ta bort projektgrupper i systemet.}
-\requirement{16}{När en projektgrupp tas bort ska administratör kunna välja projektgrupp ur en lista på alla projektgrupper i systemet.}
+\requirement{14}{Om administratören försöker skapa en projektgrupp med ett namn som redan existerar skall projektgruppen inte skapas och ett felmeddelande skall visas.}
+\requirement{15}{Endast administratören skall kunna ta bort projektgrupper i systemet.}
+\requirement{16}{När en projektgrupp tas bort skall administratör kunna välja projektgrupp ur en lista på alla projektgrupper i systemet.}
 
 
 
 \subsection{Tidrapportering}
 \textbf{Förutsättning: Användaren är medlem i ett projekt.}\newline
 \requirement{1}{Nygenererade tidrapporter är alltid osignerade.}
-\requirement{2}{Användaren ska kunna skapa, uppdatera och ta bort sina egna osignerade tidrapporter.}
-\requirement{3}{Användaren kan inte ta bort eller redigera signerade rapporter.}
-\scenario{1} <KLISTRA IN TIDRAPPORTERINGSUPPGIFT>
+\requirement{2}{Användaren skall kunna skapa, uppdatera och ta bort sina egna osignerade tidrapporter.}
+\requirement{3}{Användaren kan inte ta bort eller redigera signerade rapporter.} 
+
+
+%--------------SCENARIO
+
+\begin{table}[htbp]
+\begin{tabular}{  | p{13cm} |}
+    \hline
+    
+    \indent\scenario{1} \\ \\
+    \textbf{Syfte}: Dokumentera arbetstimmar i systemet.\\
+    \textbf{Trigger}: Användaren kommer in på tidrapporteringssidan. \\
+    \textbf{Förutsättning}: Användaren måste vara medlem i ett projekt.\\
+    \textbf{Frequency}: \\
+    \textbf{Critical}: \\
+    \hline
+
+
+
+	\textbf{Subuppgifter}: \\
+
+	1. Användaren väljer tidrapportering i menyn.\\
+	2. Ett fält var användaren kan fylla i veckonummer för veckan som skall rapporteras 	visas. Under fältet framgår det för vilken vecka senaste rapporten var skapad/reviderad. \\	
+	3. Användaren fyller i veckonummer och trycker OK. \\
+	4. En ny tidrapport genereras och visas med veckonumret från föregående steg i fyllt. \\
+	5. Användaren kan nu fylla i tidinformation. \\
+	6. Systemet beräknar totaltiden i realtid. Detta visas i ett specifikt fält, i rapporten.\\
+	7. Användaren bekräftar slutligen genom att trycka på ”Skicka”, längst ner på sidan.\\
+	8. Rapporten sparas i databasen. En bekräftelse på att så har skett visas för\\ användaren.\\ \hline
+    \textbf{Varianter}: \\
+	2a. Det finns ingen tidigare skapad rapport. Detta framgår under fältet. \\
+	4a. En tidrapport för det ifyllda veckonumret existerar redan. Rapporten hämtas från 		databasen och visas för användaren. Denne kan nu redigera rapporten. \\
+	8a. Rapporten sparades inte i databasen. Användaren får information om detta.\\
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END
+
+
+
 \subsection{Projektledning}
-\requirement{1}{Varje projekt ska ha två, och endast två användare, som är projektledare.}
+\requirement{1}{Varje projekt skall ha två, och endast två användare, som är projektledare.}
 \requirement{2}{Projektledaren skall ha tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp.}
 \requirement{3}{Projektledaren skall kunna godkänna ej tidigare godkända tidrapporter i från medlemmar sin projektgrupp.}
 \requirement{4}{Projektledaren skall kunna ta tillbaka sitt godkännande från en tidigare godkänd gruppmedlems tidsrapport, i sin projektgrupp.}
@@ -167,6 +267,6 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{1}{Systemet skall vara utveklat för Apache-Tomcat servern.}
 \requirement{2}{Systemet skall vara utveklat i Java.}
 \requirement{3}{Databaslösningen MySQL skall användas av programmet för lagring av data mellan sessioner.}
-\requirement{4}{Systemet samt projekt- och produktdokumentation ska skrivas på svenska. Java-koden ska följa standarden som finns på http://www.geosoft.no/development/javastyle.html, alla variabelnamn ska vara skrivna på engelska.}
+\requirement{4}{Systemet samt projekt- och produktdokumentation skall skrivas på svenska. Java-koden skall följa standarden som finns på http://www.geosoft.no/development/javastyle.html, alla variabelnamn skall vara skrivna på engelska.}
 
 \end{document}
