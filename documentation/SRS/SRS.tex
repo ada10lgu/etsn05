@@ -33,7 +33,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 \fancyhead[C]{Datum: \today}
-\fancyhead[R]{Version: 0.8}
+\fancyhead[R]{Version: 0.20}
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
@@ -52,7 +52,7 @@
 \begin{tabular}{ l l l l }
 Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.1 & 8 november 2014 & SG & Struktur för dokumentet\\
-0.2 & 10 november 2014 & SG & Lägga till grav från UG\\
+0.2 & 10 november 2014 & SG & Lägga till krav från UG\\
 0.3 & 11 november 2014 & SG & Revidera krav samt ändra struktur\\
 0.4 & 12 november 2014 & SG & Lade till nya samt reviderade krav\\
 0.5 & 12 november 2014 & SG & Lade till nya samt reviderade krav\\
@@ -61,6 +61,7 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.8 & 12 november 2014 & SG & Lade till nya samt reviderade krav\\
 0.9 & 12 november 2014 & SG & Reviderade krav samt lade till scenarion\\
 0.10 & 13 november 2014 & SG & Skapade scenarion för projektledning.\\
+0.20 & 13 november 2014 & SG & Skapade scenarion för tidrapportmall och lade till krav.\\
 \end{tabular}
 \section{Inledning}       
 
@@ -91,7 +92,8 @@ Här följer ord och uttryck som används i rapporten och är till för att öka
 \item [Användarstatus] En indikation på var användare som avgör hur vida den får logga in eller ej.
 \item [Projektgrupp] En grupp bestående av vanliga användare och projektledare.
 \item [Tidsrapport] En rapport som innehåller arbetsbelasting för en användare under en fix tidsperiod bundet till en specefik projektgrupp.
-\item [Huvudsida] Med huvudsida avses användarvyn då användaren är inloggad och har tillgång till sina funktionaliteter.
+\item [Huvudsida] Med huvudsida avses den första vyn som användaren blir dirigerad till direkt efter inloggning. 
+\item [Användarlista] En lista med alla användarnamn och lösenord som är sparade i databasen.
 \end{itemize}
 \section{Kontextdiagram}
 Denna version innehålller inte ett kontextdiagram.
@@ -103,7 +105,7 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{2}{Maximalt 50 användare kan vara inloggade på systemet samtidigt.}
 \requirement{3}{Samtliga användare ska ha tillgång till följande funktionaliteter: start, tidrapportering, projektinformation, byta lösenord, hjälp samt utloggning.}
 \requirement{4}{Systemarkitikter och projektledare ska utöver kraven i \ref{krav-funk-gen}.3 även ha tillgång till följande funktionaliteter: problemrapportering och statusrapportering.}
-\requirement{5}{Samtliga funktionaliter i krav \ref{krav-funk-gen}.3 och \ref{krav-funk-gen}.4 ska vara tillgängliga i menyn om användaren har rättigheter till var given funtion.}
+\requirement{5}{Samtliga funktionaliter i krav \ref{krav-funk-gen}.3 och \ref{krav-funk-gen}.4 ska vara tillgängliga i menyn enligt specifkiationerna som respektive krav anger.}
 \requirement{6}{Menyn ska vara tillgänglig på samtliga sidor som visas av systemet.}
  
 \subsection{Autentisering}
@@ -139,7 +141,7 @@ Denna version innehålller inte ett kontextdiagram.
 \end{table}
 % ----------------------- /END
 
-\requirement{3}{När en användare når systemet och inte är inloggad ska denna få en förfrågan om användarnamn och lösenord.}
+\requirement{3}{När en användare når systemet och inte är inloggad ska denne få en förfrågan om användarnamn och lösenord.}
 \requirement{4}{När en användare skickar ett användarnamn och lösenord ska dessa parametrar jämföras med användarlistan och om användaren ska få tillgång till systemet , så ska serverstatus ändras till ``inloggad'' och huvudsidan ska visas.}
 \requirement{5}{Ingen information som kräver inloggning får visas för en oninloggad användare.}
 
@@ -170,7 +172,7 @@ Denna version innehålller inte ett kontextdiagram.
 
 
 \requirement{6}{Om en inloggad användare är inaktiv i längre än 20 minuter ska sagda användare loggas ut och tvingas att logga in igen innan fortsatt användning av systemet.}
-\requirement{7}{Ett användarkonto kan endast vara inloggad på en enhet åt gången.}
+\requirement{7}{Ett användarkonto kan endast vara inloggat på en enhet åt gången.}
 \requirement{8}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan enhet, kommer den nya inloggingen att genomföras medan den andra enheten loggas ut.}
 \requirement{9}{Scenario \ref{krav-funk-aut}.1 skall stödjas av systemet.}
 \requirement{10}{Scenario \ref{krav-funk-aut}.2 skall stödjas av systemet.}
@@ -179,9 +181,20 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{1}{Användarnamn ska bestå av 5-10 tecken, ascii (decimal) värden 48-57, 65-90, och 97-122 är tillåtna.}
 \requirement{2}{Användarnamn måste vara unika.}
 \requirement{3}{Lösenord ska bestå av sex tecken, ascii (decimal) värden 97-122 är tillåtna.}
+\requirement{4}{Tidrapportering sker i antal minuter.}
+\requirement{5}{Tidrapportens utseende, med avseende på vilka aktiviteter man kan föra in tidinformation i, bestäms av administratören innan projektgruppen har skapats. När projektet är skapat ska det inte gå att ändra tidrapportens utseende.}
+\requirement{6}{Tidrapportens grundmall ska innehålla information om användarnamn, projektnamn, datum och veckonummer. Det ska även tydligt framgå om den är signerad eller ej. Grundmallen genereras automatiskt av systemet.}
+\requirement{7}{Samtliga tidrapportsmallar sparas på servern.}
+\requirement{8}{Maximalt 20 mallar kan sparas, därefter skrivs de över enligt FIFO-principen.}
+\requirement{9}{En tidrapportmall kan maximalt innehålla tio (10) rader samt maximalt fem (5) kolumner som det går att mata in tidinformation i.}
+\requirement{10}{Namnet på tidrapportmallen får maximalt bestå av tio (10) tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
+\requirement{11}{Namnet på aktivitet och subaktivitet får maximalt bestå av tio (10) respektive två (2) tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
+
 
 
 \subsection{Administration}
+\label{krav-funk-admin}
+
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.5\textwidth]{admin_usage}
@@ -189,7 +202,7 @@ Denna version innehålller inte ett kontextdiagram.
    \label{image_admin_usage}
 \end{figure}
 \requirement{1}{Systemet ska stödja sekvensen för administrören som visas i Figur \ref{image_admin_usage}.}
-\requirement{2}{Det skall finnas en och endast en administratör med användarnamnet 'admin' och lösenordet 'adminpw'.}
+\requirement{2}{Det skall finnas en och endast en administratör med användarnamnet ''admin'' och lösenordet ''adminpw''.}
 \requirement{3}{Som inloggad administratör skall det vara möjligt att välja administrationsvyn på huvudsidan.}
 \requirement{4}{En ny användare, skapad av administratören, måste ha ett unikt användarnamn samt bli tilldelad ett slumpmässigt lösenord från systemet.}
 \requirement{5}{Om administratören försöker att lägga till en användare med ett användarnamn som redan existerar i systemet, skall användaren inte läggas till och ett felmeddelande skall visas.}
@@ -206,7 +219,43 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{16}{När en projektgrupp tas bort skall administratör kunna välja projektgrupp ur en lista på alla projektgrupper i systemet.}
 \requirement{17}{Administratören ska kunna ändra gruppmedlemmar i en existerande projektgrupp.}
 \requirement{18}{Administratören ska kunna ändra gruppmedlemmars roller i en existerande projektgrupp.}
+\requirement{19}{Administratören ska utforma en tidrapportmall. Se även krav \ref{krav-funk-data}.5 och \ref{krav-funk-data}.6.}
 
+
+%--------------SCENARIO
+
+\begin{table}[htbp]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{1}} \\
+    \textbf{Syfte} & Skapa tidrapportmall.\\
+    \textbf{Trigger} & Användaren vill skapa en projektgrupp. \\
+    \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
+    \textbf{Frequency} & \\
+    \textbf{Critical} & \\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer att skapa projektgrupp.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren väljer att skapa en ny tidrapportmall.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. Denne väljer antal aktiviteter (rader) och subaktiviteter (kolumner) som ska finnas. Användaren fyller i önskat namn på tidrapportmallen och trycker ''OK''.} \\	
+	\multicolumn{2}{|p{13cm}|}{4. Tabell genereras med det antal givna rader och kolumner från steg 3 och visas för användaren.} \\	
+	\multicolumn{2}{|p{13cm}|}{5. Användaren fyller nu i aktivitets- och subaktivitetsnamn. Därefter trycker denne ''OK''.} \\	
+	\multicolumn{2}{|p{13cm}|}{6. Mallen är nu skapad och sparad. Användaren får en bekräftelse och dirigeras till den färdiga mallen.} \\	
+	\hline
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+    \multicolumn{2}{|p{13cm}|}{2a. Användaren väljer att använda en befintlig tidrapportmall.}\\
+    \multicolumn{2}{|p{13cm}|}{3a. Om namnet på mallen redan existerar informeras användaren och ombedes att skriva ett annat namn.}\\
+    \multicolumn{2}{|p{13cm}|}{4a. Användaren får felmeddelande då antal kolumner och rader överstiger specifieringen i krav \ref{krav-funk-data}.9. Användaren skickas tillbaka till steg 3.}\\
+       \multicolumn{2}{|p{13cm}|}{4b. Användaren får felmeddelande då det inmatade namnet strider mot krav \ref{krav-funk-data}.10. Användaren skickas tillbaka till steg 3.}\\
+    \multicolumn{2}{|p{13cm}|}{6a. Användaren får felmeddelande då det inmatade aktivitets- eller subaktivitetsnamnet strider mot krav \ref{krav-funk-data}.11. Användaren skickas tillbaka till steg 5.}\\
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END
 
 
 \subsection{Tidrapportering}
@@ -216,7 +265,9 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{2}{Användaren skall kunna skapa, uppdatera och ta bort sina egna osignerade tidrapporter för de projekt den är medlem i.}
 \requirement{3}{Användaren kan inte ta bort eller redigera sina signerade rapporter.} 
 \requirement{4}{En användare som inte är projektledare kan bara se sina egna rapporter.}
-\requirement{5}{Scenario \ref{krav-funk-tid}.1 skall stödjas av systemet.}
+
+\requirement{5}{Användaren ska kunna föra in information enligt krav \ref{krav-funk-data}.4. }
+\requirement{7}{Scenario \ref{krav-funk-tid}.1 skall stödjas av systemet.}
 
 %--------------SCENARIO
 
@@ -239,15 +290,14 @@ Denna version innehålller inte ett kontextdiagram.
 	\multicolumn{2}{|p{13cm}|}{3. Användaren fyller i veckonummer och trycker OK.} \\
 	\multicolumn{2}{|p{13cm}|}{4. En ny tidrapport genereras och visas med veckonumret från föregående steg i fyllt.} \\
 	\multicolumn{2}{|p{13cm}|}{5. Användaren kan nu fylla i tidinformation. }\\
+
+	\multicolumn{2}{|p{13cm}|}{6. Användaren bekräftar slutligen genom att trycka på ”Skicka”, längst ner på sidan.}\\
 	
-	\multicolumn{2}{|p{13cm}|}{6. Systemet beräknar totaltiden i realtid. Detta visas i ett specifikt fält, i rapporten.}\\
-	\multicolumn{2}{|p{13cm}|}{7. Användaren bekräftar slutligen genom att trycka på ”Skicka”, längst ner på sidan.}\\
-	
-	\multicolumn{2}{|p{13cm}|}{8. Rapporten sparas i databasen. En bekräftelse på att så har skett visas för användaren.}\\ \hline
+	\multicolumn{2}{|p{13cm}|}{8. Rapporten sparas i databasen. En bekräftelse på att så har skett visas för användaren. Användaren kan även notera totaltiden.}\\ \hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
 	\multicolumn{2}{|p{13cm}|}{2a. Det finns ingen tidigare skapad rapport. Detta framgår under fältet. }\\
 	\multicolumn{2}{|p{13cm}|}{4a. En tidrapport för det ifyllda veckonumret existerar redan. Rapporten hämtas från 		databasen och visas för användaren. Denne kan nu redigera rapporten. }\\
-	\multicolumn{2}{|p{13cm}|}{8a. Rapporten sparades inte i databasen. Användaren får information om detta.}\\
+	\multicolumn{2}{|p{13cm}|}{8a. Rapporten sparades inte i databasen. Användaren får information om detta och skickas tillbaka, utan att någon information i fälten har gått förlorad.}\\
     \hline
 \end{tabular}
 \end{table}
@@ -262,7 +312,7 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{2}{Projektledaren skall ha tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp.}
 \requirement{3}{Projektledaren skall kunna godkänna ej tidigare godkända tidrapporter i från medlemmar i sin projektgrupp.}
 \requirement{4}{Projektledaren skall kunna ta tillbaka sitt godkännande från en tidigare godkänd gruppmedlems tidsrapport, i sin projektgrupp.}
-\requirement{5}{Projektledaren skall kunna generera statestik över sitt projekt genom att göra något av följande; summera alla tidsrapporter, summera tidsrapporter per användare/roll/aktivitet/vecka.}
+\requirement{5}{Projektledaren skall kunna generera statistik över sitt projekt genom att göra något av följande; summera alla tidrapporter, summera tidrapporter per användare/roll/aktivitet/vecka.}
 
 %--------------SCENARIO
 
