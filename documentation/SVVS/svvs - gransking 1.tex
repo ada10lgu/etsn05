@@ -1,0 +1,81 @@
+\documentclass[a4paper]{article}
+\usepackage[pdftex]{graphicx}
+\usepackage{anysize}
+\marginsize{3cm}{3cm}{3cm}{3cm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[swedish]{babel}      
+\usepackage{epstopdf}     % För svensk avstavning och svenska
+\usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
+\usepackage[scaled]{helvet} % Helvetica, scaled 95%
+\usepackage[titletoc]{appendix}
+
+\usepackage{fancyhdr}
+
+\fancyhf{}
+\fancyhead[L]{Ansvarig: SG}
+\fancyhead[C]{Datum: \today}
+\fancyhead[R]{Inofficiell granskning}
+
+
+\title{Granskningsprotokoll av:\\ SVVS - Software Verification and Validation Specification: NewPussSystem}                  	
+\author{Systemarkitektgruppen \\ Lars Gustafsson | Martin Lichota | Marcel Tovar Rascon}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\section{Inledning}       
+Här följer granskning av SVVS - Software Verification and Validation Specification version 0.1, 11 september 2014. Utförd av Systemarkitektgruppen, datum som ovan. Tänkt som den första inofficiella granskningen i fas 1.
+
+\section{Övergripande kritik}
+Smärre stavfel här och där. Bra upplägg, överskådbar, och bra svenska.
+Författarna är osäkra på vem som är tänkt läsare och var man då skall lägga språket. Behövs till exempel begreppet White-box-testing förklaras? Med en publik av studerande av kursen ETS032 är det troligtvis inte nödvändigt.
+
+Testerna som är specifierade under Appendix A är för generella och författarna ser snarare att de skall testa en sak i taget. Exempel ges under nästa kapitel.
+
+\section{Kapitelspecifik kritik}
+\begin{itemize}
+\item[2] Ordet projekthandledning används ingen annan stans, bör ersättas med Projektplan.\\
+Förutom det saknas både de välkända förkortningarna för dokumenten samt vilken version av dokumenten som nytjas. Vet man detta är det mycket lättare att granska dokumentet.
+
+\item[3] Första meningen bör avslutas med ett komma. \\
+Vad alla olika förkortningar (SVVI, SSD...) står för framgår inte. Kan tänkas vara självklart om man antar att läsaren är studerande av krusen ETS032. \\
+SDDD ska inte skapas förrän fas 3 vilket medför det svårt för UG att hålla koll på den i de två första faserna.\\
+Referensen till Projektplanen är bra men hade underlättat om man viste vilket kapitel.
+
+\item[4]
+Kan tänkas vara övertolkning men denna meningen innefattar även författarnas privata datorer så fort de vistas i huset. Kanske bör omforumleras till något i stil med, ``Någon av datorerna i E-husets allmänna 
+datorsalar.''
+
+\item[5] Kan tänkas vara redundant information.
+
+\item[5.1] ``white-box'', felstavning.
+
+\item[5.4] ``gamla funktioner'', mellanslag mellan orden.
+
+\item[5.5] Osäker på tredje ordet, förutsätter att det borde stå ``kunden''.
+
+\item[6] Förstår inte referensen till Projektplanen.
+
+\item[Apendix A] Refereringen till kraven sköts snyggt och tydligt. Däremot, eftersom det inte framgår vilken SRS som används, görs det svårt att kolla så alla krav täcks.\\
+\\
+Flertalet krav är på tok för generella och kan skapa fall där vi missar att testa viss funktionallitet.
+
+\begin{itemize}
+\item[FT32] Bör förslagsvis delas upp till ett test för var sak som man inte bör komma åt.
+\item[FT26] Liknar FT32 med samma problem.
+\item[FT34] Missar att testa att man inte kan godkänna en redan godkänd rapport. Var noga med att se över alla infallsvinklar.
+\end{itemize}
+
+\end{itemize}
+
+
+
+
+
+
+\end{document}
