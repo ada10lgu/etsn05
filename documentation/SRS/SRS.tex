@@ -9,7 +9,8 @@
 \usepackage{epstopdf}     % För svensk avstavning och svenska
 \usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
 \usepackage[scaled]{helvet}
-
+\usepackage{float}
+\restylefloat{table}
 \usepackage{etoolbox}
 
 \newcommand\getcurrentref[1]{%
@@ -103,13 +104,16 @@ Denna version innehålller inte ett kontextdiagram.
 \subsection{Generella krav}
 \label{krav-funk-gen}
 
- \requirement{1}{Systemet ska inte avbrytas eller låsa sig på grund av att användaren matar in en viss sekvens av data.}
+\requirement{1}{En användare kan vara projektmedlem i en och endast en projektgrupp åt gången.}
 \requirement{2}{Maximalt 50 användare kan vara inloggade på systemet samtidigt.}
 \requirement{3}{Samtliga användare ska ha tillgång till följande funktionaliteter: start, tidrapportering, projektinformation, byta lösenord, hjälp samt utloggning.}
-\requirement{4}{Systemarkitikter och projektledare ska utöver kraven i \ref{krav-funk-gen}.3 även ha tillgång till följande funktionaliteter: problemrapportering och statusrapportering.}
-\requirement{5}{Samtliga funktionaliter i krav \ref{krav-funk-gen}.3 och \ref{krav-funk-gen}.4 ska vara tillgängliga i menyn enligt specifkiationerna som respektive krav anger.}
-\requirement{6}{Menyn ska vara tillgänglig på samtliga sidor som visas av systemet.}
-\requirement{7}{Varje borttagning av information skall bekräftas av en dialogruta frågandes om man är säker. Om användaren väljer ''Ja'', tas informationen bort och användaren kommer tillbaka till en uppdaterad sida med informationen. Om ``Nej'' väljs, går användaren tillbaka till nuvarande sida.}
+\requirement{4}{Samtliga funktionaliter i krav \ref{krav-funk-gen}.3 ska vara tillgängliga i menyn.}
+\requirement{5}{Projektledarna har tillgång till projektadministrationsfunktionaliter. Det listas som ''projektadministartion'' och finns tillgänligt för dessa i menyn.}
+\requirement{6}{Administratören har tillgång till administrationsfunktionaliteter. Det listas som ''administration'' och finns tillgängligt för denne i dess meny.}
+\requirement{7}{Administrationsfunktionaliteter avser även projektadministration och därmed har administratörer, utöver sina priviligerade rättigheter, även projektledarnas befogenheter.}
+\requirement{8}{Menyn, oavsett typ av användare, ska vara tillgänglig på samtliga sidor som visas av systemet.}
+\requirement{9}{En projektgrupp skall bestå av 1-20 användare.}
+\requirement{10}{Varje borttagning av information skall bekräftas av en dialogruta frågandes om man är säker. Om användaren väljer ''Ja'', tas informationen bort och användaren kommer tillbaka till en uppdaterad sida med informationen. Om ``Nej'' väljs, går användaren tillbaka till nuvarande sida.}
  
 \subsection{Autentisering}
 \label{krav-funk-aut}
@@ -118,7 +122,7 @@ Denna version innehålller inte ett kontextdiagram.
 
 % ----------------------- SCENARIO
 
-\begin{table}[htbp]
+\begin{table}[H]
 \begin{tabular}{ | p{2cm} p{11cm} | }
    
         \hline
@@ -150,7 +154,7 @@ Denna version innehålller inte ett kontextdiagram.
 
 
 % ----------------------- SCENARIO
-\begin{table}[htbp]
+\begin{table}[H]
 \begin{tabular}{ | p{2cm} p{11cm} | }
    
         \hline
@@ -181,13 +185,13 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{10}{Scenario \ref{krav-funk-aut}.2 skall stödjas av systemet.}
 \subsection{Data}
 \label{krav-funk-data}
-\requirement{1}{Användarnamn ska bestå av 5-10 tecken, ascii (decimal) värden 48-57, 65-90, och 97-122 är tillåtna.}
+\requirement{1}{Användarnamn skall bestå av 5-10 tecken, ascii (decimal) värden 48-57, 65-90, och 97-122 är tillåtna.}
 \requirement{2}{Användarnamn måste vara unika.}
-\requirement{3}{Lösenord ska bestå av sex tecken, ascii (decimal) värden 97-122 är tillåtna.}
+\requirement{3}{Lösenord skall bestå av sex tecken, ascii (decimal) värden 97-122 är tillåtna.}
 \noindent\rule{8cm}{0.4pt} \\ %-------------------------------------------------------------------------------------
 \requirement{4}{Tidrapportering sker i antal minuter.}
 \requirement{5}{Tidrapportens utseende, med avseende på vilka aktiviteter man kan föra in tidinformation i, bestäms av administratören innan projektgruppen har skapats. När projektet är skapat skall det inte gå att ändra tidrapportens utseende.}
-\requirement{6}{Tidrapportens grundmall ska innehålla information om användarnamn, projektgruppsnamn, datum och veckonummer. Det ska även tydligt framgå om den är signerad eller ej. Grundmallen genereras automatiskt av systemet.}
+\requirement{6}{Tidrapportens grundmall skall innehålla information om användarnamn, projektgruppsnamn, datum och veckonummer. Det skall även tydligt framgå om den är signerad eller ej. Grundmallen genereras automatiskt av systemet.}
 \requirement{7}{Samtliga tidrapportmallar sparas på servern.}
 \requirement{8}{Maximalt 20 mallar kan lagras samtidigt, därefter skrivs de över enligt FIFO-principen.}
 \requirement{9}{En tidrapportmall ska bestå av 1-10 rader samt 1-5 kolumner som det går att mata in tidinformation i.}
@@ -201,6 +205,9 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{14}{Ett projektgruppsnamn ska bestå av 5-10 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
 \requirement{15}{Projektgruppsnamn måste vara unika.}
 
+\noindent\rule{8cm}{0.4pt}  %------------------------------------------------------------------------------------------------------
+
+\requirement{16}{Veckonumret får innehålla 1-2 tecken, ascii (decimal) värden 48-57}
 
 \subsection{Administration}
 \label{krav-funk-admin}
@@ -219,18 +226,22 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{6}{Om en administratör väljer administrationsvyn skall denne få åtkomst till administationsverktygen, men om samma val görs av en ickeadministratör skall denne istället få åtkomst till huvudsidan.}
 \requirement{7}{I administrationsvyn skall alla användare listas med både användarnamn och lösenord.}
 \requirement{8}{I administrationsvyn skall det vara möjligt att ta bort vilken användare som helst förutom administratören.}
-\requirement{9}{Varje borttagning av användare ska bekräftas med en dialogrutan beskriven i krav \ref{krav-funk-gen}.7.}
+\requirement{9}{Varje borttagning av användare ska bekräftas med en dialogrutan beskriven i krav \ref{krav-funk-gen}.10.}
 \requirement{10}{I administrationsvyn skall det vara möjligt att lägga till en ny användare.}
 \requirement{11}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav \ref{krav-funk-data}.1-2 skall ett felmeddelande visas och användaren skall inte läggas till.}
+
 \noindent\rule{8cm}{0.4pt} \\ %-----------------------------------------------------------------------------------------
+
 \requirement{12}{Endast administratören skall kunna skapa projektgrupper i systemet.}
 \requirement{13}{Endast administratören skall kunna tilldela projektmedlemmar en projektledarroll.}
 \requirement{14}{Endast administratören skall kunna lägga till eller ta bort projektmedlemmar i ett projekt.}
 \requirement{15}{Endast administratören skall kunna ta bort projektgrupper ur systemet.}
+\requirement{16}{Administratören skall kunna utforma en tidrapportmall. Se även krav \ref{krav-funk-data}.5 och \ref{krav-funk-data}.6.}
+\requirement{17}{Scenario \ref{krav-funk-admin}.1 - \ref{krav-funk-admin}.4 skall stödjas av systemet.}
 
 %--------------SCENARIO
 
-\begin{table}[htbp]
+\begin{table}[H]
 \begin{tabular}{ | p{2cm} p{11cm} | }
     \hline
     
@@ -245,7 +256,7 @@ Denna version innehålller inte ett kontextdiagram.
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
 
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer att skapa projektgrupp.}\\
-	\multicolumn{2}{|p{13cm}|}{2. Användaren väljer därefter tidrapportmall (se scenario \ref{krav-funk-admin}.3).}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren väljer därefter tidrapportmall (se scenario \ref{krav-funk-admin}.4).}\\
 	\multicolumn{2}{|p{13cm}|}{3. Denne får nu fylla i ett projektgruppsnamn och trycker därefter på ''OK''.} \\	
 	\multicolumn{2}{|p{13cm}|}{4. Denne möts av en lista över användare i systemet. Första användaren som läggs till tilldelas automatiskt en projektledarroll.} \\	
 	\multicolumn{2}{|p{13cm}|}{5. Användaren kan därefter lägga till fler projektgruppsmedlemmar. Det ska även vara möjligt att tilldela ytterligare en projektgruppsmedlem, en projektledarroll. } \\	
@@ -267,11 +278,44 @@ Denna version innehålller inte ett kontextdiagram.
 
 %--------------SCENARIO
 
-\begin{table}[htbp]
+\begin{table}[H]
 \begin{tabular}{ | p{2cm} p{11cm} | }
     \hline
     
     \multicolumn{2}{|p{13cm}|}{ \indent\scenario{2}} \\
+    \textbf{Syfte} & Lägga till/ändra roll på projektmedlem i projektgrupp.\\
+    \textbf{Trigger} & Användaren vill lägga till eller ändra projektmedlemmens roll. \\
+    \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
+    \textbf{Frequency} & \\
+    \textbf{Critical} & \\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer ''redigera projektmedlemmar''.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med samtliga projektgrupper och eventuella projektmedlemmar och en lista med samtliga användare i systemet som inte är projektmedlemmar överhuvudtaget.}\\
+	\multicolumn{2}{|p{13cm}|}{3. Användaren har nu möjlighet att flytta över projektmedlemmar och icke projektmedlemmar till olika projektgrupper. Denne kan även ange vilken roll som projekt-medlemmen eller -medlemmarna ska ha.} \\	
+	\multicolumn{2}{|p{13cm}|}{4. Användaren bekräftar genom att trycka ''OK''. Denne dirigeras till en sida med den nya informationen samt en bekräftelse.} \\	
+	\hline
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+    \multicolumn{2}{|p{13cm}|}{1a. Det existerar inga projektgrupper/projektmedlemmar. Användaren informeras om detta och skickas tillbaka till huvudsidan.}\\
+    \multicolumn{2}{|p{13cm}|}{4a. Användaren får felmeddelande då denne försökt att flytta över en projektledare som är den enda i sin projektgrupp. Denne ombedes att tillsätta en ny projektledare i gruppen innan förflyttning kan äga rum. Användaren dirigeras till steg 3.} \\
+        \multicolumn{2}{|p{13cm}|}{4b. Användaren får felmeddelande då gruppen har maximalt antal användare (se krav \ref{krav-funk-gen}.9). Denne informeras om detta och skickas tillbaka till steg 3.} \\
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END
+
+
+
+%--------------SCENARIO
+
+\begin{table}[H]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{3}} \\
     \textbf{Syfte} & Ta bort projektmedlemmar eller projektgrupp.\\
     \textbf{Trigger} & Användaren väljer ta bort projektgrupp/projektmedlemmar. \\
     \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
@@ -283,12 +327,13 @@ Denna version innehålller inte ett kontextdiagram.
 
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer ta bort projektgrupp/projektmedlemmar.}\\
 	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med samtliga projektgrupper och eventuella projektmedlemmar.}\\
-	\multicolumn{2}{|p{13cm}|}{3. Informationen som skall tas bort markeras och därefter trycks ''OK''. Bekräftelserutan specifierad i krav \ref{krav-funk-gen}.7 visas.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. Informationen som skall tas bort markeras och därefter trycks ''OK''. Bekräftelserutan specifierad i krav \ref{krav-funk-gen}.10 visas.} \\	
 	\multicolumn{2}{|p{13cm}|}{4. Den markerade informationen är nu borttagen och användaren dirigeras till en sida med uppdaterad information.} \\	
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
     \multicolumn{2}{|p{13cm}|}{1a. Det existerar inga projektgrupper/projektmedlemmar. Användaren informeras om detta och skickas tillbaka till huvudsidan.}\\
     \multicolumn{2}{|p{13cm}|}{4a. Användaren trycker ''Nej'' och dirigeras tillbaka till steg 2.} \\
+    \multicolumn{2}{|p{13cm}|}{4b. Användaren försöker ta bort en projektmedlem som är ensam projektledare, i en projektgrupp där det åtminstone finns en projektmedlem till. Denne ombedes att tillsätta en ny projektledare och därefter försöka igen. Användaren skickas tillbaka till steg 2.} \\
     \hline
 \end{tabular}
 \end{table}
@@ -296,17 +341,13 @@ Denna version innehålller inte ett kontextdiagram.
 % ----------------------- /END
 
 
-
-\requirement{19}{Administratören skall kunna utforma en tidrapportmall. Se även krav \ref{krav-funk-data}.5 och \ref{krav-funk-data}.6.}
-
-
 %--------------SCENARIO
 
-\begin{table}[htbp]
+\begin{table}[H]
 \begin{tabular}{ | p{2cm} p{11cm} | }
     \hline
     
-    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{3}} \\
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{4}} \\
     \textbf{Syfte} & Skapa tidrapportmall.\\
     \textbf{Trigger} & Användaren vill skapa en projektgrupp. \\
     \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
@@ -340,16 +381,16 @@ Denna version innehålller inte ett kontextdiagram.
 \label{krav-funk-tid}
 
 \requirement{1}{Nygenererade tidrapporter är alltid osignerade.}
-\requirement{2}{Användaren skall kunna skapa, uppdatera och ta bort sina egna osignerade tidrapporter för de projekt den är medlem i.}
+\requirement{2}{Användaren skall kunna skapa, uppdatera och ta bort sina egna osignerade tidrapporter för det projekt den är medlem i.}
 \requirement{3}{Användaren kan inte ta bort eller redigera sina signerade rapporter.} 
 \requirement{4}{En användare som inte är projektledare kan bara se sina egna rapporter.}
 
-\requirement{5}{Användaren ska kunna föra in information enligt krav \ref{krav-funk-data}.4. }
+\requirement{5}{Användaren ska kunna föra in tidinformation enligt krav \ref{krav-funk-data}.4 och \ref{krav-funk-data}.12. }
 \requirement{7}{Scenario \ref{krav-funk-tid}.1 skall stödjas av systemet.}
 
 %--------------SCENARIO
 
-\begin{table}[htbp]
+\begin{table}[H]
 \begin{tabular}{ | p{2cm} p{11cm} | }
     \hline
     
@@ -366,7 +407,7 @@ Denna version innehålller inte ett kontextdiagram.
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer tidrapportering i menyn.}\\
 	\multicolumn{2}{|p{13cm}|}{2. Ett fält var användaren kan fylla i veckonummer för veckan som skall rapporteras 	visas. Under fältet framgår det för vilken vecka senaste rapporten var skapad/reviderad.} \\	
 	\multicolumn{2}{|p{13cm}|}{3. Användaren fyller i veckonummer och trycker OK.} \\
-	\multicolumn{2}{|p{13cm}|}{4. En ny tidrapport genereras och visas med veckonumret från föregående steg i fyllt.} \\
+	\multicolumn{2}{|p{13cm}|}{4. En ny tidrapport genereras och visas med veckonumret från föregående steg samt dagens datum i fyllt.} \\
 	\multicolumn{2}{|p{13cm}|}{5. Användaren kan nu fylla i tidinformation. }\\
 
 	\multicolumn{2}{|p{13cm}|}{6. Användaren bekräftar slutligen genom att trycka på ”Skicka”, längst ner på sidan.}\\
@@ -375,6 +416,7 @@ Denna version innehålller inte ett kontextdiagram.
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
 	\multicolumn{2}{|p{13cm}|}{2a. Det finns ingen tidigare skapad rapport. Detta framgår under fältet. }\\
 	\multicolumn{2}{|p{13cm}|}{4a. En tidrapport för det ifyllda veckonumret existerar redan. Rapporten hämtas från 		databasen och visas för användaren. Denne kan nu redigera rapporten. }\\
+	\multicolumn{2}{|p{13cm}|}{4b. Det ifyllda veckonumret strider mot krav \ref{krav-funk-data}.16. Användaren informeras om detta och skickas tillbaka till steg 3. }\\
 	\multicolumn{2}{|p{13cm}|}{8a. Rapporten sparades inte i databasen. Användaren får information om detta och skickas tillbaka, utan att någon information i fälten har gått förlorad.}\\
     \hline
 \end{tabular}
@@ -394,7 +436,7 @@ Denna version innehålller inte ett kontextdiagram.
 
 %--------------SCENARIO
 
-\begin{table}[htbp]
+\begin{table}[H]
 \begin{tabular}{ | p{2cm} p{11cm} | }
     \hline
     

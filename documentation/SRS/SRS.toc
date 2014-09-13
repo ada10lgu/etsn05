@@ -11,10 +11,10 @@
 \contentsline {subsection}{\numberline {6.2}Autentisering}{4}
 \contentsline {subsection}{\numberline {6.3}Data}{5}
 \contentsline {subsection}{\numberline {6.4}Administration}{6}
-\contentsline {subsection}{\numberline {6.5}Tidrapportering}{8}
-\contentsline {subsection}{\numberline {6.6}Projektledning}{8}
-\contentsline {section}{\numberline {7}Kvalitetskrav}{11}
-\contentsline {subsection}{\numberline {7.1}Underh\IeC {\r a}ll}{11}
-\contentsline {subsection}{\numberline {7.2}Prestanda}{11}
-\contentsline {section}{\numberline {8}Projektkrav}{11}
-\contentsline {subsection}{\numberline {8.1}Utvecklingsmilj\IeC {\"o}}{11}
+\contentsline {subsection}{\numberline {6.5}Tidrapportering}{10}
+\contentsline {subsection}{\numberline {6.6}Projektledning}{11}
+\contentsline {section}{\numberline {7}Kvalitetskrav}{12}
+\contentsline {subsection}{\numberline {7.1}Underh\IeC {\r a}ll}{12}
+\contentsline {subsection}{\numberline {7.2}Prestanda}{12}
+\contentsline {section}{\numberline {8}Projektkrav}{12}
+\contentsline {subsection}{\numberline {8.1}Utvecklingsmilj\IeC {\"o}}{12}
