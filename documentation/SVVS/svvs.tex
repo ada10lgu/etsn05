@@ -16,16 +16,17 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[C]{Datum: \today}
-\fancyhead[R]{Version: 0.1}
+\fancyhead[C]{Datum: 14 september 2014}
+\fancyhead[R]{Version: 0.2}
 
 
 \newlist{FT}{enumerate}{1}
-\setlist[FT]{label=FT\arabic*:}
+\setlist[FT]{label=FT\arabic*}
 
 \newlist{ST}{enumerate}{1}
-\setlist[ST]{label=ST\arabic*:}
+\setlist[ST]{label=ST\arabic*}
 
+%\newcommand{\req}[1]{\[SRS~req.~#1\]}
 
 \title{SVVS - Software Verification and Validation Specification: NewPussSystem}                  	
 \author{Testgruppen \\ Axel Ulmestig | Axel Goteman | Sefik Ceric \\ Victor Johnsson | Johan Kellerth Fredlund}
@@ -42,7 +43,8 @@
 
 \begin{tabular}{ l l l l }
 Ver. & Datum & Ansv. & Beskrivning \\\hline
-0.1 & \today & TG & Första baseline-versionen
+0.1 & 11 september 2014 & TG & Första utkast \\
+0.2 & 14 september 2014 & TG & Anpassning efter SRS v0.10, regressionstest inlagda
 
 \end{tabular}
 \section{Inledning}       
@@ -51,7 +53,7 @@ Detta dokument innehåller information om vilka tester och granskningar som ska 
 
 \section{Referensdokument}
 \begin{enumerate}
-\item System Requirements Specification
+\item System Requirements Specification v0.10
 \item Projekthandledning
 \end{enumerate}
 
@@ -62,7 +64,7 @@ Under projektet ska tre formella granskningar hållas
 \begin{enumerate}
 
 
-\item Software Specifikation Review (SSR)
+\item Software Specifikation Review (SSR) - 19 september 2014
 \begin{itemize}
 \item [](a) SDP
 \item [](b) SRS
@@ -92,7 +94,7 @@ Dessa formella granskningar utförs på det sätt som anges i Ref. 2. De formell
 
 \section{Testmiljöer}
 
-Den testmiljön som används är på en godtycklig dator i E-huset.
+Den testmiljön som används är på en godtycklig dator i E-huset. För de automatiserade testfallen kommer eclipse och JUnit att användas.
 
 \section{Testfall}
 
@@ -100,7 +102,7 @@ Tester utförs på det sätt som anges nedan.
 
 \subsection{Enhetstest}
 
-Utförs av utvecklingsgruppen efter hand som kod tas fram. Här utnyttjas både "white-box"- och "black-box"-testning.
+Utförs av utvecklingsgruppen efter hand som kod tas fram. Här utnyttjas både white-box- och black-box-testning.
 
 \subsection{Funktionstest}
 
@@ -112,7 +114,7 @@ Där ett komplett system testas för att se hur flera funktioner och tjänster s
 
 \subsection{Regressionstest}
 
-När nya funktioner har införts eller gamla har ändrats behöver "gamla" funktioner testas, för att säkerställa att ändringen inte påverkat något som tidigare godkänts i test.
+När nya funktioner har införts eller gamla har ändrats behöver ``gamla'' funktioner testas, för att säkerställa att ändringen inte påverkat något som tidigare godkänts i test.
 
 \subsection{Acceptanstest}
 
@@ -121,7 +123,7 @@ Under vilket kunde utför ett urval av ovanstående tester samt ett par för lev
 \section{Krav som tas upp vid granskningar}
 
 Vid granskningar ska alla krav granskas.
-Följande krav (enligt Ref.2) är endast verifierbara genom granskningar: 8.1.1, 8.1.2, 9.1.1, 9.1.2, 9.1.3, 9.1.4.
+Följande krav (enligt Ref.1) är endast verifierbara genom granskningar: 7.1.1, 7.1.2, 8.1.1, 8.1.2, 8.1.3 och 8.1.4.
 
 \section{Bilagor}
 
@@ -130,6 +132,7 @@ Det finns två bilagor:
 \begin{itemize}
 \item A: Funktiontestspecifikation
 \item B: Systemtestspecifikation
+\item C: Regressionstest
 
 \end{itemize}
 
@@ -142,153 +145,202 @@ Det finns två bilagor:
 
 \begin{FT}
 
-\item 
 
-Testa alla scenarion beskriva i kapitel 7 i SRS [SRS req 6.1.1]
-
-\item 
-
-Logga in när annan användare är inloggad [SRS req. 6.1.3]
-
-\item 
-
-Logga in med rätt lösenord och användare name [SRS req. 6.2.1]
-
-\item 
-
-Försök logga in med fel lösenord och användare name [SRS req. 6.2.1]
-
-
-\item 
-
-Användare kan byta lösenord [SRS req. 6.2.2]
-
-\item 
-
-Användare blir utloggad efter 15 minuters inaktivitet [SRS req. 6.2.3]
-
-\item 
-
-Två användare försöker logga in på samma konto samtidigt [SRS req. 6.2.4]
-
-\item 
-
-Bekräftelseruta om raderande av information [SRS req. 6.3.2]
-
-\item 
-
-Försök skapa användare med för lite data [SRS req. 6.3.3]
-
-\item 
-
-Försök skapa en projektgrupp med för lite data [SRS req. 6.3.4, req. 6.4.11]
-
-\item 
-
-Försök skapa ett adminkonto när det redan finns ett adminkonto [SRS req. 6.4.1]
-
-\item 
-
-Skapa ett adminkonto när det inte finns ett adminkonto [SRS req. 6.4.1]
 
 \item
-Skapa ett nytt konto från adminkontot [SRS req. 6.4.2]
+Den funktionalitet som användaren har rätt till finns tillgänglig i menyn [SRS req 6.1.5]
 
 \item
-Skapa ett nytt konto från ett konto som inte är admin [SRS req. 6.4.2]
+Menyn finns tillgäng på samtliga sidor i systemet [SRS req 6.1.6]
 
 \item
-Skapa två användare med samma namn [SRS req. 6.4.3]
+En inloggad användare försöker använda en URL till en funktionalitet där denne har behörighet [SRS req. 6.2.1]
 
 \item
-Skapa två konton och kontrollera att lösenordet är olika [SRS req. 6.4.3]
+Då servern startas om så blir alla användare utloggade [SRS req 6.2.2]
 
 \item
-Admin försöker att lägga till användare med ett upptaget användarnamn [SRS req. 6.4.4]
+En användare loggar in med rätt användarnamn och lösenord [SRS req. 6.2.4, 6.2.9]
 
 \item
-Admin inaktiverar konton av alla typer [SRS req. 6.4.5]
+En användare loggar in med fel användarnamn och rätt lösenord [SRS req. 6.2.4, 6.2.9]
 
 \item
-Alla utom admin försöker inaktivera konton av alla typer [SRS req. 6.4.5]
+En användare loggar in med rätt användarnamn och fel lösenord [SRS req. 6.2.4, 6.2.9]
 
 \item
-Admin aktiverar konton av alla typer [SRS req. 6.4.6]
+En användare loggar in med fel användarnamn och fel lösenord [SRS req. 6.2.4, 6.2.9]
+
+\item 
+Användare blir utloggad efter 20 minuters inaktivitet [SRS req. 6.2.6]
+
+\item 
+Logga in när annan användare är inloggad [SRS req. 6.2.7, 6.2.8]
 
 \item
-Alla utom admin försöker aktivera konton av alla typer [SRS req. 6.4.6]
+En inloggad användare loggar ut [SRS req. 6.2.10]
 
 \item
-Admin kan generera en lista av aktiva användare [SRS req. 6.4.7]
-
-\item
-Admin får en bekräftelseruta då hen ska lägga till en användare i systemet [SRS req. 6.4.8]
-
-\item
-Admin får en bekräftelseruta då hen ska aktivera en användare i systemet [SRS req. 6.4.8]
-
-\item
-Admin får en bekräftelseruta då hen ska avaktivera en användare i systemet [SRS req. 6.4.8]
+En icke inloggad användare försöker logga ut [SRS req. 6.2.10]
 
 \item 
 
-Skapa projektgrupp från konton med olika behörighet [SRS req. 6.4.9]
-
-\item 
-
-Försök skapa projektgrupp med ett befintligt namn [SRS req. 6.4.12]
-
-\item 
-
-Ta bort projektgruppen från konton med olika behörighet [SRS req. 6.4.13]
-
-\item 
-
-Admin kommer åt lista på alla projektgrupper [SRS req. 6.4.14]
-
-\item 
-
-Spara, uppdatera och radera tidsrapporter [SRS req. 6.5.1]
+Försök skapa en projektgrupp med för lite data [SRS req. 6.3.4, req. 6.4.13]
 
 \item
-
-Testa att göra en användare till projektledare för två olika projekt [SRS req. 6.6.1]
+Admin lägger till och/eller tar bort användare och förs sedan tillbaks till listan med användare [SRS req 6.4.1]
 
 \item 
 
-Icke projektledare utför operationer reserverade för projektledare [SRS req. 6.6.1]
+Logga in på systemet med user 'admin' och pass 'adminpw' [SRS req. 6.4.2]
+
+\item 
+Administrationsvyn finns tillgänglig för administratören [SRS req 6.4.3, SRS req 6.4.6]
 
 \item
+Administrationsvyn finns inte tillgänglig för användare som inte är administratörer [SRS req 6.4.6]
 
-Antalet tidsrapporter som syns stämmer med antalet i databasen [SRS~req.~6.6.2]
+\item
+Skapa ett nytt konto från adminkontot med unikt namn [SRS req. 6.4.5]
+
+
+\item
+Admin försöker att lägga till användare med ett upptaget användarnamn [SRS req. 6.3.1, 6.4.4, 6.4.5]
+
+\item
+Admin tar bort konton som inte är av admin typ [SRS req. 6.4.8]
+
+
+
+\item
+Admin får en lista med användare [SRS req. 6.4.7]
+
+\item
+Admin får en bekräftelseruta då hen ska ta bort till en användare i systemet [SRS req. 6.4.9]
+
+\item
+Admin lägger till en ny användare med korrekt data för användarnamn och lösenord [SRS req. 6.3.1, 6.3.3, 6.4.10]
+
+\item
+Admin fösöker lägger till en ny användare med korrekt data för användarnamn men fel lösenordsdata [SRS req. 6.3.1, 6.3.3, 6.4.10, 6.4.11]
+
+\item
+Admin försöker lägger till en ny användare med fel data för användarnamn och korrekt lösenordsdata [SRS req. 6.3.1, 6.3.3, 6.4.10, 6.4.11]
+
+\item
+Admin försöker lägger till en ny användare med fel data för användarnamn och lösenord [SRS req. 6.3.1, 6.3.3, 6.4.10, 6.4.11]
 
 \item 
-
-Projektledare kan godkänna tidrapporter [SRS req. 6.6.3]
-
-\item 
-
-Projektledare kan dra tillbaka tidigare godkännanden av tidrapporter [SRS req. 6.6.4]
+Admin skapar en projektgrupp med gruppnamn och projektledare [SRS req. 6.4.12, 6.4.13]
 
 \item 
-
-Antalet projektmedlemmer i databasen överenstämmer att antalet projektmedlemmar stämmer med det som projketledaren ser [SRS~req. 6.6.5]
-
-\item 
-
-Kontrollera att tillgänglig statistik om projektet kan ses av projektledaren [SRS req. 6.6.6]
+Admin försöker skapa en projektgrupp med gruppnamn men utan projektledare [SRS req. 6.4.12, 6.4.13]
 
 \item 
+Admin försöker skapa en projektgrupp utan gruppnamn fast med projektledare [SRS req. 6.4.12, 6.4.13]
 
-Kontrollera att projektledaren kan ändra roller hos användare i projketet [SRS req. 6.6.7]
+\item 
+Admin försöker skapa en projektgrupp utan gruppnamn och projektledare [SRS req. 6.4.12, 6.4.13]
 
+\item
+En användare försöker skapa en projektgrupp [SRS req. 6.4.12]
 
+\item 
+En admin försöker skapa en projektgrupp med ett befintligt namn [SRS req. 6.4.14]
 
+\item
+Admin tar bort en projektgrupp [SRS req. 6.4.15, 6.4.16]
 
+\item
+En användare försöker ta bort en projektgrupp [SRS req. 6.4.15]
 
+\item 
+Admin kommer åt lista på alla projektgrupper [SRS req. 6.4.16]
+
+\item
+Admin tar bort en användare från en grupp [SRS req. 6.4.17]
+
+\item
+Admin lägger till en användare i en grupp [SRS req. 6.4.17]
+
+\item
+Admin ändrar en gruppmedlems roll [SRS req. 6.4.18]
+
+%TIDSRAPPORTERING Sefik Ceric, Victor Johnsson
+\item
+Generera en ny tidrappport och kontrollera att den är osignerad[SRS~req.~6.5.1]
+
+\item
+Användare kan skapa egna osignerade tidsrapporter [SRS~req.~6.5.2]
+
+\item
+Användare kan updatera egna osignerade tidrapporter [SRS~req.~6.5.2]
+
+\item
+Användare kan ta bort egna osignerade tidrapporter [SRS~req.~6.5.2]
+
+\item
+Användare kan inte ta bort egna signerade tidrapporter [SRS~req.~6.5.3]
+
+\item
+Användare kan inte redigera egna signerade tidrapporter [SRS~req.~6.5.3]
+
+\item
+Användare som är inte projektledare kan endast se sina egna tidrapporter [SRS~req.~6.5.4]
+
+\item 
+En användare kan välja tidrapportering i menyn [SRS~req.~6.5.5]
+
+\item
+När användaren är inne på tidsrapporteringssidan, om hen har gjort en rapportering innan, ser hen vilken vecka denna gjordes. [SRS~req.~6.5.5]
+
+\item
+När användaren är inne på tidsrapporteringssidan, om hen inte har gjort en rapportering innan så framgår det. [SRS~req.~6.5.5]
+
+\item
+En användare, i tidsrapporteringssidan, fyller i ett ej tidigare använt veckonummer och trycker OK, var på en ny tidsrapport genereras med ifyllt veckonummer [SRS~req.~6.5.5]
+
+\item
+En användare, i tidsrapporteringssidan, fyller i ett tidigare använt veckonummer och trycker OK, var på användaren kan redigera tidsrapporten med det veckonummret [SRS~req.~6.5.5]
+
+\item 
+När en användare fyller i tidsinformation i en tidsrapport, visas den beräknade totaltiden i realtid [SRS~req.~6.5.5]
+
+\item
+När en användare har fyllt i tidsinformation i en tidsrapport och trycker på ``Skicka'', om rapporten sparas i databasen visas en bekräftelse [SRS~req.~6.5.5]
+
+\item
+När en användare har fyllt i tidsinformation i en tidsrapport och trycker på ``Skicka'', om rapporten inte sparas i databasen visas ett felmeddelande [SRS~req.~6.5.5]
+
+%PROJEKTLEDNING Victor Johnsson
+\item
+Ett projekt inte kan ha mer eller mindre än två projektledare [SRS~req.~6.6.1]
+
+\item
+Projektledare har tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp [SRS~req.~6.6.2]
+
+\item
+Projektledaren kan godkänna ej tidigare godkända tidrapporter från medlemmar i sin projektgrupp [SRS~req.~6.6.3]
+
+\item
+Projektledaren tar tillbaka sitt godkännande från en tidigare godkänd gruppmedlems tidsrapport, i sin projektgrupp [SRS~req.~6.6.4]
+
+\item
+Projektledaren kan, inom sitt projekt, summera alla tidsrapporter [SRS~req.~6.6.5]
+
+\item
+Projektledaren kan, inom sitt projekt, summera tidsrapporter per användare/roll/aktivitet/vecka [SRS~req.~6.6.5]
+
+\item
+Projektledaren kan, inom sitt projekt, ändra roller hos användare [SRS~req.~6.6.6]
+
+\item
+Projektledaren kan, inom sitt projekt, först klicka på statistik i en meny, sen välja från en lista vilken typ av rapport som ska genereras vart på rapporten genereras [SRS~req.~6.6.7]
 
 \end{FT}
 \end{appendices}
+
+
 
 \newpage
 
@@ -298,29 +350,91 @@ Kontrollera att projektledaren kan ändra roller hos användare i projketet [SRS
 
 \begin{ST}
 
+
 \item 
-Testa input med olika tecken från användaren [SRS req 6.1.2]
+Testa input med olika tecken från användaren [SRS req. 6.1.1]
 
 \item
-Vanliga användare kommer åt rätt funktioner [SRS req 6.3.5]
+Försök logga in med fler än 50 användare samtidigt [SRS req 6.1.2]
+
+\item 
+Samtliga användare har tillgång till följande funktionaliteter: start, tidrapporte-
+ring, projektinformation, byta lösenord, hjälp samt utloggning. [SRS req. 6.1.3, SRS req 6.4.1]
+
+\item 
+Projektledare har tillgång till problemrapporting och statusrapportering [SRS req 6.1.4]
 
 \item
-Admin kommer åt rätt funktioner [SRS req 6.3.5]
+En icke inloggad användare försöker använda en URL till en funktionalitet där denne har behörighet [SRS req. 6.2.1, 6.2.3, 6.2.5]
 
-\item
-Projektledare kommer åt rätt funktioner [SRS req 6.3.5]
+\item 
+Testa att systemet dokumentera arbetstimmar [SRS req. 6.5.5]
 
-\item
-Admin kommer åt funktionerna som projektledarna kommer åt i alla projekt [SRS req 6.6.8]
+\item 
+Testa att användare kommer på tidrapporeringssidan [SRS req. 6.5.5]
 
+\item 
+Testa att en ny tidrapport generares och visas med veckonummer [SRS req. 6.5.5]
+
+\item 
+Testa att användare är medlem i ett projekt [SRS req. 6.5.5]
+
+\item 
+Testa att system beräknar totaltid i realtid och det ska visas i specifik fält i rapporten [SRS req. 6.5.5]
+
+%PRESTANDA
 \item
-Svaret på en godtycklig förfrågan från en dator i E-huset kommer i 95\% av fallen inom en sekund [SRS req 8.2.1]
+Svaret på en godtycklig förfrågan från en dator i E-huset kommer i 95\% av fallen tillbaka inom en sekund [SRS~req.~7.2.1]
 
 \end{ST}
 
 
 
 
+\end{appendices}
+
+\newpage
+
+\begin{appendices}
+
+\section{Regressionstest}
+
+Om något ändras inom dessa områden måste följande testfall regressionstestas. Vid varje ändring ska de test rörande de generella kraven också testas.
+
+\subsection{Generella krav}
+
+FT: 1-2
+ST: 1-4
+
+\subsection{Autentisering}
+
+FT: 1-12
+ST: 1-5
+
+\subsection{Data}
+
+FT: 1-2,13,19,23-26
+ST: 1-4
+
+\subsection{Administration}
+
+FT: 1-2, 13-38
+ST: 1-4
+
+\subsection{Tidrapportering}
+
+FT: 1-2, 39-53
+ST: 1-4
+
+\subsection{Projektledning}
+
+FT: 1-2, 54-61
+ST: 1-4
+
+\subsection{Prestanda}
+
+FT: 1-2
+ST: 1-4, 11
 
 
 \end{appendices}
