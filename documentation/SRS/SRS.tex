@@ -34,7 +34,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 \fancyhead[C]{Datum: \today}
-\fancyhead[R]{Version: 0.12}
+\fancyhead[R]{Version: 0.13}
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
@@ -50,7 +50,7 @@
 
 \section*{Dokumenthistorik}
 
-\begin{tabular}{ l l l l }
+\begin{tabular}{ l l l p{8cm} }
 Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.1 & 8 november 2014 & SG & Struktur för dokumentet\\
 0.2 & 10 november 2014 & SG & Lägga till krav från UG\\
@@ -64,12 +64,11 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.10 & 13 november 2014 & SG & Skapade scenarion för projektledning.\\
 0.11 & 13 november 2014 & SG & Skapade scenarion för tidrapportmall och lade till krav.\\
 0.12 & 14 november 2014 & SG & Administration och tidrapportering är klart.\\
+0.13 & 14 november 2014 & SG & Lade till kontextdiagram samt uppdaterade krav under områdena projektledning, kvalitet och projekt.\\
 
 \end{tabular}
 \section{Inledning}       
-
-
-Dokumentet beskriver kraven för <Program X>, ett tidsrapportingssystem för projekt som diverse användare kan logga in på.
+Dokumentet beskriver kraven för NewPussSystem, ett tidsrapportingssystem för projekt som diverse användare kan logga in på.
 
 \section{Referensdokument}
 I denna version används inget referensmaterial.
@@ -82,7 +81,7 @@ Följande aktörer kommer att använda systemet:
 \begin{itemize}
 \item [] \textbf{Användare} En vanlig användare kan logga in och ut ur systemet.  Användaren kan erhålla en specifik roll (se nedan).
 \item [] \textbf{Projektmedlem(t1, t2, t3) }En användare kan tilldelas rollen som projektmedlem. Denne kan tidrapportera och har även tillgång till historik rörande den egna samt gruppens totala tidrapportering.
-\item [] \textbf{Projektledare} En användare kan tilldelas rollen som projektmedlem vilket ger den administrativa rättigheter för ett givet projekt. En projektledare kan tillsätta vanliga användare en projektmedlemsroll. Denne kan deltaga i en projektgrupp och har utöver sina befogenheter tillgång till samma funktionaliteter som en projektmedlem.
+\item [] \textbf{Projektledare} En användare kan tilldelas rollen som projektledare vilket ger den administrativa rättigheter för ett givet projekt. En projektledare kan tillsätta vanliga användare en projektmedlemsroll. Denne kan deltaga i en projektgrupp och har utöver sina befogenheter tillgång till samma funktionaliteter som en projektmedlem.
 \item [] \textbf{Administratör} En administratör är en och endast en användare som har befogenheter att lägga till och ta bort andra användare. Administratören tillsätter även projektledare och skapar projektgrupper. Administratören kan inte deltaga i en projektgrupp men har utöver detta samma priviligerade rättigheter som projektledare.
 \end{itemize}
 
@@ -102,7 +101,15 @@ Här följer ord och uttryck som används i rapporten och är till för att öka
 \item [Information] Med information avses t.ex. användare, projekt eller tidrapporter.
 \end{itemize}
 \section{Kontextdiagram}
-Denna version innehålller inte ett kontextdiagram.
+Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.75\textwidth]{context}
+   \caption{Kontextdiagram för NewPussSystem.}
+   \label{image_kontext}
+\end{figure}
+
 \section{Funktionella krav}
 \subsection{Generella krav}
 \label{krav-funk-gen}
@@ -111,15 +118,15 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{2}{Maximalt 50 användare kan vara inloggade på systemet samtidigt.}
 \requirement{3}{Samtliga användare skall ha tillgång till följande funktionaliteter: start, tidrapportering, projektinformation, byta lösenord, hjälp samt utloggning.}
 \requirement{4}{Samtliga funktionaliter i krav \ref{krav-funk-gen}.3 skall vara tillgängliga i menyn.}
-\requirement{5}{Projektledarna har tillgång till projektadministrationsfunktionaliter. Det listas som ''projektadministration'' och finns tillgängligt för dessa i menyn.}
-\requirement{6}{Administratören har tillgång till administrationsfunktionaliteter. Det listas som ''administration'' och finns tillgängligt för denne i dess meny.}
+\requirement{5}{Projektledarna har tillgång till projektadministrationsfunktionaliter. Det listas som ``projektadministration'' och finns tillgängligt för dem i menyn.}
+\requirement{6}{Administratören har tillgång till administrationsfunktionaliteter. Det listas som ``administration'' och finns tillgängligt för den i dess meny.}
 \requirement{7}{Administrationsfunktionaliteter avser även projektadministration och därmed har administratörer, utöver sina priviligerade rättigheter, även projektledarnas befogenheter.}
-\requirement{8}{Menyn, oavsett typ av användare, skall vara tillgänglig på samtliga sidor som visas av systemet.}
+\requirement{8}{Menyn, oavsett typ av användare, skall vara tillgänglig på samtliga sidor som visas, för en inloggad användare, av systemet.}
 \requirement{9}{En projektgrupp skall bestå av 1-20 användare.}
-\requirement{10}{Varje borttagning av information skall bekräftas av en dialogruta frågandes om man är säker. Om användaren väljer ''Ja'', tas informationen bort och användaren kommer tillbaka till en uppdaterad sida med informationen. Om ``Nej'' väljs, går användaren tillbaka till nuvarande sida.}
+\requirement{10}{Varje borttagning av information skall bekräftas av en dialogruta frågandes om man är säker. Om användaren väljer ``Ja'', tas informationen bort och användaren kommer tillbaka till en uppdaterad sida med informationen. Om ``Nej'' väljs, går användaren tillbaka till nuvarande sida.}
 \requirement{11}{Det finns sammanlagt fem roller i systemet: administratör, projektledare, t1, t2, t3.}
 \requirement{12}{Det skall finnas en administratör (se krav \ref{krav-funk-admin}.2) i systemet. I varje projektgrupp får det finnas 1-2 projektledare (se krav \ref{krav-funk-proj}.1) och de tre teamen, t1, t2 och t3 (se krav \ref{krav-funk-gen}.13).}
-\requirement{13}{I t1, t2 och t3 får det finnas 1-6 användare/team, alltså sammanlagt 1-18 användare.}
+\requirement{13}{I t1, t2 och t3 får det finnas 1-6 användare/team, alltså sammanlagt 3-18 användare.}
 \requirement{14}{Administratören kan ej deltaga i en projektgrupp.}
 
 
@@ -215,7 +222,7 @@ Denna version innehålller inte ett kontextdiagram.
 
 \noindent\rule{8cm}{0.4pt}  %------------------------------------------------------------------------------------------------------
 
-\requirement{17}{Det skall gå att lagra 1-100 tidrapporter/användare. Efter uppnådd maxgräns skrivs de över enligt FIFO-principen.}
+\requirement{17}{Det skall gå att lagra 100 tidrapporter/användare. Efter uppnådd maxgräns skrivs de över enligt FIFO-principen.}
 
 \subsection{Administration}
 \label{krav-funk-admin}
@@ -223,7 +230,7 @@ Denna version innehålller inte ett kontextdiagram.
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.5\textwidth]{admin_usage}
-   \caption{A picture of a gull.}
+   \caption{Exempel på användarscenario för en administratör.}
    \label{image_admin_usage}
 \end{figure}
 \requirement{1}{Systemet ska stödja sekvensen för administrören som visas i Figur \ref{image_admin_usage}.}
@@ -454,7 +461,7 @@ Denna version innehålller inte ett kontextdiagram.
 
 \subsection{Projektledning}
 \label{krav-funk-proj}
-\requirement{1}{Varje projekt skall ha en eller två, och endast en eller två användare, som besitter rollen som projektledare.}
+\requirement{1}{Varje projekt skall ha minst en max två användare som besitter rollen som projektledare.}
 \requirement{2}{Projektledaren skall ha tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp.}
 \requirement{3}{Projektledaren skall kunna godkänna ej tidigare godkända tidrapporter i från medlemmar i sin projektgrupp.}
 \requirement{4}{Projektledaren skall kunna ta tillbaka sitt godkännande från en tidigare godkänd gruppmedlems tidsrapport, i sin projektgrupp.}
@@ -469,14 +476,16 @@ Denna version innehålller inte ett kontextdiagram.
     \multicolumn{2}{|p{13cm}|}{ \indent\scenario{1}} \\
     \textbf{Syfte} & Generera rapporter från systemet.\\
     \textbf{Trigger} & En användare kommer in på statistiksidan för sitt projekt. \\
-    \textbf{Förutsättning} & Användaren måste vara projektledare för det givna projektet.\\
+    \textbf{Förutsättning} & Användaren måste ha rättigheter som en projektledare för det givna projektet.\\
     \hline
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
 
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer statistik i menyn.}\\
 	\multicolumn{2}{|p{13cm}|}{2. Användaren väljer från en lista vilken typ av rapport den vill generera.} \\	
-	\multicolumn{2}{|p{13cm}|}{3. En rapport genereras med statistik efter användarens önskemål} \\	
+	\multicolumn{2}{|p{13cm}|}{3. En rapport genereras med statistik efter användarens önskemål} \\
+	\multicolumn{2}{|p{13cm}|}{4. Användaren skickas vidare till en sida där den nyligen genererade rapporten visas upp.} \\
+		
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
     \hline
@@ -485,8 +494,109 @@ Denna version innehålller inte ett kontextdiagram.
 
 % ----------------------- /END
 
+
+
+
 \requirement{6}{Projektledaren skall kunna tilldela roller till projektmedlemmarna i sin projektgrupp.}
 \requirement{7}{Scenario \ref{krav-funk-proj}.1 skall stödjas av systemet.}
+\requirement{8}{Projektledaren skall kunna lista alla ej godkända rapporter.}
+\requirement{9}{Projektledaren skall kunna lista alla godkända rapporter.}
+\requirement{10}{Scenario \ref{krav-funk-proj}.2 skall stödjas av systemet.}
+\requirement{11}{Scenario \ref{krav-funk-proj}.3 skall stödjas av systemet.}
+\requirement{13}{Projektledaren skall kunna lista projektets alla rapporter och sortera dom efter följande attribut i både stigande och fallande ordning; Användare, vecka, och hurvida rapporten är godkänd eller ej.}
+\requirement{12}{Scenario \ref{krav-funk-proj}.4 skall stödjas av systemet.}
+
+
+%--------------SCENARIO
+
+\begin{table}[H]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{2}} \\
+    \textbf{Syfte} & Godkänna en tidsrapport.\\
+    \textbf{Trigger} & Användaren väljer en tidsrapport som inte är godkänd. \\
+    \textbf{Förutsättning} & Användaren måste ha rättigheter som en projektledare för det givna projektet.\\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer en rapport den vill godkänna.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Efter att ha kollat igenom rapporten och funnit den OK väljer den att godkänna.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. Användaren trycker på knappen för att godkänna aktuell rapport.} \\
+	\multicolumn{2}{|p{13cm}|}{4. En dialogruta beskriver att rapporten blivigt godkänd.} \\
+	\multicolumn{2}{|p{13cm}|}{5. Användaren dirigeras tillbaka till sidan över alla ej godkända rapporter.} \\
+	
+		
+	\hline
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+    \multicolumn{2}{|p{13cm}|}{1a. Rapporten är redan godkänd, se Scenario \ref{krav-funk-proj}.3.}\\    
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END
+%--------------SCENARIO
+
+\begin{table}[H]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{3}} \\
+    \textbf{Syfte} & Ta tillbaka godkännande av en tidsrapport.\\
+    \textbf{Trigger} & Användaren väljer en tidsrapport som är godkänd. \\
+    \textbf{Förutsättning} & Användaren måste ha rättigheter som en projektledare för det givna projektet.\\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer en rapport den vill godkänna.}\\	
+	\multicolumn{2}{|p{13cm}|}{2. Användaren trycker på knappen för att ta tillbaka sitt godkänande av rapporten.} \\
+	\multicolumn{2}{|p{13cm}|}{3. En dialogruta beskriver att rapporten ej längre är godkänd.} \\
+	\multicolumn{2}{|p{13cm}|}{4. Användaren dirigeras tillbaka till sidan över alla godkända rapporter.} \\
+	
+		
+	\hline
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+    \multicolumn{2}{|p{13cm}|}{1a. Rapporten är inte godkänd, se Scenario \ref{krav-funk-proj}.2.}\\    
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END
+
+%--------------SCENARIO
+
+\begin{table}[H]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{4}} \\
+    \textbf{Syfte} & Hitta en rapport genom att sortera dem.\\
+    \textbf{Trigger} & Användaren väljer att visa alla rapporter för ett projekt. \\
+    \textbf{Förutsättning} & Användaren måste ha rättigheter som en projektledare för det givna projektet.\\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+
+	\multicolumn{2}{|p{13cm}|}{1. Användaren trycker på valet att sortera alla rapporter efter namn, stigande ordning.}\\	
+	\multicolumn{2}{|p{13cm}|}{2. Alla rapporter visas sorterade efter det givna valet.} \\
+	\multicolumn{2}{|p{13cm}|}{3. Användaren trycker på valet att sortera alla rapporter efter namn, fallande orning} \\
+	\multicolumn{2}{|p{13cm}|}{4. Alla rapporter visas sorterade efter det givna valet.} \\
+	\hline
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+    \multicolumn{2}{|p{13cm}|}{1a. Användaren väljer istället för namn, att sortera efter vecka.}\\    
+    \multicolumn{2}{|p{13cm}|}{1b. Användaren väljer istället för namn, att sortera efter om rapporten är godkänd eller ej.}\\    
+    \multicolumn{2}{|p{13cm}|}{3a. Användaren väljer istället för namn, att sortera efter vecka.}\\    
+    \multicolumn{2}{|p{13cm}|}{3b. Användaren väljer istället för namn, att sortera efter om rapporten är godkänd eller ej.}\\    
+    
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END
+
+
 
 \section{Kvalitetskrav}
 \subsection{Underhåll}
@@ -494,11 +604,14 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{2}{Förståelse av Java, i nivå med vad som lärs ut i kursen EDA016, samt grundläggande kunskap av SQL skall räcka för att underhålla samt vidareutvekla systemet.}
 \subsection{Prestanda}
 \requirement{1}{Då systemet används i en av datorsalarna I ``E-huset'', LTH, skall svaret på en godtycklig förfrågan i åtminstone 95\% av fallen ges inom 1,0 s.}
+\subsection{Användarvänlighet}
+\requirement{1}{Minst 7/10, på måfå utvalda Civilingenjörsstudenter, skall finna det lätt att använda systemet.}
 \section{Projektkrav}
 \subsection{Utvecklingsmiljö}
 \requirement{1}{Systemet skall vara utveklat för Apaches Tomcat server.}
 \requirement{2}{Systemet skall vara utveklat i Java.}
 \requirement{3}{Databaslösningen MySQL skall användas av programmet för lagring av data mellan sessioner.}
 \requirement{4}{Systemet samt projekt- och produktdokumentation skall skrivas på svenska. Java-koden skall följa standarden som finns på http://www.geosoft.no/development/javastyle.html, alla variabelnamn skall vara skrivna på engelska.}
+
 
 \end{document}
