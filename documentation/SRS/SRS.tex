@@ -80,8 +80,8 @@ Följande aktörer kommer att använda systemet:
 \begin{itemize}
 \item [] \textbf{Användare} En vanlig användare kan logga in och ut ur systemet.  Användaren kan erhålla en specifik roll (se nedan).
 \item [] \textbf{Projektmedlem(t1, t2, t3) }En användare kan tilldelas rollen som projektmedlem. Denne kan tidrapportera och har även tillgång till historik rörande den egna samt gruppens totala tidrapporting.
-\item [] \textbf{Projektledare} En användare kan tilldelas rollen som projektmedlem vilket ger den administrativa rättigheter för ett givet projekt. En projektledare kan tillsätta vanliga användare en projektmedlemsroll.
-\item [] \textbf{Administratör} En administratör är en och endast en användare som har befogenheter att lägga till och ta bort andra användare. Administratören tillsätter även projektledare och skapar projektgrupper. Administratören kan inte deltaga i projektgrupp men har utöver detta samma priviligerade rättigheter som en projektledare.
+\item [] \textbf{Projektledare} En användare kan tilldelas rollen som projektmedlem vilket ger den administrativa rättigheter för ett givet projekt. En projektledare kan tillsätta vanliga användare en projektmedlemsroll. Denne kan deltaga i en projektgrupp och har utöver sina befogenheter tillgång till samma funktionaliteter som en projektmedlem.
+\item [] \textbf{Administratör} En administratör är en och endast en användare som har befogenheter att lägga till och ta bort andra användare. Administratören tillsätter även projektledare och skapar projektgrupper. Administratören kan inte deltaga i en projektgrupp men har utöver detta samma priviligerade rättigheter som en projektledare.
 \end{itemize}
 
 \section{Terminologi}
@@ -213,7 +213,7 @@ Denna version innehålller inte ett kontextdiagram.
 
 \noindent\rule{8cm}{0.4pt}  %------------------------------------------------------------------------------------------------------
 
-\requirement{17}{Det skall gå att lagra 1-100 tidrapporter/användare efter uppnådd maxgräns skrivs de över enligt FIFO-principen.}
+\requirement{17}{Det skall gå att lagra 1-100 tidrapporter/användare. Efter uppnådd maxgräns skrivs de över enligt FIFO-principen.}
 
 \subsection{Administration}
 \label{krav-funk-admin}
@@ -236,7 +236,7 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{10}{I administrationsvyn skall det vara möjligt att lägga till en ny användare.}
 \requirement{11}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav \ref{krav-funk-data}.1-2 skall ett felmeddelande visas och användaren skall inte läggas till.}
 
-\noindent\rule{8cm}{0.4pt} \\ %-----------------------------------------------------------------------------------------
+\noindent\rule{8cm}{0.4pt} %-----------------------------------------------------------------------------------------
 
 \requirement{12}{Endast administratören skall kunna skapa projektgrupper i systemet.}
 \requirement{13}{Endast administratören skall kunna tilldela projektmedlemmar en projektledarroll.}
