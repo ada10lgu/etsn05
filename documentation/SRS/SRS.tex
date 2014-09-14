@@ -75,7 +75,7 @@ Dokumentet beskriver kraven för <Program X>, ett tidsrapportingssystem för pro
 I denna version används inget referensmaterial.
 \section{Bakgrund och mål}   
 \subsection{Huvudmål}
-Huvudmålet är att tillhandhålla ett system där olika användare, såsom projektledare och övriga projektmedlemmar, ska kunna tidsrapportera och loggföra det fortgående arbetet i sitt projekt. 
+Huvudmålet är att tillhandhålla ett system där olika användare, såsom projektledare och övriga projektmedlemmar, skall kunna tidsrapportera och loggföra det fortgående arbetet i sitt projekt. 
 
 \subsection{Aktörer och deras mål}
 Följande aktörer kommer att använda systemet:
@@ -109,16 +109,16 @@ Denna version innehålller inte ett kontextdiagram.
 
 \requirement{1}{En användare kan vara projektmedlem i en och endast en projektgrupp åt gången.}
 \requirement{2}{Maximalt 50 användare kan vara inloggade på systemet samtidigt.}
-\requirement{3}{Samtliga användare ska ha tillgång till följande funktionaliteter: start, tidrapportering, projektinformation, byta lösenord, hjälp samt utloggning.}
-\requirement{4}{Samtliga funktionaliter i krav \ref{krav-funk-gen}.3 ska vara tillgängliga i menyn.}
+\requirement{3}{Samtliga användare skall ha tillgång till följande funktionaliteter: start, tidrapportering, projektinformation, byta lösenord, hjälp samt utloggning.}
+\requirement{4}{Samtliga funktionaliter i krav \ref{krav-funk-gen}.3 skall vara tillgängliga i menyn.}
 \requirement{5}{Projektledarna har tillgång till projektadministrationsfunktionaliter. Det listas som ''projektadministration'' och finns tillgängligt för dessa i menyn.}
 \requirement{6}{Administratören har tillgång till administrationsfunktionaliteter. Det listas som ''administration'' och finns tillgängligt för denne i dess meny.}
 \requirement{7}{Administrationsfunktionaliteter avser även projektadministration och därmed har administratörer, utöver sina priviligerade rättigheter, även projektledarnas befogenheter.}
-\requirement{8}{Menyn, oavsett typ av användare, ska vara tillgänglig på samtliga sidor som visas av systemet.}
+\requirement{8}{Menyn, oavsett typ av användare, skall vara tillgänglig på samtliga sidor som visas av systemet.}
 \requirement{9}{En projektgrupp skall bestå av 1-20 användare.}
 \requirement{10}{Varje borttagning av information skall bekräftas av en dialogruta frågandes om man är säker. Om användaren väljer ''Ja'', tas informationen bort och användaren kommer tillbaka till en uppdaterad sida med informationen. Om ``Nej'' väljs, går användaren tillbaka till nuvarande sida.}
 \requirement{11}{Det finns sammanlagt fem roller i systemet: administratör, projektledare, t1, t2, t3.}
-\requirement{12}{Det ska finnas en administratör (se krav \ref{krav-funk-admin}.2) i systemet. I varje projektgrupp får det finnas 1-2 projektledare (se krav \ref{krav-funk-proj}.1) och de tre teamen, t1, t2 och t3 (se krav \ref{krav-funk-gen}.13).}
+\requirement{12}{Det skall finnas en administratör (se krav \ref{krav-funk-admin}.2) i systemet. I varje projektgrupp får det finnas 1-2 projektledare (se krav \ref{krav-funk-proj}.1) och de tre teamen, t1, t2 och t3 (se krav \ref{krav-funk-gen}.13).}
 \requirement{13}{I t1, t2 och t3 får det finnas 1-6 användare/team, alltså sammanlagt 1-18 användare.}
 \requirement{14}{Administratören kan ej deltaga i en projektgrupp.}
 
@@ -126,7 +126,7 @@ Denna version innehålller inte ett kontextdiagram.
 \subsection{Autentisering}
 \label{krav-funk-aut}
 \requirement{1}{För varje användare kan loginstatus antingen vara inloggad eller inte inloggad.}
-\requirement{2}{Systemet ska hålla loginstatus i en serversession.}
+\requirement{2}{Systemet skall hålla loginstatus i en serversession.}
 
 % ----------------------- SCENARIO
 
@@ -154,8 +154,8 @@ Denna version innehålller inte ett kontextdiagram.
 \end{table}
 % ----------------------- /END
 
-\requirement{3}{När en användare når systemet och inte är inloggad ska denne få en förfrågan om användarnamn och lösenord.}
-\requirement{4}{När en användare skickar ett användarnamn och lösenord ska dessa parametrar jämföras med användarlistan och om användaren ska få tillgång till systemet , så ska serverstatus ändras till ``inloggad'' och huvudsidan ska visas.}
+\requirement{3}{När en användare når systemet och inte är inloggad skall denne få en förfrågan om användarnamn och lösenord.}
+\requirement{4}{När en användare skickar ett användarnamn och lösenord skall dessa parametrar jämföras med användarlistan och om användaren skall få tillgång till systemet , så skall serverstatus ändras till ``inloggad'' och huvudsidan skall visas.}
 \requirement{5}{Ingen information som kräver inloggning får visas för en oninloggad användare.}
 
 
@@ -182,7 +182,7 @@ Denna version innehålller inte ett kontextdiagram.
 % ----------------------- /END
 
 
-\requirement{6}{Om en inloggad användare är inaktiv i längre än 20 minuter ska sagda användare loggas ut och tvingas att logga in igen innan fortsatt användning av systemet.}
+\requirement{6}{Om en inloggad användare är inaktiv i längre än 20 minuter skall sagda användare loggas ut och tvingas att logga in igen innan fortsatt användning av systemet.}
 \requirement{7}{Ett användarkonto kan endast vara inloggat på en enhet åt gången.}
 \requirement{8}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan enhet, kommer den nya inloggingen att genomföras medan den andra enheten loggas ut.}
 \requirement{9}{Scenario \ref{krav-funk-aut}.1 skall stödjas av systemet.}
