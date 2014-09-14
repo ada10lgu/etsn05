@@ -34,7 +34,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 \fancyhead[C]{Datum: \today}
-\fancyhead[R]{Version: 0.11}
+\fancyhead[R]{Version: 0.12}
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
@@ -63,6 +63,8 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.9 & 12 november 2014 & SG & Reviderade krav samt lade till scenarion\\
 0.10 & 13 november 2014 & SG & Skapade scenarion för projektledning.\\
 0.11 & 13 november 2014 & SG & Skapade scenarion för tidrapportmall och lade till krav.\\
+0.12 & 14 november 2014 & SG & Administration och tidrapportering är klart.\\
+
 \end{tabular}
 \section{Inledning}       
 
@@ -79,9 +81,9 @@ Huvudmålet är att tillhandhålla ett system där olika användare, såsom proj
 Följande aktörer kommer att använda systemet:
 \begin{itemize}
 \item [] \textbf{Användare} En vanlig användare kan logga in och ut ur systemet.  Användaren kan erhålla en specifik roll (se nedan).
-\item [] \textbf{Projektmedlem(t1, t2, t3) }En användare kan tilldelas rollen som projektmedlem. Denne kan tidrapportera och har även tillgång till historik rörande den egna samt gruppens totala tidrapporting.
+\item [] \textbf{Projektmedlem(t1, t2, t3) }En användare kan tilldelas rollen som projektmedlem. Denne kan tidrapportera och har även tillgång till historik rörande den egna samt gruppens totala tidrapportering.
 \item [] \textbf{Projektledare} En användare kan tilldelas rollen som projektmedlem vilket ger den administrativa rättigheter för ett givet projekt. En projektledare kan tillsätta vanliga användare en projektmedlemsroll. Denne kan deltaga i en projektgrupp och har utöver sina befogenheter tillgång till samma funktionaliteter som en projektmedlem.
-\item [] \textbf{Administratör} En administratör är en och endast en användare som har befogenheter att lägga till och ta bort andra användare. Administratören tillsätter även projektledare och skapar projektgrupper. Administratören kan inte deltaga i en projektgrupp men har utöver detta samma priviligerade rättigheter som en projektledare.
+\item [] \textbf{Administratör} En administratör är en och endast en användare som har befogenheter att lägga till och ta bort andra användare. Administratören tillsätter även projektledare och skapar projektgrupper. Administratören kan inte deltaga i en projektgrupp men har utöver detta samma priviligerade rättigheter som projektledare.
 \end{itemize}
 
 \section{Terminologi}
@@ -407,16 +409,13 @@ Denna version innehålller inte ett kontextdiagram.
 	\multicolumn{2}{|p{13cm}|}{2. Ett fält var användaren kan fylla i veckonummer för veckan som skall rapporteras 	visas. Under fältet framgår det för vilken vecka senaste rapporten var skapad/reviderad.} \\	
 	\multicolumn{2}{|p{13cm}|}{3. Användaren fyller i veckonummer och trycker OK.} \\
 	\multicolumn{2}{|p{13cm}|}{4. En ny tidrapport genereras och visas med veckonumret från föregående steg samt dagens datum i fyllt.} \\
-	\multicolumn{2}{|p{13cm}|}{5. Användaren kan nu fylla i tidinformation. }\\
-
-	\multicolumn{2}{|p{13cm}|}{6. Användaren bekräftar slutligen genom att trycka på ”Skicka”, längst ner på sidan.}\\
-	
-	\multicolumn{2}{|p{13cm}|}{8. Rapporten sparas i databasen. En bekräftelse på att så har skett visas för användaren. Användaren kan även notera totaltiden.}\\ \hline
+	\multicolumn{2}{|p{13cm}|}{5. Användaren kan nu fylla i tidinformation. Användaren bekräftar slutligen genom att trycka på ”Skicka”, längst ner på sidan.}\\
+	\multicolumn{2}{|p{13cm}|}{6. Rapporten sparas i databasen. En bekräftelse på att så har skett visas för användaren. Användaren kan även notera totaltiden.}\\ \hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
 	\multicolumn{2}{|p{13cm}|}{2a. Det finns ingen tidigare skapad rapport. Detta framgår under fältet. }\\
-	\multicolumn{2}{|p{13cm}|}{4a. En tidrapport för det ifyllda veckonumret existerar redan. Rapporten hämtas från 		databasen och visas för användaren. Denne kan nu redigera rapporten. }\\
+	\multicolumn{2}{|p{13cm}|}{4a. En tidrapport för det ifyllda veckonumret existerar redan. Rapporten hämtas från databasen och visas för användaren. Denne kan nu redigera rapporten (se scenario \ref{krav-funk-tid}.2).}\\
 	\multicolumn{2}{|p{13cm}|}{4b. Det ifyllda veckonumret strider mot krav \ref{krav-funk-data}.16. Användaren informeras om detta och skickas tillbaka till steg 3. }\\
-	\multicolumn{2}{|p{13cm}|}{8a. Rapporten sparades inte i databasen. Användaren får information om detta och skickas tillbaka, utan att någon information i fälten har gått förlorad.}\\
+	\multicolumn{2}{|p{13cm}|}{6a. Felaktig inmatning av tidinformation (se krav \ref{krav-funk-data}.12. Användaren skickas tillbaka till steg 5. }\\
     \hline
 \end{tabular}
 \end{table}
@@ -429,28 +428,23 @@ Denna version innehålller inte ett kontextdiagram.
 \begin{tabular}{ | p{2cm} p{11cm} | }
     \hline
     
-    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{1}} \\
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{2}} \\
     \textbf{Syfte} & Ta bort/redigera arbetstimmar i systemet.\\
     \textbf{Trigger} & Användaren kommer in på tidrapporteringssidan. \\
     \textbf{Förutsättning} & Användaren måste vara medlem i ett projekt.\\
     \hline
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
-
-	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer tidrapportering i menyn.}\\
-	\multicolumn{2}{|p{13cm}|}{2. Ett fält var användaren kan fylla i veckonummer för veckan som skall rapporteras 	visas. Under fältet framgår det för vilken vecka senaste rapporten var skapad/reviderad.} \\	
-	\multicolumn{2}{|p{13cm}|}{3. Användaren fyller i veckonummer och trycker OK.} \\
-	\multicolumn{2}{|p{13cm}|}{4. En ny tidrapport genereras och visas med veckonumret från föregående steg samt dagens datum i fyllt.} \\
-	\multicolumn{2}{|p{13cm}|}{5. Användaren kan nu fylla i tidinformation. }\\
-
-	\multicolumn{2}{|p{13cm}|}{6. Användaren bekräftar slutligen genom att trycka på ”Skicka”, längst ner på sidan.}\\
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer ''Ta bort/redigera tidrapport''.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med sina egna rapporter. Det framgår tydligt vilka som är signerade/osignerade.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. Denne väljer en rapport och trycker ''Redigera''.} \\
+	\multicolumn{2}{|p{13cm}|}{4. Tidrapporten visas för användaren och kan nu redigeras. När användaren är klar trycker denne ''OK''.} \\
+	\multicolumn{2}{|p{13cm}|}{5. Tidrapporten är nu uppdaterad och användaren dirigeras till en bekräftelse sida. }\\
 	
-	\multicolumn{2}{|p{13cm}|}{8. Rapporten sparas i databasen. En bekräftelse på att så har skett visas för användaren. Användaren kan även notera totaltiden.}\\ \hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
-	\multicolumn{2}{|p{13cm}|}{2a. Det finns ingen tidigare skapad rapport. Detta framgår under fältet. }\\
-	\multicolumn{2}{|p{13cm}|}{4a. En tidrapport för det ifyllda veckonumret existerar redan. Rapporten hämtas från 		databasen och visas för användaren. Denne kan nu redigera rapporten. }\\
-	\multicolumn{2}{|p{13cm}|}{4b. Det ifyllda veckonumret strider mot krav \ref{krav-funk-data}.16. Användaren informeras om detta och skickas tillbaka till steg 3. }\\
-	\multicolumn{2}{|p{13cm}|}{8a. Rapporten sparades inte i databasen. Användaren får information om detta och skickas tillbaka, utan att någon information i fälten har gått förlorad.}\\
+	\multicolumn{2}{|p{13cm}|}{3a. Om rapporten är osignerad kan användaren även välja ''Ta bort''. Användaren får upp bekräftelserutan specificerad i krav \ref{krav-funk-gen}.10 } och dirigeras till steg 5 om denne trycker ''Ja''. Annars tillbaka till steg 2.\\
+	\multicolumn{2}{|p{13cm}|}{4a. Tidrapporten kan endast redigeras om den är osignerad. Signerade rapporter visas men användaren har ingen möjlighet att ändra något. }\\
+	\multicolumn{2}{|p{13cm}|}{5a. Felaktig inmatning av tidinformation (se krav \ref{krav-funk-data}.12. Användaren skickas tillbaka till steg 4. }\\
     \hline
 \end{tabular}
 \end{table}
