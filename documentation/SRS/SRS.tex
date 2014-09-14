@@ -78,9 +78,10 @@ Huvudmålet är att tillhandhålla ett system där olika användare, såsom proj
 \subsection{Aktörer och deras mål}
 Följande aktörer kommer att använda systemet:
 \begin{itemize}
-\item [] \textbf{Vanlig användare (User)} En användare kan logga in i systemet och tidsrapportera. Denne har även tillgång till statistik rörande den egna tidsrapporteringen.
-\item [] \textbf{Administratör (Admin)} En administratör är en specifik användare som har privligerade rättigheter. Denne kan lägga till och ta bort andra användare.
-\item [] \textbf{Projektledare (PL)} Projektledare är en roll som kan tilldelas till en User vilket ger den administrativa rättigheter för ett givet projekt.
+\item [] \textbf{Användare} En vanlig användare kan logga in och ut ur systemet.  Användaren kan erhålla en specifik roll (se nedan).
+\item [] \textbf{Projektmedlem(t1, t2, t3) }En användare kan tilldelas rollen som projektmedlem. Denne kan tidrapportera och har även tillgång till historik rörande den egna samt gruppens totala tidrapporting.
+\item [] \textbf{Projektledare} En användare kan tilldelas rollen som projektmedlem vilket ger den administrativa rättigheter för ett givet projekt. En projektledare kan tillsätta vanliga användare en projektmedlemsroll.
+\item [] \textbf{Administratör} En administratör är en och endast en användare som har befogenheter att lägga till och ta bort andra användare. Administratören tillsätter även projektledare och skapar projektgrupper. Administratören kan inte deltaga i projektgrupp men har utöver detta samma priviligerade rättigheter som en projektledare.
 \end{itemize}
 
 \section{Terminologi}
@@ -114,7 +115,12 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{8}{Menyn, oavsett typ av användare, ska vara tillgänglig på samtliga sidor som visas av systemet.}
 \requirement{9}{En projektgrupp skall bestå av 1-20 användare.}
 \requirement{10}{Varje borttagning av information skall bekräftas av en dialogruta frågandes om man är säker. Om användaren väljer ''Ja'', tas informationen bort och användaren kommer tillbaka till en uppdaterad sida med informationen. Om ``Nej'' väljs, går användaren tillbaka till nuvarande sida.}
- 
+\requirement{11}{Det finns sammanlagt fem roller i systemet: administratör, projektledare, t1, t2, t3.}
+\requirement{12}{Det ska finnas en administratör (se krav \ref{krav-funk-admin}.2) i systemet. I varje projektgrupp får det finnas 1-2 projektledare (se krav \ref{krav-funk-proj}.1) och de tre teamen, t1, t2 och t3 (se krav \ref{krav-funk-gen}.13).}
+\requirement{13}{I t1, t2 och t3 får det finnas 1-6 användare/team, alltså sammanlagt 1-18 användare.}
+\requirement{14}{Administratören kan ej deltaga i en projektgrupp.}
+
+
 \subsection{Autentisering}
 \label{krav-funk-aut}
 \requirement{1}{För varje användare kan loginstatus antingen vara inloggad eller inte inloggad.}
@@ -130,8 +136,6 @@ Denna version innehålller inte ett kontextdiagram.
     \textbf{Syfte} & Logga in användaren i systemet.\\
     \textbf{Trigger} & Användaren inkommer till systemet. \\
     \textbf{Förutsättning} & Användaren är inte inloggad.\\
-    \textbf{Frequency} & \\
-    \textbf{Critical} & \\
     \hline
 
 	\multicolumn{2}{|p{13cm}|}{ \textbf{Subuppgifter}:} \\
@@ -163,8 +167,6 @@ Denna version innehålller inte ett kontextdiagram.
     \textbf{Syfte} & Logga ut användaren från servern.\\
     \textbf{Trigger} & Användaren trycker väljer att logga ut. \\
     \textbf{Förutsättning} & Användaren är inloggad.\\
-    \textbf{Frequency} & \\
-    \textbf{Critical} & \\
     \hline
 	\multicolumn{2}{|p{13cm}|}{ \textbf{Subuppgifter}:} \\
 	\multicolumn{2}{|p{13cm}|}{ 1. Användaren väljer logga ut länken i menyn och loggas ut, samt dirigeras till en sida där utloggningen bekräftas.}\\ \hline
@@ -193,14 +195,14 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{5}{Tidrapportens utseende, med avseende på vilka aktiviteter man kan föra in tidinformation i, bestäms av administratören innan projektgruppen har skapats. När projektet är skapat skall det inte gå att ändra tidrapportens utseende.}
 \requirement{6}{Tidrapportens grundmall skall innehålla information om användarnamn, projektgruppsnamn, datum och veckonummer. Det skall även tydligt framgå om den är signerad eller ej. Grundmallen genereras automatiskt av systemet.}
 \requirement{7}{Samtliga tidrapportmallar sparas på servern.}
-\requirement{8}{Maximalt 20 mallar kan lagras samtidigt, därefter skrivs de över enligt FIFO-principen.}
+\requirement{8}{Maximalt 20 mallar kan lagras samtidigt, efter uppnådd maxgräns skrivs de över enligt FIFO-principen.}
 \requirement{9}{En tidrapportmall ska bestå av 1-10 rader samt 1-5 kolumner som det går att mata in tidinformation i.}
 \requirement{10}{Namnet på tidrapportmallen ska bestå av 5 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
 \requirement{11}{Namnet på aktivitet och subaktivitet ska bestå av 3-5 tecken respektive 1 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
 \requirement{12}{Tidinformationen får innehålla 1-5 tecken per aktivitetsruta, ascii (decimal) värden 48-57.}
 \requirement{13}{Tidrapportmallarnas namn måste vara unika.}
 
-\noindent\rule{8cm}{0.4pt} \\ %------------------------------------------------------------------------------------------------------
+\noindent\rule{8cm}{0.4pt}  %------------------------------------------------------------------------------------------------------
 
 \requirement{14}{Ett projektgruppsnamn ska bestå av 5-10 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
 \requirement{15}{Projektgruppsnamn måste vara unika.}
@@ -208,6 +210,10 @@ Denna version innehålller inte ett kontextdiagram.
 \noindent\rule{8cm}{0.4pt}  %------------------------------------------------------------------------------------------------------
 
 \requirement{16}{Veckonumret får innehålla 1-2 tecken, ascii (decimal) värden 48-57}
+
+\noindent\rule{8cm}{0.4pt}  %------------------------------------------------------------------------------------------------------
+
+\requirement{17}{Det skall gå att lagra 1-100 tidrapporter/användare efter uppnådd maxgräns skrivs de över enligt FIFO-principen.}
 
 \subsection{Administration}
 \label{krav-funk-admin}
@@ -249,8 +255,6 @@ Denna version innehålller inte ett kontextdiagram.
     \textbf{Syfte} & Skapa projektgrupp.\\
     \textbf{Trigger} & Användaren vill skapa en projektgrupp. \\
     \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
-    \textbf{Frequency} & \\
-    \textbf{Critical} & \\
     \hline
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
@@ -259,15 +263,16 @@ Denna version innehålller inte ett kontextdiagram.
 	\multicolumn{2}{|p{13cm}|}{2. Användaren väljer därefter tidrapportmall (se scenario \ref{krav-funk-admin}.4).}\\
 	\multicolumn{2}{|p{13cm}|}{3. Denne får nu fylla i ett projektgruppsnamn och trycker därefter på ''OK''.} \\	
 	\multicolumn{2}{|p{13cm}|}{4. Denne möts av en lista över användare i systemet. Första användaren som läggs till tilldelas automatiskt en projektledarroll.} \\	
-	\multicolumn{2}{|p{13cm}|}{5. Användaren kan därefter lägga till fler projektgruppsmedlemmar. Det ska även vara möjligt att tilldela ytterligare en projektgruppsmedlem, en projektledarroll. } \\	
-	\multicolumn{2}{|p{13cm}|}{6. När användaren är klar trycks ''OK''. } \\	
-	\multicolumn{2}{|p{13cm}|}{7. Projektgruppen skapas och användaren dirigeras till en sida som bekräftar detta. } \\	
+	\multicolumn{2}{|p{13cm}|}{5. Användaren kan därefter lägga till fler projektgruppsmedlemmar. Det ska även vara möjligt att tilldela ytterligare en projektgruppsmedlem, en projektledarroll. När användaren är klar trycks ''OK''} \\	
+	\multicolumn{2}{|p{13cm}|}{6. Projektgruppen skapas och användaren dirigeras till en sida som bekräftar detta. } \\	
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
     \multicolumn{2}{|p{13cm}|}{4a. Projektgruppsnamnet existerar redan (se krav \ref{krav-funk-data}.15), användaren informeras och skickas tillbaka till steg 3.}\\
     \multicolumn{2}{|p{13cm}|}{4b. Projektgruppsnamnet strider mot krav \ref{krav-funk-data}.14. Användaren informeras och skickas tillbaka till steg 3.}  \\
     \multicolumn{2}{|p{13cm}|}{4c. Användaren får felmeddelande eftersom inga fler användare existerar. Denne informeras om detta och skickas tillbaka till huvudsidan.}\\
-       \multicolumn{2}{|p{13cm}|}{5c. Användaren skickas till steg 7 då det inte finns fler användare i systemet att lägga till i projektgruppen.}\\
+       \multicolumn{2}{|p{13cm}|}{5a. Användaren ska informeras om att det inte finns fler användare att lägga till i projektgruppen och få möjlighet att skickas till steg 7.}\\
+    \multicolumn{2}{|p{13cm}|}{5b. Användaren ska informeras om någon av grupperna har max antal användare (se krav \ref{krav-funk-gen}.12 och \ref{krav-funk-gen}.13). Denne ska inte ha möjlighet att lägga till fler projektmedlemmar i den nämnda gruppen.}\\
+
     \hline
 \end{tabular}
 \end{table}
@@ -286,8 +291,6 @@ Denna version innehålller inte ett kontextdiagram.
     \textbf{Syfte} & Lägga till/ändra roll på projektmedlem i projektgrupp.\\
     \textbf{Trigger} & Användaren vill lägga till eller ändra projektmedlemmens roll. \\
     \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
-    \textbf{Frequency} & \\
-    \textbf{Critical} & \\
     \hline
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
@@ -300,7 +303,8 @@ Denna version innehålller inte ett kontextdiagram.
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
     \multicolumn{2}{|p{13cm}|}{1a. Det existerar inga projektgrupper/projektmedlemmar. Användaren informeras om detta och skickas tillbaka till huvudsidan.}\\
     \multicolumn{2}{|p{13cm}|}{4a. Användaren får felmeddelande då denne försökt att flytta över en projektledare som är den enda i sin projektgrupp. Denne ombedes att tillsätta en ny projektledare i gruppen innan förflyttning kan äga rum. Användaren dirigeras till steg 3.} \\
-        \multicolumn{2}{|p{13cm}|}{4b. Användaren får felmeddelande då gruppen har maximalt antal användare (se krav \ref{krav-funk-gen}.9). Denne informeras om detta och skickas tillbaka till steg 3.} \\
+    \multicolumn{2}{|p{13cm}|}{5b. Användaren ska informeras om någon av grupperna har max antal användare (se krav \ref{krav-funk-gen}.12 och \ref{krav-funk-gen}.13). Denne ska inte ha möjlighet att lägga till fler projektmedlemmar i den nämnda gruppen. Användaren skickas tillbaka till steg 3.}\\
+
     \hline
 \end{tabular}
 \end{table}
@@ -319,8 +323,6 @@ Denna version innehålller inte ett kontextdiagram.
     \textbf{Syfte} & Ta bort projektmedlemmar eller projektgrupp.\\
     \textbf{Trigger} & Användaren väljer ta bort projektgrupp/projektmedlemmar. \\
     \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
-    \textbf{Frequency} & \\
-    \textbf{Critical} & \\
     \hline
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
@@ -351,8 +353,6 @@ Denna version innehålller inte ett kontextdiagram.
     \textbf{Syfte} & Skapa tidrapportmall.\\
     \textbf{Trigger} & Användaren vill skapa en projektgrupp. \\
     \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
-    \textbf{Frequency} & \\
-    \textbf{Critical} & \\
     \hline
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
@@ -386,6 +386,7 @@ Denna version innehålller inte ett kontextdiagram.
 \requirement{4}{En användare som inte är projektledare kan bara se sina egna rapporter.}
 
 \requirement{5}{Användaren ska kunna föra in tidinformation enligt krav \ref{krav-funk-data}.4 och \ref{krav-funk-data}.12. }
+\requirement{5}{En användare kan ha }
 \requirement{7}{Scenario \ref{krav-funk-tid}.1 skall stödjas av systemet.}
 
 %--------------SCENARIO
@@ -398,8 +399,40 @@ Denna version innehålller inte ett kontextdiagram.
     \textbf{Syfte} & Dokumentera arbetstimmar i systemet.\\
     \textbf{Trigger} & Användaren kommer in på tidrapporteringssidan. \\
     \textbf{Förutsättning} & Användaren måste vara medlem i ett projekt.\\
-    \textbf{Frequency} & \\
-    \textbf{Critical} & \\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer tidrapportering i menyn.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Ett fält var användaren kan fylla i veckonummer för veckan som skall rapporteras 	visas. Under fältet framgår det för vilken vecka senaste rapporten var skapad/reviderad.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. Användaren fyller i veckonummer och trycker OK.} \\
+	\multicolumn{2}{|p{13cm}|}{4. En ny tidrapport genereras och visas med veckonumret från föregående steg samt dagens datum i fyllt.} \\
+	\multicolumn{2}{|p{13cm}|}{5. Användaren kan nu fylla i tidinformation. }\\
+
+	\multicolumn{2}{|p{13cm}|}{6. Användaren bekräftar slutligen genom att trycka på ”Skicka”, längst ner på sidan.}\\
+	
+	\multicolumn{2}{|p{13cm}|}{8. Rapporten sparas i databasen. En bekräftelse på att så har skett visas för användaren. Användaren kan även notera totaltiden.}\\ \hline
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+	\multicolumn{2}{|p{13cm}|}{2a. Det finns ingen tidigare skapad rapport. Detta framgår under fältet. }\\
+	\multicolumn{2}{|p{13cm}|}{4a. En tidrapport för det ifyllda veckonumret existerar redan. Rapporten hämtas från 		databasen och visas för användaren. Denne kan nu redigera rapporten. }\\
+	\multicolumn{2}{|p{13cm}|}{4b. Det ifyllda veckonumret strider mot krav \ref{krav-funk-data}.16. Användaren informeras om detta och skickas tillbaka till steg 3. }\\
+	\multicolumn{2}{|p{13cm}|}{8a. Rapporten sparades inte i databasen. Användaren får information om detta och skickas tillbaka, utan att någon information i fälten har gått förlorad.}\\
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END
+
+%--------------SCENARIO
+
+\begin{table}[H]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{1}} \\
+    \textbf{Syfte} & Ta bort/redigera arbetstimmar i systemet.\\
+    \textbf{Trigger} & Användaren kommer in på tidrapporteringssidan. \\
+    \textbf{Förutsättning} & Användaren måste vara medlem i ett projekt.\\
     \hline
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
@@ -444,8 +477,6 @@ Denna version innehålller inte ett kontextdiagram.
     \textbf{Syfte} & Generera rapporter från systemet.\\
     \textbf{Trigger} & En användare kommer in på statistiksidan för sitt projekt. \\
     \textbf{Förutsättning} & Användaren måste vara projektledare för det givna projektet.\\
-    \textbf{Frequency} & \\
-    \textbf{Critical} & \\
     \hline
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
