@@ -79,7 +79,7 @@ Huvudmålet är att tillhandhålla ett system där olika användare, såsom proj
 \subsection{Aktörer och deras mål}
 Följande aktörer kommer att använda systemet:
 \begin{itemize}
-\item [] \textbf{Användare} En vanlig användare kan logga in och ut ur systemet.  Användaren kan erhålla en specifik roll (se nedan).
+\item [] \textbf{Användare} En vanlig användare kan logga in och ut ur systemet. Användaren kan erhålla en specifik roll (se nedan).
 \item [] \textbf{Projektmedlem(t1, t2, t3) }En användare kan tilldelas rollen som projektmedlem. Denne kan tidrapportera och har även tillgång till historik rörande den egna samt gruppens totala tidrapportering.
 \item [] \textbf{Projektledare} En användare kan tilldelas rollen som projektledare vilket ger den administrativa rättigheter för ett givet projekt. En projektledare kan tillsätta vanliga användare en projektmedlemsroll. Denne kan deltaga i en projektgrupp och har utöver sina befogenheter tillgång till samma funktionaliteter som en projektmedlem.
 \item [] \textbf{Administratör} En administratör är en och endast en användare som har befogenheter att lägga till och ta bort andra användare. Administratören tillsätter även projektledare och skapar projektgrupper. Administratören kan inte deltaga i en projektgrupp men har utöver detta samma priviligerade rättigheter som projektledare.
@@ -163,7 +163,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 
 \requirement{3}{När en användare når systemet och inte är inloggad skall denne få en förfrågan om användarnamn och lösenord.}
 \requirement{4}{När en användare skickar ett användarnamn och lösenord skall dessa parametrar jämföras med användarlistan och om användaren skall få tillgång till systemet , så skall serverstatus ändras till ``inloggad'' och huvudsidan skall visas.}
-\requirement{5}{Ingen information som kräver inloggning får visas för en oninloggad användare.}
+\requirement{5}{Ingen annan information utöver inloggningsrutan skall visas för en inte inloggad användare.}
 
 
 % ----------------------- SCENARIO
@@ -174,7 +174,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 
     \multicolumn{2}{|p{13cm}|}{ \indent\scenario{2}} \\
     \textbf{Syfte} & Logga ut användaren från servern.\\
-    \textbf{Trigger} & Användaren trycker väljer att logga ut. \\
+    \textbf{Trigger} & Användaren vill logga ut. \\
     \textbf{Förutsättning} & Användaren är inloggad.\\
     \hline
 	\multicolumn{2}{|p{13cm}|}{ \textbf{Subuppgifter}:} \\
@@ -412,7 +412,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
 
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer tidrapportering i menyn.}\\
-	\multicolumn{2}{|p{13cm}|}{2. Ett fält var användaren kan fylla i veckonummer för veckan som skall rapporteras 	visas. Under fältet framgår det för vilken vecka senaste rapporten var skapad/reviderad.} \\	
+	\multicolumn{2}{|p{13cm}|}{2. Ett fält där användaren kan fylla i veckonummer för veckan som skall rapporteras 	visas. Under fältet framgår det för vilken vecka senaste rapporten var skapad/reviderad.} \\	
 	\multicolumn{2}{|p{13cm}|}{3. Användaren fyller i veckonummer och trycker OK.} \\
 	\multicolumn{2}{|p{13cm}|}{4. En ny tidrapport genereras och visas med veckonumret från föregående steg samt dagens datum i fyllt.} \\
 	\multicolumn{2}{|p{13cm}|}{5. Användaren kan nu fylla i tidinformation. Användaren bekräftar slutligen genom att trycka på ”Skicka”, längst ner på sidan.}\\

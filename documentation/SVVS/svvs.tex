@@ -3,7 +3,8 @@
 \usepackage{anysize}
 \marginsize{3cm}{3cm}{3cm}{3cm}
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}       
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
 
 \usepackage[swedish]{babel}      
 \usepackage{epstopdf}     % För svensk avstavning och svenska
@@ -16,14 +17,18 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
 \fancyhead[C]{Datum: \today}
-\fancyhead[R]{Version: 1.0}
+\fancyhead[R]{Version: 0.1}
 
 
+\newlist{FT}{enumerate}{1}
+\setlist[FT]{label=FT\arabic*:}
 
+\newlist{ST}{enumerate}{1}
+\setlist[ST]{label=ST\arabic*:}
 
 
 \title{SVVS - Software Verification and Validation Specification: NewPussSystem}                  	
-\author{Testgruppen \\ Chefen | Testare 1 | Testare 2 \\ Testare 3 | Testare 4}
+\author{Testgruppen \\ Axel Ulmestig | Axel Goteman | Sefik Ceric \\ Victor Johnsson | Johan Kellerth Fredlund}
 \date{}
 
 \begin{document}
@@ -37,38 +42,288 @@
 
 \begin{tabular}{ l l l l }
 Ver. & Datum & Ansv. & Beskrivning \\\hline
-1.0 & \today & TG & Första baseline-versionen
+0.1 & \today & TG & Första baseline-versionen
 
 \end{tabular}
 \section{Inledning}       
 
-Bacon ipsum dolor sit amet filet mignon tri-tip spare ribs flank pastrami beef. Beef ribs sausage prosciutto boudin, short ribs meatloaf porchetta pancetta ribeye ground round andouille. Pork loin swine spare ribs pastrami cow biltong. Leberkas drumstick pancetta, beef pork capicola sirloin andouille. Salami beef meatloaf andouille cow sirloin doner shankle short ribs landjaeger flank sausage ham turducken. Porchetta rump corned beef, cow leberkas turkey beef ribs beef pastrami chicken sausage. Flank ground round pastrami kevin andouille cow.
+Detta dokument innehåller information om vilka tester och granskningar som ska genomföras under utvecklingen av NewPussSystem.
 
 \section{Referensdokument}
 \begin{enumerate}
-\item Fösta dokumentet
-\item Andra dokumentet
-\item ...
+\item System Requirements Specification
+\item Projekthandledning
+\end{enumerate}
+
+\section{Översikt}
+
+Under projektet ska tre formella granskningar hållas
+
+\begin{enumerate}
+
+
+\item Software Specifikation Review (SSR)
+\begin{itemize}
+\item [](a) SDP
+\item [](b) SRS
+\item [](c) SVVS
+\end{itemize}
+
+
+\item Preliminary Design Review (PDR)
+\begin{itemize}
+\item [](a) SVVI
+\item [](b) STLDD
+\end{itemize}
+
+
+\item Product Review (PR)
+\begin{itemize}
+\item [](a) SVVR
+\item [](b) SSD
+\item [](c) PFR
+\end{itemize}
+
 
 \end{enumerate}
 
-\section{Något mer...}
-Bacon ipsum dolor sit amet drumstick pastrami t-bone frankfurter, shank tri-tip fatback. Flank sirloin frankfurter shoulder turducken brisket chicken bresaola landjaeger ham fatback doner pancetta. Bresaola brisket bacon pork loin flank pig. Pork belly shank ground round meatloaf boudin, meatball filet mignon kielbasa turducken short loin sausage leberkas landjaeger. Kielbasa andouille ball tip, meatloaf ground round pastrami meatball spare ribs bacon shank shoulder short ribs tail. Chuck jerky chicken beef tail biltong. Ham brisket pork chop drumstick shankle pancetta tongue bacon shank filet mignon turkey ribeye pork belly prosciutto.
+Dessa formella granskningar utförs på det sätt som anges i Ref. 2. De formella granskningarna föregås av två informella granskningar av de relevanta partierna. I den första sammanställs information och kritik eller förändringar ges, sen ges tid för förändring innan den andra informella granskningen där den slutliga versionen sammanställs, denna version är sedan den som skickas för formell granskning. Inför varje granskning så ska dessutom utvecklarna kolla igenom SDDD ifall den förändrats.
+
+
+\section{Testmiljöer}
+
+Den testmiljön som används är på en godtycklig dator i E-huset.
+
+\section{Testfall}
+
+Tester utförs på det sätt som anges nedan.
+
+\subsection{Enhetstest}
+
+Utförs av utvecklingsgruppen efter hand som kod tas fram. Här utnyttjas både "white-box"- och "black-box"-testning.
+
+\subsection{Funktionstest}
+
+Där enskilda funktioner testas enligt en funktionstestspecifikation och tillhörande funktionstestinstruktioner. 
+
+\subsection{Systemtest}
+
+Där ett komplett system testas för att se hur flera funktioner och tjänster samverkar enligt en systemtestspecifikation. Testen i enlighet med de framtagna systemtestinstruktionerna. 
+
+\subsection{Regressionstest}
+
+När nya funktioner har införts eller gamla har ändrats behöver "gamla" funktioner testas, för att säkerställa att ändringen inte påverkat något som tidigare godkänts i test.
+
+\subsection{Acceptanstest}
+
+Under vilket kunde utför ett urval av ovanstående tester samt ett par för leverantörer okända testfall, med syfte att validera systemet.
+
+\section{Krav som tas upp vid granskningar}
+
+Vid granskningar ska alla krav granskas.
+Följande krav (enligt Ref.2) är endast verifierbara genom granskningar: 8.1.1, 8.1.2, 9.1.1, 9.1.2, 9.1.3, 9.1.4.
+
+\section{Bilagor}
+
+Det finns två bilagor:
+
+\begin{itemize}
+\item A: Funktiontestspecifikation
+\item B: Systemtestspecifikation
+
+\end{itemize}
+
+\newpage
 
 \begin{appendices}
 
-\section{Bacon}
-Chuck sausage tri-tip pork, turducken spare ribs shoulder ham hock brisket ham rump pig shankle. Rump shank flank, kevin ribeye bresaola brisket meatball turkey. Rump landjaeger brisket pork loin drumstick pig ball tip corned beef shankle. Tenderloin jerky pig corned beef bacon strip steak ground round venison. Ground round beef ribs flank venison capicola pig drumstick kevin short loin pork loin turducken pastrami spare ribs. Shank swine short loin, strip steak pork chop ham spare ribs andouille pork shoulder corned beef.
+\section{Funktionstestsspecifikation}
+
+
+\begin{FT}
+
+\item 
+
+Testa alla scenarion beskriva i kapitel 7 i SRS [SRS req 6.1.1]
+
+\item 
+
+Logga in när annan användare är inloggad [SRS req. 6.1.3]
+
+\item 
+
+Logga in med rätt lösenord och användare name [SRS req. 6.2.1]
+
+\item 
+
+Försök logga in med fel lösenord och användare name [SRS req. 6.2.1]
+
+
+\item 
+
+Användare kan byta lösenord [SRS req. 6.2.2]
+
+\item 
+
+Användare blir utloggad efter 15 minuters inaktivitet [SRS req. 6.2.3]
+
+\item 
+
+Två användare försöker logga in på samma konto samtidigt [SRS req. 6.2.4]
+
+\item 
+
+Bekräftelseruta om raderande av information [SRS req. 6.3.2]
+
+\item 
+
+Försök skapa användare med för lite data [SRS req. 6.3.3]
+
+\item 
+
+Försök skapa en projektgrupp med för lite data [SRS req. 6.3.4, req. 6.4.11]
+
+\item 
+
+Försök skapa ett adminkonto när det redan finns ett adminkonto [SRS req. 6.4.1]
+
+\item 
+
+Skapa ett adminkonto när det inte finns ett adminkonto [SRS req. 6.4.1]
+
+\item
+Skapa ett nytt konto från adminkontot [SRS req. 6.4.2]
+
+\item
+Skapa ett nytt konto från ett konto som inte är admin [SRS req. 6.4.2]
+
+\item
+Skapa två användare med samma namn [SRS req. 6.4.3]
+
+\item
+Skapa två konton och kontrollera att lösenordet är olika [SRS req. 6.4.3]
+
+\item
+Admin försöker att lägga till användare med ett upptaget användarnamn [SRS req. 6.4.4]
+
+\item
+Admin inaktiverar konton av alla typer [SRS req. 6.4.5]
+
+\item
+Alla utom admin försöker inaktivera konton av alla typer [SRS req. 6.4.5]
+
+\item
+Admin aktiverar konton av alla typer [SRS req. 6.4.6]
+
+\item
+Alla utom admin försöker aktivera konton av alla typer [SRS req. 6.4.6]
+
+\item
+Admin kan generera en lista av aktiva användare [SRS req. 6.4.7]
+
+\item
+Admin får en bekräftelseruta då hen ska lägga till en användare i systemet [SRS req. 6.4.8]
+
+\item
+Admin får en bekräftelseruta då hen ska aktivera en användare i systemet [SRS req. 6.4.8]
+
+\item
+Admin får en bekräftelseruta då hen ska avaktivera en användare i systemet [SRS req. 6.4.8]
+
+\item 
+
+Skapa projektgrupp från konton med olika behörighet [SRS req. 6.4.9]
+
+\item 
+
+Försök skapa projektgrupp med ett befintligt namn [SRS req. 6.4.12]
+
+\item 
+
+Ta bort projektgruppen från konton med olika behörighet [SRS req. 6.4.13]
+
+\item 
+
+Admin kommer åt lista på alla projektgrupper [SRS req. 6.4.14]
+
+\item 
+
+Spara, uppdatera och radera tidsrapporter [SRS req. 6.5.1]
+
+\item
+
+Testa att göra en användare till projektledare för två olika projekt [SRS req. 6.6.1]
+
+\item 
+
+Icke projektledare utför operationer reserverade för projektledare [SRS req. 6.6.1]
+
+\item
+
+Antalet tidsrapporter som syns stämmer med antalet i databasen [SRS~req.~6.6.2]
+
+\item 
+
+Projektledare kan godkänna tidrapporter [SRS req. 6.6.3]
+
+\item 
+
+Projektledare kan dra tillbaka tidigare godkännanden av tidrapporter [SRS req. 6.6.4]
+
+\item 
+
+Antalet projektmedlemmer i databasen överenstämmer att antalet projektmedlemmar stämmer med det som projketledaren ser [SRS~req. 6.6.5]
+
+\item 
+
+Kontrollera att tillgänglig statistik om projektet kan ses av projektledaren [SRS req. 6.6.6]
+
+\item 
+
+Kontrollera att projektledaren kan ändra roller hos användare i projketet [SRS req. 6.6.7]
+
+
+
+
+
+
+\end{FT}
+\end{appendices}
+
+\newpage
+
+\begin{appendices}
+
+\section{Systemtestspecifikation}
+
+\begin{ST}
+
+\item 
+Testa input med olika tecken från användaren [SRS req 6.1.2]
+
+\item
+Vanliga användare kommer åt rätt funktioner [SRS req 6.3.5]
+
+\item
+Admin kommer åt rätt funktioner [SRS req 6.3.5]
+
+\item
+Projektledare kommer åt rätt funktioner [SRS req 6.3.5]
+
+\item
+Admin kommer åt funktionerna som projektledarna kommer åt i alla projekt [SRS req 6.6.8]
+
+\item
+Svaret på en godtycklig förfrågan från en dator i E-huset kommer i 95\% av fallen inom en sekund [SRS req 8.2.1]
+
+\end{ST}
+
+
+
+
+
 
 \end{appendices}
 
+
 \end{document}
-
-
-
-
-
-
-
-
-
