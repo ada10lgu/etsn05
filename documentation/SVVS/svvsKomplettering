@@ -1,0 +1,50 @@
+För att få enhetlighet bland dokumenten föreslår jag att göra en ”replace all” och byta ut ”admin” mot ”administratör”. Gäller även ”hen” då ”denne” används överallt.
+
+
+FT1  - En användare ska kunna omplaceras. Det måste förtydligas att man vill ha en användare i två grupper samtidigt.
+
+FT3 - Tillgänglig (felstavning)
+
+FT 6-9 - Även projektledare ska kunna tillsätta dessa roller(krav 6.6.6, som kommer att förtydligas)
+
+FT21 - Förtydliga, det handlar om att samma användare inte kan vara inloggad på mer än enhet samtidigt.
+
+FT29 - Kanske lägga till ”Testa att spara” , gäller rätt många FT’s. ? 
+
+FT30 - samma som ovan
+
+FT47 - formulera om ”typ”
+
+FT49 - ”hen” används, jag förslår att byta ut mot ”denne” för att vara konsekvent. (denne används i SRS’n samt tidigare FT’s)
+
+FT55 och FT56 - referera gärna till krav 6.3.14. För omkringliggande FT’s kan man även referera till krav 6.1.9 och krav 6.6.1
+
+FT62 - otydligt. är det rätt refererat?
+
+FT63 - FT73. Referera gärna till konkreta scenarios.
+
+FT74 - finns inget krav med givet ID.
+
+FT77  - stavfel, uppdatera
+
+FT83-90 -  kan formuleras bättre.
+
+FT83-90 - ta bort ”tidrapporteringssidan”, det är underförstått. Skriv ”varpå” tillsammans. Ta bort ”s” i ”tidSrapporteringssidan”. Kolla igenom språket.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
