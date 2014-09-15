@@ -34,7 +34,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 \fancyhead[C]{Datum: \today}
-\fancyhead[R]{Version: 0.13}
+\fancyhead[R]{Version: 0.14}
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
@@ -50,7 +50,7 @@
 
 \section*{Dokumenthistorik}
 
-\begin{tabular}{ l l l p{8cm} }
+\begin{tabular}{ l l l p{8.5cm} }
 Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.1 & 8 september 2014 & SG & Struktur för dokumentet\\
 0.2 & 10 september 2014 & SG & Lägga till krav från UG\\
@@ -65,6 +65,12 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.11 & 13 september 2014 & SG & Skapade scenarion för tidrapportmall och lade till krav.\\
 0.12 & 14 september 2014 & SG & Administration och tidrapportering är klart.\\
 0.13 & 14 september 2014 & SG & Lade till kontextdiagram samt uppdaterade krav under områdena projektledning, kvalitet och projekt.\\
+0.14 & 15 september 2014 & SG & 
+Uppdaterat efter granskningsprotokoll från TG, UG, och intern gransking i SG.
+Uppdaterat formuleringar, kapitel \ref{bom-aktorer} och \ref{terminologi}. 
+Uppdaterat krav, kapitel \ref{krav-funk-gen}, \ref{krav-funk-aut}, \ref{krav-funk-data}, \ref{krav-funk-admin}, \ref{krav-funk-tid}.
+Lagt till nya krav, kapitel \ref{krav-funk-data}, \ref{krav-funk-admin}, \ref{krav-funk-tid}.
+Uppdaterat scenario, kapitel \ref{krav-funk-proj}. \\
 
 \end{tabular}
 \section{Inledning}       
@@ -77,23 +83,25 @@ I denna version används inget referensmaterial.
 Huvudmålet är att tillhandhålla ett system där olika användare, såsom projektledare och övriga projektmedlemmar, skall kunna tidsrapportera och loggföra det fortgående arbetet i sitt projekt. 
 
 \subsection{Aktörer och deras mål}
+\label{bom-aktorer}
 Följande aktörer kommer att använda systemet:
 \begin{itemize}
-\item [] \textbf{Användare} En vanlig användare kan logga in och ut ur systemet. Användaren kan erhålla en specifik roll (se nedan).
-\item [] \textbf{Projektmedlem(t1, t2, t3) }En användare kan tilldelas rollen som projektmedlem. Denne kan tidrapportera och har även tillgång till historik rörande den egna samt gruppens totala tidrapportering.
-\item [] \textbf{Projektledare} En användare kan tilldelas rollen som projektledare vilket ger den administrativa rättigheter för ett givet projekt. En projektledare kan tillsätta vanliga användare en projektmedlemsroll. Denne kan deltaga i en projektgrupp och har utöver sina befogenheter tillgång till samma funktionaliteter som en projektmedlem.
-\item [] \textbf{Administratör} En administratör är en och endast en användare som har befogenheter att lägga till och ta bort andra användare. Administratören tillsätter även projektledare och skapar projektgrupper. Administratören kan inte deltaga i en projektgrupp men har utöver detta samma priviligerade rättigheter som projektledare.
+\item [] \textbf{Vanlig användare} En vanlig användare är en person med ett konto i systemet som ännu inte har blivigt tilldelad ett projekt.
+\item [] \textbf{Projektmedlem(t1, t2, t3)} En vanlig användare kan tilldelas rollen som projektmedlem. Denne kan tidrapportera och har även tillgång till historik rörande den egna samt gruppens totala tidrapportering. T1, t2, och t3 indikerar tre olika projektmedlemsroller, en användare blir tilldelad en av dessa i samband med att den blir medlem i ett projekt.
+\item [] \textbf{Projektledare} En användare kan tilldelas rollen som projektledare vilket ger den administrativa rättigheter för ett givet projekt. En projektledare kan tillsätta vanliga användare en projektmedlemsroll. Utöver sina rättigheter som projektledare har den all funktionallitet som en projektmedlem besitter.
+\item [] \textbf{Administratör} En administratör är en och endast en användare som har befogenheter att lägga till och ta bort andra användare. Administratören tillsätter även projektledare och skapar projektgrupper. Administratören kan inte deltaga i en projektgrupp men har utöver detta samma priviligerade rättigheter som projektledare coh projektmedlem.
 \end{itemize}
 
 \section{Terminologi}
+\label{terminologi}
 Här följer ord och uttryck som används i rapporten och är till för att öka förståelsen.
 \begin{itemize}
 \item [Användarnamn] Unik indentifikationsfras för att representera en användare i systemet..
 \item [Lösenord] Hemlig fras endast känd för var unik användare samt systemet så användaren kan påvisa sin identitet.
-\item [Inloggad] En användare som har identifierat sig mot systemet med användarnamn och lösenord, detta sker genom att användaren loggar in.
-\item [Logga in] Se inloggad.
+\item [Logga in] Då en användare identifierar sig mot systemet med användarnamn och lösenord, om systemet godkänner identifieringen loggar användaren in.
+\item [Inloggad] En användare som har loggat in är inloggad.
 \item [Användarstatus] En indikation på var användare som avgör hur vida den får logga in eller ej.
-\item [Projektgrupp] En grupp bestående av vanliga användare och projektledare.
+\item [Projektgrupp] En grupp bestående av projektmedlemmar och projektledare.
 \item [Tidsrapport] En rapport som innehåller arbetsbelasting för en användare under en fix tidsperiod bundet till en specefik projektgrupp.
 \item [Huvudsida] Med huvudsida avses den första vyn som användaren blir dirigerad till direkt efter inloggning. 
 \item [Användarlista] En lista med alla användarnamn och lösenord som är sparade i databasen.
@@ -116,7 +124,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 
 \requirement{1}{En användare kan vara projektmedlem i en och endast en projektgrupp åt gången.}
 \requirement{2}{Maximalt 50 användare kan vara inloggade på systemet samtidigt.}
-\requirement{3}{Samtliga användare skall ha tillgång till följande funktionaliteter: start, tidrapportering, projektinformation, byta lösenord, hjälp samt utloggning.}
+\requirement{3}{Samtliga användare skall ha tillgång till följande funktionaliteter: Tidrapportering, projektinformation, byta lösenord, hjälp samt utloggning.}
 \requirement{4}{Samtliga funktionaliter i krav \ref{krav-funk-gen}.3 skall vara tillgängliga i menyn.}
 \requirement{5}{Projektledarna har tillgång till projektadministrationsfunktionaliter. Det listas som ``projektadministration'' och finns tillgängligt för dem i menyn.}
 \requirement{6}{Administratören har tillgång till administrationsfunktionaliteter. Det listas som ``administration'' och finns tillgängligt för den i dess meny.}
@@ -126,7 +134,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 \requirement{10}{Varje borttagning av information skall bekräftas av en dialogruta frågandes om man är säker. Om användaren väljer ``Ja'', tas informationen bort och användaren kommer tillbaka till en uppdaterad sida med informationen. Om ``Nej'' väljs, går användaren tillbaka till nuvarande sida.}
 \requirement{11}{Det finns sammanlagt fem roller i systemet: administratör, projektledare, t1, t2, t3.}
 \requirement{12}{Det skall finnas en administratör (se krav \ref{krav-funk-admin}.2) i systemet. I varje projektgrupp får det finnas 1-2 projektledare (se krav \ref{krav-funk-proj}.1) och de tre teamen, t1, t2 och t3 (se krav \ref{krav-funk-gen}.13).}
-\requirement{13}{I t1, t2 och t3 får det finnas 1-6 användare/team, alltså sammanlagt 3-18 användare.}
+\requirement{13}{I t1, t2 och t3 får det finnas 0-6 användare/team, alltså sammanlagt 0-18 användare.}
 \requirement{14}{Administratören kan ej deltaga i en projektgrupp.}
 
 
@@ -189,7 +197,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 % ----------------------- /END
 
 
-\requirement{6}{Om en inloggad användare är inaktiv i längre än 20 minuter skall sagda användare loggas ut och tvingas att logga in igen innan fortsatt användning av systemet.}
+\requirement{6}{Om en inloggad användare är inaktiv i längre än 20 minuter skall sagd användare loggas ut och tvingas att logga in igen innan fortsatt användning av systemet.}
 \requirement{7}{Ett användarkonto kan endast vara inloggat på en enhet åt gången.}
 \requirement{8}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan enhet, kommer den nya inloggingen att genomföras medan den andra enheten loggas ut.}
 \requirement{9}{Scenario \ref{krav-funk-aut}.1 skall stödjas av systemet.}
@@ -204,8 +212,8 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 \requirement{5}{Tidrapportens utseende, med avseende på vilka aktiviteter man kan föra in tidinformation i, bestäms av administratören innan projektgruppen har skapats. När projektet är skapat skall det inte gå att ändra tidrapportens utseende.}
 \requirement{6}{Tidrapportens grundmall skall innehålla information om användarnamn, projektgruppsnamn, datum och veckonummer. Det skall även tydligt framgå om den är signerad eller ej. Grundmallen genereras automatiskt av systemet.}
 \requirement{7}{Samtliga tidrapportmallar sparas på servern.}
-\requirement{8}{Maximalt 20 mallar kan lagras samtidigt, efter uppnådd maxgräns skrivs de över enligt FIFO-principen.}
-\requirement{9}{En tidrapportmall ska bestå av 1-10 rader samt 1-5 kolumner som det går att mata in tidinformation i.}
+\requirement{8}{Maximalt 20 mallar kan lagras samtidigt, efter uppnådd maxgräns kan ej fler lagras.}
+\requirement{9}{En tidrapportmall ska bestå av 1-20 rader samt 1-5 kolumner som det går att mata in tidinformation i.}
 \requirement{10}{Namnet på tidrapportmallen ska bestå av 5 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
 \requirement{11}{Namnet på aktivitet och subaktivitet ska bestå av 3-5 tecken respektive 1 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
 \requirement{12}{Tidinformationen får innehålla 1-5 tecken per aktivitetsruta, ascii (decimal) värden 48-57.}
@@ -223,7 +231,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 \noindent\rule{8cm}{0.4pt}  %------------------------------------------------------------------------------------------------------
 
 \requirement{17}{Det skall gå att lagra 100 tidrapporter/användare. Efter uppnådd maxgräns skrivs de över enligt FIFO-principen.}
-
+\requirement{18}{Administratören kan ta bort en tidrapportmal, förutsatt att den inte används i något projekt.}
 \subsection{Administration}
 \label{krav-funk-admin}
 
@@ -237,8 +245,8 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 \requirement{2}{Det skall finnas en och endast en administratör med användarnamnet ''admin'' och lösenordet ''adminpw''.}
 \requirement{3}{Som inloggad administratör skall det vara möjligt att välja administrationsvyn på huvudsidan.}
 \requirement{4}{En ny användare, skapad av administratören, måste ha ett unikt användarnamn samt bli tilldelad ett slumpmässigt lösenord från systemet.}
-\requirement{5}{Om administratören försöker att lägga till en användare med ett användarnamn som redan existerar i systemet, skall användaren inte läggas till och ett felmeddelande skall visas.}
-\requirement{6}{Om en administratör väljer administrationsvyn skall denne få åtkomst till administationsverktygen, men om samma val görs av en ickeadministratör skall denne istället få åtkomst till huvudsidan.}
+\requirement{5}{Om administratören försöker att lägga till en användare med ett användarnamn som redan existerar i systemet eller använder otillåtna tecken, skall användaren inte läggas till och ett felmeddelande skall visas.}
+\requirement{6}{Om en administratör väljer administrationsvyn skall denne få åtkomst till administationsverktygen, men om samma sida försöker hämtas av en användare som inte är administratör skall denne istället få åtkomst till huvudsidan.}
 \requirement{7}{I administrationsvyn skall alla användare listas med både användarnamn och lösenord.}
 \requirement{8}{I administrationsvyn skall det vara möjligt att ta bort vilken användare som helst förutom administratören.}
 \requirement{9}{Varje borttagning av användare ska bekräftas med en dialogrutan beskriven i krav \ref{krav-funk-gen}.10.}
@@ -252,7 +260,11 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 \requirement{14}{Endast administratören skall kunna lägga till eller ta bort projektmedlemmar i ett projekt.}
 \requirement{15}{Endast administratören skall kunna ta bort projektgrupper ur systemet.}
 \requirement{16}{Administratören skall kunna utforma en tidrapportmall. Se även krav \ref{krav-funk-data}.5 och \ref{krav-funk-data}.6.}
-\requirement{17}{Scenario \ref{krav-funk-admin}.1 - \ref{krav-funk-admin}.4 skall stödjas av systemet.}
+\requirement{17}{Scenario \ref{krav-funk-admin}.1 skall stödjas av systemet.}
+\requirement{18}{Scenario \ref{krav-funk-admin}.2 skall stödjas av systemet.}
+\requirement{19}{Scenario \ref{krav-funk-admin}.3 skall stödjas av systemet.}
+\requirement{20}{Scenario \ref{krav-funk-admin}.4 skall stödjas av systemet.}
+
 
 %--------------SCENARIO
 
@@ -395,7 +407,9 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 \requirement{4}{En användare som inte är projektledare kan bara se sina egna rapporter.}
 
 \requirement{5}{Användaren ska kunna föra in tidinformation enligt krav \ref{krav-funk-data}.4 och \ref{krav-funk-data}.12. }
-\requirement{6}{Scenario \ref{krav-funk-tid}.1 och \ref{krav-funk-tid}.2 skall stödjas av systemet.}
+\requirement{6}{Scenario \ref{krav-funk-tid}.1 skall stödjas av systemet.}
+\requirement{7}{Scenario \ref{krav-funk-tid}.2 skall stödjas av systemet.}
+
 
 %--------------SCENARIO
 
@@ -515,7 +529,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
     
     \multicolumn{2}{|p{13cm}|}{ \indent\scenario{2}} \\
     \textbf{Syfte} & Godkänna en tidsrapport.\\
-    \textbf{Trigger} & Användaren väljer en tidsrapport som inte är godkänd. \\
+    \textbf{Trigger} & Användaren väljer att lista alla rapporter. \\
     \textbf{Förutsättning} & Användaren måste ha rättigheter som en projektledare för det givna projektet.\\
     \hline
 
@@ -525,7 +539,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 	\multicolumn{2}{|p{13cm}|}{2. Efter att ha kollat igenom rapporten och funnit den OK väljer den att godkänna.} \\	
 	\multicolumn{2}{|p{13cm}|}{3. Användaren trycker på knappen för att godkänna aktuell rapport.} \\
 	\multicolumn{2}{|p{13cm}|}{4. En dialogruta beskriver att rapporten blivigt godkänd.} \\
-	\multicolumn{2}{|p{13cm}|}{5. Användaren dirigeras tillbaka till sidan över alla ej godkända rapporter.} \\
+	\multicolumn{2}{|p{13cm}|}{5. Användaren dirigeras tillbaka till sidan över alla rapporter.} \\
 	
 		
 	\hline
@@ -544,7 +558,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
     
     \multicolumn{2}{|p{13cm}|}{ \indent\scenario{3}} \\
     \textbf{Syfte} & Ta tillbaka godkännande av en tidsrapport.\\
-    \textbf{Trigger} & Användaren väljer en tidsrapport som är godkänd. \\
+    \textbf{Trigger} & Användaren väljer att lista alla rapporter. \\
     \textbf{Förutsättning} & Användaren måste ha rättigheter som en projektledare för det givna projektet.\\
     \hline
 
@@ -553,8 +567,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer en rapport den vill godkänna.}\\	
 	\multicolumn{2}{|p{13cm}|}{2. Användaren trycker på knappen för att ta tillbaka sitt godkänande av rapporten.} \\
 	\multicolumn{2}{|p{13cm}|}{3. En dialogruta beskriver att rapporten ej längre är godkänd.} \\
-	\multicolumn{2}{|p{13cm}|}{4. Användaren dirigeras tillbaka till sidan över alla godkända rapporter.} \\
-	
+	\multicolumn{2}{|p{13cm}|}{4. Användaren dirigeras tillbaka till sidan över alla rapporter.} \\
 		
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
