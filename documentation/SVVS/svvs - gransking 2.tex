@@ -1,0 +1,90 @@
+\documentclass[a4paper]{article}
+\usepackage[pdftex]{graphicx}
+\usepackage{anysize}
+\marginsize{3cm}{3cm}{3cm}{3cm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[swedish]{babel}      
+\usepackage{epstopdf}     % För svensk avstavning och svenska
+\usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
+\usepackage[scaled]{helvet} % Helvetica, scaled 95%
+\usepackage[titletoc]{appendix}
+
+\usepackage{fancyhdr}
+
+\fancyhf{}
+\fancyhead[L]{Ansvarig: SG}
+\fancyhead[C]{Datum: \today}
+\fancyhead[R]{Inofficiell granskning}
+
+
+\title{Granskningsprotokoll 2 av:\\ SVVS - Software Verification and Validation Specification: NewPussSystem}                  	
+\author{Systemarkitektgruppen \\ Lars Gustafsson | Martin Lichota | Marcel Tovar Rascon}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\section{Inledning}       
+Här följer granskning av SVVS - Software Verification and Validation Specification version 0.3, 14 september 2014. Utförd av Systemarkitektgruppen, datum som ovan. Tänkt som en ersättning av den första granskningen då SVVS ändrades innan granskningsmöte skett i fas 1.
+
+\section{Övergripande kritik}
+Smärre stavfel här och där. Bra upplägg, överskådbar, och bra svenska.
+Författarna är osäkra på vem som är tänkt läsare och var man då skall lägga språket. Behövs till exempel begreppet White-box-testing förklaras? Med en publik av studerande av kursen ETS032 är det troligtvis inte nödvändigt.
+
+Testerna som är specifierade under Appendix A är för generella och författarna ser snarare att de skall testa en sak i taget. Exempel ges under nästa kapitel.
+
+\section{Kapitelspecifik kritik}
+\begin{itemize}
+\item[2] Ordet projekthandledning används ingen annan stans, bör ersättas med Projektplan.\\
+Förutom det saknas både de välkända förkortningarna för dokumenten samt vilken version av Projektplanen som nytjas. Vet man detta är det mycket lättare att granska dokumentet.
+
+\item[3] Första meningen bör avslutas med ett komma. \\
+Vad alla olika förkortningar (SVVI, SSD...) står för framgår inte. Kan tänkas vara självklart om man antar att läsaren är studerande av krusen ETS032. \\
+SDDD ska inte skapas förrän fas 3 vilket medför det svårt för UG att hålla koll på den i de två första faserna.\\
+Referensen till Projektplanen är bra men hade underlättat om man viste vilket kapitel.
+
+\item[4]
+Kan tänkas vara övertolkning men denna meningen innefattar även författarnas privata datorer så fort de vistas i huset. Kanske bör omforumleras till något i stil med, ``Någon av datorerna i E-husets allmänna 
+datorsalar.''
+
+\item[5] Kan tänkas vara redundant information.
+
+\item[5.5] Osäker på tredje ordet, förutsätter att det borde stå ``kunden''.
+
+\item[6] Förstår inte referensen till Projektplanen, borde referare innom den med inte bara till ett dokument.
+
+\item[Apendix A] 
+Bra referering till kraven men kanske bör skriva ``krav'' istället för ``req'' då vi håller rapporterna på svenska.\\
+
+Flertalet krav är på tok för generella och kan skapa fall där vi missar att testa viss funktionallitet.
+
+\begin{itemize}
+\item[FT1] En användare ska kunna omplaceras. Det måste förtydligas att man vill ha en användare i två grupper samtidigt.
+\item[FT3] Tillgänglig (felstavning)
+\item[FT6-9] Även projektledare ska kunna tillsätta dessa roller(krav 6.6.6, som kommer att förtydligas)
+\item[FT21] Förtydliga, det handlar om att samma användare inte kan vara inloggad på mer än enhet samtidigt.
+\item[FT29] Kanske lägga till ”Testa att spara” , gäller rätt många FT’s. ?
+\item[FT30] Samma som ovan
+\item[FT47] Formulera om ``typ''
+\item[FT49] ``hen'' används, jag föreslår att byta ut mot ``denne'' för att vara konsekvent. (denne används i SRSn samt tidigare FT’s)
+\item[FT55-56] - Referera gärna till krav 6.3.14. För omkringliggande FT’s kan man även referera till krav 6.1.9 och krav 6.6.1
+\item[FT62] - Otydligt, är det rätt refererat?
+\item[FT63 \& FT73] Referera gärna till konkreta scenarios.
+\item[FT74] Finns inget krav med givet ID.
+\item[FT77] Stavfel, uppdatera.
+\item[FT83-90] Kan formuleras bättre.
+\item[FT83-90] Ta bort ”tidrapporteringssidan”, det är underförstått. Skriv ``varpå'' tillsammans. Ta bort ``s'' i ``tidSrapporteringssidan''. Kolla igenom språket.
+\end{itemize}
+
+\end{itemize}
+
+
+
+
+
+
+\end{document}
