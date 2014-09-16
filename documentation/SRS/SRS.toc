@@ -1,8 +1,8 @@
 \select@language {swedish}
 \contentsline {section}{\numberline {1}Inledning}{2}
 \contentsline {section}{\numberline {2}Referensdokument}{2}
-\contentsline {section}{\numberline {3}Bakgrund och m\IeC {\r a}l}{2}
-\contentsline {subsection}{\numberline {3.1}Huvudm\IeC {\r a}l}{2}
+\contentsline {section}{\numberline {3}Bakgrund och m\IeC {\r a}l}{3}
+\contentsline {subsection}{\numberline {3.1}Huvudm\IeC {\r a}l}{3}
 \contentsline {subsection}{\numberline {3.2}Akt\IeC {\"o}rer och deras m\IeC {\r a}l}{3}
 \contentsline {section}{\numberline {4}Terminologi}{3}
 \contentsline {section}{\numberline {5}Kontextdiagram}{4}
