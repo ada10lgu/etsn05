@@ -16,7 +16,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 0.7 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 0.8 | Dokumentnummer: PUSS144403}
 
 
 \newlist{FT}{enumerate}{1}
@@ -48,8 +48,8 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.4 & 16 september 2014 & TG & Anpassning efter SRS v0.14, tillagda FT och ST samt revidering av vissa test\\
 0.5 & 16 september 2014 & TG & Anpassning efter SRS v0.15\\
 0.6 & 16 september 2014 & TG & Anpassning efter SRS v0.16\\
-0.7 & 16 september & TG & Mindre omformuleringar 
-
+0.7 & 16 september 2014 & TG & Små omformuleringar \\
+0.8 & 16 september 2014 & TG & Anpassning efter SRS v0.17\\
 
 \end{tabular}
 \section{Inledning}       
@@ -203,28 +203,28 @@ Administratören försöker ta bort en användare då det finns 1 användare i e
 Administratören får en bekräftelseruta då denne ska ta bort till en användare i systemet [SRS krav 6.1.10, 6.4.9]
 
 \item
-Administratören lyckas ge en användare rollen som projektledare [SRS krav 6.1.11, 6.6.6]
+Administratören ger en användare rollen som projektledare [SRS krav 6.1.11, 6.6.6]
 
 \item
-En projektledare lyckas ge en användare rollen som projektledare [SRS krav 6.1.11, 6.6.6]
+En projektledare ger en användare rollen som projektledare [SRS krav 6.1.11, 6.6.6]
 
 \item
-Adminstratören lyckas ge en användare rollen t1 [SRS krav 6.1.11, 6.6.6]
+Adminstratören ger en användare rollen t1 [SRS krav 6.1.11, 6.6.6]
 
 \item
-Projektledaren lyckas ge en användare rollen t1 [SRS krav 6.1.11, 6.6.6]
+Projektledaren ger en användare rollen t1 [SRS krav 6.1.11, 6.6.6]
 
 \item
-Adminstratören lyckas ge en användare rollen t2 [SRS krav 6.1.11, 6.6.6]
+Adminstratören ger en användare rollen t2 [SRS krav 6.1.11, 6.6.6]
 
 \item
-Projektledaren lyckas ge en användare rollen t2 [SRS krav 6.1.11, 6.6.6]
+Projektledaren ger en användare rollen t2 [SRS krav 6.1.11, 6.6.6]
 
 \item
-Adminstratören lyckas ge en användare rollen t3 [SRS krav 6.1.11, 6.6.6]
+Adminstratören ger en användare rollen t3 [SRS krav 6.1.11, 6.6.6]
 
 \item
-Projektledaren lyckas ge en användare rollen t3 [SRS krav 6.1.11, 6.6.6]
+Projektledaren ger en användare rollen t3 [SRS krav 6.1.11, 6.6.6]
 
 \item
 Administratören försöker ge en användare rollen projektledare då det redan finns 2 av dessa i projektgruppen [SRS krav 6.1.12]
@@ -318,7 +318,7 @@ Lagra 100 tidsrapporter för en användare, kontrollera att de finns i databasen
 Lagra mer än 100 tidsrapporter för en användare, de skrivs över enligt FIFO-principen [SRS krav 6.3.17]
 
 \item
-Admin försöker ta bort en tidrapportmall som används i ett projekt [SRS krav 6.3.18]
+Admin försöker ta bort en tidrapportmall som används i ett projekt [SRS krav 6.3.18, 6.4.22]
 
 \item
 Lagra 5 projektgrupper, kontrollera att de finns i databasen [SRS krav 6.3.20]
@@ -443,21 +443,20 @@ Projektledaren kan, inom sitt projekt, summera tidsrapporter per användare/roll
 \item
 Projektledaren kan, inom sitt projekt, ändra och tilldela roller hos användare [SRS~krav~6.6.6]
 
-
+\item
+Projektledaren lista alla ej godkända rapporter [SRS krav 6.6.8]
 
 \item
-Projektledaren lyckas lista alla ej godkända rapporter [SRS krav 6.6.8]
+Projektledaren listar alla godkända rapporter [SRS krav 6.6.9]
 
 \item
-Projektledaren lyckas lista alla godkända rapporter [SRS krav 6.6.9]
+Projektledaren listar alla rapporter [SRS krav 6.6.13]
 
 \item
-Projektledaren lyckas lista alla rapporter [SRS krav 6.6.13]
+Administratören tar bort en tidrapportmall som inte används av en projektgrupp [SRS krav 6.4.22]
 
-
-
-
-
+\item
+Administratören försöker ändra en tidrapportmall som redan färdigställts [SRS krav 6.3.19]
 
 \end{FT}
 \end{appendices}
@@ -516,6 +515,9 @@ Genomför scenario 6.4.3 [SRS krav 6.4.19]
 Genomför scenario 6.4.4 [SRS krav 6.4.20]
 
 \item
+Genomför scenario 6.4.5 [SRS krav 6.4.21]
+
+\item
 Genomför scenario 6.5.1 [SRS krav 6.5.6]
 
 \item
@@ -569,14 +571,6 @@ Tidrapportens grundmall innehåller information om användarnamn, projektgruppsn
 \item
 När en tidsrapportsmall skapas, sparas den på servern [SRS krav 6.3.7]
 
-\item
-Spara 20 tidsrapportsmallar, kontrollera att de är sparade [SRS krav 6.3.8]
-
-\item
-Försök spara fler än 20 tidsrapportsmallar, kontrollera att den sista inte sparas [SRS krav 6.3.8]
-
-\item
-En tidrapportmall består av 1-2
 
 
 %PRESTANDA
@@ -585,6 +579,7 @@ Svaret på en godtycklig förfrågan från en dator i E-huset kommer i 95\% av f
 
 \item
 Genomför 20 stycken inloggningar och få svar under en sekund [SRS krav 7.2.1, 7.2.2]
+
 
 \end{ST}
 
@@ -611,27 +606,27 @@ ST: 1-6
 \subsection{Autentisering}
 
 FT: 18-23\\
-ST: 7 ,8 ,20-23
+ST: 7 ,8 ,21-24
 
 \subsection{Data}
 
 FT: 25-46, 51, 55-62\\
-ST: 25-31
+ST: 26-32
 
 \subsection{Administration}
 
-FT: 6, 26, 33, 47-70 \\
-ST: 3, 9-12, 24, 26
+FT: 6, 26, 33, 47-70, 90 \\
+ST: 3, 9-12, 25, 27
 
 \subsection{Tidsrapportering}
 
-FT: 26, 36, 72-78\\
-ST: 13-14, 25
+FT: 26, 36, 72-78, 90\\
+ST: 14-15, 26
 
 \subsection{Projektledning}
 
 FT: 7-14, 79-88\\
-ST: 15-19
+ST: 16-120
 
 \end{appendices}
 
