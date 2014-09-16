@@ -34,7 +34,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 
-\fancyhead[R]{Datum: \today | Version: 0.16 | Dokumentnummer: PUSS144401}
+\fancyhead[R]{Datum: \today | Version: 0.17 | Dokumentnummer: PUSS144401}
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
@@ -66,6 +66,7 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.12 & 14 september 2014 & SG & Administration och tidrapportering är klart.\\
 0.13 & 14 september 2014 & SG & Lade till kontextdiagram samt uppdaterade krav under områdena projektledning, kvalitet och projekt.\\
 0.14 & 15 september 2014 & SG & 
+
 Uppdaterat efter granskningsprotokoll från TG, UG, och intern gransking i SG.
 Uppdaterat formuleringar, kapitel \ref{bom-aktorer} och \ref{terminologi}. 
 Uppdaterat krav, kapitel \ref{krav-funk-gen}, \ref{krav-funk-aut}, \ref{krav-funk-data}, \ref{krav-funk-admin}, \ref{krav-funk-tid}.
@@ -76,17 +77,19 @@ Lade till krav, kapitel \ref{krav-funk-data}.
 Uppdaterade krav, kapitel \ref{krav-funk-proj}, \ref{krav-kval-pres}.\\
 0.16 & 16 september 2014 & SG & Tog bort reduntant krav, kapitel \ref{krav-funk-data}.
 Lade till krav, kapitel \ref{krav-funk-data}\\
+0.17 & 16 september 2014 & SG & Ändrat krav \ref{krav-funk-data}.18, \ref{krav-funk-data}.19, scenario \ref{krav-funk-admin}.4 och scenario \ref{krav-funk-admin}.3. Lagt till krav \ref{krav-funk-admin}.21, \ref{krav-funk-admin}.22 och scenario \ref{krav-funk-admin}.5.
+\\
 
 \\
 \end{tabular}
 \section{Inledning}       
-Dokumentet beskriver kraven för NewPussSystem, ett tidsrapportingssystem för projekt som diverse användare kan logga in på.
+Dokumentet beskriver kraven för NewPussSystem, ett tidrapportingssystem för projekt som diverse användare kan logga in på.
 
 \section{Referensdokument}
 I denna version används inget referensmaterial.
 \section{Bakgrund och mål}   
 \subsection{Huvudmål}
-Huvudmålet är att tillhandhålla ett system där olika användare, såsom projektledare och övriga projektmedlemmar, skall kunna tidsrapportera och loggföra det fortgående arbetet i sitt projekt. 
+Huvudmålet är att tillhandhålla ett system där olika användare, såsom projektledare och övriga projektmedlemmar, skall kunna tidrapportera och loggföra det fortgående arbetet i sitt projekt. 
 
 \subsection{Aktörer och deras mål}
 \label{bom-aktorer}
@@ -107,7 +110,7 @@ Här följer ord och uttryck som används i rapporten och är till för att öka
 \item []\textbf{Inloggad:} En användare som har loggat in är inloggad.
 \item []\textbf{Användarstatus:} En indikation på var användare som avgör hur vida den får logga in eller ej.
 \item []\textbf{Projektgrupp:} En grupp bestående av projektmedlemmar och projektledare.
-\item []\textbf{Tidsrapport:} En rapport som innehåller arbetsbelasting för en användare under en fix tidsperiod bundet till en specefik projektgrupp.
+\item []\textbf{Tidrapport:} En rapport som innehåller arbetsbelasting för en användare under en fix tidperiod bundet till en specefik projektgrupp.
 \item []\textbf{Huvudsida:} Med huvudsida avses den första vyn som användaren blir dirigerad till direkt efter inloggning. 
 \item []\textbf{Användarlista:} En lista med alla användarnamn och lösenord som är sparade i databasen.
 \item []\textbf{Aktivitetsruta:} Cellen där aktivitet (raden) och subaktivitet (kolumnen) möts.
@@ -237,9 +240,10 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 \noindent\rule{8cm}{0.4pt}  %------------------------------------------------------------------------------------------------------
 
 \requirement{17}{Det skall gå att lagra 100 tidrapporter/användare. Efter uppnådd maxgräns skrivs de över enligt FIFO-principen.}
-\requirement{18}{Administratören kan ta bort en tidrapportmal, förutsatt att den inte används i något projekt.}
-%\requirement{19}{Innehållet i var aktivitetsruta får endast vara ascii (decimal) värden 48-57 och bestå av 1-5 tecken}
+\requirement{18}{En tidrapportmall kan endast tas bort om den inte används av någon projektgrupp.}
+\requirement{19}{Det skall inte vara möjligt att ändra tidrapportmallens utformning efter att den har skapats.}
 \requirement{20}{Det får maximalt existera 5 stycken grupper samtidigt.}
+
 \subsection{Administration}
 \label{krav-funk-admin}
 
@@ -272,6 +276,8 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 \requirement{18}{Scenario \ref{krav-funk-admin}.2 skall stödjas av systemet.}
 \requirement{19}{Scenario \ref{krav-funk-admin}.3 skall stödjas av systemet.}
 \requirement{20}{Scenario \ref{krav-funk-admin}.4 skall stödjas av systemet.}
+\requirement{21}{Scenario \ref{krav-funk-admin}.5 skall stödjas av systemet.}
+\requirement{22}{Administratören skall kunna ta bort en tidrapportmall om den inte används av en projektgrupp (se krav \ref{krav-funk-data}.18).}
 
 
 %--------------SCENARIO
@@ -358,7 +364,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer ta bort projektgrupp/projektmedlemmar.}\\
 	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med samtliga projektgrupper och eventuella projektmedlemmar.}\\
-	\multicolumn{2}{|p{13cm}|}{3. Informationen som skall tas bort markeras och därefter trycks ''OK''. Bekräftelserutan specificerad i krav \ref{krav-funk-gen}.10 visas.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. Informationen som skall tas bort markeras och därefter trycks ''OK''. Bekräftelserutan specificerad i krav \ref{krav-funk-gen}.10 visas. Användaren trycker ''Ja''.} \\	
 	\multicolumn{2}{|p{13cm}|}{4. Den markerade informationen är nu borttagen och användaren dirigeras till en sida med uppdaterad information.} \\	
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
@@ -395,10 +401,42 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
     \multicolumn{2}{|p{13cm}|}{2a. Användaren väljer att använda en befintlig tidrapportmall.}\\
+    \multicolumn{2}{|p{13cm}|}{3a. Det går inte att skapa fler mallar på grund av uppnådd maxgräns (se krav \ref{krav-funk-data}.18). Användaren informeras om detta.}\\
     \multicolumn{2}{|p{13cm}|}{4a. Om namnet på mallen redan existerar informeras användaren om detta och ombedes att skriva ett annat namn. Användaren skickas tillbaka til steg 3.}\\
     \multicolumn{2}{|p{13cm}|}{4b. Användaren får felmeddelande då antal kolumner och rader inte överensstämmer med specificeringen i krav \ref{krav-funk-data}.9. Användaren skickas tillbaka till steg 3.}\\
        \multicolumn{2}{|p{13cm}|}{4c. Användaren får felmeddelande då det inmatade namnet strider mot krav \ref{krav-funk-data}.10. Användaren skickas tillbaka till steg 3.}\\
     \multicolumn{2}{|p{13cm}|}{6a. Användaren får felmeddelande då det inmatade aktivitets- eller subaktivitetsnamnet strider mot krav \ref{krav-funk-data}.11. Användaren skickas tillbaka till steg 5.}\\
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END
+
+
+
+%--------------SCENARIO
+
+\begin{table}[H]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{5}} \\
+    \textbf{Syfte} & Ta bort tidrapportmall.\\
+    \textbf{Trigger} & Användaren vill ta bort en tidrapportmall. \\
+    \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer att ta bort tidrapportmall.}\\
+	\multicolumn{2}{|p{13cm}|}{2. En lista med tidrapportmallar visas för användaren.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. Användaren markerar en tidrapportmall och trycker ''OK''.} \\	
+	\multicolumn{2}{|p{13cm}|}{4. När bekräftelserutan (se krav \ref{krav-funk-gen}.10) kommer upp trycker användaren ''Ja'' .} \\	
+	\multicolumn{2}{|p{13cm}|}{5. Mallen är nu borttagen. Användaren får en uppdaterad lista över mallar sparade i systemet.} \\	
+	\hline
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+    \multicolumn{2}{|p{13cm}|}{2a. Finns inga sparade tidrapportmallar. Det framgår tydligt att listan är tom.}\\
+    \multicolumn{2}{|p{13cm}|}{4a. Tidrapportmallen används av en projektgrupp (se krav \ref{krav-funk-data}.18) och kan inte tas bort.}\\
     \hline
 \end{tabular}
 \end{table}
@@ -486,8 +524,8 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 \requirement{1}{Varje projekt skall ha en eller två, och endast en eller två, användare som besitter rollen som projektledare.}
 \requirement{2}{Projektledaren skall ha tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp.}
 \requirement{3}{Projektledaren skall kunna godkänna ej tidigare godkända tidrapporter i från medlemmar i sin projektgrupp.}
-\requirement{4}{Projektledaren skall kunna ta tillbaka sitt godkännande från en tidigare godkänd gruppmedlems tidsrapport, i sin projektgrupp.}
-\requirement{5}{Projektledaren skall kunna generera statistik över sitt projekt genom att göra något av följande; summera alla tidrapporter, summera tidrapporter per användare/roll/aktivitet/vecka. Med sumering menas att summera alla aktivitetsrutor till en ny tidsrapport.}
+\requirement{4}{Projektledaren skall kunna ta tillbaka sitt godkännande från en tidigare godkänd gruppmedlems tidrapport, i sin projektgrupp.}
+\requirement{5}{Projektledaren skall kunna generera statistik över sitt projekt genom att göra något av följande; summera alla tidrapporter, summera tidrapporter per användare/roll/aktivitet/vecka. Med sumering menas att summera alla aktivitetsrutor till en ny tidrapport.}
 
 %--------------SCENARIO
 
@@ -536,7 +574,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
     \hline
     
     \multicolumn{2}{|p{13cm}|}{ \indent\scenario{2}} \\
-    \textbf{Syfte} & Godkänna en tidsrapport.\\
+    \textbf{Syfte} & Godkänna en tidrapport.\\
     \textbf{Trigger} & Användaren väljer att lista alla rapporter. \\
     \textbf{Förutsättning} & Användaren måste ha rättigheter som en projektledare för det givna projektet.\\
     \hline
@@ -565,7 +603,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
     \hline
     
     \multicolumn{2}{|p{13cm}|}{ \indent\scenario{3}} \\
-    \textbf{Syfte} & Ta tillbaka godkännande av en tidsrapport.\\
+    \textbf{Syfte} & Ta tillbaka godkännande av en tidrapport.\\
     \textbf{Trigger} & Användaren väljer att lista alla rapporter. \\
     \textbf{Förutsättning} & Användaren måste ha rättigheter som en projektledare för det givna projektet.\\
     \hline
@@ -626,7 +664,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 \subsection{Prestanda}
 \label{krav-kval-pres}
 \requirement{1}{Då systemet används i en av datorsalarna I ``E-huset'', LTH, skall svaret på en godtycklig förfrågan i åtminstone 95\% av fallen ges inom 1,0 s.}
-\requirement{2}{Systemet skall klara av att få 20 stycken inloggningar under en tidsperiod av 1 sekund, utan att bryta mot några andra kvalitetskrav.}
+\requirement{2}{Systemet skall klara av att få 20 stycken inloggningar under en tidperiod av 1 sekund, utan att bryta mot några andra kvalitetskrav.}
 \subsection{Användarvänlighet}
 \requirement{1}{Minst 7/10, på måfå utvalda Civilingenjörsstudenter, skall finna det lätt att använda systemet.}
 \section{Projektkrav}
