@@ -370,8 +370,70 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			\requirement{3}{Projektmedlemmar ska inte kunna ta bort sina signerade rapporter.}
 			\requirement{4}{Projektmedlemmar ska inte kunna redigera sina signerade rapporter.}
 			\requirement{5}{Projektmedlemmar ska kunna föra in tidinformation enligt krav 6.3.4(???) och 6.3.12(???).}
-			\requirement{6}{Scenario 6.5.1 skall stödjas av systemet.}
-			\requirement{7}{Scenario 6.5.2 skall stödjas av systemet. }
+			
+%--------------SCENARIO
+
+\begin{table}[H]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{1}} \\
+    \textbf{Syfte} & Dokumentera arbetstimmar i systemet.\\
+    \textbf{Trigger} & Användaren kommer in på tidrapporteringssidan. \\
+    \textbf{Förutsättning} & Användaren måste vara medlem i ett projekt.\\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer tidrapportering i menyn.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Ett fält där användaren kan fylla i veckonummer för veckan som skall rapporteras 	visas. Under fältet framgår det för vilken vecka senaste rapporten var skapad/reviderad.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. Användaren fyller i veckonummer och trycker ``OK''.} \\
+	\multicolumn{2}{|p{13cm}|}{4. En ny tidrapport genereras och visas med veckonumret från föregående steg samt dagens datum i fyllt.} \\
+	\multicolumn{2}{|p{13cm}|}{5. Användaren kan nu fylla i tidinformation. Användaren bekräftar slutligen genom att trycka på ``Skicka'', längst ner på sidan.}\\
+	\multicolumn{2}{|p{13cm}|}{6. Rapporten sparas i databasen. En bekräftelse på att så har skett visas för användaren. Användaren kan även notera totaltiden.}\\ \hline
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+	\multicolumn{2}{|p{13cm}|}{2a. Det finns ingen tidigare skapad rapport. Detta framgår under fältet. }\\
+	\multicolumn{2}{|p{13cm}|}{4a. En tidrapport för det ifyllda veckonumret existerar redan. Rapporten hämtas från databasen och visas för användaren. Denne kan nu redigera rapporten (se scenario 6.3.2).}\\
+	\multicolumn{2}{|p{13cm}|}{4b. Det ifyllda veckonumret strider är otillåtet. Användaren informeras om detta och skickas tillbaka till steg 3. }\\
+	\multicolumn{2}{|p{13cm}|}{6a. Felaktig inmatning av tidinformation. Användaren skickas tillbaka till steg 5. }\\
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END
+
+%--------------SCENARIO
+
+\begin{table}[H]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{2}} \\
+    \textbf{Syfte} & Ta bort/redigera arbetstimmar i systemet.\\
+    \textbf{Trigger} & Användaren kommer in på tidrapporteringssidan. \\
+    \textbf{Förutsättning} & Användaren måste vara medlem i ett projekt.\\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer ''Ta bort/redigera tidrapport''.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med sina egna rapporter. Det framgår tydligt vilka som är signerade/osignerade.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. Denne väljer en rapport och trycker ``Redigera''.} \\
+	\multicolumn{2}{|p{13cm}|}{4. Tidrapporten visas för användaren och kan nu redigeras. När användaren är klar trycker denne ``OK''.} \\
+	\multicolumn{2}{|p{13cm}|}{5. Tidrapporten är nu uppdaterad och användaren dirigeras till en bekräftelse sida. }\\
+	
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+	\multicolumn{2}{|p{13cm}|}{3a. Om rapporten är osignerad kan användaren även välja ``Ta bort''. Användaren får upp en bekräftelseruta och dirigeras till steg 5 om denne trycker ``Ja''. Annars tillbaka till steg 2.}\\
+	\multicolumn{2}{|p{13cm}|}{4a. Tidrapporten kan endast redigeras om den är osignerad. Signerade rapporter visas men användaren har ingen möjlighet att ändra något. }\\
+	\multicolumn{2}{|p{13cm}|}{5a. Felaktig inmatning av tidinformation. Användaren skickas tillbaka till steg 4. }\\
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END			
+			
+			
+			\requirement{6}{Scenario 6.3.1 skall stödjas av systemet.}
+			\requirement{7}{Scenario 6.3.2 skall stödjas av systemet.}
 
 		\subsubsection*{Projektledare}
 			\requirement{8}{Projektledaren skall ha tillgång till samtliga projektmedlemmars tidrapporter i den projektgrupp den är projektledare för.}
