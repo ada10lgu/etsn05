@@ -10,7 +10,7 @@
 \contentsline {subsection}{\numberline {6.1}Generella krav}{4}
 \contentsline {subsection}{\numberline {6.2}Autentisering}{5}
 \contentsline {subsection}{\numberline {6.3}Tidrapportering}{6}
-\contentsline {subsection}{\numberline {6.4}Administration}{9}
+\contentsline {subsection}{\numberline {6.4}Administration}{8}
 \contentsline {section}{\numberline {7}Kvalitetskrav}{10}
 \contentsline {subsection}{\numberline {7.1}Underh\IeC {\r a}ll}{10}
 \contentsline {subsection}{\numberline {7.2}Prestanda}{11}
