@@ -98,7 +98,7 @@ Huvudmålet är att tillhandhålla ett system där olika användare, såsom proj
 Följande aktörer kommer att använda systemet:
 \begin{itemize}
 \item [] \textbf{Vanlig användare} En vanlig användare är en person med ett konto i systemet som ännu inte har blivigt tilldelad ett projekt.
-\item [] \textbf{Projektmedlem(SG, UG, TG)} En vanlig användare kan tilldelas rollen som projektmedlem. Denne kan tidrapportera och har även tillgång till historik rörande den egna samt gruppens totala tidrapportering. T1, t2, och t3 indikerar tre olika projektmedlemsroller, en användare blir tilldelad en av dessa i samband med att den blir medlem i ett projekt.
+\item [] \textbf{Projektmedlem(t1,t2,t3)} En vanlig användare kan tilldelas rollen som projektmedlem. Denne kan tidrapportera och har även tillgång till historik rörande den egna samt gruppens totala tidrapportering. T1, t2, och t3 indikerar tre olika projektmedlemsroller, en användare blir tilldelad en av dessa i samband med att den blir medlem i ett projekt.
 \item [] \textbf{Projektledare} En användare kan tilldelas rollen som projektledare vilket ger den administrativa rättigheter för ett givet projekt. En projektledare kan tillsätta vanliga användare en projektmedlemsroll. Utöver sina rättigheter som projektledare har den all funktionallitet som en projektmedlem besitter.
 \item [] \textbf{Administratör} En administratör är en och endast en användare som har befogenheter att lägga till och ta bort andra användare. Administratören tillsätter även projektledare och skapar projektgrupper. Administratören kan inte deltaga i en projektgrupp men har utöver detta samma priviligerade rättigheter som projektledare coh projektmedlem.
 \end{itemize}
@@ -130,36 +130,32 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
    \label{image_kontext}
 \end{figure}
 
+%  _  _______       __      __
+% | |/ /  __ \     /\ \    / /
+% | ' /| |__) |   /  \ \  / / 
+% |  < |  _  /   / /\ \ \/ /  
+% | . \| | \ \  / ____ \  /   
+% |_|\_\_|  \_\/_/    \_\/    
+
 \section{Funktionella krav}
 	\subsection{Generella krav}
 		\label{krav-funk-gen}
-		\subsubsection*{Övergripande}
-		\subsubsection*{Administratör}
-		\requirement{x}{Det skall finnas en administratör (se krav 6.4.2) i systemet.}			
-		\requirement{x}{Administratören kan ej deltaga i en projektgrupp. }
-		\requirement{x}{Det skall finnas en och endast en administratör med användarnamnet ``admin'' och lösenordet ``adminpw''.}
-		\requirement{x}{Som inloggad administratör skall det vara möjligt att välja administrationsvyn på huvudsidan.}
-
-		\subsubsection*{Projektledare}
-		\requirement{x}{Varje projekt skall ha en eller två, och endast en eller två, användare som besitter rollen som projektledare.}
-\requirement{x}{Projektledarna har tillgång till projektadministrationsfunktionaliter. Det listas som ``projektadministration'' och finns tillgängligt för dem i menyn.}
-
-		\subsubsection*{Projektmedlem}
 		\subsubsection*{Användare}
-		\requirement{x}{Samtliga användare skall ha tillgång till följande funktionaliteter: tidrapportering, projektinformation, byta lösenord, samt utloggning.}
+		\requirement{1}{Samtliga användare skall ha tillgång till följande funktionaliteter: tidrapportering, projektinformation, byta lösenord, samt utloggning.}
 		
-		\requirement{x}{Samtliga funktionaliter i krav 6.1.3 skall vara tillgängliga i menyn.}
-		\requirement{x}{Menyn, oavsett typ av användare, skall vara tillgänglig på samtliga sidor som visas, för en inloggad användare, av systemet.}
-		\requirement{x}{Krav 6.4.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-		\requirement{x}{Det finns sammanlagt fem roller i systemet: administratör, projektledare, t1, t2, t3.}
-		\requirement{x}{I varje projektgrupp får det finnas 1-2 projektledare (se krav 6.6.1) och de tre teamen, t1, t2 och t3 (se krav 6.1.13).}
-		\requirement{x}{Krav 6.1.13. I t1, t2 och t3 får det finnas 0-6 användare/projektgrupp, alltså sammanlagt 0-18 användare.}
-
-		\subsubsection*{Ej inloggad}
+		\requirement{2}{Samtliga funktionaliter i krav 6.1.3 skall vara tillgängliga i menyn.}
+		\requirement{3}{Menyn, oavsett typ av användare, skall vara tillgänglig på samtliga sidor som visas, för en inloggad användare, av systemet.}
+		\requirement{4}{Krav 6.4.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+		\requirement{5}{Det finns sammanlagt fem roller i systemet: administratör, projektledare, t1, t2, t3.}
+		\requirement{6}{I varje projektgrupp får det finnas 1-2 projektledare (se krav 6.6.1) och de tre teamen, t1, t2 och t3 (se krav 6.1.13).}
+		\subsubsection*{Projektledare}
+		\requirement{7}{Varje projekt skall ha en eller två, och endast en eller två, användare som besitter rollen som projektledare.}
+\requirement{x}{Projektledarna har tillgång till projektadministrationsfunktionaliter. Det listas som ``projektadministration'' och finns tillgängligt för dem i menyn.}
+		\subsubsection*{Administratör}
+		\requirement{8}{Administratören kan ej deltaga i en projektgrupp. }
+		\requirement{9}{Som inloggad administratör skall det vara möjligt att välja administrationsvyn på huvudsidan.}
 		\subsubsection*{Data}
-		\requirement{x}{Varje borttagning av information skall bekräftas av en dialogruta frågandes om man är säker. Om användaren väljer ``Ja'', tas informationen bort och användaren kommer tillbaka till en uppdaterad sida med informationen. Om ``Nej'' väljs, går användaren tillbaka till nuvarande sida.}
-
-
+		\requirement{10}{Varje borttagning av information skall bekräftas av en dialogruta frågandes om man är säker. Om användaren väljer ``Ja'', tas informationen bort och användaren kommer tillbaka till en uppdaterad sida med informationen. Om ``Nej'' väljs, går användaren tillbaka till nuvarande sida.}
 
 
 	\subsection{Autentisering}
@@ -176,6 +172,11 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			\requirement{x}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan enhet, kommer den nya inloggingen att genomföras medan den andra enheten loggas ut.}
 			\requirement{x}{Scenario 6.2.1 skall stödjas av systemet.}
 			\requirement{x}{Scenario 6.2.2 skall stödjas av systemet.}
+\subsubsection*{Användare}
+			\requirement{x}{Krav 6.1.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{x}{Krav 6.1.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{x}{Krav 6.1.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+
 
 		\subsubsection*{Administratör}
 			\requirement{x}{En ny användare, skapad av administratören, måste ha ett unikt användarnamn samt bli tilldelad ett slumpmässigt lösenord från systemet.}
@@ -198,11 +199,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 
 		\subsubsection*{Projektledare}
 		\subsubsection*{Projektmedlem}
-		\subsubsection*{Användare}
-			\requirement{x}{Krav 6.1.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{x}{Krav 6.1.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{x}{Krav 6.1.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-
+		
 		\subsubsection*{Ej inloggad}
 		\subsubsection*{Data}
 			\requirement{x}{Krav 6.1.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
@@ -292,8 +289,8 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 	\subsection{Administration}
 		\label{krav-funk-admin}
 		\subsubsection*{övergripande}
-			\requirement{x}{Krav 6.3.3 från Grudsystemet (Referensdokument 1) skall stödjas av systemet.}		
-			\requirement{x}{Krav 6.3.4 från Grudsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{x}{Krav 6.3.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}		
+			\requirement{x}{Krav 6.3.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 		\subsubsection*{Administratör}
 			\requirement{x}{Administrationsfunktionaliteter avser även projektadministration och därmed har administratörer, utöver sina priviligerade rättigheter, även projektledarnas befogenheter.		}
 			\requirement{x}{Endast administratören skall kunna skapa projektgrupper i systemet.}
@@ -321,6 +318,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 
 		\subsubsection*{Projektledare}
 			\requirement{x}{Projektledaren skall kunna tilldela roller till projektmedlemmarna i sin projektgrupp.}
+
 			\requirement{x}{Scenario 6.6.1 skall stödjas av systemet.}
 			\requirement{x}{Scenario 6.6.1 skall stödjas av systemet.}
 			\requirement{x}{Projektledaren skall kunna lista alla ej godkända tidrapporter.}
@@ -329,6 +327,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			\requirement{x}{Scenario 6.6.3 skall stödjas av systemet.}
 			\requirement{x}{Projektledaren skall kunna lista projektets alla tidrapporter och sortera dom efter följande attribut i både stigande och fallande ordning; Användare, vecka, och huruvida rapporten är godkänd eller ej.}
 			\requirement{x}{Scenario 6.6.4 skall stödjas av systemet. }
+
 
 		\subsubsection*{Projektmedlem}
 		\subsubsection*{Användare}
@@ -342,6 +341,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			\requirement{x}{En projektgrupp skall bestå av 1-20 användare.					}
 			\requirement{x}{Det finns sammanlagt fem roller i systemet: administratör, projektledare, t1, t2, t3. }
 			\requirement{x}{I varje projektgrupp kan det finnas upp till tre team, t1, t2 och t3.}
+			\requirement{7}{I t1, t2 och t3 får det finnas 0-6 användare/projektgrupp, alltså sammanlagt 0-18 användare.}
 			\requirement{x}{Krav 6.3.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 
 
