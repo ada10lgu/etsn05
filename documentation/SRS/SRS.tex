@@ -229,7 +229,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			\requirement{25}{Projektledaren ska kunna se vilken aktivitet som har tagit mest tid.}
 			\requirement{26}{Projektledaren ska kunna se vilken aktivitet som är vanligast}
 			\requirement{27}{Projektledaren ska kunna se vilken vecka som har mest rapporterad tid.	}
-		
+
 		\subsubsection*{Data}
 			\requirement{28}{Tidrapportering sker i antal minuter.}
 			\requirement{29}{Namnet på tidrapportmallen ska bestå av 5 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
@@ -263,99 +263,78 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 
 	\subsection{Administration}
 		\label{krav-funk-admin}
-		\subsubsection*{övergripande}
-			\requirement{x}{Krav 6.3.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}		
-			\requirement{x}{Krav 6.3.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-		\subsubsection*{Administratör}
-			\requirement{x}{Administrationsfunktionaliteter avser även projektadministration och därmed har administratörer, utöver sina priviligerade rättigheter, även projektledarnas befogenheter.		}
-			\requirement{x}{Endast administratören skall kunna skapa projektgrupper i systemet.}
-			\requirement{x}{Endast administratören skall kunna tilldela projektmedlemmar en projektledarroll.}
-			\requirement{x}{Endast administratören skall kunna lägga till eller ta bort projektledare i en projektgrupp.}
-			\requirement{x}{Endast administratören skall kunna ta bort projektgrupper ur systemet.}
-			\requirement{x}{Administratören skall kunna utforma en tidrapportmall. Se även krav 6.3.5 och 6.3.6. }
-			\requirement{x}{Scenario 6.4.1 skall stödjas av systemet.}
-			\requirement{x}{Scenario 6.4.2 skall stödjas av systemet.}
-			\requirement{x}{Scenario 6.4.3 skall stödjas av systemet.}
-			\requirement{x}{Scenario 6.4.4 skall stödjas av systemet.}
-			\requirement{x}{Scenario 6.4.5 skall stödjas av systemet.}
-			\requirement{x}{Administratören skall kunna ta bort en tidrapportmall om den inte används av en projektgrupp (se krav 6.3.18).} 
-			\requirement{x}{Krav 6.3.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{x}{Krav 6.3.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{x}{Krav 6.3.6 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{x}{Krav 6.3.7 från Grundsystemet (Referensdokument 1) har utgått och ersatt av krav……...}
-			\requirement{x}{Krav 6.3.8 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{x}{Krav 6.3.9 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{x}{Krav 6.3.10 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{x}{Krav 6.3.11 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.		}
-			\requirement{x}{Administratören har tillgång till administrationsfunktionaliteter. Det listas som “administration” och finns tillgängligt för den i dess meny.}	
-			\requirement{x}{Tidrapportens utseende, med avseende på vilka aktiviteter man kan föra in tidinformation i, bestäms av administratören innan projektgruppen har skapats. När projektet är skapat skall det inte gå att ändra tidrapportens utseende.}
-			\requirement{x}{Det får maximalt existera 5 stycken projektgrupper samtidigt.}
-
+		\subsubsection*{Övergripande}
+			\requirement{1}{Krav 6.3.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}		
+			\requirement{2}{Krav 6.3.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			
 		\subsubsection*{Projektledare}
-			\requirement{x}{Projektledaren skall kunna tilldela roller till projektmedlemmarna i sin projektgrupp.}
-
-			\requirement{x}{Scenario 6.6.1 skall stödjas av systemet.}
-			\requirement{x}{Scenario 6.6.1 skall stödjas av systemet.}
-			\requirement{x}{Projektledaren skall kunna lista alla ej godkända tidrapporter.}
-			\requirement{x}{Projektledaren skall kunna lista alla godkända tidrapporter.}
-			\requirement{x}{Scenario 6.6.2 skall stödjas av systemet.}
-			\requirement{x}{Scenario 6.6.3 skall stödjas av systemet.}
-			\requirement{x}{Projektledaren skall kunna lista projektets alla tidrapporter och sortera dom efter följande attribut i både stigande och fallande ordning; Användare, vecka, och huruvida rapporten är godkänd eller ej.}
-			\requirement{x}{Scenario 6.6.4 skall stödjas av systemet. }
+			\requirement{3}{Projektledaren skall kunna tilldela roller till projektmedlemmarna i sin projektgrupp.}
 
 
-		\subsubsection*{Projektmedlem}
-		\subsubsection*{Användare}
-		\subsubsection*{Ej inloggad}
+			\requirement{4}{Projektledaren skall kunna lista alla ej godkända tidrapporter.}
+			\requirement{5}{Projektledaren skall kunna lista alla godkända tidrapporter.}
+			\requirement{6}{Scenario 6.6.1 skall stödjas av systemet.}
+			\requirement{7}{Scenario 6.6.2 skall stödjas av systemet.}
+			\requirement{8}{Scenario 6.6.3 skall stödjas av systemet.}
+			\requirement{9}{Projektledaren skall kunna lista projektets alla tidrapporter och sortera dom efter följande attribut i både stigande och fallande ordning; Användare, vecka, och huruvida rapporten är godkänd eller ej.}
+			\requirement{10}{Scenario 6.6.4 skall stödjas av systemet. }
+
+		\subsubsection*{Administratör}
+			\requirement{11}{Administrationsfunktionaliteter avser även projektadministration och därmed har administratörer, utöver sina priviligerade rättigheter, även projektledarnas befogenheter.		}
+			\requirement{12}{Endast administratören skall kunna skapa projektgrupper i systemet.}
+			\requirement{13}{Endast administratören skall kunna lägga till eller ta bort projektledare i en projektgrupp.}
+			\requirement{14}{Endast administratören skall kunna ta bort projektgrupper ur systemet.}
+			\requirement{15}{Scenario 6.4.1 skall stödjas av systemet.}
+			\requirement{16}{Scenario 6.4.2 skall stödjas av systemet.}
+			\requirement{17}{Scenario 6.4.3 skall stödjas av systemet.}
+			\requirement{18}{Scenario 6.4.4 skall stödjas av systemet.}
+			\requirement{19}{Scenario 6.4.5 skall stödjas av systemet.}
+			\requirement{20}{Krav 6.3.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{21}{Krav 6.3.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{22}{Krav 6.3.6 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{23}{Krav 6.3.7 från Grundsystemet (Referensdokument 1) har utgått och ersatt av krav……...}
+			\requirement{24}{Krav 6.3.8 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{25}{Krav 6.3.9 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{26}{Krav 6.3.10 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{27}{Krav 6.3.11 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.		}
+			\requirement{28}{Tidrapportens utseende, med avseende på vilka aktiviteter man kan föra in tidinformation i, bestäms av administratören innan projektgruppen har skapats. När projektet är skapat skall det inte gå att ändra tidrapportens utseende.}
+		
+
 		\subsubsection*{Data}
-			\requirement{x}{Ett projektgruppsnamn ska bestå av 5-10 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
-			\requirement{x}{Projektgruppsnamn måste vara unika. }
-			\requirement{x}{Det får maximalt existera 5 stycken grupper samtidigt.}
-			\requirement{x}{En användare kan vara projektmedlem i en och endast en projektgrupp åt gången. }
-			\requirement{x}{En användare kan vara projektmedlem i fler än ett projektgrupp åt gången.}
-			\requirement{x}{En projektgrupp skall bestå av 1-20 användare.					}
-			\requirement{x}{Det finns sammanlagt fem roller i systemet: administratör, projektledare, t1, t2, t3. }
-			\requirement{x}{I varje projektgrupp kan det finnas upp till tre team, t1, t2 och t3.}
-			\requirement{7}{I t1, t2 och t3 får det finnas 0-6 användare/projektgrupp, alltså sammanlagt 0-18 användare.}
-			\requirement{x}{Krav 6.3.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{29}{Ett projektgruppsnamn ska bestå av 5-10 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
+			\requirement{30}{Projektgruppsnamn måste vara unika. }
+			\requirement{31}{Det får maximalt existera 5 stycken projektgrupper samtidigt.}
+			\requirement{32}{En användare kan vara projektmedlem i fler än ett projektgrupp åt gången.}
+			\requirement{33}{En projektgrupp skall bestå av 1-20 användare.}
+			\requirement{34}{I varje projektgrupp kan det finnas upp till tre team, t1, t2 och t3.}
+			\requirement{35}{I t1, t2 och t3 får det finnas 0-6 användare/projektgrupp, alltså sammanlagt 0-18 användare.}
+			\requirement{36}{Krav 6.3.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 
 
 \section{Kvalitetskrav}
-\subsection{Underhåll}
-\subsubsection*{övergripande}
-\requirement{x}{Systemet skall vara väl dokumenterad så det underlättar vidareutvekling av systemet i framtiden.}
-\requirement{x}{Krav 7.1.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-\requirement{x}{Förståelse av Java, i nivå med vad som lärs ut i kursen EDA016, samt grundläggande kunskap av SQL skall räcka för att underhålla samt vidareutvekla systemet.}
+	\subsection{Underhåll}
+		\requirement{1}{Systemet skall vara väl dokumenterad så det underlättar vidareutvekling av systemet i framtiden.}
+		\requirement{2}{Krav 7.1.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+		\requirement{3}{Förståelse av Java, i nivå med vad som lärs ut i kursen EDA016, samt grundläggande kunskap av SQL skall räcka för att underhålla samt vidareutvekla systemet.}
 
-		\subsubsection*{Administratör}
-		\subsubsection*{Projektledare}
-		\subsubsection*{Projektmedlem}
-		\subsubsection*{Användare}
-		\subsubsection*{Ej inloggad}
 
 
 	\subsection{Prestanda}
 		\label{krav-kval-pres}
-		\requirement{x}{Systemet skall klara av att få 20 stycken inloggningar under en tidperiod av 1 sekund, utan att bryta mot några andra kvalitetskrav.}
-		\requirement{x}{Krav 7.2.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.	}
-		\requirement{x}{Maximalt 50 användare kan vara inloggade på systemet samtidigt.}
+		\requirement{1}{Systemet skall klara av att få 20 stycken inloggningar under en tidperiod av 1 sekund, utan att bryta mot några andra kvalitetskrav.}
+		\requirement{2}{Krav 7.2.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.	}
+		\requirement{3}{Maximalt 50 användare kan vara inloggade på systemet samtidigt.}
 
 	\subsection{Användarvänlighet}
-		\requirement{Minst 7/10, på måfå utvalda Civilingenjörsstudenter, skall finna det lätt att använda systemet.}
+		\requirement{1}{Minst 7/10, på måfå utvalda Civilingenjörsstudenter, skall finna det lätt att använda systemet.}
 
 \section{Projektkrav}
 	\subsection{Utvecklingsmiljö}
-	\requirement{x}{Krav 8.1.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-	\requirement{x}{Krav 8.1.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-	\requirement{x}{Krav 8.1.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-	\requirement{x}{Systemet samt projekt- och produktdokumentation skall skrivas på svenska. Java- koden skall följa standarden som finns på http://www.geosoft.no/development/javastyle.html, alla variabelnamn skall vara skrivna på engelska.}
+	\requirement{1}{Krav 8.1.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+	\requirement{2}{Krav 8.1.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+	\requirement{3}{Krav 8.1.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+	\requirement{4}{Systemet samt projekt- och produktdokumentation skall skrivas på svenska. Java- koden skall följa standarden som finns på http://www.geosoft.no/development/javastyle.html, alla variabelnamn skall vara skrivna på engelska.}
 
-		\subsubsection*{övergripande}
-		\subsubsection*{Administratör}
-		\subsubsection*{Projektledare}
-		\subsubsection*{Projektmedlem}
-		\subsubsection*{Användare}
-		\subsubsection*{Ej inloggad}	
 
 
 
