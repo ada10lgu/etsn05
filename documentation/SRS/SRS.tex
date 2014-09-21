@@ -82,6 +82,7 @@ Lade till krav, kapitel 6.3\\
 
 \\
 \end{tabular}
+\newpage
 \section{Inledning}       
 Dokumentet beskriver kraven för NewPussSystem, ett tidrapportingssystem för projekt som diverse användare kan logga in på.
 
@@ -98,27 +99,41 @@ Huvudmålet är att tillhandhålla ett system där olika användare, såsom proj
 Följande aktörer kommer att använda systemet:
 \begin{itemize}
 \item [] \textbf{Vanlig användare} En vanlig användare är en person med ett konto i systemet som ännu inte har blivigt tilldelad ett projekt.
-\item [] \textbf{Projektmedlem(t1,t2,t3)} En vanlig användare kan tilldelas rollen som projektmedlem. Denne kan tidrapportera och har även tillgång till historik rörande den egna samt gruppens totala tidrapportering. T1, t2, och t3 indikerar tre olika projektmedlemsroller, en användare blir tilldelad en av dessa i samband med att den blir medlem i ett projekt.
+\item [] \textbf{Projektmedlem(t1,t2,t3)} En vanlig användare kan tilldelas rollen som projektmedlem. Denne kan tidrapportera och har även tillgång till historik rörande den egna samt gruppens totala tidrapportering. T1, t2, och t3 indikerar tre olika projektmedlemsroller, en användare kan bli tilldelad en av dessa av projektledaren eller administratören.
 \item [] \textbf{Projektledare} En användare kan tilldelas rollen som projektledare vilket ger den administrativa rättigheter för ett givet projekt. En projektledare kan tillsätta vanliga användare en projektmedlemsroll. Utöver sina rättigheter som projektledare har den all funktionallitet som en projektmedlem besitter.
-\item [] \textbf{Administratör} En administratör är en och endast en användare som har befogenheter att lägga till och ta bort andra användare. Administratören tillsätter även projektledare och skapar projektgrupper. Administratören kan inte deltaga i en projektgrupp men har utöver detta samma priviligerade rättigheter som projektledare coh projektmedlem.
+\item [] \textbf{Administratör} En administratör är en och endast en användare som har befogenheter att lägga till och ta bort andra användare. Administratören tillsätter även projektledare och skapar projektgrupper. Administratören kan varken vara projektmedlem eller projektledare men har utöver detta samma priviligerade rättigheter som projektledare coh projektmedlem.
 \end{itemize}
+\newpage
 \section{Terminologi}
 \label{terminologi}
 Här följer ord och uttryck som används i rapporten och är till för att öka förståelsen.
 \begin{itemize}
-\item []\textbf{Användarnamn:} Unik indentifikationsfras för att representera en användare i systemet..
-\item []\textbf{Lösenord:} Hemlig fras endast känd för var unik användare samt systemet så användaren kan påvisa sin identitet.
-\item []\textbf{Logga:} in Då en användare identifierar sig mot systemet med användarnamn och lösenord, om systemet godkänner identifieringen loggar användaren in.
-\item []\textbf{Inloggad:} En användare som har loggat in är inloggad.
-\item []\textbf{Användarstatus:} En indikation på var användare som avgör hur vida den får logga in eller ej.
-\item []\textbf{Projektgrupp:} En grupp bestående av projektmedlemmar och projektledare.
-\item []\textbf{Tidrapport:} En rapport som innehåller arbetsbelasting för en användare under en fix tidperiod bundet till en specefik projektgrupp.
-\item []\textbf{Huvudsida:} Med huvudsida avses den första vyn som användaren blir dirigerad till direkt efter inloggning. 
-\item []\textbf{Användarlista:} En lista med alla användarnamn och lösenord som är sparade i databasen.
-\item []\textbf{Aktivitetsruta:} Cellen där aktivitet (raden) och subaktivitet (kolumnen) möts.
-\item []\textbf{Information:} Med information avses t.ex. användare, projekt eller tidrapporter.
-\item []\textbf{FIFO:} Från engelskans first in first out. Teknik som fungerar på samma sätt som en kö. Den som kom först betjänas först.
-
+\item [] \textbf{Administrationsfunktionaliteter:} De funktionalliteter som faller in under administratören. Exempelvis skapa nya användare eller projekt.
+\item [] \textbf{Administrativa rättigheter:} Rättigheter att administrera ett projekt. Rättigheter som projektledare har för sitt projekt samt administratören har för alla projekt.
+\item [] \textbf{Aktivitet:} Anger vad man har arbetat med.
+\item [] \textbf{Aktivitetsruta:} Cellen där aktivitet (raden) och subaktivitet (kolumnen) möts.
+\item [] \textbf{Användarlista:} En lista med alla användarnamn och lösenord som är sparade i databasen.
+\item [] \textbf{Användarnamn:} Unik indentifikationsfras för att representera en användare i systemet..
+\item [] \textbf{Arbetsbelastning:} Detta är den tiden som en person har lagt ner på en given aktivitet. Om någon har lagt ner 2h på att diska under en viss tidsperiod, så är arbetsbelastningen 2h för den perioden och aktiviteten.
+\item [] \textbf{Ej inloggad:} En användare som ännu inte har autentiserat sig mot systemet.
+\item [] \textbf{FIFO:} Från engelskans ``First In First Out''. Teknik som fungerar på samma sätt som en kö. Den som kom först betjänas först.
+\item [] \textbf{Huvudsida:} Med huvudsida avses den första vyn som användaren blir dirigerad till direkt efter inloggning. 
+\item [] \textbf{Information:} Med information avses t.ex. användare, projekt eller tidrapporter.
+\item [] \textbf{Inloggad:} En användare som har loggat in är inloggad.
+\item [] \textbf{Logga:} in Då en användare identifierar sig mot systemet med användarnamn och lösenord, om systemet godkänner identifieringen loggar användaren in.
+\item [] \textbf{Lösenord:} Hemlig fras endast känd för var unik användare samt systemet så användaren kan påvisa sin identitet.
+\item [] \textbf{Meny:} Menyn används för navigering. Den finns på alla sidor för en inloggad användare.
+\item [] \textbf{Projektadministrationsfunktionaliter:} De funktionalliteter som faller in under en projektledare. Exempelvis att godkänna rapporter eller ta fram statestik.
+\item [] \textbf{Projektgrupp:} En grupp bestående av projektmedlemmar och projektledare.
+\item [] \textbf{Projektroll:} En roll som en Projektmedlem kan ges. T1, t2 eller t3.
+\item [] \textbf{Subaktivitet:} Anger vad för typ av arbete man har arbetat med.
+\item [] \textbf{T1, T2, T3:} Se Projektroll.
+\item [] \textbf{Terminal:} Dator som används för att använda NewPussSystem.
+\item [] \textbf{Tidrapport:} En rapport som innehåller arbetsbelasting för en användare under en fix tidperiod bundet till en specefik projektgrupp.
+\item [] \textbf{Tidrapportsmall:} En mall som anger vilka fält som kan anges vid en tidrapportering.
+\item [] \textbf{Tidrapportstabell:} En tabell som fylls i vid tidrapportering. 
+\item [] \textbf{Totaltid:} Är den summerade tiden i tidrapportstabellen. 
+\item [] \textbf{Vy:} Var sida,för en inloggad användare, består av menyn samt en vy. En vy presenterar innehållet i den funktionalliteten man tryckt på i menyn.
 \end{itemize}
 \section{Kontextdiagram}
 Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
@@ -141,13 +156,13 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 	\subsection{Generella krav}
 		\label{krav-funk-gen}
 		\subsubsection*{Användare}
-		\requirement{1}{Samtliga användare skall ha tillgång till följande funktionaliteter: tidrapportering, projektinformation, byta lösenord, samt utloggning.}
+		\requirement{1}{Projektmedlemmar och projektledare skall ha tillgång till följande funktionaliteter: tidrapportering, projektinformation, byta lösenord, samt utloggning.}
 		
 		\requirement{2}{Samtliga funktionaliter i krav 6.1.3 skall vara tillgängliga i menyn.}
 		\requirement{3}{Menyn, oavsett typ av användare, skall vara tillgänglig på samtliga sidor som visas, för en inloggad användare, av systemet.}
 		\requirement{4}{Krav 6.4.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 		\requirement{5}{Det finns sammanlagt fem roller i systemet: administratör, projektledare, t1, t2, t3.}
-		\requirement{6}{I varje projektgrupp får det finnas 1-2 projektledare (se krav 6.6.1) och de tre teamen, t1, t2 och t3 (se krav 6.1.13).}
+		\requirement{6}{I varje projektgrupp får det finnas 1-2 projektledare (se krav 6.6.1) och de tre Projektrollerna, t1, t2 och t3 (se krav 6.1.13).}
 		\subsubsection*{Projektmedlem}		
 			\begin{figure}[h!]
 				\centering
@@ -167,7 +182,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			\end{figure}
 		\requirement{10}{Systemet skall stödja de steg som tas i figur \ref{image_gen_proboss}.}
 		\subsubsection*{Administratör}
-		\requirement{11}{Administratören kan ej deltaga i en projektgrupp. }
+		\requirement{11}{Administratören kan ej vara medlem i en projektgrupp. }
 		\requirement{12}{Som inloggad administratör skall det vara möjligt att välja administrationsvyn på huvudsidan.}
 			\begin{figure}[h!]
 				\centering
@@ -185,8 +200,8 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 	\subsection{Autentisering}
 		\label{krav-funk-aut}
 		\subsubsection*{Övergripande}
-			\requirement{1}{Ett användarkonto kan endast vara inloggat på en enhet åt gången.}			
-			\requirement{2}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan enhet, kommer den nya inloggningen att genomföras medan den andra enheten loggas ut. }
+			\requirement{1}{Ett användarkonto kan endast vara inloggat på en terminal åt gången.}			
+			\requirement{2}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan terminal, kommer den nya inloggningen att genomföras medan den andra terminalen loggas ut.}
 			\requirement{3}{För varje användare kan loginstatus antingen vara inloggad eller inte inloggad.}
 
 			\requirement{4}{Krav 6.1.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
@@ -472,21 +487,21 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			\requirement{11}{Projektledaren skall kunna ta tillbaka sitt godkännande från en tidigare godkänd gruppmedlems tidrapport, i sin projektgrupp.}
 			\requirement{12}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
 			\requirement{13}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{14}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet. Med summering menas att samma aktivitet i alla tidrapporter läggs ihop i en ny tidrapport}
+			\requirement{14}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet. Med summering menas att samma aktivitet i alla tidrapporter läggs ihop i en ny tidrapport.}
 			\requirement{15}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per vecka. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{16}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare och aktivitet . Med summering menas att samma aktivitet i alla tidrapporter från samma användare läggs ihop i en ny tidrapport}
+			\requirement{16}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare och aktivitet . Med summering menas att samma aktivitet i alla tidrapporter från samma användare läggs ihop i en ny tidrapport.}
 			\requirement{17}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare och vecka. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{18}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll och aktivitet. Med summering menas att samma aktivitet i alla tidrapporter från samma roll läggs ihop i en ny tidrapport}
+			\requirement{18}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll och aktivitet. Med summering menas att samma aktivitet i alla tidrapporter från samma roll läggs ihop i en ny tidrapport.}
 			\requirement{19}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll och vecka Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{20}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet och vecka Med summering menas att samma aktivitet i alla tidrapporter från samma vecka läggs ihop i en ny tidrapport}
-			\requirement{21}{Projektledaren ska kunna se sammanlagd arbetstid från valda tidrapporter}
-			\requirement{22}{Projektledaren ska kunna se sammanlagd arbetstid för en vald aktivitet från valda tidrapporter}
-			\requirement{23}{Projektledaren ska kunna se sammanlagd arbetstid för en vald subaktivitet från valda tidrapporter}
-			\requirement{24}{Projektledaren ska kunna se hur ofta en vald aktivitet har utförts i valda tidrapporter}
-			\requirement{25}{Projektledaren ska kunna se hur ofta en vald subaktivitet har utförts i valda tidrapporter}
+			\requirement{20}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet och vecka Med summering menas att samma aktivitet i alla tidrapporter från samma vecka läggs ihop i en ny tidrapport.}
+			\requirement{21}{Projektledaren ska kunna se sammanlagd arbetstid från valda tidrapporter.}
+			\requirement{22}{Projektledaren ska kunna se sammanlagd arbetstid för en vald aktivitet från valda tidrapporter.}
+			\requirement{23}{Projektledaren ska kunna se sammanlagd arbetstid för en vald subaktivitet från valda tidrapporter.}
+			\requirement{24}{Projektledaren ska kunna se hur ofta en vald aktivitet har utförts i valda tidrapporter.}
+			\requirement{25}{Projektledaren ska kunna se hur ofta en vald subaktivitet har utförts i valda tidrapporter.}
 			\requirement{26}{Projektledaren ska kunna se vilken aktivitet som har tagit mest tid.}
-			\requirement{27}{Projektledaren ska kunna se vilken aktivitet som är vanligast}
-			\requirement{28}{Projektledaren ska kunna se vilken vecka som har mest rapporterad tid.	}
+			\requirement{27}{Projektledaren ska kunna se vilken aktivitet som är vanligast.}
+			\requirement{28}{Projektledaren ska kunna se vilken vecka som har mest rapporterad tid.}
 			\begin{figure}[h!]
 				\centering
 				\includegraphics[width=\textwidth]{flow_time_proj_leader}
@@ -504,28 +519,23 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			\requirement{34}{Tidrapportmallarnas namn måste vara unika. }
  	 	 		
 			\requirement{35}{Det skall gå att lagra 100 tidrapporter/användare. Efter uppnådd maxgräns skrivs de över enligt FIFO-principen.}
-			\requirement{36}{Veckonumret får innehålla 1-2 tecken, ascii (decimal) värden 48-57 }
-			\requirement{37}{En administratör skall kunna skapa tidrapportsmallar}
-			\requirement{38}{Man skall kunna ange 1-20 stycken aktiviteter i en tidrapportsmall}
-			\requirement{39}{Man skall kunna ange 1-20 stycken subaktiviteter i en tidrapportsmall }
-			\requirement{40}{Antalet aktiviteter anger antalet rader som finns i tidrapportstabellen}
-			\requirement{41}{Antalet subaktiviteter anger antalet kolumner som finns i tidrapportstabellen	}
-			\requirement{42}{En tidrapport skall innehålla information om användarnamn}
-			\requirement{43}{En tidrapport skall innehålla information om projektgruppsnamn}
-			\requirement{44}{En tidrapport skall innehålla information om datum}
-			\requirement{45}{En tidrapport skall innehålla information om veckonummer}
-			\requirement{46}{Det skall tydligt framgå om en tidrapport är signerad eller inte}
+			\requirement{36}{Veckonumret får innehålla 1-2 tecken, ascii (decimal) värden 48-57.}
+			\requirement{37}{En administratör skall kunna skapa tidrapportsmallar.}
+			\requirement{38}{Man skall kunna ange 1-20 stycken aktiviteter i en tidrapportsmall.}
+			\requirement{39}{Man skall kunna ange 1-20 stycken subaktiviteter i en tidrapportsmall.}
+			\requirement{40}{Antalet aktiviteter anger antalet rader som finns i tidrapportstabellen.}
+			\requirement{41}{Antalet subaktiviteter anger antalet kolumner som finns i tidrapportstabellen.}
+			\requirement{42}{En tidrapport skall innehålla information om användarnamn.}
+			\requirement{43}{En tidrapport skall innehålla information om projektgruppsnamn.}
+			\requirement{44}{En tidrapport skall innehålla information om datum. Datum skrivs på formatet ``dag månad år'', där dag representeras av två siffror (ascii (decimal) värden 48-57), månaden som namnet på månaden (ascii (decimal) värden 97-122) , och år med fyra siffor (ascii (decimal) värden 48-57).}
+			\requirement{45}{En tidrapport skall innehålla information om veckonummer.}
+			\requirement{46}{Det skall tydligt framgå om en tidrapport är signerad eller inte.}
 			\requirement{47}{Maximalt 20 mallar kan lagras samtidigt.}
-
-			\requirement{48}{En tidrapportmall kan endast tas bort om den inte används av någon projektgrupp. }
+			\requirement{48}{En tidrapportmall kan endast tas bort om den inte används av någon projektgrupp.}
 			\requirement{49}{Det skall inte vara möjligt att ändra tidrapportmallens utformning efter att den har skapats.}
 			\requirement{50}{Nygenererade tidrapporter är alltid osignerade.}
-
-			
 			\requirement{51}{Tidrapportens grundmall skall innehålla information om användarnamn, projektgruppsnamn, datum och veckonummer. Det skall även tydligt framgå om den är signerad eller ej.}
 			\requirement{52}{Grundmallen för tidrapporterna genereras automatiskt av systemet.}
-
-
 	\subsection{Administration}
 		\label{krav-funk-admin}
 		\subsubsection*{Övergripande}
@@ -534,8 +544,6 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			
 		\subsubsection*{Projektledare}
 			\requirement{3}{Projektledaren skall kunna tilldela roller till projektmedlemmarna i sin projektgrupp.}
-
-
 			\requirement{4}{Projektledaren skall kunna lista alla ej godkända tidrapporter.}
 			\requirement{5}{Projektledaren skall kunna lista alla godkända tidrapporter.}
 			
@@ -643,7 +651,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 
 	\multicolumn{2}{|p{13cm}|}{1. Användaren trycker på valet att sortera alla rapporter efter namn, stigande ordning.}\\	
 	\multicolumn{2}{|p{13cm}|}{2. Alla rapporter visas sorterade efter det givna valet.} \\
-	\multicolumn{2}{|p{13cm}|}{3. Användaren trycker på valet att sortera alla rapporter efter namn, fallande orning} \\
+	\multicolumn{2}{|p{13cm}|}{3. Användaren trycker på valet att sortera alla rapporter efter namn, fallande ordning.} \\
 	\multicolumn{2}{|p{13cm}|}{4. Alla rapporter visas sorterade efter det givna valet.} \\
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
@@ -661,7 +669,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			\requirement{10}{Scenario 6.4.4 skall stödjas av systemet. }
 
 		\subsubsection*{Administratör}
-			\requirement{11}{Administrationsfunktionaliteter avser även projektadministration och därmed har administratörer, utöver sina priviligerade rättigheter, även projektledarnas befogenheter.		}
+			\requirement{11}{Administrationsfunktionaliteter avser även projektadministration och därmed har administratörer, utöver sina priviligerade rättigheter, även projektledarnas befogenheter.}
 			\requirement{12}{Endast administratören skall kunna skapa projektgrupper i systemet.}
 			\requirement{13}{Endast administratören skall kunna lägga till eller ta bort projektledare i en projektgrupp.}
 			\requirement{14}{Endast administratören skall kunna ta bort projektgrupper ur systemet.}
@@ -677,17 +685,17 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			\requirement{24}{Krav 6.3.8 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{25}{Krav 6.3.9 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{26}{Krav 6.3.10 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{27}{Krav 6.3.11 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.		}
+			\requirement{27}{Krav 6.3.11 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{28}{Tidrapportens utseende, med avseende på vilka aktiviteter man kan föra in tidinformation i, bestäms av administratören innan projektgruppen har skapats. När projektet är skapat skall det inte gå att ändra tidrapportens utseende.}
 		
 
 		\subsubsection*{Data}
 			\requirement{29}{Ett projektgruppsnamn ska bestå av 5-10 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
-			\requirement{30}{Projektgruppsnamn måste vara unika. }
+			\requirement{30}{Projektgruppsnamn måste vara unika.}
 			\requirement{31}{Det får maximalt existera 5 stycken projektgrupper samtidigt.}
 			\requirement{32}{En användare kan vara projektmedlem i fler än ett projektgrupp åt gången.}
 			\requirement{33}{En projektgrupp skall bestå av 1-20 användare.}
-			\requirement{34}{I varje projektgrupp kan det finnas upp till tre team, t1, t2 och t3.}
+			\requirement{34}{I varje projektgrupp kan det finnas upp till tre Projektroller, t1, t2 och t3.}
 			\requirement{35}{I t1, t2 och t3 får det finnas 0-6 användare/projektgrupp, alltså sammanlagt 0-18 användare.}
 			\requirement{36}{Krav 6.3.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 
@@ -703,7 +711,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 	\subsection{Prestanda}
 		\label{krav-kval-pres}
 		\requirement{1}{Systemet skall klara av att få 20 stycken inloggningar under en tidperiod av 1 sekund, utan att bryta mot några andra kvalitetskrav.}
-		\requirement{2}{Krav 7.2.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.	}
+		\requirement{2}{Krav 7.2.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 		\requirement{3}{Maximalt 50 användare kan vara inloggade på systemet samtidigt.}
 
 	\subsection{Användarvänlighet}

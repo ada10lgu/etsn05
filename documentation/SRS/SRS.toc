@@ -1,19 +1,19 @@
 \select@language {swedish}
-\contentsline {section}{\numberline {1}Inledning}{2}
-\contentsline {section}{\numberline {2}Referensdokument}{2}
+\contentsline {section}{\numberline {1}Inledning}{3}
+\contentsline {section}{\numberline {2}Referensdokument}{3}
 \contentsline {section}{\numberline {3}Bakgrund och m\IeC {\r a}l}{3}
 \contentsline {subsection}{\numberline {3.1}Huvudm\IeC {\r a}l}{3}
 \contentsline {subsection}{\numberline {3.2}Akt\IeC {\"o}rer och deras m\IeC {\r a}l}{3}
-\contentsline {section}{\numberline {4}Terminologi}{3}
-\contentsline {section}{\numberline {5}Kontextdiagram}{4}
-\contentsline {section}{\numberline {6}Funktionella krav}{4}
-\contentsline {subsection}{\numberline {6.1}Generella krav}{4}
-\contentsline {subsection}{\numberline {6.2}Autentisering}{6}
-\contentsline {subsection}{\numberline {6.3}Tidrapportering}{12}
-\contentsline {subsection}{\numberline {6.4}Administration}{17}
-\contentsline {section}{\numberline {7}Kvalitetskrav}{21}
-\contentsline {subsection}{\numberline {7.1}Underh\IeC {\r a}ll}{21}
-\contentsline {subsection}{\numberline {7.2}Prestanda}{21}
-\contentsline {subsection}{\numberline {7.3}Anv\IeC {\"a}ndarv\IeC {\"a}nlighet}{21}
-\contentsline {section}{\numberline {8}Projektkrav}{21}
-\contentsline {subsection}{\numberline {8.1}Utvecklingsmilj\IeC {\"o}}{21}
+\contentsline {section}{\numberline {4}Terminologi}{4}
+\contentsline {section}{\numberline {5}Kontextdiagram}{5}
+\contentsline {section}{\numberline {6}Funktionella krav}{5}
+\contentsline {subsection}{\numberline {6.1}Generella krav}{5}
+\contentsline {subsection}{\numberline {6.2}Autentisering}{7}
+\contentsline {subsection}{\numberline {6.3}Tidrapportering}{13}
+\contentsline {subsection}{\numberline {6.4}Administration}{18}
+\contentsline {section}{\numberline {7}Kvalitetskrav}{22}
+\contentsline {subsection}{\numberline {7.1}Underh\IeC {\r a}ll}{22}
+\contentsline {subsection}{\numberline {7.2}Prestanda}{22}
+\contentsline {subsection}{\numberline {7.3}Anv\IeC {\"a}ndarv\IeC {\"a}nlighet}{22}
+\contentsline {section}{\numberline {8}Projektkrav}{22}
+\contentsline {subsection}{\numberline {8.1}Utvecklingsmilj\IeC {\"o}}{22}
