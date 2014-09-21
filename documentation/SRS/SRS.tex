@@ -182,11 +182,177 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 		\subsubsection*{Administratör}
 			\requirement{15}{I administrationsvyn skall det vara möjligt att ta bort vilken användare som helst förutom administratören.}
 			\requirement{16}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav 6.3.1-2 skall ett felmeddelande visas och användaren skall inte läggas till.}
-			\requirement{17}{Scenario 6.4.1 skall stödjas av systemet.}
-			\requirement{18}{Scenario 6.4.2 skall stödjas av systemet.}
-			\requirement{19}{Scenario 6.4.3 skall stödjas av systemet.}
-			\requirement{20}{Scenario 6.4.4 skall stödjas av systemet.}
-			\requirement{21}{Scenario 6.4.5 skall stödjas av systemet.}
+			
+%--------------SCENARIO
+
+\begin{table}[H]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{1}} \\
+    \textbf{Syfte} & Skapa projektgrupp.\\
+    \textbf{Trigger} & Användaren vill skapa en projektgrupp. \\
+    \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer att skapa projektgrupp.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren väljer därefter tidrapportmall (se scenario 6.2.4).}\\
+	\multicolumn{2}{|p{13cm}|}{3. Denne får nu fylla i ett projektgruppsnamn och trycker därefter på ``OK''.} \\	
+	\multicolumn{2}{|p{13cm}|}{4. Denne möts av en lista över användare i systemet. Första användaren som läggs till tilldelas automatiskt en projektledarroll.} \\	
+	\multicolumn{2}{|p{13cm}|}{5. Användaren kan därefter lägga till fler projektgruppsmedlemmar. Det ska även vara möjligt att tilldela ytterligare en projektgruppsmedlem, en projektledarroll. När användaren är klar trycks ``OK''} \\	
+	\multicolumn{2}{|p{13cm}|}{6. Projektgruppen skapas och användaren dirigeras till en sida som bekräftar detta. } \\	
+	\hline
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+    \multicolumn{2}{|p{13cm}|}{4a. Projektgruppsnamnet existerar redan, användaren informeras och skickas tillbaka till steg 3.}\\
+    \multicolumn{2}{|p{13cm}|}{4b. Projektgruppsnamnet är ogiltligt. Användaren informeras och skickas tillbaka till steg 3.}  \\
+    \multicolumn{2}{|p{13cm}|}{4c. Användaren får felmeddelande eftersom inga fler användare existerar. Denne informeras om detta och skickas tillbaka till huvudsidan.}\\
+     \multicolumn{2}{|p{13cm}|}{4d. Det går inte att skapa fler projektgrupper då maxgränsen är nådd.
+     Användaren informeras om detta.}\\
+       \multicolumn{2}{|p{13cm}|}{5a. Användaren ska informeras om att det inte finns fler användare att lägga till i projektgruppen och få möjlighet att skickas till steg 7.}\\
+    \multicolumn{2}{|p{13cm}|}{5b. Användaren ska informeras om någon av grupperna har max antal användare. Denne ska inte ha möjlighet att lägga till fler projektmedlemmar i den nämnda gruppen.}\\
+
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END
+
+
+
+%--------------SCENARIO
+
+\begin{table}[H]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{2}} \\
+    \textbf{Syfte} & Lägga till/ändra roll på projektmedlem i projektgrupp.\\
+    \textbf{Trigger} & Användaren vill lägga till eller ändra projektmedlemmens roll. \\
+    \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer ''redigera projektmedlemmar''.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med samtliga projektgrupper och eventuella projektmedlemmar och en lista med samtliga användare i systemet som inte är projektmedlemmar överhuvudtaget.}\\
+	\multicolumn{2}{|p{13cm}|}{3. Användaren har nu möjlighet att flytta över projektmedlemmar och icke projektmedlemmar till olika projektgrupper. Denne kan även ange vilken roll som projekt-medlemmen eller -medlemmarna ska ha.} \\	
+	\multicolumn{2}{|p{13cm}|}{4. Användaren bekräftar genom att trycka ``OK''. Denne dirigeras till en sida med den nya informationen samt en bekräftelse.} \\	
+	\hline
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+    \multicolumn{2}{|p{13cm}|}{1a. Det existerar inga projektgrupper/projektmedlemmar. Användaren informeras om detta och skickas tillbaka till huvudsidan.}\\
+    \multicolumn{2}{|p{13cm}|}{4a. Användaren får felmeddelande då denne försökt att flytta över en projektledare som är den enda i sin projektgrupp. Denne ombedes att tillsätta en ny projektledare i gruppen innan förflyttning kan äga rum. Användaren dirigeras till steg 3.} \\
+    \multicolumn{2}{|p{13cm}|}{5b. Användaren ska informeras om någon av grupperna har max antal användare. Denne ska inte ha möjlighet att lägga till fler projektmedlemmar i den nämnda gruppen. Användaren skickas tillbaka till steg 3.}\\
+
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END
+
+
+
+%--------------SCENARIO
+
+\begin{table}[H]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{3}} \\
+    \textbf{Syfte} & Ta bort projektmedlemmar eller projektgrupp.\\
+    \textbf{Trigger} & Användaren väljer ta bort projektgrupp/projektmedlemmar. \\
+    \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer ta bort projektgrupp/projektmedlemmar.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med samtliga projektgrupper och eventuella projektmedlemmar.}\\
+	\multicolumn{2}{|p{13cm}|}{3. Informationen som skall tas bort markeras och därefter trycks ``OK''. Bekräftelserutan specificerad i krav \ref{krav-funk-gen}.10 visas. Användaren trycker ``Ja''.} \\	
+	\multicolumn{2}{|p{13cm}|}{4. Den markerade informationen är nu borttagen och användaren dirigeras till en sida med uppdaterad information.} \\	
+	\hline
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+    \multicolumn{2}{|p{13cm}|}{1a. Det existerar inga projektgrupper/projektmedlemmar. Användaren informeras om detta och skickas tillbaka till huvudsidan.}\\
+    \multicolumn{2}{|p{13cm}|}{4a. Användaren trycker ``Nej'' och dirigeras tillbaka till steg 2.} \\
+    \multicolumn{2}{|p{13cm}|}{4b. Användaren försöker ta bort en projektmedlem som är ensam projektledare, i en projektgrupp där det åtminstone finns en projektmedlem till. Denne ombedes att tillsätta en ny projektledare och därefter försöka igen. Användaren skickas tillbaka till steg 2.} \\
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END
+
+
+%--------------SCENARIO
+
+\begin{table}[H]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{4}} \\
+    \textbf{Syfte} & Skapa tidrapportmall.\\
+    \textbf{Trigger} & Användaren vill skapa en projektgrupp. \\
+    \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer att skapa projektgrupp.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren väljer att skapa en ny tidrapportmall.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. Denne väljer antal aktiviteter (rader) och subaktiviteter (kolumner) som ska finnas. Användaren fyller i önskat namn på tidrapportmallen och trycker ``OK''.} \\	
+	\multicolumn{2}{|p{13cm}|}{4. Tabell genereras med det antal givna rader och kolumner från steg 3 och visas för användaren.} \\	
+	\multicolumn{2}{|p{13cm}|}{5. Användaren fyller nu i aktivitets- och subaktivitetsnamn. Därefter trycker denne ``OK''.} \\	
+	\multicolumn{2}{|p{13cm}|}{6. Mallen är nu skapad, ihopkopplad med grundmallen och sparad. Användaren får en bekräftelse och dirigeras till den färdiga mallen.} \\	
+	\hline
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+    \multicolumn{2}{|p{13cm}|}{2a. Användaren väljer att använda en befintlig tidrapportmall.}\\
+    \multicolumn{2}{|p{13cm}|}{3a. Det går inte att skapa fler mallar på grund av uppnådd maxgräns. Användaren informeras om detta.}\\
+    \multicolumn{2}{|p{13cm}|}{4a. Om namnet på mallen redan existerar informeras användaren om detta och ombedes att skriva ett annat namn. Användaren skickas tillbaka til steg 3.}\\
+    \multicolumn{2}{|p{13cm}|}{4b. Användaren får felmeddelande då antal kolumner och rader inte överensstämmer med specificeringen. Användaren skickas tillbaka till steg 3.}\\
+       \multicolumn{2}{|p{13cm}|}{4c. Användaren får felmeddelande då det inmatade namnet är otillåtet. Användaren skickas tillbaka till steg 3.}\\
+    \multicolumn{2}{|p{13cm}|}{6a. Användaren får felmeddelande då det inmatade aktivitets- eller subaktivitetsnamnet är otillåtna. Användaren skickas tillbaka till steg 5.}\\
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END
+
+
+
+%--------------SCENARIO
+
+\begin{table}[H]
+\begin{tabular}{ | p{2cm} p{11cm} | }
+    \hline
+    
+    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{5}} \\
+    \textbf{Syfte} & Ta bort tidrapportmall.\\
+    \textbf{Trigger} & Användaren vill ta bort en tidrapportmall. \\
+    \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
+    \hline
+
+	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
+
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer att ta bort tidrapportmall.}\\
+	\multicolumn{2}{|p{13cm}|}{2. En lista med tidrapportmallar visas för användaren.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. Användaren markerar en tidrapportmall och trycker ``OK''.} \\	
+	\multicolumn{2}{|p{13cm}|}{4. När bekräftelserutan kommer upp trycker användaren ``Ja'' .} \\	
+	\multicolumn{2}{|p{13cm}|}{5. Mallen är nu borttagen. Användaren får en uppdaterad lista över mallar sparade i systemet.} \\	
+	\hline
+    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+    \multicolumn{2}{|p{13cm}|}{2a. Finns inga sparade tidrapportmallar. Det framgår tydligt att listan är tom.}\\
+    \multicolumn{2}{|p{13cm}|}{4a. Tidrapportmallen används av en projektgrupp och kan inte tas bort.}\\
+    \hline
+\end{tabular}
+\end{table}
+
+% ----------------------- /END			
+			
+			\requirement{17}{Scenario 6.2.1 skall stödjas av systemet.}
+			\requirement{18}{Scenario 6.2.2 skall stödjas av systemet.}
+			\requirement{19}{Scenario 6.2.3 skall stödjas av systemet.}
+			\requirement{20}{Scenario 6.2.4 skall stödjas av systemet.}
+			\requirement{21}{Scenario 6.2.5 skall stödjas av systemet.}
 			\requirement{22}{Administratören skall kunna ta bort en tidrapportmall om den inte används av en projektgrupp (se krav 6.3.18).}
 			
 		\subsubsection*{Data}
