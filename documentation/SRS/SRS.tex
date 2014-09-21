@@ -148,14 +148,38 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 		\requirement{4}{Krav 6.4.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 		\requirement{5}{Det finns sammanlagt fem roller i systemet: administratör, projektledare, t1, t2, t3.}
 		\requirement{6}{I varje projektgrupp får det finnas 1-2 projektledare (se krav 6.6.1) och de tre teamen, t1, t2 och t3 (se krav 6.1.13).}
+		\subsubsection*{Projektmedlem}		
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[width=0.75\textwidth]{flow_common_proj_mem}
+				\caption{Diagram som visar användarfall för en projektmedlem.}
+				\label{image_gen_promed}
+			\end{figure}
+		\requirement{7}{Systemet skall stödja de steg som tas i figur \ref{image_gen_promed}.}
 		\subsubsection*{Projektledare}
-		\requirement{7}{Varje projekt skall ha en eller två, och endast en eller två, användare som besitter rollen som projektledare.}
-		\requirement{8}{Projektledarna har tillgång till projektadministrationsfunktionaliter. Det listas som ``projektadministration'' och finns tillgängligt för dem i menyn.}
+		\requirement{8}{Varje projekt skall ha en eller två, och endast en eller två, användare som besitter rollen som projektledare.}
+		\requirement{9}{Projektledarna har tillgång till projektadministrationsfunktionaliter. Det listas som ``projektadministration'' och finns tillgängligt för dem i menyn.}
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[width=0.75\textwidth]{flow_common_proj_leader}
+				\caption{Diagram som visar användarfall för en projektledare.}
+				\label{image_gen_proboss}
+			\end{figure}
+		\requirement{10}{Systemet skall stödja de steg som tas i figur \ref{image_gen_proboss}.}
 		\subsubsection*{Administratör}
-		\requirement{9}{Administratören kan ej deltaga i en projektgrupp. }
-		\requirement{10}{Som inloggad administratör skall det vara möjligt att välja administrationsvyn på huvudsidan.}
+		\requirement{11}{Administratören kan ej deltaga i en projektgrupp. }
+		\requirement{12}{Som inloggad administratör skall det vara möjligt att välja administrationsvyn på huvudsidan.}
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[width=\textwidth]{flow_common_admin}
+				\caption{Diagram som visar användarfall för en administratör.}
+				\label{image_gen_admin}
+			\end{figure}
+		\requirement{13}{Systemet skall stödja de steg som tas i figur \ref{image_gen_admin}.}
 		\subsubsection*{Data}
-		\requirement{11}{Varje borttagning av information skall bekräftas av en dialogruta frågandes om man är säker. Om användaren väljer ``Ja'', tas informationen bort och användaren kommer tillbaka till en uppdaterad sida med informationen. Om ``Nej'' väljs, går användaren tillbaka till nuvarande sida.}
+		\requirement{14}{Varje borttagning av information skall bekräftas av en dialogruta frågandes om man är säker. Om användaren väljer ``Ja'', tas informationen bort och användaren kommer tillbaka till en uppdaterad sida med informationen. Om ``Nej'' väljs, går användaren tillbaka till nuvarande sida.}
+		
+		
 
 
 	\subsection{Autentisering}
@@ -164,24 +188,23 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			\requirement{1}{Ett användarkonto kan endast vara inloggat på en enhet åt gången.}			
 			\requirement{2}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan enhet, kommer den nya inloggningen att genomföras medan den andra enheten loggas ut. }
 			\requirement{3}{För varje användare kan loginstatus antingen vara inloggad eller inte inloggad.}
-			\requirement{4}{Ett användarkonto kan endast vara inloggat på en enhet åt gången.}
 
-			\requirement{5}{Krav 6.1.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{6}{Krav 6.2.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{7}{Krav 6.2.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{8}{Krav 6.2.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{9}{Krav 6.2.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{4}{Krav 6.1.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{5}{Krav 6.2.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{6}{Krav 6.2.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{7}{Krav 6.2.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{8}{Krav 6.2.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 \subsubsection*{Användare}
-			\requirement{10}{Krav 6.1.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{11}{Krav 6.1.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{12}{Krav 6.1.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{13}{Krav 6.1.8 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{14}{Krav 6.1.9 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{9}{Krav 6.1.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{10}{Krav 6.1.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{11}{Krav 6.1.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{12}{Krav 6.1.8 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{13}{Krav 6.1.9 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 
 
 		\subsubsection*{Administratör}
-			\requirement{15}{I administrationsvyn skall det vara möjligt att ta bort vilken användare som helst förutom administratören.}
-			\requirement{16}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav 6.3.1-2 skall ett felmeddelande visas och användaren skall inte läggas till.}
+			\requirement{14}{I administrationsvyn skall det vara möjligt att ta bort vilken användare som helst förutom administratören.}
+			\requirement{15}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav 6.3.1-2 skall ett felmeddelande visas och användaren skall inte läggas till.}
 			
 %--------------SCENARIO
 
@@ -348,19 +371,19 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 
 % ----------------------- /END			
 			
-			\requirement{17}{Scenario 6.2.1 skall stödjas av systemet.}
-			\requirement{18}{Scenario 6.2.2 skall stödjas av systemet.}
-			\requirement{19}{Scenario 6.2.3 skall stödjas av systemet.}
-			\requirement{20}{Scenario 6.2.4 skall stödjas av systemet.}
-			\requirement{21}{Scenario 6.2.5 skall stödjas av systemet.}
-			\requirement{22}{Administratören skall kunna ta bort en tidrapportmall om den inte används av en projektgrupp (se krav 6.3.18).}
+			\requirement{16}{Scenario 6.2.1 skall stödjas av systemet.}
+			\requirement{17}{Scenario 6.2.2 skall stödjas av systemet.}
+			\requirement{18}{Scenario 6.2.3 skall stödjas av systemet.}
+			\requirement{19}{Scenario 6.2.4 skall stödjas av systemet.}
+			\requirement{20}{Scenario 6.2.5 skall stödjas av systemet.}
+			\requirement{21}{Administratören skall kunna ta bort en tidrapportmall om den inte används av en projektgrupp (se krav 6.3.18).}
 			
 		\subsubsection*{Data}
-			\requirement{23}{Krav 6.1.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{24}{Krav 6.1.7 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{22}{Krav 6.1.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{23}{Krav 6.1.7 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 
 		\subsubsection*{Ej inloggad}
-			\requirement{25}{Krav 6.1.6 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{24}{Krav 6.1.6 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 
 	\subsection{Tidrapportering}
 		\label{krav-funk-tid}	
@@ -434,58 +457,73 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			
 			\requirement{6}{Scenario 6.3.1 skall stödjas av systemet.}
 			\requirement{7}{Scenario 6.3.2 skall stödjas av systemet.}
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[width=\textwidth]{flow_time_proj_mem}
+				\caption{Diagram som visar användarfall för en projektmedlem.}
+				\label{image_time_promed}
+			\end{figure}
+		\requirement{8}{Systemet skall stödja de steg som tas i figur \ref{image_time_promed}.}
+
 
 		\subsubsection*{Projektledare}
-			\requirement{8}{Projektledaren skall ha tillgång till samtliga projektmedlemmars tidrapporter i den projektgrupp den är projektledare för.}
-			\requirement{9}{Projektledaren skall kunna godkänna ej tidigare godkända tidrapporter från projektmedlemmar i sin projektgrupp.}
-			\requirement{10}{Projektledaren skall kunna ta tillbaka sitt godkännande från en tidigare godkänd gruppmedlems tidrapport, i sin projektgrupp.}
-			\requirement{11}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{12}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{13}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet. Med summering menas att samma aktivitet i alla tidrapporter läggs ihop i en ny tidrapport}
-			\requirement{14}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per vecka. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{15}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare och aktivitet . Med summering menas att samma aktivitet i alla tidrapporter från samma användare läggs ihop i en ny tidrapport}
-			\requirement{16}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare och vecka. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{17}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll och aktivitet. Med summering menas att samma aktivitet i alla tidrapporter från samma roll läggs ihop i en ny tidrapport}
-			\requirement{18}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll och vecka Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{19}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet och vecka Med summering menas att samma aktivitet i alla tidrapporter från samma vecka läggs ihop i en ny tidrapport}
-			\requirement{20}{Projektledaren ska kunna se sammanlagd arbetstid från valda tidrapporter}
-			\requirement{21}{Projektledaren ska kunna se sammanlagd arbetstid för en vald aktivitet från valda tidrapporter}
-			\requirement{22}{Projektledaren ska kunna se sammanlagd arbetstid för en vald subaktivitet från valda tidrapporter}
-			\requirement{23}{Projektledaren ska kunna se hur ofta en vald aktivitet har utförts i valda tidrapporter}
-			\requirement{24}{Projektledaren ska kunna se hur ofta en vald subaktivitet har utförts i valda tidrapporter}
-			\requirement{25}{Projektledaren ska kunna se vilken aktivitet som har tagit mest tid.}
-			\requirement{26}{Projektledaren ska kunna se vilken aktivitet som är vanligast}
-			\requirement{27}{Projektledaren ska kunna se vilken vecka som har mest rapporterad tid.	}
+			\requirement{9}{Projektledaren skall ha tillgång till samtliga projektmedlemmars tidrapporter i den projektgrupp den är projektledare för.}
+			\requirement{10}{Projektledaren skall kunna godkänna ej tidigare godkända tidrapporter från projektmedlemmar i sin projektgrupp.}
+			\requirement{11}{Projektledaren skall kunna ta tillbaka sitt godkännande från en tidigare godkänd gruppmedlems tidrapport, i sin projektgrupp.}
+			\requirement{12}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{13}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{14}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet. Med summering menas att samma aktivitet i alla tidrapporter läggs ihop i en ny tidrapport}
+			\requirement{15}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per vecka. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{16}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare och aktivitet . Med summering menas att samma aktivitet i alla tidrapporter från samma användare läggs ihop i en ny tidrapport}
+			\requirement{17}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare och vecka. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{18}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll och aktivitet. Med summering menas att samma aktivitet i alla tidrapporter från samma roll läggs ihop i en ny tidrapport}
+			\requirement{19}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll och vecka Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{20}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet och vecka Med summering menas att samma aktivitet i alla tidrapporter från samma vecka läggs ihop i en ny tidrapport}
+			\requirement{21}{Projektledaren ska kunna se sammanlagd arbetstid från valda tidrapporter}
+			\requirement{22}{Projektledaren ska kunna se sammanlagd arbetstid för en vald aktivitet från valda tidrapporter}
+			\requirement{23}{Projektledaren ska kunna se sammanlagd arbetstid för en vald subaktivitet från valda tidrapporter}
+			\requirement{24}{Projektledaren ska kunna se hur ofta en vald aktivitet har utförts i valda tidrapporter}
+			\requirement{25}{Projektledaren ska kunna se hur ofta en vald subaktivitet har utförts i valda tidrapporter}
+			\requirement{26}{Projektledaren ska kunna se vilken aktivitet som har tagit mest tid.}
+			\requirement{27}{Projektledaren ska kunna se vilken aktivitet som är vanligast}
+			\requirement{28}{Projektledaren ska kunna se vilken vecka som har mest rapporterad tid.	}
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[width=\textwidth]{flow_time_proj_leader}
+				\caption{Diagram som visar användarfall för en projektledare.}
+				\label{image_time_proboss}
+			\end{figure}
+		\requirement{29}{Systemet skall stödja de steg som tas i figur \ref{image_time_proboss}.}
 
 		\subsubsection*{Data}
-			\requirement{28}{Tidrapportering sker i antal minuter.}
-			\requirement{29}{Namnet på tidrapportmallen ska bestå av 5 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
-			\requirement{30}{Namnet på aktivitet och subaktivitet ska bestå av 3-5 tecken respektive 1 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
+			\requirement{30}{Tidrapportering sker i antal minuter.}
+			\requirement{31}{Namnet på tidrapportmallen ska bestå av 5 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
+			\requirement{32}{Namnet på aktivitet och subaktivitet ska bestå av 3-5 tecken respektive 1 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
 
-			\requirement{31}{Tidinformationen får innehålla 1-5 tecken per aktivitetsruta, ascii (decimal) värden 48-57.}
-			\requirement{32}{Tidrapportmallarnas namn måste vara unika. }
+			\requirement{33}{Tidinformationen får innehålla 1-5 tecken per aktivitetsruta, ascii (decimal) värden 48-57.}
+			\requirement{34}{Tidrapportmallarnas namn måste vara unika. }
  	 	 		
-			\requirement{33}{Det skall gå att lagra 100 tidrapporter/användare. Efter uppnådd maxgräns skrivs de över enligt FIFO-principen.}
-			\requirement{34}{Veckonumret får innehålla 1-2 tecken, ascii (decimal) värden 48-57 }
-			\requirement{35}{En administratör skall kunna skapa tidrapportsmallar}
-			\requirement{36}{Man skall kunna ange 1-20 stycken aktiviteter i en tidrapportsmall}
-			\requirement{37}{Man skall kunna ange 1-20 stycken subaktiviteter i en tidrapportsmall }
-			\requirement{38}{Antalet aktiviteter anger antalet rader som finns i tidrapportstabellen}
-			\requirement{39}{Antalet subaktiviteter anger antalet kolumner som finns i tidrapportstabellen	}
-			\requirement{40}{En tidrapport skall innehålla information om användarnamn}
-			\requirement{41}{En tidrapport skall innehålla information om projektgruppsnamn}
-			\requirement{42}{En tidrapport skall innehålla information om datum}
-			\requirement{43}{En tidrapport skall innehålla information om veckonummer}
-			\requirement{44}{Det skall tydligt framgå om en tidrapport är signerad eller inte}
-			\requirement{45}{Maximalt 20 mallar kan lagras samtidigt.}
+			\requirement{35}{Det skall gå att lagra 100 tidrapporter/användare. Efter uppnådd maxgräns skrivs de över enligt FIFO-principen.}
+			\requirement{36}{Veckonumret får innehålla 1-2 tecken, ascii (decimal) värden 48-57 }
+			\requirement{37}{En administratör skall kunna skapa tidrapportsmallar}
+			\requirement{38}{Man skall kunna ange 1-20 stycken aktiviteter i en tidrapportsmall}
+			\requirement{39}{Man skall kunna ange 1-20 stycken subaktiviteter i en tidrapportsmall }
+			\requirement{40}{Antalet aktiviteter anger antalet rader som finns i tidrapportstabellen}
+			\requirement{41}{Antalet subaktiviteter anger antalet kolumner som finns i tidrapportstabellen	}
+			\requirement{42}{En tidrapport skall innehålla information om användarnamn}
+			\requirement{43}{En tidrapport skall innehålla information om projektgruppsnamn}
+			\requirement{44}{En tidrapport skall innehålla information om datum}
+			\requirement{45}{En tidrapport skall innehålla information om veckonummer}
+			\requirement{46}{Det skall tydligt framgå om en tidrapport är signerad eller inte}
+			\requirement{47}{Maximalt 20 mallar kan lagras samtidigt.}
 
-			\requirement{46}{En tidrapportmall kan endast tas bort om den inte används av någon projektgrupp. }
-			\requirement{47}{Det skall inte vara möjligt att ändra tidrapportmallens utformning efter att den har skapats.}
-			\requirement{48}{Nygenererade tidrapporter är alltid osignerade.}
+			\requirement{48}{En tidrapportmall kan endast tas bort om den inte används av någon projektgrupp. }
+			\requirement{49}{Det skall inte vara möjligt att ändra tidrapportmallens utformning efter att den har skapats.}
+			\requirement{50}{Nygenererade tidrapporter är alltid osignerade.}
 
 			
-			\requirement{49}{Tidrapportens grundmall skall innehålla information om användarnamn, projektgruppsnamn, datum och veckonummer. Det skall även tydligt framgå om den är signerad eller ej.}
-			\requirement{50}{Grundmallen för tidrapporterna genereras automatiskt av systemet.}
+			\requirement{51}{Tidrapportens grundmall skall innehålla information om användarnamn, projektgruppsnamn, datum och veckonummer. Det skall även tydligt framgå om den är signerad eller ej.}
+			\requirement{52}{Grundmallen för tidrapporterna genereras automatiskt av systemet.}
 
 
 	\subsection{Administration}
