@@ -161,49 +161,31 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 	\subsection{Autentisering}
 		\label{krav-funk-aut}
 		\subsubsection*{Övergripande}
-			\requirement{x}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan enhet, kommer den nya inloggningen att genomföras medan den andra enheten loggas ut. }
-			\requirement{x}{Ett användarkonto kan endast vara inloggat på en enhet åt gången.}
-			\requirement{x}{För varje användare kan loginstatus antingen vara inloggad eller inte inloggad.}
-			\requirement{x}{Systemet skall hålla loginstatus i en serversession.}
-			\requirement{x}{När en användare når systemet och inte är inloggad skall denne få en förfrågan om användarnamn och lösenord.}
-			\requirement{x}{När en användare skickar ett användarnamn och lösenord skall dessa parametrar jämföras med användarlistan och om användaren skall få tillgång till systemet, så skall serverstatus ändras till “inloggad” och huvudsidan skall visas.}
-			\requirement{x}{Om en inloggad användare är inaktiv i längre än 20 minuter skall sagd användare loggas ut och tvingas att logga in igen innan fortsatt användning av systemet.}
-			\requirement{x}{Ett användarkonto kan endast vara inloggat på en enhet åt gången.}
-			\requirement{x}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan enhet, kommer den nya inloggingen att genomföras medan den andra enheten loggas ut.}
-			\requirement{x}{Scenario 6.2.1 skall stödjas av systemet.}
-			\requirement{x}{Scenario 6.2.2 skall stödjas av systemet.}
+			\requirement{1}{Ett användarkonto kan endast vara inloggat på en enhet åt gången.}			
+			\requirement{2}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan enhet, kommer den nya inloggningen att genomföras medan den andra enheten loggas ut. }
+			\requirement{3}{För varje användare kan loginstatus antingen vara inloggad eller inte inloggad.}
+			\requirement{4}{Ett användarkonto kan endast vara inloggat på en enhet åt gången.}
+			\requirement{5}{Scenario 6.2.1 skall stödjas av systemet.}
+			\requirement{6}{Scenario 6.2.2 skall stödjas av systemet.}
 \subsubsection*{Användare}
-			\requirement{x}{Krav 6.1.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{x}{Krav 6.1.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{x}{Krav 6.1.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{7}{Krav 6.1.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{8}{Krav 6.1.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{9}{Krav 6.1.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 
 
 		\subsubsection*{Administratör}
-			\requirement{x}{En ny användare, skapad av administratören, måste ha ett unikt användarnamn samt bli tilldelad ett slumpmässigt lösenord från systemet.}
-			\requirement{x}{Om administratören försöker att lägga till en användare med ett användarnamn som redan existerar i systemet eller använder otillåtna tecken, skall användaren inte läggas till och ett felmeddelande skall visas.}
-			\requirement{x}{Krav 6.4.6. Om en administratör väljer administrationsvyn skall denne få åtkomst till administationsverktygen, men om samma sida försöker hämtas av en användare som inte är administratör skall denne istället få åtkomst till huvudsidan.}
-			\requirement{x}{I administrationsvyn skall alla användare listas med både användarnamn och lösenord.}
-			\requirement{x}{I administrationsvyn skall det vara möjligt att ta bort vilken användare som helst förutom administratören.}
-			\requirement{x}{I administrationsvyn skall det vara möjligt att lägga till en ny användare.}
-			\requirement{x}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav 6.3.1-2 skall ett felmeddelande visas och användaren skall inte läggas till.}
-			\requirement{x}{Endast administratören skall kunna skapa projektgrupper i systemet.}
-			\requirement{x}{Endast administratören skall kunna tilldela projektmedlemmar en projektledarroll.}
-			\requirement{x}{Endast administratören skall kunna lägga till eller ta bort projektmedlemmar i ett projekt. }
-			\requirement{x}{Endast administratören skall kunna ta bort projektgrupper ur systemet.}
-			\requirement{x}{Scenario 6.4.1 skall stödjas av systemet.}
-			\requirement{x}{Scenario 6.4.2 skall stödjas av systemet.}
-			\requirement{x}{Scenario 6.4.3 skall stödjas av systemet.}
-			\requirement{x}{Scenario 6.4.4 skall stödjas av systemet.}
-			\requirement{x}{Scenario 6.4.5 skall stödjas av systemet.}
-			\requirement{x}{Administratören skall kunna ta bort en tidrapportmall om den inte används av en projektgrupp (se krav 6.3.18).}
-
-		\subsubsection*{Projektledare}
-		\subsubsection*{Projektmedlem}
-		
-		\subsubsection*{Ej inloggad}
+			\requirement{10}{I administrationsvyn skall det vara möjligt att ta bort vilken användare som helst förutom administratören.}
+			\requirement{11}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav 6.3.1-2 skall ett felmeddelande visas och användaren skall inte läggas till.}
+			\requirement{12}{Scenario 6.4.1 skall stödjas av systemet.}
+			\requirement{13}{Scenario 6.4.2 skall stödjas av systemet.}
+			\requirement{14}{Scenario 6.4.3 skall stödjas av systemet.}
+			\requirement{15}{Scenario 6.4.4 skall stödjas av systemet.}
+			\requirement{16}{Scenario 6.4.5 skall stödjas av systemet.}
+			\requirement{17}{Administratören skall kunna ta bort en tidrapportmall om den inte används av en projektgrupp (se krav 6.3.18).}
+			
 		\subsubsection*{Data}
-			\requirement{x}{Krav 6.1.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{x}{Krav 6.1.7 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{19}{Krav 6.1.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{20}{Krav 6.1.7 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 
 	\subsection{Tidrapportering}
 		\label{krav-funk-tid}	
