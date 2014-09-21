@@ -6,16 +6,16 @@
 \contentsline {subsection}{\numberline {3.2}Akt\IeC {\"o}rer och deras m\IeC {\r a}l}{3}
 \contentsline {section}{\numberline {4}Terminologi}{3}
 \contentsline {section}{\numberline {5}Kontextdiagram}{4}
-\contentsline {section}{\numberline {6}Funktionella krav}{4}
-\contentsline {subsection}{\numberline {6.1}Generella krav}{4}
+\contentsline {section}{\numberline {6}Funktionella krav}{5}
+\contentsline {subsection}{\numberline {6.1}Generella krav}{5}
 \contentsline {subsection}{\numberline {6.2}Autentisering}{5}
-\contentsline {subsection}{\numberline {6.3}Data}{6}
-\contentsline {subsection}{\numberline {6.4}Administration}{7}
-\contentsline {subsection}{\numberline {6.5}Tidrapportering}{13}
-\contentsline {subsection}{\numberline {6.6}Projektledning}{15}
-\contentsline {section}{\numberline {7}Kvalitetskrav}{17}
-\contentsline {subsection}{\numberline {7.1}Underh\IeC {\r a}ll}{17}
-\contentsline {subsection}{\numberline {7.2}Prestanda}{18}
-\contentsline {subsection}{\numberline {7.3}Anv\IeC {\"a}ndarv\IeC {\"a}nlighet}{18}
-\contentsline {section}{\numberline {8}Projektkrav}{18}
-\contentsline {subsection}{\numberline {8.1}Utvecklingsmilj\IeC {\"o}}{18}
+\contentsline {subsection}{\numberline {6.3}Data}{5}
+\contentsline {subsection}{\numberline {6.4}Administration}{5}
+\contentsline {subsection}{\numberline {6.5}Tidrapportering}{5}
+\contentsline {subsection}{\numberline {6.6}Projektledning}{5}
+\contentsline {section}{\numberline {7}Kvalitetskrav}{5}
+\contentsline {subsection}{\numberline {7.1}Underh\IeC {\r a}ll}{5}
+\contentsline {subsection}{\numberline {7.2}Prestanda}{5}
+\contentsline {subsection}{\numberline {7.3}Anv\IeC {\"a}ndarv\IeC {\"a}nlighet}{5}
+\contentsline {section}{\numberline {8}Projektkrav}{5}
+\contentsline {subsection}{\numberline {8.1}Utvecklingsmilj\IeC {\"o}}{5}
