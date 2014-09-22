@@ -123,7 +123,7 @@ Här följer ord och uttryck som används i rapporten och är till för att öka
 \item [] \textbf{Logga:} in Då en användare identifierar sig mot systemet med användarnamn och lösenord, om systemet godkänner identifieringen loggar användaren in.
 \item [] \textbf{Lösenord:} Hemlig fras endast känd för var unik användare samt systemet så användaren kan påvisa sin identitet.
 \item [] \textbf{Meny:} Menyn används för navigering. Den finns på alla sidor för en inloggad användare.
-\item [] \textbf{Projektadministrationsfunktionaliter:} De funktionalliteter som faller in under en projektledare. Exempelvis att godkänna rapporter eller ta fram statestik.
+\item [] \textbf{Projektadministrationsfunktionaliter:} De funktionalliteter som faller in under en projektledare. Exempelvis att godkänna tidrapporter eller ta fram statestik.
 \item [] \textbf{Projektgrupp:} En grupp bestående av projektmedlemmar och projektledare.
 \item [] \textbf{Projektroll:} En roll som en Projektmedlem kan ges. T1, t2 eller t3.
 \item [] \textbf{Subaktivitet:} Anger vad för typ av arbete man har arbetat med.
@@ -248,8 +248,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
     \multicolumn{2}{|p{13cm}|}{4c. Användaren får felmeddelande eftersom inga fler användare existerar. Denne informeras om detta och skickas tillbaka till huvudsidan.}\\
      \multicolumn{2}{|p{13cm}|}{4d. Det går inte att skapa fler projektgrupper då maxgränsen är nådd.
      Användaren informeras om detta.}\\
-       \multicolumn{2}{|p{13cm}|}{5a. Användaren ska informeras om att det inte finns fler användare att lägga till i projektgruppen och få möjlighet att skickas till steg 7.}\\
-    \multicolumn{2}{|p{13cm}|}{5b. Användaren ska informeras om någon av grupperna har max antal användare. Denne ska inte ha möjlighet att lägga till fler projektmedlemmar i den nämnda gruppen.}\\
+
 
     \hline
 \end{tabular}
@@ -274,14 +273,15 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
 
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer ''redigera projektmedlemmar''.}\\
-	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med samtliga projektgrupper och eventuella projektmedlemmar och en lista med samtliga användare i systemet som inte är projektmedlemmar överhuvudtaget.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med samtliga projektgrupper och projektmedlemmar och en lista med samtliga användare i systemet som inte är projektmedlemmar överhuvudtaget.}\\
 	\multicolumn{2}{|p{13cm}|}{3. Användaren har nu möjlighet att flytta över projektmedlemmar och icke projektmedlemmar till olika projektgrupper. Denne kan även ange vilken roll som projekt-medlemmen eller -medlemmarna ska ha.} \\	
 	\multicolumn{2}{|p{13cm}|}{4. Användaren bekräftar genom att trycka ``OK''. Denne dirigeras till en sida med den nya informationen samt en bekräftelse.} \\	
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
     \multicolumn{2}{|p{13cm}|}{1a. Det existerar inga projektgrupper/projektmedlemmar. Användaren informeras om detta och skickas tillbaka till huvudsidan.}\\
     \multicolumn{2}{|p{13cm}|}{4a. Användaren får felmeddelande då denne försökt att flytta över en projektledare som är den enda i sin projektgrupp. Denne ombedes att tillsätta en ny projektledare i gruppen innan förflyttning kan äga rum. Användaren dirigeras till steg 3.} \\
-    \multicolumn{2}{|p{13cm}|}{5b. Användaren ska informeras om någon av grupperna har max antal användare. Denne ska inte ha möjlighet att lägga till fler projektmedlemmar i den nämnda gruppen. Användaren skickas tillbaka till steg 3.}\\
+    \multicolumn{2}{|p{13cm}|}{4b. Användaren ska informeras om någon av grupperna har max antal användare. Denne ska inte ha möjlighet att lägga till fler projektmedlemmar i den nämnda gruppen. Användaren skickas tillbaka till steg 3.}\\
+    \multicolumn{2}{|p{13cm}|}{4c. Om användaren tilldelar en projektgrupp en projektledaroll ska användaren informeras, om projektmedlemmens projektgrupp redan har max antal projektledare. Användaren ska då inte ha möjlighet att lägga till fler projektledare i den nämnda projektgruppen. Användaren skickas tillbaka till steg 3.}\\
 
     \hline
 \end{tabular}
@@ -307,13 +307,14 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer ta bort projektgrupp/projektmedlemmar.}\\
 	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med samtliga projektgrupper och eventuella projektmedlemmar.}\\
-	\multicolumn{2}{|p{13cm}|}{3. Informationen som skall tas bort markeras och därefter trycks ``OK''. Bekräftelserutan specificerad i krav \ref{krav-funk-gen}.10 visas. Användaren trycker ``Ja''.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. Användaren markerar projektmedlemmar för borttagning och trycker därefter OK. Bekräftelseruta specificerad i krav 6.1.11 visas och användaren trycker ''Ja''.} \\	
 	\multicolumn{2}{|p{13cm}|}{4. Den markerade informationen är nu borttagen och användaren dirigeras till en sida med uppdaterad information.} \\	
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
     \multicolumn{2}{|p{13cm}|}{1a. Det existerar inga projektgrupper/projektmedlemmar. Användaren informeras om detta och skickas tillbaka till huvudsidan.}\\
-    \multicolumn{2}{|p{13cm}|}{4a. Användaren trycker ``Nej'' och dirigeras tillbaka till steg 2.} \\
-    \multicolumn{2}{|p{13cm}|}{4b. Användaren försöker ta bort en projektmedlem som är ensam projektledare, i en projektgrupp där det åtminstone finns en projektmedlem till. Denne ombedes att tillsätta en ny projektledare och därefter försöka igen. Användaren skickas tillbaka till steg 2.} \\
+    \multicolumn{2}{|p{13cm}|}{3a. Användaren trycker ``Nej'' och dirigeras tillbaka till steg 2.} \\
+    \multicolumn{2}{|p{13cm}|}{3b. Användaren försöker ta bort en projektmedlem som är ensam projektledare, i en projektgrupp där det åtminstone finns en projektmedlem till. Denne ombedes att tillsätta en ny projektledare och därefter försöka igen. Användaren skickas tillbaka till steg 2.} \\
+     \multicolumn{2}{|p{13cm}|}{3c. Användaren försöker ta bort en projektgrupp. Användaren får då en fråga om denne vill ta bort ingående medlemmar också och väljer ''Ja'' eller ''Nej. Om ''Ja'' visas en dialogrutan specificerad under krav 6.1.11, om nej dirigeras användaren tillbaka till steg 2 .} \\
     \hline
 \end{tabular}
 \end{table}
@@ -335,20 +336,18 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
 
-	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer att skapa projektgrupp.}\\
-	\multicolumn{2}{|p{13cm}|}{2. Användaren väljer att skapa en ny tidrapportmall.} \\	
-	\multicolumn{2}{|p{13cm}|}{3. Denne väljer antal aktiviteter (rader) och subaktiviteter (kolumner) som ska finnas. Användaren fyller i önskat namn på tidrapportmallen och trycker ``OK''.} \\	
-	\multicolumn{2}{|p{13cm}|}{4. Tabell genereras med det antal givna rader och kolumner från steg 3 och visas för användaren.} \\	
-	\multicolumn{2}{|p{13cm}|}{5. Användaren fyller nu i aktivitets- och subaktivitetsnamn. Därefter trycker denne ``OK''.} \\	
-	\multicolumn{2}{|p{13cm}|}{6. Mallen är nu skapad, ihopkopplad med grundmallen och sparad. Användaren får en bekräftelse och dirigeras till den färdiga mallen.} \\	
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer att skapa en ny tidrapportmall.} \\	
+	\multicolumn{2}{|p{13cm}|}{2. Denne väljer antal aktiviteter (rader) och subaktiviteter (kolumner) som ska finnas. Användaren fyller i önskat namn på tidrapportmallen och trycker ``OK''.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. Tabell genereras med det antal givna rader och kolumner från steg 3 och visas för användaren.} \\	
+	\multicolumn{2}{|p{13cm}|}{4. Användaren fyller nu i aktivitets- och subaktivitetsnamn. Därefter trycker denne ``OK''.} \\	
+	\multicolumn{2}{|p{13cm}|}{5. Mallen är nu skapad, ihopkopplad med grundmallen och sparad. Användaren får en bekräftelse och dirigeras till den färdiga mallen.} \\	
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
-    \multicolumn{2}{|p{13cm}|}{2a. Användaren väljer att använda en befintlig tidrapportmall.}\\
-    \multicolumn{2}{|p{13cm}|}{3a. Det går inte att skapa fler mallar på grund av uppnådd maxgräns. Användaren informeras om detta.}\\
-    \multicolumn{2}{|p{13cm}|}{4a. Om namnet på mallen redan existerar informeras användaren om detta och ombedes att skriva ett annat namn. Användaren skickas tillbaka til steg 3.}\\
-    \multicolumn{2}{|p{13cm}|}{4b. Användaren får felmeddelande då antal kolumner och rader inte överensstämmer med specificeringen. Användaren skickas tillbaka till steg 3.}\\
-       \multicolumn{2}{|p{13cm}|}{4c. Användaren får felmeddelande då det inmatade namnet är otillåtet. Användaren skickas tillbaka till steg 3.}\\
-    \multicolumn{2}{|p{13cm}|}{6a. Användaren får felmeddelande då det inmatade aktivitets- eller subaktivitetsnamnet är otillåtna. Användaren skickas tillbaka till steg 5.}\\
+    \multicolumn{2}{|p{13cm}|}{2a. Det går inte att skapa fler mallar på grund av uppnådd maxgräns. Användaren informeras om detta.}\\
+    \multicolumn{2}{|p{13cm}|}{3a. Om namnet på mallen redan existerar informeras användaren om detta och ombedes att skriva ett annat namn. Användaren skickas tillbaka til steg 3.}\\
+    \multicolumn{2}{|p{13cm}|}{3b. Användaren får felmeddelande då antal kolumner och rader inte överensstämmer med det, av systemet, tillåtna antal. Användaren skickas tillbaka till steg 3.}\\
+       \multicolumn{2}{|p{13cm}|}{3c. Användaren får felmeddelande då det inmatade namnet är otillåtet. Användaren skickas tillbaka till steg 3.}\\
+    \multicolumn{2}{|p{13cm}|}{5a. Användaren får felmeddelande då det inmatade aktivitets- eller subaktivitetsnamnet är otillåtna. Användaren skickas tillbaka till steg 5.}\\
     \hline
 \end{tabular}
 \end{table}
@@ -374,7 +373,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer att ta bort tidrapportmall.}\\
 	\multicolumn{2}{|p{13cm}|}{2. En lista med tidrapportmallar visas för användaren.} \\	
 	\multicolumn{2}{|p{13cm}|}{3. Användaren markerar en tidrapportmall och trycker ``OK''.} \\	
-	\multicolumn{2}{|p{13cm}|}{4. När bekräftelserutan kommer upp trycker användaren ``Ja'' .} \\	
+	\multicolumn{2}{|p{13cm}|}{4. När bekräftelserutan, specificierad i krav 6.1.11, kommer upp trycker användaren ``Ja'' .} \\	
 	\multicolumn{2}{|p{13cm}|}{5. Mallen är nu borttagen. Användaren får en uppdaterad lista över mallar sparade i systemet.} \\	
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
@@ -404,9 +403,9 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 		\label{krav-funk-tid}	
 		\subsubsection*{Projektmedlem}
 			\requirement{1}{Projektmedlemmar skall kunna skapa, uppdatera och ta bort sina egna osignerade tidrapporter för de projekt de är medlemar i.}
-			\requirement{2}{En projektmedlem kan bara se sina egna rapporter.}
-			\requirement{3}{Projektmedlemmar ska inte kunna ta bort sina signerade rapporter.}
-			\requirement{4}{Projektmedlemmar ska inte kunna redigera sina signerade rapporter.}
+			\requirement{2}{En projektmedlem kan bara se sina egna tidrapporter.}
+			\requirement{3}{Projektmedlemmar ska inte kunna ta bort sina signerade tidrapporter.}
+			\requirement{4}{Projektmedlemmar ska inte kunna redigera sina signerade tidrapporter.}
 			\requirement{5}{Projektmedlemmar ska kunna föra in tidinformation enligt krav 6.3.4(???) och 6.3.12(???).}
 			
 %--------------SCENARIO
@@ -424,9 +423,9 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
 
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer tidrapportering i menyn.}\\
-	\multicolumn{2}{|p{13cm}|}{2. Ett fält där användaren kan fylla i veckonummer för veckan som skall rapporteras 	visas. Under fältet framgår det för vilken vecka senaste rapporten var skapad/reviderad.} \\	
+	\multicolumn{2}{|p{13cm}|}{2. Ett fält där användaren kan fylla i veckonummer för veckan som skall tidrapporteras 	visas. Under fältet framgår det för vilken vecka senaste rapporten var skapad/reviderad.} \\	
 	\multicolumn{2}{|p{13cm}|}{3. Användaren fyller i veckonummer och trycker ``OK''.} \\
-	\multicolumn{2}{|p{13cm}|}{4. En ny tidrapport genereras och visas med veckonumret från föregående steg samt dagens datum i fyllt.} \\
+	\multicolumn{2}{|p{13cm}|}{4. En ny tidrapport genereras och visas med veckonumret från föregående steg samt dagens datum ifyllt.} \\
 	\multicolumn{2}{|p{13cm}|}{5. Användaren kan nu fylla i tidinformation. Användaren bekräftar slutligen genom att trycka på ``Skicka'', längst ner på sidan.}\\
 	\multicolumn{2}{|p{13cm}|}{6. Rapporten sparas i databasen. En bekräftelse på att så har skett visas för användaren. Användaren kan även notera totaltiden.}\\ \hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
@@ -454,14 +453,14 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer ''Ta bort/redigera tidrapport''.}\\
-	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med sina egna rapporter. Det framgår tydligt vilka som är signerade/osignerade.} \\	
+	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med sina egna tidrapporter. Det framgår tydligt vilka som är signerade/osignerade.} \\	
 	\multicolumn{2}{|p{13cm}|}{3. Denne väljer en rapport och trycker ``Redigera''.} \\
 	\multicolumn{2}{|p{13cm}|}{4. Tidrapporten visas för användaren och kan nu redigeras. När användaren är klar trycker denne ``OK''.} \\
 	\multicolumn{2}{|p{13cm}|}{5. Tidrapporten är nu uppdaterad och användaren dirigeras till en bekräftelse sida. }\\
-	
+	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
-	\multicolumn{2}{|p{13cm}|}{3a. Om rapporten är osignerad kan användaren även välja ``Ta bort''. Användaren får upp en bekräftelseruta och dirigeras till steg 5 om denne trycker ``Ja''. Annars tillbaka till steg 2.}\\
-	\multicolumn{2}{|p{13cm}|}{4a. Tidrapporten kan endast redigeras om den är osignerad. Signerade rapporter visas men användaren har ingen möjlighet att ändra något. }\\
+	\multicolumn{2}{|p{13cm}|}{3a. Om rapporten är osignerad kan användaren även välja ``Ta bort''. Användaren får upp en bekräftelseruta, specificerad i krav 6.1.1 och dirigeras till steg 5 om denne trycker ``Ja''. Annars tillbaka till steg 2.}\\
+	\multicolumn{2}{|p{13cm}|}{4a. Tidrapporten kan endast redigeras om den är osignerad. Signerade tidrapporter visas men användaren har ingen möjlighet att ändra något. }\\
 	\multicolumn{2}{|p{13cm}|}{5a. Felaktig inmatning av tidinformation. Användaren skickas tillbaka till steg 4. }\\
     \hline
 \end{tabular}
@@ -554,7 +553,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
     \hline
     
     \multicolumn{2}{|p{13cm}|}{ \indent\scenario{1}} \\
-    \textbf{Syfte} & Generera rapporter från systemet.\\
+    \textbf{Syfte} & Generera tidrapporter från systemet.\\
     \textbf{Trigger} & En användare kommer in på statistiksidan för sitt projekt. \\
     \textbf{Förutsättning} & Användaren måste ha rättigheter som en projektledare för det givna projektet.\\
     \hline
@@ -581,7 +580,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
     
     \multicolumn{2}{|p{13cm}|}{ \indent\scenario{2}} \\
     \textbf{Syfte} & Godkänna en tidrapport.\\
-    \textbf{Trigger} & Användaren väljer att lista alla rapporter. \\
+    \textbf{Trigger} & Användaren väljer att lista alla tidrapporter. \\
     \textbf{Förutsättning} & Användaren måste ha rättigheter som en projektledare för det givna projektet.\\
     \hline
 
@@ -591,7 +590,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 	\multicolumn{2}{|p{13cm}|}{2. Efter att ha kollat igenom rapporten och funnit den ``OK'' väljer den att godkänna.} \\	
 	\multicolumn{2}{|p{13cm}|}{3. Användaren trycker på knappen för att godkänna aktuell rapport.} \\
 	\multicolumn{2}{|p{13cm}|}{4. En dialogruta beskriver att rapporten blivigt godkänd.} \\
-	\multicolumn{2}{|p{13cm}|}{5. Användaren dirigeras tillbaka till sidan över alla rapporter.} \\
+	\multicolumn{2}{|p{13cm}|}{5. Användaren dirigeras tillbaka till sidan över alla tidrapporter.} \\
 	
 		
 	\hline
@@ -610,7 +609,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
     
     \multicolumn{2}{|p{13cm}|}{ \indent\scenario{3}} \\
     \textbf{Syfte} & Ta tillbaka godkännande av en tidrapport.\\
-    \textbf{Trigger} & Användaren väljer att lista alla rapporter. \\
+    \textbf{Trigger} & Användaren väljer att lista alla tidrapporter. \\
     \textbf{Förutsättning} & Användaren måste ha rättigheter som en projektledare för det givna projektet.\\
     \hline
 
@@ -619,7 +618,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer en rapport den vill godkänna.}\\	
 	\multicolumn{2}{|p{13cm}|}{2. Användaren trycker på knappen för att ta tillbaka sitt godkänande av rapporten.} \\
 	\multicolumn{2}{|p{13cm}|}{3. En dialogruta beskriver att rapporten ej längre är godkänd.} \\
-	\multicolumn{2}{|p{13cm}|}{4. Användaren dirigeras tillbaka till sidan över alla rapporter.} \\
+	\multicolumn{2}{|p{13cm}|}{4. Användaren dirigeras tillbaka till sidan över alla tidrapporter.} \\
 		
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
@@ -643,16 +642,16 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
     
     \multicolumn{2}{|p{13cm}|}{ \indent\scenario{4}} \\
     \textbf{Syfte} & Hitta en rapport genom att sortera dem.\\
-    \textbf{Trigger} & Användaren väljer att visa alla rapporter för ett projekt. \\
+    \textbf{Trigger} & Användaren väljer att visa alla tidrapporter för ett projekt. \\
     \textbf{Förutsättning} & Användaren måste ha rättigheter som en projektledare för det givna projektet.\\
     \hline
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
 
-	\multicolumn{2}{|p{13cm}|}{1. Användaren trycker på valet att sortera alla rapporter efter namn, stigande ordning.}\\	
-	\multicolumn{2}{|p{13cm}|}{2. Alla rapporter visas sorterade efter det givna valet.} \\
-	\multicolumn{2}{|p{13cm}|}{3. Användaren trycker på valet att sortera alla rapporter efter namn, fallande ordning.} \\
-	\multicolumn{2}{|p{13cm}|}{4. Alla rapporter visas sorterade efter det givna valet.} \\
+	\multicolumn{2}{|p{13cm}|}{1. Användaren trycker på valet att sortera alla tidrapporter efter namn, stigande ordning.}\\	
+	\multicolumn{2}{|p{13cm}|}{2. Alla tidrapporter visas sorterade efter det givna valet.} \\
+	\multicolumn{2}{|p{13cm}|}{3. Användaren trycker på valet att sortera alla tidrapporter efter namn, fallande ordning.} \\
+	\multicolumn{2}{|p{13cm}|}{4. Alla tidrapporter visas sorterade efter det givna valet.} \\
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
     \multicolumn{2}{|p{13cm}|}{1a. Användaren väljer istället för namn, att sortera efter vecka.}\\    
