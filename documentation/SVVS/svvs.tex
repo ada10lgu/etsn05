@@ -5,6 +5,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{enumitem}
+\usepackage{titleref}
 
 \usepackage[swedish]{babel}      
 \usepackage{epstopdf}     % För svensk avstavning och svenska
@@ -16,16 +17,26 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 0.8 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 0.9 | Dokumentnummer: PUSS144403}
 
+\newcommand\invisiblesubsubsection[1]{%
+  \refstepcounter{subsubsection}%
+  \addcontentsline{toc}{subsubsection}{\protect\numberline{\thesubsubsection}#1}%
+  \sectionmark{#1}}
+
+\renewcommand{\thesection}{\hspace*{-1.0em}}
+\renewcommand{\thesubsection}{\arabic{subsection}}
 
 \newlist{FT}{enumerate}{1}
-\setlist[FT]{label=FT\arabic*}
+\setlist[FT]{label=FT \thesubsubsection.\arabic*}
 
 \newlist{ST}{enumerate}{1}
-\setlist[ST]{label=ST\arabic*}
+\setlist[ST]{label=ST \thesubsubsection.\arabic*}
 
-%\newcommand{\krav}[1]{\[SRS~krav~#1\]}
+\def\reqinside{\hfil\penalty 100 \hfilneg \hbox}
+\def \req [#1]{\reqinside{[SRS krav #1]}}
+
+\def\myurl{\hfil\penalty 100 \hfilneg \hbox}
 
 \title{SVVS - Software Verification and Validation Specification: NewPussSystem}                  	
 \author{Testgruppen \\ Axel Ulmestig | Axel Goteman | Sefik Ceric \\ Victor Johnsson | Johan Kellerth Fredlund}
@@ -40,16 +51,17 @@
 
 \section*{Dokumenthistorik}
 
-\begin{tabular}{ l l l l }
+\begin{tabular}{ l l l p{9cm} }
 Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.1 & 11 september 2014 & TG & Första utkast \\
-0.2 & 14 september 2014 & TG & Anpassning efter SRS v0.10, regressionstest inlagda \\
+0.2 & 14 september 2014 & TG & Anpassning er SRS v0.10, regressionstest inlagda \\
 0.3 & 14 september 2014 & TG & Anpassning efter SRS v0.12, referenser uppdaterade\\
 0.4 & 16 september 2014 & TG & Anpassning efter SRS v0.14, tillagda FT och ST samt revidering av vissa test\\
 0.5 & 16 september 2014 & TG & Anpassning efter SRS v0.15\\
 0.6 & 16 september 2014 & TG & Anpassning efter SRS v0.16\\
 0.7 & 16 september 2014 & TG & Små omformuleringar \\
 0.8 & 16 september 2014 & TG & Anpassning efter SRS v0.17\\
+0.9 & 22 september 2014 & TG & Anpassning efter SRS v0.18 och ändringar efter den formella granskningen \\
 
 \end{tabular}
 \section{Inledning}       
@@ -58,8 +70,9 @@ Detta dokument innehåller information om vilka tester och granskningar som ska 
 
 \section{Referensdokument}
 \begin{enumerate}
-\item System Requirements Specification v0.14
+\item System Requirements Specification v0.18
 \item Programvaruutveckling för stora system - Projekthandledning
+\item System Requirements Specification: BaseBlockSystem
 \end{enumerate}
 
 \section{Definitioner}
@@ -159,8 +172,10 @@ Under vilket kunden utför ett urval av ovanstående tester samt ett par för le
 
 \section{Krav som tas upp vid granskningar}
 
+
+
 Vid granskningar ska alla krav granskas.
-Följande krav (i Ref.1) är endast verifierbara genom granskningar: 7.1.1, 7.1.2, 8.1.1, 8.1.2, 8.1.3 och 8.1.4.
+Följande krav (i Ref.1) är endast verifierbara genom granskningar: 6.1.5, 6.2.3, 6.2.8, 6.2.22, 6.3.30, 7.1.1, 7.1.2, 7.1.3, 7.3.1, 8.1.1, 8.1.2, 8.1.3 och 8.1.4.
 
 \section{Bilagor}
 
@@ -178,290 +193,453 @@ Det finns tre bilagor:
 \begin{appendices}
 
 \section{Funktionstestsspecifikation}
-%After each test case the tested requirements according to Ref. 2 are listed.
 Efter varje testfall står vilket eller vilka krav som det testar (Ref. 1).
 
+%+++++++++++++++++++++++++++% 
+%BÖRJAN på FT:generella krav%
+%+++++++++++++++++++++++++++%
+
+\subsection{Generella krav}
+
+\subsubsection{Användare}
+
 \begin{FT}
-
-
-\item
-Administratören försöker lägga till en användare ,medlem i en projektgrupp, i en ny projektgrupp utan att ta bort denne från tidigare grupp [SRS krav 6.1.1]
-
-\item
-\emph{Manuell miljö:} Den funktionalitet som användaren har rätt till finns tillgänglig i menyn [SRS krav 6.1.4]
-
-\item
-\emph{Manuell miljö:} Menyn finns tillgänglig på samtliga sidor i systemet [SRS krav 6.1.8]
-
-\item
-Administratören försöker lägga in en ny användare då det finns 20 användare i en projektgrupp [SRS krav 6.1.9]
-
-\item
-Administratören försöker ta bort en användare då det finns 1 användare i en projektgrupp [SRS krav 6.1.9]
-
-\item
-Administratören får en bekräftelseruta då denne ska ta bort till en användare i systemet [SRS krav 6.1.10, 6.4.9]
-
-\item
-Administratören ger en användare rollen som projektledare [SRS krav 6.1.11, 6.6.6]
-
-\item
-En projektledare ger en användare rollen som projektledare [SRS krav 6.1.11, 6.6.6]
-
-\item
-Adminstratören ger en användare rollen t1 [SRS krav 6.1.11, 6.6.6]
-
-\item
-Projektledaren ger en användare rollen t1 [SRS krav 6.1.11, 6.6.6]
-
-\item
-Adminstratören ger en användare rollen t2 [SRS krav 6.1.11, 6.6.6]
-
-\item
-Projektledaren ger en användare rollen t2 [SRS krav 6.1.11, 6.6.6]
-
-\item
-Adminstratören ger en användare rollen t3 [SRS krav 6.1.11, 6.6.6]
-
-\item
-Projektledaren ger en användare rollen t3 [SRS krav 6.1.11, 6.6.6]
-
-\item
-Administratören försöker ge en användare rollen projektledare då det redan finns 2 av dessa i projektgruppen [SRS krav 6.1.12]
-
-\item
-Administratören försöker ge en användare rollen t1 då det redan finns 6 av dessa i projektgruppen [SRS krav 6.1.13]
-
-\item
-Administratören försöker ge en användare rollen t2 då det redan finns 6 av dessa i projektgruppen [SRS krav 6.1.13]
-
-\item
-Administratören försöker ge en användare rollen t3 då det redan finns 6 av dessa i projektgruppen [SRS krav 6.1.13]
-
-\item
-En användare lyckas logga in med rätt användarnamn och lösenord [SRS krav 6.2.4, 6.2.9]
-
-\item
-En användare försöker logga in med fel användarnamn fast rätt lösenord [SRS krav 6.2.4, 6.2.9]
-
-\item
-En användare försöker logga in med rätt användarnamn fast fel lösenord [SRS krav 6.2.4, 6.2.9]
-
-\item
-En användare försöker logga in med fel användarnamn och fel lösenord [SRS krav 6.2.4, 6.2.9]
-
-\item 
-En användare blir utloggad efter 20 minuters inaktivitet [SRS krav 6.2.6]
-
-\item 
-Logga in med en användare på en enhet och logga in på en annan enhet med samma användare, inloggningen på den andra enheten skall loggas in och inloggning på den första enheten skall loggas ut [SRS krav 6.2.7, 6.2.8]
-
-\item
-Administratören tar bort en tidrapportmall som inte används i ett projekt [SRS krav 6.1.18]
-
-\item
-\emph{Manuell miljö:} Tidrapportering sker i antal minuter [SRS krav 6.3.4, 6.5.5]
-
-\item
-\emph{Manuell miljö:} Tidrapportens utseende, med avseende på vilka aktiviteter man kan föra in tidinformation i, bestäms av administratören innan projektgruppen har skapats [SRS krav 6.3.5, 6.4.16]
-
-\item
-\emph{Manuell miljö:} Försök att med ett skapat projekt ändra tidrapportens utseende [SRS krav 6.3.5]
-
-\item
-Tidrapportens grundmall skall innehålla information om användarnamn, projektgruppsnamn, datum, veckonummer och om den är signerad eller inte [SRS krav 6.3.6]
-
-\item
-När en tidsrapportsmall skapas, sparas den på servern [SRS krav 6.3.7]
-
-\item
-Spara 20 tidsrapportsmallar, kontrollera att de är sparade [SRS krav 6.3.8]
-
-\item
-Försök spara mer än 21 tidsrapportsmallar, kontrollera att den sista inte sparas [SRS krav 6.3.8]
-
-\item
-En tidrapportmall består av 1-10 rader samt 1-5 kolumner som det går att mata in tidsinformation i [SRS krav 6.3.9]
-
-\item
-Namnet på tidrapportmallen kan endast bestå av 5 tecken, ascii (decimal) värden 48-57 och
-97-122 är tillåtna [SRS krav 6.3.10, 6.4.17]
-
-\item
-Namnet på aktivitet och subaktivitet kan endast bestå av 3-5 tecken respektive 1 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna [SRS krav 6.3.11]
-
-\item
-Tidinformationen innehåller endast 1-5 tecken per aktivitetsruta, ascii (decimal) värden 48-57 [SRS krav 6.3.12, 6.5.5]
-
-\item
-Försök skapa en ny tidrapportsmall med ett namn som redan finns [SRS krav 6.3.13, 6.4.17]
-
-\item
-Försök skapa projektgrupp med namn som är kortare än fem tecken eller längre än 10 tecken [SRS krav 6.3.14]
-
-\item
-Försök skapa projektgrupp med namn som innehåller tecken som inte innefattas av ascii (decimal) värden 48-57 eller 97-122 [SRS krav 6.3.14]
-
-\item
-Försök skapa en ny projektgrupp med ett namn som redan finns [SRS krav 6.3.15]
-
-\item
-Försök fylla i ett veckonummer som är kortare än 1 tecken eller längre än 2 teck [SRS krav 6.3.16]
-
-\item
-Försök fylla i ett veckonummer som inte enbart innehåller ascii (decimal) värden 48-57 [SRS krav 6.3.16]
-
-\item
-Lagra 100 tidsrapporter för en användare, kontrollera att de finns i databasen [SRS krav 6.3.17]
-
-\item
-Lagra mer än 100 tidsrapporter för en användare, de skrivs över enligt FIFO-principen [SRS krav 6.3.17]
-
-\item
-Admin försöker ta bort en tidrapportmall som används i ett projekt [SRS krav 6.3.18, 6.4.22]
-
-\item
-Lagra 5 projektgrupper, kontrollera att de finns i databasen [SRS krav 6.3.20]
-
-\item
-Försök att lagra mer än 5 projektgrupper [SRS krav 6.3.20]
-
-\item
-Lyckad inloggning på systemet med användarnamn 'admin' och lösenord 'adminpw' [SRS krav 6.4.2]
-
-\item 
-Administrationsvyn finns tillgänglig för administratören [SRS krav 6.4.3, 6.4.6]
-
-\item
-Administrationsvyn finns inte tillgänglig för användare som inte är administratörer [SRS krav 6.4.6]
-
-\item
-Skapa ett nytt konto från adminkontot med unikt namn och kontrollera att användaren har tilldelats ett slumpmässigt lösenord [SRS krav 6.4.4, 6.4.5]
-
-\item
-Administratören försöker att lägga till användare med ett upptaget användarnamn [SRS krav 6.3.1, 6.3.2, 6.4.4, 6.4.5]
-
-\item
-Administratören lyckas ta bort konton i administratörsvyn som inte är ett administratörskonto [SRS krav 6.4.8]
-
-\item
-Administratören försöker i administratörsvyn ta bort administratörskontot [SRS krav 6.4.8]
-
-\item
-Administrationsvyn innehåller listas alla användare med både användarnamn och lösenord [SRS krav 6.4.7]
-
-\item
-Administratören lyckas lägga till en ny användare med korrekt data för användarnamn och lösenord [SRS krav 6.3.1, 6.3.3, 6.4.10]
-
-\item
-Administratören fösöker lägger till en ny användare med korrekt data för användarnamn men fel lösenordsdata, ett felmeddelande visas [SRS krav 6.3.1, 6.3.3, 6.4.10, 6.4.11]
-
-\item
-Administratören försöker lägger till en ny användare med fel data för användarnamn och korrekt lösenordsdata, ett felmeddelande visas [SRS krav 6.3.1, 6.3.3, 6.4.5, 6.4.10, 6.4.11]
-
-\item
-Administratören försöker lägger till en ny användare med fel data för användarnamn och lösenord, ett felmeddelande visas [SRS krav 6.3.1, 6.3.3, 6.4.5, 6.4.10, 6.4.11]
-
-\item 
-Administratören lyckas skapa en projektgrupp med gruppnamn och projektledare [SRS krav 6.4.12, 6.4.13, 6.3.14, 6.4.17]
-
-\item 
-Administratören försöker skapa en projektgrupp med gruppnamn men utan projektledare [SRS krav 6.4.12, 6.4.13, 6.3.14]
-
-\item 
-Administratören försöker skapa en projektgrupp utan gruppnamn fast med projektledare [SRS krav 6.4.12, 6.4.13, 6.3.14]
-
-\item 
-Administratören försöker skapa en projektgrupp utan gruppnamn och projektledare [SRS krav 6.4.12, 6.4.13, 6.3.14]
-
-\item
-En användare försöker skapa en projektgrupp [SRS krav 6.4.12]
-
-\item 
-Administratören lyckas lägga till en medlem i en projektgrupp [SRS krav 6.4.14]
-
-\item 
-Administratören lyckas ta bort en medlem i en projektgrupp [SRS krav 6.4.14]
-
-\item 
-Någon som inte är administratör försöker lägga till en medlem i en projektgrupp [SRS krav 6.4.14]
-
-\item 
-Någon som inte är administratör försöker ta bort en medlem i en projektgrupp [SRS krav 6.4.14]
-
-\item
-Administratören lyckas ta bort en projektgrupp [SRS krav 6.4.15, 6.4.16]
-
-\item
-En användare försöker ta bort en projektgrupp [SRS krav 6.4.15]
-
-\item 
-Administratören utformar en tidsrapportmall [SRS krav 6.4.16]
-
-
-%TIDSRAPPORTERING Sefik Ceric, Victor Johnsson
-\item
-Generera en ny tidrappport och kontrollera att den är osignerad [SRS~krav~6.5.1, 6.5.2]
-
-\item
-Användare lyckas skapa en  egen osignerad tidsrapport [SRS~krav~6.5.2]
-
-\item
-Användare lyckas uppdatera egen osignerad tidrapport [SRS~krav~6.5.2]
-
-\item
-Användare lyckas ta bort en egen osignerad tidrapport [SRS~krav~6.5.2]
-
-\item
-Användare försöker ta bort egen signerad tidrapport [SRS~krav~6.5.3]
-
-\item
-Användare försöker redigera egen signerad tidrapport [SRS~krav~6.5.3]
-
-\item
-Användare som inte är projektledare försöker se en annan användares tidrapporter [SRS~krav~6.5.4]
-
-%PROJEKTLEDNING Victor Johnsson
-\item
-Ett projekt kan inte ha mer än två eller mindre än en projektledare [SRS~krav~6.6.1]
-
-\item
-Projektledare har tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp [SRS~krav~6.6.2]
-
-\item
-Projektledaren kan godkänna ej tidigare godkända tidrapporter från medlemmar i sin projektgrupp [SRS~krav~6.6.3]
-
-\item
-Projektledaren tar tillbaka sitt godkännande från en tidigare godkänd gruppmedlems tidsrapport, i sin projektgrupp [SRS~krav~6.6.4]
-
-\item
-Projektledaren kan, inom sitt projekt, summera alla tidsrapporter [SRS~krav~6.6.5]
-
 \item
-Projektledaren kan, inom sitt projekt, summera tidsrapporter per användare/roll/aktivitet/vecka [SRS~krav~6.6.5]
+\emph Alla användare har tillgång till tidrapportering, projektinformation, byta lösenord samt utloggning \req[6.1.1]
 
 \item
-Projektledaren kan, inom sitt projekt, ändra och tilldela roller hos användare [SRS~krav~6.6.6]
+Funktionaliteter tidrapportering, projektinfomation, byta lösenord och utloggning ska finns tillgänglig i menyn \req[6.1.2]
 
-\item
-Projektledaren lista alla ej godkända rapporter [SRS krav 6.6.8]
-
-\item
-Projektledaren listar alla godkända rapporter [SRS krav 6.6.9]
+\item Alla inloggade användare, oavsett typ  av användare skall ha tillgänglig till Menyn på samtliga sidor som visas \req[6.1.3]
 
 \item
-Projektledaren listar alla rapporter [SRS krav 6.6.13]
+Försök ge inkorrekt input till systemet (felaktiga tecken, SQL-injections) \req[6.1.4]
 
 \item
-Administratören tar bort en tidrapportmall som inte används av en projektgrupp [SRS krav 6.4.22]
-
-\item
-Administratören försöker ändra en tidrapportmall som redan färdigställts [SRS krav 6.3.19]
-
+I en projektgupp får det finns max två stycken projektledare och tre typer av roller: t1, t2, och t3. \req[6.1.6]
 \end{FT}
+
+\subsubsection{Projektledare}
+\begin{FT}
+\item
+Varje projekt har minst en och max två användare som besitter rollen som projektledare  \req[6.1.8]
+
+\item
+Projektledare har tillgång till projektadminsistationsfunktionaliteter som listas under "projektadministation". Det ska finnas tillgängligt för dem i menyn \req[6.1.9]
+\end{FT}
+
+\subsubsection{Administratör}
+
+\begin{FT}
+\item
+Försök lägga till administratören i en projektgrupp \req[6.1.11]
+
+\item
+Alla steg i flödeschemat i figur 4 i SRS stödjs \req[6.1.13]
+\end{FT}
+
+\subsubsection{Data}
+
+\begin{FT}
+\item När man tar bort en projektledare bekräftar man bortagningen genom en dialogruta, väljer man ``Ja'' tas projektledaren bort och man dirigeras till en uppdaterad lista av användarna \req[6.1.14]
+
+\item När man tar bort en vanlig användare bekräftar man bortagningen genom en dialogruta, väljer man ``Ja'' tas den vanliga användaren bort och man dirigeras till en uppdaterad lista av användarna \req[6.1.14]
+
+\item När man tar bort en projektledare bekräftar man bortagningen genom en dialogruta, väljer man ``Nej'' tas projektledaren inte bort och man dirigeras till listan av användarna \req[6.1.14]
+
+\item När man tar bort en vanlig användare bekräftar man bortagningen genom en dialogruta, väljer man ``Nej'' tas den vanliga användaren inte bort och man dirigeras till listan av användarna \req[6.1.14]
+\end{FT}
+
+%+++++++++++++++++++++++++++% 
+%SLUTET på FT:generella krav%
+%+++++++++++++++++++++++++++%
+
+
+
+
+
+%++++++++++++++++++++++++++% 
+%BÖRJAN på FT:autentisering%
+%++++++++++++++++++++++++++%
+%Sektion av Axel G
+
+\subsection{Autentisering}
+\subsubsection{Övergripande}
+
+\begin{FT}
+\item 
+\emph{Manuell miljö:} Logga in med en användare på en terminal och logga in på en annan enhet med samma användare, inloggningen på den andra enheten skall loggas in och inloggning på den första enheten skall loggas ut.\req[6.2.1, 6.2.2]
+
+\item
+Systemet håller login status i en server session \req[6.2.4]
+
+\item
+Administratören försöker skapa en användare med användarnamn som är 4 tecken eller mindre långt. Användandes endast tecken definierade i ascii nummer (48-57, 65-90, 97-122)
+\req[6.2.5, 6.2.15]
+
+\item
+Administratören försöker skapa en användare med användarnamn som är 11 tecken eller längre långt.
+Användandes endast tecken definierade i ascii nummer (48-57, 65-90, 97-122)
+\req[6.2.5, 6.2.15]
+
+\item
+Administratören försöker skapa en användare med användarnamn innehåller ett eller flera tecken utanför de tecken definierade i ascii nummer (48-57, 65-90, 97-122)
+\req[6.2.5, 6.2.15]
+
+\item
+Administratören försöker skapa en ny användare med ett användarnamn som redan finns registrerat hos systemet.
+\req[6.2.6, 6.2.15]
+
+\item
+\emph{Manuell miljö:} Försök skapa/byta till ett lösenord som innehåller fler eller färre än 6 tecken. Lösenordet består av tecken definierade i ascii nummer (97-122).
+\req[6.2.7]
+
+\item
+\emph{Manuell miljö:} Försök skapa/byta till ett lösenord med tecken som innehåller ett eller flera tecken som är utanför de definierade i ascii nummer (97-122).
+\req[6.2.7]
+\end{FT}
+
+%Användare
+\subsubsection{Användare}
+
+\begin{FT}
+\item
+\emph{Manuell miljö:} Gå igenom alla url's en inloggad användare ska ha tillgång till och verifiera att en utloggnings funktionallitet finns synlig och tillgänglig.
+\req[6.2.12]
+
+\item
+Inaktivitet i 20 minuter gör att inloggnings status förändras till inte inloggad.
+\req[6.2.13]
+\end{FT}
+
+%Administratör
+\subsubsection{Administratör}
+
+\begin{FT}
+\item
+Administratören kan ta bort alla användare förutom sig själv i systemet \req[6.2.14]
+
+\item
+\emph{Manuell miljö:} Administratören försöker ta bort sig själv från systemet \req[6.2.14]
+
+\item
+Administratör lyckas ta bort en tidrapportmall som inte används av en projektgrupp \req[6.2.21]
+\end{FT}
+
+%Data
+\subsubsection{Data}
+
+\begin{FT}
+\item
+\emph{Manuell miljö:} Ge servern ett användarnamn och lösenord, kontrollera att dessa kontrolleras mot de redan registrerade användarna. Systemet ska sedan dirigera om användaren till en sida med användarfunktioner och sessions statusen ska ändras till inloggad.
+\req[6.2.23]
+\end{FT}
+
+\subsubsection{Ej inloggad}
+
+\begin{FT}
+\item
+En icke inloggad användare når systemet och tvingas då lämna inloggningsinformation.
+\req[6.2.24]
+\end{FT}
+
+%++++++++++++++++++++++++++% 
+%SLUTET på FT:autentisering%
+%++++++++++++++++++++++++++%
+
+
+
+
+
+
+
+%++++++++++++++++++++++++++++% 
+%BÖRJAN på FT:tidrapportering%
+%++++++++++++++++++++++++++++%
+%Johan
+\subsection{Tidrapportering}
+
+%tidrapportering
+\subsubsection{Projektmedlem}
+
+\begin{FT}
+\item
+Projektmedlem lyckas skapa en egen osignerad tidrapport \req[6.3.1, 6.3.50]
+\item
+Projektmedlem lyckas uppdatera sin egen osignerade tidrapport \req[6.3.1]
+\item
+Projektmedlem lyckas ta bort sin egen osignerade tidrapport \req[6.3.1]
+\item
+\emph{Manuell miljö:} Vid tidrapporteringsfunktionaliten kan en projektmedlem endast se sina egna tidrapporter \req[6.3.2]
+\item
+Projektmedlem försöker ta bort en av sina signerade tidrapporter \req[6.3.3]
+\item
+Projektmedlem försöker redigera en signerad tidrapport \req[6.3.4]
+\end{FT}
+
+%tidrapportering
+\subsubsection{Projektledare}
+
+\begin{FT}
+\item
+\emph{Manuell miljö:} Projektledaren har tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp \req[6.3.9]
+\item
+Projektledaren lyckas godkänna en ej tidigare godkänd tidrapport från en medlem i sin projektgrupp \req[6.3.10]
+\item
+Projektledaren lyckas ta tillbaka sitt godkännande från en tidigare godkänd tidrapport \req[6.3.11]
+\item
+Projektledaren lyckas generera statistik i form av tidrapporter per användare \req[6.3.12]
+\item
+Projektledaren lyckas generera statistik i form av tidrapporter per roll \req[6.3.13]
+\item
+Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet \req[6.3.14]
+\item
+Projektledaren lyckas generera statistik i form av tidrapporter per vecka \req[6.3.15]
+\item
+Projektledaren lyckas generera statistik i form av tidrapporter per användare och aktivitet \req[6.3.16]
+\item
+Projektledaren lyckas generera statistik i form av tidrapporter per användare och vecka \req[6.3.17]
+\item
+Projektledaren lyckas generera statistik i form av tidrapporter per roll och aktivitet \req[6.3.18]
+\item
+Projektledaren lyckas generera statistik i form av tidrapporter per roll och vecka \req[6.3.19]
+\item
+Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet och vecka \req[6.3.20]
+\item
+\emph{Manuell miljö:} Projektledaren kan se sammalagd arbetstid från valda tidrapporter \req[6.3.12-20, 6.3.21]
+\item
+\emph{Manuell miljö:} Projektledaren kan se sammalagd arbetstid från en vald aktivitet från valda tidrapporter \req[6.3.12-20, 6.3.22]
+\item
+\emph{Manuell miljö:} Projektledaren kan se sammalagd arbetstid från en vald subaktivitet från valda tidrapporter \req[6.3.13-20, 6.3.23]
+\item
+\emph{Manuell miljö:} Projektledaren kan se hur ofta en vald aktivitet har utförts i valda tidrapporter \req[6.3.13-20, 6.3.24]
+\item
+\emph{Manuell miljö:} Projektledaren kan se hur ofta en vald subaktivitet har utförts i valda tidrapporter \req[6.3.13-20, 6.3.25]
+\item
+\emph{Manuell miljö:} Projektledaren kan se vilken aktivitet som har tagit mest tid från tidrapportererna \req[6.3.13-20, 6.3.26]
+\item
+\emph{Manuell miljö:} Projektledaren kan se vilken aktivitet som är vanligast från tidrapportererna  \req[6.3.13-20, 6.3.27]
+\item
+\emph{Manuell miljö:} Projektledaren kan se vilken vecka som har mest rapporterad tid från tidrapportererna \req[6.3.13-20, 6.3.28]
+\end{FT}
+
+
+%tidrapportering
+\subsubsection{Data}
+
+\begin{FT}
+\item
+Lagra 100 tidrapporter/användare \req[6.3.35]
+\item
+Försök att lagra mer än 100 tidrapporter/användare, efter uppnådd maxgräns skrivs
+de över enligt FIFO-principen \req[6.3.35]
+%Admin anger rätt mängd aktiviteter/subakt när scenario 6.2.4 genomförs i ST
+\item
+Administratör försöker ange 0 aktiviteter i en tidrapportmall \req[6.3.38]
+\item
+Administratör försöker ange 21 aktiviteter i en tidrapportmall \req[6.3.38]
+\item
+Administratör försöker ange 0 subaktiviteter i en tidrapportmall \req[6.3.39]
+\item
+Administratör försöker ange 21 subaktiviteter i en tidrapportmall \req[6.3.40]
+\item
+\emph{Manuell miljö:} Antalet aktiviteter anger antalet rader i tidrapporter \req[6.3.40]
+\item
+\emph{Manuell miljö:} Antalet subaktiviteter anger antalet kolumner i tidrapporter \req[6.3.41]
+\item
+\emph{Manuell miljö:} En tidrapport innehåller information om användarnamn \req[6.3.42, 6.3.51]
+\item
+\emph{Manuell miljö:} En tidrapport innehåller information om projektgruppsnamn \req[6.3.43, 6.3.51]
+\item
+\emph{Manuell miljö:} En tidrapport innehåller information om datum i form "dag månad år" \req[6.3.44, 6.3.51]
+\item
+\emph{Manuell miljö:} En tidrapport innehåller information om veckonummer \req[6.3.45, 6.2.51]
+\item
+\emph{Manuell miljö:} Det ska framgå tydligt att en tidrapport är signerad eller inte \req[6.3.46]
+\item
+Administratör försöker ändra tidrapportmallens utformning efter att den har
+skapats \req[6.3.49]
+\item
+Generera grundmallen för tidrapporterna automatiskt av systemet \req[6.3.52]
+\end{FT}
+
+%+++++++++++++++++++++++++++%
+%SLUT på FT:Administration++%
+%+++++++++++++++++++++++++++%
+
+
+
+
+
+
+%+++++++++++++++++++++++++++%
+%början på FT:Administration%
+%+++++++++++++++++++++++++++%
+%------Victor Johnsson------
+
+\subsection{Administration}
+\subsubsection{Övergripande}
+
+\begin{FT}
+\item Kontrollera att man från huvudsidan kan komma åt administrationssidan \req[6.4.1]
+
+\item
+Administratören navigerar till administrationssidan \req[6.4.2]
+
+\item
+En vanlig användare försöker navigera till administrationssidan men blir dirigerad till huvudsidan \req[6.4.2]
+
+\item
+En projektledare försöker navigera till administrationssidan men blir dirigerad till huvudsidan \req[6.4.2]
+\end{FT}
+
+\subsubsection{Projektledare}
+
+\begin{FT}
+\item Projektledaren tilldelar en roll till en projektmedlem i sin projektgrupp \req[6.4.3]
+
+\item Projektledaren listar alla ej godkända tidrapporter \req[6.4.4]
+
+\item Projektledaren listar alla godkända tidrapporter \req[6.4.5]
+
+\item Projektledaren listar projektets alla tidrapporter och sorterar dom i stigande ordning efter användare \req[6.4.9]
+
+\item Projektledaren listar projektets alla tidrapporter och sorterar dom i fallande ordning efter användare \req[6.4.9]
+
+\item Projektledaren listar projektets alla tidrapporter och sorterar dom i stigande ordning efter vecka \req[6.4.9]
+
+\item Projektledaren listar projektets alla tidrapporter och sorterar dom i fallande ordning efter vecka \req[6.4.9]
+
+\item Projektledaren listar projektets alla tidrapporter och sorterar dom i stigande ordning efter hurvida rapporten är godkänd eller ej \req[6.4.9]
+
+\item Projektledaren listar projektets alla tidrapporter och sorterar dom i fallande ordning efter hurvida rapporten är godkänd eller ej \req[6.4.9]
+\end{FT}
+
+\subsubsection{Administratör}
+
+\begin{FT}
+\item Administratören tilldelar en roll till en projektmedlem \req[6.4.3]
+
+\item Administratören listar alla ej godkända tidrapporter \req[6.4.4]
+
+\item Administratören listar alla godkända tidrapporter \req[6.4.5]
+
+\item Administratören listar ett projekts alla tidrapporter och sorterar dom i stigande ordning efter användare \req[6.4.11]
+
+\item Administratören listar ett projekts alla tidrapporter och sorterar dom i fallande ordning efter användare \req[6.4.11]
+
+\item Administratören listar ett projekts alla tidrapporter och sorterar dom i stigande ordning efter vecka \req[6.4.11]
+
+\item Administratören listar ett projekts alla tidrapporter och sorterar dom i fallande ordning efter vecka \req[6.4.11]
+
+\item Administratören listar ett projekts alla tidrapporter och sorterar dom i stigande ordning efter hurvida rapporten är godkänd eller ej \req[6.4.11]
+
+\item Administratören listar ett projekts alla tidrapporter och sorterar dom i fallande ordning efter hurvida rapporten är godkänd eller ej \req[6.4.11]
+
+\item Administratören skapar en projektgrupp \req[6.4.12]
+
+\item En vanlig användare försöker skapa en projektgrupp \req[6.4.12]
+
+\item En projektledare försöker skapa en projektgrupp \req[6.4.12]
+
+\item Administratören lägger till en projektledare i en projektgrupp \req[6.4.13]
+
+\item Administratören tar bort en projektledare i en projektgrupp \req[6.4.13]
+
+\item En vanlig användare försöker lägga till en projektledare i en projektgrupp \req[6.4.13]
+
+\item En vanlig användare försöker ta bort en projektledare i en projektgrupp \req[6.4.13]
+
+\item En projektledare försöker ta bort en projektledare i en projektgrupp \req[6.4.13]
+
+\item Administratören tar bort en projektgrupp \req[6.4.14]
+
+\item En vanlig användare försöker ta bort en projektgrupp \req[6.4.14]
+
+\item En projektledare försöker ta bort en projektgrupp \req[6.4.14]
+
+\item På administrationssidan är alla användare listade med både användarnamn och lösenord \req[6.4.21]
+
+\item På administrationssidan kan man ta bort en vanlig användare \req[6.4.22]
+
+\item På administrationssidan kan man ta bort en projektledare \req[6.4.22]
+
+\item På administrationssidan kan man inte ta bort en administratör \req[6.4.22]
+
+
+\item På administrationssidan kan man lägga till en ny användare \req[6.4.24]
+
+\item Administratören skapar en användare och skriver in användarnamn, användarens lösenord genereras slumpmässigt \req[6.4.25]
+
+\item Administratören försöker skapa en användare med ett upptaget användarnamn, ett felmeddelande visas \req[6.4.26]
+
+\item Administratören försöker skapa en användare med ett ogiltigt användarnamn (giltigt användarnamn: 5-10 tecken, ascii 48-57, 65-90 och 97-122) \req[6.4.27]
+
+\item Administratören skapar en användare med ett giltigt användarnamn (giltigt användarnamn: 5-10 tecken, ascii 48-57, 65-90 och 97-122) \req[6.4.27]
+
+\item Administratören skapar en tidrapportmall \req[6.4.28]
+
+\item Administratören försöker ändra en tidrapportmall som en projektgrupp använder \req[6.4.28]
+\end{FT}
+
+\subsubsection{Data}
+
+\begin{FT}
+\item Administratören försöker skapa en projektgrupp med ett ogiltigt projektgruppsnamn (giltigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) \req[6.4.29]
+
+\item Administratören försöker skapa en projektgrupp med ett giltigt projektgruppsnamn (giltigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) \req[6.4.29]
+
+\item Administratören försöker skapa en projektgrupp med ett upptaget projektgruppsnamn \req[6.4.30]
+
+\item Administratören skapar 5 stycken projektgrupper \req[6.4.31]
+
+\item Administratören försöker skapa 6 stycken projektgrupper \req[6.4.31]
+
+\item Administratören lägger till samma användare i flera projektgrupper \req[6.4.32]
+
+\item Administratören försöker skapa en projektgrupp utan användare \req[6.4.33]
+
+\item Administratören försöker att, från en projektgrupp som har en användare, ta bort en användare \req[6.4.33]
+
+\item Administratören skapar en projektgrupp med en användare \req[6.4.33]
+
+\item Administratören lägger till användare i en projektgrupp så att projektgruppen har 20 användare \req[6.4.33]
+
+\item Administratören försöker lägga till användare i en projektgrupp så att projektgruppen har 21 användare \req[6.4.33]
+
+\item Projektledaren tilldelar tre olika roller till projektmedlemmar i sitt projekt \req[6.4.34]
+
+\item Projektledaren försöker tilldela fyra olika roller till projektmedlemmar i sitt projekt \req[6.4.34]
+
+\item Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen t1 \req[6.4.35]
+
+\item Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen t2 \req[6.4.35]
+
+\item Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen t3 \req[6.4.35]
+
+\item Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t1 \req[6.4.35]
+
+\item Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t2 \req[6.4.35]
+
+\item Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t3 \req[6.4.35]
+
+\item Administratören har användarnamnet ``admin'' och lösenordet ``adminpw'' \req[6.4.36]
+\end{FT}
+
+%+++++++++++++++++++++++++++% 
+%slutet på FT:Administration%
+%+++++++++++++++++++++++++++%
+
 \end{appendices}
 
 
+%!!!!!!!!!!!!!
+%!!!!!!!!!!!!!
+%!!!!!!!!!!!!!
+%HÄR BÖRJAR ST
+%!!!!!!!!!!!!!
+%!!!!!!!!!!!!!
+%!!!!!!!!!!!!!
 
 \newpage
 
@@ -471,119 +649,182 @@ Administratören försöker ändra en tidrapportmall som redan färdigställts [
 
 Efter varje testfall står vilket eller vilka krav som det testar (Ref. 1).
 
+%+++++++++++++++++++++++++++%
+%BÖRJAN på ST:generella krav%
+%+++++++++++++++++++++++++++%
+\subsection{Generella krav}
+
+\invisiblesubsubsection{Användare}
+
+\subsubsection{Projektmedlem}
+
+\begin{ST}
+\item
+Genomför flödeschemat i figur 2 i SRS \req[6.1.7]
+\end{ST}
+
+\subsubsection{Projektledare}
+
 \begin{ST}
 
-% \item 
-% Testa input med olika tecken från användaren [SRS krav 6.1.1]
-
 \item
-Försök logga in med fler än 50 användare samtidigt [SRS krav 6.1.2]
-
-\item
-Logga in med 50 användare samtidigt [SRS krav 6.1.2]
-
-\item 
-Användare skriver in URL för huvudmenyn. Har tillgång till följande användarfunktionaliteter; tidrapportering, projektinformation, byta lösenord, hjälp samt utloggning. [SRS krav 6.1.3, 6.1.4, 6.1.8, 6.4.1]
-
-
-\item 
-Projektledare skriver in URL för huvudmenyn. Har tillgång till projektadministrationsfunktionaliter och samtliga användarfunktionaliteter i menyn [SRS krav 6.1.5, 6.1.8]
-
-\item 
-Administratören skriver in URL för huvudmenyn. Har tillgång till administrationsfunktionaliteter, projektadministrationsfunktionaliter och samtliga användarfunktionaliteter [SRS krav 6.1.6, 6.1.7, 6.1.8]
-
-\item
-Administratören försöker lägga till sig själv i en projektgrupp [SRS krav 6.1.14]
-krav
-
-\item
-En icke inloggad användare försöker använda en URL till en funktionalitet där denne har behörighet, och får en förfrågan om användarnamn och lösenord, ingen annan information utöver inloggningsrutan skall visas [SRS krav 6.2.1, 6.2.3, 6.2.5]
-
-\item
-Genomför scenario 6.2.1 [SRS krav 6.2.9]
-
-\item
-Genomför scenario 6.4.1 [SRS krav 6.4.17]
-
-\item
-Genomför scenario 6.4.2 [SRS krav 6.4.18]
-
-\item
-Genomför scenario 6.4.3 [SRS krav 6.4.19]
-
-\item
-Genomför scenario 6.4.4 [SRS krav 6.4.20]
-
-\item
-Genomför scenario 6.4.5 [SRS krav 6.4.21]
-
-\item
-Genomför scenario 6.5.1 [SRS krav 6.5.6]
-
-\item
-Genomför scenario 6.5.2 [SRS krav 6.5.7]
-
-\item
-Genomför scenario 6.6.1 [SRS~ krav~6.6.7]
-
-\item
-Genomför scenario 6.6.2 [SRS krav 6.6.10]
-
-\item
-Genomför scenario 6.6.3 [SRS krav 6.6.11]
-
-\item
-Genomför scenario 6.6.4 [SRS krav 6.6.12]
-
-\item
-Projektledaren lyckas sortera projektets all rapporter efter följande attribut i både stigande och fallande ordning; Användare, vecka, och huruvida rapporten är godkänd eller ej [SRS krav 6.6.13]
-
-
-%flyttade från funktionstest av Axel U
-\item
-En användare är antingen inloggad eller utloggad [SRS krav 6.2.1]
-
-\item
-Systemet håller login status i en server session [SRS krav 6.2.2]
-
-\item
-Genomför scenario 6.2.2 [SRS krav 6.2.10]
-
-\item
-Genomför scenario 6.2.2 [SRS krav 6.2.10]
-
-\item
-Genomför användarscenario för en administratör [SRS krav 6.4.1]
-
-%DATA Victor Johnsson
-\item
-Tidsrapportering sker i antal minuter [SRS krav 6.3.4, 6.5.5]
-
-\item
-Administratören kan skapa en ny tidsrapportmall och ändra den [SRS krav 6.3.5, 6.4.16]
-
-\item
-Försök att ändra en tidsrapportsmall som redan används i ett projekt [SRS krav 6.3.5]
-
-\item
-Tidrapportens grundmall innehåller information om användarnamn, projektgruppsnamn, datum, veckonummer och om den är signerad eller inte [SRS krav 6.3.6]
-
-\item
-När en tidsrapportsmall skapas, sparas den på servern [SRS krav 6.3.7]
-
-
-
-%PRESTANDA
-\item
-Svaret på en godtycklig förfrågan från en dator i E-huset kommer i 95\% av fallen tillbaka inom en sekund [SRS~krav~7.2.1]
-
-\item
-Genomför 20 stycken inloggningar och få svar under en sekund [SRS krav 7.2.1, 7.2.2]
-
+Flödesschemat i figur 3 i SRS (ref 1) stödjs av systemet \req[6.1.10]
 
 \end{ST}
 
+\subsubsection{Administratör}
 
+\begin{ST}
+\item
+Administratören försöker lägga till sig själv i en projektgrupp \req[6.1.11]
+
+\end{ST}
+
+\invisiblesubsubsection{Data}
+
+%+++++++++++++++++++++++++%
+%SLUT på ST:generella krav%
+%+++++++++++++++++++++++++%
+
+
+%++++++++++++++++++++++++++%
+%BÖRJAN på ST:autentisering%
+%++++++++++++++++++++++++++%
+\subsection{Autentisering}
+
+\invisiblesubsubsection{Övergripande}
+
+\subsubsection{Användare}
+
+\begin{ST}
+\item
+\emph{Manuell miljö:} Genomför och verifiera utkomst av scenario 6.1.1 ifrån referens 3 (SRS för grundsystem).
+\req[6.2.9]
+\item
+\emph{Manuell miljö:} Genomför och verifiera utkomst av scenario 6.1.2 ifrån referens 3 (SRS för grundsystem).
+\req[6.2.10]
+\item
+\emph{Manuell miljö:} Genomför och verifiera utkomst av scenario 6.1.3 ifån referens 3 (SRS för grundsystem).
+\req[6.2.11]
+\end{ST}
+
+\subsubsection{Administratör}
+
+\begin{ST}
+\item
+Genomför scenario 6.2.1 (ref 1: Skapa projektgrupp) \req[6.2.16, 6.3.31]
+\item
+Genomför scenario 6.2.2 (ref 1: Lägga till/ändra roll på projektmedlem i projektgrupp) \req[6.2.17]
+\item
+Genomför scenario 6.2.3 (ref 1: Ta bort projektmedlemmar eller projektgrupp) \req[6.2.18]
+\item
+Genomför scenario 6.2.4 (ref 1: Skapa tidrapportmall) \req[6.2.19, 6.3.32, 6.3.34, 6.3.37, 6.3.47]
+\item
+Genomför scenario 6.2.5 (ref 1: Ta bort tidrapportmall) \req[6.2.20, 6.3.48]
+\end{ST}
+
+%++++++++++++++++++++++++%
+%SLUT på ST:autentisering%
+%++++++++++++++++++++++++%
+
+
+
+%++++++++++++++++++++++++++++%
+%BÖRJAN på ST:tidrapportering%
+%++++++++++++++++++++++++++++%
+%Johan
+\subsection{Tidrapportering}
+\subsubsection{Projektmedlem}
+
+\begin{ST}
+\item
+Genomför scenario 6.3.1 (Dokumentera arbetstimmar i systemet) \req[6.3.6, 6.3.5, 6.3.33, 6.3.36]
+\item
+Genomför scenario 6.3.2 (Ta bort/redigera arbetstimmar i systemet) \req[6.3.7]
+\item
+Systemet stödjer stegen i figur 5 \req[6.3.8]
+\end{ST}
+
+\subsubsection{Projektledare}
+
+\begin{ST}
+\item
+Systemet stödjer stegen i figur 6 \req[6.3.29]
+\end{ST}
+%++++++++++++++++++++++++++%
+%SLUT på ST:tidrapportering%
+%++++++++++++++++++++++++++%
+
+
+
+
+%+++++++++++++++++++++++++++%
+%BÖRJAN på ST:Administration%
+%+++++++++++++++++++++++++++%
+%------Victor Johnsson------
+
+\subsection{Administration}
+\invisiblesubsubsection{Övergripande}
+
+\subsubsection{Projektledare}
+
+\begin{ST}
+\item Genomför scenario 6.4.1 (Generera rapporter från systemet) \req[6.4.6]
+
+\item Genomför scenario 6.4.2 (Godkänna en tidrapport) \req[6.4.7]
+
+\item Genomför scenario 6.4.3 (Ta tillbaka godkännande av en tidrapport) \req[6.4.8]
+
+\item Genomför scenario 6.4.4 (Hitta en rapport genom att sortera dem) \req[6.4.9]
+\end{ST}
+
+\subsubsection{Administratör}
+
+\begin{ST}
+\item Genomför scenario 6.4.1 som administratör istället för projektledare (Generera rapporter från systemet) \req[6.4.15]
+
+\item Genomför scenario 6.4.2 som administratör istället för projektledare (Godkänna en tidrapport) \req[6.4.16]
+
+\item Genomför scenario 6.4.3 som administratör istället för projektledare (Ta tillbaka godkännande av en tidrapport) \req[6.4.17]
+
+\item Genomför scenario 6.4.4 som administratör istället för projektledare (Hitta en rapport genom att sortera dem) \req[6.4.18]
+
+\item Genomför scenario 6.4.5 \req[6.4.19]
+
+\item Genomför sekvenserna \req[6.4.20]
+\end{ST}
+
+\invisiblesubsubsection{Data}
+
+%+++++++++++++++++++++++++++%
+%SLUTET på ST:Administration%
+%+++++++++++++++++++++++++++%
+
+
+
+
+\subsection{Kvalitetskrav}
+
+\subsubsection{Prestanda}
+
+% \item 
+% Testa input med olika tecken från användaren \req[6.1.1]
+
+\begin{ST}
+\item
+Försök logga in med fler än 50 användare samtidigt \req[7.2.3]
+
+\item
+Logga in med 50 användare samtidigt \req[7.2.3]
+
+\item
+Svaret på en godtycklig förfrågan från en dator i E-huset kommer i 95\% av fallen tillbaka inom en sekund \req[7.2.1, 7.2.2]
+\end{ST}
+
+% prestanda slut
+
+
+\invisiblesubsubsection{Användarvänligt}
 
 
 \end{appendices}
@@ -598,37 +839,18 @@ När något ändras ska helst alla tester köras igen. Om så inte är möjligt 
 
 Om något ändras inom dessa områden måste följande testfall regressionstestas. Vid varje ändring ska de test rörande de generella kraven också testas.
 
-\subsection{Generella krav}
+Områden innefattar:
 
-FT: 1-17\\
-ST: 1-6
-
-\subsection{Autentisering}
-
-FT: 18-23\\
-ST: 7 ,8 ,21-24
-
-\subsection{Data}
-
-FT: 25-46, 51, 55-62\\
-ST: 26-32
-
-\subsection{Administration}
-
-FT: 6, 26, 33, 47-70, 90 \\
-ST: 3, 9-12, 25, 27
-
-\subsection{Tidsrapportering}
-
-FT: 26, 36, 72-78, 90\\
-ST: 14-15, 26
-
-\subsection{Projektledning}
-
-FT: 7-14, 79-88\\
-ST: 16-120
+\begin{itemize}
+\item
+Generella krav
+\item
+Autentisering
+\item
+Tidrapportering
+\item
+Administration
+\end{itemize}
 
 \end{appendices}
-
-
 \end{document}
