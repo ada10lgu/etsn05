@@ -130,11 +130,17 @@ Här följer ord och uttryck som används i rapporten och är till för att öka
 \item [] \textbf{T1, T2, T3:} Se Projektroll.
 \item [] \textbf{Terminal:} Dator som används för att använda NewPussSystem.
 \item [] \textbf{Tidrapport:} En rapport som innehåller arbetsbelasting för en användare under en fix tidperiod bundet till en specefik projektgrupp.
-\item [] \textbf{Tidrapportsmall:} En mall som anger vilka fält som kan anges vid en tidrapportering.
-\item [] \textbf{Tidrapportstabell:} En tabell som fylls i vid tidrapportering. 
+\item [] \textbf{Tidrapportmall:} En mall som anger vilka fält som kan anges vid en tidrapportering.
+\item [] \textbf{Tidrapporttabell:} En tabell som fylls i vid tidrapportering. 
 \item [] \textbf{Totaltid:} Är den summerade tiden i tidrapportstabellen. 
 \item [] \textbf{Vy:} Var sida,för en inloggad användare, består av menyn samt en vy. En vy presenterar innehållet i den funktionalliteten man tryckt på i menyn.
 \end{itemize}
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[width=0.75\textwidth]{Tidrapport_Modell}
+				\caption{Tidrapportens utseende.}
+				\label{image_gen_tidrapport}
+			\end{figure}
 \section{Kontextdiagram}
 Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 
@@ -167,7 +173,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			\begin{figure}[h!]
 				\centering
 				\includegraphics[width=0.75\textwidth]{flow_common_proj_mem}
-				\caption{Diagram som visar användarfall för en projektmedlem.}
+				\caption{Diagram som visar användarfall för en projektmedlem och projektledare.}
 				\label{image_gen_promed}
 			\end{figure}
 		\requirement{7}{Systemet skall stödja de steg som tas i figur \ref{image_gen_promed}.}
@@ -177,7 +183,7 @@ Kontextdiagram för NewPussSystem illustreras av Figur \ref{image_kontext}.
 			\begin{figure}[h!]
 				\centering
 				\includegraphics[width=0.75\textwidth]{flow_common_proj_leader}
-				\caption{Diagram som visar användarfall för en projektledare.}
+				\caption{Diagram som visar de utökade användarfallen för en projektledare.}
 				\label{image_gen_proboss}
 			\end{figure}
 		\requirement{10}{Systemet skall stödja de steg som tas i figur \ref{image_gen_proboss}.}
