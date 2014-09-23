@@ -5,9 +5,9 @@
 \contentsline {subsection}{\numberline {3.1}Huvudm\IeC {\r a}l}{3}
 \contentsline {subsection}{\numberline {3.2}Akt\IeC {\"o}rer och deras m\IeC {\r a}l}{3}
 \contentsline {section}{\numberline {4}Terminologi}{4}
-\contentsline {section}{\numberline {5}Kontextdiagram}{5}
-\contentsline {section}{\numberline {6}Funktionella krav}{5}
-\contentsline {subsection}{\numberline {6.1}Generella krav}{5}
+\contentsline {section}{\numberline {5}Kontextdiagram}{6}
+\contentsline {section}{\numberline {6}Funktionella krav}{6}
+\contentsline {subsection}{\numberline {6.1}Generella krav}{6}
 \contentsline {subsection}{\numberline {6.2}Autentisering}{9}
 \contentsline {subsection}{\numberline {6.3}Tidrapportering}{10}
 \contentsline {subsection}{\numberline {6.4}Administration}{16}
