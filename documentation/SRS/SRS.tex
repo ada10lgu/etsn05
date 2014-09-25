@@ -34,7 +34,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 
-\fancyhead[R]{Datum: \today | Version: 0.19 | Dokumentnummer: PUSS144401}
+\fancyhead[R]{Datum: \today | Version: 0.20 | Dokumentnummer: PUSS144401}
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
@@ -81,7 +81,8 @@ Lade till krav, kapitel 6.3\\
 0.18 & 21 september 2014 & SG & Större omstrukturering efter formell granskning.
 \\
 0.19 & 23 september 2014 & SG & Rättade till en del fel (omstruktureringar).
-
+\\
+0.20 & 25 september 2014 & SG & Redigerat krav och lagt till nya efter informell granskning.
 \\
 \end{tabular}
 \newpage
@@ -121,7 +122,7 @@ Här följer ord och uttryck som används i rapporten och är till för att öka
 \item [] \textbf{FIFO:} Från engelskans ``First In First Out''. Teknik som fungerar på samma sätt som en kö. Den som kom först betjänas först.
 \item [] \textbf{Grundmall:} Är en mall genererad av systemet som innehåller information om användarnamn, projektgruppsnamn, datum, veckonummer, totaltid och signering (se figur 1). Denna kopplas alltid ihop med en tidrapportmall och går inte att välja bort.
 \item [] \textbf{Huvudsida:} Med huvudsida avses den första vyn som användaren blir dirigerad till direkt efter inloggning. 
-\item [] \textbf{Information:} Med information avses t.ex. användare, projekt eller tidrapporter.
+\item [] \textbf{Information:} Med information avses t.ex. användare, lösenord eller tidrapporter.
 \item [] \textbf{Inloggad:} En användare som har loggat in är inloggad.
 \item [] \textbf{Logga in:} Då en användare identifierar sig mot systemet med användarnamn och lösenord, om systemet godkänner identifieringen loggar användaren in.
 \item [] \textbf{Lösenord:} Hemlig fras endast känd för var unik användare samt systemet så användaren kan påvisa sin identitet.
@@ -165,10 +166,9 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 	\subsection{Generella krav}
 		\label{krav-funk-gen}
 		\subsubsection*{Användare}
-		\requirement{1}{Projektmedlemmar och projektledare skall ha tillgång till följande funktionaliteter: tidrapportering, projektinformation, byta lösenord, samt utloggning.}
-		
-		\requirement{2}{Samtliga funktionaliter i krav 6.1.1 skall vara tillgängliga i menyn.}
-		\requirement{3}{Menyn, oavsett typ av användare, skall vara tillgänglig på samtliga sidor som visas, för en inloggad användare, av systemet.}
+		\requirement{1}{Menyn, oavsett typ av inloggad användare (se avsnitt 3.2), skall vara tillgänglig på samtliga sidor som visas av systemet.}	
+		\requirement{2}{Menyn, beroende på typ av inloggad användare (se avsnitt 3.2), skall ge tillgång till de funktionaliteter som denne användaren besitter.}
+		\requirement{3}{Menyns innehåll (utifrån krav 6.1.2) skall vara detsamma oavsett vilken sida som visas av systemet.}
 		\requirement{4}{Krav 6.4.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 		\requirement{5}{Det finns sammanlagt fem roller i systemet: administratör, projektledare, t1, t2, t3.}
 		\requirement{6}{I varje projektgrupp får det finnas 1-2 projektledare och de tre Projektrollerna, t1, t2 och t3.}
@@ -182,7 +182,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 		\requirement{7}{Systemet skall stödja de steg som tas i figur \ref{image_gen_promed}.}
 		\subsubsection*{Projektledare}
 		\requirement{8}{Varje projekt skall ha en eller två, och endast en eller två, användare som besitter rollen som projektledare.}
-		\requirement{9}{Projektledarna har tillgång till projektadministrationsfunktionaliter. Det listas som ``projektadministration'' och finns tillgängligt för dem i menyn.}
+		\requirement{9}{Projektledarna har tillgång till projektadministrationsfunktionaliter.}
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.75\textwidth]{flow_common_proj_leader}
@@ -233,6 +233,8 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 
 		\subsubsection*{Ej inloggad}
 			\requirement{24}{Krav 6.1.6 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{25}{På inloggningssidan skall användaren ha möjlighet att välja bland alla befintliga projektgrupper i systemet.}
+			\requirement{26}{För att kunna utföra autentiseringen mot systemet skall användaren specificera vilken projektgrupp den vill logga in på.}
 
 	\subsection{Tidrapportering}
 		\label{krav-funk-tid}	
@@ -259,7 +261,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
 
-	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer tidrapportering i menyn.}\\
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer tidrapportering.}\\
 	\multicolumn{2}{|p{13cm}|}{2. Ett fält där användaren kan fylla i veckonummer för veckan som skall tidrapporteras 	visas. Under fältet framgår det för vilken vecka senaste rapporten var skapad/reviderad.} \\	
 	\multicolumn{2}{|p{13cm}|}{3. Användaren fyller i veckonummer och trycker ``OK''.} \\
 	\multicolumn{2}{|p{13cm}|}{4. En ny tidrapport genereras och visas med veckonumret från föregående steg samt dagens datum ifyllt.} \\
@@ -268,7 +270,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
 	\multicolumn{2}{|p{13cm}|}{2a. Det finns ingen tidigare skapad rapport. Detta framgår under fältet. }\\
 	\multicolumn{2}{|p{13cm}|}{4a. En tidrapport för det ifyllda veckonumret existerar redan. Rapporten hämtas från databasen och visas för användaren. Denne kan nu redigera rapporten (se scenario 6.3.2).}\\
-	\multicolumn{2}{|p{13cm}|}{4b. Det ifyllda veckonumret strider är otillåtet. Användaren informeras om detta och skickas tillbaka till steg 3. }\\
+	\multicolumn{2}{|p{13cm}|}{4b. Det ifyllda veckonumret är otillåtet. Användaren informeras om detta och skickas tillbaka till steg 3. }\\
 	\multicolumn{2}{|p{13cm}|}{6a. Felaktig inmatning av tidinformation. Användaren skickas tillbaka till steg 5. }\\
     \hline
 \end{tabular}
@@ -321,14 +323,14 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{10}{Projektledaren skall ha tillgång till samtliga projektmedlemmars tidrapporter i den projektgrupp den är projektledare för.}
 			\requirement{11}{Projektledaren skall kunna godkänna ej tidigare godkända tidrapporter från projektmedlemmar i sin projektgrupp.}
 			\requirement{12}{Projektledaren skall kunna ta tillbaka sitt godkännande från en tidigare godkänd gruppmedlems tidrapport, i sin projektgrupp.}
-			\requirement{13}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{14}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{13}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare för samtliga veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{14}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll för samtliga veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
 			\requirement{15}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet. Med summering menas att samma aktivitet i alla tidrapporter läggs ihop i en ny tidrapport.}
 			\requirement{16}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per vecka. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
 			\requirement{17}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare och aktivitet . Med summering menas att samma aktivitet i alla tidrapporter från samma användare läggs ihop i en ny tidrapport.}
-			\requirement{18}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare och vecka. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{18}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare för utvalda veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
 			\requirement{19}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll och aktivitet. Med summering menas att samma aktivitet i alla tidrapporter från samma roll läggs ihop i en ny tidrapport.}
-			\requirement{20}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll och vecka Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{20}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll för utvalda veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
 			\requirement{21}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet och vecka Med summering menas att samma aktivitet i alla tidrapporter från samma vecka läggs ihop i en ny tidrapport.}
 
 			\begin{figure}[H]
@@ -351,7 +353,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{29}{Veckonumret får innehålla 1-2 tecken, ascii (decimal) värden 48-57.}
 			\requirement{30}{En administratör skall kunna skapa tidrapportsmallar.}
 			\requirement{31}{Man skall kunna ange 1-20 stycken aktiviteter i en tidrapportsmall.}
-			\requirement{32}{Man skall kunna ange 1-20 stycken subaktiviteter i en tidrapportsmall.}
+			\requirement{32}{Man skall kunna ange 1-4 stycken subaktiviteter i en tidrapportsmall.}
 			\requirement{33}{Antalet aktiviteter anger antalet rader som finns i tidrapportstabellen.}
 			\requirement{34}{Antalet subaktiviteter anger antalet kolumner som finns i tidrapportstabellen.}
 			\requirement{35}{En tidrapport skall innehålla information om användarnamn.}
@@ -386,21 +388,21 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
     \hline
     
     \multicolumn{2}{|p{13cm}|}{ \indent\scenario{1}} \\
-    \textbf{Syfte} & Generera tidrapporter från systemet.\\
+    \textbf{Syfte} & Generera statistik från systemet.\\
     \textbf{Trigger} & En användare kommer in på statistiksidan för sitt projekt. \\
     \textbf{Förutsättning} & Användaren måste ha rättigheter som en projektledare för det givna projektet.\\
     \hline
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
 
-	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer statistik i menyn.}\\
-	\multicolumn{2}{|p{13cm}|}{2. Användaren väljer från en lista vilken typ av rapport den vill generera.} \\	
-	\multicolumn{2}{|p{13cm}|}{3. En rapport genereras med statistik efter användarens önskemål} \\
-	\multicolumn{2}{|p{13cm}|}{4. Användaren skickas vidare till en sida där den nyligen genererade rapporten visas upp.} \\
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer statistik.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren specificerar vilken/vilka veckor statistiken skall omfatta.} \\	
+	\multicolumn{2}{|p{13cm}|}{3. Användaren väljer från en lista vilken typ av rapport den vill generera.} \\	
+	\multicolumn{2}{|p{13cm}|}{4. En rapport genereras med statistik efter användarens önskemål} \\
+	\multicolumn{2}{|p{13cm}|}{5. Användaren skickas vidare till en sida där den nyligen genererade rapporten visas upp.} \\
 		
 	\hline
-    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
-    \hline
+
 \end{tabular}
 \end{table}
 
@@ -537,13 +539,14 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
 
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer att skapa projektgrupp.}\\
-	\multicolumn{2}{|p{13cm}|}{2. Användaren väljer därefter tidrapportmall (se scenario 6.4.8).}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren väljer därefter att skapa en tidrapportmall (se scenario 6.4.8).}\\
 	\multicolumn{2}{|p{13cm}|}{3. Denne får nu fylla i ett projektgruppsnamn och trycker därefter på ``OK''.} \\	
 	\multicolumn{2}{|p{13cm}|}{4. Denne möts av en lista över användare i systemet. Första användaren som läggs till tilldelas automatiskt en projektledarroll.} \\	
 	\multicolumn{2}{|p{13cm}|}{5. Användaren kan därefter lägga till fler projektgruppsmedlemmar. Det ska även vara möjligt att tilldela ytterligare en projektgruppsmedlem, en projektledarroll. När användaren är klar trycks ``OK''} \\	
 	\multicolumn{2}{|p{13cm}|}{6. Projektgruppen skapas och användaren dirigeras till en sida som bekräftar detta. } \\	
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
+    \multicolumn{2}{|p{13cm}|}{2a. Användaren väljer en befintlig tidrapportmall, som är sparad sedan tidigare.}\\
     \multicolumn{2}{|p{13cm}|}{4a. Projektgruppsnamnet existerar redan, användaren informeras och skickas tillbaka till steg 3.}\\
     \multicolumn{2}{|p{13cm}|}{4b. Projektgruppsnamnet är ogiltligt. Användaren informeras och skickas tillbaka till steg 3.}  \\
     \multicolumn{2}{|p{13cm}|}{4c. Användaren får felmeddelande eftersom inga fler användare existerar. Denne informeras om detta och skickas tillbaka till huvudsidan.}\\
@@ -607,7 +610,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
 
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer ta bort projektgrupp/projektmedlemmar.}\\
-	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med samtliga projektgrupper och eventuella projektmedlemmar.}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med samtliga projektgrupper och projektmedlemmar.}\\
 	\multicolumn{2}{|p{13cm}|}{3. Användaren markerar projektmedlemmar för borttagning och trycker därefter OK. Bekräftelseruta specificerad i krav 6.1.14 visas och användaren trycker ''Ja''.} \\	
 	\multicolumn{2}{|p{13cm}|}{4. Den markerade informationen är nu borttagen och användaren dirigeras till en sida med uppdaterad information.} \\	
 	\hline
@@ -645,7 +648,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
     \multicolumn{2}{|p{13cm}|}{2a. Det går inte att skapa fler mallar på grund av uppnådd maxgräns. Användaren informeras om detta.}\\
-    \multicolumn{2}{|p{13cm}|}{3a. Om namnet på mallen redan existerar informeras användaren om detta och ombedes att skriva ett annat namn. Användaren skickas tillbaka til steg 3.}\\
+    \multicolumn{2}{|p{13cm}|}{3a. Om namnet på mallen redan existerar informeras användaren om detta och ombedes att skriva ett annat namn. Användaren skickas tillbaka till steg 3.}\\
     \multicolumn{2}{|p{13cm}|}{3b. Användaren får felmeddelande då antal kolumner och rader inte överensstämmer med det, av systemet, tillåtna antal. Användaren skickas tillbaka till steg 3.}\\
        \multicolumn{2}{|p{13cm}|}{3c. Användaren får felmeddelande då det inmatade namnet är otillåtet. Användaren skickas tillbaka till steg 3.}\\
     \multicolumn{2}{|p{13cm}|}{5a. Användaren får felmeddelande då det inmatade aktivitets- eller subaktivitetsnamnet är otillåtna. Användaren skickas tillbaka till steg 5.}\\
@@ -697,7 +700,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{37}{Ett projektgruppsnamn ska bestå av 5-10 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
 			\requirement{38}{Projektgruppsnamn måste vara unika.}
 			\requirement{39}{Det får maximalt existera 5 stycken projektgrupper samtidigt.}
-			\requirement{40}{En användare kan vara projektmedlem i fler än ett projektgrupp åt gången.}
+			\requirement{40}{En användare kan vara projektmedlem i mer än en projektgrupp åt gången.}
 			\requirement{41}{En projektgrupp skall bestå av 1-20 användare.}
 			\requirement{42}{I varje projektgrupp kan det finnas upp till tre Projektroller, t1, t2 och t3.}
 			\requirement{43}{I t1, t2 och t3 får det finnas 0-6 användare/projektgrupp, alltså sammanlagt 0-18 användare.}
