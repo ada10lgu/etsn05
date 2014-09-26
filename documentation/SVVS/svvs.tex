@@ -64,7 +64,7 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.9 & 22 september 2014 & TG & Anpassning efter SRS v0.18 och ändringar efter den formella granskningen \\
 v0.10 & 22 september & TG & La till test för två nya krav \\
 v0.11 & 23 september & TG & Anpassat efter SRS v0.19 \\
-v0.12 & 25 september & TG & Anpassat efter SRS v0.20 och informell granskning. Ang. informell granskning, "valda tidrapporter" är taget direkt från SRS, datumet för PR är inte utskrivet inte i SDP\\
+v0.12 & 26 september & TG & Anpassat efter SRS v0.20 och informell granskning, omformuleringar, rättning av stavfel. Ang. informell granskning, "valda tidrapporter" är taget direkt från SRS, datumet för PR är inte utskrivet i SDP\\
 
 \end{tabular}
 \section{Inledning}       
@@ -149,7 +149,7 @@ Dessa formella granskningar utförs på det sätt som anges i Ref. 2. kap. 6.2 D
 
 Den testmiljön som används är på en allmän dator i en godtycklig datorsal i E-huset; 
 manuell miljö. För de automatiserade testfallen kommer eclipse och JUnit att användas;
-automatisk miljö. Om ingen miljö specifieras i ett testfall är miljön automatisk.
+automatisk miljö. Om ingen miljö specificeras i ett testfall är miljön automatisk.
 
 \section{Testfall}
 
@@ -357,6 +357,12 @@ En icke inloggad användare når systemet och tvingas då lämna inloggningsinfo
 Användaren kan välja mellan alla befintliga projektgrupper i systemet på inloggningssidan \req[6.2.25]
 \item
 Användaren skall specificera vilken projektgrupp den vill logga in på \req[6.2.26]
+\item
+Användare lyckas logga in på de projektgrupp(er) som denne är medlem i \req[6.2.27]
+\item
+Användare försöker logga in på en projektgrupp som denne inte är medlem i \req[6.2.27]
+\item
+Administratören lyckas logga in på samtliga projektgrupper \req[6.2.27]
 \end{FT}
 
 %++++++++++++++++++++++++++% 
