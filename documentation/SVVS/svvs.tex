@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 0.11 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 0.12 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -54,7 +54,7 @@
 \begin{tabular}{ l l l p{9cm} }
 Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.1 & 11 september 2014 & TG & Första utkast \\
-0.2 & 14 september 2014 & TG & Anpassning er SRS v0.10, regressionstest inlagda \\
+0.2 & 14 september 2014 & TG & Anpassning efter SRS v0.10, regressionstest inlagda \\
 0.3 & 14 september 2014 & TG & Anpassning efter SRS v0.12, referenser uppdaterade\\
 0.4 & 16 september 2014 & TG & Anpassning efter SRS v0.14, tillagda FT och ST samt revidering av vissa test\\
 0.5 & 16 september 2014 & TG & Anpassning efter SRS v0.15\\
@@ -64,6 +64,7 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.9 & 22 september 2014 & TG & Anpassning efter SRS v0.18 och ändringar efter den formella granskningen \\
 v0.10 & 22 september & TG & La till test för två nya krav \\
 v0.11 & 23 september & TG & Anpassat efter SRS v0.19 \\
+v0.12 & 25 september & TG & Anpassat efter SRS v0.20 och informell granskning. Ang. informell granskning, "valda tidrapporter" är taget direkt från SRS, datumet för PR är inte utskrivet inte i SDP\\
 
 \end{tabular}
 \section{Inledning}       
@@ -72,7 +73,7 @@ Detta dokument innehåller information om vilka tester och granskningar som ska 
 
 \section{Referensdokument}
 \begin{enumerate}
-\item System Requirements Specification v0.18
+\item System Requirements Specification v0.20
 \item Programvaruutveckling för stora system - Projekthandledning
 \item System Requirements Specification: BaseBlockSystem
 \end{enumerate}
@@ -158,7 +159,7 @@ Utförs av utvecklingsgruppen efter hand som kod tas fram. Här utnyttjas både 
 
 \subsection{Funktionstest}
 
-Där enskilda funktioner testas enligt en funktionstestspecifikation och tillhörande funktionstestinstruktioner. 
+Där enskilda funktioner testas enligt en funktionstestsspecifikation och tillhörande funktionstestinstruktioner. 
 
 \subsection{Systemtest}
 
@@ -207,18 +208,19 @@ Efter varje testfall står vilket eller vilka krav som det testar (Ref. 1).
 
 \begin{FT}
 \item
-\emph Alla användare har tillgång till tidrapportering, projektinformation, byta lösenord samt utloggning \req[6.1.1]
+\emph{Manuell miljö:} Alla typer av inloggade användare har tillgång till menyn på samtliga sidor som visas av systemet \req[6.1.1]
 
 \item
-Funktionaliteter tidrapportering, projektinfomation, byta lösenord och utloggning ska finns tillgänglig i menyn \req[6.1.2]
+\emph{Manuell miljö:} Menyn ska ge tillgång till de funktionaliteter som en användare besitter \req[6.1.2]
 
-\item Alla inloggade användare, oavsett typ  av användare skall ha tillgänglig till Menyn på samtliga sidor som visas \req[6.1.3]
+\item 
+\emph{Manuell miljö:} Menyns innehåll ska vara samma på varje sida som visas av systemet \req[6.1.3]
 
 \item
 Försök ge inkorrekt input till systemet (felaktiga tecken, SQL-injections) \req[6.1.4]
 
 \item
-I en projektgupp får det finns max två stycken projektledare och tre typer av roller: t1, t2, och t3. \req[6.1.6]
+I en projektgupp får det finnas max två stycken projektledare och tre typer av roller: t1, t2, och t3. \req[6.1.6]
 \end{FT}
 
 \subsubsection{Projektledare}
@@ -227,7 +229,7 @@ I en projektgupp får det finns max två stycken projektledare och tre typer av 
 Varje projekt har minst en och max två användare som besitter rollen som projektledare  \req[6.1.8]
 
 \item
-Projektledare har tillgång till projektadminsistationsfunktionaliteter som listas under "projektadministation". Det ska finnas tillgängligt för dem i menyn \req[6.1.9]
+\emph{Manuell miljö:} Projektledare har tillgång till projektadministrationsfunktionaliteter \req[6.1.9]
 \end{FT}
 
 \subsubsection{Administratör}
@@ -351,6 +353,10 @@ Administratör lyckas ta bort en tidrapportmall som inte används av en projektg
 \item
 En icke inloggad användare når systemet och tvingas då lämna inloggningsinformation.
 \req[6.2.24]
+\item
+Användaren kan välja mellan alla befintliga projektgrupper i systemet på inloggningssidan \req[6.2.25]
+\item
+Användaren skall specificera vilken projektgrupp den vill logga in på \req[6.2.26]
 \end{FT}
 
 %++++++++++++++++++++++++++% 
@@ -408,11 +414,11 @@ Projektledaren lyckas ta tillbaka sitt godkännande från en tidigare godkänd t
 
 %ändrad 23/9**
 \item
-Projektledaren lyckas generera statistik i form av tidrapporter per användare \req[6.3.13]
+Projektledaren lyckas generera statistik i form av tidrapporter per användare för samtliga veckor \req[6.3.13]
 
 %ändrad 23/9**
 \item
-Projektledaren lyckas generera statistik i form av tidrapporter per roll \req[6.3.14]
+Projektledaren lyckas generera statistik i form av tidrapporter per roll för samtliga veckor \req[6.3.14]
 
 %ändrad 23/9**
 \item
@@ -428,7 +434,7 @@ Projektledaren lyckas generera statistik i form av tidrapporter per användare o
 
 %ändrad 23/9**
 \item
-Projektledaren lyckas generera statistik i form av tidrapporter per användare och vecka \req[6.3.18]
+Projektledaren lyckas generera statistik i form av tidrapporter per användare för utvalda veckor \req[6.3.18]
 
 %ändrad 23/9**
 \item
@@ -436,7 +442,7 @@ Projektledaren lyckas generera statistik i form av tidrapporter per roll och akt
 
 %ändrad 23/9**
 \item
-Projektledaren lyckas generera statistik i form av tidrapporter per roll och vecka \req[6.3.20]
+Projektledaren lyckas generera statistik i form av tidrapporter per roll för utvalda veckor \req[6.3.20]
 
 %ändrad 23/9**
 \item
@@ -504,7 +510,7 @@ Administratör försöker ange 0 subaktiviteter i en tidrapportmall \req[6.3.32]
 
 %ändrad 23/9**
 \item
-Administratör försöker ange 21 subaktiviteter i en tidrapportmall \req[6.3.33]
+Administratör försöker ange 5 subaktiviteter i en tidrapportmall \req[6.3.32]
 
 %ändrad 23/9**
 \item
@@ -524,7 +530,7 @@ Administratör försöker ange 21 subaktiviteter i en tidrapportmall \req[6.3.33
 
 %ändrad 23/9**
 \item
-\emph{Manuell miljö:} En tidrapport innehåller information om datum i form "dag månad år" \req[6.3.37, 6.3.44]
+\emph{Manuell miljö:} En tidrapport innehåller information om datum i form av "dag månad år" \req[6.3.37, 6.3.44]
 
 %ändrad 23/9**
 \item
@@ -826,24 +832,24 @@ Administratören försöker lägga till sig själv i en projektgrupp \req[6.1.11
 %ändrad 23/9
 %ändrad 23/9**
 \item
-Genomför scenario 6.4.5 (ref 1: Skapa projektgrupp) \req[6.4.31, 6.3.24]
+Genomför scenario 6.4.5 (Ref 1: Skapa projektgrupp) \req[6.4.19, 6.3.24]
 
 %ändrad 23/9
 \item
-Genomför scenario 6.4.6 (ref 1: Lägga till/ändra roll på projektmedlem i projektgrupp) \req[6.4.32]
+Genomför scenario 6.4.6 (Ref 1: Lägga till/ändra roll på projektmedlem i projektgrupp) \req[6.4.32]
 
 %ändrad 23/9
 \item
-Genomför scenario 6.4.7 (ref 1: Ta bort projektmedlemmar eller projektgrupp) \req[6.4.33]
+Genomför scenario 6.4.7 (Ref 1: Ta bort projektmedlemmar eller projektgrupp) \req[6.4.33]
 
 %ändrad 23/9
 %ändrad 23/9** (klar)
 \item
-Genomför scenario 6.4.8 (ref 1: Skapa tidrapportmall) \req[6.4.34, 6.3.24, 6.3.27, 6.3.30, 6.3.40]
+Genomför scenario 6.4.8 (Ref 1: Skapa tidrapportmall) \req[6.4.34, 6.3.24, 6.3.27, 6.3.30, 6.3.40]
 
 %ändrad 23/9
 \item
-Genomför scenario 6.4.9 (ref 1: Ta bort tidrapportmall) \req[6.4.35, 6.3.41]
+Genomför scenario 6.4.9 (Ref 1: Ta bort tidrapportmall) \req[6.4.35, 6.3.41]
 \end{ST}
 
 %++++++++++++++++++++++++%
@@ -863,11 +869,11 @@ Genomför scenario 6.4.9 (ref 1: Ta bort tidrapportmall) \req[6.4.35, 6.3.41]
 
 %ändrad 23/9**
 \item
-Genomför scenario 6.3.1 (Dokumentera arbetstimmar i systemet) \req[6.3.7, 6.3.5, 6.3.26, 6.3.29]
+Genomför scenario 6.3.1 (Ref 1: Dokumentera arbetstimmar i systemet) \req[6.3.7, 6.3.5, 6.3.26, 6.3.29]
 
 %ändrad 23/9**
 \item
-Genomför scenario 6.3.2 (Ta bort/redigera arbetstimmar i systemet) \req[6.3.8]
+Genomför scenario 6.3.2 (Ref 1: Ta bort/redigera arbetstimmar i systemet) \req[6.3.8]
 
 %ändrad 23/9**
 \item
@@ -900,27 +906,25 @@ Systemet stödjer stegen i figur 6 \req[6.3.22]
 \subsubsection{Projektledare}
 
 \begin{ST}
-\item Genomför scenario 6.4.1 (Generera rapporter från systemet) \req[6.4.6]
+\item Genomför scenario 6.4.1 (Ref 1: Generera statistik från systemet) \req[6.4.6]
 
-\item Genomför scenario 6.4.2 (Godkänna en tidrapport) \req[6.4.7]
+\item Genomför scenario 6.4.2 (Ref 1: Godkänna en tidrapport) \req[6.4.7]
 
-\item Genomför scenario 6.4.3 (Ta tillbaka godkännande av en tidrapport) \req[6.4.8]
+\item Genomför scenario 6.4.3 (Ref 1: Ta tillbaka godkännande av en tidrapport) \req[6.4.8]
 
-\item Genomför scenario 6.4.4 (Hitta en rapport genom att sortera dem) \req[6.4.9]
+\item Genomför scenario 6.4.4 (Ref 1: Hitta en rapport genom att sortera dem) \req[6.4.9]
 \end{ST}
 
 \subsubsection{Administratör}
 
 \begin{ST}
-\item Genomför scenario 6.4.1 som administratör istället för projektledare (Generera rapporter från systemet) \req[6.4.15]
+\item Genomför scenario 6.4.1 som administratör istället för projektledare (Ref 1: Generera rapporter från systemet) \req[6.4.15]
 
-\item Genomför scenario 6.4.2 som administratör istället för projektledare (Godkänna en tidrapport) \req[6.4.16]
+\item Genomför scenario 6.4.2 som administratör istället för projektledare (Ref 1: Godkänna en tidrapport) \req[6.4.16]
 
-\item Genomför scenario 6.4.3 som administratör istället för projektledare (Ta tillbaka godkännande av en tidrapport) \req[6.4.17]
+\item Genomför scenario 6.4.3 som administratör istället för projektledare (Ref 1: a tillbaka godkännande av en tidrapport) \req[6.4.17]
 
-\item Genomför scenario 6.4.4 som administratör istället för projektledare (Hitta en rapport genom att sortera dem) \req[6.4.18]
-
-\item Genomför scenario 6.4.5 \req[6.4.19]
+\item Genomför scenario 6.4.4 som administratör istället för projektledare (Ref 1: itta en rapport genom att sortera dem) \req[6.4.18]
 
 \item Genomför sekvenserna \req[6.4.20]
 \end{ST}
