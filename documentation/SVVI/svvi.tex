@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 0.3 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 0.4 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -55,7 +55,8 @@
 Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.1 & 29 september 2014 & TG & Skapande av mall \\
 0.2 & 1 oktober 2014 & TG & Kvalitetskrav och regressionstest tillagt \\
-0.3 & 1 oktober 2014 & TG & Funktionstester och systemtester för generella krav tillagt
+0.3 & 1 oktober 2014 & TG & Funktionstester och systemtester för generella krav tillagt\\
+0.4 & 1 oktober 2014 & TG & Funktionstester och systemtester för tidrapportering tillagt\\
 
 \end{tabular}
 \section{1 Inledning}       
@@ -64,7 +65,7 @@ Detta dokument innehåller detaljerade testinstruktioner som ska genomföras und
 
 \section{2 Referensdokument}
 \begin{enumerate}
-\item System Validation and Verification Insctructions 1.0
+\item System Validation and Verification Specification 1.0
 \end{enumerate}
 
 
@@ -667,29 +668,32 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 %++++++++++++++++++++++++++++% 
 %BÖRJAN på FT:tidrapportering%
 %++++++++++++++++++++++++++++%
+%+++++++++++++++++++++++++++++
+%+++++++++++++++++++++++++++++
+%+++++++++++++++++++++++++++++
+%+++++++++++++++++++++++++++++
+%++++++++++++++++++++++++++++++
+%++++++++++++++++++++++++
+%++++++++++++++++++++++++++++
+
+%Johan
 \subsection{Tidrapportering}
-
-
-\subsubsection{Användare}
-\subsubsection{Projektmedlem}
-\subsubsection{Projektledare}
-\subsubsection{Administratör}
-\subsubsection{Data}
-\subsubsection{Ej inloggad}
-
 
 %tidrapportering
 \subsubsection{Projektmedlem}
+
 \begin{FT}
+
+
 \item
 %ÄNDRA TILL MANUELL MILJÖ I SVVS%
 \textbf{Projektmedlem lyckas skapa en egen osignerad tidrapport}
 
-\emph{Starttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
-\emph{Sluttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering, ny tidrapport visas.
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, ny tidrapport visas.
 
 \begin{enumerate}
-\item Projektmedlem trycker på knappen "Skapa en ny tidrapport".
+\item A trycker på "Skapa en ny tidrapport".
 \item Se till att tidrapportern är skapad.
 \item Se till att tidrapporten inte är signerad när den skapas.
 \end{enumerate}
@@ -698,14 +702,14 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektmedlem lyckas uppdatera sin egna osignerade tidrapport}
 
-\emph{Starttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
-\emph{Sluttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering, uppdaterad tidrapport visas.
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, uppdaterad tidrapport visas.
 
 \begin{enumerate}
-\item Projektmedlem trycker på knappen "Uppdatera tidrapport".
-\item Projektmedlem väljer en av sina osignerade tidrapporter genom att trycka på dess radioknapp.
-\item Projektmedlem skriver in 40 i godtycklig ruta, 20 i en annan.
-\item Projektmedlem trycker på "spara".
+\item A trycker på "Uppdatera tidrapport".
+\item A väljer en av sina egna osignerade tidrapporter.
+\item A skriver in 40 i godtycklig ruta, 20 i en annan.
+\item A trycker på "spara".
 \item Se till att tidrapporten är uppdaterad.
 \end{enumerate}
 
@@ -713,13 +717,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektmedlem lyckas ta bort sin egna osignerade tidrapport}
 
-\emph{Starttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
-\emph{Sluttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.Tidrapport raderad.
 
 \begin{enumerate}
-\item Projektmedlem trycker på knappen "Ta bort tidrapport".
-\item Projektmedlem väljer en av sina osignerade tidrapporter genom att trycka på dess radioknapp.
-\item Projektmedlem trycker på knappen "Radera".
+\item A trycker på "Ta bort tidrapport".
+\item A väljer en av sina egna osignerade tidrapporter.
+\item A trycker på knappen "Radera".
 \item Se till att tidrapporten är raderad.
 \end{enumerate}
 
@@ -727,11 +731,11 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{\emph{Manuell miljö:} Vid tidrapporteringsfunktionaliten kan en projektmedlem endast se sina egna tidrapporter} 
 
-\emph{Starttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
-\emph{Sluttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.
 
 \begin{enumerate}
-\item Projektmedlem trycker på "Visa tidrapporter".
+\item A tryck på "Visa tidrapporter".
 \item Se till att denne endast ser sina egna tidrapporter.
 \end{enumerate}
 
@@ -739,28 +743,496 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektmedlem försöker ta bort en av sina signerade tidrapporter}
 
-\emph{Starttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
-\emph{Sluttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport ej raderad.
 
 \begin{enumerate}
-\item Projektmedlem trycker på "Ta bort tidrapporter".
-\item Projektmedlem väljer en av sina signerade tidrapporter genom att trycka på dess radioknapp.
-\item Projektmedlem försöker trycka på knappen "Radera", men tidrapporten raderas inte.
+\item A trycker på "Ta bort tidrapporter".
+\item A väljer en av sina signerade tidrapporter.
+\item A försöker trycka på knappen "Radera", men tidrapporten raderas inte.
 \end{enumerate}
 
 \item
 \textbf{Projektmedlem försöker redigera en signerad tidrapport}
 
-\emph{Starttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
-\emph{Sluttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering, uppdaterad tidrapport visas.
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, tidrapport ej uppdaterad.
 
 \begin{enumerate}
-\item Projektmedlem trycker på knappen "Uppdatera tidrapport".
-\item Projektmedlem väljer en av sina signerade tidrapporter genom att trycka på dess radioknapp.
-\item Projektmedlem försöker skriva in något i en godtycklig ruta, fälten går dock inte att redigera.
+\item A trycker på "Uppdatera tidrapport".
+\item A väljer en av sina signerade tidrapporter.
+\item A försöker skriva in något i en godtycklig ruta, fälten går dock inte att redigera.
 \end{enumerate}
+
 \end{FT}
 
+%tidrapportering
+\subsubsection{Projektledare}
+
+\begin{FT}
+
+%MANUELL MILJÖ%
+\item
+\textbf{\emph{Manuell miljö:} Projektledaren har tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp}
+
+\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item A trycker på "Visa tidrapporter".
+\item Se till att Projektledaren kan se alla sina projektmedlemmars tidrapporter.
+\item A trycker på "Uppdatera tidrapporter".
+\item Se till att Projektledaren kan se alla sina projektmedlemmars tidrapporter.
+\item A trycker på "Radera tidrapporter".
+\item Se till att Projektledaren kan se alla sina projektmedlemmars tidrapporter.
+\end{enumerate}
+
+%ÄNDRA MANUELL MILJÖ%
+\item
+\textbf{Projektledaren lyckas godkänna en ej tidigare godkänd tidrapport från en medlem i sin projektgrupp}
+
+\emph{Starttillstånd:} Projektledare inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektledare inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport godkänd.
+
+\begin{enumerate}
+\item A trycker på "Godkänn rapporter".
+\item A väljer en osignerad tidrapport genom att trycka på på dess radioknapp.
+\item A trycker på knappen "Godkänd".
+\item Se till att tidrapporten är godkänd.
+\end{enumerate}
+
+%MANUELL MILJÖ%
+\item
+\textbf{Projektledaren lyckas ta tillbaka sitt godkännande från en tidigare godkänd tidrapport}
+
+\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport är inte längre godkänd.
+
+\begin{enumerate}
+\item A trycker på "Godkänn rapporter".
+\item A väljer en signerad tidrapport genom att trycka på på dess radioknapp.
+\item A trycker på knappen "Icke godkänd".
+\item Se till att tidrapporten är inte längre godkänd.
+\end{enumerate}
+
+
+
+\item
+\textbf{Projektledaren lyckas generera statistik i form av tidrapporter per användare för samtliga veckor}
+
+\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item A får tillgång till statistiksidan.
+\item A väljer en användare och "Samtliga veckor".
+\item A trycker på "Generera statistik"
+\item Se till att en ny tidrapport genereras med en användares arbetstid summerad för samtliga veckor.
+\end{enumerate}
+
+
+
+\item
+\textbf{Projektledaren lyckas generera statistik i form av tidrapporter per roll för samtliga veckor}
+
+\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item A får tillgång till statistiksidan.
+\item A väljer en roll och "Samtliga veckor".
+\item A trycker på "Generera statistik"
+\item Se till att en ny tidrapport genereras med summerad arbetstid för en roll för samtliga veckor.
+\end{enumerate}
+
+
+\item
+\textbf{Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet}
+
+\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item A får tillgång till statistiksidan.
+\item A väljer "Statistik per aktivitet".
+\item A trycker på "Generera statistik".
+\item Se till att en ny tidrapport genereras med alla aktiviteters arbetstid.
+\end{enumerate}
+
+
+\item
+\textbf{Projektledaren lyckas generera statistik i form av tidrapporter per vecka}
+
+\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item A får tillgång till statistiksidan.
+\item A väljer "Statistik per vecka".
+\item A trycker på "Generera statistik".
+\item Se till att en ny tidrapport genereras med alla veckors arbetstid.
+\end{enumerate}
+
+
+\item
+\textbf{Projektledaren lyckas generera statistik i form av tidrapporter per användare och aktivitet}
+
+\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item A får tillgång till statistiksidan.
+\item A väljer en användare och välj aktivitet.
+\item A trycker på "Generera statistik".
+\item Se till att en ny tidrapport genereras med en användares arbetstid för specificerad aktivitet.
+\end{enumerate}
+
+
+\item
+\textbf{Projektledaren lyckas generera statistik i form av tidrapporter per användare för utvalda veckor}
+
+\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item A får tillgång till statistiksidan.
+\item A väljer en användare och välj godtyckliga veckor.
+\item A trycker på "Generera statistik".
+\item Se till att en ny tidrapport genereras med en användares arbetstid för specificerade veckor.
+\end{enumerate}
+
+
+\item
+\textbf{Projektledaren lyckas generera statistik i form av tidrapporter per roll och aktivitet}
+
+\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item A får tillgång till statistiksidan.
+\item A väljer en roll och välj aktivitet.
+\item A trycker på "Generera statistik".
+\item Se till att en ny tidrapport genereras med summerad arbetstid för en roll för specificerad aktivitet.
+\end{enumerate}
+
+
+\item
+\textbf{Projektledaren lyckas generera statistik i form av tidrapporter per roll för utvalda veckor}
+
+\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item A får tillgång till statistiksidan.
+\item A väljer roll och välj godtyckliga veckor.
+\item A trycker på "Generera statistik".
+\item Se till att en ny tidrapport genereras med summerad arbetstid för en roll för specificerade veckor.
+\end{enumerate}
+
+
+\item
+\textbf{Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet och vecka}
+
+\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item A får tillgång till statistiksidan.
+\item A väljer en aktivitet och en vecka.
+\item A trycker på "Generera statistik".
+\item Se till att en ny tidrapport genereras med total arbetstid från en aktivitet från en specifik vecka.
+\end{enumerate}
+
+
+\item
+\textbf{\emph{Manuell miljö:} Projektledaren kan se sammalagd arbetstid från valda tidrapporter} \req[6.3.13-21, 6.3.6]
+
+\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item A väljer godtycklig tidrapport.
+\item Se till att A kan se sammanlagd arbetstid från tidrapporten.
+\end{enumerate}
+
+% \item
+% \emph{Manuell miljö:} Projektledaren kan se sammalagd arbetstid från en vald aktivitet från valda tidrapporter \req[6.3.12-20]
+
+% %ändrad 23/9**
+% \item
+% \emph{Manuell miljö:} Projektledaren kan se sammalagd arbetstid från en vald subaktivitet från valda tidrapporter \req[6.3.14-21]
+% \item
+% \emph{Manuell miljö:} Projektledaren kan se hur ofta en vald aktivitet har utförts i valda tidrapporter \req[6.3.14-21]
+
+% %ändrad 23/9**
+% \item
+% \emph{Manuell miljö:} Projektledaren kan se hur ofta en vald subaktivitet har utförts i valda tidrapporter \req[6.3.14-21]
+
+% %ändrad 23/9**
+% \item
+% \emph{Manuell miljö:} Projektledaren kan se vilken aktivitet som har tagit mest tid från tidrapportererna \req[6.3.14-21]
+
+% %ändrad 23/9**
+% \item
+% \emph{Manuell miljö:} Projektledaren kan se vilken aktivitet som är vanligast från tidrapportererna  \req[6.3.14-21]
+
+% %ändrad 23/9**
+% \item
+% \emph{Manuell miljö:} Projektledaren kan se vilken vecka som har mest rapporterad tid från tidrapportererna \req[6.3.14-21]
+\end{FT}
+
+
+%tidrapportering
+\subsubsection{Data}
+
+\begin{FT}
+
+%ändrad 23/9**
+\item
+\textbf{Lagra 100 tidrapporter för en användare} \req[6.3.28]
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item Skapa en ny tidrapport
+\item Upprepa steg 1 99 gånger.
+\item Se till att 100 tidrapporter är skapade
+\end{enumerate}
+
+%ändrad 23/9**
+\item
+\textbf{Försök att lagra mer än 100 tidrapporter för en användare} \req[6.3.28]
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item Skapa en ny tidrapport
+\item Upprepa steg 1 98 gånger.
+\item Skapa en ny tidrapport x.
+\item Se till att 100 tidrapporter är skapade
+\item Skapa en till tidrapport. 
+\item Se till att tidrapport x är överskriven enligt FIFO principen och att den senaste är sparad.
+\end{enumerate}
+
+
+%Admin anger rätt mängd aktiviteter/subakt när scenario 6.2.4 genomförs i ST
+
+
+\item
+\textbf{Administratör försöker ange 0 aktiviteter i en tidrapportmall} \req[6.3.31]
+
+\emph{Starttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar\\
+\emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmall ej skapad.\\
+
+\begin{enumerate}
+\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör väljer ingen aktivitet.
+\item Administratör trycker på "Skapa"
+\item Se till att ingen tidrapportmall är skapad.
+\end{enumerate}
+
+\item
+\textbf{Administratör försöker ange 21 aktiviteter i en tidrapportmall} \req[6.3.31]
+
+\emph{Starttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar\\
+\emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmall ej skapad.\\
+
+\begin{enumerate}
+\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör väljer 21 aktiviteter.
+\item Administratör trycker på "Skapa"
+\item Se till att ingen tidrapportmall är skapad.
+\end{enumerate}
+
+
+\item
+\textbf{Administratör försöker ange 0 subaktiviteter i en tidrapportmall} \req[6.3.32]
+
+\emph{Starttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar\\
+\emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmall ej skapad.\\
+
+\begin{enumerate}
+\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör väljer ingen subaktivitet.
+\item Administratör trycker på "Skapa"
+\item Se till att ingen tidrapportmall är skapad.
+\end{enumerate}
+
+
+\item
+\textbf{Administratör försöker ange 5 subaktiviteter i en tidrapportmall} \req[6.3.32]
+
+\emph{Starttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar\\
+\emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmall ej skapad.\\
+
+\begin{enumerate}
+\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör väljer 5 subaktiviteter.
+\item Administratör trycker på "Skapa"
+\item Se till att ingen tidrapportmall är skapad.
+\end{enumerate}
+
+
+\item
+\textbf{\emph{Manuell miljö:} Antalet aktiviteter anger antalet rader i tidrapporter}
+
+\emph{Starttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar\\
+\emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar.\\
+
+\begin{enumerate}
+\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör skriver in x unika aktiviterer.
+\item Se till att tidrapportmall är skapad.
+\item Administratör får tillgång till tidrapporteringsfunktionaliteten.
+\item Administratör skapar en ny tidrapport.
+\item Se till att antalet aktiviteter anger antalet rader i tidrapporten.
+\end{enumerate}
+
+\item
+\textbf{\emph{Manuell miljö:} Antalet subaktiviteter anger antalet kolumner i tidrapporter}
+
+\emph{Starttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar\\
+\emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar.\\
+
+\begin{enumerate}
+\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör skriver in x unika subaktiviterer.
+\item Se till att tidrapportmall är skapad.
+\item Administratör får tillgång till tidrapporteringsfunktionaliteten.
+\item Administratör skapar en ny tidrapport.
+\item Se till att antalet subaktiviteter anger antalet kolumner i tidrapporten.
+\end{enumerate}
+
+\item
+\textbf{En tidrapport innehåller information om användarnamn}
+
+\emph{Starttillstånd:} Inloggad på mysql\\
+\emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller användarnamn\\
+
+\begin{enumerate}
+\item Få tillgång till databasen
+\item Visa tidrapporterna
+\item Hämta användarnamn från samtliga tidrapporter.
+\item Se till att inget av de hämtade värdena är null.
+\end{enumerate}
+
+\item
+\textbf{En tidrapport innehåller information om projektgruppsnamn}
+
+\emph{Starttillstånd:} Inloggad på mysql\\
+\emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller projektgruppsnamn\\
+
+\begin{enumerate}
+\item Få tillgång till databasen
+\item Visa tidrapporterna
+\item Hämta projektgruppsnamn från samtliga tidrapporter.
+\item Se till att inget av de hämtade värdena är null.
+\end{enumerate}
+
+
+
+\item
+\textbf{En tidrapport innehåller information om datum i form av "dag månad år"}
+
+\emph{Starttillstånd:} Inloggad på mysql\\
+\emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller datum i "dag månad år".\\
+
+\begin{enumerate}
+\item Få tillgång till databasen
+\item Visa tidrapporterna
+\item Hämta datum från samtliga tidrapporter.
+\item Se till att inget av de hämtade värdena är null.
+\end{enumerate}
+
+
+\item
+\textbf{En tidrapport innehåller information om veckonummer}
+
+\emph{Starttillstånd:} Inloggad på mysql\\
+\emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller veckonummer.\\
+
+\begin{enumerate}
+\item Få tillgång till databasen
+\item Visa tidrapporterna
+\item Hämta veckonummer från samtliga tidrapporter.
+\item Se till att inget av de hämtade värdena är null.
+\end{enumerate}
+
+
+\item
+\textbf{\emph{Manuell miljö:} Det ska framgå tydligt att en tidrapport är signerad eller inte}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item A Tryck på visa tidrapporter
+\item A väljer godtycklig tidrapport
+\item Se till att det visas tydligt om tidrapporten är godkänd eller ej.
+\end{enumerate}
+
+
+\item
+\textbf{Administratör försöker ändra tidrapportmallens utformning efter att den har
+skapats}
+
+\emph{Starttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar\\
+\emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmallens utformning ej redigerad.\\
+
+\begin{enumerate}
+\item Administratör letar efter funktionalitet för att redigera utformningen av en tidrapportmall.
+\item Se till att nämnda funktionalitet ej finns.
+\end{enumerate}
+
+
+
+\item
+\textbf{Generera grundmallen för tidrapporterna automatiskt av systemet} \req[6.3.45]
+
+\emph{Starttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar\\
+\emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmall skapad.\\
+
+\begin{enumerate}
+\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör trycker på "Generera grundmall"
+\item Se till att tidrapport är skapad.
+\end{enumerate}
+
+
+\item
+\textbf{Försök skapa två aktiviteter med samma namn} \req[6.3.46]
+
+\emph{Starttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar\\
+\emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmall ej skapad.\\
+
+\begin{enumerate}
+\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör skriver in aktivitet x två gånger.
+\item Se till att ingen tidrapportmall är skapad.
+\end{enumerate}
+
+
+%ändrad 23/9**
+\item
+\textbf{Försök skapa två subaktiviteter med samma namn} \req[6.3.47]
+
+\emph{Starttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar\\
+\emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmall ej skapad.\\
+
+\begin{enumerate}
+\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör skriver in subaktivitet x två gånger.
+\item Se till att ingen tidrapportmall är skapad.
+\end{enumerate}
+
+\end{FT}
+%-------------------------------
+%----------------------------
+%-----------------------------
+%-------------------------------
+%-----------------------------
 %+++++++++++++++++++++++++++%
 %SLUT på FT:Tidrapportering+%
 %+++++++++++++++++++++++++++%
@@ -1102,41 +1574,199 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 %++++++++++++++++++++++++++++%
 %BÖRJAN på ST:tidrapportering%
 %++++++++++++++++++++++++++++%
-
+%++++++++++++++++++++++++++
+%+++++++++++++++++++++++++++++++++++
+%+++++++++++++++++++++++++++++++
+%+++++++++++++++++++++++++++++++++
+%+++++++++++++++++++++++++++++++
+%++++++++++++++++++++++++++++%
+%BÖRJAN på ST:tidrapportering%
+%++++++++++++++++++++++++++++%
+%Johan
 \subsection{Tidrapportering}
-
-
-\subsubsection{Användare}
-
-%\begin{ST}
-%\end{ST}
-
 \subsubsection{Projektmedlem}
 
-%\begin{ST}
-%\end{ST}
+\begin{ST}
+
+
+
+
+\item
+\textbf{Genomför scenario 6.3.1 (Dokumentera arbetstimmar i systemet)}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne vid huvudmenysidan. Ingen tidigare tidrapport för denne användare finns.\\
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne vid tidrapportfunktionalitetssidan.\\
+
+\begin{enumerate}
+\item A skriver in URL för funktionalitetssidan för tidrapportering och får tillgång till sidan.
+\item Se till att under fältet I där man skriver in veckonummer framgår det att ingen tidigare tidrapport har skapats.
+\item A skriver in veckonummer för veckan som ska tidrapporteras i det visade fältet. A skriver in:
+\begin{itemize}
+\item[] (a) Text som inte är ascii
+\item[] (b) 100
+\item[] (c) Ingenting
+\item[] (d) 698
+\end{itemize}
+\item För varje fall i steg 3a-d trycker A på "OK"
+\item Se till att ingen tidrapport genereras.
+\item Se till att ett felmeddelande genereras om att veckonumret är otillåtet.
+\item Se till att A skickas tillbaka till sidan där man skriver in veckonummer.
+\item A skriver in 51 och trycer på "OK".
+\item Se till att en ny tidrapport genereras med veckonumret 51 samt dagens datum ifyllt.
+\item Användaren skriver in i godtycklig ruta:
+\begin{itemize}
+\item[] (a) Text som inte är ascii
+\item[] (b) 123456
+\end{itemize}
+\item Se till att A kan skriva in tidinformationen i 10a-c
+\item För varje fall i steg 10a-c trycker A på "Skicka". 
+\item Se till att ingen tidrapport sparas och att sidan för specificerad tidrapport laddas om.
+\item A skriver in 30 godtycklig ruta och 150 i en annan.
+\item A trycker på "Skicka".
+\item Se till att tidrapporten är skapad och att A får en bekräftelse om att den är sparad i databasen.
+\item Se till att användaren kan se totaltiden från tidrapporten.
+\item A skriver in URL för funktionalitetssidan för tidrapportering.
+\item Se till att A kan se, under fältet I, information om att tidrapporten för vecka 51 var senast sparad samt dagens datum.
+\item A skriver in 51 och trycker på "OK".
+\item Se till att en ny tidrapport inte skapas.
+\item Se till att denna rapport hämtas från databasen och visas för A.
+\item Se till att den visade rapporten kan redigeras.
+
+\end{enumerate}
+
+
+
+\item
+\textbf{Genomför scenario 6.3.2 (Ta bort/redigera arbetstimmar i systemet)}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne vid huvudmenysidan. Två tidrapporter finns. En signerad, för vecka 12. En osignerad för vecka 51.\\
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne vid tidrapportfunktionalitetssidan.\\
+
+\begin{enumerate}
+\item A skriver in URL för funktionalitetssidan för tidrapportering och får tillgång till sidan.
+\item A väljer "Ta bort/redigera tidrapport"
+\item Se till att A får upp en lista med tidrapporter.
+\item A väljer tidrapporten för vecka 12.
+\item Se till att A kan välja "Redigera" men inte "Ta bort".
+\item A trycker på "Redigera".
+\item Se till att tidrapporten visas men kan inte redigeras.
+\item A skriver in URL för "Ta bort/redigera tidrapporter".
+\item A väljer tidrapporten för vecka 51.
+\item Se till att A kan välja både "Redigera" och "Ta bort".
+\item A trycker på "Redigera".
+\item Användaren skriver in i godtycklig tom ruta:
+\begin{itemize}
+\item[] (a) Text som inte är ascii
+\item[] (b) 123456
+\end{itemize}
+\item För varje fall i steg 12a-c trycker A på "Skicka". 
+\item Se till att ingen tidrapport sparas och att sidan för specificerad tidrapport laddas om.
+\item A skriver in 100 i godtycklig tom ruta och trycker på "OK".
+\item Se till att tidrapporten är uppdaterad.
+\item A skriver in URL för "Ta bort/redigera tidrapporter".
+\item A väljer vecka 51.
+\item A trycker på "Ta bort".
+\item Se till att en bekräftelseruta visas.
+\item A trycker på "Nej".
+\item Se till att tidrapporten inte är borttagen och att sidan där tidrapporten listas visas.
+\item \item A väljer vecka 51.
+\item A trycker på "Ta bort".
+\item A trycker på "Ja".
+\item Se till att tidrapport är borttagen.
+\end{enumerate}
+
+
+\item
+\textbf{Systemet stödjer stegen i figur 6}
+
+\emph{Starttillstånd:} Projektmedlem A inte inloggad. 99 tidrapporter finns.\\
+\emph{Sluttillstånd:} Projektmedlem A inte inloggad.\\
+
+\begin{enumerate}
+
+\item A skriver in URL för inloggningssidan.
+\item A loggar in, fel lösenord rätt användarnamn. Misslyckas, sidan laddas om.
+\item A skriver in rätt lösenord, lyckas.
+\item Se till att A kan se projektmedlemsfunktionaliteter på funktionalitetssidan I.
+\item A väljer "Lista medlemar".
+\item Se till att alla projektmedlemmar i As grupp listas.
+\item A går tillbaka till I.
+\item A väljer "Tidrapportering".
+\item A väljer "Ny tidrapport".
+\item Fyller i tidrapport, trycker på "Skicka", lyckas.
+\item A går tillbaka till I.
+\item Steg 7-11 upprepas. I steg 9 får A dock välja om han vill ta bort första tidrapporten, och isåfall fylla in en ny.
+\item A väljer "Redigera tidrapport".
+\item Se till att gamla tidrapporter listas.
+\item Väljer signerad tidrapport, kan inte redigera.
+\item A går tillbaka till "Redigera tidrapport".
+\item A väljer osignerad tidrapport.
+\item A ändrar/tar bort rapporten.
+\item A väljer "Visa statistik".
+\item Se till att olika sorters statistik listas.
+\item A genererar statistik.
+\item A loggar ut.
+\item Se till att A är utloggad.
+
+\end {enumerate}
+
+
+
+\end{ST}
 
 \subsubsection{Projektledare}
 
+\begin{ST}
 
-%\begin{ST}
-%\end{ST}
+%MAX 100 RAPPORTER KRAV INTE MED
 
-\subsubsection{Administratör}
+\item 
+textbf{Systemet stödjer stegen i figur 7}
 
-%\begin{ST}
-%\end{ST}
+\emph{Starttillstånd:} Projektledare A inte inloggad. Projektmedlem B har rollen t1, en icke godkänd rapport. 99 tidrapporter för A.\\
+\emph{Sluttillstånd:} Projektledare A inte inloggad. Projektmedlem B har rollen t2, godkänd rapport. 100 tidrapporter för A.\\
 
-\subsubsection{Data}
+\begin{enumerate}
 
-%\begin{ST}
-%\end{ST}
+\item A skriver in URL till inloggninssidan.
+\item A skriver in fel lösenord, rätt användarnamn. Misslyckas, sidan laddas om.
+\item A skriver in rätt lösenord och rätt användarnamn. Lyckas logga in.
+\item Se till att A har tillgång till projektledarfuntionaliteter.
+\item A väljer "Lista medlemmar".
+\item Se till att A ser alla medlemmar och dess roller.
+\item A byter roll på medlem B till t2.
+\item A klickar på menyn.
+\item A väljer "Tidrapportering".
+\item A väljer "Ny tidrapport"
+\item A fyller in ny tidrapport och trycker på "Skicka".
+\item Se till att tidrapport är skapad.
+\item A skriver URL för "Tidrapportering"
+\item A trycker "Redigera tidrapport"
+\item Se till att lista med tidrapporter kan ses.
+\item A försöker redigera/ta bort sin signerade rapport, går int.
+\item A ändrar/tar bort sin osignerade rapport.
+\item A skriver URL "Tidrapportering"
+\item A väljer "Visa statistik"
+\item Se till att A kan se en lista med statistik
+\item A väljer godtycklig statistik.
+\item A trycker "Generera"
+\item Se till att A kan se statistiken.
+\item A skriver URL "Tidrapportering.
+\item A väljer "Visa alla tidrapporter"
+\item A väljer projektmedlem B, sätter rapport till godkänd.
+\item A loggar ut.
+\item Se till att A är utloggad.
 
-\subsubsection{Ej inloggad}
 
-%\begin{ST}
-%\end{ST}
 
+\end{enumerate}
+
+\end{ST}
+%-------------------------------
+%----------------------------
+%--------------------------------
+%------------------------------
+%-------------------------------
 %++++++++++++++++++++++++++%
 %SLUT på ST:tidrapportering%
 %++++++++++++++++++++++++++%
