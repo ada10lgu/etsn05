@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 0.1 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 0.2 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -54,6 +54,7 @@
 \begin{tabular}{ l l l p{9cm} }
 Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.1 & 29 september 2014 & TG & Skapande av mall \\
+0.2 & 1 oktober 2014 & TG & Kvalitetskrav och regressionstest tillagt
 
 \end{tabular}
 \section{1 Inledning}       
@@ -779,17 +780,72 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 %+++++++++++++++++++++++++++%
 \subsection{Kvalitetskrav}
 
-\subsubsection{Användare}
-\subsubsection{Projektmedlem}
-\subsubsection{Projektledare}
-\subsubsection{Administratör}
-\subsubsection{Data}
-\subsubsection{Ej inloggad}
+\subsubsection{Prestanda}
+
+\item
+\textbf{Försök logga in med fler än 50 användare samtidigt.}
+
+\emph{Starttillstånd:} Användare user1-user51 finns registrerade med lösenord pass. Inga användare inloggade.
+
+\emph{Sluttillstånd:} Användare user1-user50 är inloggade. User51 är inte inloggad
+
+\begin{enumerate}
+
+\item
+försök logga in användare user1-user51
+
+\end{enumerate}
+
+\item
+\textbf{Logga in med 50 användare}
+
+Se föregående test.
+
+\item
+\textbf{Svaret på en godtycklig förfrågan från en dator i E-huset kommer i 95\% av fallen tillbaka
+inom en sekund.}
+
+\emph{Starttillstånd:} Administratör inloggad på dator i E-huset.
+
+\emph{Sluttillstånd:} Administratör inloggad på dator i E-huset.
+
+\begin{enumerate}
+
+\item Administratören försöker generera statistik 40 gånger. Tiden det tar innan servern svarar mäts varje gång.
+
+\item Den uppmätta tiden utvärderas och bör inte vara högre än en (1) sekund fler än två (2) gånger.
+
+\end{enumerate}
 
 %+++++++++++++++++++++++++++%
 %SLUTET på ST:Kvalitetstest+%
 %+++++++++++++++++++++++++++%
 \end{ST}
 \subsection{Regressionstest}
+
+Alla test ska köras två gånger i veckan.
+
+När något ändras ska helst alla tester köras igen. Om så inte är möjligt ska åtminstone de
+generella kraven och de tester i det område som förändringen påverkade köras.
+Om något ändras inom dessa områden måste följande testfall regressionstestas. Vid varje
+ändring ska de test rörande de generella kraven också testas.
+Områden innefattar:
+
+\begin{itemize}
+
+\item
+Generella krav
+
+\item
+Autentisering
+
+\item
+Tidrapportering
+
+\item
+Administration
+
+\end{itemize}
+
 
 \end{document}
