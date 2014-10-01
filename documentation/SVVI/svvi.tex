@@ -1,0 +1,795 @@
+\documentclass[a4paper]{article}
+\usepackage[pdftex]{graphicx}
+\usepackage{anysize}
+\marginsize{3cm}{3cm}{3cm}{3cm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{titleref}
+
+\usepackage[swedish]{babel}      
+\usepackage{epstopdf}     % För svensk avstavning och svenska
+\usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
+\usepackage[scaled]{helvet} % Helvetica, scaled 95%
+\usepackage[titletoc]{appendix}
+
+\usepackage{fancyhdr}
+
+\fancyhf{}
+\fancyhead[L]{Ansvarig: TG}
+\fancyhead[R]{Datum: \today |Version: 0.1 | Dokumentnummer: PUSS144403}
+
+\newcommand\invisiblesubsubsection[1]{%
+  \refstepcounter{subsubsection}%
+  \addcontentsline{toc}{subsubsection}{\protect\numberline{\thesubsubsection}#1}%
+  \sectionmark{#1}}
+
+\renewcommand{\thesection}{\hspace*{-1.0em}}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+
+\newlist{FT}{enumerate}{1}
+\setlist[FT]{label=FT \thesubsubsection.\arabic*}
+
+\newlist{ST}{enumerate}{1}
+\setlist[ST]{label=ST \thesubsubsection.\arabic*}
+
+\def\reqinside{\hfil\penalty 100 \hfilneg \hbox}
+\def \req [#1]{\reqinside{[SRS krav #1]}}
+
+\def\myurl{\hfil\penalty 100 \hfilneg \hbox}
+
+\title{SVVI - Software Verification and Validation Instructions: NewPussSystem}                  	
+\author{Testgruppen \\ Axel Ulmestig | Axel Goteman | Sefik Ceric \\ Victor Johnsson | Johan Kellerth Fredlund}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+\tableofcontents
+\newpage
+
+\section*{Dokumenthistorik}
+
+\begin{tabular}{ l l l p{9cm} }
+Ver. & Datum & Ansv. & Beskrivning \\\hline
+0.1 & 29 september 2014 & TG & Skapande av mall \\
+
+\end{tabular}
+\section{1 Inledning}       
+
+Detta dokument innehåller detaljerade testinstruktioner som ska genomföras under utvecklingen av NewPussSystem.
+
+\section{2 Referensdokument}
+\begin{enumerate}
+\item System Validation and Verification Insctructions 1.0
+\end{enumerate}
+
+
+
+\section{3 Testinstruktioner}
+Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i formen av steg som utförs av testaren eller automatiskt av systemet. När steg börjas med "Se till att" så beskriver de resultat från systemet, och testaren bör kolla att det verkligen har inträffat. Detta kallades i ref. 1 för verklig miljö.
+
+\section{Funktionstest}
+
+
+\begin{FT}
+
+%+++++++++++++++++++++++++++% 
+%BÖRJAN på FT:generella krav%
+%+++++++++++++++++++++++++++%
+\subsection{Generella krav}
+
+\subsubsection{Användare}
+\subsubsection{Projektmedlem}
+\subsubsection{Projektledare}
+\subsubsection{Administratör}
+\subsubsection{Data}
+\subsubsection{Ej inloggad}
+
+%+++++++++++++++++++++++++++% 
+%SLUTET på FT:generella krav%
+%+++++++++++++++++++++++++++%
+
+
+%++++++++++++++++++++++++++% 
+%BÖRJAN på FT:autentisering%
+%++++++++++++++++++++++++++%
+\subsection{Autentisering}
+
+\subsubsection{Övergripande}
+
+
+\item
+\textbf{Projektmedlem försöker logga in på dator när den redan är inloggad på en annan dator}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad på dator C, A inte inloggad på dator B.
+
+\emph{Sluttillstånd:} A inloggad på B, A inte inloggad på C.
+
+\begin{enumerate}
+\item A fyller i korrekt inloggningsinformation på dator B, och klickar på logga in.
+\item Se till att A är inloggad på dator B.
+\item Se till att A inte är inloggad på dator C.
+\end{enumerate}
+
+
+%Fix Server session%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+\textbf{Loginstatus hålls i en server session}
+
+\emph{Starttillstånd:} Användare A inte inloggad, inloggningssidan visas.
+
+\emph{Sluttillstånd:} A inloggad.
+
+\begin{enumerate}
+\item Se till att inloggningsstatusen i sessionen är "ej inloggad".
+\item A loggar in.
+\item Se till att inloggningsstatusen i sessionen är "inloggad".
+\end{enumerate}
+
+
+
+
+
+\item
+\textbf{Administratören försöker skapa en användare med för kort användarnamn}
+
+\emph{Starttillstånd:} Administratören A inloggad, sidan för nya användare visas, användare B finns inte i systemet.
+
+\emph{Sluttillstånd:} A inloggad, B finns inte i systemet
+
+\begin{enumerate}
+\item A fyller i användarnamnet på B och försöker ge B ett användarnamn med 4 tecken eller mindre.
+\item Se till att B inte skapas i systemet.
+\item Se till att ett felmeddelande visar varför B inte skapades.
+\end{enumerate}
+
+\item
+\textbf{Administratören försöker skapa en användare med för långt användarnamn}
+
+\emph{Starttillstånd:} Administratören A inloggad, sidan för nya användare visas, användare B finns inte i systemet.
+
+\emph{Sluttillstånd:} A inloggad, B finns inte i systemet
+
+\begin{enumerate}
+\item A fyller i användarnamnet på B och försöker ge B ett användarnamn med 11 tecken eller längre.
+\item Se till att B inte skapas i systemet.
+\item Se till att ett felmeddelande visar varför B inte skapades.
+\end{enumerate}
+
+\item
+\textbf{Administratören försöker skapa en användare med användarnamn som innehåller icke tillåtna tecken}
+
+\emph{Starttillstånd:} Administratören A inloggad, sidan för nya användare visas, användare B finns inte i systemet.
+
+\emph{Sluttillstånd:} A inloggad, B finns inte i systemet
+
+\begin{enumerate}
+\item A fyller i användarnamnet på B och försöker ge B ett användarnamn som innehåller minst ett tecken från ascii utanför numren (48-57,65-90,97-122).  .
+\item Se till att B inte skapas i systemet.
+\item Se till att ett felmeddelande visar varför B inte skapades.
+\end{enumerate}
+
+\item
+\textbf{Försök skapa/byta lösenord till ett med fler eller färre tecken än 6.}
+
+\emph{Starttillstånd:} Användaren A inloggad, sidan för byta/skapa lösenord visas.
+
+\emph{Sluttillstånd:} A inloggad, lösenordet inte förändrat, felmeddelande visas.
+
+\begin{enumerate}
+\item A fyller i ett nytt lösenord med de tillåtna tecknen (ascii 97-122) som inte är 6 tecken långt.
+\item Se till att A's lösenord inte förändrats.
+\item Se till att ett felmeddelande visar att lösenordet inte ändrats och varför.
+\end{enumerate}
+
+\item
+\textbf{Försök skapa/byta lösenord till ett med otillåtna tecken.}
+
+\emph{Starttillstånd:} Användaren A inloggad, sidan för byta/skapa lösenord visas.
+
+\emph{Sluttillstånd:} A inloggad, lösenordet inte förändrat, felmeddelande visas.
+
+\begin{enumerate}
+\item A fyller i ett nytt lösenord med minst ett tecken från ascii utanför numren 97-122, lösenordet är 6 tecken långt.
+\item Se till att A's lösenord inte förändrats.
+\item Se till att ett felmeddelande visar att lösenordet inte ändrats och varför.
+\end{enumerate}
+
+
+
+\subsubsection{Användare}
+
+\item
+\textbf{Kontrollera att utloggningsfunktionallitet finns på alla inloggade sidor och fungerar.}
+
+\emph{Starttillstånd:} Användaren A inloggad.
+
+\emph{Sluttillstånd:} A utloggad.
+
+\begin{enumerate}
+\item A går till en slumpmässig URL som tillhör NewPussSystem.
+\item Se till att en utloggningsknapp finns.
+\item Klicka på utloggningsknappen.
+\item Se till att A är utloggad.
+\end{enumerate}
+
+\item
+\textbf{En användare som är inaktiv i 20 min blir utloggad.}
+
+\emph{Starttillstånd:} Användaren A inloggad.
+
+\emph{Sluttillstånd:} A utloggad.
+
+\begin{enumerate}
+\item A går till en slumpmässig URL som tillhör NewPussSystem.
+\item A rör ingenting i 20 minuter.
+\item Försök komma åt någon URL eller funktion som kräver en inloggad användare.
+\item Se till att A är utloggad, och funktionallitet som kräver inloggad användare ej är tillgänglig.
+\item Se till att ett meddelande visas som informerar om vad som hänt.
+\end{enumerate}
+
+\subsubsection{Administratör}
+
+\item
+\textbf{Administratören kan ta bort alla användare utom sig själv ur systemet.}
+
+\emph{Starttillstånd:} Administratören A inloggad, sidan för att ta bort användare visas, användare B finns i systemet.
+
+\emph{Sluttillstånd:} B finns inte i systemet.
+
+\begin{enumerate}
+\item A tar bort B.
+\item Se till att B har tagits bort.
+
+\end{enumerate}
+
+\item
+\textbf{Administratören kan inte ta bort sig själv.}
+
+\emph{Starttillstånd:} Administratören A inloggad, sidan för att ta bort användare visas.
+
+\emph{Sluttillstånd:} A finns kvar i systemet, felmeddelande visas.
+
+\begin{enumerate}
+\item A försöker ta bort A.
+\item Se till att A inte är borttagen.
+\item Se till att ett felmeddelande visas.
+\end{enumerate}
+
+\item
+\textbf{Administratören kan ta bort en tidsrapportmall som inte används av en projektgrupp.}
+
+\emph{Starttillstånd:} Administratören A inloggad, sidan för att ta bort tidsrapportmall visas, tidsrapportmall B används ej.
+
+\emph{Sluttillstånd:} B finns ej i systemet.
+
+\begin{enumerate}
+\item A tar bort B.
+\item Se till att B är borttagen.
+\end{enumerate}
+
+\subsubsection{Data}
+
+\item
+\textbf{Kontrollera givna användaridentiteter mot de registrerade användare som finns i systemet.}
+
+\emph{Starttillstånd:} Användaren A inte inloggad, sidan för inloggning visas.
+
+\emph{Sluttillstånd:} A inloggad.
+
+\begin{enumerate}
+\item A fyller i sitt användarnamn och lösenord sedan klickar den på logga in.
+\item Se till att A bara loggas in om A finns registrerad i systemet.
+\item Se till att A omdirigerades till den sida som har användarfunktionerna.
+\item Se till att sessionens inloggningsstatus är inloggad.
+\end{enumerate}
+
+\subsubsection{Ej inloggad}
+
+\item
+\textbf{En inte inloggad användare når systemet och tvingas då lämna inloggninsinformation.}
+
+\emph{Starttillstånd:} Användaren A inte inloggad.
+
+\emph{Sluttillstånd:} A inte inloggad, inloggningssidan visas.
+
+\begin{enumerate}
+\item A kommer åt systemet.
+\item Se till att A omdirigeras till inloggningssidan.
+\item Se till att A inte kommer vidare utan att logga in.
+\end{enumerate}
+
+\item
+\textbf{En användare kan välja mellan alla befintliga projektgrupper i systemet på inloggningssidan.}
+
+\emph{Starttillstånd:} Användaren A inte inloggad.
+
+\emph{Sluttillstånd:} A inte inloggad.
+
+\begin{enumerate}
+\item A går till inloggningssidan.
+\item Se till att A kan välja mellan alla befintliga projektgrupper.
+\end{enumerate}
+
+\item
+\textbf{En användare skall specifiera vilken projektgrupp den vill logga in på.}
+
+\emph{Starttillstånd:} Användaren A inte inloggad.
+
+\emph{Sluttillstånd:} A är inte inloggad.
+
+\begin{enumerate}
+\item A går till inloggningssidan.
+\item A försöker logga in utan att välja en projektgrupp
+\item Se till att A inte är inloggad.
+\item Se till att ett felmeddelande visas.
+\end{enumerate}
+
+\item
+\textbf{En användare lyckas logga in på den/de projektgrupp(er) som den är medlem i.}
+
+\emph{Starttillstånd:} Användaren A inte inloggad, A tillhör projektgrupp B.
+
+\emph{Sluttillstånd:} A är inloggad.
+
+\begin{enumerate}
+\item A går till inloggningssidan.
+\item A väljer projektgrupp B och loggar in.
+\item Se till att A är inloggad.
+\end{enumerate}
+
+\item
+\textbf{En användare försöker logga in på en projektgrupp som denne inte är medlem i.}
+
+\emph{Starttillstånd:} Användaren A inte inloggad, A tillhör inte projektgrupp B.
+
+\emph{Sluttillstånd:} A är inte inloggad.
+
+\begin{enumerate}
+\item A går till inloggningssidan.
+\item A väljer projektgrupp B och försöker logga in.
+\item Se till att A inte är inloggad.
+\item Se till att ett felmeddelande visas.
+\end{enumerate}
+
+\item
+\textbf{Administratören lyckas logga in på samtliga projektgrupper.}
+
+\emph{Starttillstånd:} Administratören A inte inloggad.
+
+\emph{Sluttillstånd:} A är inloggad.
+
+\begin{enumerate}
+\item A går till inloggningssidan.
+\item A väljer någon projektgrupp som A inte är medlem i och loggar in.
+\item Se till att A är inloggad.
+\end{enumerate}
+%++++++++++++++++++++++++++% 
+%SLUTET på FT:autentisering%
+%++++++++++++++++++++++++++%
+
+
+
+%Johan
+%++++++++++++++++++++++++++++% 
+%BÖRJAN på FT:tidrapportering%
+%++++++++++++++++++++++++++++%
+\subsection{Tidrapportering}
+
+
+\subsubsection{Användare}
+\subsubsection{Projektmedlem}
+\subsubsection{Projektledare}
+\subsubsection{Administratör}
+\subsubsection{Data}
+\subsubsection{Ej inloggad}
+
+
+%tidrapportering
+\subsubsection{Projektmedlem}
+
+
+
+
+\item
+%ÄNDRA TILL MANUELL MILJÖ I SVVS%
+\textbf{Projektmedlem lyckas skapa en egen osignerad tidrapport}
+
+\emph{Starttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Sluttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering, ny tidrapport visas.
+
+\begin{enumerate}
+\item Projektmedlem trycker på knappen "Skapa en ny tidrapport".
+\item Se till att tidrapportern är skapad.
+\item Se till att tidrapporten inte är signerad när den skapas.
+\end{enumerate}
+
+%ÄNDRA MANUELL MILJÖ%
+\item
+\textbf{Projektmedlem lyckas uppdatera sin egna osignerade tidrapport}
+
+\emph{Starttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Sluttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering, uppdaterad tidrapport visas.
+
+\begin{enumerate}
+\item Projektmedlem trycker på knappen "Uppdatera tidrapport".
+\item Projektmedlem väljer en av sina osignerade tidrapporter genom att trycka på dess radioknapp.
+\item Projektmedlem skriver in 40 i godtycklig ruta, 20 i en annan.
+\item Projektmedlem trycker på "spara".
+\item Se till att tidrapporten är uppdaterad.
+\end{enumerate}
+
+%ÄNDRA MANUELL MILJÖ%
+\item
+\textbf{Projektmedlem lyckas ta bort sin egna osignerade tidrapport}
+
+\emph{Starttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Sluttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item Projektmedlem trycker på knappen "Ta bort tidrapport".
+\item Projektmedlem väljer en av sina osignerade tidrapporter genom att trycka på dess radioknapp.
+\item Projektmedlem trycker på knappen "Radera".
+\item Se till att tidrapporten är raderad.
+\end{enumerate}
+
+%MANUELL MILJÖ%
+\item
+\textbf{\emph{Manuell miljö:} Vid tidrapporteringsfunktionaliten kan en projektmedlem endast se sina egna tidrapporter} 
+
+\emph{Starttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Sluttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item Projektmedlem trycker på "Visa tidrapporter".
+\item Se till att denne endast ser sina egna tidrapporter.
+\end{enumerate}
+
+
+\item
+\textbf{Projektmedlem försöker ta bort en av sina signerade tidrapporter}
+
+\emph{Starttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Sluttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
+
+\begin{enumerate}
+\item Projektmedlem trycker på "Ta bort tidrapporter".
+\item Projektmedlem väljer en av sina signerade tidrapporter genom att trycka på dess radioknapp.
+\item Projektmedlem försöker trycka på knappen "Radera", men tidrapporten raderas inte.
+\end{enumerate}
+
+\item
+\textbf{Projektmedlem försöker redigera en signerad tidrapport}
+
+\emph{Starttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Sluttillstånd:} Projektmedlem inloggad, inne på funktionalitetssidan för tidrapportering, uppdaterad tidrapport visas.
+
+\begin{enumerate}
+\item Projektmedlem trycker på knappen "Uppdatera tidrapport".
+\item Projektmedlem väljer en av sina signerade tidrapporter genom att trycka på dess radioknapp.
+\item Projektmedlem försöker skriva in något i en godtycklig ruta, fälten går dock inte att redigera.
+\end{enumerate}
+
+
+%+++++++++++++++++++++++++++%
+%SLUT på FT:Tidrapportering+%
+%+++++++++++++++++++++++++++%
+
+
+
+
+
+
+%+++++++++++++++++++++++++++%
+%början på FT:Administration%
+%+++++++++++++++++++++++++++%
+\subsection{Administration}
+
+
+\subsubsection{Användare}
+\subsubsection{Projektmedlem}
+\subsubsection{Projektledare}
+\subsubsection{Administratör}
+\subsubsection{Data}
+\subsubsection{Ej inloggad}
+
+
+%+++++++++++++++++++++++++++% 
+%slutet på FT:Administration%
+%+++++++++++++++++++++++++++%
+\end{FT}
+
+
+%!!!!!!!!!!!!!
+%!!!!!!!!!!!!!
+%!!!!!!!!!!!!!
+%HÄR BÖRJAR ST
+%!!!!!!!!!!!!!
+%!!!!!!!!!!!!!
+%!!!!!!!!!!!!!
+
+\newpage
+
+
+\section{Systemtest}
+\begin{ST}
+
+
+%+++++++++++++++++++++++++++%
+%BÖRJAN på ST:generella krav%
+%+++++++++++++++++++++++++++%
+\subsection{Generella krav}
+
+
+\subsubsection{Användare}
+\subsubsection{Projektmedlem}
+\subsubsection{Projektledare}
+\subsubsection{Administratör}
+\subsubsection{Data}
+\subsubsection{Ej inloggad}
+
+%+++++++++++++++++++++++++%
+%SLUT på ST:generella krav%
+%+++++++++++++++++++++++++%
+
+
+%++++++++++++++++++++++++++%
+%BÖRJAN på ST:autentisering%
+%++++++++++++++++++++++++++%
+\subsection{Autentisering}
+
+
+\subsubsection{Användare}
+
+\item
+\textbf{Användare kan logga in.}
+
+\emph{Starttillstånd:} Användaren A inte inloggad.
+
+\emph{Sluttillstånd:} A är inloggad.
+
+\begin{enumerate}
+\item A når systemet.
+\item A bes ange användarnamn och lösenord på inloggningssidan.
+\item A anger korrekt användarnamn och lösenord.
+\item Se till att A är inloggad
+\item Se till att A vidarebefodras till en sida där funktionaliteten för en inloggad användare finns tillgänglig.
+\end{enumerate}
+
+\item
+\textbf{Användare kan logga ut.}
+
+\emph{Starttillstånd:} Användaren A är inloggad.
+
+\emph{Sluttillstånd:} A är inte inloggad.
+
+\begin{enumerate}
+\item A når systemet.
+\item A når en sida där det finns en utloggningslänk.
+\item A klickar på denna utloggningslänk.
+\item Se till att A inte är inloggad
+\item Se till att ett meddelande som anger detta visas.
+\end{enumerate}
+
+\item
+\textbf{Användare misslyckas med inloggning.}
+
+\emph{Starttillstånd:} Användaren A inte inloggad.
+
+\emph{Sluttillstånd:} A är inte inloggad.
+
+\begin{enumerate}
+\item A når systemet.
+\item A bes ange användarnamn och lösenord på inloggningssidan.
+\item A anger användarnamn och lösenord som inte finns i systemet.
+\item Se till att A inte är inloggad
+\item Se till att ett felmeddelande visas
+\item Se till att A ombeds ange användarnamn och lösenord igen.
+\end{enumerate}
+
+
+\subsubsection{Administratör}
+
+\item
+\textbf{Administratören kan skapar projektgrupp.}
+
+\emph{Starttillstånd:} Administratören A är inloggad, sidan för att redigera projekgrupper visas.
+
+\emph{Sluttillstånd:} A är inloggad.
+
+\begin{enumerate}
+\item A väljer att skapa projektgrupp.
+\item
+\begin{enumerate}
+\item A väljer att skapa en tidsrapportmall.
+\item A väljer en befintlig tidsrapportmall.
+\end{enumerate}
+\item A får nu fylla i ett projektgruppsnamn och tycker därefter på "ok".
+\item 
+\begin{enumerate}
+\item A får nu en lista över alla användare i systemet, första användare som läggs till tilldelas automatiskt projektledarrollen.
+\item Projektgruppsnamnet existerar redan, A informoras och skickas tillbaka till steg 3.
+\item A får ett felmeddelande om inga fler användare existerar, sedan omdirigeras A till huvudsidan.
+\item A får ett felmeddelande om inga fler projektgrupper kan skapas eftersom maxantalet redan är uppnått.
+\end{enumerate}
+\item A kan därefter lägga till fler projektgruppsmedlemmar. A kan dessutom lägga till ytterliggare en projektledare. Sedan klickar A på "ok".
+\item Se till att en projektgrupp skapats
+\item Se till att A omdirigeras till en sida som meddelar att en projektgrupp skapats.
+\end{enumerate}
+
+\item
+\textbf{Administratören kan lägga till eller ändra roll på projektmedlemmar i en projektgrupp.}
+
+\emph{Starttillstånd:} Administratören A är inloggad, sidan för att redigera projekgrupper visas.
+
+\emph{Sluttillstånd:} A är inloggad.
+
+\begin{enumerate}
+\item 
+\begin{enumerate}
+\item A väljer att "redigera projektmedlemmar".
+\item A får ett felmeddelande som sägar att inga projektmedlemmar/projektgrupper finns, A omdirigeras tillbaka till huvudsidan.
+\end{enumerate}
+\item A får upp en lista med samtliga projektgrupper och projektmedlemmar och en lista med samtliga användare i systemet som inte är projektmedlemmar överhuvudtaget.
+
+\item A kan nu flytta över projektmedlemmar och icke-projektmedlemmar mellan olika projektgrupper. A kan även ange vilken roll projektmedlemmen ska ha.
+\item 
+\begin{enumerate}
+\item A bekräftar förändringarna med att klicka på "ok". A dirigeras då till en sida med den uppdaterade informationen och en bekräftelse på förändringen.
+\item A får ett felmeddelande då den försökt flytta en projektledare som är ensam projektledare i sin projektgrupp. A bes då tillsätta en ny projektledare i gruppen innan den gamla flyttas. A omdirigeras till steg 3.
+\item A får ett felmeddelande ifall den försöker lägga till fler projektmedlemmar i en grupp som har max antal projektmedlemmar redan. A omdirigeras till steg 3.
+\item A får ett felmeddelande ifall A försöker tilldela en projektmedlem rollen som projektledare när max antalet projektledare för den projektgruppen redan är uppnått. A omdirigeras till steg 3.
+\end{enumerate}
+\end{enumerate}
+
+\item
+\textbf{Administratören kan ta bort projektmedlemmar eller en projektgrupp.}
+
+\emph{Starttillstånd:} Administratören A är inloggad, sidan för att redigera projekgrupper visas.
+
+\emph{Sluttillstånd:} A är inloggad.
+
+\begin{enumerate}
+\item 
+\begin{enumerate}
+\item A väljer ta bort projektgrupp/projektmedlemmar.
+\item A får ett felmeddelande som sägar att inga projektmedlemmar/projektgrupper finns, A omdirigeras tillbaka till huvudsidan.
+\end{enumerate}
+\item A får upp en lista med samtliga projektgrupper och projektmedlemmar.
+\item 
+\begin{enumerate}
+\item A markerar projektmedlemmar för borttagning och trycker därefter "ok". Bekräftelseruta specifierad i krav 6.1.14 i SRS visas och A trycker "Ja".
+\item A trycker "nej" istället för "ja" och omdirigeras då tillbaka till steg 2.
+\item A får ett felmeddelande om A försöker ta bort en projektledare som är enda projektledare i en grupp med minst en annan medlem. A ombeds utse en ny projektledare och försöka igen, A omdirigeras till steg 2.
+\item A väljer att ta bort en hel projektgrupp. A får då en fråga om den vill ta bort alla ingående medlemmar också, vid svar "Ja" så visas en bekräftelseruta specifierad i krav 6.1.14 i SRS. Vid svar "Nej" så omdirigeras A till steg 2.
+\end{enumerate}
+\item Se till borttagningen genomfördes som den skulle.
+\item Se till att A dirigeras till en sida med uppdaterad information om projektgrupper och deras medlemmar.
+\end{enumerate}
+
+\item
+\textbf{Administratören skapar tidsrapportmall.}
+
+\emph{Starttillstånd:} Administratören A är inloggad, sidan för att redigera tidsrapportmallar visas.
+
+\emph{Sluttillstånd:} A är inloggad.
+
+\begin{enumerate}
+\item A väljer skapa ny tidsrapportmall.
+\item 
+\begin{enumerate}
+\item A väljer antal aktiviteter (rader) och subaktiviteter (kolumner) som ska finnas. A fyller i önskat namn på tidsrapportmallen och trycker "ok".
+\item A får ett felmeddelande om maxantalet tidsrapportmallar är uppnått.
+\end{enumerate}.
+\item 
+\begin{enumerate}
+\item En tabell genereras med det i steg 2 givna antalet rader och kolumner och visas för A.
+\item A får ett felmeddelande ifall namnet på tidsrapportmallen redn är upptaget. A omdirigeras till steg 2.
+\item A får ett felmeddelande ifall antalet rader eller kolumner inte överensstämmer med det av systemet tillåtna antal. A omdirigeras till steg 3.
+\item A får ett felmeddelande ifall namnet på tidsrapportmallen inte är tillåtet. A omdirigeras till steg 3.
+\end{enumerate}
+\item A fyller i aktivitets och subaktivitetsnamnen, och trycker sedan "ok".
+\item
+\begin{enumerate}
+\item Se till att mallen är skapad och sparad.
+\item A får ett felmeddelande ifall aktivitets och subaktivitetsnamnen inte är tillåtna, A omdirigeras då till steg 4.
+\end{enumerate}
+\item Se till att mallen är ihopkopplad med grundmappen.
+\item Se till att A dirigeras till en sida med den färdiga mallen och en bekräftelse visas.
+
+\end{enumerate}
+
+\item
+\textbf{Administratören tar bort tidsrapportmall.}
+
+\emph{Starttillstånd:} Administratören A är inloggad, sidan för att redigera tidsrapportmallar visas.
+
+\emph{Sluttillstånd:} A är inloggad.
+
+\begin{enumerate}
+\item A väljer ta bort tidsrapportmall.
+\item 
+\begin{enumerate}
+\item En lista med alla tidsrapportmallar visas för A.
+\item Se till att om det inte finns några tidsrapportmallar ska det tydligt synas att det inte finns några.
+\end{enumerate}
+\item A markerar en tidsrapportmall och trycker "ok"
+\item A får se en bekräftelseruta specifierad i krav 6.1.14 i SRS. A trycker "Ja".
+\item
+\begin{enumerate}
+\item Se till att tidsrapportmallen är borttagen.
+\item A får ett felmeddelande ifall tidsrapportmallen används av en projektgrupp och inte kan tas bort.
+\end{enumerate}
+\item Se till att A får en uppdaterad lista över tidsrapportmallarna som finns i systemet.
+\end{enumerate}
+
+%++++++++++++++++++++++++%
+%SLUT på ST:autentisering%
+%++++++++++++++++++++++++%
+
+
+
+%++++++++++++++++++++++++++++%
+%BÖRJAN på ST:tidrapportering%
+%++++++++++++++++++++++++++++%
+
+\subsection{Tidrapportering}
+
+
+\subsubsection{Användare}
+\subsubsection{Projektmedlem}
+\subsubsection{Projektledare}
+\subsubsection{Administratör}
+\subsubsection{Data}
+\subsubsection{Ej inloggad}
+
+
+%++++++++++++++++++++++++++%
+%SLUT på ST:tidrapportering%
+%++++++++++++++++++++++++++%
+
+
+
+
+%+++++++++++++++++++++++++++%
+%BÖRJAN på ST:Administration%
+%+++++++++++++++++++++++++++%
+\subsection{Administration}
+
+
+\subsubsection{Användare}
+\subsubsection{Projektmedlem}
+\subsubsection{Projektledare}
+\subsubsection{Administratör}
+\subsubsection{Data}
+\subsubsection{Ej inloggad}
+
+
+%+++++++++++++++++++++++++++%
+%SLUTET på ST:Administration%
+%+++++++++++++++++++++++++++%
+
+
+
+
+%+++++++++++++++++++++++++++%
+%BÖRJAN på ST:Kvalitetstest+%
+%+++++++++++++++++++++++++++%
+\subsection{Kvalitetskrav}
+
+\subsubsection{Användare}
+\subsubsection{Projektmedlem}
+\subsubsection{Projektledare}
+\subsubsection{Administratör}
+\subsubsection{Data}
+\subsubsection{Ej inloggad}
+
+%+++++++++++++++++++++++++++%
+%SLUTET på ST:Kvalitetstest+%
+%+++++++++++++++++++++++++++%
+\end{ST}
+\subsection{Regressionstest}
+
+\end{document}
