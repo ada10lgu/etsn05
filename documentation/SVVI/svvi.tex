@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 0.2 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 0.3 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -54,7 +54,8 @@
 \begin{tabular}{ l l l p{9cm} }
 Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.1 & 29 september 2014 & TG & Skapande av mall \\
-0.2 & 1 oktober 2014 & TG & Kvalitetskrav och regressionstest tillagt
+0.2 & 1 oktober 2014 & TG & Kvalitetskrav och regressionstest tillagt \\
+0.3 & 1 oktober 2014 & TG & Funktionstester och systemtester för generella krav tillagt
 
 \end{tabular}
 \section{1 Inledning}       
@@ -74,18 +75,302 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \section{Funktionstest}
 
 
-\begin{FT}
-
 %+++++++++++++++++++++++++++% 
 %BÖRJAN på FT:generella krav%
 %+++++++++++++++++++++++++++%
+%Kommentarer:
+%Det behövs definieras vilka
+%sidor och menyalternativ som
+%skall finnas.
+%
+%"Försök ge inkorrekt input
+%till systemet" är väldigt
+%luddig.
+%
+%Duplicerat test, "Adminis-
+%tratören försöker lägga 
+%till sig själv" finns i 
+%FT och ST
+%
+%Hur relaterar flödesdiagrammen
+%till menyval?
+
 \subsection{Generella krav}
 
 \subsubsection{Användare}
-\subsubsection{Projektmedlem}
+\begin{FT}
+\item \textbf{Menytillgång}
+
+\emph{Starttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+
+\emph{Sluttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+
+\begin{enumerate}
+\item Genomför steg 2-4 för V, M, L och A. Därefter är testet avslutat.
+\item Logga in i systemet.
+\item För alla sidor i systemet, navigera till sidans webbadress och kontrollera att menyn finns tillgänglig.
+\item Logga ut ur systemet.
+\end{enumerate}
+
+\item \textbf{Menyinnehåll}
+
+\emph{Starttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+
+\emph{Sluttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+
+\begin{enumerate}
+\item Genomför steg 2-4 för V, M, L och A. Därefter är testet avslutat.
+\item Logga in i systemet.
+\item Kontrollera att menyn dirigerar användaren till de funktionaliteter som användaren besitter.
+\item Logga ut ur systemet.
+\end{enumerate}
+
+\item \textbf{Menyn är konsekvent}
+
+\emph{Starttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+
+\emph{Sluttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+
+\begin{enumerate}
+\item Genomför steg 2-4 för V, M, L och A. Därefter är testet avslutat.
+\item Logga in i systemet.
+\item För alla sidor i systemet, navigera till sidans webbadress och kontrollera att menyn, så som den ska se ut för den specifika användaren, finns tillgänglig.
+\item Logga ut ur systemet.
+\end{enumerate}
+
+\item \textbf{Skadlig input}
+
+\emph{Starttillstånd:} Administratören A är inte inloggad.
+
+\emph{Sluttillstånd:} Administratören A är inte inloggad.
+
+\begin{enumerate}
+\item Logga in A i systemet.
+\item Klicka på Administration i menyn.
+\item I adressfältet i webbläsaren, lägg till: ``?deletename="admin"'', och tryck enter.
+\item Kontrollera att ett felmeddelande visas.
+\item Kontrollera i databasen att användaren ``admin'' fortfarande finns kvar.
+\item Logga ut A.
+\end{enumerate}
+
+\item \textbf{Projektledarantal och rollantal i en projektgrupp}
+
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G, en projektledare P och två vanlig användare V1 och V2 i systemet. P är projektledare i G.
+
+\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G, två projektledare P1 och P2, och en vanlig användare V i systemet. P1 och P2 är projektledare i G.
+
+\begin{enumerate}
+\item Försök lägga till V utan att specificera roll.
+\item Kontrollera att ett felmeddelande visas.
+\item Kontrollera i databasen att V inte har blivit tillagd.
+\item Försök lägga till V med rollen t4.
+\item Kontrollera att ett felmeddelande visas.
+\item Kontrollera i databasen att V inte har blivit tillagd.
+\item Försök lägga till V som projektledare i G.
+\item Kontrollera att ett felmeddelande visas.
+\item Kontrollera i databasen att V inte har blivit tillagd i G.
+\end{enumerate}
+\end{FT}
+
+%\subsubsection{Projektmedlem}
 \subsubsection{Projektledare}
+\begin{FT}
+\item \textbf{Projektledarantal}
+
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G och 3 vanliga användare V1, V2 och V3 i systemet.
+
+\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G där V1 och V2 är projektledare och en vanlig användare V3 i systemet.
+
+\begin{enumerate}
+\item Klicka på lägg till projekt och specificera grupp G och användare V1 som projektledare, klicka ``OK''.
+\item Klicka på ``Lägg till projektledare'' för projektet G och specificera V2, klicka ``OK''.
+\item Klicka på ``Lägg till projektledare'' för projektet G och specificera V3, klicka ``OK''.
+\item Kontrollera att ett felmeddelande visas.
+\item Kontrollera i databasen att V3 inte har blivit tillagd i G.
+\end{enumerate}
+
+\item \textbf{Projektledaren har tillgång till projektadministrationsfunktionaliteter}
+
+\emph{Starttillstånd:} Projektledaren L är projektledare för projektgruppen G och är inloggad och befinner sig på sidan ``Projektgruppsadministration''. M1, M2 och M3 är projektmedlemmar i G, de har rollerna t1, t2 och t3 respektive. M1, M2 och M3 har tidsrapporteringar i vecka 1 T1, T2 och T3 respektive. T1, T2 och T3 innehåller tidrapportering för 10, 20 och 30 minuter, de är alla signerade.
+
+\emph{Sluttillstånd:} Projektledaren L är projektledare för projektgruppen G och är inloggad och befinner sig på sidan ``Projektgruppsadministration''. M1, M2 och M3 är projektmedlemmar i G, de har rollerna t1, t2 och t3 respektive. M1, M2 och M3 har tidsrapporteringar i vecka 1 T1, T2 och T3 respektive. T1, T2 och T3 innehåller tidrapportering för 10, 20 och 30 minuter, de är alla signerade.
+
+\begin{enumerate}
+\item Klicka på ``Generera statistik'' för G.
+\item Kontrollera att statistik visas för G, sammanlagd tid rapporterad skall vara 60 minuter.
+\item Gå tillbaka till projektgruppsadmininstrationssidan.
+\item Klicka på ``Hantera tidsrapporter''.
+\item Avsignera tidsrapport T1.
+\item Kontrollera att tidsrapporten T1 inte är signerad i databasen.
+\item Signera tidsrapport T1.
+\item Kontrollera att tidsrapporten T1 är signerad i databasen.
+\item Gå tillbaka till projektgruppsadmininstrationssidan.
+\item Klicka på ``Hantera användare'' för projektet G.
+\item Kontrollera att alla projektmedlemmar visas.
+\item För projektmedlem M1, klicka på ``Byt roll''.
+\item Välj t2.
+\item Kontrollera i databasen att rollen för M1 i grupp G har ändrats i databasen.
+\end{enumerate}
+\end{FT}
+
 \subsubsection{Administratör}
+\begin{FT}
+\item \textbf{Administratören får inte vara med i ett projekt}
+
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G.
+
+\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G.
+
+\begin{enumerate}
+\item För projektet G klicka på ``Lägg till projektmedlem''.
+\item Skriv in namnet ``admin'' och rollen t1, klicka på ``OK''.
+\item Kontrollera att ett felmeddelande visas.
+\item Kontrollera att ``admin'' inte finns tillagd i G.
+\end{enumerate}
+
+\item \textbf{Administratören har tillgång administratörsfunktionaliteter} 
+
+\emph{Starttillstånd:} Administratör Ad är inte inloggad.\\
+\emph{Sluttillstånd:} Administratör Ad är inte inloggad.\\
+
+\begin{enumerate}
+
+\item Ad skriver URL till inloggningssidan.
+\item Ad skriver felaktigt lösenord, sidan laddas om.
+\item Ad skriver rätt lösenord, inloggad.
+\item Ad väljer administrationsvyn.
+\item Ad väljer funk. lista användare.
+\item Se till att Ad kan se alla användare med lösenord.
+\item Ad lägger till användare, rätt input, lyckas.
+\item Ad försöker lägga till användare, fel input, misslyckas.
+\item Ad tar bort användare, lyckas.
+\item Ad väljer administrationsvyn.
+\item Ad väljer funk. Projektgrupper.
+\item Ad lägger till användare i godtycklig projektgrupp, lyckas.
+\item Ad tar bort användare från projektgrupp, lyckas.
+\item Ad försöker ta bort projektgrupp, finns projektmedlemmar i, misslyckas.
+\item Ad tar bort projektgrupp, tom projektgrupp, lyckas.
+\item Ad skapar projektgrupp.
+\item Ad väljer tidrapportmall.
+\item Ad väljer användare till projektgruppen från en lista.
+\item Ad väljer projektledare, trycker på "Skapa".
+\item Se till att Ad skickas tillbaka till administrationsvyn.
+\item Steg 11-20 upprepas, men i steg 17 skapar Ad en ny tidrapportmall.
+\item Ad väljer funk. Redigera projektmedlemmar.
+\item Se till att samtliga projektmedlemmar listas.
+\item Ad utser andra projektledare, lyckas.
+\item Ad tilldelar roller, lyckas.
+\item Ad byter grupp på användare, lyckas.
+\item Ad väljer väljer administrationsvyn.
+\item Ad väljer funk. Ta bort tidrapportmall.
+\item Se till att tidrapportmallarna listas.
+\item Ad försöker ta bort tidrapportmall som används, misslyckas.
+\item Ad tar bort tidrapportmall som inte används, lyckas.
+\item Ad väljer administrationsvyn.
+\item Ad trycker på "Logga ut".
+\item Se till att Ad är utloggad.
+
+\end{enumerate}
+
+%\item \textbf{Administratör använder systemet}
+
+%\emph{Starttillstånd:} Administratören A är inte inloggad i systemet och befinner sig på inloggningssidan. De vanliga användarna V1 och V2 finns i systemet.
+
+%\emph{Sluttillstånd:} 
+
+%\begin{enumerate}
+%\item Skriv in rätt användarnamn för A och fel lösenord.
+%\item Klicka på ``Logga in''.
+%\item Kontrollera att du fortfarande befinner dig på inloggningssidan.
+%\item Skriv in rätt användarnamn för A och rätt lösenord.
+%\item Klicka på ``Logga in''.
+%\item Klicka på ``Administrationsvyn''.
+%\item Klicka på ``Lista användare''.
+%\item Klicka på ``Lägg till användare''.
+%\item Skriv in ``Kalle''.
+%\item Klicka på ``Lägg till'', användaren som skapas refererars som V3.
+%\item Kontrollera att en lista med As och V3s namn och lösenord visas.
+%\item Klicka på ``Ta bort användare'' brevid V3s rad i listan.
+%\item Klicka på OK.
+%\item Kontrollera att en lista med As namn och lösenord visas.
+%\item Klicka på ``Administrationsvyn''.
+%\item Klicka på ``Projektgrupper''.
+%\item Klicka på ``Skapa projektgrupp''.
+%\item Skriv in projektgruppsnamnet ``grupp123'' och V1s användarnamn som projektledare.
+%\item Klicka på ``Lägg till användare i projektgrupp''.
+%\item Skriv in V2s användarnamn.
+%\item Klicka på ``OK''.
+%\item Klicka på ``Projektgrupper''. %Ta bort projektgrupp
+%\item Klicka på ``Ta bort användare i projektgrupper''.
+%\item Klicka på ``Ta bort'' vid V2.
+%\item Klicka på ``Redigera projektmedlemmar''.
+%\item Klicka på ``Tilldela roll'' för V1, sätt V1s roll till t1.
+%\item Klicka på ``Utse projektledare''
+%\item Klicka på ``Lägg till användare i projektgrupper''.
+%\item 
+
+%\end{enumerate}
+\end{FT}
+
 \subsubsection{Data}
+\begin{FT}
+\item \textbf{Förfrågan innan borttagning av projektledare}
+
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en projektledare L i systemet.
+
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Projektledare L finns inte kvar i systemet.
+
+\begin{enumerate}
+\item Klicka på ``Ta bort användare'' för L.
+\item Kontrollera att en bekräftelseruta visas.
+\item Klicka ``Ja''.
+\item Kontrollera att en lista över användare visas där L inte är med.
+\item Kontrollera i databasen att L inte finns kvar.
+\end{enumerate}
+
+\item \textbf{Förfrågan innan borttagning av vanlig användare}
+
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en vanlig användare V i systemet.
+
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Vanlig användare L finns inte kvar i systemet.
+
+\begin{enumerate}
+\item Klicka på ``Ta bort användare'' för V.
+\item Kontrollera att en bekräftelseruta visas.
+\item Klicka ``Ja''.
+\item Kontrollera att en lista över användare visas där V inte är med.
+\item Kontrollera i databasen att V inte finns kvar.
+\end{enumerate}
+
+\item \textbf{Förfrågan innan ångrad borttagning av projektledare}
+
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en projektledare L i systemet.
+
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en projektledare L i systemet.
+
+\begin{enumerate}
+\item Klicka på ``Ta bort användare'' för L.
+\item Kontrollera att en bekräftelseruta visas.
+\item Klicka ``Nej''.
+\item Kontrollera att en lista över användare visas där L är med.
+\item Kontrollera i databasen att L finns kvar.
+\end{enumerate}
+
+\item \textbf{Förfrågan innan ångrad borttagning av vanlig användare}
+
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en vanlig användare V i systemet.
+
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en vanlig användare V i systemet.
+
+\begin{enumerate}
+\item Klicka på ``Ta bort användare'' för V.
+\item Kontrollera att en bekräftelseruta visas.
+\item Klicka ``Nej''.
+\item Kontrollera att en lista över användare visas där V är med.
+\item Kontrollera i databasen att V finns kvar.
+\end{enumerate}
+\end{FT}
+
 \subsubsection{Ej inloggad}
 
 %+++++++++++++++++++++++++++% 
@@ -100,7 +385,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \subsubsection{Övergripande}
 
-
+\begin{FT}
 \item
 \textbf{Projektmedlem försöker logga in på dator när den redan är inloggad på en annan dator}
 
@@ -198,10 +483,10 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Se till att ett felmeddelande visar att lösenordet inte ändrats och varför.
 \end{enumerate}
 
-
+\end{FT}
 
 \subsubsection{Användare}
-
+\begin{FT}
 \item
 \textbf{Kontrollera att utloggningsfunktionallitet finns på alla inloggade sidor och fungerar.}
 
@@ -230,9 +515,10 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Se till att A är utloggad, och funktionallitet som kräver inloggad användare ej är tillgänglig.
 \item Se till att ett meddelande visas som informerar om vad som hänt.
 \end{enumerate}
+\end{FT}
 
 \subsubsection{Administratör}
-
+\begin{FT}
 \item
 \textbf{Administratören kan ta bort alla användare utom sig själv ur systemet.}
 
@@ -270,9 +556,10 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A tar bort B.
 \item Se till att B är borttagen.
 \end{enumerate}
+\end{FT}
 
 \subsubsection{Data}
-
+\begin{FT}
 \item
 \textbf{Kontrollera givna användaridentiteter mot de registrerade användare som finns i systemet.}
 
@@ -286,9 +573,10 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Se till att A omdirigerades till den sida som har användarfunktionerna.
 \item Se till att sessionens inloggningsstatus är inloggad.
 \end{enumerate}
+\end{FT}
 
 \subsubsection{Ej inloggad}
-
+\begin{FT}
 \item
 \textbf{En inte inloggad användare når systemet och tvingas då lämna inloggninsinformation.}
 
@@ -367,6 +655,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A väljer någon projektgrupp som A inte är medlem i och loggar in.
 \item Se till att A är inloggad.
 \end{enumerate}
+\end{FT}
+
 %++++++++++++++++++++++++++% 
 %SLUTET på FT:autentisering%
 %++++++++++++++++++++++++++%
@@ -390,10 +680,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 %tidrapportering
 \subsubsection{Projektmedlem}
-
-
-
-
+\begin{FT}
 \item
 %ÄNDRA TILL MANUELL MILJÖ I SVVS%
 \textbf{Projektmedlem lyckas skapa en egen osignerad tidrapport}
@@ -472,7 +759,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Projektmedlem väljer en av sina signerade tidrapporter genom att trycka på dess radioknapp.
 \item Projektmedlem försöker skriva in något i en godtycklig ruta, fälten går dock inte att redigera.
 \end{enumerate}
-
+\end{FT}
 
 %+++++++++++++++++++++++++++%
 %SLUT på FT:Tidrapportering+%
@@ -500,7 +787,6 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 %+++++++++++++++++++++++++++% 
 %slutet på FT:Administration%
 %+++++++++++++++++++++++++++%
-\end{FT}
 
 
 %!!!!!!!!!!!!!
@@ -515,28 +801,95 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 
 \section{Systemtest}
-%\begin{ST}
-
-
 %+++++++++++++++++++++++++++%
 %BÖRJAN på ST:generella krav%
 %+++++++++++++++++++++++++++%
 \subsection{Generella krav}
-
-
-\subsubsection{Användare}
-%\begin{ST}
-%\end{ST}
-
+\invisiblesubsubsection{Användare}
 \subsubsection{Projektmedlem}
+\begin{ST}
+\item \textbf{Projektmedlem använder systemet}
 
-%\begin{ST}
-%\end{ST}
+\emph{Starttillstånd:} Projektmedlemmen M är inte inloggad i systemet. M och Projektledaren L är båda medlemmar i projektgruppen G.
+
+\emph{Sluttillstånd:} Projektmedlemmen M är inte inloggad i systemet. M och Projektledaren L är båda medlemmar i projektgruppen G. En osignerad tidsrapport T för projekt G, projektmedlem M och vecka 1 finns i systemet med 20 minuter på möte registrerat. M har lösenordet ``abcdefgh''.
+
+\begin{enumerate}
+\item Skriv rätt användarnamn och felaktigt lösenord för M.
+\item Klicka på ``Logga in''.
+\item Kontrollera att M fortfarande befinner sig på inloggningssidan.
+\item Skriv in rätt användarnamn och rätt lösenord för M.
+\item Klicka på ``Logga in''.
+\item Klicka på ``Tidrapportering''.
+\item Klicka på projekt G.
+\item Klicka på lägg till tidrapport.
+\item Skriv 1 i fältet för vecka.
+\item Skriv 30 i fältet för möte.
+\item Klicka på ``Lägg till'', tidsrapporten som skapades kallas för T.
+\item Klicka på ``Visa'' för tidrapport för vecka 1.
+\item Kontrollera att det i fältet ``möte'' står 30.
+\item Klicka på ``Tillbaka''.
+\item Klicka på ``Redigera rapport'' för tidrapport T.
+\item Ändra fältet ``möte'' till 20.
+\item Klicka på ``Redigera rapport''.
+\item Kontrollera i databasen att det i tidsrapporten T står 20 för möte.
+\item Klicka på ``Visa projektinformation''.
+\item Kontrollera att projektnamnet för G syns och att M och L står med som medlemmar i projektet.
+\item Klicka på ``Ändra lösenord''.
+\item Skriv det nya lösenordet ``k''.
+\item Kontrollera att du fortfarande befinner dig på samma sida.
+\item Kontrollera i databasen att lösenordet inte är ``k''.
+\item Skriv in det nya lösenordet ``abcdefgh''.
+\item Kontrollera i databasen att lösenordet är ``abcdefgh''.
+\item Klicka på ``Logga ut''
+\item Kontrollera att du befinner dig på inloggningssidan.
+
+\end{enumerate}
+
+\end{ST}
 
 \subsubsection{Projektledare}
+\begin{ST}
+\item \textbf{Projektledaren har tillgång till projektadministrationsfunktionaliteter}
+
+\emph{Starttillstånd:} Projektledaren L är projektledare för projektgruppen G och är inloggad och befinner sig på sidan ``Projektgruppsadministration''. M1, M2 och M3 är projektmedlemmar i G, de har rollerna t1, t2 och t3 respektive. M1, M2 och M3 har tidsrapporteringar i vecka 1 T1, T2 och T3 respektive. T1, T2 och T3 innehåller tidrapportering för 10, 20 och 30 minuter, de är alla signerade.
+
+\emph{Sluttillstånd:} Projektledaren L är projektledare för projektgruppen G och är inloggad och befinner sig på sidan ``Projektgruppsadministration''. M1, M2 och M3 är projektmedlemmar i G, de har rollerna t1, t2 och t3 respektive. M1, M2 och M3 har tidsrapporteringar i vecka 1 T1, T2 och T3 respektive. T1, T2 och T3 innehåller tidrapportering för 10, 20 och 30 minuter, de är alla signerade.
+
+\begin{enumerate}
+\item Klicka på ``Generera statistik'' för G.
+\item Kontrollera att statistik visas för G, sammanlagd tid rapporterad skall vara 60 minuter.
+\item Gå tillbaka till projektgruppsadmininstrationssidan.
+\item Klicka på ``Hantera tidsrapporter''.
+\item Avsignera tidsrapport T1.
+\item Kontrollera att tidsrapporten T1 inte är signerad i databasen.
+\item Signera tidsrapport T1.
+\item Kontrollera att tidsrapporten T1 är signerad i databasen.
+\item Gå tillbaka till projektgruppsadmininstrationssidan.
+\item Klicka på ``Hantera användare'' för projektet G.
+\item Kontrollera att alla projektmedlemmar visas.
+\item För projektmedlem M1, klicka på ``Byt roll''.
+\item Välj t2.
+\item Kontrollera i databasen att rollen för M1 i grupp G har ändrats i databasen.
+\end{enumerate}
+\end{ST}
+
 \subsubsection{Administratör}
-\subsubsection{Data}
-\subsubsection{Ej inloggad}
+\begin{ST}
+\item \textbf{Administratören får inte vara med i ett projekt}
+
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G.
+
+\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G.
+
+\begin{enumerate}
+\item För projektet G klicka på ``Lägg till projektmedlem''.
+\item Skriv in namnet ``admin'' och rollen t1, klicka på ``OK''.
+\item Kontrollera att ett felmeddelande visas.
+\item Kontrollera att ``admin'' inte finns tillagd i G.
+\end{enumerate}
+\end{ST}
+
 
 %+++++++++++++++++++++++++%
 %SLUT på ST:generella krav%
