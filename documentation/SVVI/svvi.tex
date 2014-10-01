@@ -1772,8 +1772,46 @@ skapats}
 \item
 \textbf{Genomför scenario 6.4.1 i SRS som projektledare}
 
+\emph{Starttillstånd:} Projektledare PL inloggad.
+
+\emph{Sluttillstånd:} Projekledare PL inloggad.
+
+\begin{enumerate}
+\item
+PL väljer "Generera statistik" i menyn
+\item
+PL väljer [typ av statistik]
+\item 
+PL väljer [typ av rapport]
+\item
+Kontrollera att rapport av typ [typ av rapport] visas.
+\item
+Kontrollera att statistik av typ [typ av statistik] visas.
+\end{enumerate}
+
 \item
 \textbf{Genomför scenario 6.4.2 i SRS som projektledare}
+
+\emph{Starttillstånd:} Projektledare PL inloggad. En icke godkänd tidsrapport finns i systemet.
+
+\emph{Sluttillstånd:} Projekledare PL inloggad. En godkänd tidsrapport finns i systemet.
+
+\begin{enumerate}
+
+\item
+PL väljer att lista tidrapporter
+\item
+PL väljer en icke godkänd tidrapport ur listan
+\item
+Kontrollera att PL ser rapporten
+\item
+PL godkänner rapporten
+\item
+Kontrollera att dialogruta visades
+\item
+Kontrollera att rapporten är godkänd
+
+\end{enumerate}
 
 \item
 \textbf{Genomför scenario 6.4.3 i SRS som projektledare}
@@ -1791,8 +1829,46 @@ skapats}
 \item
 \textbf{Genomför scenario 6.4.1 i SRS som administratör}
 
+\emph{Starttillstånd:} Administratör A inloggad.
+
+\emph{Sluttillstånd:} Administratör A inloggad.
+
+\begin{enumerate}
+\item
+A väljer "Generera statistik" i menyn
+\item
+A väljer [typ av statistik]
+\item 
+A väljer [typ av rapport]
+\item
+Kontrollera att rapport av typ [typ av rapport] visas.
+\item
+Kontrollera att statistik av typ [typ av statistik] visas.
+\end{enumerate}
+
 \item
 \textbf{Genomför scenario 6.4.2 i SRS som administratör}
+
+\emph{Starttillstånd:} Administratör A inloggad. En icke godkänd tidsrapport finns i systemet.
+
+\emph{Sluttillstånd:} Administratör A inloggad. En godkänd tidsrapport finns i systemet.
+
+\begin{enumerate}
+
+\item
+A väljer att lista tidrapporter
+\item
+A väljer en icke godkänd tidrapport ur listan
+\item
+Kontrollera att A ser rapporten
+\item
+A godkänner rapporten
+\item
+Kontrollera att dialogruta visades
+\item
+Kontrollera att rapporten är godkänd
+
+\end{enumerate}
 
 \item
 \textbf{Genomför scenario 6.4.3 i SRS som administratör}
@@ -1834,8 +1910,11 @@ skapats}
 \begin{enumerate}
 
 \item
-försök logga in användare user1-user51
-
+Försök logga in användare user1-user51.
+\item
+Kontrollera att user1-user50 är inloggade.
+\item
+Kontrollera att user51 inte är inloggad.
 \end{enumerate}
 
 \item
