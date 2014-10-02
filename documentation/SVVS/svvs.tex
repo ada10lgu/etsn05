@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 0.12 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 0.13 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -65,6 +65,7 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 v0.10 & 22 september & TG & La till test för två nya krav \\
 v0.11 & 23 september & TG & Anpassat efter SRS v0.19 \\
 v0.12 & 26 september & TG & Anpassat efter SRS v0.20 och informell granskning, omformuleringar, rättning av stavfel. Ang. informell granskning, "valda tidrapporter" är taget direkt från SRS, datumet för PR är inte utskrivet i SDP\\
+v0.13 & 30 september & TG & Tagit bort test som utgått\\
 
 \end{tabular}
 \section{Inledning}       
@@ -458,32 +459,38 @@ Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet oc
 %ändrad 23/9**
 \item
 \emph{Manuell miljö:} Projektledaren kan se sammalagd arbetstid från valda tidrapporter \req[6.3.13-21, 6.3.6]
-\item
-\emph{Manuell miljö:} Projektledaren kan se sammalagd arbetstid från en vald aktivitet från valda tidrapporter \req[6.3.12-20]
 
-%ändrad 23/9**
-\item
-\emph{Manuell miljö:} Projektledaren kan se sammalagd arbetstid från en vald subaktivitet från valda tidrapporter \req[6.3.14-21]
 
-%ändrad 23/9**
-\item
-\emph{Manuell miljö:} Projektledaren kan se hur ofta en vald aktivitet har utförts i valda tidrapporter \req[6.3.14-21]
 
-%ändrad 23/9**
-\item
-\emph{Manuell miljö:} Projektledaren kan se hur ofta en vald subaktivitet har utförts i valda tidrapporter \req[6.3.14-21]
+%VET INTE VILKA KRAV DESSA TEST SYFTAR PÅ. ÖVERFLÖDIGT?%
 
-%ändrad 23/9**
-\item
-\emph{Manuell miljö:} Projektledaren kan se vilken aktivitet som har tagit mest tid från tidrapportererna \req[6.3.14-21]
 
-%ändrad 23/9**
-\item
-\emph{Manuell miljö:} Projektledaren kan se vilken aktivitet som är vanligast från tidrapportererna  \req[6.3.14-21]
+% \item
+% \emph{Manuell miljö:} Projektledaren kan se sammalagd arbetstid från en vald aktivitet från valda tidrapporter \req[6.3.12-20]
 
-%ändrad 23/9**
-\item
-\emph{Manuell miljö:} Projektledaren kan se vilken vecka som har mest rapporterad tid från tidrapportererna \req[6.3.14-21]
+% %ändrad 23/9**
+% \item
+% \emph{Manuell miljö:} Projektledaren kan se sammalagd arbetstid från en vald subaktivitet från valda tidrapporter \req[6.3.14-21]
+
+% %ändrad 23/9**
+% \item
+% \emph{Manuell miljö:} Projektledaren kan se hur ofta en vald aktivitet har utförts i valda tidrapporter \req[6.3.14-21]
+
+% %ändrad 23/9**
+% \item
+% \emph{Manuell miljö:} Projektledaren kan se hur ofta en vald subaktivitet har utförts i valda tidrapporter \req[6.3.14-21]
+
+% %ändrad 23/9**
+% \item
+% \emph{Manuell miljö:} Projektledaren kan se vilken aktivitet som har tagit mest tid från tidrapportererna \req[6.3.14-21]
+
+% %ändrad 23/9**
+% \item
+% \emph{Manuell miljö:} Projektledaren kan se vilken aktivitet som är vanligast från tidrapportererna  \req[6.3.14-21]
+
+% %ändrad 23/9**
+% \item
+% \emph{Manuell miljö:} Projektledaren kan se vilken vecka som har mest rapporterad tid från tidrapportererna \req[6.3.14-21]
 \end{FT}
 
 
@@ -492,55 +499,51 @@ Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet oc
 
 \begin{FT}
 
-%ändrad 23/9**
-\item
-Lagra 100 tidrapporter/användare \req[6.3.28]
 
-%ändrad 23/9**
 \item
-Försök att lagra mer än 100 tidrapporter/användare, efter uppnådd maxgräns skrivs
-de över enligt FIFO-principen \req[6.3.28]
+Lagra 100 tidrapporter för en användare \req[6.3.28]
+
+\item
+Försök att lagra mer än 100 tidrapporter för en användare \req[6.3.28]
 %Admin anger rätt mängd aktiviteter/subakt när scenario 6.2.4 genomförs i ST
 
-%ändrad 23/9**
+
 \item
 Administratör försöker ange 0 aktiviteter i en tidrapportmall \req[6.3.31]
 
-%ändrad 23/9**
+
 \item
 Administratör försöker ange 21 aktiviteter i en tidrapportmall \req[6.3.31]
 
-%ändrad 23/9**
 \item
 Administratör försöker ange 0 subaktiviteter i en tidrapportmall \req[6.3.32]
 
-%ändrad 23/9**
+
 \item
 Administratör försöker ange 5 subaktiviteter i en tidrapportmall \req[6.3.32]
 
-%ändrad 23/9**
+
 \item
 \emph{Manuell miljö:} Antalet aktiviteter anger antalet rader i tidrapporter \req[6.3.33]
 
-%ändrad 23/9**
+
 \item
 \emph{Manuell miljö:} Antalet subaktiviteter anger antalet kolumner i tidrapporter \req[6.3.34]
 
-%ändrad 23/9**
-\item
-\emph{Manuell miljö:} En tidrapport innehåller information om användarnamn \req[6.3.35, 6.3.46]
 
-%ändrad 23/9**
 \item
-\emph{Manuell miljö:} En tidrapport innehåller information om projektgruppsnamn \req[6.3.36, 6.3.44]
+\emph En tidrapport innehåller information om användarnamn \req[6.3.35]
 
-%ändrad 23/9**
-\item
-\emph{Manuell miljö:} En tidrapport innehåller information om datum i form av "dag månad år" \req[6.3.37, 6.3.44]
 
-%ändrad 23/9**
 \item
-\emph{Manuell miljö:} En tidrapport innehåller information om veckonummer \req[6.3.38, 6.2.44]
+\emph En tidrapport innehåller information om projektgruppsnamn \req[6.3.36, 6.3.44]
+
+
+\item
+\emph En tidrapport innehåller information om datum i form av "dag månad år" \req[6.3.37, 6.3.44]
+
+\item
+\emph En tidrapport innehåller information om veckonummer \req[6.3.38, 6.2.44]
 
 %ändrad 23/9**
 \item
@@ -567,7 +570,7 @@ Försök skapa två subaktiviteter med samma namn \req[6.3.47]
 \end{FT}
 
 %+++++++++++++++++++++++++++%
-%SLUT på FT:Administration++%
+%SLUT på FT:Tidrapportering+%
 %+++++++++++++++++++++++++++%
 
 
@@ -875,15 +878,15 @@ Genomför scenario 6.4.9 (Ref 1: Ta bort tidrapportmall) \req[6.4.35, 6.3.41]
 
 %ändrad 23/9**
 \item
-Genomför scenario 6.3.1 (Ref 1: Dokumentera arbetstimmar i systemet) \req[6.3.7, 6.3.5, 6.3.26, 6.3.29]
+Genomför scenario 6.3.1 (Dokumentera arbetstimmar i systemet) \req[6.3.7, 6.3.5, 6.3.26, 6.3.29]
 
 %ändrad 23/9**
 \item
-Genomför scenario 6.3.2 (Ref 1: Ta bort/redigera arbetstimmar i systemet) \req[6.3.8]
+Genomför scenario 6.3.2 (Ta bort/redigera arbetstimmar i systemet) \req[6.3.8]
 
 %ändrad 23/9**
 \item
-Systemet stödjer stegen i figur 5 \req[6.3.9]
+Systemet stödjer stegen i figur 6 \req[6.3.9]
 \end{ST}
 
 \subsubsection{Projektledare}
@@ -892,7 +895,7 @@ Systemet stödjer stegen i figur 5 \req[6.3.9]
 
 %ändrad 23/9**
 \item
-Systemet stödjer stegen i figur 6 \req[6.3.22]
+Systemet stödjer stegen i figur 7 \req[6.3.22]
 \end{ST}
 %++++++++++++++++++++++++++%
 %SLUT på ST:tidrapportering%
