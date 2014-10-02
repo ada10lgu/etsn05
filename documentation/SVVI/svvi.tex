@@ -405,6 +405,19 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 
 %Fix Server session%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\item
+%\textbf{Loginstatus hålls i en server session}
+%
+%\emph{Starttillstånd:} Användare A inte inloggad, inloggningssidan visas.
+%
+%\emph{Sluttillstånd:} A inloggad.
+%
+%\begin{enumerate}
+%\item Se till att inloggningsstatusen i sessionen är "ej inloggad".
+%\item A loggar in.
+%\item Se till att inloggningsstatusen i sessionen är "inloggad".
+%\end{enumerate}
+
 \item
 \textbf{Loginstatus hålls i en server session}
 
@@ -413,12 +426,11 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} A inloggad.
 
 \begin{enumerate}
-\item Se till att inloggningsstatusen i sessionen är "ej inloggad".
-\item A loggar in.
-\item Se till att inloggningsstatusen i sessionen är "inloggad".
+\item A loggar in
+\item Se till att huvudmenyn visas.
+\item Starta om servern.
+\item Se till att A är utloggad.
 \end{enumerate}
-
-
 
 
 
