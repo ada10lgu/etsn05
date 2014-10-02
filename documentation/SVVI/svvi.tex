@@ -231,8 +231,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \item \textbf{Administratören har tillgång administratörsfunktionaliteter} 
 
-\emph{Starttillstånd:} Administratör Ad är inte inloggad.\\
-\emph{Sluttillstånd:} Administratör Ad är inte inloggad.\\
+\emph{Starttillstånd:} Administratör Ad är inte inloggad.
+
+\emph{Sluttillstånd:} Administratör Ad är inte inloggad.
 
 \begin{enumerate}
 
@@ -1708,13 +1709,11 @@ skapats}
 
 \subsubsection{Projektledare}
 
-\begin{ST}
 
 %MAX 100 RAPPORTER KRAV INTE MED
-
+\begin{ST}
 \item 
 \textbf{Systemet stödjer stegen i figur 7}
-
 \emph{Starttillstånd:} Projektledare A inte inloggad. Projektmedlem B har rollen t1, en icke godkänd rapport. 99 tidrapporter för A.\\
 \emph{Sluttillstånd:} Projektledare A inte inloggad. Projektmedlem B har rollen t2, godkänd rapport. 100 tidrapporter för A.\\
 
@@ -1819,6 +1818,24 @@ Kontrollera att rapporten är godkänd
 \item
 \textbf{Genomför scenario 6.4.4 i SRS som projektledare}
 
+\emph{Starttillstånd:} Projektledare L som är projektledare för grupp G är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i G utöver L i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
+
+\emph{Sluttillstånd:} Projektledare L som är projektledare för grupp G är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i G utöver L i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
+
+\begin{enumerate}
+\item Tryck på ``Sortera alla tidrapporter efter namn, stigande ordning''.
+\item Kontrollera att det är sorterat på ordningen M1, M2 sen M3.
+\item Tryck på ``Sortera alla tidrapporter efter vecka, stigande ordning''.
+\item Kontrollera att det är sorterat på ordningen vecka 1 sen vecka 2.
+\item Tryck på ``Sortera alla tidrapporter efter om rapporten är godkänd eller ej, stigande ordning''.
+\item Kontrollera att det är sorterat på ordningen osignerat sen signerat.
+\item Tryck på ``Sortera alla tidrapporter efter namn, fallande ordning''.
+\item Kontrollera att det är sorterat på ordningen M3, M2 sen M1.
+\item Tryck på ``Sortera alla tidrapporter efter vecka, fallande ordning''.
+\item Kontrollera att det är sorterat på ordningen vecka 2 sen vecka 1.
+\item Tryck på ``Sortera alla tidrapporter efter om rapporten är godkänd eller ej, fallande ordning''.
+\item Kontrollera att det är sorterat på ordningen signerat sen osignerat.
+\end{enumerate}
 
 \end{ST}
 
@@ -1876,10 +1893,67 @@ Kontrollera att rapporten är godkänd
 \item
 \textbf{Genomför scenario 6.4.4 i SRS som administratör}
 
-\item
-\textbf{Genomför sekvenserna}
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i projektgruppen G i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
 
-%Har någon koll på vilket test som redan gjort detta?
+\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i projektgruppen G i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
+
+\begin{enumerate}
+\item Tryck på ``Sortera alla tidrapporter efter namn, stigande ordning''.
+\item Kontrollera att det är sorterat på ordningen M1, M2 sen M3.
+\item Tryck på ``Sortera alla tidrapporter efter vecka, stigande ordning''.
+\item Kontrollera att det är sorterat på ordningen vecka 1 sen vecka 2.
+\item Tryck på ``Sortera alla tidrapporter efter om rapporten är godkänd eller ej, stigande ordning''.
+\item Kontrollera att det är sorterat på ordningen osignerat sen signerat.
+\item Tryck på ``Sortera alla tidrapporter efter namn, fallande ordning''.
+\item Kontrollera att det är sorterat på ordningen M3, M2 sen M1.
+\item Tryck på ``Sortera alla tidrapporter efter vecka, fallande ordning''.
+\item Kontrollera att det är sorterat på ordningen vecka 2 sen vecka 1.
+\item Tryck på ``Sortera alla tidrapporter efter om rapporten är godkänd eller ej, fallande ordning''.
+\item Kontrollera att det är sorterat på ordningen signerat sen osignerat.
+\end{enumerate}
+
+\item \textbf{Administratören har tillgång administratörsfunktionaliteter} 
+
+\emph{Starttillstånd:} Administratör Ad är inte inloggad.
+
+\emph{Sluttillstånd:} Administratör Ad är inte inloggad.
+
+\begin{enumerate}
+\item Ad skriver URL till inloggningssidan.
+\item Ad skriver felaktigt lösenord, sidan laddas om.
+\item Ad skriver rätt lösenord, inloggad.
+\item Ad väljer administrationsvyn.
+\item Ad väljer funk. lista användare.
+\item Se till att Ad kan se alla användare med lösenord.
+\item Ad lägger till användare, rätt input, lyckas.
+\item Ad försöker lägga till användare, fel input, misslyckas.
+\item Ad tar bort användare, lyckas.
+\item Ad väljer administrationsvyn.
+\item Ad väljer funk. Projektgrupper.
+\item Ad lägger till användare i godtycklig projektgrupp, lyckas.
+\item Ad tar bort användare från projektgrupp, lyckas.
+\item Ad försöker ta bort projektgrupp, finns projektmedlemmar i, misslyckas.
+\item Ad tar bort projektgrupp, tom projektgrupp, lyckas.
+\item Ad skapar projektgrupp.
+\item Ad väljer tidrapportmall.
+\item Ad väljer användare till projektgruppen från en lista.
+\item Ad väljer projektledare, trycker på "Skapa".
+\item Se till att Ad skickas tillbaka till administrationsvyn.
+\item Steg 11-20 upprepas, men i steg 17 skapar Ad en ny tidrapportmall.
+\item Ad väljer funk. Redigera projektmedlemmar.
+\item Se till att samtliga projektmedlemmar listas.
+\item Ad utser andra projektledare, lyckas.
+\item Ad tilldelar roller, lyckas.
+\item Ad byter grupp på användare, lyckas.
+\item Ad väljer väljer administrationsvyn.
+\item Ad väljer funk. Ta bort tidrapportmall.
+\item Se till att tidrapportmallarna listas.
+\item Ad försöker ta bort tidrapportmall som används, misslyckas.
+\item Ad tar bort tidrapportmall som inte används, lyckas.
+\item Ad väljer administrationsvyn.
+\item Ad trycker på "Logga ut".
+\item Se till att Ad är utloggad.
+\end{enumerate}
 
 \end{ST}
 
