@@ -109,7 +109,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item Genomför steg 2-4 för V, M, L och A. Därefter är testet avslutat.
 \item Logga in i systemet.
-\item För alla sidor i systemet, navigera till sidans webbadress och kontrollera att menyn finns tillgänglig.
+\item För alla sidor i systemet, navigera till sidans webbadress och se till att menyn finns tillgänglig.
 \item Logga ut ur systemet.
 \end{enumerate}
 
@@ -122,7 +122,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item Genomför steg 2-4 för V, M, L och A. Därefter är testet avslutat.
 \item Logga in i systemet.
-\item Kontrollera att menyn dirigerar användaren till de funktionaliteter som användaren besitter.
+\item Se till att menyn dirigerar användaren till de funktionaliteter som användaren besitter.
 \item Logga ut ur systemet.
 \end{enumerate}
 
@@ -135,7 +135,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item Genomför steg 2-4 för V, M, L och A. Därefter är testet avslutat.
 \item Logga in i systemet.
-\item För alla sidor i systemet, navigera till sidans webbadress och kontrollera att menyn, så som den ska se ut för den specifika användaren, finns tillgänglig.
+\item För alla sidor i systemet, navigera till sidans webbadress och se till att menyn, så som den ska se ut för den specifika användaren, finns tillgänglig.
 \item Logga ut ur systemet.
 \end{enumerate}
 
@@ -149,27 +149,27 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Logga in A i systemet.
 \item Klicka på Administration i menyn.
 \item I adressfältet i webbläsaren, lägg till: ``?deletename="admin"'', och tryck enter.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera i databasen att användaren ``admin'' fortfarande finns kvar.
+\item Se till att ett felmeddelande visas.
+\item Se till i databasen att användaren ``admin'' fortfarande finns kvar.
 \item Logga ut A.
 \end{enumerate}
 
 \item \textbf{Projektledarantal och rollantal i en projektgrupp}
 
-\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G, en projektledare P och två vanlig användare V1 och V2 i systemet. P är projektledare i G.
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G, två projektledare P1, P2 och en vanliga användare V i systemet. P1, P2 är projektledare i G.
 
-\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G, två projektledare P1 och P2, och en vanlig användare V i systemet. P1 och P2 är projektledare i G.
+\emph{Sluttillstånd:} A är inloggad och befinner sig på sidan ``Projektgruppsadministration''.  G finns och har två projektledare P1, P2 och det finns en vanlig användare V i systemet.
 
 \begin{enumerate}
 \item Försök lägga till V utan att specificera roll.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera i databasen att V inte har blivit tillagd.
+\item Se till att ett felmeddelande visas.
+\item Se till i databasen att V inte har blivit tillagd.
 \item Försök lägga till V med rollen t4.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera i databasen att V inte har blivit tillagd.
+\item Se till att ett felmeddelande visas.
+\item Se till i databasen att V inte har blivit tillagd.
 \item Försök lägga till V som projektledare i G.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera i databasen att V inte har blivit tillagd i G.
+\item Se till att ett felmeddelande visas.
+\item Se till i databasen att V inte har blivit tillagd i G.
 \end{enumerate}
 \end{FT}
 
@@ -184,10 +184,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item Klicka på lägg till projekt och specificera grupp G och användare V1 som projektledare, klicka ``OK''.
+\item Försök byta roll på V1 till t1.
+\item Se till att ett felmeddelande visas.
+\item Se till att V1 fortfarande är projektledare för G.
 \item Klicka på ``Lägg till projektledare'' för projektet G och specificera V2, klicka ``OK''.
 \item Klicka på ``Lägg till projektledare'' för projektet G och specificera V3, klicka ``OK''.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera i databasen att V3 inte har blivit tillagd i G.
+\item Se till att ett felmeddelande visas.
+\item Se till i databasen att V3 inte har blivit tillagd i G.
 \end{enumerate}
 
 \item \textbf{Projektledaren har tillgång till projektadministrationsfunktionaliteter}
@@ -198,19 +201,19 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item Klicka på ``Generera statistik'' för G.
-\item Kontrollera att statistik visas för G, sammanlagd tid rapporterad skall vara 60 minuter.
+\item Se till att statistik visas för G, sammanlagd tid rapporterad skall vara 60 minuter.
 \item Gå tillbaka till projektgruppsadmininstrationssidan.
 \item Klicka på ``Hantera tidsrapporter''.
 \item Avsignera tidsrapport T1.
-\item Kontrollera att tidsrapporten T1 inte är signerad i databasen.
+\item Se till att tidsrapporten T1 inte är signerad i databasen.
 \item Signera tidsrapport T1.
-\item Kontrollera att tidsrapporten T1 är signerad i databasen.
+\item Se till att tidsrapporten T1 är signerad i databasen.
 \item Gå tillbaka till projektgruppsadmininstrationssidan.
 \item Klicka på ``Hantera användare'' för projektet G.
-\item Kontrollera att alla projektmedlemmar visas.
+\item Se till att alla projektmedlemmar visas.
 \item För projektmedlem M1, klicka på ``Byt roll''.
 \item Välj t2.
-\item Kontrollera i databasen att rollen för M1 i grupp G har ändrats i databasen.
+\item Se till i databasen att rollen för M1 i grupp G har ändrats i databasen.
 \end{enumerate}
 \end{FT}
 
@@ -225,8 +228,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item För projektet G klicka på ``Lägg till projektmedlem''.
 \item Skriv in namnet ``admin'' och rollen t1, klicka på ``OK''.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera att ``admin'' inte finns tillagd i G.
+\item Se till att ett felmeddelande visas.
+\item Se till att ``admin'' inte finns tillagd i G.
 \end{enumerate}
 
 \item \textbf{Administratören har tillgång administratörsfunktionaliteter} 
@@ -250,7 +253,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Ad väljer funk. Projektgrupper.
 \item Ad lägger till användare i godtycklig projektgrupp, lyckas.
 \item Ad tar bort användare från projektgrupp, lyckas.
-\item Ad försöker ta bort projektgrupp, finns projektmedlemmar i, misslyckas.
+\item Ad försöker ta bort projektgrupp, som det finns projektmedlemmar i, misslyckas.
 \item Ad tar bort projektgrupp, tom projektgrupp, lyckas.
 \item Ad skapar projektgrupp.
 \item Ad väljer tidrapportmall.
@@ -283,7 +286,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 %\begin{enumerate}
 %\item Skriv in rätt användarnamn för A och fel lösenord.
 %\item Klicka på ``Logga in''.
-%\item Kontrollera att du fortfarande befinner dig på inloggningssidan.
+%\item Se till att du fortfarande befinner dig på inloggningssidan.
 %\item Skriv in rätt användarnamn för A och rätt lösenord.
 %\item Klicka på ``Logga in''.
 %\item Klicka på ``Administrationsvyn''.
@@ -291,10 +294,10 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 %\item Klicka på ``Lägg till användare''.
 %\item Skriv in ``Kalle''.
 %\item Klicka på ``Lägg till'', användaren som skapas refererars som V3.
-%\item Kontrollera att en lista med As och V3s namn och lösenord visas.
+%\item Se till att en lista med As och V3s namn och lösenord visas.
 %\item Klicka på ``Ta bort användare'' brevid V3s rad i listan.
 %\item Klicka på OK.
-%\item Kontrollera att en lista med As namn och lösenord visas.
+%\item Se till att en lista med As namn och lösenord visas.
 %\item Klicka på ``Administrationsvyn''.
 %\item Klicka på ``Projektgrupper''.
 %\item Klicka på ``Skapa projektgrupp''.
@@ -318,16 +321,16 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{FT}
 \item \textbf{Förfrågan innan borttagning av projektledare}
 
-\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en projektledare L i systemet.
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns två projektledare L1, L2 i samma grupp i systemet.
 
-\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Projektledare L finns inte kvar i systemet.
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Projektledare L2 finns kvar, L1 finns inte kvar i systemet.
 
 \begin{enumerate}
-\item Klicka på ``Ta bort användare'' för L.
-\item Kontrollera att en bekräftelseruta visas.
+\item Klicka på ``Ta bort användare'' för L1
+\item Se till att en bekräftelseruta visas.
 \item Klicka ``Ja''.
-\item Kontrollera att en lista över användare visas där L inte är med.
-\item Kontrollera i databasen att L inte finns kvar.
+\item Se till att en lista över användare visas där L1 inte är med.
+\item Se till i databasen att L1 inte finns kvar.
 \end{enumerate}
 
 \item \textbf{Förfrågan innan borttagning av vanlig användare}
@@ -338,24 +341,24 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item Klicka på ``Ta bort användare'' för V.
-\item Kontrollera att en bekräftelseruta visas.
+\item Se till att en bekräftelseruta visas.
 \item Klicka ``Ja''.
-\item Kontrollera att en lista över användare visas där V inte är med.
-\item Kontrollera i databasen att V inte finns kvar.
+\item Se till att en lista över användare visas där V inte är med.
+\item Se till i databasen att V inte finns kvar.
 \end{enumerate}
 
 \item \textbf{Förfrågan innan ångrad borttagning av projektledare}
 
-\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en projektledare L i systemet.
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns två projektledare L1, L2 i systemet.
 
-\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en projektledare L i systemet.
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns två projektledare L1, L2 i systemet.
 
 \begin{enumerate}
-\item Klicka på ``Ta bort användare'' för L.
-\item Kontrollera att en bekräftelseruta visas.
+\item Klicka på ``Ta bort användare'' för L1.
+\item Se till att en bekräftelseruta visas.
 \item Klicka ``Nej''.
-\item Kontrollera att en lista över användare visas där L är med.
-\item Kontrollera i databasen att L finns kvar.
+\item Se till att en lista över användare visas där L1 är med.
+\item Se till i databasen att L1 finns kvar.
 \end{enumerate}
 
 \item \textbf{Förfrågan innan ångrad borttagning av vanlig användare}
@@ -366,10 +369,10 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item Klicka på ``Ta bort användare'' för V.
-\item Kontrollera att en bekräftelseruta visas.
+\item Se till att en bekräftelseruta visas.
 \item Klicka ``Nej''.
-\item Kontrollera att en lista över användare visas där V är med.
-\item Kontrollera i databasen att V finns kvar.
+\item Se till att en lista över användare visas där V är med.
+\item Se till i databasen att V finns kvar.
 \end{enumerate}
 \end{FT}
 
@@ -490,7 +493,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \subsubsection{Användare}
 \begin{FT}
 \item
-\textbf{Kontrollera att utloggningsfunktionallitet finns på alla inloggade sidor och fungerar.}
+\textbf{Se till att utloggningsfunktionallitet finns på alla inloggade sidor och fungerar.}
 
 \emph{Starttillstånd:} Användaren A inloggad.
 
@@ -563,7 +566,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \subsubsection{Data}
 \begin{FT}
 \item
-\textbf{Kontrollera givna användaridentiteter mot de registrerade användare som finns i systemet.}
+\textbf{Se till givna användaridentiteter mot de registrerade användare som finns i systemet.}
 
 \emph{Starttillstånd:} Användaren A inte inloggad, sidan för inloggning visas.
 
@@ -688,7 +691,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \item
 %ÄNDRA TILL MANUELL MILJÖ I SVVS%
-\textbf{Projektmedlem lyckas skapa en egen osignerad tidrapport}
+\textbf{Projektmedlem lyckas skapa en egen osignerad tidrapport} 
 
 \emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, ny tidrapport visas.
@@ -1290,7 +1293,7 @@ skapats}
 \begin{enumerate}
 \item Skriv rätt användarnamn och felaktigt lösenord för M.
 \item Klicka på ``Logga in''.
-\item Kontrollera att M fortfarande befinner sig på inloggningssidan.
+\item Se till att M fortfarande befinner sig på inloggningssidan.
 \item Skriv in rätt användarnamn och rätt lösenord för M.
 \item Klicka på ``Logga in''.
 \item Klicka på ``Tidrapportering''.
@@ -1300,22 +1303,22 @@ skapats}
 \item Skriv 30 i fältet för möte.
 \item Klicka på ``Lägg till'', tidsrapporten som skapades kallas för T.
 \item Klicka på ``Visa'' för tidrapport för vecka 1.
-\item Kontrollera att det i fältet ``möte'' står 30.
+\item Se till att det i fältet ``möte'' står 30.
 \item Klicka på ``Tillbaka''.
 \item Klicka på ``Redigera rapport'' för tidrapport T.
 \item Ändra fältet ``möte'' till 20.
 \item Klicka på ``Redigera rapport''.
-\item Kontrollera i databasen att det i tidsrapporten T står 20 för möte.
+\item Se till i databasen att det i tidsrapporten T står 20 för möte.
 \item Klicka på ``Visa projektinformation''.
-\item Kontrollera att projektnamnet för G syns och att M och L står med som medlemmar i projektet.
+\item Se till att projektnamnet för G syns och att M och L står med som medlemmar i projektet.
 \item Klicka på ``Ändra lösenord''.
 \item Skriv det nya lösenordet ``k''.
-\item Kontrollera att du fortfarande befinner dig på samma sida.
-\item Kontrollera i databasen att lösenordet inte är ``k''.
+\item Se till att du fortfarande befinner dig på samma sida.
+\item Se till i databasen att lösenordet inte är ``k''.
 \item Skriv in det nya lösenordet ``abcdefgh''.
-\item Kontrollera i databasen att lösenordet är ``abcdefgh''.
+\item Se till i databasen att lösenordet är ``abcdefgh''.
 \item Klicka på ``Logga ut''
-\item Kontrollera att du befinner dig på inloggningssidan.
+\item Se till att du befinner dig på inloggningssidan.
 
 \end{enumerate}
 
@@ -1331,19 +1334,19 @@ skapats}
 
 \begin{enumerate}
 \item Klicka på ``Generera statistik'' för G.
-\item Kontrollera att statistik visas för G, sammanlagd tid rapporterad skall vara 60 minuter.
+\item Se till att statistik visas för G, sammanlagd tid rapporterad skall vara 60 minuter.
 \item Gå tillbaka till projektgruppsadmininstrationssidan.
 \item Klicka på ``Hantera tidsrapporter''.
 \item Avsignera tidsrapport T1.
-\item Kontrollera att tidsrapporten T1 inte är signerad i databasen.
+\item Se till att tidsrapporten T1 inte är signerad i databasen.
 \item Signera tidsrapport T1.
-\item Kontrollera att tidsrapporten T1 är signerad i databasen.
+\item Se till att tidsrapporten T1 är signerad i databasen.
 \item Gå tillbaka till projektgruppsadmininstrationssidan.
 \item Klicka på ``Hantera användare'' för projektet G.
-\item Kontrollera att alla projektmedlemmar visas.
+\item Se till att alla projektmedlemmar visas.
 \item För projektmedlem M1, klicka på ``Byt roll''.
 \item Välj t2.
-\item Kontrollera i databasen att rollen för M1 i grupp G har ändrats i databasen.
+\item Se till i databasen att rollen för M1 i grupp G har ändrats i databasen.
 \end{enumerate}
 \end{ST}
 
@@ -1358,8 +1361,8 @@ skapats}
 \begin{enumerate}
 \item För projektet G klicka på ``Lägg till projektmedlem''.
 \item Skriv in namnet ``admin'' och rollen t1, klicka på ``OK''.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera att ``admin'' inte finns tillagd i G.
+\item Se till att ett felmeddelande visas.
+\item Se till att ``admin'' inte finns tillagd i G.
 \end{enumerate}
 \end{ST}
 
@@ -1783,9 +1786,9 @@ PL väljer [typ av statistik]
 \item 
 PL väljer [typ av rapport]
 \item
-Kontrollera att rapport av typ [typ av rapport] visas.
+Se till att rapport av typ [typ av rapport] visas.
 \item
-Kontrollera att statistik av typ [typ av statistik] visas.
+Se till att statistik av typ [typ av statistik] visas.
 \end{enumerate}
 
 \item
@@ -1802,13 +1805,13 @@ PL väljer att lista tidrapporter
 \item
 PL väljer en icke godkänd tidrapport ur listan
 \item
-Kontrollera att PL ser rapporten
+Se till att PL ser rapporten
 \item
 PL godkänner rapporten
 \item
-Kontrollera att dialogruta visades
+Se till att dialogruta visades
 \item
-Kontrollera att rapporten är godkänd
+Se till att rapporten är godkänd
 
 \end{enumerate}
 
@@ -1824,17 +1827,17 @@ Kontrollera att rapporten är godkänd
 
 \begin{enumerate}
 \item Tryck på ``Sortera alla tidrapporter efter namn, stigande ordning''.
-\item Kontrollera att det är sorterat på ordningen M1, M2 sen M3.
+\item Se till att det är sorterat på ordningen M1, M2 sen M3.
 \item Tryck på ``Sortera alla tidrapporter efter vecka, stigande ordning''.
-\item Kontrollera att det är sorterat på ordningen vecka 1 sen vecka 2.
+\item Se till att det är sorterat på ordningen vecka 1 sen vecka 2.
 \item Tryck på ``Sortera alla tidrapporter efter om rapporten är godkänd eller ej, stigande ordning''.
-\item Kontrollera att det är sorterat på ordningen osignerat sen signerat.
+\item Se till att det är sorterat på ordningen osignerat sen signerat.
 \item Tryck på ``Sortera alla tidrapporter efter namn, fallande ordning''.
-\item Kontrollera att det är sorterat på ordningen M3, M2 sen M1.
+\item Se till att det är sorterat på ordningen M3, M2 sen M1.
 \item Tryck på ``Sortera alla tidrapporter efter vecka, fallande ordning''.
-\item Kontrollera att det är sorterat på ordningen vecka 2 sen vecka 1.
+\item Se till att det är sorterat på ordningen vecka 2 sen vecka 1.
 \item Tryck på ``Sortera alla tidrapporter efter om rapporten är godkänd eller ej, fallande ordning''.
-\item Kontrollera att det är sorterat på ordningen signerat sen osignerat.
+\item Se till att det är sorterat på ordningen signerat sen osignerat.
 \end{enumerate}
 
 \end{ST}
@@ -1858,9 +1861,9 @@ A väljer [typ av statistik]
 \item 
 A väljer [typ av rapport]
 \item
-Kontrollera att rapport av typ [typ av rapport] visas.
+Se till att rapport av typ [typ av rapport] visas.
 \item
-Kontrollera att statistik av typ [typ av statistik] visas.
+Se till att statistik av typ [typ av statistik] visas.
 \end{enumerate}
 
 \item
@@ -1877,13 +1880,13 @@ A väljer att lista tidrapporter
 \item
 A väljer en icke godkänd tidrapport ur listan
 \item
-Kontrollera att A ser rapporten
+Se till att A ser rapporten
 \item
 A godkänner rapporten
 \item
-Kontrollera att dialogruta visades
+Se till att dialogruta visades
 \item
-Kontrollera att rapporten är godkänd
+Se till att rapporten är godkänd
 
 \end{enumerate}
 
@@ -1899,17 +1902,17 @@ Kontrollera att rapporten är godkänd
 
 \begin{enumerate}
 \item Tryck på ``Sortera alla tidrapporter efter namn, stigande ordning''.
-\item Kontrollera att det är sorterat på ordningen M1, M2 sen M3.
+\item Se till att det är sorterat på ordningen M1, M2 sen M3.
 \item Tryck på ``Sortera alla tidrapporter efter vecka, stigande ordning''.
-\item Kontrollera att det är sorterat på ordningen vecka 1 sen vecka 2.
+\item Se till att det är sorterat på ordningen vecka 1 sen vecka 2.
 \item Tryck på ``Sortera alla tidrapporter efter om rapporten är godkänd eller ej, stigande ordning''.
-\item Kontrollera att det är sorterat på ordningen osignerat sen signerat.
+\item Se till att det är sorterat på ordningen osignerat sen signerat.
 \item Tryck på ``Sortera alla tidrapporter efter namn, fallande ordning''.
-\item Kontrollera att det är sorterat på ordningen M3, M2 sen M1.
+\item Se till att det är sorterat på ordningen M3, M2 sen M1.
 \item Tryck på ``Sortera alla tidrapporter efter vecka, fallande ordning''.
-\item Kontrollera att det är sorterat på ordningen vecka 2 sen vecka 1.
+\item Se till att det är sorterat på ordningen vecka 2 sen vecka 1.
 \item Tryck på ``Sortera alla tidrapporter efter om rapporten är godkänd eller ej, fallande ordning''.
-\item Kontrollera att det är sorterat på ordningen signerat sen osignerat.
+\item Se till att det är sorterat på ordningen signerat sen osignerat.
 \end{enumerate}
 
 \item \textbf{Administratören har tillgång administratörsfunktionaliteter} 
@@ -1986,9 +1989,9 @@ Kontrollera att rapporten är godkänd
 \item
 Försök logga in användare user1-user51.
 \item
-Kontrollera att user1-user50 är inloggade.
+Se till att user1-user50 är inloggade.
 \item
-Kontrollera att user51 inte är inloggad.
+Se till att user51 inte är inloggad.
 \end{enumerate}
 
 \item
