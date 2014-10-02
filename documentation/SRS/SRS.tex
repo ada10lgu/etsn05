@@ -34,11 +34,11 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 
-\fancyhead[R]{Datum: \today | Version: 0.20 | Dokumentnummer: PUSS144401}
+\fancyhead[R]{Datum: \today | Version: 0.21 | Dokumentnummer: PUSS144401}
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
-\author{Systemarkitektgruppen \\ Lars Gustafsson | Martin Lichota | Marcel Tovar Rascon}
+\author{Systemarkitektgruppen \\ Martin Lichota | Marcel Tovar Rascon}
 \date{}
 
 \begin{document}
@@ -84,6 +84,8 @@ Lade till krav, kapitel 6.3\\
 \\
 0.20 & 25 september 2014 & SG & Redigerat krav och lagt till nya efter informell granskning.
 \\
+0.21 & 2 oktober 2014 & SG & Tagit bort krav och scenario om dynamiska tidsrapportsmallar samt redigerat inloggning av flera terminaler.
+\\
 \end{tabular}
 \newpage
 \section{Inledning}       
@@ -119,8 +121,7 @@ Här följer ord och uttryck som används i rapporten och är till för att öka
 \item [] \textbf{Användarnamn:} Unik indentifikationsfras för att representera en användare i systemet..
 \item [] \textbf{Arbetsbelastning:} Detta är den tiden som en person har lagt ner på en given aktivitet. Om någon har lagt ner 2h på att diska under en viss tidsperiod, så är arbetsbelastningen 2h för den perioden och aktiviteten.
 \item [] \textbf{Ej inloggad:} En användare som ännu inte har autentiserat sig mot systemet.
-\item [] \textbf{FIFO:} Från engelskans ``First In First Out''. Teknik som fungerar på samma sätt som en kö. Den som kom först betjänas först.
-\item [] \textbf{Grundmall:} Är en mall genererad av systemet som innehåller information om användarnamn, projektgruppsnamn, datum, veckonummer, totaltid och signering (se figur 1). Denna kopplas alltid ihop med en tidrapportmall och går inte att välja bort.
+\item [] \textbf{Grundmall:} Är den mallen genererad av systemet som innehåller information om användarnamn, projektgruppsnamn, datum, veckonummer, totaltid och signering (se figur 1). Innehåller också vilka fält som kan anges vid en tidrapportering. Denna går inte att välja bort.
 \item [] \textbf{Huvudsida:} Med huvudsida avses den första vyn som användaren blir dirigerad till direkt efter inloggning. 
 \item [] \textbf{Information:} Med information avses t.ex. användare, lösenord eller tidrapporter.
 \item [] \textbf{Inloggad:} En användare som har loggat in är inloggad.
@@ -134,7 +135,6 @@ Här följer ord och uttryck som används i rapporten och är till för att öka
 \item [] \textbf{T1, T2, T3:} Se Projektroll.
 \item [] \textbf{Terminal:} Dator som används för att använda NewPussSystem.
 \item [] \textbf{Tidrapport:} En rapport som innehåller arbetsbelasting för en användare under en fix tidperiod bundet till en specefik projektgrupp.
-\item [] \textbf{Tidrapportmall:} En mall som anger vilka fält som kan anges vid en tidrapportering. Denna bestäms mer specifikt av administratören och kopplas därefter alltid ihop av systemet med en grundmall.
 \item [] \textbf{Tidrapporttabell:} En tabell som fylls i vid tidrapportering. 
 \item [] \textbf{Totaltid:} Är den summerade tiden i tidrapportstabellen. 
 \item [] \textbf{Vy:} Var sida,för en inloggad användare, består av menyn samt en vy. En vy presenterar innehållet i den funktionalliteten man tryckt på i menyn.
@@ -210,7 +210,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 		\label{krav-funk-aut}
 		\subsubsection*{Övergripande}
 			\requirement{1}{Ett användarkonto kan endast vara inloggat på en terminal åt gången.}			
-			\requirement{2}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan terminal, kommer den nya inloggningen att genomföras medan den andra terminalen loggas ut.}
+			\requirement{2}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan terminal, kommer den nya inloggningen ej att genomföras. Användaren informeras om detta.}
 			\requirement{3}{För varje användare kan loginstatus antingen vara inloggad eller inte inloggad.}
 
 			\requirement{4}{Krav 6.1.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
@@ -219,23 +219,26 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{7}{Krav 6.2.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{8}{Krav 6.2.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 \subsubsection*{Användare}
-			\requirement{9}{Krav 6.1.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{10}{Krav 6.1.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{11}{Krav 6.1.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{12}{Krav 6.1.8 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{13}{Krav 6.1.9 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{9}{Om en inloggad användare är inaktiv i mer än 20 minuter ska denne automatiskt loggas ut från systemet.}
+			\requirement{10}{Krav 6.1.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{11}{Krav 6.1.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{12}{Krav 6.1.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{13}{Krav 6.1.8 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{14}{Krav 6.1.9 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 
 
 			
 		\subsubsection*{Data}
-			\requirement{22}{Krav 6.1.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{23}{Krav 6.1.7 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{15}{Krav 6.1.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{16}{Krav 6.1.7 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+
 
 		\subsubsection*{Ej inloggad}
-			\requirement{24}{Krav 6.1.6 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{25}{På inloggningssidan skall användaren ha möjlighet att välja bland alla befintliga projektgrupper i systemet.}
-			\requirement{26}{För att kunna utföra autentiseringen mot systemet skall användaren specificera vilken projektgrupp den vill logga in på.}
-			\requirement{27}{Användaren skall endast kunna logga in på de projektgrupper denne är medlem i. Detta krav gäller ej för administratören.}
+			\requirement{17}{Krav 6.1.6 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{18}{På inloggningssidan skall användaren ha möjlighet att välja bland alla befintliga projektgrupper i systemet.}
+			\requirement{19}{För att kunna utföra autentiseringen mot systemet skall användaren specificera vilken projektgrupp den vill logga in på.}
+			\requirement{20}{Användaren skall endast kunna logga in på de projektgrupper denne är medlem i. Detta krav gäller ej för administratören.}
+
 
 
 	\subsection{Tidrapportering}
@@ -345,32 +348,15 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 
 		\subsubsection*{Data}
 			\requirement{23}{Tidrapportering sker i antal minuter.}
-			\requirement{24}{Namnet på tidrapportmallen ska bestå av 5 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
-			\requirement{25}{Namnet på aktivitet och subaktivitet ska bestå av 3-5 tecken respektive 1 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
+			\requirement{24}{En tidrapport skall innehålla information om användarnamn.}
+			\requirement{25}{En tidrapport skall innehålla information om projektgruppsnamn.}
+			\requirement{26}{En tidrapport skall innehålla information om datum. Datum skrivs på formatet ``dag månad år'', där dag representeras av två siffror (ascii (decimal) värden 48-57), månaden som namnet på månaden (ascii (decimal) värden 97-122) , och år med fyra siffor (ascii (decimal) värden 48-57).}
+			\requirement{27}{En tidrapport skall innehålla information om veckonummer.}
+			\requirement{28}{Det skall tydligt framgå om en tidrapport är signerad eller inte.}
+			\requirement{29}{Nygenererade tidrapporter är alltid osignerade.}
+			\requirement{30}{Tidrapportens grundmall skall innehålla information om användarnamn, projektgruppsnamn, datum och veckonummer. Det skall även tydligt framgå om den är signerad eller ej.}
+			\requirement{31}{Tidrapportens grundmall skall innehålla aktiviteter och subaktiviteter enligt figur 8.}
 
-			\requirement{26}{Tidinformationen får innehålla 1-5 tecken per aktivitetsruta, ascii (decimal) värden 48-57.}
-			\requirement{27}{Tidrapportmallarnas namn måste vara unika. }
- 	 	 		
-			\requirement{28}{Det skall gå att lagra 100 tidrapporter/användare. Efter uppnådd maxgräns skrivs de över enligt FIFO-principen.}
-			\requirement{29}{Veckonumret får innehålla 1-2 tecken, ascii (decimal) värden 48-57.}
-			\requirement{30}{En administratör skall kunna skapa tidrapportsmallar.}
-			\requirement{31}{Man skall kunna ange 1-20 stycken aktiviteter i en tidrapportsmall.}
-			\requirement{32}{Man skall kunna ange 1-4 stycken subaktiviteter i en tidrapportsmall.}
-			\requirement{33}{Antalet aktiviteter anger antalet rader som finns i tidrapportstabellen.}
-			\requirement{34}{Antalet subaktiviteter anger antalet kolumner som finns i tidrapportstabellen.}
-			\requirement{35}{En tidrapport skall innehålla information om användarnamn.}
-			\requirement{36}{En tidrapport skall innehålla information om projektgruppsnamn.}
-			\requirement{37}{En tidrapport skall innehålla information om datum. Datum skrivs på formatet ``dag månad år'', där dag representeras av två siffror (ascii (decimal) värden 48-57), månaden som namnet på månaden (ascii (decimal) värden 97-122) , och år med fyra siffor (ascii (decimal) värden 48-57).}
-			\requirement{38}{En tidrapport skall innehålla information om veckonummer.}
-			\requirement{39}{Det skall tydligt framgå om en tidrapport är signerad eller inte.}
-			\requirement{40}{Maximalt 20 mallar kan lagras samtidigt.}
-			\requirement{41}{En tidrapportmall kan endast tas bort om den inte används av någon projektgrupp.}
-			\requirement{42}{Det skall inte vara möjligt att ändra tidrapportmallens utformning efter att den har skapats.}
-			\requirement{43}{Nygenererade tidrapporter är alltid osignerade.}
-			\requirement{44}{Tidrapportens grundmall skall innehålla information om användarnamn, projektgruppsnamn, datum och veckonummer. Det skall även tydligt framgå om den är signerad eller ej.}
-			\requirement{45}{Grundmallen för tidrapporterna genereras automatiskt av systemet.}
-			\requirement{46}{Aktivitetsnamn måste vara unika.}
-			\requirement{47}{Subaktivitetsnamn måste vara unika.}
 
 	\subsection{Administration}
 		\label{krav-funk-admin}
@@ -509,20 +495,20 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{12}{Endast administratören skall kunna skapa projektgrupper i systemet.}
 			\requirement{13}{Endast administratören skall kunna lägga till eller ta bort projektledare i en projektgrupp.}
 			\requirement{14}{Endast administratören skall kunna ta bort projektgrupper ur systemet.}
-			\requirement{15}{Scenario 6.4.1 skall stödjas av systemet.}
-			\requirement{16}{Scenario 6.4.2 skall stödjas av systemet.}
-			\requirement{17}{Scenario 6.4.3 skall stödjas av systemet.}
-			\requirement{18}{Scenario 6.4.4 skall stödjas av systemet.}
-			\requirement{19}{Scenario 6.4.5 skall stödjas av systemet.}
-			\requirement{20}{Krav 6.3.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{21}{Krav 6.3.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{22}{Krav 6.3.6 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{23}{Krav 6.3.7 från Grundsystemet (Referensdokument 1) har utgått och ersatts av krav 6.1.14}
-			\requirement{24}{Krav 6.3.8 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{25}{Krav 6.3.9 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{26}{Krav 6.3.10 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{27}{Krav 6.3.11 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{28}{Tidrapportens utseende, med avseende på vilka aktiviteter man kan föra in tidinformation i, bestäms av administratören innan projektgruppen har skapats. När projektet är skapat skall det inte gå att ändra tidrapportens utseende.}
+			\requirement{15}{Om en projektgrupp tas bort, så elimineras också alla användare i den om de inte är medlemmar i andra projektgrupper.}
+			\requirement{16}{Scenario 6.4.1 skall stödjas av systemet.}
+			\requirement{17}{Scenario 6.4.2 skall stödjas av systemet.}
+			\requirement{18}{Scenario 6.4.3 skall stödjas av systemet.}
+			\requirement{19}{Scenario 6.4.4 skall stödjas av systemet.}
+			\requirement{20}{Scenario 6.4.5 skall stödjas av systemet.}
+			\requirement{21}{Krav 6.3.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{22}{Krav 6.3.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{23}{Krav 6.3.6 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{24}{Krav 6.3.7 från Grundsystemet (Referensdokument 1) har utgått och ersatts av krav 6.1.14}
+			\requirement{25}{Krav 6.3.8 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{26}{Krav 6.3.9 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{27}{Krav 6.3.10 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{28}{Krav 6.3.11 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{29}{I administrationsvyn skall det vara möjligt att ta bort vilken användare som helst förutom administratören.}
 			\requirement{30}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav 6.2.5-6 skall ett felmeddelande visas och användaren skall inte läggas till.}
 			
@@ -626,87 +612,19 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 \end{table}
 
 % ----------------------- /END
-
-
-%--------------SCENARIO
-
-\begin{table}[H]
-\begin{tabular}{ | p{2cm} p{11cm} | }
-    \hline
-    
-    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{8}} \\
-    \textbf{Syfte} & Skapa tidrapportmall.\\
-    \textbf{Trigger} & Användaren vill skapa en projektgrupp. \\
-    \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
-    \hline
-
-	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
-
-	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer att skapa en ny tidrapportmall.} \\	
-	\multicolumn{2}{|p{13cm}|}{2. Denne väljer antal aktiviteter (rader) och subaktiviteter (kolumner) som ska finnas. Användaren fyller i önskat namn på tidrapportmallen och trycker ``OK''.} \\	
-	\multicolumn{2}{|p{13cm}|}{3. Tabell genereras med det antal givna rader och kolumner från steg 3 och visas för användaren.} \\	
-	\multicolumn{2}{|p{13cm}|}{4. Användaren fyller nu i aktivitets- och subaktivitetsnamn. Därefter trycker denne ``OK''.} \\	
-	\multicolumn{2}{|p{13cm}|}{5. Mallen är nu skapad, ihopkopplad med grundmallen och sparad. Användaren får en bekräftelse och dirigeras till den färdiga mallen.} \\	
-	\hline
-    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
-    \multicolumn{2}{|p{13cm}|}{2a. Det går inte att skapa fler mallar på grund av uppnådd maxgräns. Användaren informeras om detta.}\\
-    \multicolumn{2}{|p{13cm}|}{3a. Om namnet på mallen redan existerar informeras användaren om detta och ombedes att skriva ett annat namn. Användaren skickas tillbaka till steg 3.}\\
-    \multicolumn{2}{|p{13cm}|}{3b. Användaren får felmeddelande då antal kolumner och rader inte överensstämmer med det, av systemet, tillåtna antal. Användaren skickas tillbaka till steg 3.}\\
-       \multicolumn{2}{|p{13cm}|}{3c. Användaren får felmeddelande då det inmatade namnet är otillåtet. Användaren skickas tillbaka till steg 3.}\\
-    \multicolumn{2}{|p{13cm}|}{5a. Användaren får felmeddelande då det inmatade aktivitets- eller subaktivitetsnamnet är otillåtna. Användaren skickas tillbaka till steg 5.}\\
-    \hline
-\end{tabular}
-\end{table}
-
-% ----------------------- /END
-
-
-
-%--------------SCENARIO
-
-\begin{table}[H]
-\begin{tabular}{ | p{2cm} p{11cm} | }
-    \hline
-    
-    \multicolumn{2}{|p{13cm}|}{ \indent\scenario{9}} \\
-    \textbf{Syfte} & Ta bort tidrapportmall.\\
-    \textbf{Trigger} & Användaren vill ta bort en tidrapportmall. \\
-    \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
-    \hline
-
-	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
-
-	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer att ta bort tidrapportmall.}\\
-	\multicolumn{2}{|p{13cm}|}{2. En lista med tidrapportmallar visas för användaren.} \\	
-	\multicolumn{2}{|p{13cm}|}{3. Användaren markerar en tidrapportmall och trycker ``OK''.} \\	
-	\multicolumn{2}{|p{13cm}|}{4. När bekräftelserutan, specificierad i krav 6.1.14, kommer upp trycker användaren ``Ja'' .} \\	
-	\multicolumn{2}{|p{13cm}|}{5. Mallen är nu borttagen. Användaren får en uppdaterad lista över mallar sparade i systemet.} \\	
-	\hline
-    \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
-    \multicolumn{2}{|p{13cm}|}{2a. Finns inga sparade tidrapportmallar. Det framgår tydligt att listan är tom.}\\
-    \multicolumn{2}{|p{13cm}|}{4a. Tidrapportmallen används av en projektgrupp och kan inte tas bort.}\\
-    \hline
-\end{tabular}
-\end{table}
-
-% ----------------------- /END			
 			
-			\requirement{31}{Utgått.}
-			\requirement{32}{Scenario 6.4.6 skall stödjas av systemet.}
-			\requirement{33}{Scenario 6.4.7 skall stödjas av systemet.}
-			\requirement{34}{Scenario 6.4.8 skall stödjas av systemet.}
-			\requirement{35}{Scenario 6.4.9 skall stödjas av systemet.}
-			\requirement{36}{Administratören skall kunna ta bort en tidrapportmall om den inte används av en projektgrupp.}
+			\requirement{31}{Scenario 6.4.6 skall stödjas av systemet.}
+			\requirement{32}{Scenario 6.4.7 skall stödjas av systemet.}
 
 		\subsubsection*{Data}
-			\requirement{37}{Ett projektgruppsnamn ska bestå av 5-10 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
-			\requirement{38}{Projektgruppsnamn måste vara unika.}
-			\requirement{39}{Det får maximalt existera 5 stycken projektgrupper samtidigt.}
-			\requirement{40}{En användare kan vara projektmedlem i mer än en projektgrupp åt gången.}
-			\requirement{41}{En projektgrupp skall bestå av 1-20 användare.}
-			\requirement{42}{I varje projektgrupp kan det finnas upp till tre Projektroller, t1, t2 och t3.}
-			\requirement{43}{I t1, t2 och t3 får det finnas 0-6 användare/projektgrupp, alltså sammanlagt 0-18 användare.}
-			\requirement{44}{Krav 6.3.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{33}{Ett projektgruppsnamn ska bestå av 5-10 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
+			\requirement{34}{Projektgruppsnamn måste vara unika.}
+			\requirement{35}{Det får maximalt existera 5 stycken projektgrupper samtidigt.}
+			\requirement{36}{En användare kan vara projektmedlem i mer än en projektgrupp åt gången.}
+			\requirement{37}{En projektgrupp skall bestå av 1-20 användare.}
+			\requirement{38}{I varje projektgrupp kan det finnas upp till tre Projektroller, t1, t2 och t3.}
+			\requirement{39}{I t1, t2 och t3 får det finnas 0-6 användare/projektgrupp, alltså sammanlagt 0-18 användare.}
+			\requirement{40}{Krav 6.3.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 
 
 \section{Kvalitetskrav}
