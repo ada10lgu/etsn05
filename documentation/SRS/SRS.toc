@@ -11,9 +11,9 @@
 \contentsline {subsection}{\numberline {6.2}Autentisering}{9}
 \contentsline {subsection}{\numberline {6.3}Tidrapportering}{10}
 \contentsline {subsection}{\numberline {6.4}Administration}{16}
-\contentsline {section}{\numberline {7}Kvalitetskrav}{22}
-\contentsline {subsection}{\numberline {7.1}Underh\IeC {\r a}ll}{22}
-\contentsline {subsection}{\numberline {7.2}Prestanda}{22}
-\contentsline {subsection}{\numberline {7.3}Anv\IeC {\"a}ndarv\IeC {\"a}nlighet}{22}
-\contentsline {section}{\numberline {8}Projektkrav}{22}
-\contentsline {subsection}{\numberline {8.1}Utvecklingsmilj\IeC {\"o}}{22}
+\contentsline {section}{\numberline {7}Kvalitetskrav}{25}
+\contentsline {subsection}{\numberline {7.1}Underh\IeC {\r a}ll}{25}
+\contentsline {subsection}{\numberline {7.2}Prestanda}{25}
+\contentsline {subsection}{\numberline {7.3}Anv\IeC {\"a}ndarv\IeC {\"a}nlighet}{25}
+\contentsline {section}{\numberline {8}Projektkrav}{25}
+\contentsline {subsection}{\numberline {8.1}Utvecklingsmilj\IeC {\"o}}{25}
