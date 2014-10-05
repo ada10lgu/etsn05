@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 0.13 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 0.14 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -66,6 +66,7 @@ v0.10 & 22 september & TG & La till test för två nya krav \\
 v0.11 & 23 september & TG & Anpassat efter SRS v0.19 \\
 v0.12 & 26 september & TG & Anpassat efter SRS v0.20 och informell granskning, omformuleringar, rättning av stavfel. Ang. informell granskning, "valda tidrapporter" är taget direkt från SRS, datumet för PR är inte utskrivet i SDP\\
 v0.13 & 30 september & TG & Tagit bort test som utgått\\
+v0.14 & 5 oktober & TG & Anpassad efter SRS v0.21\\
 
 \end{tabular}
 \section{Inledning}       
@@ -74,7 +75,7 @@ Detta dokument innehåller information om vilka tester och granskningar som ska 
 
 \section{Referensdokument}
 \begin{enumerate}
-\item System Requirements Specification v0.20
+\item System Requirements Specification v0.21
 \item Programvaruutveckling för stora system - Projekthandledning
 \item System Requirements Specification: BaseBlockSystem
 \end{enumerate}
@@ -179,7 +180,7 @@ Under vilket kunden utför ett urval av ovanstående tester samt ett par för le
 
 %ändrad 23/9**
 Vid granskningar ska alla krav granskas.
-Följande krav (i Ref.1) är endast verifierbara genom granskningar: 6.1.5, 6.2.3, 6.2.8, 6.2.22, 6.3.23, 7.1.1, 7.1.2, 7.1.3, 7.3.1, 8.1.1, 8.1.2, 8.1.3 och 8.1.4.
+Följande krav (i Ref.1) är endast verifierbara genom granskningar: 6.1.5, 6.2.3, 6.2.8, 6.2.15, 6.3.23, 7.1.1, 7.1.2, 7.1.3, 7.3.1, 8.1.1, 8.1.2, 8.1.3 och 8.1.4.
 
 \section{Bilagor}
 
@@ -273,7 +274,7 @@ Alla steg i flödeschemat i figur 4 i SRS stödjs \req[6.1.13]
 
 \begin{FT}
 \item 
-\emph{Manuell miljö:} Logga in med en användare på en terminal och logga in på en annan enhet med samma användare, inloggningen på den andra enheten skall loggas in och inloggning på den första enheten skall loggas ut.\req[6.2.1, 6.2.2]
+\emph{Manuell miljö:} Logga in med en användare på en terminal och försök logga in på en annan enhet med samma användare, inloggningen på den andra enheten skall då misslyckas och ett felmeddelande ska visas. \req[6.2.1, 6.2.2]
 
 \item
 Systemet håller login status i en server session \req[6.2.4]
@@ -314,11 +315,11 @@ Administratören försöker skapa en ny användare med ett användarnamn som red
 \begin{FT}
 \item
 \emph{Manuell miljö:} Gå igenom alla url's en inloggad användare ska ha tillgång till och verifiera att en utloggnings funktionallitet finns synlig och tillgänglig.
-\req[6.2.12]
+\req[6.2.13]
 
 \item
 Inaktivitet i 20 minuter gör att inloggnings status förändras till inte inloggad.
-\req[6.2.13]
+\req[6.2.9, 6.2.14]
 \end{FT}
 
 %Administratör
@@ -335,8 +336,8 @@ Administratören kan ta bort alla användare förutom sig själv i systemet \req
 \emph{Manuell miljö:} Administratören försöker ta bort sig själv från systemet \req[6.4.29]
 
 %ändrad 23/9
-\item
-Administratör lyckas ta bort en tidrapportmall som inte används av en projektgrupp \req[6.4.36]
+%\item
+%Administratör lyckas ta bort en tidrapportmall som inte används av en projektgrupp \req[6.4.36]
 \end{FT}
 
 %Data
@@ -345,7 +346,7 @@ Administratör lyckas ta bort en tidrapportmall som inte används av en projektg
 \begin{FT}
 \item
 \emph{Manuell miljö:} Ge servern ett användarnamn och lösenord, kontrollera att dessa kontrolleras mot de redan registrerade användarna. Systemet ska sedan dirigera om användaren till en sida med användarfunktioner och sessions statusen ska ändras till inloggad.
-\req[6.2.23]
+\req[6.2.16]
 \end{FT}
 
 \subsubsection{Ej inloggad}
@@ -353,13 +354,13 @@ Administratör lyckas ta bort en tidrapportmall som inte används av en projektg
 \begin{FT}
 \item
 En icke inloggad användare når systemet och tvingas då lämna inloggningsinformation.
-\req[6.2.24]
+\req[6.2.17]
 \item
-Användaren kan välja mellan alla befintliga projektgrupper i systemet på inloggningssidan \req[6.2.25]
+Användaren kan välja mellan alla befintliga projektgrupper i systemet på inloggningssidan \req[6.2.18]
 \item
-Användaren skall specificera vilken projektgrupp den vill logga in på \req[6.2.26]
+Användaren skall specificera vilken projektgrupp den vill logga in på \req[6.2.19]
 \item
-Användare lyckas logga in på de projektgrupp(er) som denne är medlem i \req[6.2.27]
+Användare lyckas logga in på de projektgrupp(er) som denne är medlem i \req[6.2.20]
 \item
 Användare försöker logga in på en projektgrupp som denne inte är medlem i \req[6.2.27]
 \item
@@ -389,7 +390,7 @@ Administratören lyckas logga in på samtliga projektgrupper \req[6.2.27]
 
 %ändrad 23/9**
 \item
-Projektmedlem lyckas skapa en egen osignerad tidrapport \req[6.3.1, 6.3.43]
+Projektmedlem lyckas skapa en egen osignerad tidrapport \req[6.3.1, 6.3.29]
 \item
 Projektmedlem lyckas uppdatera sin egen osignerade tidrapport \req[6.3.1]
 \item
@@ -500,13 +501,6 @@ Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet oc
 \begin{FT}
 
 
-\item
-Lagra 100 tidrapporter för en användare \req[6.3.28]
-
-\item
-Försök att lagra mer än 100 tidrapporter för en användare \req[6.3.28]
-%Admin anger rätt mängd aktiviteter/subakt när scenario 6.2.4 genomförs i ST
-
 
 \item
 Administratör försöker ange 0 aktiviteter i en tidrapportmall \req[6.3.31]
@@ -515,57 +509,57 @@ Administratör försöker ange 0 aktiviteter i en tidrapportmall \req[6.3.31]
 \item
 Administratör försöker ange 21 aktiviteter i en tidrapportmall \req[6.3.31]
 
-\item
-Administratör försöker ange 0 subaktiviteter i en tidrapportmall \req[6.3.32]
+%\item
+%Administratör försöker ange 0 subaktiviteter i en tidrapportmall \req[6.3.32]
+
+
+%\item
+%Administratör försöker ange 5 subaktiviteter i en tidrapportmall \req[6.3.32]
+
+
+%\item
+%\emph{Manuell miljö:} Antalet aktiviteter anger antalet rader i tidrapporter \req[6.3.33]
+
+
+%\item
+%\emph{Manuell miljö:} Antalet subaktiviteter anger antalet kolumner i tidrapporter \req[6.3.34]
 
 
 \item
-Administratör försöker ange 5 subaktiviteter i en tidrapportmall \req[6.3.32]
+\emph En tidrapport innehåller information om användarnamn \req[6.3.24]
 
 
 \item
-\emph{Manuell miljö:} Antalet aktiviteter anger antalet rader i tidrapporter \req[6.3.33]
+\emph En tidrapport innehåller information om projektgruppsnamn \req[6.3.25, 6.3.30]
 
 
 \item
-\emph{Manuell miljö:} Antalet subaktiviteter anger antalet kolumner i tidrapporter \req[6.3.34]
-
-
-\item
-\emph En tidrapport innehåller information om användarnamn \req[6.3.35]
-
+\emph En tidrapport innehåller information om datum i form av "dag månad år" \req[6.3.26, 6.3.44, 6.3.31]
 
 \item
-\emph En tidrapport innehåller information om projektgruppsnamn \req[6.3.36, 6.3.44]
-
-
-\item
-\emph En tidrapport innehåller information om datum i form av "dag månad år" \req[6.3.37, 6.3.44]
-
-\item
-\emph En tidrapport innehåller information om veckonummer \req[6.3.38, 6.2.44]
+\emph En tidrapport innehåller information om veckonummer \req[6.3.27, 6.2.44]
 
 %ändrad 23/9**
 \item
-\emph{Manuell miljö:} Det ska framgå tydligt att en tidrapport är signerad eller inte \req[6.3.39]
+\emph{Manuell miljö:} Det ska framgå tydligt att en tidrapport är signerad eller inte \req[6.3.28]
 
 %ändrad 23/9**
 \item
 Administratör försöker ändra tidrapportmallens utformning efter att den har
 skapats \req[6.3.42]
 
-%ändrad 23/9**
-\item
-Generera grundmallen för tidrapporterna automatiskt av systemet \req[6.3.45]
+%%ändrad 23/9**
+%\item
+%Generera grundmallen för tidrapporterna automatiskt av systemet \req[6.3.45]
 
-%ändrad 23/9**
-\item
-Försök skapa två aktiviteter med samma namn \req[6.3.46]
+%%ändrad 23/9**
+%\item
+%Försök skapa två aktiviteter med samma namn \req[6.3.46]
 
 
-%ändrad 23/9**
-\item
-Försök skapa två subaktiviteter med samma namn \req[6.3.47]
+%%ändrad 23/9**
+%\item
+%Försök skapa två subaktiviteter med samma namn \req[6.3.47]
 
 \end{FT}
 
@@ -664,28 +658,30 @@ En projektledare försöker navigera till administrationssidan men blir dirigera
 
 \item En projektledare försöker ta bort en projektgrupp \req[6.4.14]
 
-\item På administrationssidan är alla användare listade med både användarnamn och lösenord \req[6.4.21]
+\item Administratören lyckas ta bort en projektgrupp med medlemmar i \req[6.4.15]
 
-\item På administrationssidan kan man ta bort en vanlig användare \req[6.4.22]
+\item På administrationssidan är alla användare listade med både användarnamn och lösenord \req[6.4.22]
 
-\item På administrationssidan kan man ta bort en projektledare \req[6.4.22]
+\item På administrationssidan kan man ta bort en vanlig användare \req[6.4.23]
 
-\item På administrationssidan kan man inte ta bort en administratör \req[6.4.22]
+\item På administrationssidan kan man ta bort en projektledare \req[6.4.23]
+
+\item På administrationssidan kan man inte ta bort en administratör \req[6.4.23]
 
 
-\item På administrationssidan kan man lägga till en ny användare \req[6.4.24]
+\item På administrationssidan kan man lägga till en ny användare \req[6.4.25]
 
-\item Administratören skapar en användare och skriver in användarnamn, användarens lösenord genereras slumpmässigt \req[6.4.25]
+\item Administratören skapar en användare och skriver in användarnamn, användarens lösenord genereras slumpmässigt \req[6.4.26]
 
-\item Administratören försöker skapa en användare med ett upptaget användarnamn, ett felmeddelande visas \req[6.4.26]
+\item Administratören försöker skapa en användare med ett upptaget användarnamn, ett felmeddelande visas \req[6.4.27]
 
-\item Administratören försöker skapa en användare med ett ogiltigt användarnamn (giltigt användarnamn: 5-10 tecken, ascii 48-57, 65-90 och 97-122) \req[6.4.27]
+\item Administratören försöker skapa en användare med ett ogiltigt användarnamn (giltigt användarnamn: 5-10 tecken, ascii 48-57, 65-90 och 97-122) \req[6.4.28]
 
-\item Administratören skapar en användare med ett giltigt användarnamn (giltigt användarnamn: 5-10 tecken, ascii 48-57, 65-90 och 97-122) \req[6.4.27]
+\item Administratören skapar en användare med ett giltigt användarnamn (giltigt användarnamn: 5-10 tecken, ascii 48-57, 65-90 och 97-122) \req[6.4.28]
 
-\item Administratören skapar en tidrapportmall \req[6.4.28]
+%\item Administratören skapar en tidrapportmall \req[6.4.28]
 
-\item Administratören försöker ändra en tidrapportmall som en projektgrupp använder \req[6.4.28]
+%\item Administratören försöker ändra en tidrapportmall som en projektgrupp använder \req[6.4.28]
 \end{FT}
 
 \subsubsection{Data}
@@ -693,64 +689,64 @@ En projektledare försöker navigera till administrationssidan men blir dirigera
 \begin{FT}
 
 %ändrad 23/9
-\item Administratören försöker skapa en projektgrupp med ett ogiltigt projektgruppsnamn (giltigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) \req[6.4.37]
+\item Administratören försöker skapa en projektgrupp med ett ogiltigt projektgruppsnamn (giltigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) \req[6.4.33]
 
 %ändrad 23/9
-\item Administratören försöker skapa en projektgrupp med ett giltigt projektgruppsnamn (giltigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) \req[6.4.37]
+\item Administratören försöker skapa en projektgrupp med ett giltigt projektgruppsnamn (giltigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) \req[6.4.33]
 
 %ändrad 23/9
-\item Administratören försöker skapa en projektgrupp med ett upptaget projektgruppsnamn \req[6.4.38]
+\item Administratören försöker skapa en projektgrupp med ett upptaget projektgruppsnamn \req[6.4.34]
 
 %ändrad 23/9
-\item Administratören skapar 5 stycken projektgrupper \req[6.4.39]
+\item Administratören skapar 5 stycken projektgrupper \req[6.4.35]
 
 %ändrad 23/9
-\item Administratören försöker skapa 6 stycken projektgrupper \req[6.4.39]
+\item Administratören försöker skapa 6 stycken projektgrupper \req[6.4.35]
 
 %ändrad 23/9
-\item Administratören lägger till samma användare i flera projektgrupper \req[6.4.40]
+\item Administratören lägger till samma användare i flera projektgrupper \req[6.4.36]
 
 %ändrad 23/9
-\item Administratören försöker skapa en projektgrupp utan användare \req[6.4.41]
+\item Administratören försöker skapa en projektgrupp utan användare \req[6.4.37]
 
 %ändrad 23/9
-\item Administratören försöker att, från en projektgrupp som har en användare, ta bort en användare \req[6.4.41]
+\item Administratören försöker att, från en projektgrupp som har en användare, ta bort en användare \req[6.4.37]
 
 %ändrad 23/9
-\item Administratören skapar en projektgrupp med en användare \req[6.4.41]
+\item Administratören skapar en projektgrupp med en användare \req[6.4.37]
 
 %ändrad 23/9
-\item Administratören lägger till användare i en projektgrupp så att projektgruppen har 20 användare \req[6.4.41]
+\item Administratören lägger till användare i en projektgrupp så att projektgruppen har 20 användare \req[6.4.37]
 
 %ändrad 23/9
-\item Administratören försöker lägga till användare i en projektgrupp så att projektgruppen har 21 användare \req[6.4.41]
+\item Administratören försöker lägga till användare i en projektgrupp så att projektgruppen har 21 användare \req[6.4.37]
 
 %ändrad 23/9
-\item Projektledaren tilldelar tre olika roller till projektmedlemmar i sitt projekt \req[6.4.42]
+\item Projektledaren tilldelar tre olika roller till projektmedlemmar i sitt projekt \req[6.4.38]
 
 %ändrad 23/9
-\item Projektledaren försöker tilldela fyra olika roller till projektmedlemmar i sitt projekt \req[6.4.42]
+\item Projektledaren försöker tilldela fyra olika roller till projektmedlemmar i sitt projekt \req[6.4.38]
 
 %ändrad 23/9
-\item Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen t1 \req[6.4.43]
+\item Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen t1 \req[6.4.39]
 
 %ändrad 23/9
-\item Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen t2 \req[6.4.43]
+\item Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen t2 \req[6.4.39]
 
 %ändrad 23/9
-\item Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen t3 \req[6.4.43]
+\item Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen t3 \req[6.4.39]
 
 %ändrad 23/9
-\item Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t1 \req[6.4.43]
+\item Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t1 \req[6.4.39]
 
 %ändrad 23/9
-\item Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t2 \req[6.4.43]
+\item Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t2 \req[6.4.39]
 
 %ändrad 23/9
-\item Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t3 \req[6.4.43]
+\item Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t3 \req[6.4.39]
 
 %ändrad 23/9
-\item Administratören har användarnamnet ``admin'' och lösenordet ``adminpw'' \req[6.4.44]
+\item Administratören har användarnamnet ``admin'' och lösenordet ``adminpw'' \req[6.4.40]
 \end{FT}
 
 %+++++++++++++++++++++++++++% 
@@ -826,13 +822,13 @@ Administratören försöker lägga till sig själv i en projektgrupp \req[6.1.11
 \begin{ST}
 \item
 \emph{Manuell miljö:} Genomför och verifiera utkomst av scenario 6.1.1 ifrån referens 3 (SRS för grundsystem).
-\req[6.2.9]
-\item
-\emph{Manuell miljö:} Genomför och verifiera utkomst av scenario 6.1.2 ifrån referens 3 (SRS för grundsystem).
 \req[6.2.10]
 \item
-\emph{Manuell miljö:} Genomför och verifiera utkomst av scenario 6.1.3 ifån referens 3 (SRS för grundsystem).
+\emph{Manuell miljö:} Genomför och verifiera utkomst av scenario 6.1.2 ifrån referens 3 (SRS för grundsystem).
 \req[6.2.11]
+\item
+\emph{Manuell miljö:} Genomför och verifiera utkomst av scenario 6.1.3 ifån referens 3 (SRS för grundsystem).
+\req[6.2.12]
 \end{ST}
 
 \subsubsection{Administratör}
@@ -841,25 +837,24 @@ Administratören försöker lägga till sig själv i en projektgrupp \req[6.1.11
 %ändrad 23/9
 %ändrad 23/9**
 \item
-Genomför scenario 6.4.5 (Ref 1: Skapa projektgrupp) \req[6.4.19, 6.3.24]
+Genomför scenario 6.4.5 (Ref 1: Skapa projektgrupp) \req[6.4.20]
 
 %ändrad 23/9
 \item
-Genomför scenario 6.4.6 (Ref 1: Lägga till/ändra roll på projektmedlem i projektgrupp) \req[6.4.32]
+Genomför scenario 6.4.6 (Ref 1: Lägga till/ändra roll på projektmedlem i projektgrupp) \req[6.4.31]
 
 %ändrad 23/9
 \item
-Genomför scenario 6.4.7 (Ref 1: Ta bort projektmedlemmar eller projektgrupp) \req[6.4.33]
+Genomför scenario 6.4.7 (Ref 1: Ta bort projektmedlemmar eller projektgrupp) \req[6.4.32]
+
+
+%\item
+%Genomför scenario 6.4.8 (Ref 1: Skapa tidrapportmall) \req[6.4.3, 6.3.27, 6.3.40]
 
 %ändrad 23/9
-%ändrad 23/9** (klar)
-\item
-Genomför scenario 6.4.8 (Ref 1: Skapa tidrapportmall) \req[6.4.34, 6.3.24, 6.3.27, 6.3.30, 6.3.40]
-
-%ändrad 23/9
-\item
-Genomför scenario 6.4.9 (Ref 1: Ta bort tidrapportmall) \req[6.4.35, 6.3.41]
-\end{ST}
+%\item
+%Genomför scenario 6.4.9 (Ref 1: Ta bort tidrapportmall) \req[6.4.35, 6.3.41]
+%\end{ST}
 
 %++++++++++++++++++++++++%
 %SLUT på ST:autentisering%
@@ -878,7 +873,7 @@ Genomför scenario 6.4.9 (Ref 1: Ta bort tidrapportmall) \req[6.4.35, 6.3.41]
 
 %ändrad 23/9**
 \item
-Genomför scenario 6.3.1 (Dokumentera arbetstimmar i systemet) \req[6.3.7, 6.3.5, 6.3.26, 6.3.29]
+Genomför scenario 6.3.1 (Dokumentera arbetstimmar i systemet) \req[6.3.7, 6.3.5]
 
 %ändrad 23/9**
 \item
@@ -927,15 +922,15 @@ Systemet stödjer stegen i figur 7 \req[6.3.22]
 \subsubsection{Administratör}
 
 \begin{ST}
-\item Genomför scenario 6.4.1 som administratör istället för projektledare (Ref 1: Generera rapporter från systemet) \req[6.4.15]
+\item Genomför scenario 6.4.1 som administratör istället för projektledare (Ref 1: Generera rapporter från systemet) \req[6.4.16]
 
-\item Genomför scenario 6.4.2 som administratör istället för projektledare (Ref 1: Godkänna en tidrapport) \req[6.4.16]
+\item Genomför scenario 6.4.2 som administratör istället för projektledare (Ref 1: Godkänna en tidrapport) \req[6.4.17]
 
-\item Genomför scenario 6.4.3 som administratör istället för projektledare (Ref 1: a tillbaka godkännande av en tidrapport) \req[6.4.17]
+\item Genomför scenario 6.4.3 som administratör istället för projektledare (Ref 1: a tillbaka godkännande av en tidrapport) \req[6.4.18]
 
-\item Genomför scenario 6.4.4 som administratör istället för projektledare (Ref 1: itta en rapport genom att sortera dem) \req[6.4.18]
+\item Genomför scenario 6.4.4 som administratör istället för projektledare (Ref 1: itta en rapport genom att sortera dem) \req[6.4.19]
 
-\item Genomför sekvenserna \req[6.4.20]
+\item Genomför sekvenserna \req[6.4.21]
 \end{ST}
 
 \invisiblesubsubsection{Data}
