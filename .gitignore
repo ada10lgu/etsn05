@@ -1,4 +1,4 @@
-﻿*.class
+*.class
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -25,3 +25,5 @@ documentation/SRS/.DS_Store
 .DS_Store
 
 
+
+documentation/Mötesprotokoll.pdf

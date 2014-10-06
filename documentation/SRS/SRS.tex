@@ -38,7 +38,7 @@
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
-\author{Systemarkitektgruppen \\ Nina Khayyami | Johan Rönnåker | Martin Lichota | Marcel Tovar Rascon}
+\author{Systemarkitektgruppen \\ Martin Lichota | Marcel Tovar Rascon}
 \date{}
 
 \begin{document}
@@ -103,7 +103,7 @@ Huvudmålet är att tillhandhålla ett system där olika användare, såsom proj
 \label{bom-aktorer}
 Följande aktörer kommer att använda systemet:
 \begin{itemize}
-\item [] \textbf{Vanlig användare} En vanlig användare är en person med ett konto i systemet som ännu inte har blivigt tilldelad ett projekt.
+\item [] \textbf{Vanlig användare} En vanlig användare är en person med ett konto i systemet.
 \item [] \textbf{Projektmedlem(t1,t2,t3)} En vanlig användare kan tilldelas rollen som projektmedlem. Denne kan tidrapportera och har även tillgång till historik rörande den egna samt gruppens totala tidrapportering. T1, t2, och t3 indikerar tre olika projektmedlemsroller, en användare kan bli tilldelad en av dessa av projektledaren eller administratören.
 \item [] \textbf{Projektledare} En användare kan tilldelas rollen som projektledare vilket ger den administrativa rättigheter för ett givet projekt. En projektledare kan tillsätta vanliga användare en projektmedlemsroll samt ändra projektmedlemmars roller. Utöver sina rättigheter som projektledare har den all funktionallitet som en projektmedlem besitter.
 \item [] \textbf{Administratör} En administratör är en och endast en användare som har befogenheter att lägga till och ta bort andra användare. Administratören tillsätter även projektledare och skapar projektgrupper. Administratören kan varken vara projektmedlem eller projektledare men har utöver detta samma priviligerade rättigheter som projektledare och projektmedlem.
@@ -137,7 +137,7 @@ Här följer ord och uttryck som används i rapporten och är till för att öka
 \item [] \textbf{Tidrapport:} En rapport som innehåller arbetsbelasting för en användare under en fix tidperiod bundet till en specefik projektgrupp.
 \item [] \textbf{Tidrapporttabell:} En tabell som fylls i vid tidrapportering. 
 \item [] \textbf{Totaltid:} Är den summerade tiden i tidrapportstabellen. 
-\item [] \textbf{Vy:} Var sida,för en inloggad användare, består av menyn samt en vy. En vy presenterar innehållet i den funktionalliteten man tryckt på i menyn.
+\item [] \textbf{Vy:} Varje sida ,för en inloggad användare, består av menyn samt en vy. En vy presenterar innehållet i den funktionaliteten man tryckt på i menyn.
 \end{itemize}
 			\begin{figure}[h!]
 				\centering
@@ -369,7 +369,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 				\caption{Grundmallen för tidrapporter. Mörkgråa fält är kodade i systemet, ljusgråa fält genereras av systemet, svarta fält ska vara tomma och vita fält fylls i av användaren.}
 				\label{image_gen_grundmall}
 			\end{figure}
-			\requirement{39}{Tidrapportens utformning (grundmallen) ska vara enligt figur 8.}
+			\requirement{39}{Tidrapporten (grundmallen) ska se ut enligt figur 8.}
 
 
 	\subsection{Administration}
@@ -509,7 +509,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{12}{Endast administratören skall kunna skapa projektgrupper i systemet.}
 			\requirement{13}{Endast administratören skall kunna lägga till eller ta bort projektledare i en projektgrupp.}
 			\requirement{14}{Endast administratören skall kunna ta bort projektgrupper ur systemet.}
-			\requirement{15}{Om en projektgrupp tas bort, så elimineras också alla användare i den om de inte är medlemmar i andra projektgrupper.}
+			\requirement{15}{När en projektgrupp tas bort elimineras samtliga tidrapporter och tilldelade roller knutna till projektet. Användarna finns kvar i systemet men blir borttagna från den nämnda projektgruppen.}
 			\requirement{16}{Scenario 6.4.1 skall stödjas av systemet.}
 			\requirement{17}{Scenario 6.4.2 skall stödjas av systemet.}
 			\requirement{18}{Scenario 6.4.3 skall stödjas av systemet.}
@@ -620,7 +620,6 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
     \multicolumn{2}{|p{13cm}|}{1a. Det existerar inga projektgrupper/projektmedlemmar. Användaren informeras om detta och skickas tillbaka till huvudsidan.}\\
     \multicolumn{2}{|p{13cm}|}{3a. Användaren trycker ``Nej'' och dirigeras tillbaka till steg 2.} \\
     \multicolumn{2}{|p{13cm}|}{3b. Användaren försöker ta bort en projektmedlem som är ensam projektledare, i en projektgrupp där det åtminstone finns en projektmedlem till. Denne ombedes att tillsätta en ny projektledare och därefter försöka igen. Användaren skickas tillbaka till steg 2.} \\
-     \multicolumn{2}{|p{13cm}|}{3c. Användaren försöker ta bort en projektgrupp. Användaren får då en fråga om denne vill ta bort ingående medlemmar också och väljer ''Ja'' eller ''Nej. Om ''Ja'' visas en dialogrutan specificerad under krav 6.1.14, om nej dirigeras användaren tillbaka till steg 2 .} \\
     \hline
 \end{tabular}
 \end{table}
