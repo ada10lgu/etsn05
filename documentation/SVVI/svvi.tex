@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 0.6 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 0.7 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -59,6 +59,7 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.4 & 1 oktober 2014 & TG & Funktionstester och systemtester för tidrapportering tillagt\\
 0.5 & 2 oktober 2014 & TG & Funktionstester för administration tillagt\\
 0.6 & 2 oktober 2014 & TG & Ändringar efter intern granskning\\
+0.7 & 7 oktober 2014 & TG & Ändringar efter informell granskning och SVVS v0.14\\
 
 \end{tabular}
 \section{1 Inledning}       
@@ -73,7 +74,7 @@ Detta dokument innehåller detaljerade testinstruktioner som ska genomföras und
 
 
 \section{3 Testinstruktioner}
-Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i formen av steg som utförs av testaren eller automatiskt av systemet. När steg börjas med "Kontrollera att" så beskriver de resultat från systemet, och testaren bör kolla att det verkligen har inträffat. Detta kallades i ref. 1 för verklig miljö.
+Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i formen av steg som utförs av testaren eller automatiskt av systemet. När steg börjas med ``Kontrollera att'' så beskriver de resultat från systemet, och testaren bör kontrollera att det verkligen har inträffat. Detta kallades i ref. 1 för verklig miljö.
 
 \section{Funktionstest}
 
@@ -1839,7 +1840,6 @@ skapats}
 
 
 \subsubsection{Data}
- 
 \textbf{FT 4.4.1 Administratören försöker skapa en projektgrupp med ett ogiltigt projektgruppsnamn (gil- tigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) [SRS krav 6.4.37]}
 
 \emph{Starttillstånd} Administratör A  är inloggat.
@@ -1931,7 +1931,7 @@ skapats}
 
 \emph{Starttillstånd} Administratör A är inloggat.
 
-\emph{Sluttillstånd:} Administratör A lägger användare B till   projektgrupp C, D, E, F och G.
+\emph{Sluttillstånd:} Adm"\"inistratör A lägger användare B till   projektgrupp C, D, E, F och G.
 
 \begin{enumerate}
 \item A skapar B.
@@ -2200,15 +2200,6 @@ skapats}
 \item A är inloggat och det finns bekräftelse.
 \item Kontrollera att A kan logga in med användarnamn ”admin” och lösenord ”adminpw”.
 \end{enumerate}
-
-
-
-
-
-
-\end{FT}
-\subsubsection{Ej inloggad}
-
 
 %+++++++++++++++++++++++++++% 
 %slutet på FT:Administration%
