@@ -73,7 +73,7 @@ Detta dokument innehåller detaljerade testinstruktioner som ska genomföras und
 
 
 \section{3 Testinstruktioner}
-Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i formen av steg som utförs av testaren eller automatiskt av systemet. När steg börjas med "Se till att" så beskriver de resultat från systemet, och testaren bör kolla att det verkligen har inträffat. Detta kallades i ref. 1 för verklig miljö.
+Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i formen av steg som utförs av testaren eller automatiskt av systemet. När steg börjas med "Kontrollera att" så beskriver de resultat från systemet, och testaren bör kolla att det verkligen har inträffat. Detta kallades i ref. 1 för verklig miljö.
 
 \section{Funktionstest}
 
@@ -244,7 +244,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Ad skriver rätt lösenord, inloggad.
 \item Ad väljer administrationsvyn.
 \item Ad väljer funk. lista användare.
-\item Se till att Ad kan se alla användare med lösenord.
+\item Kontrollera att Ad kan se alla användare med lösenord.
 \item Ad lägger till användare, rätt input, lyckas.
 \item Ad försöker lägga till användare, fel input, misslyckas.
 \item Ad tar bort användare, lyckas.
@@ -258,21 +258,21 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Ad väljer tidrapportmall.
 \item Ad väljer användare till projektgruppen från en lista.
 \item Ad väljer projektledare, trycker på "Skapa".
-\item Se till att Ad skickas tillbaka till administrationsvyn.
+\item Kontrollera att Ad skickas tillbaka till administrationsvyn.
 \item Steg 11-20 upprepas, men i steg 17 skapar Ad en ny tidrapportmall.
 \item Ad väljer funk. Redigera projektmedlemmar.
-\item Se till att samtliga projektmedlemmar listas.
+\item Kontrollera att samtliga projektmedlemmar listas.
 \item Ad utser andra projektledare, lyckas.
 \item Ad tilldelar roller, lyckas.
 \item Ad byter grupp på användare, lyckas.
 \item Ad väljer väljer administrationsvyn.
 \item Ad väljer funk. Ta bort tidrapportmall.
-\item Se till att tidrapportmallarna listas.
+\item Kontrollera att tidrapportmallarna listas.
 \item Ad försöker ta bort tidrapportmall som används, misslyckas.
 \item Ad tar bort tidrapportmall som inte används, lyckas.
 \item Ad väljer administrationsvyn.
 \item Ad trycker på "Logga ut".
-\item Se till att Ad är utloggad.
+\item Kontrollera att Ad är utloggad.
 
 \end{enumerate}
 
@@ -399,8 +399,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A fyller i korrekt inloggningsinformation på dator B, och klickar på logga in.
-\item Se till att A är inloggad på dator B.
-\item Se till att A inte är inloggad på dator C.
+\item Kontrollera att A är inloggad på dator B.
+\item Kontrollera att A inte är inloggad på dator C.
 \end{enumerate}
 
 
@@ -413,9 +413,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 %\emph{Sluttillstånd:} A inloggad.
 %
 %\begin{enumerate}
-%\item Se till att inloggningsstatusen i sessionen är "ej inloggad".
+%\item Kontrollera att inloggningsstatusen i sessionen är "ej inloggad".
 %\item A loggar in.
-%\item Se till att inloggningsstatusen i sessionen är "inloggad".
+%\item Kontrollera att inloggningsstatusen i sessionen är "inloggad".
 %\end{enumerate}
 
 \item
@@ -427,9 +427,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A loggar in
-\item Se till att huvudmenyn visas.
+\item Kontrollera att huvudmenyn visas.
 \item Starta om servern.
-\item Se till att A är utloggad.
+\item Kontrollera att A är utloggad.
 \end{enumerate}
 
 
@@ -443,8 +443,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A fyller i användarnamnet på B och försöker ge B användarnamnet "Tord", 4 tecken.
-\item Se till att B inte skapas i systemet.
-\item Se till att ett felmeddelande visar varför B inte skapades.
+\item Kontrollera att B inte skapas i systemet.
+\item Kontrollera att ett felmeddelande visar varför B inte skapades.
 \end{enumerate}
 
 \item
@@ -456,8 +456,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A fyller i användarnamnet på B och försöker ge B användarnamnet "Alexandersson", ett användarnamn längre än 11 tecken.
-\item Se till att B inte skapas i systemet.
-\item Se till att ett felmeddelande visar varför B inte skapades.
+\item Kontrollera att B inte skapas i systemet.
+\item Kontrollera att ett felmeddelande visar varför B inte skapades.
 \end{enumerate}
 
 \item
@@ -474,8 +474,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item [] (b) Knasen,
 \item [] (c) Knasen123
 \end{itemize}
-\item Se till att B inte skapas i systemet.
-\item Se till att ett felmeddelande visar varför B inte skapades.
+\item Kontrollera att B inte skapas i systemet.
+\item Kontrollera att ett felmeddelande visar varför B inte skapades.
 \end{enumerate}
 
 \item
@@ -487,8 +487,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A fyller i ett nytt lösenord med de tillåtna tecknen (ascii 97-122) som inte är 6 tecken långt.
-\item Se till att A's lösenord inte förändrats.
-\item Se till att ett felmeddelande visar att lösenordet inte ändrats och varför.
+\item Kontrollera att A's lösenord inte förändrats.
+\item Kontrollera att ett felmeddelande visar att lösenordet inte ändrats och varför.
 \end{enumerate}
 
 \item
@@ -500,8 +500,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A fyller i ett nytt lösenord med minst ett tecken från ascii utanför numren 97-122, lösenordet är 6 tecken långt.
-\item Se till att A's lösenord inte förändrats.
-\item Se till att ett felmeddelande visar att lösenordet inte ändrats och varför.
+\item Kontrollera att A's lösenord inte förändrats.
+\item Kontrollera att ett felmeddelande visar att lösenordet inte ändrats och varför.
 \end{enumerate}
 
 \end{FT}
@@ -517,9 +517,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A går till en slumpmässig URL som tillhör NewPussSystem.
-\item Se till att en utloggningsknapp finns.
+\item Kontrollera att en utloggningsknapp finns.
 \item Klicka på utloggningsknappen.
-\item Se till att A är utloggad.
+\item Kontrollera att A är utloggad.
 \end{enumerate}
 
 \item
@@ -533,9 +533,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A går till en slumpmässig URL som tillhör NewPussSystem.
 \item A rör ingenting i 20 minuter.
 \item Försök komma åt någon URL eller funktion som kräver en inloggad användare.
-\item Se till att A är utloggad, och funktionallitet som kräver inloggad användare ej är tillgänglig.
-\item Se till att ett meddelande visas som informerar om vad som hänt.
-\item Se till att A dirigeras om till inloggningssidan.
+\item Kontrollera att A är utloggad, och funktionallitet som kräver inloggad användare ej är tillgänglig.
+\item Kontrollera att ett meddelande visas som informerar om vad som hänt.
+\item Kontrollera att A dirigeras om till inloggningssidan.
 \end{enumerate}
 \end{FT}
 
@@ -550,7 +550,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A tar bort B.
-\item Se till att B har tagits bort.
+\item Kontrollera att B har tagits bort.
 
 \end{enumerate}
 
@@ -563,8 +563,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A försöker ta bort A.
-\item Se till att A inte är borttagen.
-\item Se till att ett felmeddelande visas.
+\item Kontrollera att A inte är borttagen.
+\item Kontrollera att ett felmeddelande visas.
 \end{enumerate}
 
 \item
@@ -576,7 +576,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A tar bort B.
-\item Se till att B är borttagen.
+\item Kontrollera att B är borttagen.
 \end{enumerate}
 \end{FT}
 
@@ -591,9 +591,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A fyller i sitt användarnamn och lösenord sedan klickar den på logga in.
-\item Se till att A bara loggas in om A finns registrerad i systemet.
-\item Se till att A omdirigerades till den sida som har användarfunktionerna.
-\item Se till att sessionens inloggningsstatus är inloggad.
+\item Kontrollera att A bara loggas in om A finns registrerad i systemet.
+\item Kontrollera att A omdirigerades till den sida som har användarfunktionerna.
+\item Kontrollera att sessionens inloggningsstatus är inloggad.
 \end{enumerate}
 \end{FT}
 
@@ -608,8 +608,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A kommer åt systemet. Skriver in URL till funktionalitet "Ändra lösenord".
-\item Se till att A omdirigeras till inloggningssidan.
-\item Se till att A inte kommer vidare utan att logga in.
+\item Kontrollera att A omdirigeras till inloggningssidan.
+\item Kontrollera att A inte kommer vidare utan att logga in.
 \end{enumerate}
 
 \item
@@ -621,7 +621,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A går till inloggningssidan.
-\item Se till att A kan välja mellan alla befintliga projektgrupper.
+\item Kontrollera att A kan välja mellan alla befintliga projektgrupper.
 \end{enumerate}
 
 \item
@@ -634,8 +634,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item A går till inloggningssidan.
 \item A försöker logga in utan att välja en projektgrupp
-\item Se till att A inte är inloggad.
-\item Se till att ett felmeddelande visas.
+\item Kontrollera att A inte är inloggad.
+\item Kontrollera att ett felmeddelande visas.
 \end{enumerate}
 
 \item
@@ -648,7 +648,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item A går till inloggningssidan.
 \item A väljer projektgrupp B och loggar in.
-\item Se till att A är inloggad.
+\item Kontrollera att A är inloggad.
 \end{enumerate}
 
 \item
@@ -661,8 +661,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item A går till inloggningssidan.
 \item A väljer projektgrupp B och försöker logga in.
-\item Se till att A inte är inloggad.
-\item Se till att ett felmeddelande visas.
+\item Kontrollera att A inte är inloggad.
+\item Kontrollera att ett felmeddelande visas.
 \end{enumerate}
 
 \item
@@ -675,7 +675,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item A går till inloggningssidan.
 \item A väljer någon projektgrupp som A inte är medlem i och loggar in.
-\item Se till att A är inloggad.
+\item Kontrollera att A är inloggad.
 \end{enumerate}
 \end{FT}
 
@@ -715,8 +715,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A trycker på "Skapa en ny tidrapport".
-\item Se till att tidrapportern är skapad.
-\item Se till att tidrapporten inte är signerad när den skapas.
+\item Kontrollera att tidrapportern är skapad.
+\item Kontrollera att tidrapporten inte är signerad när den skapas.
 \end{enumerate}
 
 %ÄNDRA MANUELL MILJÖ%
@@ -731,7 +731,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A väljer en av sina egna osignerade tidrapporter.
 \item A skriver in 40 i godtycklig ruta, 20 i en annan.
 \item A trycker på "spara".
-\item Se till att tidrapporten är uppdaterad.
+\item Kontrollera att tidrapporten är uppdaterad.
 \end{enumerate}
 
 %ÄNDRA MANUELL MILJÖ%
@@ -745,7 +745,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A trycker på "Ta bort tidrapport".
 \item A väljer en av sina egna osignerade tidrapporter.
 \item A trycker på knappen "Radera".
-\item Se till att tidrapporten är raderad.
+\item Kontrollera att tidrapporten är raderad.
 \end{enumerate}
 
 %MANUELL MILJÖ%
@@ -757,7 +757,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A tryck på "Visa tidrapporter".
-\item Se till att denne endast ser sina egna tidrapporter.
+\item Kontrollera att denne endast ser sina egna tidrapporter.
 \end{enumerate}
 
 
@@ -801,11 +801,11 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A trycker på "Visa tidrapporter".
-\item Se till att Projektledaren kan se alla sina projektmedlemmars tidrapporter.
+\item Kontrollera att Projektledaren kan se alla sina projektmedlemmars tidrapporter.
 \item A trycker på "Uppdatera tidrapporter".
-\item Se till att Projektledaren kan se alla sina projektmedlemmars tidrapporter.
+\item Kontrollera att Projektledaren kan se alla sina projektmedlemmars tidrapporter.
 \item A trycker på "Radera tidrapporter".
-\item Se till att Projektledaren kan se alla sina projektmedlemmars tidrapporter.
+\item Kontrollera att Projektledaren kan se alla sina projektmedlemmars tidrapporter.
 \end{enumerate}
 
 %ÄNDRA MANUELL MILJÖ%
@@ -819,7 +819,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A trycker på "Godkänn rapporter".
 \item A väljer en osignerad tidrapport genom att trycka på på dess radioknapp.
 \item A trycker på knappen "Godkänd".
-\item Se till att tidrapporten är godkänd.
+\item Kontrollera att tidrapporten är godkänd.
 \end{enumerate}
 
 %MANUELL MILJÖ%
@@ -833,7 +833,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A trycker på "Godkänn rapporter".
 \item A väljer en signerad tidrapport genom att trycka på på dess radioknapp.
 \item A trycker på knappen "Icke godkänd".
-\item Se till att tidrapporten är inte längre godkänd.
+\item Kontrollera att tidrapporten är inte längre godkänd.
 \end{enumerate}
 
 
@@ -848,7 +848,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A får tillgång till statistiksidan.
 \item A väljer en användare och "Samtliga veckor".
 \item A trycker på "Generera statistik"
-\item Se till att en ny tidrapport genereras med en användares arbetstid summerad för samtliga veckor.
+\item Kontrollera att en ny tidrapport genereras med en användares arbetstid summerad för samtliga veckor.
 \end{enumerate}
 
 
@@ -863,7 +863,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A får tillgång till statistiksidan.
 \item A väljer en roll och "Samtliga veckor".
 \item A trycker på "Generera statistik"
-\item Se till att en ny tidrapport genereras med summerad arbetstid för en roll för samtliga veckor.
+\item Kontrollera att en ny tidrapport genereras med summerad arbetstid för en roll för samtliga veckor.
 \end{enumerate}
 
 
@@ -877,7 +877,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A får tillgång till statistiksidan.
 \item A väljer "Statistik per aktivitet".
 \item A trycker på "Generera statistik".
-\item Se till att en ny tidrapport genereras med alla aktiviteters arbetstid.
+\item Kontrollera att en ny tidrapport genereras med alla aktiviteters arbetstid.
 \end{enumerate}
 
 
@@ -891,7 +891,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A får tillgång till statistiksidan.
 \item A väljer "Statistik per vecka".
 \item A trycker på "Generera statistik".
-\item Se till att en ny tidrapport genereras med alla veckors arbetstid.
+\item Kontrollera att en ny tidrapport genereras med alla veckors arbetstid.
 \end{enumerate}
 
 
@@ -905,7 +905,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A får tillgång till statistiksidan.
 \item A väljer en användare och välj aktivitet.
 \item A trycker på "Generera statistik".
-\item Se till att en ny tidrapport genereras med en användares arbetstid för specificerad aktivitet.
+\item Kontrollera att en ny tidrapport genereras med en användares arbetstid för specificerad aktivitet.
 \end{enumerate}
 
 
@@ -919,7 +919,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A får tillgång till statistiksidan.
 \item A väljer en användare och välj godtyckliga veckor.
 \item A trycker på "Generera statistik".
-\item Se till att en ny tidrapport genereras med en användares arbetstid för specificerade veckor.
+\item Kontrollera att en ny tidrapport genereras med en användares arbetstid för specificerade veckor.
 \end{enumerate}
 
 
@@ -933,7 +933,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A får tillgång till statistiksidan.
 \item A väljer en roll och välj aktivitet.
 \item A trycker på "Generera statistik".
-\item Se till att en ny tidrapport genereras med summerad arbetstid för en roll för specificerad aktivitet.
+\item Kontrollera att en ny tidrapport genereras med summerad arbetstid för en roll för specificerad aktivitet.
 \end{enumerate}
 
 
@@ -947,7 +947,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A får tillgång till statistiksidan.
 \item A väljer roll och välj godtyckliga veckor.
 \item A trycker på "Generera statistik".
-\item Se till att en ny tidrapport genereras med summerad arbetstid för en roll för specificerade veckor.
+\item Kontrollera att en ny tidrapport genereras med summerad arbetstid för en roll för specificerade veckor.
 \end{enumerate}
 
 
@@ -961,7 +961,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A får tillgång till statistiksidan.
 \item A väljer en aktivitet och en vecka.
 \item A trycker på "Generera statistik".
-\item Se till att en ny tidrapport genereras med total arbetstid från en aktivitet från en specifik vecka.
+\item Kontrollera att en ny tidrapport genereras med total arbetstid från en aktivitet från en specifik vecka.
 \end{enumerate}
 
 
@@ -973,7 +973,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A väljer godtycklig tidrapport.
-\item Se till att A kan se sammanlagd arbetstid från tidrapporten.
+\item Kontrollera att A kan se sammanlagd arbetstid från tidrapporten.
 \end{enumerate}
 
 % \item
@@ -1018,7 +1018,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item Skapa en ny tidrapport
 \item Upprepa steg 1 99 gånger.
-\item Se till att 100 tidrapporter är skapade
+\item Kontrollera att 100 tidrapporter är skapade
 \end{enumerate}
 
 %ändrad 23/9**
@@ -1032,9 +1032,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Skapa en ny tidrapport
 \item Upprepa steg 1 98 gånger.
 \item Skapa en ny tidrapport x.
-\item Se till att 100 tidrapporter är skapade
+\item Kontrollera att 100 tidrapporter är skapade
 \item Skapa en till tidrapport. 
-\item Se till att tidrapport x är överskriven enligt FIFO principen och att den senaste är sparad.
+\item Kontrollera att tidrapport x är överskriven enligt FIFO principen och att den senaste är sparad.
 \end{enumerate}
 
 
@@ -1051,7 +1051,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Administratör trycker på "Skapa tidrapportmall"
 \item Administratör väljer ingen aktivitet.
 \item Administratör trycker på "Skapa"
-\item Se till att ingen tidrapportmall är skapad.
+\item Kontrollera att ingen tidrapportmall är skapad.
 \end{enumerate}
 
 \item
@@ -1064,7 +1064,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Administratör trycker på "Skapa tidrapportmall"
 \item Administratör väljer 21 aktiviteter.
 \item Administratör trycker på "Skapa"
-\item Se till att ingen tidrapportmall är skapad.
+\item Kontrollera att ingen tidrapportmall är skapad.
 \end{enumerate}
 
 
@@ -1078,7 +1078,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Administratör trycker på "Skapa tidrapportmall"
 \item Administratör väljer ingen subaktivitet.
 \item Administratör trycker på "Skapa"
-\item Se till att ingen tidrapportmall är skapad.
+\item Kontrollera att ingen tidrapportmall är skapad.
 \end{enumerate}
 
 
@@ -1092,7 +1092,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Administratör trycker på "Skapa tidrapportmall"
 \item Administratör väljer 5 subaktiviteter.
 \item Administratör trycker på "Skapa"
-\item Se till att ingen tidrapportmall är skapad.
+\item Kontrollera att ingen tidrapportmall är skapad.
 \end{enumerate}
 
 
@@ -1105,10 +1105,10 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item Administratör trycker på "Skapa tidrapportmall"
 \item Administratör skriver in x unika aktiviterer.
-\item Se till att tidrapportmall är skapad.
+\item Kontrollera att tidrapportmall är skapad.
 \item Administratör får tillgång till tidrapporteringsfunktionaliteten.
 \item Administratör skapar en ny tidrapport.
-\item Se till att antalet aktiviteter anger antalet rader i tidrapporten.
+\item Kontrollera att antalet aktiviteter anger antalet rader i tidrapporten.
 \end{enumerate}
 
 \item
@@ -1120,10 +1120,10 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item Administratör trycker på "Skapa tidrapportmall"
 \item Administratör skriver in x unika subaktiviterer.
-\item Se till att tidrapportmall är skapad.
+\item Kontrollera att tidrapportmall är skapad.
 \item Administratör får tillgång till tidrapporteringsfunktionaliteten.
 \item Administratör skapar en ny tidrapport.
-\item Se till att antalet subaktiviteter anger antalet kolumner i tidrapporten.
+\item Kontrollera att antalet subaktiviteter anger antalet kolumner i tidrapporten.
 \end{enumerate}
 
 \item
@@ -1136,7 +1136,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Få tillgång till databasen
 \item Visa tidrapporterna
 \item Hämta användarnamn från samtliga tidrapporter.
-\item Se till att inget av de hämtade värdena är null.
+\item Kontrollera att inget av de hämtade värdena är null.
 \end{enumerate}
 
 \item
@@ -1149,7 +1149,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Få tillgång till databasen
 \item Visa tidrapporterna
 \item Hämta projektgruppsnamn från samtliga tidrapporter.
-\item Se till att inget av de hämtade värdena är null.
+\item Kontrollera att inget av de hämtade värdena är null.
 \end{enumerate}
 
 
@@ -1164,7 +1164,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Få tillgång till databasen
 \item Visa tidrapporterna
 \item Hämta datum från samtliga tidrapporter.
-\item Se till att inget av de hämtade värdena är null.
+\item Kontrollera att inget av de hämtade värdena är null.
 \end{enumerate}
 
 
@@ -1178,7 +1178,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Få tillgång till databasen
 \item Visa tidrapporterna
 \item Hämta veckonummer från samtliga tidrapporter.
-\item Se till att inget av de hämtade värdena är null.
+\item Kontrollera att inget av de hämtade värdena är null.
 \end{enumerate}
 
 
@@ -1191,7 +1191,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item A Tryck på visa tidrapporter
 \item A väljer godtycklig tidrapport
-\item Se till att det visas tydligt om tidrapporten är godkänd eller ej.
+\item Kontrollera att det visas tydligt om tidrapporten är godkänd eller ej.
 \end{enumerate}
 
 
@@ -1204,7 +1204,7 @@ skapats}
 
 \begin{enumerate}
 \item Administratör letar efter funktionalitet för att redigera utformningen av en tidrapportmall.
-\item Se till att nämnda funktionalitet ej finns.
+\item Kontrollera att nämnda funktionalitet ej finns.
 \end{enumerate}
 
 
@@ -1218,7 +1218,7 @@ skapats}
 \begin{enumerate}
 \item Administratör trycker på "Skapa tidrapportmall"
 \item Administratör trycker på "Generera grundmall"
-\item Se till att tidrapport är skapad.
+\item Kontrollera att tidrapport är skapad.
 \end{enumerate}
 
 
@@ -1231,7 +1231,7 @@ skapats}
 \begin{enumerate}
 \item Administratör trycker på "Skapa tidrapportmall"
 \item Administratör skriver in aktivitet x två gånger.
-\item Se till att ingen tidrapportmall är skapad.
+\item Kontrollera att ingen tidrapportmall är skapad.
 \end{enumerate}
 
 
@@ -1245,7 +1245,7 @@ skapats}
 \begin{enumerate}
 \item Administratör trycker på "Skapa tidrapportmall"
 \item Administratör skriver in subaktivitet x två gånger.
-\item Se till att ingen tidrapportmall är skapad.
+\item Kontrollera att ingen tidrapportmall är skapad.
 \end{enumerate}
 
 \end{FT}
@@ -1457,7 +1457,7 @@ skapats}
 \item A väljer B.
 \item A tilldela roll ”t1” till B.
 \item A får bekräftelse att B har fått roll som ”t1”.
-\item Se till att B har roll ”t1”.
+\item Kontrollera att B har roll ”t1”.
 \end{enumerate}
 
 \textbf{FT 4.3.2 Administratören listar alla ej godkända tidrapporter [SRS krav 6.4.4]}
@@ -1468,7 +1468,7 @@ skapats}
 
 \begin{enumerate}
 \item A listar alla ej godkända tidrapporter.
-\item Se till att alla ej godkända tidrapporter är listade.
+\item Kontrollera att alla ej godkända tidrapporter är listade.
 \end{enumerate}
 
 \textbf{FT 4.3.3 Administratören listar alla godkända tidrapporter [SRS krav 6.4.5]}
@@ -1479,7 +1479,7 @@ skapats}
 
 \begin{enumerate}
 \item A listar alla godkända tidrapporter.
-\item Se till att alla godkända tidrapporter är listade.
+\item Kontrollera att alla godkända tidrapporter är listade.
 \end{enumerate}
 
 \textbf{FT 4.3.4 Administratören listar ett projekts alla tidrapporter och sorterar dom i stigande ordning efter användare [SRS krav 6.4.11]}
@@ -1491,7 +1491,7 @@ skapats}
 \begin{enumerate}
 \item A listar alla tidrapporter.
 \item A sortera i stigande ordning efter användare.
-\item Se till att alla projektets tidrapporter är sorterade i stigande ordning efter användare.
+\item Kontrollera att alla projektets tidrapporter är sorterade i stigande ordning efter användare.
 \end{enumerate}
 
 \textbf{FT 4.3.5 Administratören listar ett projekts alla tidrapporter och sorterar dom i fallande ordning efter användare [SRS krav 6.4.11]}
@@ -1503,7 +1503,7 @@ skapats}
 \begin{enumerate}
 \item A listar alla tidrapporter.
 \item A sortera i fallande ordning efter användare.
-\item Se till att alla projektets tidrapporter är sorterade i fallande ordning efter användare.
+\item Kontrollera att alla projektets tidrapporter är sorterade i fallande ordning efter användare.
 \end{enumerate}
 
 \textbf{FT 4.3.6 Administratören listar ett projekts alla tidrapporter och sorterar dom i stigande ordning efter vecka [SRS krav 6.4.11]}
@@ -1515,7 +1515,7 @@ skapats}
 \begin{enumerate}
 \item A listar alla tidrapporter.
 \item A sortera i stigande ordning efter vecka.
-\item Se till att alla projektets tidrapporter är sorterade i stigande ordning efter vecka.
+\item Kontrollera att alla projektets tidrapporter är sorterade i stigande ordning efter vecka.
 \end{enumerate}
 
 \textbf{FT 4.3.7 Administratören listar ett projekts alla tidrapporter och sorterar dom i fallande ordning efter vecka [SRS krav 6.4.11]}
@@ -1527,7 +1527,7 @@ skapats}
 \begin{enumerate}
 \item A listar alla tidrapporter.
 \item A sortera i fallande ordning efter vecka.
-\item Se till att alla projektets tidrapporter är sorterade i fallande ordning efter vecka.
+\item Kontrollera att alla projektets tidrapporter är sorterade i fallande ordning efter vecka.
 \end{enumerate}
 
 \textbf{FT 4.3.8 Administratören listar ett projekts alla tidrapporter och sorterar dom i stigande ordning efter hurvida rapporten är godkänd eller ej [SRS krav 6.4.11]}
@@ -1539,7 +1539,7 @@ skapats}
 \begin{enumerate}
 \item A listar alla tidrapporter.
 \item A sortera i stigande ordning efter rapporten är godkänd eller ej.
-\item Se till att alla projektets tidrapporter är sorterade i stigande ordning efter rapporten är godkänd eller ej.
+\item Kontrollera att alla projektets tidrapporter är sorterade i stigande ordning efter rapporten är godkänd eller ej.
 \end{enumerate}
 
 \textbf{FT 4.3.9 Administratören listar ett projekts alla tidrapporter och sorterar dom i fallande ordning efter hurvida rapporten är godkänd eller ej [SRS krav 6.4.11]}
@@ -1551,7 +1551,7 @@ skapats}
 \begin{enumerate}
 \item A listar alla tidrapporter.
 \item A sortera i stigande ordning efter rapporten är godkänd eller ej.
-\item Se till att alla projektets tidrapporter är sorterade i fallande ordning efter rapporten är godkänd eller ej.
+\item Kontrollera att alla projektets tidrapporter är sorterade i fallande ordning efter rapporten är godkänd eller ej.
 \end{enumerate}
 
 \textbf{FT 4.3.10 Administratören skapar en projektgrupp [SRS krav 6.4.12]}
@@ -1563,7 +1563,7 @@ skapats}
 \begin{enumerate}
 \item A matta in projektgrupp D.
 \item A for bekräftelse att projektgrupp D är skapat.
-\item Se till att projektgrupp D är skapat.
+\item Kontrollera att projektgrupp D är skapat.
 \end{enumerate}
 
 \textbf{FT 4.3.11 En vanlig användare försöker skapa en projektgrupp [SRS krav 6.4.12]}
@@ -1576,8 +1576,8 @@ skapats}
 \item A försöker nå administrationsvyn.
 \item A kan inte nå administrationsvyn.
 \item A får bekräftelse att han/hon saknar administration rättigheter.
-\item Se till att A kan inte nå administrationsvyn.
-\item Se till att A har inte administration rättigheter.
+\item Kontrollera att A kan inte nå administrationsvyn.
+\item Kontrollera att A har inte administration rättigheter.
 \end{enumerate}
 
 \textbf{FT 4.3.12 En projektledare försöker skapa en projektgrupp [SRS krav 6.4.12]}
@@ -1590,8 +1590,8 @@ skapats}
 \item A försöker nå administrationsvyn.
 \item A kan inte nå administrationsvyn.
 \item A får bekräftelse att han/hon saknar administration rättigheter.
-\item Se till att A kan inte nå administrationsvyn.
-\item Se till att A har inte administration rättigheter.
+\item Kontrollera att A kan inte nå administrationsvyn.
+\item Kontrollera att A har inte administration rättigheter.
 
 \end{enumerate}
 
@@ -1606,7 +1606,7 @@ skapats}
 \item A öppna projektgrupp D.
 \item A lägger till C i projektgrupp D.
 \item A for bekräftelse att C är inlaggt i projektgrupp D.
-\item Se till att C är i projektgrupp D.
+\item Kontrollera att C är i projektgrupp D.
 \end{enumerate}
 
 \textbf{FT 4.3.14 Administratören tar bort en projektledare i en projektgrupp [SRS krav 6.4.13]}
@@ -1619,7 +1619,7 @@ skapats}
 \item A öppna projektgrupp D.
 \item A tar bort B i projektgrupp D.
 \item A for bekräftelse att B har taggits  bort i projektgrupp D.
-\item Se till att B är bortaget.
+\item Kontrollera att B är bortaget.
 \end{enumerate}
 
 \textbf{FT 4.3.15 En vanlig användare försöker lägga till en projektledare i en projektgrupp [SRS krav 6.4.13]} 
@@ -1631,7 +1631,7 @@ skapats}
 \begin{enumerate}
 \item A försöker nå sidan för att lägga in B i projektgrupp D.
 \item A får bekräftelse att B har inte rättighet att lägga projektledare i projektgrupp D.
-\item Se till att B är inte medlem i projektgrupp D.
+\item Kontrollera att B är inte medlem i projektgrupp D.
 \end{enumerate}
 
 \textbf{FT 4.3.16 En vanlig användare försöker ta bort en projektledare i en projektgrupp [SRS krav 6.4.13]}
@@ -1643,7 +1643,7 @@ skapats}
 \begin{enumerate}
 \item A försöker nå sidan för att ta bort B i projektgrupp D.
 \item A får bekräftelse att användare har inte rättigheter att ta bort B i projektgrupp D.
-\item Se till att B är i projektgrupp D.
+\item Kontrollera att B är i projektgrupp D.
 \end{enumerate}
 
 \textbf{FT 4.3.17 En projektledare försöker ta bort en projektledare i en projektgrupp [SRS krav 6.4.13]}
@@ -1655,7 +1655,7 @@ skapats}
 \begin{enumerate}
 \item A försöker ta bort B i projektgrupp D.
 \item A får bekräftelse att B kan inte tas bort i projektgrupp D.
-\item Se till att B är medlem i projektgrupp D
+\item Kontrollera att B är medlem i projektgrupp D
 \end{enumerate}
 
 \textbf{FT 4.3.18 Administratören tar bort en projektgrupp [SRS krav 6.4.14]}
@@ -1667,7 +1667,7 @@ skapats}
 \begin{enumerate}
 \item A tar bort projektgrupp D.
 \item A for bekräftelse att projektgrupp D har tagits bort.
-\item Se till att projektgrupp D är bortaget.
+\item Kontrollera att projektgrupp D är bortaget.
 \end{enumerate}
 
 \textbf{FT 4.3.19 En vanlig användare försöker ta bort en projektgrupp [SRS krav 6.4.14]}
@@ -1679,8 +1679,8 @@ skapats}
 \begin{enumerate}
 \item A försöker nå sida att ta bort projektgrupp D.
 \item A for bekräftelse att han/hon har inte rättigheter att ta bort projektgupp D.
-\item Se till att A kan inte nå sida.
-\item Se till att projektgrupp D är inte bortagen.
+\item Kontrollera att A kan inte nå sida.
+\item Kontrollera att projektgrupp D är inte bortagen.
 \end{enumerate}
 
 \textbf{FT 4.3.20 En projektledare försöker ta bort en projektgrupp [SRS krav 6.4.14]}
@@ -1692,8 +1692,8 @@ skapats}
 \begin{enumerate}
 \item A försöker nå sida att ta bort projektgrupp D.
 \item A for bekräftelse att han/hon har inte rättigheter att ta bort projektgupp D.
-\item Se till att A kan inte nå sida.
-\item Se till att projektgrupp D är inte bortagen.
+\item Kontrollera att A kan inte nå sida.
+\item Kontrollera att projektgrupp D är inte bortagen.
 \end{enumerate}
 
 \textbf{FT 4.3.21 På administrationssidan är alla användare listade med både användarnamn och lösenord [SRS krav 6.4.21]}
@@ -1703,7 +1703,7 @@ skapats}
 \emph{Sluttillstånd:} Administatör A har tillgång på alla användare listade med både användarnamn och lösenord.
 
 \begin{enumerate}
-\item Se till att A har tillgång till lista på administrationssida var alla användare är listade med både användarnamn och lösenord.
+\item Kontrollera att A har tillgång till lista på administrationssida var alla användare är listade med både användarnamn och lösenord.
 \end{enumerate}
 
 \textbf{FT 4.3.22 På administrationssidan kan man ta bort en vanlig användare [SRS krav 6.4.22]}
@@ -1715,7 +1715,7 @@ skapats}
 \begin{enumerate}
 \item A tar bort B.
 \item A for bekräftelse att B har tagits  bort.
-\item Se till att B är bortaget.
+\item Kontrollera att B är bortaget.
 \end{enumerate}
 
 \textbf{FT 4.3.23 På administrationssidan kan man ta bort en projektledare [SRS krav 6.4.22]}
@@ -1727,7 +1727,7 @@ skapats}
 \begin{enumerate}
 \item A tar bort B.
 \item A for bekräftelse att B har tagits bort.
-\item Se till att B är bortaget.
+\item Kontrollera att B är bortaget.
 \end{enumerate}
 
 \textbf{FT 4.3.24 På administrationssidan kan man inte ta bort en administratör [SRS krav 6.4.22]}
@@ -1739,7 +1739,7 @@ skapats}
 \begin{enumerate}
 \item A tar bort B.
 \item A for bekräftelse att B kan inte tas bort.
-\item Se till att B är inte bortagen.
+\item Kontrollera att B är inte bortagen.
 \end{enumerate}
 
 \textbf{FT 4.3.25 På administrationssidan kan man lägga till en ny användare [SRS krav 6.4.24]}
@@ -1751,7 +1751,7 @@ skapats}
 \begin{enumerate}
 \item A lägger B.
 \item  A for bekräftelse att B har laggts in.
-\item Se till att det finns användare B.
+\item Kontrollera att det finns användare B.
 \end{enumerate}
 
 \textbf{FT 4.3.26 Administratören skapar en användare och skriver in användarnamn, användarens lösenord genereras slumpmässigt [SRS krav 6.4.25]}
@@ -1764,7 +1764,7 @@ skapats}
 \item A skapa B.
 \item A skriver B och automatisk genereras slumpmässignt läsenord.
 \item A har skapat B med användarens lösenord.
-\item Se till att det B kan logga in med tilldelat lösenord.
+\item Kontrollera att det B kan logga in med tilldelat lösenord.
 \end{enumerate}
 
 \textbf{FT 4.3.27 Administratören försöker skapa en användare med ett upptaget användarnamn, ett fel- meddelande visas [SRS krav 6.4.26]}
@@ -1777,7 +1777,7 @@ skapats}
 \item A försöker skapa användarenamn B.
 \item A kan inte  skapa användarnamn B. 
 \item A får meddelande att användarnamn B är upptagen.
-\item Se till att det finns inte användarnamn B.
+\item Kontrollera att det finns inte användarnamn B.
 \end{enumerate}
 
 \textbf{FT 4.3.28 Administratören försöker skapa en användare med ett ogiltigt användarnamn (giltigt an- vändarnamn: 5-10 tecken, ascii 48-57, 65-90 och 97-122) [SRS krav 6.4.27]} 
@@ -1793,7 +1793,7 @@ skapats}
 \item A får bekräftelse att det är ogiltig användarnamn C.
 \item A matta in användarenamn D som innehåller ogilitg accii tecken.
 \item A får bekräftelse att ogiltig tecken används.
-\item Se till att det finns inte användarnamn B,C och D.
+\item Kontrollera att det finns inte användarnamn B,C och D.
 \end{enumerate}
 
 \textbf{FT 4.3.29 Administratören skapar en användare med ett giltigt användarnamn (giltigt användar- namn: 5-10 tecken, ascii 48-57, 65-90 och 97-122) [SRS krav 6.4.27]}
@@ -1809,7 +1809,7 @@ skapats}
 \item A får bekräftelse att användarnamn C är skapat.
 \item A mattar in användarenamn D som innehålle gilitg accii tecken.
 \item A får bekräftelse att användarnamn D är skapat
-\item Se till att det finns användarnamn B, C och D.
+\item Kontrollera att det finns användarnamn B, C och D.
 \end{enumerate}
 
 
@@ -1853,7 +1853,7 @@ skapats}
 \item A får bekräftelse att det är ogiltig projektgruppsnamn C.
 \item A fösöker matta in projektgruppsnamn D som innehåller ogilitg accii tecken.
 \item A får bekräftelse att ogiltig tecken används.
-\item Se till att det finns inte  projektgruppsnamn B,C och D.
+\item Kontrollera att det finns inte  projektgruppsnamn B,C och D.
 
 \end{enumerate}
 
@@ -1870,7 +1870,7 @@ skapats}
 \item A får bekräftelse att projektgruppsnamn C är skapat.
 \item A försöker matta in projektgruppsnamn D som innehåller gilitg accii tecken.
 \item A får bekräftelse att projektgruppsnamn D är skapar.
-\item Se till att det finns  projektgruppsnamn B,C och D.
+\item Kontrollera att det finns  projektgruppsnamn B,C och D.
 \end{enumerate}
 
 \textbf{FT 4.4.3 Administratören försöker skapa en projektgrupp med ett upptaget projektgruppsnamn [SRS krav 6.4.38]}
@@ -1882,7 +1882,7 @@ skapats}
 \begin{enumerate}
 \item A försöker skapa  projektgruppsnamn B med ett uppgaget projektgruppsnamn.
 \item A for bekräftelse att projektgruppsnamn B är upptagen.
-\item Se till att det finns inte två projektgruppsnam B.
+\item Kontrollera att det finns inte två projektgruppsnam B.
 \end{enumerate}
 
 \textbf{FT 4.4.4 Administratören skapar 5 stycken projektgrupper [SRS krav 6.4.39]}
@@ -1902,7 +1902,7 @@ skapats}
 \item A får bekräftelse att projektgrupp E är skapat.
 \item A skapar projektgrupp F.
 \item A får bekräftelse att projektgrupp F är skapat.
-\item Se till att projektgrupp B,C,D,E och F är skapat.
+\item Kontrollera att projektgrupp B,C,D,E och F är skapat.
 \end{enumerate}
 
 \textbf{FT 4.4.5 Administratören försöker skapa 6 stycken projektgrupper [SRS krav 6.4.39]}
@@ -1924,7 +1924,7 @@ skapats}
 \item A får bekräftelse att projektgrupp F är skapat.
 \item A skapar projektgrupp G.
 \item A får bekräftelse att projektgrupp G kan inte skapas.
-\item Se till att projektgrupp B,C,D,E,F är skapat och G finns inte.
+\item Kontrollera att projektgrupp B,C,D,E,F är skapat och G finns inte.
 \end{enumerate}
 
 \textbf{FT 4.4.6 Administratören lägger till samma användare i flera projektgrupper [SRS krav 6.4.40]}
@@ -1945,7 +1945,7 @@ skapats}
 \item A lägger B i projektgrupp F.
 \item A skapar projektgrupp G.
 \item A lägger B i projektgrupp G.
-\item Se till att B finns i projektgrupp C,D,E,F och G.
+\item Kontrollera att B finns i projektgrupp C,D,E,F och G.
 
 \end{enumerate}
 
@@ -1958,7 +1958,7 @@ skapats}
 \begin{enumerate}
 \item A skapar projektgrupp B utan användare.
 \item A får bekräftelse att projektgrupp B är inte skapat.
-\item Se till att projektgrupp B är inte skapat.
+\item Kontrollera att projektgrupp B är inte skapat.
 \end{enumerate}
 
 \textbf{FT 4.4.8 Administratören försöker att, från en projektgrupp som har en användare, ta bort en an- vändare. [SRS krav 6.4.41]}
@@ -1970,7 +1970,7 @@ skapats}
 \begin{enumerate}
 \item A försöker ta bort B som är enda användare i projektgrupp C.
 \item A får bekräftelse att B kan inte tas bort.
-\item Se till att B är inte bortagen.
+\item Kontrollera att B är inte bortagen.
 \end{enumerate}
 
 \textbf{FT 4.4.9 Administratören skapar en projektgrupp med en användare [SRS krav 6.4.41]}
@@ -1982,7 +1982,7 @@ skapats}
 \begin{enumerate}
 \item A skapar projektgrupp B med en enda användare C.
 \item A får bekräftelse att projektgrupp B är skapat.
-\item Se till att projektgrupp B är skapat.
+\item Kontrollera att projektgrupp B är skapat.
 \end{enumerate}
 
 \textbf{FT 4.4.10 Administratören lägger till användare i en projektgrupp så att projektgruppen har 20 an- vändare. [SRS krav 6.4.41]}
@@ -1994,7 +1994,7 @@ skapats}
 \begin{enumerate}
 \item A skapar projektgrupp B med 20 användare.
 \item A får bekräftelse att maximal antal användare i projektgrupp B  har lagts in.
-\item Se till att alla 20 användare är inlagda i systemet.
+\item Kontrollera att alla 20 användare är inlagda i systemet.
 \end{enumerate}
 
 \textbf{FT 4.4.11 Administratören försöker lägga till användare i en projektgrupp så att projektgruppen har 21 användare. [SRS krav 6.4.41]}
@@ -2006,7 +2006,7 @@ skapats}
 \begin{enumerate}
 \item A skapar projektgrupp B u med en 21  användare.
 \item A får bekräftelse att 21-sta användare B kunde inte läggas i projektgrupp C.
-\item Se till att 21-sta användare är inte i systemet.
+\item Kontrollera att 21-sta användare är inte i systemet.
 \end{enumerate}
 
 \textbf{FT 4.4.12 Projektledaren tilldelar tre olika roller till projektmedlemmar i sitt projekt [SRS krav 6.4.42]}
@@ -2022,9 +2022,9 @@ skapats}
 \item A får bekräftelse att C har roll ”t2”.
 \item A tilldela roll ”t3” till D i projekt E.
 \item A får bekräftelse att D har roll ”t3” i projekt E.
-\item Se till att B har roll ”t1” i projekt E.
-\item Se till att C har roll ”t2” i projekt E.
-\item Se till att D har roll ”t3” i projekt E.
+\item Kontrollera att B har roll ”t1” i projekt E.
+\item Kontrollera att C har roll ”t2” i projekt E.
+\item Kontrollera att D har roll ”t3” i projekt E.
 \end{enumerate}
 
 \textbf{FT 4.4.13 Projektledaren försöker tilldela fyra olika roller till projektmedlemmar i sitt projekt [SRS krav 6.4.42]}
@@ -2042,10 +2042,10 @@ skapats}
 \item A får bekräftelse att D har roll ”t3”
 \item A tilldelar roll ”t4” till E i sin projekt F.
 \item A får bekräftelse att E kan inte tilldelas roll ”t4”.
-\item Se till att B har roll ”t1” i projekt E.
-\item Se till att C har roll ”t2” i projekt E.
-\item Se till att D har roll ”t3” i projekt E.
-\item Se till att E har inte roll ”t4” i projekt E.
+\item Kontrollera att B har roll ”t1” i projekt E.
+\item Kontrollera att C har roll ”t2” i projekt E.
+\item Kontrollera att D har roll ”t3” i projekt E.
+\item Kontrollera att E har inte roll ”t4” i projekt E.
 \end{enumerate}
 
 \textbf{FT 4.4.14 Projektledaren tilldelar 6 projektmedlemmar (B,C,D,E,F,G) i sitt projekt rollen "t1" [SRS krav 6.4.43]}
@@ -2067,7 +2067,7 @@ skapats}
 \item A får bekräftelse att F har roll ”t1”.
 \item A tilldela roll ”t1” till G i sin projekt K. 
 \item A får bekräftelse att G har roll ”t1”.
-\item Se till att B,C,D,E,F och G har roll ”t1” i projekt K.
+\item Kontrollera att B,C,D,E,F och G har roll ”t1” i projekt K.
 \end{enumerate}
 \textbf{FT 4.4.15 Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen t2 [SRS krav 6.4.43]}
 
@@ -2088,7 +2088,7 @@ skapats}
 \item A får bekräftelse att  F har roll ”t2”.
 \item A tilldela roll ”t2” till G i sin projekt K. 
 \item A får bekräftelse att G har roll ”t2”.
-\item Se till att B,C,D,E,F och G har roll ”t2” i projekt K.
+\item Kontrollera att B,C,D,E,F och G har roll ”t2” i projekt K.
 \end{enumerate}
 
 \textbf{FT 4.4.16 Projektledaren tilldelar 6 projektmedlemmar (B,C,D,E,F,G) i sitt projekt rollen t3 [SRS krav 6.4.43]}
@@ -2110,7 +2110,7 @@ skapats}
 \item A får bekräftelse att F har roll ”t3”.
 \item A tilldela roll ”t3” till G i sin projekt K. 
 \item A får bekräftelse att G har roll ”t3”.
-\item Se till att B,C,D,E,F och G har roll ”t3” i projekt K.
+\item Kontrollera att B,C,D,E,F och G har roll ”t3” i projekt K.
 \end{enumerate}
 
 \textbf{FT 4.4.17 Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t1 [SRS krav 6.4.43]}
@@ -2134,8 +2134,8 @@ skapats}
 \item A får bekräftelse att G har roll ”t1”.
 \item A tilldela roll ”t1” till H i sin projekt K. 
 \item A får bekräftelse att  H kan inte får roll ”t1”.
-\item Se till att B,C,D,E,F och G har roll ”t1” i projekt K.
-\item Se till att H har inte roll ”t1” i projekt K.
+\item Kontrollera att B,C,D,E,F och G har roll ”t1” i projekt K.
+\item Kontrollera att H har inte roll ”t1” i projekt K.
 \end{enumerate}
 
 \textbf{FT 4.4.18 Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t2[SRS krav 6.4.43]}
@@ -2159,8 +2159,8 @@ skapats}
 \item A får bekräftelse att G har roll ”t2”.
 \item A tilldela roll ”t2” till H i sin projekt K. 
 \item A får bekräftelse att H kan inte får roll ”t2”.
-\item Se till att B,C,D,E,F och G har roll ”t2” i projekt K.
-\item Se till att H har inte roll ”t2” i projekt K.
+\item Kontrollera att B,C,D,E,F och G har roll ”t2” i projekt K.
+\item Kontrollera att H har inte roll ”t2” i projekt K.
 \end{enumerate}
 
 \textbf{FT 4.4.19 Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t3[SRS krav 6.4.43]}
@@ -2184,8 +2184,8 @@ skapats}
 \item A får bekräftelse att G har roll ”t3”
 \item A tilldela roll ”t3” till H i sin projekt K. 
 \item A får bekräftelse att H kan inte får roll ”t3”.
-\item Se till att B,C,D,E,F och G har roll ”t3” i projekt K.
-\item Se till att H har inte roll ”t3” i projekt K.
+\item Kontrollera att B,C,D,E,F och G har roll ”t3” i projekt K.
+\item Kontrollera att H har inte roll ”t3” i projekt K.
 \end{enumerate}
 
 \textbf{FT 4.4.20 Administratören har användarnamnet “admin” och lösenordet “adminpw” [SRS krav 6.4.44]}
@@ -2198,7 +2198,7 @@ skapats}
 \item A skriver användarnamnet ”admin”.
 \item A använder lösenordet ”adminpw”.
 \item A är inloggat och det finns bekräftelse.
-\item Se till att A kan logga in med användarnamn ”admin” och lösenord ”adminpw”.
+\item Kontrollera att A kan logga in med användarnamn ”admin” och lösenord ”adminpw”.
 \end{enumerate}
 
 
@@ -2345,8 +2345,8 @@ skapats}
 \item A når systemet.
 \item A bes ange användarnamn och lösenord på inloggningssidan.
 \item A anger korrekt användarnamn och lösenord.
-\item Se till att A är inloggad
-\item Se till att A vidarebefodras till en sida där funktionaliteten för en inloggad användare finns tillgänglig.
+\item Kontrollera att A är inloggad
+\item Kontrollera att A vidarebefodras till en sida där funktionaliteten för en inloggad användare finns tillgänglig.
 \end{enumerate}
 
 \item
@@ -2360,8 +2360,8 @@ skapats}
 \item A når systemet.
 \item A når en sida där det finns en utloggningslänk.
 \item A klickar på denna utloggningslänk.
-\item Se till att A inte är inloggad
-\item Se till att ett meddelande som anger detta visas.
+\item Kontrollera att A inte är inloggad
+\item Kontrollera att ett meddelande som anger detta visas.
 \end{enumerate}
 
 \item
@@ -2375,9 +2375,9 @@ skapats}
 \item A når systemet.
 \item A bes ange användarnamn och lösenord på inloggningssidan.
 \item A anger användarnamn och lösenord som inte finns i systemet.
-\item Se till att A inte är inloggad
-\item Se till att ett felmeddelande visas
-\item Se till att A ombeds ange användarnamn och lösenord igen.
+\item Kontrollera att A inte är inloggad
+\item Kontrollera att ett felmeddelande visas
+\item Kontrollera att A ombeds ange användarnamn och lösenord igen.
 \end{enumerate}
 
 \end{ST}
@@ -2409,8 +2409,8 @@ skapats}
 \item A får ett felmeddelande om inga fler projektgrupper kan skapas eftersom maxantalet redan är uppnått.
 \end{enumerate}
 \item A kan därefter lägga till fler projektgruppsmedlemmar. A kan dessutom lägga till ytterliggare en projektledare. Sedan klickar A på "ok".
-\item Se till att en projektgrupp skapats
-\item Se till att A omdirigeras till en sida som meddelar att en projektgrupp skapats.
+\item Kontrollera att en projektgrupp skapats
+\item Kontrollera att A omdirigeras till en sida som meddelar att en projektgrupp skapats.
 \end{enumerate}
 
 \item
@@ -2460,7 +2460,7 @@ skapats}
 \item A väljer att ta bort en hel projektgrupp. A får då en fråga om den vill ta bort alla ingående medlemmar också, vid svar "Ja" så visas en bekräftelseruta specifierad i krav 6.1.14 i SRS. Vid svar "Nej" så omdirigeras A till steg 2.
 \end{enumerate}
 \item Se till borttagningen genomfördes som den skulle.
-\item Se till att A dirigeras till en sida med uppdaterad information om projektgrupper och deras medlemmar.
+\item Kontrollera att A dirigeras till en sida med uppdaterad information om projektgrupper och deras medlemmar.
 \end{enumerate}
 
 \item
@@ -2487,11 +2487,11 @@ skapats}
 \item A fyller i aktivitets och subaktivitetsnamnen, och trycker sedan "ok".
 \item
 \begin{enumerate}
-\item Se till att mallen är skapad och sparad.
+\item Kontrollera att mallen är skapad och sparad.
 \item A får ett felmeddelande ifall aktivitets och subaktivitetsnamnen inte är tillåtna, A omdirigeras då till steg 4.
 \end{enumerate}
-\item Se till att mallen är ihopkopplad med grundmappen.
-\item Se till att A dirigeras till en sida med den färdiga mallen och en bekräftelse visas.
+\item Kontrollera att mallen är ihopkopplad med grundmappen.
+\item Kontrollera att A dirigeras till en sida med den färdiga mallen och en bekräftelse visas.
 
 \end{enumerate}
 
@@ -2507,16 +2507,16 @@ skapats}
 \item 
 \begin{enumerate}
 \item En lista med alla tidsrapportmallar visas för A.
-\item Se till att om det inte finns några tidsrapportmallar ska det tydligt synas att det inte finns några.
+\item Kontrollera att om det inte finns några tidsrapportmallar ska det tydligt synas att det inte finns några.
 \end{enumerate}
 \item A markerar en tidsrapportmall och trycker "ok"
 \item A får se en bekräftelseruta specifierad i krav 6.1.14 i SRS. A trycker "Ja".
 \item
 \begin{enumerate}
-\item Se till att tidsrapportmallen är borttagen.
+\item Kontrollera att tidsrapportmallen är borttagen.
 \item A får ett felmeddelande ifall tidsrapportmallen används av en projektgrupp och inte kan tas bort.
 \end{enumerate}
-\item Se till att A får en uppdaterad lista över tidsrapportmallarna som finns i systemet.
+\item Kontrollera att A får en uppdaterad lista över tidsrapportmallarna som finns i systemet.
 \end{enumerate}
 
 \end{ST}
@@ -2547,7 +2547,7 @@ skapats}
 
 \begin{enumerate}
 \item A skriver in URL för funktionalitetssidan för tidrapportering och får tillgång till sidan.
-\item Se till att under fältet I där man skriver in veckonummer framgår det att ingen tidigare tidrapport har skapats.
+\item Kontrollera att under fältet I där man skriver in veckonummer framgår det att ingen tidigare tidrapport har skapats.
 \item A skriver in veckonummer för veckan som ska tidrapporteras i det visade fältet. A skriver in:
 \begin{itemize}
 \item[] (a) Text som inte är ascii
@@ -2556,29 +2556,29 @@ skapats}
 \item[] (d) 698
 \end{itemize}
 \item För varje fall i steg 3a-d trycker A på "OK"
-\item Se till att ingen tidrapport genereras.
-\item Se till att ett felmeddelande genereras om att veckonumret är otillåtet.
-\item Se till att A skickas tillbaka till sidan där man skriver in veckonummer.
+\item Kontrollera att ingen tidrapport genereras.
+\item Kontrollera att ett felmeddelande genereras om att veckonumret är otillåtet.
+\item Kontrollera att A skickas tillbaka till sidan där man skriver in veckonummer.
 \item A skriver in 51 och trycer på "OK".
-\item Se till att en ny tidrapport genereras med veckonumret 51 samt dagens datum ifyllt.
+\item Kontrollera att en ny tidrapport genereras med veckonumret 51 samt dagens datum ifyllt.
 \item Användaren skriver in i godtycklig ruta:
 \begin{itemize}
 \item[] (a) Text som inte är ascii
 \item[] (b) 123456
 \end{itemize}
-\item Se till att A kan skriva in tidinformationen i 10a-c
+\item Kontrollera att A kan skriva in tidinformationen i 10a-c
 \item För varje fall i steg 10a-c trycker A på "Skicka". 
-\item Se till att ingen tidrapport sparas och att sidan för specificerad tidrapport laddas om.
+\item Kontrollera att ingen tidrapport sparas och att sidan för specificerad tidrapport laddas om.
 \item A skriver in 30 godtycklig ruta och 150 i en annan.
 \item A trycker på "Skicka".
-\item Se till att tidrapporten är skapad och att A får en bekräftelse om att den är sparad i databasen.
-\item Se till att användaren kan se totaltiden från tidrapporten.
+\item Kontrollera att tidrapporten är skapad och att A får en bekräftelse om att den är sparad i databasen.
+\item Kontrollera att användaren kan se totaltiden från tidrapporten.
 \item A skriver in URL för funktionalitetssidan för tidrapportering.
-\item Se till att A kan se, under fältet I, information om att tidrapporten för vecka 51 var senast sparad samt dagens datum.
+\item Kontrollera att A kan se, under fältet I, information om att tidrapporten för vecka 51 var senast sparad samt dagens datum.
 \item A skriver in 51 och trycker på "OK".
-\item Se till att en ny tidrapport inte skapas.
-\item Se till att denna rapport hämtas från databasen och visas för A.
-\item Se till att den visade rapporten kan redigeras.
+\item Kontrollera att en ny tidrapport inte skapas.
+\item Kontrollera att denna rapport hämtas från databasen och visas för A.
+\item Kontrollera att den visade rapporten kan redigeras.
 
 \end{enumerate}
 
@@ -2593,14 +2593,14 @@ skapats}
 \begin{enumerate}
 \item A skriver in URL för funktionalitetssidan för tidrapportering och får tillgång till sidan.
 \item A väljer "Ta bort/redigera tidrapport"
-\item Se till att A får upp en lista med tidrapporter.
+\item Kontrollera att A får upp en lista med tidrapporter.
 \item A väljer tidrapporten för vecka 12.
-\item Se till att A kan välja "Redigera" men inte "Ta bort".
+\item Kontrollera att A kan välja "Redigera" men inte "Ta bort".
 \item A trycker på "Redigera".
-\item Se till att tidrapporten visas men kan inte redigeras.
+\item Kontrollera att tidrapporten visas men kan inte redigeras.
 \item A skriver in URL för "Ta bort/redigera tidrapporter".
 \item A väljer tidrapporten för vecka 51.
-\item Se till att A kan välja både "Redigera" och "Ta bort".
+\item Kontrollera att A kan välja både "Redigera" och "Ta bort".
 \item A trycker på "Redigera".
 \item Användaren skriver in i godtycklig tom ruta:
 \begin{itemize}
@@ -2608,19 +2608,19 @@ skapats}
 \item[] (b) 123456
 \end{itemize}
 \item För varje fall i steg 12a-c trycker A på "Skicka". 
-\item Se till att ingen tidrapport sparas och att sidan för specificerad tidrapport laddas om.
+\item Kontrollera att ingen tidrapport sparas och att sidan för specificerad tidrapport laddas om.
 \item A skriver in 100 i godtycklig tom ruta och trycker på "OK".
-\item Se till att tidrapporten är uppdaterad.
+\item Kontrollera att tidrapporten är uppdaterad.
 \item A skriver in URL för "Ta bort/redigera tidrapporter".
 \item A väljer vecka 51.
 \item A trycker på "Ta bort".
-\item Se till att en bekräftelseruta visas.
+\item Kontrollera att en bekräftelseruta visas.
 \item A trycker på "Nej".
-\item Se till att tidrapporten inte är borttagen och att sidan där tidrapporten listas visas.
+\item Kontrollera att tidrapporten inte är borttagen och att sidan där tidrapporten listas visas.
 \item \item A väljer vecka 51.
 \item A trycker på "Ta bort".
 \item A trycker på "Ja".
-\item Se till att tidrapport är borttagen.
+\item Kontrollera att tidrapport är borttagen.
 \end{enumerate}
 
 
@@ -2635,9 +2635,9 @@ skapats}
 \item A skriver in URL för inloggningssidan.
 \item A loggar in, fel lösenord rätt användarnamn. Misslyckas, sidan laddas om.
 \item A skriver in rätt lösenord, lyckas.
-\item Se till att A kan se projektmedlemsfunktionaliteter på funktionalitetssidan I.
+\item Kontrollera att A kan se projektmedlemsfunktionaliteter på funktionalitetssidan I.
 \item A väljer "Lista medlemar".
-\item Se till att alla projektmedlemmar i As grupp listas.
+\item Kontrollera att alla projektmedlemmar i As grupp listas.
 \item A går tillbaka till I.
 \item A väljer "Tidrapportering".
 \item A väljer "Ny tidrapport".
@@ -2645,16 +2645,16 @@ skapats}
 \item A går tillbaka till I.
 \item Steg 7-11 upprepas. I steg 9 får A dock välja om han vill ta bort första tidrapporten, och isåfall fylla in en ny.
 \item A väljer "Redigera tidrapport".
-\item Se till att gamla tidrapporter listas.
+\item Kontrollera att gamla tidrapporter listas.
 \item Väljer signerad tidrapport, kan inte redigera.
 \item A går tillbaka till "Redigera tidrapport".
 \item A väljer osignerad tidrapport.
 \item A ändrar/tar bort rapporten.
 \item A väljer "Visa statistik".
-\item Se till att olika sorters statistik listas.
+\item Kontrollera att olika sorters statistik listas.
 \item A genererar statistik.
 \item A loggar ut.
-\item Se till att A är utloggad.
+\item Kontrollera att A är utloggad.
 
 \end {enumerate}
 
@@ -2677,31 +2677,31 @@ skapats}
 \item A skriver in URL till inloggninssidan.
 \item A skriver in fel lösenord, rätt användarnamn. Misslyckas, sidan laddas om.
 \item A skriver in rätt lösenord och rätt användarnamn. Lyckas logga in.
-\item Se till att A har tillgång till projektledarfuntionaliteter.
+\item Kontrollera att A har tillgång till projektledarfuntionaliteter.
 \item A väljer "Lista medlemmar".
-\item Se till att A ser alla medlemmar och dess roller.
+\item Kontrollera att A ser alla medlemmar och dess roller.
 \item A byter roll på medlem B till t2.
 \item A klickar på menyn.
 \item A väljer "Tidrapportering".
 \item A väljer "Ny tidrapport"
 \item A fyller in ny tidrapport och trycker på "Skicka".
-\item Se till att tidrapport är skapad.
+\item Kontrollera att tidrapport är skapad.
 \item A skriver URL för "Tidrapportering"
 \item A trycker "Redigera tidrapport"
-\item Se till att lista med tidrapporter kan ses.
+\item Kontrollera att lista med tidrapporter kan ses.
 \item A försöker redigera/ta bort sin signerade rapport, går int.
 \item A ändrar/tar bort sin osignerade rapport.
 \item A skriver URL "Tidrapportering"
 \item A väljer "Visa statistik"
-\item Se till att A kan se en lista med statistik
+\item Kontrollera att A kan se en lista med statistik
 \item A väljer godtycklig statistik.
 \item A trycker "Generera"
-\item Se till att A kan se statistiken.
+\item Kontrollera att A kan se statistiken.
 \item A skriver URL "Tidrapportering.
 \item A väljer "Visa alla tidrapporter"
 \item A väljer projektmedlem B, sätter rapport till godkänd.
 \item A loggar ut.
-\item Se till att A är utloggad.
+\item Kontrollera att A är utloggad.
 
 
 
@@ -2852,9 +2852,9 @@ Kontrollera att rapporten är godkänd
 \begin{enumerate}
 \item A listar alla tidrapporter
 \item A väljer rapport x, trycker på "Ej godkänd"
-\item Se till att en dialogruta kommer fram som bekräftar att x inte är godkänd.
-\item Se till att x inte är godkänd.
-\item Se till att A dirigeras tillbaka till sidan över alla tidrapporter.
+\item Kontrollera att en dialogruta kommer fram som bekräftar att x inte är godkänd.
+\item Kontrollera att x inte är godkänd.
+\item Kontrollera att A dirigeras tillbaka till sidan över alla tidrapporter.
 \end{enumerate}
 
 \item
@@ -2891,7 +2891,7 @@ Kontrollera att rapporten är godkänd
 \item Ad skriver rätt lösenord, inloggad.
 \item Ad väljer administrationsvyn.
 \item Ad väljer funk. lista användare.
-\item Se till att Ad kan se alla användare med lösenord.
+\item Kontrollera att Ad kan se alla användare med lösenord.
 \item Ad lägger till användare, rätt input, lyckas.
 \item Ad försöker lägga till användare, fel input, misslyckas.
 \item Ad tar bort användare, lyckas.
@@ -2905,21 +2905,21 @@ Kontrollera att rapporten är godkänd
 \item Ad väljer tidrapportmall.
 \item Ad väljer användare till projektgruppen från en lista.
 \item Ad väljer projektledare, trycker på "Skapa".
-\item Se till att Ad skickas tillbaka till administrationsvyn.
+\item Kontrollera att Ad skickas tillbaka till administrationsvyn.
 \item Steg 11-20 upprepas, men i steg 17 skapar Ad en ny tidrapportmall.
 \item Ad väljer funk. Redigera projektmedlemmar.
-\item Se till att samtliga projektmedlemmar listas.
+\item Kontrollera att samtliga projektmedlemmar listas.
 \item Ad utser andra projektledare, lyckas.
 \item Ad tilldelar roller, lyckas.
 \item Ad byter grupp på användare, lyckas.
 \item Ad väljer väljer administrationsvyn.
 \item Ad väljer funk. Ta bort tidrapportmall.
-\item Se till att tidrapportmallarna listas.
+\item Kontrollera att tidrapportmallarna listas.
 \item Ad försöker ta bort tidrapportmall som används, misslyckas.
 \item Ad tar bort tidrapportmall som inte används, lyckas.
 \item Ad väljer administrationsvyn.
 \item Ad trycker på "Logga ut".
-\item Se till att Ad är utloggad.
+\item Kontrollera att Ad är utloggad.
 \end{enumerate}
 
 \end{ST}
