@@ -195,20 +195,20 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \item \textbf{Projektledaren har tillgång till projektadministrationsfunktionaliteter}
 
-\emph{Starttillstånd:} Projektledaren L är projektledare för projektgruppen G och är inloggad och befinner sig på sidan ``Projektgruppsadministration''. M1, M2 och M3 är projektmedlemmar i G, de har rollerna t1, t2 och t3 respektive. M1, M2 och M3 har tidsrapporteringar i vecka 1 T1, T2 och T3 respektive. T1, T2 och T3 innehåller tidrapportering för 10, 20 och 30 minuter, de är alla signerade.
+\emph{Starttillstånd:} Projektledaren L är projektledare för projektgruppen G och är inloggad och befinner sig på sidan ``Projektgruppsadministration''. M1, M2 och M3 är projektmedlemmar i G, de har rollerna t1, t2 och t3 respektive. M1, M2 och M3 har tidrapporteringar i vecka 1 T1, T2 och T3 respektive. T1, T2 och T3 innehåller tidrapportering för 10, 20 och 30 minuter, de är alla signerade.
 
-\emph{Sluttillstånd:} Projektledaren L är projektledare för projektgruppen G och är inloggad och befinner sig på sidan ``Projektgruppsadministration''. M1, M2 och M3 är projektmedlemmar i G, de har rollerna t1, t2 och t3 respektive. M1, M2 och M3 har tidsrapporteringar i vecka 1 T1, T2 och T3 respektive. T1, T2 och T3 innehåller tidrapportering för 10, 20 och 30 minuter, de är alla signerade.
+\emph{Sluttillstånd:} Projektledaren L är projektledare för projektgruppen G och är inloggad och befinner sig på sidan ``Projektgruppsadministration''. M1, M2 och M3 är projektmedlemmar i G, de har rollerna t1, t2 och t3 respektive. M1, M2 och M3 har tidrapporteringar i vecka 1 T1, T2 och T3 respektive. T1, T2 och T3 innehåller tidrapportering för 10, 20 och 30 minuter, de är alla signerade.
 
 \begin{enumerate}
 \item Klicka på ``Visa statistik'' för G.
 \item Välj ``generera statistik över G genom att summera tidrapporter per användare för samtliga veckor''.
 \item Kontrollera att statistik visas för G, sammanlagd tid rapporterad skall vara 60 minuter.
 \item Gå tillbaka till projektgruppsadministrationssidan.
-\item Klicka på ``Hantera tidsrapporter''.
-\item Avsignera tidsrapport T1.
-\item Kontrollera att tidsrapporten T1 inte är signerad i databasen.
-\item Signera tidsrapport T1.
-\item Kontrollera att tidsrapporten T1 är signerad i databasen.
+\item Klicka på ``Hantera tidrapporter''.
+\item Avsignera tidrapport T1.
+\item Kontrollera att tidrapporten T1 inte är signerad i databasen.
+\item Signera tidrapport T1.
+\item Kontrollera att tidrapporten T1 är signerad i databasen.
 \item Gå tillbaka till projektgruppsadmininstrationssidan.
 \item Klicka på ``Hantera användare'' för projektet G.
 \item Kontrollera att alla projektmedlemmar visas.
@@ -452,7 +452,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Administratören försöker skapa en användare med för kort användarnamn}
 
-\emph{Starttillstånd:} Administratören A inloggad, inne på sidan "Lista användare", användare B finns inte i systemet.
+\emph{Starttillstånd:} Administratören A inloggad, inne på sidan ''Lista användare'', användare B finns inte i systemet.
 
 \emph{Sluttillstånd:} A inloggad, B finns inte i systemet.
 
@@ -465,7 +465,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Administratören försöker skapa en användare med för långt användarnamn}
 
-\emph{Starttillstånd:} Administratören A inloggad, inne på sidan "Lista användare", användare B finns inte i systemet.
+\emph{Starttillstånd:} Administratören A inloggad, inne på sidan ''Lista användare'', användare B finns inte i systemet.
 
 \emph{Sluttillstånd:} A inloggad, B finns inte i systemet
 
@@ -478,7 +478,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Administratören försöker skapa en användare med användarnamn som innehåller icke tillåtna tecken}
 
-\emph{Starttillstånd:} Administratören A inloggad, inne på sidan "Lista användare", användare B finns inte i systemet.
+\emph{Starttillstånd:} Administratören A inloggad, inne på sidan ''Lista användare'', användare B finns inte i systemet.
 
 \emph{Sluttillstånd:} A inloggad, B finns inte i systemet
 
@@ -611,7 +611,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} A inte inloggad, inloggningssidan visas.
 
 \begin{enumerate}
-\item Skriver in URL till funktionalitet "Ändra lösenord".
+\item Skriver in URL till funktionalitet ''Ändra lösenord''.
 \item Kontrollera att A omdirigeras till inloggningssidan.
 \item Kontrollera att A inte kommer vidare utan att logga in.
 \end{enumerate}
@@ -718,7 +718,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, ny tidrapport visas.
 
 \begin{enumerate}
-\item A trycker på "Skapa en ny tidrapport".
+\item A trycker på ''Skapa en ny tidrapport''.
 \item Kontrollera att tidrapportern är skapad.
 \item Kontrollera att tidrapporten inte är signerad när den skapas.
 \end{enumerate}
@@ -731,10 +731,10 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, uppdaterad tidrapport visas.
 
 \begin{enumerate}
-\item A trycker på "Uppdatera tidrapport".
+\item A trycker på ''Uppdatera tidrapport''.
 \item A väljer en av sina egna osignerade tidrapporter.
 \item A skriver in 40 i godtycklig ruta, 20 i en annan.
-\item A trycker på "spara".
+\item A trycker på ''spara''.
 \item Kontrollera att tidrapporten är uppdaterad.
 \end{enumerate}
 
@@ -746,9 +746,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.Tidrapport raderad.
 
 \begin{enumerate}
-\item A trycker på "Ta bort tidrapport".
+\item A trycker på ''Ta bort tidrapport''.
 \item A väljer en av sina egna osignerade tidrapporter.
-\item A trycker på knappen "Radera".
+\item A trycker på knappen ''Radera''.
 \item Kontrollera att tidrapporten är raderad.
 \end{enumerate}
 
@@ -760,7 +760,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.
 
 \begin{enumerate}
-\item A tryck på "Visa tidrapporter".
+\item A tryck på ''Visa tidrapporter''.
 \item Kontrollera att denne endast ser sina egna tidrapporter.
 \end{enumerate}
 
@@ -772,9 +772,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport ej raderad.
 
 \begin{enumerate}
-\item A trycker på "Ta bort tidrapporter".
+\item A trycker på ''Ta bort tidrapporter''.
 \item A väljer en av sina signerade tidrapporter.
-\item A försöker trycka på knappen "Radera", men tidrapporten raderas inte.
+\item A försöker trycka på knappen ''Radera'', men tidrapporten raderas inte.
 \end{enumerate}
 
 \item
@@ -784,7 +784,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, tidrapport ej uppdaterad.
 
 \begin{enumerate}
-\item A trycker på "Uppdatera tidrapport".
+\item A trycker på ''Uppdatera tidrapport''.
 \item A väljer en av sina signerade tidrapporter.
 \item A försöker skriva in något i en godtycklig ruta, fälten går dock inte att redigera.
 \end{enumerate}
@@ -804,40 +804,40 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
 
 \begin{enumerate}
-\item A trycker på "Visa tidrapporter".
+\item A trycker på ''Visa tidrapporter''.
 \item Kontrollera att Projektledaren kan se alla sina projektmedlemmars tidrapporter.
-\item A trycker på "Uppdatera tidrapporter".
+\item A trycker på ''Uppdatera tidrapporter''.
 \item Kontrollera att Projektledaren kan se alla sina projektmedlemmars tidrapporter.
-\item A trycker på "Radera tidrapporter".
+\item A trycker på ''Radera tidrapporter''.
 \item Kontrollera att Projektledaren kan se alla sina projektmedlemmars tidrapporter.
 \end{enumerate}
 
 %ÄNDRA MANUELL MILJÖ%
 \item
-\textbf{Projektledaren lyckas godkänna en ej tidigare godkänd tidrapport från en medlem i sin projektgrupp}
+\textbf{Projektledaren lyckas godkänna en ej tidigare signerad tidrapport från en medlem i sin projektgrupp}
 
 \emph{Starttillstånd:} Projektledare inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport godkänd.
+\emph{Sluttillstånd:} Projektledare inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport signerad.
 
 \begin{enumerate}
-\item A trycker på "Godkänn rapporter".
+\item A trycker på ''Godkänn rapporter''.
 \item A väljer en osignerad tidrapport genom att trycka på på dess radioknapp.
-\item A trycker på knappen "Godkänd".
-\item Kontrollera att tidrapporten är godkänd.
+\item A trycker på knappen ''signera''.
+\item Kontrollera att tidrapporten är signerad.
 \end{enumerate}
 
 %MANUELL MILJÖ%
 \item
-\textbf{Projektledaren lyckas ta tillbaka sitt godkännande från en tidigare godkänd tidrapport}
+\textbf{Projektledaren lyckas ta tillbaka sitt godkännande från en tidigare signerad tidrapport}
 
 \emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport är inte längre godkänd.
+\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport är inte längre signerad.
 
 \begin{enumerate}
-\item A trycker på "Godkänn rapporter".
+\item A trycker på ''Godkänn rapporter''.
 \item A väljer en signerad tidrapport genom att trycka på på dess radioknapp.
-\item A trycker på knappen "Icke godkänd".
-\item Kontrollera att tidrapporten är inte längre godkänd.
+\item A trycker på knappen ''Icke signerad''.
+\item Kontrollera att tidrapporten är inte längre signerad.
 \end{enumerate}
 
 
@@ -850,8 +850,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A får tillgång till statistiksidan.
-\item A väljer en användare och "Samtliga veckor".
-\item A trycker på "Generera statistik"
+\item A väljer en användare och ''Samtliga veckor''.
+\item A trycker på ''Generera statistik''
 \item Kontrollera att en ny tidrapport genereras med en användares arbetstid summerad för samtliga veckor.
 \end{enumerate}
 
@@ -865,8 +865,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A får tillgång till statistiksidan.
-\item A väljer en roll och "Samtliga veckor".
-\item A trycker på "Generera statistik"
+\item A väljer en roll och ''Samtliga veckor''.
+\item A trycker på ''Generera statistik''
 \item Kontrollera att en ny tidrapport genereras med summerad arbetstid för en roll för samtliga veckor.
 \end{enumerate}
 
@@ -879,8 +879,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A får tillgång till statistiksidan.
-\item A väljer "Statistik per aktivitet".
-\item A trycker på "Generera statistik".
+\item A väljer ''Statistik per aktivitet''.
+\item A trycker på ''Generera statistik''.
 \item Kontrollera att en ny tidrapport genereras med alla aktiviteters arbetstid.
 \end{enumerate}
 
@@ -893,8 +893,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A får tillgång till statistiksidan.
-\item A väljer "Statistik per vecka".
-\item A trycker på "Generera statistik".
+\item A väljer ''Statistik per vecka''.
+\item A trycker på ''Generera statistik''.
 \item Kontrollera att en ny tidrapport genereras med alla veckors arbetstid.
 \end{enumerate}
 
@@ -908,7 +908,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item A får tillgång till statistiksidan.
 \item A väljer en användare och välj aktivitet.
-\item A trycker på "Generera statistik".
+\item A trycker på ''Generera statistik''.
 \item Kontrollera att en ny tidrapport genereras med en användares arbetstid för specificerad aktivitet.
 \end{enumerate}
 
@@ -922,7 +922,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item A får tillgång till statistiksidan.
 \item A väljer en användare och välj godtyckliga veckor.
-\item A trycker på "Generera statistik".
+\item A trycker på ''Generera statistik''.
 \item Kontrollera att en ny tidrapport genereras med en användares arbetstid för specificerade veckor.
 \end{enumerate}
 
@@ -936,7 +936,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item A får tillgång till statistiksidan.
 \item A väljer en roll och välj aktivitet.
-\item A trycker på "Generera statistik".
+\item A trycker på ''Generera statistik''.
 \item Kontrollera att en ny tidrapport genereras med summerad arbetstid för en roll för specificerad aktivitet.
 \end{enumerate}
 
@@ -950,7 +950,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item A får tillgång till statistiksidan.
 \item A väljer roll och välj godtyckliga veckor.
-\item A trycker på "Generera statistik".
+\item A trycker på ''Generera statistik''.
 \item Kontrollera att en ny tidrapport genereras med summerad arbetstid för en roll för specificerade veckor.
 \end{enumerate}
 
@@ -964,7 +964,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item A får tillgång till statistiksidan.
 \item A väljer en aktivitet och en vecka.
-\item A trycker på "Generera statistik".
+\item A trycker på ''Generera statistik''.
 \item Kontrollera att en ny tidrapport genereras med total arbetstid från en aktivitet från en specifik vecka.
 \end{enumerate}
 
@@ -1052,9 +1052,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmall ej skapad.\\
 
 \begin{enumerate}
-\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör trycker på ''Skapa tidrapportmall''
 \item Administratör väljer ingen aktivitet.
-\item Administratör trycker på "Skapa"
+\item Administratör trycker på ''Skapa''
 \item Kontrollera att ingen tidrapportmall är skapad.
 \end{enumerate}
 
@@ -1065,9 +1065,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmall ej skapad.\\
 
 \begin{enumerate}
-\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör trycker på ''Skapa tidrapportmall''
 \item Administratör väljer 21 aktiviteter.
-\item Administratör trycker på "Skapa"
+\item Administratör trycker på ''Skapa''
 \item Kontrollera att ingen tidrapportmall är skapad.
 \end{enumerate}
 
@@ -1079,9 +1079,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmall ej skapad.\\
 
 \begin{enumerate}
-\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör trycker på ''Skapa tidrapportmall''
 \item Administratör väljer ingen subaktivitet.
-\item Administratör trycker på "Skapa"
+\item Administratör trycker på ''Skapa''
 \item Kontrollera att ingen tidrapportmall är skapad.
 \end{enumerate}
 
@@ -1093,9 +1093,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmall ej skapad.\\
 
 \begin{enumerate}
-\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör trycker på ''Skapa tidrapportmall''
 \item Administratör väljer 5 subaktiviteter.
-\item Administratör trycker på "Skapa"
+\item Administratör trycker på ''Skapa''
 \item Kontrollera att ingen tidrapportmall är skapad.
 \end{enumerate}
 
@@ -1107,7 +1107,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar.\\
 
 \begin{enumerate}
-\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör trycker på ''Skapa tidrapportmall''
 \item Administratör skriver in x unika aktiviterer.
 \item Kontrollera att tidrapportmall är skapad.
 \item Administratör får tillgång till tidrapporteringsfunktionaliteten.
@@ -1122,7 +1122,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar.\\
 
 \begin{enumerate}
-\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör trycker på ''Skapa tidrapportmall''
 \item Administratör skriver in x unika subaktiviterer.
 \item Kontrollera att tidrapportmall är skapad.
 \item Administratör får tillgång till tidrapporteringsfunktionaliteten.
@@ -1159,10 +1159,10 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 
 \item
-\textbf{En tidrapport innehåller information om datum i form av "dag månad år"}
+\textbf{En tidrapport innehåller information om datum i form av ''dag månad år''}
 
 \emph{Starttillstånd:} Inloggad på mysql\\
-\emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller datum i "dag månad år".\\
+\emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller datum i ''dag månad år''.\\
 
 \begin{enumerate}
 \item Få tillgång till databasen
@@ -1195,7 +1195,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item A Tryck på visa tidrapporter
 \item A väljer godtycklig tidrapport
-\item Kontrollera att det visas tydligt om tidrapporten är godkänd eller ej.
+\item Kontrollera att det visas tydligt om tidrapporten är signerad eller ej.
 \end{enumerate}
 
 
@@ -1220,8 +1220,8 @@ skapats}
 \emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmall skapad.\\
 
 \begin{enumerate}
-\item Administratör trycker på "Skapa tidrapportmall"
-\item Administratör trycker på "Generera grundmall"
+\item Administratör trycker på ''Skapa tidrapportmall''
+\item Administratör trycker på ''Generera grundmall''
 \item Kontrollera att tidrapport är skapad.
 \end{enumerate}
 
@@ -1233,7 +1233,7 @@ skapats}
 \emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmall ej skapad.\\
 
 \begin{enumerate}
-\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör trycker på ''Skapa tidrapportmall''
 \item Administratör skriver in aktivitet x två gånger.
 \item Kontrollera att ingen tidrapportmall är skapad.
 \end{enumerate}
@@ -1247,7 +1247,7 @@ skapats}
 \emph{Sluttillstånd:} Administratör inloggad, inne på funktionaliteten för skapande av tidrapportmallar. Tidrapportmall ej skapad.\\
 
 \begin{enumerate}
-\item Administratör trycker på "Skapa tidrapportmall"
+\item Administratör trycker på ''Skapa tidrapportmall''
 \item Administratör skriver in subaktivitet x två gånger.
 \item Kontrollera att ingen tidrapportmall är skapad.
 \end{enumerate}
@@ -1339,37 +1339,37 @@ skapats}
 \item A tilldelar roll ”Testare” till B.
 \item A sparar ändringar.
 \item A har fått bekräftelse att B har fått roll som ”Testare”.
-\item Kontrollera att B har rollen "Testare".
+\item Kontrollera att B har rollen ''Testare''.
 \end{enumerate}
 
 \item %FT 4.2.2 
-\textbf{Projektledaren listar alla ej godkända tidrapporter}
+\textbf{Projektledaren listar alla ej signerade tidrapporter}
 
-\emph{Starttillstånd:} Projektledaren A är inloggad och har tillgång till tidrapporter. Två ej godkända och tre godkända tidrapporter med unika upphovsmän finns i systemet.
+\emph{Starttillstånd:} Projektledaren A är inloggad och har tillgång till tidrapporter. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet.
 
-\emph{Sluttillstånd:} Alla ej godkända tidrapporter är listade.                          
+\emph{Sluttillstånd:} Alla osignerade tidrapporter är listade.                          
 
 \begin{enumerate}
-\item Projektledara A listar alla ej godkända tidrapporter
-\item Kontrollera att två ej godkända tidrapporter är listade
+\item Projektledara A listar alla osignerade tidrapporter
+\item Kontrollera att två osignerade tidrapporter är listade
 \end{enumerate}
 
 \item %FT 4.2.3
-\textbf{Projektledaren listar alla godkända tidrapporter}
+\textbf{Projektledaren listar alla signerade tidrapporter}
 
-\emph{Starttillstånd:} Projektledaren A är inloggat och har tillgång till tidrapporter. Två ej godkända och tre godkända tidrapporter med unika upphovsmän finns i systemet.
+\emph{Starttillstånd:} Projektledaren A är inloggat och har tillgång till tidrapporter. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet.
 
-\emph{Sluttillstånd:} Alla godkända tidrapporter är listade.
+\emph{Sluttillstånd:} Alla signerade tidrapporter är listade.
 
 \begin{enumerate}
-\item Projektledara A listar alla godkända tidrapporter
-\item Kontroller att 3 godkända tidrapporter är listade
+\item Projektledara A listar alla signerade tidrapporter
+\item Kontroller att 3 signerade tidrapporter är listade
 \end{enumerate}
 
 \item %FT 4.2.4 
 \textbf{Projektledaren listar projektets alla tidrapporter och sorterar dom i stigande ordning efter användare}
 
-\emph{Starttillstånd:} Projektledare A är inloggad och har tillgång till tidrapporter. Två ej godkända och tre godkända tidrapporter med unika upphovsmän finns i systemet.
+\emph{Starttillstånd:} Projektledare A är inloggad och har tillgång till tidrapporter. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet.
 
 \emph{Sluttillstånd:} Projektets alla tidrapporter är sorterade i stigande ordning efter användare.
 
@@ -1382,7 +1382,7 @@ skapats}
 \item %FT 4.2.5 
 \textbf{Projektledaren listar projektets alla tidrapporter och sorterar dem i fallande ordning efter användare}
 
-\emph{Starttillstånd:} Projektledare A är inloggat och har tillgång till tidrapporter. Två ej godkända och tre godkända tidrapporter med unika upphovsmän finns i systemet.
+\emph{Starttillstånd:} Projektledare A är inloggat och har tillgång till tidrapporter. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet.
 
 \emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i fallande ordning efter användare
 
@@ -1395,7 +1395,7 @@ skapats}
 \item %FT 4.2.6 
 \textbf{Projektledaren listar projektets alla tidrapporter och sorterar dem i stigande ordning efter vecka}
 
-\emph{Starttillstånd:} Projektledare A är inloggad och har tillgång till tidrapporter. Två ej godkända och tre godkända tidrapporter med unika upphovsmän finns i systemet.
+\emph{Starttillstånd:} Projektledare A är inloggad och har tillgång till tidrapporter. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet.
 
 \emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i stigande ordning efter vecka.
 
@@ -1421,29 +1421,29 @@ skapats}
 \end{enumerate}
 
 \item %FT 4.2.8 
-\textbf{Projektledaren listar projektets alla tidrapporter och sorterar dom i stigande ordning efter hurvida rapporten är godkänd eller ej}
+\textbf{Projektledaren listar projektets alla tidrapporter och sorterar dom i stigande ordning efter hurvida rapporten är signerad eller ej}
 
 \emph{Start tillstånd:} Projektledare A är inloggat och har tillgång till tidrapporter.
 
-\emph{Slut tillstånd:} Projektet alla tidrapporter är sorterade i stigande ordning efter hurvida rapporten är godkänd eller ej.
+\emph{Slut tillstånd:} Projektet alla tidrapporter är sorterade i stigande ordning efter hurvida rapporten är signerad eller ej.
 
 \begin{enumerate}
 \item Projektledare A listar alla tidrapporter.
-\item Projektledare A sorterar i stigande ordning efter hurvida rapporten är godkänd eller ej
-\item Alla projektet tidrapporter är sorterade i stigande ordning efter hurvida rapporten är godkänd eller ej
+\item Projektledare A sorterar i stigande ordning efter hurvida rapporten är signerad eller ej
+\item Alla projektet tidrapporter är sorterade i stigande ordning efter hurvida rapporten är signerad eller ej
 \end{enumerate}
 
 \item %FT 4.2.9 
-\textbf{Projektledaren listar projektets alla tidrapporter och sorterar dom i fallande ordning efter hurvida rapporten är godkänd eller ej}
+\textbf{Projektledaren listar projektets alla tidrapporter och sorterar dom i fallande ordning efter hurvida rapporten är signerad eller ej}
 
 \emph{Starttillstånd:} Projektledare A är inloggat och har tillgång till tidrapporter.
 
-\emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i fallande ordning efter hurvida rapporten är godkänd eller ej.
+\emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i fallande ordning efter hurvida rapporten är signerad eller ej.
 
 \begin{enumerate}
 \item Projektledare A listar alla tidrapporter.
-\item Projektledare A sorterai fallande ordning efter hurvida rapporten är godkänd eller ej
-\item Alla projektet tidrapporter är sorterade i fallande ordning efter hurvida rapporten är godkänd eller ej.
+\item Projektledare A sorterai fallande ordning efter hurvida rapporten är signerad eller ej
+\item Alla projektet tidrapporter är sorterade i fallande ordning efter hurvida rapporten är signerad eller ej.
 \end{enumerate}
 
 \end{FT}
@@ -1464,26 +1464,26 @@ skapats}
 \item Kontrollera att B har roll ”t1”.
 \end{enumerate}
 
-\textbf{FT 4.3.2 Administratören listar alla ej godkända tidrapporter [SRS krav 6.4.4]}
+\textbf{FT 4.3.2 Administratören listar alla osignerade tidrapporter [SRS krav 6.4.4]}
 
 \emph{Starttillstånd:} Administratör A är inloggat och har tillgång till tidrapporter.
 
-\emph{Sluttillstånd:} Alla ej godkända tidrapporter är listade.
+\emph{Sluttillstånd:} Alla osignerade tidrapporter är listade.
 
 \begin{enumerate}
-\item A listar alla ej godkända tidrapporter.
-\item Kontrollera att alla ej godkända tidrapporter är listade.
+\item A listar alla osignerade tidrapporter.
+\item Kontrollera att alla osignerade tidrapporter är listade.
 \end{enumerate}
 
-\textbf{FT 4.3.3 Administratören listar alla godkända tidrapporter [SRS krav 6.4.5]}
+\textbf{FT 4.3.3 Administratören listar alla signerade tidrapporter [SRS krav 6.4.5]}
 
 \emph{Starttillstånd:}  Administratör A är inloggat och har tillgång till tidrapporter.
 
-\emph{Sluttillstånd:} Alla godkända tidrapporter är listade.
+\emph{Sluttillstånd:} Alla signerade tidrapporter är listade.
 
 \begin{enumerate}
-\item A listar alla godkända tidrapporter.
-\item Kontrollera att alla godkända tidrapporter är listade.
+\item A listar alla signerade tidrapporter.
+\item Kontrollera att alla signerade tidrapporter är listade.
 \end{enumerate}
 
 \textbf{FT 4.3.4 Administratören listar ett projekts alla tidrapporter och sorterar dom i stigande ordning efter användare [SRS krav 6.4.11]}
@@ -1538,24 +1538,24 @@ skapats}
 
 \emph{Starttillstånd:} Administratör A är inloggat och har tillgång till tidrapporter.
 
-\emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i stigande ordning efter rapporten är godkänd eller ej.
+\emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i stigande ordning efter rapporten är signerad eller ej.
 
 \begin{enumerate}
 \item A listar alla tidrapporter.
-\item A sortera i stigande ordning efter rapporten är godkänd eller ej.
-\item Kontrollera att alla projektets tidrapporter är sorterade i stigande ordning efter rapporten är godkänd eller ej.
+\item A sortera i stigande ordning efter rapporten är signerad eller ej.
+\item Kontrollera att alla projektets tidrapporter är sorterade i stigande ordning efter rapporten är signerad eller ej.
 \end{enumerate}
 
-\textbf{FT 4.3.9 Administratören listar ett projekts alla tidrapporter och sorterar dom i fallande ordning efter hurvida rapporten är godkänd eller ej [SRS krav 6.4.11]}
+\textbf{FT 4.3.9 Administratören listar ett projekts alla tidrapporter och sorterar dom i fallande ordning efter hurvida rapporten är signerad eller ej [SRS krav 6.4.11]}
 
 \emph{Starttillstånd:} Administratör A är inloggat och har tillgång till tidrapporter.
 
-\emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i fallande ordning efter rapporten är godkänd eller ej.
+\emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i fallande ordning efter rapporten är signerad eller ej.
 
 \begin{enumerate}
 \item A listar alla tidrapporter.
-\item A sortera i stigande ordning efter rapporten är godkänd eller ej.
-\item Kontrollera att alla projektets tidrapporter är sorterade i fallande ordning efter rapporten är godkänd eller ej.
+\item A sortera i stigande ordning efter rapporten är signerad eller ej.
+\item Kontrollera att alla projektets tidrapporter är sorterade i fallande ordning efter rapporten är signerad eller ej.
 \end{enumerate}
 
 \textbf{FT 4.3.10 Administratören skapar en projektgrupp [SRS krav 6.4.12]}
@@ -1934,7 +1934,7 @@ skapats}
 
 \emph{Starttillstånd} Administratör A är inloggat.
 
-\emph{Sluttillstånd:} Adm"\"inistratör A lägger användare B till   projektgrupp C, D, E, F och G.
+\emph{Sluttillstånd:} Adm''\''inistratör A lägger användare B till   projektgrupp C, D, E, F och G.
 
 \begin{enumerate}
 \item A skapar B.
@@ -2051,11 +2051,11 @@ skapats}
 \item Kontrollera att E har inte roll ”t4” i projekt E.
 \end{enumerate}
 
-\textbf{FT 4.4.14 Projektledaren tilldelar 6 projektmedlemmar (B,C,D,E,F,G) i sitt projekt rollen "t1" [SRS krav 6.4.43]}
+\textbf{FT 4.4.14 Projektledaren tilldelar 6 projektmedlemmar (B,C,D,E,F,G) i sitt projekt rollen ''t1'' [SRS krav 6.4.43]}
 
 \emph{Starttillstånd} Projektledare A är inloggat.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar i sitt projekt K  rollen "t1".
+\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar i sitt projekt K  rollen ''t1''.
 
 \begin{enumerate}
 \item A tilldela roll ”t1” till B i sin projekt K. 
@@ -2076,7 +2076,7 @@ skapats}
 
 \emph{Starttillstånd} Projektledare A är inloggat.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar(B,C,D,E,F,G) i sitt projekt K rollen "t2".
+\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar(B,C,D,E,F,G) i sitt projekt K rollen ''t2''.
 
 \begin{enumerate}
 \item A tilldela roll ”t2” till B i sin projekt K. 
@@ -2098,7 +2098,7 @@ skapats}
 
 \emph{Starttillstånd} Projektledare A är inloggat.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar i sitt projekt K rollen "t3".
+\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar i sitt projekt K rollen ''t3''.
 
 \begin{enumerate}
 \item A tilldela roll ”t3” till B i sin projekt K. 
@@ -2120,7 +2120,7 @@ skapats}
 
 \emph{Starttillstånd} Projektledare A är inloggat.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6  projektmedlemmar(B,C,D,E,F,G) i sitt projekt K  rollen "t1" och 7 projektmedlem H kunde inte tilldelas.
+\emph{Sluttillstånd:} Projektledare A  har tilldelat 6  projektmedlemmar(B,C,D,E,F,G) i sitt projekt K  rollen ''t1'' och 7 projektmedlem H kunde inte tilldelas.
 
 \begin{enumerate}
 \item A tilldela roll ”t1” till B i sin projekt K. 
@@ -2145,7 +2145,7 @@ skapats}
 
 \emph{Starttillstånd} Projektledare A är inloggat.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar (B,C,D,E,F,G) i sitt projekt K  rollen "t2" och 7 projektmedlemm H kunde inte tilldelas.
+\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar (B,C,D,E,F,G) i sitt projekt K  rollen ''t2'' och 7 projektmedlemm H kunde inte tilldelas.
 
 \begin{enumerate}
 \item A tilldela roll ”t2” till B i sin projekt K. 
@@ -2234,7 +2234,7 @@ skapats}
 
 \emph{Starttillstånd:} Projektmedlemmen M är inte inloggad i systemet. M och Projektledaren L är båda medlemmar i projektgruppen G.
 
-\emph{Sluttillstånd:} Projektmedlemmen M är inte inloggad i systemet. M och Projektledaren L är båda medlemmar i projektgruppen G. En osignerad tidsrapport T för projekt G, projektmedlem M och vecka 1 finns i systemet med 20 minuter på möte registrerat. M har lösenordet ``abcdefgh''.
+\emph{Sluttillstånd:} Projektmedlemmen M är inte inloggad i systemet. M och Projektledaren L är båda medlemmar i projektgruppen G. En osignerad tidrapport T för projekt G, projektmedlem M och vecka 1 finns i systemet med 20 minuter på möte registrerat. M har lösenordet ``abcdefgh''.
 
 \begin{enumerate}
 \item Skriv rätt användarnamn och felaktigt lösenord för M.
@@ -2247,14 +2247,14 @@ skapats}
 \item Klicka på lägg till tidrapport.
 \item Skriv 1 i fältet för vecka.
 \item Skriv 30 i fältet för möte.
-\item Klicka på ``Lägg till'', tidsrapporten som skapades kallas för T.
+\item Klicka på ``Lägg till'', tidrapporten som skapades kallas för T.
 \item Klicka på ``Visa'' för tidrapport för vecka 1.
 \item Kontrollera att det i fältet ``möte'' står 30.
 \item Klicka på ``Tillbaka''.
 \item Klicka på ``Redigera rapport'' för tidrapport T.
 \item Ändra fältet ``möte'' till 20.
 \item Klicka på ``Redigera rapport''.
-\item Kontrollera i databasen att det i tidsrapporten T står 20 för möte.
+\item Kontrollera i databasen att det i tidrapporten T står 20 för möte.
 \item Klicka på ``Visa projektinformation''.
 \item Kontrollera att projektnamnet för G syns och att M och L står med som medlemmar i projektet.
 \item Klicka på ``Ändra lösenord''.
@@ -2274,19 +2274,19 @@ skapats}
 \begin{ST}
 \item \textbf{Projektledaren har tillgång till projektadministrationsfunktionaliteter}
 
-\emph{Starttillstånd:} Projektledaren L är projektledare för projektgruppen G och är inloggad och befinner sig på sidan ``Projektgruppsadministration''. M1, M2 och M3 är projektmedlemmar i G, de har rollerna t1, t2 och t3 respektive. M1, M2 och M3 har tidsrapporteringar i vecka 1 T1, T2 och T3 respektive. T1, T2 och T3 innehåller tidrapportering för 10, 20 och 30 minuter, de är alla signerade.
+\emph{Starttillstånd:} Projektledaren L är projektledare för projektgruppen G och är inloggad och befinner sig på sidan ``Projektgruppsadministration''. M1, M2 och M3 är projektmedlemmar i G, de har rollerna t1, t2 och t3 respektive. M1, M2 och M3 har tidrapporteringar i vecka 1 T1, T2 och T3 respektive. T1, T2 och T3 innehåller tidrapportering för 10, 20 och 30 minuter, de är alla signerade.
 
-\emph{Sluttillstånd:} Projektledaren L är projektledare för projektgruppen G och är inloggad och befinner sig på sidan ``Projektgruppsadministration''. M1, M2 och M3 är projektmedlemmar i G, de har rollerna t1, t2 och t3 respektive. M1, M2 och M3 har tidsrapporteringar i vecka 1 T1, T2 och T3 respektive. T1, T2 och T3 innehåller tidrapportering för 10, 20 och 30 minuter, de är alla signerade.
+\emph{Sluttillstånd:} Projektledaren L är projektledare för projektgruppen G och är inloggad och befinner sig på sidan ``Projektgruppsadministration''. M1, M2 och M3 är projektmedlemmar i G, de har rollerna t1, t2 och t3 respektive. M1, M2 och M3 har tidrapporteringar i vecka 1 T1, T2 och T3 respektive. T1, T2 och T3 innehåller tidrapportering för 10, 20 och 30 minuter, de är alla signerade.
 
 \begin{enumerate}
 \item Klicka på ``Generera statistik'' för G.
 \item Kontrollera att statistik visas för G, sammanlagd tid rapporterad skall vara 60 minuter.
 \item Gå tillbaka till projektgruppsadmininstrationssidan.
-\item Klicka på ``Hantera tidsrapporter''.
-\item Avsignera tidsrapport T1.
-\item Kontrollera att tidsrapporten T1 inte är signerad i databasen.
-\item Signera tidsrapport T1.
-\item Kontrollera att tidsrapporten T1 är signerad i databasen.
+\item Klicka på ``Hantera tidrapporter''.
+\item Avsignera tidrapport T1.
+\item Kontrollera att tidrapporten T1 inte är signerad i databasen.
+\item Signera tidrapport T1.
+\item Kontrollera att tidrapporten T1 är signerad i databasen.
 \item Gå tillbaka till projektgruppsadmininstrationssidan.
 \item Klicka på ``Hantera användare'' för projektet G.
 \item Kontrollera att alla projektmedlemmar visas.
@@ -2391,8 +2391,8 @@ skapats}
 \item A väljer att skapa projektgrupp.
 \item
 \begin{enumerate}
-\item A väljer att skapa en tidsrapportmall.
-\item A väljer en befintlig tidsrapportmall.
+\item A väljer att skapa en tidrapportmall.
+\item A väljer en befintlig tidrapportmall.
 \end{enumerate}
 \item A får nu fylla i ett projektgruppsnamn och tycker därefter på ''ok''.
 \item 
@@ -2449,7 +2449,7 @@ skapats}
 \item 
 \begin{enumerate}
 \item A markerar projektmedlemmar för borttagning och trycker därefter ''ok''. Bekräftelseruta specifierad i krav 6.1.14 i SRS visas och A trycker ''Ja''.
-\item A trycker "nej" istället för ''ja'' och omdirigeras då tillbaka till steg 2.
+\item A trycker ''nej'' istället för ''ja'' och omdirigeras då tillbaka till steg 2.
 \item A får ett felmeddelande om A försöker ta bort en projektledare som är enda projektledare i en grupp med minst en annan medlem. A ombeds utse en ny projektledare och försöka igen, A omdirigeras till steg 2.
 \end{enumerate}
 \item Se till borttagningen genomfördes som den skulle.
@@ -2492,11 +2492,11 @@ skapats}
 \item[] (c) Ingenting
 \item[] (d) 698
 \end{itemize}
-\item För varje fall i steg 3a-d trycker A på "OK"
+\item För varje fall i steg 3a-d trycker A på ''OK''
 \item Kontrollera att ingen tidrapport genereras.
 \item Kontrollera att ett felmeddelande genereras om att veckonumret är otillåtet.
 \item Kontrollera att A skickas tillbaka till sidan där man skriver in veckonummer.
-\item A skriver in 51 och trycer på "OK".
+\item A skriver in 51 och trycer på ''OK''.
 \item Kontrollera att en ny tidrapport genereras med veckonumret 51 samt dagens datum ifyllt.
 \item Användaren skriver in i godtycklig ruta:
 \begin{itemize}
@@ -2504,15 +2504,15 @@ skapats}
 \item[] (b) 123456
 \end{itemize}
 \item Kontrollera att A kan skriva in tidinformationen i 10a-c
-\item För varje fall i steg 10a-c trycker A på "Skicka". 
+\item För varje fall i steg 10a-c trycker A på ''Skicka''. 
 \item Kontrollera att ingen tidrapport sparas och att sidan för specificerad tidrapport laddas om.
 \item A skriver in 30 godtycklig ruta och 150 i en annan.
-\item A trycker på "Skicka".
+\item A trycker på ''Skicka''.
 \item Kontrollera att tidrapporten är skapad och att A får en bekräftelse om att den är sparad i databasen.
 \item Kontrollera att användaren kan se totaltiden från tidrapporten.
 \item A skriver in URL för funktionalitetssidan för tidrapportering.
 \item Kontrollera att A kan se, under fältet I, information om att tidrapporten för vecka 51 var senast sparad samt dagens datum.
-\item A skriver in 51 och trycker på "OK".
+\item A skriver in 51 och trycker på ''OK''.
 \item Kontrollera att en ny tidrapport inte skapas.
 \item Kontrollera att denna rapport hämtas från databasen och visas för A.
 \item Kontrollera att den visade rapporten kan redigeras.
@@ -2529,34 +2529,34 @@ skapats}
 
 \begin{enumerate}
 \item A skriver in URL för funktionalitetssidan för tidrapportering och får tillgång till sidan.
-\item A väljer "Ta bort/redigera tidrapport"
+\item A väljer ''Ta bort/redigera tidrapport''
 \item Kontrollera att A får upp en lista med tidrapporter.
 \item A väljer tidrapporten för vecka 12.
-\item Kontrollera att A kan välja "Redigera" men inte "Ta bort".
-\item A trycker på "Redigera".
+\item Kontrollera att A kan välja ''Redigera'' men inte ''Ta bort''.
+\item A trycker på ''Redigera''.
 \item Kontrollera att tidrapporten visas men kan inte redigeras.
-\item A skriver in URL för "Ta bort/redigera tidrapporter".
+\item A skriver in URL för ''Ta bort/redigera tidrapporter''.
 \item A väljer tidrapporten för vecka 51.
-\item Kontrollera att A kan välja både "Redigera" och "Ta bort".
-\item A trycker på "Redigera".
+\item Kontrollera att A kan välja både ''Redigera'' och ''Ta bort''.
+\item A trycker på ''Redigera''.
 \item Användaren skriver in i godtycklig tom ruta:
 \begin{itemize}
 \item[] (a) Text som inte är ascii
 \item[] (b) 123456
 \end{itemize}
-\item För varje fall i steg 12a-c trycker A på "Skicka". 
+\item För varje fall i steg 12a-c trycker A på ''Skicka''. 
 \item Kontrollera att ingen tidrapport sparas och att sidan för specificerad tidrapport laddas om.
-\item A skriver in 100 i godtycklig tom ruta och trycker på "OK".
+\item A skriver in 100 i godtycklig tom ruta och trycker på ''OK''.
 \item Kontrollera att tidrapporten är uppdaterad.
-\item A skriver in URL för "Ta bort/redigera tidrapporter".
+\item A skriver in URL för ''Ta bort/redigera tidrapporter''.
 \item A väljer vecka 51.
-\item A trycker på "Ta bort".
+\item A trycker på ''Ta bort''.
 \item Kontrollera att en bekräftelseruta visas.
-\item A trycker på "Nej".
+\item A trycker på ''Nej''.
 \item Kontrollera att tidrapporten inte är borttagen och att sidan där tidrapporten listas visas.
 \item \item A väljer vecka 51.
-\item A trycker på "Ta bort".
-\item A trycker på "Ja".
+\item A trycker på ''Ta bort''.
+\item A trycker på ''Ja''.
 \item Kontrollera att tidrapport är borttagen.
 \end{enumerate}
 
@@ -2573,21 +2573,21 @@ skapats}
 \item A loggar in, fel lösenord rätt användarnamn. Misslyckas, sidan laddas om.
 \item A skriver in rätt lösenord, lyckas.
 \item Kontrollera att A kan se projektmedlemsfunktionaliteter på funktionalitetssidan I.
-\item A väljer "Lista medlemar".
+\item A väljer ''Lista medlemar''.
 \item Kontrollera att alla projektmedlemmar i As grupp listas.
 \item A går tillbaka till I.
-\item A väljer "Tidrapportering".
-\item A väljer "Ny tidrapport".
-\item Fyller i tidrapport, trycker på "Skicka", lyckas.
+\item A väljer ''Tidrapportering''.
+\item A väljer ''Ny tidrapport''.
+\item Fyller i tidrapport, trycker på ''Skicka'', lyckas.
 \item A går tillbaka till I.
 \item Steg 7-11 upprepas. I steg 9 får A dock välja om han vill ta bort första tidrapporten, och isåfall fylla in en ny.
-\item A väljer "Redigera tidrapport".
+\item A väljer ''Redigera tidrapport''.
 \item Kontrollera att gamla tidrapporter listas.
 \item Väljer signerad tidrapport, kan inte redigera.
-\item A går tillbaka till "Redigera tidrapport".
+\item A går tillbaka till ''Redigera tidrapport''.
 \item A väljer osignerad tidrapport.
 \item A ändrar/tar bort rapporten.
-\item A väljer "Visa statistik".
+\item A väljer ''Visa statistik''.
 \item Kontrollera att olika sorters statistik listas.
 \item A genererar statistik.
 \item A loggar ut.
@@ -2606,8 +2606,8 @@ skapats}
 \begin{ST}
 \item 
 \textbf{Systemet stödjer stegen i figur 7}
-\emph{Starttillstånd:} Projektledare A inte inloggad. Projektmedlem B har rollen t1, en icke godkänd rapport. 99 tidrapporter för A.\\
-\emph{Sluttillstånd:} Projektledare A inte inloggad. Projektmedlem B har rollen t2, godkänd rapport. 100 tidrapporter för A.\\
+\emph{Starttillstånd:} Projektledare A inte inloggad. Projektmedlem B har rollen t1, en osignerad rapport. 99 tidrapporter för A.\\
+\emph{Sluttillstånd:} Projektledare A inte inloggad. Projektmedlem B har rollen t2, signerad rapport. 100 tidrapporter för A.\\
 
 \begin{enumerate}
 
@@ -2615,28 +2615,28 @@ skapats}
 \item A skriver in fel lösenord, rätt användarnamn. Misslyckas, sidan laddas om.
 \item A skriver in rätt lösenord och rätt användarnamn. Lyckas logga in.
 \item Kontrollera att A har tillgång till projektledarfuntionaliteter.
-\item A väljer "Lista medlemmar".
+\item A väljer ''Lista medlemmar''.
 \item Kontrollera att A ser alla medlemmar och dess roller.
 \item A byter roll på medlem B till t2.
 \item A klickar på menyn.
-\item A väljer "Tidrapportering".
-\item A väljer "Ny tidrapport"
-\item A fyller in ny tidrapport och trycker på "Skicka".
+\item A väljer ''Tidrapportering''.
+\item A väljer ''Ny tidrapport''
+\item A fyller in ny tidrapport och trycker på ''Skicka''.
 \item Kontrollera att tidrapport är skapad.
-\item A skriver URL för "Tidrapportering"
-\item A trycker "Redigera tidrapport"
+\item A skriver URL för ''Tidrapportering''
+\item A trycker ''Redigera tidrapport''
 \item Kontrollera att lista med tidrapporter kan ses.
 \item A försöker redigera/ta bort sin signerade rapport, går int.
 \item A ändrar/tar bort sin osignerade rapport.
-\item A skriver URL "Tidrapportering"
-\item A väljer "Visa statistik"
+\item A skriver URL ''Tidrapportering''
+\item A väljer ''Visa statistik''
 \item Kontrollera att A kan se en lista med statistik
 \item A väljer godtycklig statistik.
-\item A trycker "Generera"
+\item A trycker ''Generera''
 \item Kontrollera att A kan se statistiken.
-\item A skriver URL "Tidrapportering.
-\item A väljer "Visa alla tidrapporter"
-\item A väljer projektmedlem B, sätter rapport till godkänd.
+\item A skriver URL ''Tidrapportering.
+\item A väljer ''Visa alla tidrapporter''
+\item A väljer projektmedlem B, sätter rapport till signerad.
 \item A loggar ut.
 \item Kontrollera att A är utloggad.
 
@@ -2669,7 +2669,7 @@ skapats}
 
 \begin{enumerate}
 \item
-PL väljer "Generera statistik" i menyn
+PL väljer ''Generera statistik'' i menyn
 \item
 PL väljer [typ av statistik]
 \item 
@@ -2683,16 +2683,16 @@ Kontrollera att statistik av typ [typ av statistik] visas.
 \item
 \textbf{Genomför scenario 6.4.2 i SRS som projektledare}
 
-\emph{Starttillstånd:} Projektledare PL inloggad. En icke godkänd tidsrapport finns i systemet.
+\emph{Starttillstånd:} Projektledare PL inloggad. En icke signerad tidrapport finns i systemet.
 
-\emph{Sluttillstånd:} Projekledare PL inloggad. En godkänd tidsrapport finns i systemet.
+\emph{Sluttillstånd:} Projekledare PL inloggad. En signerad tidrapport finns i systemet.
 
 \begin{enumerate}
 
 \item
 PL väljer att lista tidrapporter
 \item
-PL väljer en icke godkänd tidrapport ur listan
+PL väljer en icke signerad tidrapport ur listan
 \item
 Kontrollera att PL ser rapporten
 \item
@@ -2700,7 +2700,7 @@ PL godkänner rapporten
 \item
 Kontrollera att dialogruta visades
 \item
-Kontrollera att rapporten är godkänd
+Kontrollera att rapporten är signerad
 
 \end{enumerate}
 
@@ -2710,22 +2710,22 @@ Kontrollera att rapporten är godkänd
 \item
 \textbf{Genomför scenario 6.4.4 i SRS som projektledare}
 
-\emph{Starttillstånd:} Projektledare L som är projektledare för grupp G är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i G utöver L i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
+\emph{Starttillstånd:} Projektledare L som är projektledare för grupp G är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i G utöver L i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
 
-\emph{Sluttillstånd:} Projektledare L som är projektledare för grupp G är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i G utöver L i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
+\emph{Sluttillstånd:} Projektledare L som är projektledare för grupp G är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i G utöver L i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
 
 \begin{enumerate}
 \item Tryck på ``Sortera alla tidrapporter efter namn, stigande ordning''.
 \item Kontrollera att det är sorterat på ordningen M1, M2 sen M3.
 \item Tryck på ``Sortera alla tidrapporter efter vecka, stigande ordning''.
 \item Kontrollera att det är sorterat på ordningen vecka 1 sen vecka 2.
-\item Tryck på ``Sortera alla tidrapporter efter om rapporten är godkänd eller ej, stigande ordning''.
+\item Tryck på ``Sortera alla tidrapporter efter om rapporten är signerad eller ej, stigande ordning''.
 \item Kontrollera att det är sorterat på ordningen osignerat sen signerat.
 \item Tryck på ``Sortera alla tidrapporter efter namn, fallande ordning''.
 \item Kontrollera att det är sorterat på ordningen M3, M2 sen M1.
 \item Tryck på ``Sortera alla tidrapporter efter vecka, fallande ordning''.
 \item Kontrollera att det är sorterat på ordningen vecka 2 sen vecka 1.
-\item Tryck på ``Sortera alla tidrapporter efter om rapporten är godkänd eller ej, fallande ordning''.
+\item Tryck på ``Sortera alla tidrapporter efter om rapporten är signerad eller ej, fallande ordning''.
 \item Kontrollera att det är sorterat på ordningen signerat sen osignerat.
 \end{enumerate}
 
@@ -2744,7 +2744,7 @@ Kontrollera att rapporten är godkänd
 
 \begin{enumerate}
 \item
-A väljer "Generera statistik" i menyn
+A väljer ''Generera statistik'' i menyn
 \item
 A väljer [typ av statistik]
 \item 
@@ -2758,16 +2758,16 @@ Kontrollera att statistik av typ [typ av statistik] visas.
 \item
 \textbf{Genomför scenario 6.4.2 i SRS som administratör}
 
-\emph{Starttillstånd:} Administratör A inloggad. En icke godkänd tidsrapport finns i systemet.
+\emph{Starttillstånd:} Administratör A inloggad. En osignerad tidrapport finns i systemet.
 
-\emph{Sluttillstånd:} Administratör A inloggad. En godkänd tidsrapport finns i systemet.
+\emph{Sluttillstånd:} Administratör A inloggad. En signerad tidrapport finns i systemet.
 
 \begin{enumerate}
 
 \item
 A väljer att lista tidrapporter
 \item
-A väljer en icke godkänd tidrapport ur listan
+A väljer en icke signerad tidrapport ur listan
 \item
 Kontrollera att A ser rapporten
 \item
@@ -2775,44 +2775,44 @@ A godkänner rapporten
 \item
 Kontrollera att dialogruta visades
 \item
-Kontrollera att rapporten är godkänd
+Kontrollera att rapporten är signerad
 
 \end{enumerate}
 
 \item
 \textbf{Genomför scenario 6.4.3 i SRS som administratör}
 
-\emph{Starttillstånd:} Projektledare A inloggad. Inne på sidan för tidrapportering. Rapport x godkänd.\\
-\emph{Sluttillstånd:} Projektledare A inloggad. Inne på sidan för tidrapportering. Rapport x inte godkänd.\\
+\emph{Starttillstånd:} Projektledare A inloggad. Inne på sidan för tidrapportering. Rapport x signerad.\\
+\emph{Sluttillstånd:} Projektledare A inloggad. Inne på sidan för tidrapportering. Rapport x inte signerad.\\
 
 
 \begin{enumerate}
 \item A listar alla tidrapporter
-\item A väljer rapport x, trycker på "Ej godkänd"
-\item Kontrollera att en dialogruta kommer fram som bekräftar att x inte är godkänd.
-\item Kontrollera att x inte är godkänd.
+\item A väljer rapport x, trycker på ''Ej signerad''
+\item Kontrollera att en dialogruta kommer fram som bekräftar att x inte är signerad.
+\item Kontrollera att x inte är signerad.
 \item Kontrollera att A dirigeras tillbaka till sidan över alla tidrapporter.
 \end{enumerate}
 
 \item
 \textbf{Genomför scenario 6.4.4 i SRS som administratör}
 
-\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i projektgruppen G i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i projektgruppen G i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
 
-\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i projektgruppen G i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
+\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i projektgruppen G i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
 
 \begin{enumerate}
 \item Tryck på ``Sortera alla tidrapporter efter namn, stigande ordning''.
 \item Kontrollera att det är sorterat på ordningen M1, M2 sen M3.
 \item Tryck på ``Sortera alla tidrapporter efter vecka, stigande ordning''.
 \item Kontrollera att det är sorterat på ordningen vecka 1 sen vecka 2.
-\item Tryck på ``Sortera alla tidrapporter efter om rapporten är godkänd eller ej, stigande ordning''.
+\item Tryck på ``Sortera alla tidrapporter efter om rapporten är signerad eller ej, stigande ordning''.
 \item Kontrollera att det är sorterat på ordningen osignerat sen signerat.
 \item Tryck på ``Sortera alla tidrapporter efter namn, fallande ordning''.
 \item Kontrollera att det är sorterat på ordningen M3, M2 sen M1.
 \item Tryck på ``Sortera alla tidrapporter efter vecka, fallande ordning''.
 \item Kontrollera att det är sorterat på ordningen vecka 2 sen vecka 1.
-\item Tryck på ``Sortera alla tidrapporter efter om rapporten är godkänd eller ej, fallande ordning''.
+\item Tryck på ``Sortera alla tidrapporter efter om rapporten är signerad eller ej, fallande ordning''.
 \item Kontrollera att det är sorterat på ordningen signerat sen osignerat.
 \end{enumerate}
 
@@ -2841,7 +2841,7 @@ Kontrollera att rapporten är godkänd
 \item Ad skapar projektgrupp.
 \item Ad väljer tidrapportmall.
 \item Ad väljer användare till projektgruppen från en lista.
-\item Ad väljer projektledare, trycker på "Skapa".
+\item Ad väljer projektledare, trycker på ''Skapa''.
 \item Kontrollera att Ad skickas tillbaka till administrationsvyn.
 \item Steg 11-20 upprepas, men i steg 17 skapar Ad en ny tidrapportmall.
 \item Ad väljer funk. Redigera projektmedlemmar.
@@ -2855,7 +2855,7 @@ Kontrollera att rapporten är godkänd
 \item Ad försöker ta bort tidrapportmall som används, misslyckas.
 \item Ad tar bort tidrapportmall som inte används, lyckas.
 \item Ad väljer administrationsvyn.
-\item Ad trycker på "Logga ut".
+\item Ad trycker på ''Logga ut''.
 \item Kontrollera att Ad är utloggad.
 \end{enumerate}
 
