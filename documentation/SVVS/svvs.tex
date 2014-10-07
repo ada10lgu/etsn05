@@ -274,7 +274,7 @@ Alla steg i flödeschemat i figur 4 i SRS stödjs \req[6.1.13]
 
 \begin{FT}
 \item 
-\emph{Manuell miljö:} Logga in med en användare på en terminal och försök logga in på en annan enhet med samma användare, inloggningen på den andra enheten skall då misslyckas och ett felmeddelande ska visas. \req[6.2.1, 6.2.2]
+\emph{Manuell miljö:} Logga in med en användare på en terminal och försök logga in på en annan enhet med samma användare, inloggningen kommer då inte genomföras och ett felmeddelande ska visas. \req[6.2.1, 6.2.2]
 
 \item
 Systemet håller login status i en server session \req[6.2.4]
@@ -362,9 +362,9 @@ Användaren skall specificera vilken projektgrupp den vill logga in på \req[6.2
 \item
 Användare lyckas logga in på de projektgrupp(er) som denne är medlem i \req[6.2.20]
 \item
-Användare försöker logga in på en projektgrupp som denne inte är medlem i \req[6.2.27]
+Användare försöker logga in på en projektgrupp som denne inte är medlem i \req[6.2.20]
 \item
-Administratören lyckas logga in på samtliga projektgrupper \req[6.2.27]
+Administratören lyckas logga in på samtliga projektgrupper \req[6.2.0]
 \end{FT}
 
 %++++++++++++++++++++++++++% 
@@ -814,8 +814,6 @@ Administratören försöker lägga till sig själv i en projektgrupp \req[6.1.11
 %BÖRJAN på ST:autentisering%
 %++++++++++++++++++++++++++%
 \subsection{Autentisering}
-
-\invisiblesubsubsection{Övergripande}
 
 \subsubsection{Användare}
 

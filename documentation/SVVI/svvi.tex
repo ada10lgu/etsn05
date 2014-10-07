@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 0.6 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 0.7 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -59,6 +59,7 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.4 & 1 oktober 2014 & TG & Funktionstester och systemtester för tidrapportering tillagt\\
 0.5 & 2 oktober 2014 & TG & Funktionstester för administration tillagt\\
 0.6 & 2 oktober 2014 & TG & Ändringar efter intern granskning\\
+0.7 & 7 oktober 2014 & TG & Ändringar efter informell granskning och SVVS v0.14\\
 
 \end{tabular}
 \section{1 Inledning}       
@@ -73,7 +74,7 @@ Detta dokument innehåller detaljerade testinstruktioner som ska genomföras und
 
 
 \section{3 Testinstruktioner}
-Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i formen av steg som utförs av testaren eller automatiskt av systemet. När steg börjas med "Kontrollera att" så beskriver de resultat från systemet, och testaren bör kolla att det verkligen har inträffat. Detta kallades i ref. 1 för verklig miljö.
+Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i formen av steg som utförs av testaren eller automatiskt av systemet. När steg börjas med ``Kontrollera att'' så beskriver de resultat från systemet, och testaren bör kontrollera att det verkligen har inträffat. Detta kallades i ref. 1 för verklig miljö.
 
 \section{Funktionstest}
 
@@ -408,12 +409,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \emph{Starttillstånd:} Projektmedlem A inloggad på dator C, A inte inloggad på dator B.
 
-\emph{Sluttillstånd:} A inloggad på B, A inte inloggad på C.
+\emph{Sluttillstånd:} A inloggad på C, A inte inloggad på B.
 
 \begin{enumerate}
 \item A fyller i korrekt inloggningsinformation på dator B, och klickar på logga in.
-\item Kontrollera att A är inloggad på dator B.
-\item Kontrollera att A inte är inloggad på dator C.
+\item Kontrollera att A inte är inloggad på dator B.
+\item Kontrollera att A är inloggad på dator C.
+\item Kontrollera att felmeddelande visas
 \end{enumerate}
 
 
@@ -455,7 +457,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} A inloggad, B finns inte i systemet.
 
 \begin{enumerate}
-\item A fyller i användarnamnet på B och försöker ge B användarnamnet "Tord", 4 tecken.
+\item A fyller i användarnamnet på B och försöker ge B användarnamnet ''Tord'', 4 tecken.
 \item Kontrollera att B inte skapas i systemet.
 \item Kontrollera att ett felmeddelande visar varför B inte skapades.
 \end{enumerate}
@@ -468,7 +470,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} A inloggad, B finns inte i systemet
 
 \begin{enumerate}
-\item A fyller i användarnamnet på B och försöker ge B användarnamnet "Alexandersson", ett användarnamn längre än 11 tecken.
+\item A fyller i användarnamnet på B och försöker ge B användarnamnet ''Alexandersson'', ett användarnamn längre än 11 tecken.
 \item Kontrollera att B inte skapas i systemet.
 \item Kontrollera att ett felmeddelande visar varför B inte skapades.
 \end{enumerate}
@@ -492,28 +494,28 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \end{enumerate}
 
 \item
-\textbf{Försök skapa/byta lösenord till ett med fler eller färre tecken än 6.}
+\textbf{Försök byta lösenord till ett med fler eller färre tecken än 6.}
 
-\emph{Starttillstånd:} Användaren A inloggad, sidan för byta/skapa lösenord visas.
+\emph{Starttillstånd:} Användaren A inloggad, sidan för byta lösenord visas.
 
 \emph{Sluttillstånd:} A inloggad, lösenordet inte förändrat, felmeddelande visas.
 
 \begin{enumerate}
-\item A fyller i ett nytt lösenord med de tillåtna tecknen (ascii 97-122) som inte är 6 tecken långt.
-\item Kontrollera att A's lösenord inte förändrats.
+\item A fyller i ett nytt lösenord ''abcdefghijkl'' eller ''abcdf''.
+\item Kontrollera att A:s lösenord inte förändrats.
 \item Kontrollera att ett felmeddelande visar att lösenordet inte ändrats och varför.
 \end{enumerate}
 
 \item
-\textbf{Försök skapa/byta lösenord till ett med otillåtna tecken.}
+\textbf{Försök byta lösenord till ett med otillåtna tecken.}
 
-\emph{Starttillstånd:} Användaren A inloggad, sidan för byta/skapa lösenord visas.
+\emph{Starttillstånd:} Användaren A inloggad, sidan för byta lösenord visas.
 
 \emph{Sluttillstånd:} A inloggad, lösenordet inte förändrat, felmeddelande visas.
 
 \begin{enumerate}
-\item A fyller i ett nytt lösenord med minst ett tecken från ascii utanför numren 97-122, lösenordet är 6 tecken långt.
-\item Kontrollera att A's lösenord inte förändrats.
+\item A fyller i ett nytt lösenord ''?aaaaa''.
+\item Kontrollera att A:s lösenord inte förändrats.
 \item Kontrollera att ett felmeddelande visar att lösenordet inte ändrats och varför.
 \end{enumerate}
 
@@ -522,7 +524,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \subsubsection{Användare}
 \begin{FT}
 \item
-\textbf{Kontrollera att utloggningsfunktionallitet finns på alla inloggade sidor och fungerar.}
+\textbf{Kontrollera att utloggningsfunktionalitet finns på alla inloggade sidor och fungerar.}
 
 \emph{Starttillstånd:} Användaren A inloggad.
 
@@ -580,17 +582,6 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Kontrollera att ett felmeddelande visas.
 \end{enumerate}
 
-\item
-\textbf{Administratören kan ta bort en tidsrapportmall som inte används av en projektgrupp.}
-
-\emph{Starttillstånd:} Administratören A inloggad, sidan "Ta bort tidrapportmallar" visas, tidsrapportmall B används ej.
-
-\emph{Sluttillstånd:} B finns ej i systemet.
-
-\begin{enumerate}
-\item A tar bort B.
-\item Kontrollera att B är borttagen.
-\end{enumerate}
 \end{FT}
 
 \subsubsection{Data}
@@ -620,7 +611,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} A inte inloggad, inloggningssidan visas.
 
 \begin{enumerate}
-\item A kommer åt systemet. Skriver in URL till funktionalitet "Ändra lösenord".
+\item Skriver in URL till funktionalitet "Ändra lösenord".
 \item Kontrollera att A omdirigeras till inloggningssidan.
 \item Kontrollera att A inte kommer vidare utan att logga in.
 \end{enumerate}
@@ -667,7 +658,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{En användare försöker logga in på en projektgrupp som denne inte är medlem i.}
 
-\emph{Starttillstånd:} Användaren A inte inloggad, A tillhör inte projektgrupp B.
+\emph{Starttillstånd:} Användaren A inte inloggad, A är medlem i minst en projektgrupp, A tillhör inte projektgrupp B.
 
 \emph{Sluttillstånd:} A är inte inloggad.
 
@@ -687,7 +678,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A går till inloggningssidan.
-\item A väljer någon projektgrupp som A inte är medlem i och loggar in.
+\item A väljer någon projektgrupp och loggar in.
 \item Kontrollera att A är inloggad.
 \end{enumerate}
 \end{FT}
@@ -2340,13 +2331,13 @@ skapats}
 \item
 \textbf{Användare kan logga in.}
 
-\emph{Starttillstånd:} Användaren A inte inloggad.
+\emph{Starttillstånd:} Användaren A är inte inloggad.
 
 \emph{Sluttillstånd:} A är inloggad.
 
 \begin{enumerate}
 \item A når systemet.
-\item A bes ange användarnamn och lösenord på inloggningssidan.
+\item A ombedes ange användarnamn och lösenord på inloggningssidan.
 \item A anger korrekt användarnamn och lösenord.
 \item Kontrollera att A är inloggad
 \item Kontrollera att A vidarebefodras till en sida där funktionaliteten för en inloggad användare finns tillgänglig.
@@ -2370,13 +2361,13 @@ skapats}
 \item
 \textbf{Användare misslyckas med inloggning.}
 
-\emph{Starttillstånd:} Användaren A inte inloggad.
+\emph{Starttillstånd:} Användaren A är inte inloggad.
 
 \emph{Sluttillstånd:} A är inte inloggad.
 
 \begin{enumerate}
 \item A når systemet.
-\item A bes ange användarnamn och lösenord på inloggningssidan.
+\item A ombedes ange användarnamn och lösenord på inloggningssidan.
 \item A anger användarnamn och lösenord som inte finns i systemet.
 \item Kontrollera att A inte är inloggad
 \item Kontrollera att ett felmeddelande visas
@@ -2403,15 +2394,15 @@ skapats}
 \item A väljer att skapa en tidsrapportmall.
 \item A väljer en befintlig tidsrapportmall.
 \end{enumerate}
-\item A får nu fylla i ett projektgruppsnamn och tycker därefter på "ok".
+\item A får nu fylla i ett projektgruppsnamn och tycker därefter på ''ok''.
 \item 
 \begin{enumerate}
 \item A får nu en lista över alla användare i systemet, första användare som läggs till tilldelas automatiskt projektledarrollen.
-\item Projektgruppsnamnet existerar redan, A informoras och skickas tillbaka till steg 3.
+\item Projektgruppsnamnet existerar redan, A informeras och skickas tillbaka till steg 3.
 \item A får ett felmeddelande om inga fler användare existerar, sedan omdirigeras A till huvudsidan.
 \item A får ett felmeddelande om inga fler projektgrupper kan skapas eftersom maxantalet redan är uppnått.
 \end{enumerate}
-\item A kan därefter lägga till fler projektgruppsmedlemmar. A kan dessutom lägga till ytterliggare en projektledare. Sedan klickar A på "ok".
+\item A kan därefter lägga till fler projektgruppsmedlemmar. A kan dessutom lägga till ytterliggare en projektledare. Sedan klickar A på ''ok''.
 \item Kontrollera att en projektgrupp skapats
 \item Kontrollera att A omdirigeras till en sida som meddelar att en projektgrupp skapats.
 \end{enumerate}
@@ -2426,7 +2417,7 @@ skapats}
 \begin{enumerate}
 \item 
 \begin{enumerate}
-\item A väljer att "redigera projektmedlemmar".
+\item A väljer att ''redigera projektmedlemmar''.
 \item A får ett felmeddelande som sägar att inga projektmedlemmar/projektgrupper finns, A omdirigeras tillbaka till huvudsidan.
 \end{enumerate}
 \item A får upp en lista med samtliga projektgrupper och projektmedlemmar och en lista med samtliga användare i systemet som inte är projektmedlemmar överhuvudtaget.
@@ -2434,10 +2425,10 @@ skapats}
 \item A kan nu flytta över projektmedlemmar och icke-projektmedlemmar mellan olika projektgrupper. A kan även ange vilken roll projektmedlemmen ska ha.
 \item 
 \begin{enumerate}
-\item A bekräftar förändringarna med att klicka på "ok". A dirigeras då till en sida med den uppdaterade informationen och en bekräftelse på förändringen.
+\item A bekräftar förändringarna med att klicka på ''ok''. A dirigeras då till en sida med den uppdaterade informationen och en bekräftelse på förändringen.
 \item A får ett felmeddelande då den försökt flytta en projektledare som är ensam projektledare i sin projektgrupp. A bes då tillsätta en ny projektledare i gruppen innan den gamla flyttas. A omdirigeras till steg 3.
 \item A får ett felmeddelande ifall den försöker lägga till fler projektmedlemmar i en grupp som har max antal projektmedlemmar redan. A omdirigeras till steg 3.
-\item A får ett felmeddelande ifall A försöker tilldela en projektmedlem rollen som projektledare när max antalet projektledare för den projektgruppen redan är uppnått. A omdirigeras till steg 3.
+\item A får ett felmeddelande ifall A försöker tilldela en projektmedlem rollen som projektledare när max antalet projektledare för den projektgruppen redan är uppnått. A omdirigeras till steg 3. Analogt uppkommer felmeddelande om någon annan roll tilldelats där det redan finns 6 st gruppmedlemmar med den rollen.
 \end{enumerate}
 \end{enumerate}
 
@@ -2457,69 +2448,12 @@ skapats}
 \item A får upp en lista med samtliga projektgrupper och projektmedlemmar.
 \item 
 \begin{enumerate}
-\item A markerar projektmedlemmar för borttagning och trycker därefter "ok". Bekräftelseruta specifierad i krav 6.1.14 i SRS visas och A trycker "Ja".
-\item A trycker "nej" istället för "ja" och omdirigeras då tillbaka till steg 2.
+\item A markerar projektmedlemmar för borttagning och trycker därefter ''ok''. Bekräftelseruta specifierad i krav 6.1.14 i SRS visas och A trycker ''Ja''.
+\item A trycker "nej" istället för ''ja'' och omdirigeras då tillbaka till steg 2.
 \item A får ett felmeddelande om A försöker ta bort en projektledare som är enda projektledare i en grupp med minst en annan medlem. A ombeds utse en ny projektledare och försöka igen, A omdirigeras till steg 2.
-\item A väljer att ta bort en hel projektgrupp. A får då en fråga om den vill ta bort alla ingående medlemmar också, vid svar "Ja" så visas en bekräftelseruta specifierad i krav 6.1.14 i SRS. Vid svar "Nej" så omdirigeras A till steg 2.
 \end{enumerate}
 \item Se till borttagningen genomfördes som den skulle.
 \item Kontrollera att A dirigeras till en sida med uppdaterad information om projektgrupper och deras medlemmar.
-\end{enumerate}
-
-\item
-\textbf{Administratören skapar tidsrapportmall.}
-
-\emph{Starttillstånd:} Administratören A är inloggad, sidan för att redigera tidsrapportmallar visas.
-
-\emph{Sluttillstånd:} A är inloggad.
-
-\begin{enumerate}
-\item A väljer skapa ny tidsrapportmall.
-\item 
-\begin{enumerate}
-\item A väljer antal aktiviteter (rader) och subaktiviteter (kolumner) som ska finnas. A fyller i önskat namn på tidsrapportmallen och trycker "ok".
-\item A får ett felmeddelande om maxantalet tidsrapportmallar är uppnått.
-\end{enumerate}.
-\item 
-\begin{enumerate}
-\item En tabell genereras med det i steg 2 givna antalet rader och kolumner och visas för A.
-\item A får ett felmeddelande ifall namnet på tidsrapportmallen redn är upptaget. A omdirigeras till steg 2.
-\item A får ett felmeddelande ifall antalet rader eller kolumner inte överensstämmer med det av systemet tillåtna antal. A omdirigeras till steg 3.
-\item A får ett felmeddelande ifall namnet på tidsrapportmallen inte är tillåtet. A omdirigeras till steg 3.
-\end{enumerate}
-\item A fyller i aktivitets och subaktivitetsnamnen, och trycker sedan "ok".
-\item
-\begin{enumerate}
-\item Kontrollera att mallen är skapad och sparad.
-\item A får ett felmeddelande ifall aktivitets och subaktivitetsnamnen inte är tillåtna, A omdirigeras då till steg 4.
-\end{enumerate}
-\item Kontrollera att mallen är ihopkopplad med grundmappen.
-\item Kontrollera att A dirigeras till en sida med den färdiga mallen och en bekräftelse visas.
-
-\end{enumerate}
-
-\item
-\textbf{Administratören tar bort tidsrapportmall.}
-
-\emph{Starttillstånd:} Administratören A är inloggad, sidan för att redigera tidsrapportmallar visas.
-
-\emph{Sluttillstånd:} A är inloggad.
-
-\begin{enumerate}
-\item A väljer ta bort tidsrapportmall.
-\item 
-\begin{enumerate}
-\item En lista med alla tidsrapportmallar visas för A.
-\item Kontrollera att om det inte finns några tidsrapportmallar ska det tydligt synas att det inte finns några.
-\end{enumerate}
-\item A markerar en tidsrapportmall och trycker "ok"
-\item A får se en bekräftelseruta specifierad i krav 6.1.14 i SRS. A trycker "Ja".
-\item
-\begin{enumerate}
-\item Kontrollera att tidsrapportmallen är borttagen.
-\item A får ett felmeddelande ifall tidsrapportmallen används av en projektgrupp och inte kan tas bort.
-\end{enumerate}
-\item Kontrollera att A får en uppdaterad lista över tidsrapportmallarna som finns i systemet.
 \end{enumerate}
 
 \end{ST}
@@ -2964,7 +2898,18 @@ Kontrollera att user51 inte är inloggad.
 \item
 \textbf{Logga in med 50 användare}
 
-Se föregående test.
+\emph{Starttillstånd:} Användare user1-user50 finns registrerade med lösenord pass. Inga användare inloggade.
+
+\emph{Sluttillstånd:} Användare user1-user50 är inloggade.
+
+\begin{enumerate}
+
+\item
+Försök logga in användare user1-user50.
+\item
+Kontrollera att user1-user50 är inloggade.
+\end{enumerate}
+
 
 \item
 \textbf{Svaret på en godtycklig förfrågan från en dator i E-huset kommer i 95\% av fallen tillbaka
