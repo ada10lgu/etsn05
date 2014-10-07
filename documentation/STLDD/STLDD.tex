@@ -40,7 +40,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 
-\fancyhead[R]{Datum: \today | Version: 0.5 | Dokumentnummer: PUSS144404}
+\fancyhead[R]{Datum: \today | Version: 0.6 | Dokumentnummer: PUSS144404}
 
 
 \title{STLDD - Software Top Level Design Document: NewPussSystem}                  	
@@ -62,8 +62,8 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.2 & 2 oktober 2014 & SG & Lagt in klass-diagram, ER-diagram, sekvens-diagram samt lagt in all text. Färdigt för informell granskning.\\
 0.3 & 7 oktober 2014 & SG & Uppdaterat klassbeskrivningar, klassmetoder, klassdiagram, SQL-frågor, sessionsinformation, sekvensdiagram samt figurbeskrivningar.\\
 0.4 & 7 oktober 2014 & SG & Uppdaterat enligt informella granskningsprotokollet.\\
-0.5 & 7 oktober 2014 & SG & Uppdaterat klassdiagram, uppdaterat sekvensdiagram för klassen ProjectGroupAdmin, rättat stavfel och syntaxfel.
-
+0.5 & 7 oktober 2014 & SG & Uppdaterat klassdiagram, uppdaterat sekvensdiagram för klassen ProjectGroupAdmin, rättat stavfel och syntaxfel.\\
+0.6 & 7 oktober 2014 & SG & Uppdaterat klassdiagram, sekvensdiagram och ett litet fel i metodbeskrivningen. 
 
 \end{tabular}
 \newpage
@@ -208,14 +208,14 @@ Prints out a list of the user’s own reports. \\
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
 private void viewReport(int reportID)\\
-Fetches the data for the time report specified by the String parameter and passes the data on to the static method viewReport in the static ReportGenerator class.\\
+Fetches the data for the time report specified by the reportID parameter and passes the data on to the static method viewReport in the static ReportGenerator class.\\
 @param reportID: The id of the time report.
 \end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
 private void printUpdateReport(int reportID)\\
-Fetches the data for the time report specified by the String parameter and passes the data on to the static method updateReport in the static ReportGenerator class.\\
+Fetches the data for the time report specified by the reportID parameter and passes the data on to the static method updateReport in the static ReportGenerator class.\\
 @param reportID: The id of the time report.
 \end{hangparas}
 
