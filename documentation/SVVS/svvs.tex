@@ -229,9 +229,6 @@ I en projektgupp får det finnas max två stycken projektledare och tre typer av
 \begin{FT}
 \item
 Varje projekt har minst en och max två användare som besitter rollen som projektledare  \req[6.1.8]
-
-\item
-\emph{Manuell miljö:} Projektledare har tillgång till projektadministrationsfunktionaliteter \req[6.1.9]
 \end{FT}
 
 \subsubsection{Administratör}
@@ -239,9 +236,6 @@ Varje projekt har minst en och max två användare som besitter rollen som proje
 \begin{FT}
 \item
 Försök lägga till administratören i en projektgrupp \req[6.1.11]
-
-\item
-Alla steg i flödeschemat i figur 4 i SRS stödjs \req[6.1.13]
 \end{FT}
 
 \subsubsection{Data}
@@ -274,7 +268,7 @@ Alla steg i flödeschemat i figur 4 i SRS stödjs \req[6.1.13]
 
 \begin{FT}
 \item 
-\emph{Manuell miljö:} Logga in med en användare på en terminal och försök logga in på en annan enhet med samma användare, inloggningen på den andra enheten skall då misslyckas och ett felmeddelande ska visas. \req[6.2.1, 6.2.2]
+\emph{Manuell miljö:} Logga in med en användare på en terminal och försök logga in på en annan enhet med samma användare, inloggningen kommer då inte genomföras och ett felmeddelande ska visas. \req[6.2.1, 6.2.2]
 
 \item
 Systemet håller login status i en server session \req[6.2.4]
@@ -282,18 +276,18 @@ Systemet håller login status i en server session \req[6.2.4]
 %ändrad 23/9
 \item
 Administratören försöker skapa en användare med användarnamn som är 4 tecken eller mindre långt. Användandes endast tecken definierade i ascii nummer (48-57, 65-90, 97-122)
-\req[6.2.5, 6.4.30]
+\req[6.2.5, 6.4.30, 6.1.4]
 
 %ändrad 23/9
 \item
 Administratören försöker skapa en användare med användarnamn som är 11 tecken eller längre långt.
 Användandes endast tecken definierade i ascii nummer (48-57, 65-90, 97-122)
-\req[6.2.5, 6.4.30]
+\req[6.2.5, 6.4.30, 6.1.4]
 
 %ändrad 23/9
 \item
 Administratören försöker skapa en användare med användarnamn innehåller ett eller flera tecken utanför de tecken definierade i ascii nummer (48-57, 65-90, 97-122)
-\req[6.2.5, 6.4.30]
+\req[6.2.5, 6.4.30, 6.1.4]
 
 %ändrad 23/9
 \item
@@ -302,11 +296,11 @@ Administratören försöker skapa en ny användare med ett användarnamn som red
 
 \item
 \emph{Manuell miljö:} Försök skapa/byta till ett lösenord som innehåller fler eller färre än 6 tecken. Lösenordet består av tecken definierade i ascii nummer (97-122).
-\req[6.2.7]
+\req[6.2.7, 6.1.4]
 
 \item
 \emph{Manuell miljö:} Försök skapa/byta till ett lösenord med tecken som innehåller ett eller flera tecken som är utanför de definierade i ascii nummer (97-122).
-\req[6.2.7]
+\req[6.2.7, 6.1.4]
 \end{FT}
 
 %Användare
@@ -362,9 +356,9 @@ Användaren skall specificera vilken projektgrupp den vill logga in på \req[6.2
 \item
 Användare lyckas logga in på de projektgrupp(er) som denne är medlem i \req[6.2.20]
 \item
-Användare försöker logga in på en projektgrupp som denne inte är medlem i \req[6.2.27]
+Användare försöker logga in på en projektgrupp som denne inte är medlem i \req[6.2.20]
 \item
-Administratören lyckas logga in på samtliga projektgrupper \req[6.2.27]
+Administratören lyckas logga in på samtliga projektgrupper \req[6.2.0]
 \end{FT}
 
 %++++++++++++++++++++++++++% 
@@ -675,9 +669,9 @@ En projektledare försöker navigera till administrationssidan men blir dirigera
 
 \item Administratören försöker skapa en användare med ett upptaget användarnamn, ett felmeddelande visas \req[6.4.27]
 
-\item Administratören försöker skapa en användare med ett ogiltigt användarnamn (giltigt användarnamn: 5-10 tecken, ascii 48-57, 65-90 och 97-122) \req[6.4.28]
+\item Administratören försöker skapa en användare med ett ogiltigt användarnamn (giltigt användarnamn: 5-10 tecken, ascii 48-57, 65-90 och 97-122) \req[6.4.28, 6.1.4]
 
-\item Administratören skapar en användare med ett giltigt användarnamn (giltigt användarnamn: 5-10 tecken, ascii 48-57, 65-90 och 97-122) \req[6.4.28]
+\item Administratören skapar en användare med ett giltigt användarnamn (giltigt användarnamn: 5-10 tecken, ascii 48-57, 65-90 och 97-122) \req[6.4.28, 6.1.4]
 
 %\item Administratören skapar en tidrapportmall \req[6.4.28]
 
@@ -689,10 +683,10 @@ En projektledare försöker navigera till administrationssidan men blir dirigera
 \begin{FT}
 
 %ändrad 23/9
-\item Administratören försöker skapa en projektgrupp med ett ogiltigt projektgruppsnamn (giltigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) \req[6.4.33]
+\item Administratören försöker skapa en projektgrupp med ett ogiltigt projektgruppsnamn (giltigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) \req[6.4.33, 6.1.4]
 
 %ändrad 23/9
-\item Administratören försöker skapa en projektgrupp med ett giltigt projektgruppsnamn (giltigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) \req[6.4.33]
+\item Administratören försöker skapa en projektgrupp med ett giltigt projektgruppsnamn (giltigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) \req[6.4.33, 6.1.4]
 
 %ändrad 23/9
 \item Administratören försöker skapa en projektgrupp med ett upptaget projektgruppsnamn \req[6.4.34]
@@ -791,15 +785,16 @@ Genomför flödeschemat i figur 2 i SRS \req[6.1.7]
 \begin{ST}
 
 \item
-Flödesschemat i figur 3 i SRS (ref 1) stödjs av systemet \req[6.1.10]
+Flödesschemat i figur 3 i SRS (ref 1) stödjs av systemet \req[6.1.10, 6.1.9]
 
 \end{ST}
 
 \subsubsection{Administratör}
 
 \begin{ST}
+
 \item
-Administratören försöker lägga till sig själv i en projektgrupp \req[6.1.11]
+Alla steg i flödeschemat i figur 4 i SRS stödjs \req[6.1.13, 6.4.21]
 
 \end{ST}
 
@@ -814,8 +809,6 @@ Administratören försöker lägga till sig själv i en projektgrupp \req[6.1.11
 %BÖRJAN på ST:autentisering%
 %++++++++++++++++++++++++++%
 \subsection{Autentisering}
-
-\invisiblesubsubsection{Övergripande}
 
 \subsubsection{Användare}
 
@@ -930,7 +923,7 @@ Systemet stödjer stegen i figur 7 \req[6.3.22]
 
 \item Genomför scenario 6.4.4 som administratör istället för projektledare (Ref 1: itta en rapport genom att sortera dem) \req[6.4.19]
 
-\item Genomför sekvenserna \req[6.4.21]
+\item \emph{Utgår:} Genomför sekvenserna \req[6.4.21]
 \end{ST}
 
 \invisiblesubsubsection{Data}
