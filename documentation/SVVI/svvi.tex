@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+﻿\documentclass[a4paper]{article}
 \usepackage[pdftex]{graphicx}
 \usepackage{anysize}
 \marginsize{3cm}{3cm}{3cm}{3cm}
@@ -193,29 +193,6 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Kontrollera i databasen att V3 inte har blivit tillagd i G.
 \end{enumerate}
 
-\item \textbf{Projektledaren har tillgång till projektadministrationsfunktionaliteter}
-
-\emph{Starttillstånd:} Projektledaren L är projektledare för projektgruppen G och är inloggad och befinner sig på sidan ``Projektgruppsadministration''. M1, M2 och M3 är projektmedlemmar i G, de har rollerna t1, t2 och t3 respektive. M1, M2 och M3 har tidsrapporteringar i vecka 1 T1, T2 och T3 respektive. T1, T2 och T3 innehåller tidrapportering för 10, 20 och 30 minuter, de är alla signerade.
-
-\emph{Sluttillstånd:} Projektledaren L är projektledare för projektgruppen G och är inloggad och befinner sig på sidan ``Projektgruppsadministration''. M1, M2 och M3 är projektmedlemmar i G, de har rollerna t1, t2 och t3 respektive. M1, M2 och M3 har tidsrapporteringar i vecka 1 T1, T2 och T3 respektive. T1, T2 och T3 innehåller tidrapportering för 10, 20 och 30 minuter, de är alla signerade.
-
-\begin{enumerate}
-\item Klicka på ``Visa statistik'' för G.
-\item Välj ``generera statistik över G genom att summera tidrapporter per användare för samtliga veckor''.
-\item Kontrollera att statistik visas för G, sammanlagd tid rapporterad skall vara 60 minuter.
-\item Gå tillbaka till projektgruppsadministrationssidan.
-\item Klicka på ``Hantera tidsrapporter''.
-\item Avsignera tidsrapport T1.
-\item Kontrollera att tidsrapporten T1 inte är signerad i databasen.
-\item Signera tidsrapport T1.
-\item Kontrollera att tidsrapporten T1 är signerad i databasen.
-\item Gå tillbaka till projektgruppsadmininstrationssidan.
-\item Klicka på ``Hantera användare'' för projektet G.
-\item Kontrollera att alla projektmedlemmar visas.
-\item För projektmedlem M1, klicka på ``Byt roll''.
-\item Välj t2.
-\item Kontrollera i databasen att rollen för M1 i grupp G har ändrats i databasen.
-\end{enumerate}
 \end{FT}
 
 \subsubsection{Administratör}
@@ -231,102 +208,6 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Välj ``admin'' i listan över användare och rollen t1 i listan över roller, klicka på ``OK''.
 \item Kontrollera att ett felmeddelande visas.
 \item Kontrollera att ``admin'' inte finns tillagd i G.
-\end{enumerate}
-
-%\item \textbf{Administratören har tillgång administratörsfunktionaliteter} 
-%
-%\emph{Starttillstånd:} Administratör Ad är inte inloggad.
-%
-%\emph{Sluttillstånd:} Administratör Ad är inte inloggad.
-%
-%\begin{enumerate}
-%
-%\item Ad skriver URL till inloggningssidan.
-%\item Ad skriver felaktigt lösenord, sidan laddas om.
-%\item Ad skriver rätt lösenord, inloggad.
-%\item Ad väljer administrationsvyn.
-%\item Ad väljer funk. lista användare.
-%\item Kontrollera att Ad kan se alla användare med lösenord.
-%\item Ad lägger till användare, rätt input, lyckas.
-%\item Ad försöker lägga till användare, fel input, misslyckas.
-%\item Ad tar bort användare, lyckas.
-%\item Ad väljer administrationsvyn.
-%\item Ad väljer funk. Projektgrupper.
-%\item Ad lägger till användare i godtycklig projektgrupp, lyckas.
-%\item Ad tar bort användare från projektgrupp, lyckas.
-%\item Ad försöker ta bort projektgrupp, finns projektmedlemmar i, misslyckas.
-%\item Ad tar bort projektgrupp, tom projektgrupp, lyckas.
-%\item Ad skapar projektgrupp.
-%\item Ad väljer tidrapportmall.
-%\item Ad väljer användare till projektgruppen från en lista.
-%\item Ad väljer projektledare, trycker på "Skapa".
-%\item Kontrollera att Ad skickas tillbaka till administrationsvyn.
-%\item Steg 11-20 upprepas, men i steg 17 skapar Ad en ny tidrapportmall.
-%\item Ad väljer funk. Redigera projektmedlemmar.
-%\item Kontrollera att samtliga projektmedlemmar listas.
-%\item Ad utser andra projektledare, lyckas.
-%\item Ad tilldelar roller, lyckas.
-%\item Ad byter grupp på användare, lyckas.
-%\item Ad väljer väljer administrationsvyn.
-%\item Ad väljer funk. Ta bort tidrapportmall.
-%\item Kontrollera att tidrapportmallarna listas.
-%\item Ad försöker ta bort tidrapportmall som används, misslyckas.
-%\item Ad tar bort tidrapportmall som inte används, lyckas.
-%\item Ad väljer administrationsvyn.
-%\item Ad trycker på "Logga ut".
-%\item Kontrollera att Ad är utloggad.
-%
-%\end{enumerate}
-
-\item \textbf{Administratören använder systemet}
-
-\emph{Starttillstånd:} Administratören A är inte inloggad i systemet och befinner sig på inloggningssidan. De vanliga användarna V1 och V2, finns i systemet. Projektmedlem M och projektledare L finns i systemet, de tillhör båda projektgrupp G1.
-
-\emph{Sluttillstånd:} Administratören A är inte inloggad i systemet och befinner sig på inloggningssidan. De vanliga användarna V1 och V2, finns i systemet. Den vanliga användaren M och projektledare L finns i systemet, endast L tillhör projektgrupp G1.
-
-\begin{enumerate}
-\item Skriv in rätt användarnamn för A och fel lösenord.
-\item Klicka på ``Logga in''.
-\item Kontrollera att du fortfarande befinner dig på inloggningssidan.
-\item Skriv in rätt användarnamn för A och rätt lösenord.
-\item Klicka på ``Logga in''.
-\item Klicka på ``Administrationsvyn''.
-\item Klicka på ``Lista användare''.
-\item Kontrollera att en lista med användarnamnen och lösenorden för A, V1 och V2 visas.
-\item Klicka på ``Lägg till användare''.
-\item Skriv in ``Kalle''.
-\item Klicka på ``Lägg till'', användaren som skapas refererars till som V3.
-\item Kontrollera att en lista med användarnamnen och lösenorden för A, V1, V2 och V3 visas.
-\item Klicka på ``Ta bort användare'' brevid V3:s rad i listan.
-\item Klicka på ``OK''.
-\item Kontrollera att en lista med användarnamnen och lösenorden för A, V1 och V2 visas.
-\item Klicka på ``Administrationsvyn''.
-\item Klicka på ``Projektgrupper''.
-\item Klicka på ``Skapa projektgrupp''.
-\item Skriv in projektgruppsnamnet ``grupp123'' och V1s användarnamn som projektledare.
-\item Klicka på ``Skapa projektgrupp'', projektgruppen refereras till som G2.
-\item Klicka på ``Lägg till användare i projektgrupp''.
-\item Välj V2:s användarnamn i listan.
-\item Klicka på ``OK''.
-\item Klicka på ``Projektgrupper''. %Ta bort projektgrupp
-\item Klicka på ``Ta bort användare i projektgrupper''.
-\item Klicka på ``Ta bort'' vid V2.
-\item Klicka på ``Redigera projektmedlemmar''.
-\item Kontrollera att en lista med G1 och G2 visas samt V1, V2, M och L.
-\item Klicka på ``Tilldela roll'' för V1, sätt V1:s roll till t1.
-\item Klicka på ``Utse projektledare''.
-\item Välj V2:s namn i listan.
-\item Klicka på ``OK''.
-\item Klicka på ``Byta grupp på användare''.
-\item Välj M i listan över användare.
-\item Välj G2 i listan över projektgrupper.
-\item Klicka på ``OK''.
-\item Klicka på ``Administrationsvyn''.
-\item Klicka på ``Projektgrupper''.
-\item Klicka på ``Ta bort projektgrupper''.
-\item Välj G2 i listan.
-\item Klicka på ``OK''.
-\item Klicka på ``Logga ut''. 
 \end{enumerate}
 \end{FT}
 
@@ -2152,17 +2033,101 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \subsubsection{Administratör}
 \begin{ST}
-\item \textbf{Administratören får inte vara med i ett projekt}
 
-\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G.
+%\item \textbf{Administratören har tillgång administratörsfunktionaliteter} 
+%
+%\emph{Starttillstånd:} Administratör Ad är inte inloggad.
+%
+%\emph{Sluttillstånd:} Administratör Ad är inte inloggad.
+%
+%\begin{enumerate}
+%
+%\item Ad skriver URL till inloggningssidan.
+%\item Ad skriver felaktigt lösenord, sidan laddas om.
+%\item Ad skriver rätt lösenord, inloggad.
+%\item Ad väljer administrationsvyn.
+%\item Ad väljer funk. lista användare.
+%\item Kontrollera att Ad kan se alla användare med lösenord.
+%\item Ad lägger till användare, rätt input, lyckas.
+%\item Ad försöker lägga till användare, fel input, misslyckas.
+%\item Ad tar bort användare, lyckas.
+%\item Ad väljer administrationsvyn.
+%\item Ad väljer funk. Projektgrupper.
+%\item Ad lägger till användare i godtycklig projektgrupp, lyckas.
+%\item Ad tar bort användare från projektgrupp, lyckas.
+%\item Ad försöker ta bort projektgrupp, finns projektmedlemmar i, misslyckas.
+%\item Ad tar bort projektgrupp, tom projektgrupp, lyckas.
+%\item Ad skapar projektgrupp.
+%\item Ad väljer tidrapportmall.
+%\item Ad väljer användare till projektgruppen från en lista.
+%\item Ad väljer projektledare, trycker på "Skapa".
+%\item Kontrollera att Ad skickas tillbaka till administrationsvyn.
+%\item Steg 11-20 upprepas, men i steg 17 skapar Ad en ny tidrapportmall.
+%\item Ad väljer funk. Redigera projektmedlemmar.
+%\item Kontrollera att samtliga projektmedlemmar listas.
+%\item Ad utser andra projektledare, lyckas.
+%\item Ad tilldelar roller, lyckas.
+%\item Ad byter grupp på användare, lyckas.
+%\item Ad väljer väljer administrationsvyn.
+%\item Ad väljer funk. Ta bort tidrapportmall.
+%\item Kontrollera att tidrapportmallarna listas.
+%\item Ad försöker ta bort tidrapportmall som används, misslyckas.
+%\item Ad tar bort tidrapportmall som inte används, lyckas.
+%\item Ad väljer administrationsvyn.
+%\item Ad trycker på "Logga ut".
+%\item Kontrollera att Ad är utloggad.
+%
+%\end{enumerate}
 
-\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G.
+\item \textbf{Administratören använder systemet}
+
+\emph{Starttillstånd:} Administratören A är inte inloggad i systemet och befinner sig på inloggningssidan. De vanliga användarna V1 och V2, finns i systemet. Projektmedlem M och projektledare L finns i systemet, de tillhör båda projektgrupp G1.
+
+\emph{Sluttillstånd:} Administratören A är inte inloggad i systemet och befinner sig på inloggningssidan. De vanliga användarna V1 och V2, finns i systemet. Den vanliga användaren M och projektledare L finns i systemet, endast L tillhör projektgrupp G1.
 
 \begin{enumerate}
-\item För projektet G klicka på ``Lägg till projektmedlem''.
-\item Skriv in namnet ``admin'' och rollen t1, klicka på ``OK''.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera att ``admin'' inte finns tillagd i G.
+\item Skriv in rätt användarnamn för A och fel lösenord.
+\item Klicka på ``Logga in''.
+\item Kontrollera att du fortfarande befinner dig på inloggningssidan.
+\item Skriv in rätt användarnamn för A och rätt lösenord.
+\item Klicka på ``Logga in''.
+\item Klicka på ``Administrationsvyn''.
+\item Klicka på ``Lista användare''.
+\item Kontrollera att en lista med användarnamnen och lösenorden för A, V1 och V2 visas.
+\item Klicka på ``Lägg till användare''.
+\item Skriv in ``Kalle''.
+\item Klicka på ``Lägg till'', användaren som skapas refererars till som V3.
+\item Kontrollera att en lista med användarnamnen och lösenorden för A, V1, V2 och V3 visas.
+\item Klicka på ``Ta bort användare'' brevid V3:s rad i listan.
+\item Klicka på ``OK''.
+\item Kontrollera att en lista med användarnamnen och lösenorden för A, V1 och V2 visas.
+\item Klicka på ``Administrationsvyn''.
+\item Klicka på ``Projektgrupper''.
+\item Klicka på ``Skapa projektgrupp''.
+\item Skriv in projektgruppsnamnet ``grupp123'' och V1s användarnamn som projektledare.
+\item Klicka på ``Skapa projektgrupp'', projektgruppen refereras till som G2.
+\item Klicka på ``Lägg till användare i projektgrupp''.
+\item Välj V2:s användarnamn i listan.
+\item Klicka på ``OK''.
+\item Klicka på ``Projektgrupper''. %Ta bort projektgrupp
+\item Klicka på ``Ta bort användare i projektgrupper''.
+\item Klicka på ``Ta bort'' vid V2.
+\item Klicka på ``Redigera projektmedlemmar''.
+\item Kontrollera att en lista med G1 och G2 visas samt V1, V2, M och L.
+\item Klicka på ``Tilldela roll'' för V1, sätt V1:s roll till t1.
+\item Klicka på ``Utse projektledare''.
+\item Välj V2:s namn i listan.
+\item Klicka på ``OK''.
+\item Klicka på ``Byta grupp på användare''.
+\item Välj M i listan över användare.
+\item Välj G2 i listan över projektgrupper.
+\item Klicka på ``OK''.
+\item Klicka på ``Administrationsvyn''.
+\item Klicka på ``Projektgrupper''.
+\item Klicka på ``Ta bort projektgrupper''.
+\item Välj G2 i listan.
+\item Klicka på ``OK''.
+\item Klicka på ``Logga ut''. 
 \end{enumerate}
 \end{ST}
 
