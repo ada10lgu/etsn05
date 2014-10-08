@@ -134,7 +134,7 @@ Här följer ord och uttryck som används i rapporten och är till för att öka
 \item [] \textbf{Subaktivitet:} Anger vad för typ av arbete man har arbetat med.
 \item [] \textbf{T1, T2, T3:} Se Projektroll.
 \item [] \textbf{Terminal:} Dator som används för att använda NewPussSystem.
-\item [] \textbf{Tidrapport:} En rapport som innehåller arbetsbelasting för en användare under en fix tidperiod bundet till en specefik projektgrupp.
+\item [] \textbf{Tidrapport:} En rapport som innehåller arbetsbelasting för en användare under en fix tidperiod bundet till en specifik projektgrupp.
 \item [] \textbf{Tidrapporttabell:} En tabell som fylls i vid tidrapportering. 
 \item [] \textbf{Totaltid:} Är den summerade tiden i tidrapportstabellen. 
 \item [] \textbf{Vy:} Varje sida ,för en inloggad användare, består av menyn samt en vy. En vy presenterar innehållet i den funktionaliteten man tryckt på i menyn.
@@ -192,7 +192,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 		\requirement{10}{Systemet skall stödja de steg som tas i figur \ref{image_gen_proboss}.}
 		\subsubsection*{Administratör}
 		\requirement{11}{Administratören kan ej vara medlem i en projektgrupp. }
-		\requirement{12}{Som inloggad administratör skall det vara möjligt att välja administrationsvyn på huvudsidan.}
+		\requirement{12}{Utgått.}
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=\textwidth]{flow_common_admin}
@@ -211,7 +211,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 		\subsubsection*{Övergripande}
 			\requirement{1}{Ett användarkonto kan endast vara inloggat på en terminal åt gången.}			
 			\requirement{2}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan terminal, kommer den nya inloggningen ej att genomföras. Användaren informeras om detta.}
-			\requirement{3}{För varje användare kan loginstatus antingen vara inloggad eller inte inloggad.}
+			\requirement{3}{Utgått.}
 
 			\requirement{4}{Krav 6.1.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{5}{Krav 6.2.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
@@ -219,7 +219,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{7}{Krav 6.2.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{8}{Krav 6.2.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 \subsubsection*{Användare}
-			\requirement{9}{Om en inloggad användare är inaktiv i mer än 20 minuter ska denne automatiskt loggas ut från systemet.}
+			\requirement{9}{Utgått.}
 			\requirement{10}{Krav 6.1.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{11}{Krav 6.1.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{12}{Krav 6.1.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
@@ -266,7 +266,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
 
-	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer tidrapportering.}\\
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer ''Ny tidrapport''.}\\
 	\multicolumn{2}{|p{13cm}|}{2. Ett fält där användaren kan fylla i veckonummer för veckan som skall tidrapporteras 	visas. Under fältet framgår det för vilken vecka senaste rapporten var skapad/reviderad.} \\	
 	\multicolumn{2}{|p{13cm}|}{3. Användaren fyller i veckonummer och trycker ``OK''.} \\
 	\multicolumn{2}{|p{13cm}|}{4. En ny tidrapport genereras och visas med veckonumret från föregående steg samt dagens datum ifyllt.} \\
@@ -332,11 +332,11 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{14}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll för samtliga veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
 			\requirement{15}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet. Med summering menas att samma aktivitet i alla tidrapporter läggs ihop i en ny tidrapport.}
 			\requirement{16}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per vecka. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{17}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare och aktivitet . Med summering menas att samma aktivitet i alla tidrapporter från samma användare läggs ihop i en ny tidrapport.}
+			\requirement{17}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare och aktivitet. Med summering menas att samma aktivitet i alla tidrapporter från samma användare läggs ihop i en ny tidrapport.}
 			\requirement{18}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare för utvalda veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
 			\requirement{19}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll och aktivitet. Med summering menas att samma aktivitet i alla tidrapporter från samma roll läggs ihop i en ny tidrapport.}
 			\requirement{20}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll för utvalda veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{21}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet och vecka Med summering menas att samma aktivitet i alla tidrapporter från samma vecka läggs ihop i en ny tidrapport.}
+			\requirement{21}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet och vecka. Med summering menas att samma aktivitet i alla tidrapporter från samma vecka läggs ihop i en ny tidrapport.}
 
 			\begin{figure}[H]
 				\centering
@@ -351,22 +351,22 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{24}{Namnet på aktivitet och subaktivitet ska bestå av 3-5 tecken respektive 1 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
 			\requirement{25}{Tidinformationen får innehålla 1-5 tecken per aktivitetsruta, ascii (decimal) värden 48-57.}	
 			\requirement{26}{Veckonumret får innehålla 1-2 tecken, ascii (decimal) värden 48-57.}
-			\requirement{27}{Man skall kunna ange 1-20 stycken aktiviteter i en tidrapportsmall.}
-			\requirement{28}{Man skall kunna ange 1-4 stycken subaktiviteter i en tidrapportsmall.}
+			\requirement{27}{Utgått.}
+			\requirement{28}{Utgått.}
 			\requirement{29}{En tidrapport skall innehålla information om användarnamn.}
 			\requirement{30}{En tidrapport skall innehålla information om projektgruppsnamn.}
 			\requirement{31}{En tidrapport skall innehålla information om datum. Datum skrivs på formatet ``dag månad år'', där dag representeras av två siffror (ascii (decimal) värden 48-57), månaden som namnet på månaden (ascii (decimal) värden 97-122) , och år med fyra siffor (ascii (decimal) värden 48-57).}
 			\requirement{32}{En tidrapport skall innehålla information om veckonummer.}
 			\requirement{33}{Det skall tydligt framgå om en tidrapport är signerad eller inte.}
 			\requirement{34}{Nygenererade tidrapporter är alltid osignerade.}
-			\requirement{35}{Tidrapportens grundmall skall alltid innehålla information om användarnamn, projektgruppsnamn, datum och veckonummer. Det skall även tydligt framgå om den är signerad eller ej.}
-			\requirement{36}{Grundmallen för tidrapporterna genereras automatiskt av systemet.}
+			\requirement{35}{Utgått.}
+			\requirement{36}{Utgått.}
 			\requirement{37}{Aktivitetsnamn måste vara unika.}
 			\requirement{38}{Subaktivitetsnamn måste vara unika.}
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=\textwidth]{tidrapportmall}
-				\caption{Grundmallen för tidrapporter. Mörkgråa fält är kodade i systemet, ljusgråa fält genereras av systemet, svarta fält ska vara tomma och vita fält fylls i av användaren.}
+				\caption{Grundmallen för tidrapporter. Mörkgråa fält är kodade i systemet, ljusgråa fält genereras av systemet, svarta fält ska vara tomma och vita fält fylls i av användaren. Text med en * måste stå ordagrant. Text som saknar * får bestämmas godtyckligt.}
 				\label{image_gen_grundmall}
 			\end{figure}
 			\requirement{39}{Tidrapporten (grundmallen) ska se ut enligt figur 8.}
@@ -469,7 +469,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{6}{Scenario 6.4.1 skall stödjas av systemet.}
 			\requirement{7}{Scenario 6.4.2 skall stödjas av systemet.}
 			\requirement{8}{Scenario 6.4.3 skall stödjas av systemet.}
-			\requirement{9}{Projektledaren skall kunna lista projektets alla tidrapporter och sortera dom efter följande attribut i både stigande och fallande ordning; Användare, vecka, och huruvida rapporten är godkänd eller ej.}
+			\requirement{9}{Utgått.}
 
 %--------------SCENARIO
 
@@ -510,12 +510,12 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{13}{Endast administratören skall kunna lägga till eller ta bort projektledare i en projektgrupp.}
 			\requirement{14}{Endast administratören skall kunna ta bort projektgrupper ur systemet.}
 			\requirement{15}{När en projektgrupp tas bort elimineras samtliga tidrapporter och tilldelade roller knutna till projektet. Användarna finns kvar i systemet men blir borttagna från den nämnda projektgruppen.}
-			\requirement{16}{Scenario 6.4.1 skall stödjas av systemet.}
-			\requirement{17}{Scenario 6.4.2 skall stödjas av systemet.}
-			\requirement{18}{Scenario 6.4.3 skall stödjas av systemet.}
-			\requirement{19}{Scenario 6.4.4 skall stödjas av systemet.}
-			\requirement{20}{Scenario 6.4.5 skall stödjas av systemet.}
-			\requirement{21}{Krav 6.3.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{16}{Utgått.}
+			\requirement{17}{Utgått.}
+			\requirement{18}{Utgått.}
+			\requirement{19}{Projektledaren skall kunna lista projektets alla tidrapporter och sortera dem enligt huruvida dessa är godkända eller ej, i stigande och fallande ordning.}
+			\requirement{20}{Scenario 6.4.5 skall stödjas av systemet.}	
+			\requirement{21}{Krav 6.3.1 från Grundsystemet (Referensdokument 1) har utgått och ersatts av krav 6.1.13.}
 			\requirement{22}{Krav 6.3.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{23}{Krav 6.3.6 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{24}{Krav 6.3.7 från Grundsystemet (Referensdokument 1) har utgått och ersatts av krav 6.1.14}
@@ -523,8 +523,9 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{26}{Krav 6.3.9 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{27}{Krav 6.3.10 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{28}{Krav 6.3.11 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{29}{I administrationsvyn skall det vara möjligt att ta bort vilken användare som helst förutom administratören.}
-			\requirement{30}{Om en administratör försöker lägga till en ny användare med ett användarnamn som strider mot krav 6.2.5-6 skall ett felmeddelande visas och användaren skall inte läggas till.}
+			\requirement{29}{Projektledaren skall kunna lista projektets alla tidrapporter och sortera dem enligt projektmedlemsroll i stigande och fallande ordning.}
+			\requirement{30}{Projektledaren skall kunna lista projektets alla tidrapporter och sortera dem enligt vecka i stigande och fallande ordning.}
+
 			
 %--------------SCENARIO
 
@@ -584,7 +585,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
     \multicolumn{2}{|p{13cm}|}{1a. Det existerar inga projektgrupper/projektmedlemmar. Användaren informeras om detta och skickas tillbaka till huvudsidan.}\\
     \multicolumn{2}{|p{13cm}|}{4a. Användaren får felmeddelande då denne försökt att flytta över en projektledare som är den enda i sin projektgrupp. Denne ombedes att tillsätta en ny projektledare i gruppen innan förflyttning kan äga rum. Användaren dirigeras till steg 3.} \\
-    \multicolumn{2}{|p{13cm}|}{4b. Användaren ska informeras om någon av grupperna har max antal användare. Denne ska inte ha möjlighet att lägga till fler projektmedlemmar i den nämnda gruppen. Användaren skickas tillbaka till steg 3.}\\
+    \multicolumn{2}{|p{13cm}|}{4b. Användaren ska informeras om någon av projektgrupperna eller projektrollsgrupperna (projektledare, t1, t2 eller t3) har max antal användare. Denne ska inte ha möjlighet att lägga till fler projektmedlemmar i den nämnda gruppen. Användaren skickas tillbaka till steg 3.}\\
     \multicolumn{2}{|p{13cm}|}{4c. Om användaren tilldelar en projektmedlem en projektledaroll ska användaren informeras om projektmedlemmens projektgrupp redan har max antal projektledare. Användaren ska då inte ha möjlighet att lägga till fler projektledare i den nämnda projektgruppen. Användaren skickas tillbaka till steg 3.}\\
 
     \hline
@@ -642,7 +643,6 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 	\subsection{Underhåll}
 		\requirement{1}{Systemet skall vara väl dokumenterad så det underlättar vidareutvekling av systemet i framtiden.}
 		\requirement{2}{Krav 7.1.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-		\requirement{3}{Förståelse av Java, i nivå med vad som lärs ut i kursen EDA016, samt grundläggande kunskap av SQL skall räcka för att underhålla samt vidareutveckla systemet.}
 
 
 
