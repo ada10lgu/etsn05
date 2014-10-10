@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 0.7 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 0.8 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -60,6 +60,7 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.5 & 2 oktober 2014 & TG & Funktionstester för administration tillagt\\
 0.6 & 2 oktober 2014 & TG & Ändringar efter intern granskning\\
 0.7 & 7 oktober 2014 & TG & Ändringar efter informell granskning och SVVS v0.14\\
+0.8 & 10 oktober 2014 & TG & Ändringar efter formell granskning\\
 
 \end{tabular}
 \section{1 Inledning}       
@@ -175,21 +176,36 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \item \textbf{Projektledarantal och rollantal i en projektgrupp}
 
-\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G, en projektledare P och två vanliga användare V1 och V2 i systemet. P är projektledare i G.
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Redigera projektmedlemmar'' (Figur 5, Ref. 2). Det finns en projektgrupp G, två projektledare P1 och P2 och en projektmedlem M (Alla medlemmar i G).
 
 \emph{Sluttillstånd:} oförändrat
 
 \begin{enumerate}
-\item Försök lägga till V utan att specificera roll.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera i databasen att V inte har blivit tillagd.
-\item Försök lägga till V med rollen t4.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera i databasen att V inte har blivit tillagd.
-\item Försök lägga till V som projektledare i G.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera i databasen att V inte har blivit tillagd i G.
+\item Försök tilldela rollen t4 till M
+\item Kontrollera att ett felmeddelande visas som visar att denna roll inte finns tillgänglig.
+\item Kontrollera i databasen att M inte har fått rollen t4.
+\item Försök tilldela rollen ``Projektledare'' till M.
+\item Kontrollera att ett felmeddelande visas som visar att det inte kan finnas fler projektledare.
+\item Kontrollera i databasen att M inte har fått rollen ``Projektledare''.
 \end{enumerate}
+
+%\item \textbf{Projektledarantal och rollantal i en projektgrupp}
+%
+%\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Redigera projektmedlemmar'' (Figur 5, Ref. 2). Det finns en projektgrupp G, en projektledare P och två projektmedlemmar M1 och M2 i systemet (Alla medlemmar i G).
+%
+%\emph{Sluttillstånd:} oförändrat
+%
+%\begin{enumerate}
+%\item Försök lägga till V utan att specificera roll.
+%\item Kontrollera att ett felmeddelande visas som visar att du måste välja roll.
+%\item Kontrollera i databasen att V inte har blivit tillagd.
+%\item Försök lägga till V med rollen t4.
+%\item Kontrollera att ett felmeddelande visas som visar att denna roll inte finns tillgänglig.
+%\item Kontrollera i databasen att V inte har blivit tillagd.
+%\item Försök lägga till V som projektledare i G.
+%\item Kontrollera att ett felmeddelande visas.
+%\item Kontrollera i databasen att V inte har blivit tillagd i G.
+%\end{enumerate}
 \end{FT}
 
 %\subsubsection{Projektmedlem}
@@ -197,16 +213,17 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{FT}
 \item \textbf{Projektledarantal}
 
-\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns 3 vanliga användare V1, V2 och V3 i systemet.
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns 3 vanliga användare V1, V2 och V3 i systemet.
 
-\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G där V1 och V2 är projektledare och en vanlig användare V3 i systemet.
+\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgrupper''. Det finns en projektgrupp G där V1 och V2 är projektledare och en vanlig användare V3 i systemet.
 
 \begin{enumerate}
-\item Klicka på lägg till projekt och specificera grupp G och användare V1 som projektledare, klicka ``OK''.
-\item Klicka på ``Lägg till projektledare'' för projektet G och specificera V2, klicka ``OK''.
-\item Klicka på ``Lägg till projektledare'' för projektet G och specificera V3, klicka ``OK''.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera i databasen att V3 inte har blivit tillagd i G.
+\item Klicka på ``Skapa projektgrupp'' och specificera grupp G och användare V1 som projektledare.
+\item Lägg till V2 och V3 i projektgruppen. Klicka ``OK''.
+\item Klicka på ``Redigera projektmedlemmar'' för projektet G och ge rollen ``Projektledare'' till V2, klicka ``OK''.
+\item Ge rollen ``Projektledare'' till V3 för projektgruppen G, klicka ``OK''.
+\item Kontrollera att ett felmeddelande visas som visar att det inte kan finnas fler projektledare.
+\item Kontrollera i databasen att V3 inte har fått rollen ``Projektledare''.
 \end{enumerate}
 
 \end{FT}
@@ -215,14 +232,14 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{FT}
 \item \textbf{Administratören får inte vara med i ett projekt}
 
-\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G.
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns en projektgrupp G.
 
-\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G.
+\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgrupper''. Det finns en projektgrupp G.
 
 \begin{enumerate}
 \item För projektet G klicka på ``Lägg till projektmedlem''.
-\item Välj ``admin'' i listan över användare och rollen t1 i listan över roller, klicka på ``OK''.
-\item Kontrollera att ett felmeddelande visas.
+\item Välj ``admin'' i listan över användare, klicka på ``OK''.
+\item Kontrollera att ett felmeddelande visas som visar att Administratören inte får vara med i ett projekt.
 \item Kontrollera att ``admin'' inte finns tillagd i G.
 \end{enumerate}
 \end{FT}
@@ -231,13 +248,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{FT}
 \item \textbf{Förfrågan innan borttagning av projektledare}
 
-\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns två projektledare i systemet, L1 och L2. L1 och L2 är projektledare för projektgrupp G.
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns två projektledare i systemet, L1 och L2. L1 och L2 är projektledare för projektgrupp G.
 
-\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Projektledare L1 finns inte kvar i systemet. Projektledare L2 är projektledare för projektgrupp G.
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper''. Projektledare L1 finns inte kvar i systemet. Projektledare L2 är projektledare för projektgrupp G.
 
 \begin{enumerate}
 \item Klicka på ``Ta bort användare'' för L1.
-\item Kontrollera att en bekräftelseruta visas.
+\item Kontrollera att en bekräftelseruta visas som frågar om du verkligen vill ta bort L1 från G.
 \item Klicka ``Ja''.
 \item Kontrollera att en lista över användare visas där L1 inte är med.
 \item Kontrollera i databasen att L1 inte finns kvar.
@@ -245,13 +262,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \item \textbf{Förfrågan innan borttagning av vanlig användare}
 
-\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en vanlig användare V i systemet.
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns en vanlig användare V i systemet.
 
-\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Vanlig användare L finns inte kvar i systemet.
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper''. Vanlig användare L finns inte kvar i systemet.
 
 \begin{enumerate}
 \item Klicka på ``Ta bort användare'' för V.
-\item Kontrollera att en bekräftelseruta visas.
+\item Kontrollera att en bekräftelseruta visas som frågar om du verkligen vill ta bort L1 från G.
 \item Klicka ``Ja''.
 \item Kontrollera att en lista över användare visas där V inte är med.
 \item Kontrollera i databasen att V inte finns kvar.
@@ -259,13 +276,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \item \textbf{Förfrågan innan ångrad borttagning av projektledare}
 
-\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en projektledare L i systemet.
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns en projektledare L i systemet.
 
-\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en projektledare L i systemet.
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper''. Det finns en projektledare L i systemet.
 
 \begin{enumerate}
 \item Klicka på ``Ta bort användare'' för L.
-\item Kontrollera att en bekräftelseruta visas.
+\item Kontrollera att en bekräftelseruta visas som frågar om du verkligen vill ta bort L1 från G.
 \item Klicka ``Nej''.
 \item Kontrollera att en lista över användare visas där L är med.
 \item Kontrollera i databasen att L finns kvar.
@@ -273,13 +290,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \item \textbf{Förfrågan innan ångrad borttagning av vanlig användare}
 
-\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en vanlig användare V i systemet.
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns en vanlig användare V i systemet.
 
-\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en vanlig användare V i systemet.
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper''. Det finns en vanlig användare V i systemet.
 
 \begin{enumerate}
 \item Klicka på ``Ta bort användare'' för V.
-\item Kontrollera att en bekräftelseruta visas.
+\item Kontrollera att en bekräftelseruta visas som frågar om du verkligen vill ta bort L1 från G.
 \item Klicka ``Nej''.
 \item Kontrollera att en lista över användare visas där V är med.
 \item Kontrollera i databasen att V finns kvar.
