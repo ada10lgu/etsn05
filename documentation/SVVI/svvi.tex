@@ -106,40 +106,55 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{FT}
 \item \textbf{Menytillgång}
 
-\emph{Starttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+\emph{Starttillstånd:} Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
 
-\emph{Sluttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+\emph{Sluttillstånd:} Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
 
 \begin{enumerate}
-\item Genomför steg 2-4 för V, M, L och A. Därefter är testet avslutat.
-\item Logga in i systemet.
-\item För alla sidor i systemet, navigera till sidans webbadress och kontrollera att menyn finns tillgänglig.
+\item Genomför steg 2-4 för M, L och A. Därefter är testet avslutat.
+\item Logga in i systemet med rätt lösenord och rätt användarnamn.
+\item För alla sidor i 3a-c kontrollera att menyn finns tillgänglig.
+\begin{enumerate}
+\item För M, navigera till samtliga sidor specificerade i figur 6 (Ref. 2).
+\item För L, navigera till samtliga sidor specificerade i figur 7 (Ref. 2).
+\item För A, navigera till samtliga sidor specificerade i figur 5 (Ref. 2).
+\end{enumerate}
 \item Logga ut ur systemet.
 \end{enumerate}
 
 \item \textbf{Menyinnehåll}
 
-\emph{Starttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+\emph{Starttillstånd:} Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
 
-\emph{Sluttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+\emph{Sluttillstånd:} Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
 
 \begin{enumerate}
-\item Genomför steg 2-4 för V, M, L och A. Därefter är testet avslutat.
-\item Logga in i systemet.
-\item Kontrollera att menyn dirigerar användaren till de funktionaliteter som användaren besitter.
+\item Genomför steg 2-4 för M, L och A. Därefter är testet avslutat.
+\item Logga in i systemet med rätt lösenord ch rätt användarnamn.
+\item Kontrollera att menyn dirigerar användaren till de funktionaliteter som respektive användare besitter i 3a-c.
+\begin{enumerate}
+\item För M, navigera till samtliga sidor specificerade i figur 6 (Ref. 2) från menyn.
+\item För L, navigera till samtliga sidor specificerade i figur 7 (Ref. 2) från menyn.
+\item För A, navigera till samtliga sidor specificerade i figur 5 (Ref. 2) från menyn.
+\end{enumerate}
 \item Logga ut ur systemet.
 \end{enumerate}
 
 \item \textbf{Menyn är konsekvent}
 
-\emph{Starttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+\emph{Starttillstånd:} Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
 
-\emph{Sluttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+\emph{Sluttillstånd:} Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
 
 \begin{enumerate}
 \item Genomför steg 2-4 för V, M, L och A. Därefter är testet avslutat.
 \item Logga in i systemet.
-\item För alla sidor i systemet, navigera till sidans webbadress och kontrollera att menyn, så som den ska se ut för den specifika användaren, finns tillgänglig.
+\item Kontrollera att innehållet i menyn är samma för varje specifik användare i 3a-c.
+\begin{enumerate}
+\item För M, navigera till samtliga sidor specificerade i figur 6 (Ref. 2).
+\item För L, navigera till samtliga sidor specificerade i figur 7 (Ref. 2).
+\item För A, navigera till samtliga sidor specificerade i figur 5 (Ref. 2).
+\end{enumerate}
 \item Logga ut ur systemet.
 \end{enumerate}
 
@@ -153,7 +168,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Logga in A i systemet.
 \item Klicka på Administration i menyn.
 \item I adressfältet i webbläsaren, lägg till: ``?deletename=\texttt{"}admin\texttt{"}'', och tryck enter.
-\item Kontrollera att ett felmeddelande visas.
+\item Kontrollera att ett felmeddelande visas som tyder på att det är fel input.
 \item Kontrollera i databasen att användaren ``admin'' fortfarande finns kvar.
 \item Logga ut A.
 \end{enumerate}
