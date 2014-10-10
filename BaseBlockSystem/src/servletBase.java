@@ -103,5 +103,13 @@ public class servletBase extends HttpServlet {
                        "<body>";
     	return intro;
     }
+    
+    /**
+     * Constructs the menu, but only returns the options the user is allowed to view. 
+     * @return String with html for the menu.
+     */
+    protected String printMainMenu(){
+    	return "";
+    }
 
 }
