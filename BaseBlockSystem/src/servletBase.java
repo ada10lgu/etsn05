@@ -54,7 +54,7 @@ public class servletBase extends HttpServlet {
 			Statement stmt = conn.createStatement();		    
 		    ResultSet rs = stmt.executeQuery("select * from users"); 
 		    while (rs.next( )) {
-		    	String name = rs.getString("name"); 
+		    	String name = rs.getString("username"); 
 		    	System.out.println("base " + name);
 		    	}
 

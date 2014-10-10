@@ -95,8 +95,8 @@ public class Administration extends servletBase {
     	boolean resultOk = true;
     	try{
 			Statement stmt = conn.createStatement();
-			String statement = "insert into users (name, password) values('" + name + "', '" + 
-			                     createPassword() + "')";
+			String statement = "insert into users (username, password,is_admin,is_project_leader,is_logged_in) values('" + name + "', '" + 
+			                     createPassword() + "',"+0+","+0+","+0+")";
 			System.out.println(statement);
 		    stmt.executeUpdate(statement); 
 		    stmt.close();
@@ -115,19 +115,29 @@ public class Administration extends servletBase {
      * If the user does not exist in the database nothing happens. 
      * @param name name of user to be deleted. 
      */
-    private void deleteUser(String name) {
+    
+    
+    //ta bort alla gruppgrejer
+    //ta bort alla tidsrapporter
+    //ta bort alla logggrejer
+    private boolean deleteUser(int userID) {
     	try{
 			Statement stmt = conn.createStatement();
-			String statement = "delete from users where name='" + name + "'"; 
+			String statement = "delete from users where ID=" + userID; 
 			System.out.println(statement);
-		    stmt.executeUpdate(statement); 
+			int result= stmt.executeUpdate(statement); 
 		    stmt.close();
+		    if(result==1){
+		    	return true;
+		    }
+		  
 			
 		} catch (SQLException ex) {
 		    System.out.println("SQLException: " + ex.getMessage());
 		    System.out.println("SQLState: " + ex.getSQLState());
 		    System.out.println("VendorError: " + ex.getErrorCode());
 		}
+		return false;
     }
 
 
@@ -174,19 +184,21 @@ public class Administration extends servletBase {
 				String deleteName = request.getParameter("deletename");
 				if (deleteName != null) {
 					if (checkNewName(deleteName)) {
-						deleteUser(deleteName);
+					//	if(!deleteUser(deleteName)){
+							out.println("<p>Error: Failed to remove user</p>");
+					//	}
 					}	else
 						out.println("<p>Error: URL wrong</p>");
 				}
 				
 				try {
 					Statement stmt = conn.createStatement();		    
-				    ResultSet rs = stmt.executeQuery("select * from users order by name asc");
+				    ResultSet rs = stmt.executeQuery("select * from users order by username asc");
 				    out.println("<p>Registered users:</p>");
 				    out.println("<table border=" + formElement("1") + ">");
 				    out.println("<tr><td>NAME</td><td>PASSWORD</td><td></td></tr>");
 				    while (rs.next( )) {
-				    	String name = rs.getString("name");
+				    	String name = rs.getString("username");
 				    	String pw = rs.getString("password");
 				    	String deleteURL = "Administration?deletename="+name;
 				    	String deleteCode = "<a href=" + formElement(deleteURL) +
