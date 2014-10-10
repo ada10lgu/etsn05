@@ -43,9 +43,10 @@ public class servletBase extends HttpServlet {
 	 * It also writes all user names on the console for test purpose. 
 	 */
     public servletBase() {
-    	try{
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/base?" +
-            "user=martin&password=");			
+    	try{	
+    		Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404?" +
+            "user=puss1404&password=ptqp44ed");			
 			       
 						
 			// Display the contents of the database in the console. 
@@ -63,6 +64,8 @@ public class servletBase extends HttpServlet {
 		    System.out.println("SQLException: " + ex.getMessage());
 		    System.out.println("SQLState: " + ex.getSQLState());
 		    System.out.println("VendorError: " + ex.getErrorCode());
+		}catch(ClassNotFoundException e){
+			
 		}
     }
     
