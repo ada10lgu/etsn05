@@ -366,20 +366,20 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Administratören försöker skapa en användare med för kort användarnamn}
 
-\emph{Starttillstånd:} Administratören A inloggad, inne på sidan "Lista användare", användare B finns inte i systemet.
+\emph{Starttillstånd:} Administratören A inloggad, inne på sidan ''Lista användare '', användare B finns inte i systemet.
 
 \emph{Sluttillstånd:} A inloggad, B finns inte i systemet.
 
 \begin{enumerate}
 \item A fyller i användarnamnet på B och försöker ge B användarnamnet ''Tord'', 4 tecken.
-\item Kontrollera att B inte skapas i systemet.
+\item Kontrollera att B är inte i systemet.
 \item Kontrollera att ett felmeddelande visar varför B inte skapades.
 \end{enumerate}
 
 \item
 \textbf{Administratören försöker skapa en användare med för långt användarnamn}
 
-\emph{Starttillstånd:} Administratören A inloggad, inne på sidan "Lista användare", användare B finns inte i systemet.
+\emph{Starttillstånd:} Administratören A inloggad, inne på sidan ''Lista användare '', användare B finns inte i systemet.
 
 \emph{Sluttillstånd:} A inloggad, B finns inte i systemet
 
@@ -392,7 +392,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Administratören försöker skapa en användare med användarnamn som innehåller icke tillåtna tecken}
 
-\emph{Starttillstånd:} Administratören A inloggad, inne på sidan "Lista användare", användare B finns inte i systemet.
+\emph{Starttillstånd:} Administratören A inloggad, inne på sidan ''Lista användare '', användare B finns inte i systemet.
 
 \emph{Sluttillstånd:} A inloggad, B finns inte i systemet
 
@@ -405,6 +405,19 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \end{itemize}
 \item Kontrollera att B inte skapas i systemet.
 \item Kontrollera att ett felmeddelande visar varför B inte skapades.
+\end{enumerate}
+
+\item
+\textbf{Administratören försöker skapa en ny användare med ett användarnamn som redan finns registrerat hos systemet}
+
+\emph{Starttillstånd:} Administratören A inloggad, användare B finns registrerat hos systemet.
+
+\emph{Sluttillstånd:} Administratören A kunde inte skapa användare B, Använda B är registrerat redan hos systemet.
+
+\begin{enumerate}
+\item A väljer att skapa B.
+\item A kan inte skapa B.
+\item Kontrollera att det finns bara ett användare B i systemet.
 \end{enumerate}
 
 \item
@@ -473,13 +486,19 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Administratören kan ta bort alla användare utom sig själv ur systemet.}
 
-\emph{Starttillstånd:} Administratören A inloggad, sidan för att ta bort användare visas, användare B finns i systemet.
+\emph{Starttillstånd:} Administratören A inloggad, sidan för att ta bort användare visas, användare B, projektledare C finns i systemet.
 
 \emph{Sluttillstånd:} B finns inte i systemet.
 
 \begin{enumerate}
+\item A väljer att ta bor B.
 \item A tar bort B.
-\item Kontrollera att B har tagits bort.
+\item A väljer att ta bor C.
+\item A tar bort C.
+\item A fösöker att ta bor A.
+\item A kan inte ta bort A.
+\item Kontrollera att B och C har tagits bort.
+\item Kontrollera att A är i systemet.
 
 \end{enumerate}
 
@@ -511,7 +530,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A fyller i sitt användarnamn och lösenord sedan klickar den på logga in.
 \item Kontrollera att A bara loggas in om A finns registrerad i systemet.
 \item Kontrollera att A omdirigerades till den sida som har användarfunktionerna.
-\item Kontrollera att sessionens inloggningsstatus är inloggad.
+\item Kontrollera att A är inloggad.
+\item Kontrollera att A är på sidan som har användarfunktionerna.
 \end{enumerate}
 \end{FT}
 
@@ -525,7 +545,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} A inte inloggad, inloggningssidan visas.
 
 \begin{enumerate}
-\item Skriver in URL till funktionalitet "Ändra lösenord".
+\item Skriver in URL för ädringa av lösenord till funktionalitet "Ändra lösenord".
 \item Kontrollera att A omdirigeras till inloggningssidan.
 \item Kontrollera att A inte kommer vidare utan att logga in.
 \end{enumerate}
@@ -572,13 +592,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{En användare försöker logga in på en projektgrupp som denne inte är medlem i.}
 
-\emph{Starttillstånd:} Användaren A inte inloggad, A är medlem i minst en projektgrupp, A tillhör inte projektgrupp B.
+\emph{Starttillstånd:} Användaren A inte inloggad, A är medlem i projektgrupp B, A tillhör inte projektgrupp C.
 
 \emph{Sluttillstånd:} A är inte inloggad.
 
 \begin{enumerate}
 \item A går till inloggningssidan.
-\item A väljer projektgrupp B och försöker logga in.
+\item A väljer projektgrupp C och försöker logga in.
 \item Kontrollera att A inte är inloggad.
 \item Kontrollera att ett felmeddelande visas.
 \end{enumerate}
@@ -596,6 +616,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Kontrollera att A är inloggad.
 \end{enumerate}
 \end{FT}
+
+
+
+
+
+
+
 
 %++++++++++++++++++++++++++% 
 %SLUTET på FT:autentisering%
@@ -2284,8 +2311,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 %++++++++++++++++++++++++++%
 \subsection{Autentisering}
 
-
-\subsubsection{Användare}
+subsubsection{Användare}
 
 \begin{ST}
 
@@ -2350,11 +2376,6 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A väljer att skapa projektgrupp.
-\item
-\begin{enumerate}
-\item A väljer att skapa en tidsrapportmall.
-\item A väljer en befintlig tidsrapportmall.
-\end{enumerate}
 \item A får nu fylla i ett projektgruppsnamn och tycker därefter på ''ok''.
 \item 
 \begin{enumerate}
@@ -2419,6 +2440,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \end{ST}
 
+
+\end{ST}
+
 %++++++++++++++++++++++++%
 %SLUT på ST:autentisering%
 %++++++++++++++++++++++++%
@@ -2478,8 +2502,6 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Kontrollera att den visade rapporten kan redigeras.
 
 \end{enumerate}
-
-
 
 \item
 \textbf{Genomför scenario 6.3.2 (Ta bort/redigera arbetstimmar i systemet)}
