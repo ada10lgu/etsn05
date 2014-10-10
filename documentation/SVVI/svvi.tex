@@ -1,4 +1,4 @@
-﻿\documentclass[a4paper]{article}
+\documentclass[a4paper]{article}
 \usepackage[pdftex]{graphicx}
 \usepackage{anysize}
 \marginsize{3cm}{3cm}{3cm}{3cm}
@@ -69,6 +69,7 @@ Detta dokument innehåller detaljerade testinstruktioner som ska genomföras und
 \section{2 Referensdokument}
 \begin{enumerate}
 \item System Validation and Verification Specification 1.0
+\item Software Requirements Specification 0.21
 \end{enumerate}
 
 
@@ -590,55 +591,54 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{FT}
 
+\item\textbf{Projektmedlem lyckas skapa en egen osignerad tidrapport}
 
-\item
-%ÄNDRA TILL MANUELL MILJÖ I SVVS%
-\textbf{Projektmedlem lyckas skapa en egen osignerad tidrapport}
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2.
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, ny tidrapport visas.
 
 \begin{enumerate}
 \item A trycker på ``Skapa en ny tidrapport''.
-\item Kontrollera att tidrapportern är skapad.
-\item Kontrollera att tidrapporten inte är signerad när den skapas.
+\item Kontrollera i databasen att tidrapportern är skapad.
+\item Kontrollera i databasen att tidrapporten inte är signerad när den skapas.
 \end{enumerate}
 
-%ÄNDRA MANUELL MILJÖ%
-\item
-\textbf{Projektmedlem lyckas uppdatera sin egna osignerade tidrapport}
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, uppdaterad tidrapport visas.
+\item\textbf{Projektmedlem lyckas uppdatera sin egna osignerade tidrapport}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T med 20 minuter registrerat på möte finns i systemet.
+
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, T har nu 30 minuter registrerat på möte.
 
 \begin{enumerate}
 \item A trycker på ``Uppdatera tidrapport''.
 \item A väljer en av sina egna osignerade tidrapporter.
-\item A skriver in 40 i godtycklig ruta, 20 i en annan.
+\item A skriver in 30 i fältet möte.
 \item A trycker på ``Spara''.
-\item Kontrollera att tidrapporten är uppdaterad.
+\item Kontrollera i databasen att T har 30 minuter på möte.
 \end{enumerate}
 
-%ÄNDRA MANUELL MILJÖ%
-\item
-\textbf{Projektmedlem lyckas ta bort sin egna osignerade tidrapport}
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. En tidrapport finns i systemet.\\
+\item\textbf{Projektmedlem lyckas ta bort sin egna osignerade tidrapport}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En tidrapport finns i systemet.
+
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport raderad.
 
 \begin{enumerate}
 \item A trycker på ``Ta bort tidrapport''.
 \item A väljer en av sina egna osignerade tidrapporter.
 \item A trycker på knappen ``Radera''.
-\item Kontrollera att tidrapporten är raderad.
+\item Kontrollera i databasen att tidrapporten är raderad.
 \end{enumerate}
 
-%MANUELL MILJÖ%
-\item
-\textbf{\emph{Manuell miljö:} Vid tidrapporteringsfunktionaliten kan en projektmedlem endast se sina egna tidrapporter} 
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. A har två sparade tidrapporter.\\
-\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. A har två sparade tidrapporter.
+\item
+\textbf{Vid tidrapporteringsfunktionaliten kan en projektmedlem endast se sina egna tidrapporter} 
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. A har två sparade tidrapporter. Projektmedlem B har två sparade tidrapporter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
 \item A tryck på ``Visa tidrapporter''.
@@ -649,21 +649,22 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektmedlem försöker ta bort en av sina signerade tidrapporter}
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. A har en signerad tidrapport i systemet.\\
-\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport ej raderad.\\
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. A har en signerad tidrapport i systemet.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
 \item A trycker på ``Ta bort tidrapporter''.
 \item A väljer sin signerade tidrapport.
-\item A försöker trycka på knappen "Radera", men tidrapporten raderas inte.
-\item Kontrollera att A får ett felmeddelande.
+\item Kontrollera att funktionaliteten för att radera tidrapporten inte finns.
 \end{enumerate}
 
 \item
 \textbf{Projektmedlem försöker redigera en signerad tidrapport}
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. A har en signerad tidrapport i systemet.\\
-\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, tidrapport ej uppdaterad.
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. A har en signerad tidrapport i systemet.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
 \item A trycker på ``Uppdatera tidrapport''.
@@ -673,38 +674,39 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \end{FT}
 
-%tidrapportering
+
 \subsubsection{Projektledare}
 
 \begin{FT}
 
-%MANUELL MILJÖ%
 \item
-\textbf{\emph{Manuell miljö:} Projektledaren har tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp}
+\textbf{Projektledaren har tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Hantera tidrapporter'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G. M1 har en tidrapportering T1 för möte i vecka 1 på 10 minuter och en T2 i vecka 2 på 20 minuter. M2 har en tidrapportering T3 för möte i vecka 2 på 10 minuter och en T4 i vecka 3 på 20 minuter. 
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A trycker på ``Visa alla tidrapporter''.
-\item Kontrollera att Projektledaren kan se alla sina projektmedlemmars tidrapporter och att en funktionalitet för signering finns.
+\item A trycker på ``generera tidrapporter''.
+\item Kontrollera att A kan se tidrapporterna T1 till T4.
 \end{enumerate}
 
-%ÄNDRA MANUELL MILJÖ%
-\item
-\textbf{Projektledaren lyckas godkänna en ej tidigare godkänd tidrapport från en medlem i sin projektgrupp}
 
-\emph{Starttillstånd:} Projektledare inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport inte godkänd.\\
-\emph{Sluttillstånd:} Projektledare inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport godkänd.
+\item
+\textbf{Projektledaren lyckas godkänna en ej tidigare signerad tidrapport från en medlem i sin projektgrupp}
+
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Hantera tidrapporter'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M är en projektmedlem i G. M har en tidrapportering T för möte i vecka 1 på 10 minuter. T är osignerad.
+
+\emph{Sluttillstånd:} Oförändrat förutom att T är signerat.
 
 \begin{enumerate}
-\item A trycker på ``Godkänn rapporter''.
-\item A väljer en icke godkänd tidrapport genom att trycka på på dess radioknapp.
-\item A trycker på knappen ``Godkänd''.
-\item Kontrollera att tidrapporten är godkänd.
+\item A trycker på ``Signera'' vid T.
+\item T visas.
+\item A trycker på ``Signera''.
+\item Kontrollera i databasen att tidrapporten är signerad.
 \end{enumerate}
 
-%MANUELL MILJÖ%
+
 \item
 \textbf{Projektledaren lyckas ta tillbaka sitt godkännande från en tidigare godkänd tidrapport}
 
