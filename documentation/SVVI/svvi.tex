@@ -1789,451 +1789,371 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \end{FT}
 \subsubsection{Data}
-\textbf{FT 4.4.1 Administratören försöker skapa en projektgrupp med ett ogiltigt projektgruppsnamn (gil- tigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) [SRS krav 6.4.37]}
 
-\emph{Starttillstånd} Administratör A  är inloggat.
+%FT 4.4.1 
+\begin{FT}
+\item
+\textbf{Administratören försöker skapa en projektgrupp med ett ogiltigt projektgruppsnamn (gil- tigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122)}
 
-\emph{Sluttillstånd:} Administratör A kunde inte skapa olitigt projektgruppsnamn B.
+\emph{Starttillstånd} Administratör A  är inloggad. En användare U finns i databasen.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A väljer ny projektgruppsnamn.
-\item A skriver projektgruppsnamn B som har mindre än 5 tecken.
-\item A får bekräftelse att det är ogiltig projektgruppsnamn B.
-\item A väljer ny projektgruppsnamn.
-\item A skriver projektgruppsnamn C som har mer än 10 tecken.
-\item A får bekräftelse att det är ogiltig projektgruppsnamn C.
-\item A väljer ny projektgruppsnamn.
-\item A skriver projektgruppsnamn D som innehåller ogilitg accii tecken.
-\item A får bekräftelse att ogiltig tecken används.
-\item Kontrollera att det finns inte  projektgruppsnamn B,C och D.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A försöker skapa en projektgrupp med namnet ''brie'' och med U som projektledare.
+\item Kontrollera att ett felmeddelande visas som informerar om att namnet var för kort.
+\item A försöker skapa en projektgrupp med namnet ''creamcheese''.
+\item Kontrollera att ett felmeddelande visas som informerar om att namnet var för långt.
+\item A försöker skapa en projektgrupp med namnet ''cheddar?'' med U som projektledare.
+\item Kontrollera att ett felmeddelande visas som informerar om att namnet innehöll ett olämpligt tecken.
+\item Kontrollera att det inte finns några projektgrupper i databasen.
 
 \end{enumerate}
 
-\textbf{FT 4.4.2 Administratören försöker skapa en projektgrupp med ett giltigt projektgruppsnamn(giltigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) [SRS krav 6.4.37]}
+%FT 4.4.2 
+\item
+\textbf{Administratören försöker skapa en projektgrupp med ett giltigt projektgruppsnamn(giltigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122)}
 
-\emph{Starttillstånd} Administratör A  är inloggat.
+\emph{Starttillstånd} Administratör A  är inloggat. En användare U finns i databasen.
 
-\emph{Sluttillstånd:} Administratör A  skapade  giltigt projektgruppsnamn B.
+\emph{Sluttillstånd:} U och två projektgrupper med namnen ''gouda'' och ''mozzarella'' finns i databasen.
 
 \begin{enumerate}
-\item A väljer ny projektgruppsnamn.
-\item A skriver projektgruppsnamn B som har 5 tecken.
-\item A får bekräftelse att projektgruppsnamn B är skapat.
-\item A väljer ny projektgruppsnamn.
-\item A skriver projektgruppsnamn C som har 10 tecken.
-\item A får bekräftelse att projektgruppsnamn C är skapat.
-\item A väljer ny projektgruppsnamn.
-\item A skriver projektgruppsnamn D som innehåller gilitg accii tecken.
-\item A får bekräftelse att projektgruppsnamn D är skapar.
-\item Kontrollera att det finns projektgruppsnamn B,C och D.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A skapar en projektgrupp med namnet ''gouda'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en projektgrupp med namnet ''mozzarella'' med U som projektledare.
+\item Kontrollera att det finns två projektgrupper i databsen och att de har namnen ''gouda'' respektive ''mozzarella''.
 \end{enumerate}
 
-\textbf{FT 4.4.3 Administratören försöker skapa en projektgrupp med ett upptaget projektgruppsnamn [SRS krav 6.4.38]}
+%FT 4.4.3 
+\item
+\textbf{Administratören försöker skapa en projektgrupp med ett upptaget projektgruppsnamn}
 
-\emph{Starttillstånd} Administratör A är inloggat.
+\emph{Starttillstånd} Administratör A är inloggat. En användare U finns i systemet och en projektgrupp med namnet ''getost'' finns i systemet.
 
-\emph{Sluttillstånd:} Administratör A kunde inte skapa  projektgrupp B med ett uppgaget projekgtruppsnamn.
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A försöker skapa  projektgruppsnamn B med uppteget projektgruppsnamn.
-\item A får bekräftelse att projektgruppsnamn B är upptagen.
-\item Kontrollera att det finns inte två projektgruppsnam B.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A försöker skapa en projektgrupp med namnet ''getost'' med U som projektledare.
+\item Kontrollera att ett felmeddelande visas som informerar om att namnet var upptaget.
+\item Kontrollera att det bara finns en projektgrupp i databasen.
 \end{enumerate}
 
-\textbf{FT 4.4.4 Administratören skapar 5 stycken projektgrupper [SRS krav 6.4.39]}
+%FT 4.4.4 
+\item
+\textbf{Administratören skapar 5 stycken projektgrupper}
 
-\emph{Starttillstånd} Administratör A är inloggat. 
+\emph{Starttillstånd} Administratör A är inloggad. En användare U finns i systemet. 
 
-\emph{Sluttillstånd:} Administratör A har skapat 5 sycken projektgrupp.
+\emph{Sluttillstånd:} U och fem stycken projektgrupper finns i systemet.
 
 \begin{enumerate}
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp B.
-\item A får bekräftelse att projektgrupp B är skapat.
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp C
-\item A får bekräftelse att projektgrupp C är skapat.
-\item A väljer ny projekgrupp.
-\item A skapa projektgrupp D.
-\item A får bekräftelse att projektgrupp D är skapat.
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp E.
-\item A får bekräftelse att projektgrupp E är skapat.
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp F.
-\item A får bekräftelse att projektgrupp F är skapat.
-\item Kontrollera att projektgrupp B,C,D,E och F är skapat.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A skapar en ny projektgrupp med namnet ''grupp1'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp2'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp3'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp4'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp5'' med U som projektledare.
+\item Kontrollera att det finns fem stycken projektgrupper i databasen.
 \end{enumerate}
 
-\textbf{FT 4.4.5 Administratören försöker skapa 6 stycken projektgrupper [SRS krav 6.4.39]}
+%FT 4.4.5 
+\item
+\textbf{Administratören försöker skapa 6 stycken projektgrupper}
 
-\emph{Starttillstånd} Administratör A är inloggat.
+\emph{Starttillstånd} Administratör A är inloggat. En användare U finns i systemet.
 
-\emph{Sluttillstånd:} Administratör A kunde inte skapa 6 sycken  projektgrupp.
+\emph{Sluttillstånd:} U och fem projektgrupper finns i systemet.
 
 \begin{enumerate}
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp B.
-\item A får bekräftelse att projektgrupp B är skapat.
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp C.
-\item A får bekräftelse att projektgrupp C är skapat.
-\item A väljer ny projekgrupp.
-\item A skapa projektgrupp D.
-\item A får bekräftelse att projektgrupp D är skapat.
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp E.
-\item A får bekräftelse att projektgrupp E är skapat.
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp F.
-\item A får bekräftelse att projektgrupp F är skapat.
-\item A väljer ny projekgrupp.
-\item A får bekräftelse att projektgrupp G kan inte skapas.
-\item Kontrollera att projektgrupp B,C,D,E,F är skapat och G finns inte.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A skapar en ny projektgrupp med namnet ''grupp1'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp2'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp3'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp4'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp5'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp6'' med U som projektledare.
+\item Kontrollera att ett felmeddelande visas som informerar om att det inte går att lägga till fler projektgrupper.
+\item Kontrollera att det finns exakt fem stycken projektgrupper i databasen.
+\item Kontrollera att det inte finns en projektgrupp med namnet ''grupp6'' i databasen.
 \end{enumerate}
 
-\textbf{FT 4.4.6 Administratören lägger till samma användare i flera projektgrupper [SRS krav 6.4.40]}
+%FT 4.4.6 
+\item
+\textbf{Administratören lägger till samma användare i flera projektgrupper}
 
-\emph{Starttillstånd} Administratör A är inloggat.
+\emph{Starttillstånd} Administratör A är inloggad. Två användare U1, U2 finns i systemet. Två projektgrupper G1,G2 finns i systemet. U1 är projektledare i G1,G2.
 
-\emph{Sluttillstånd:} Administratör A lägger användare B till projektgrupp C, D, E, F och G.
+\emph{Sluttillstånd:} Två användare U1, U2 finns i systemet. Två projektgrupper G1,G2 finns i systemet. U1 är projektledare i G1,G2. U2 är medlem i G1 och G2.
 
 \begin{enumerate}
-\item A väljer ny användare.
-\item A skapar användare B.
-\item A får bekräftelse att B är skapat.
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp C.
-\item A lägger B i projektgrupp C.
-\item A får bekräftelse att B är i projekgrupp C.
-\item A skapar projektgrupp D.
-\item A väljer ny projekgrupp.
-\item A lägger B i projektgrupp D.
-\item A får bekräftelse att B är i projekgrupp D.
-\item A skapar projektgrupp E.
-\item A väljer ny projekgrupp.
-\item A lägger B i projektgrupp E.
-\item A får bekräftelse att B är i projekgrupp E.
-\item A skapar projektgrupp F.
-\item A väljer ny projekgrupp.
-\item A lägger B i projektgrupp F.
-\item A får bekräftelse att B är i projekgrupp F.
-\item A skapar projektgrupp G.
-\item A väljer ny projekgrupp.
-\item A lägger B i projektgrupp G.
-\item A får bekräftelse att B är i projekgrupp G.
-\item Kontrollera att B finns i projektgrupp C,D,E,F och G.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A lägger till U2 i G1.
+\item A lägger till U2 i G2.
+\item Kontrollera att U2 är medlem i G1 och G2 i databasen.
 
 \end{enumerate}
 
-\textbf{FT 4.4.7 Administratören försöker skapa en projektgrupp utan användare [SRS krav 6.4.41]}
+%FT 4.4.7 
+\item
+\textbf{Administratören försöker skapa en projektgrupp utan användare}
 
-\emph{Starttillstånd} Administratör A är inloggat.
+\emph{Starttillstånd} Administratör A är inloggad.
 
-\emph{Sluttillstånd:} Administratör A kunde inte skapa  projektgrupp B utan användare.
-
-\begin{enumerate}
-\item A väljer att skapa projekgrupp.
-\item A skapar tomt B (utan användare).
-\item A får bekräftelse att projektgrupp B är inte skapat.
-\item Kontrollera att projektgrupp B är inte skapat.
-\end{enumerate}
-
-\textbf{FT 4.4.8 Administratören försöker att från en projektgrupp som har en användare, ta bort en användare. [SRS krav 6.4.41]}
-
-\emph{Starttillstånd} Administratör A är inloggat och projektgrupp B har en enda användare (Användare C).
-
-\emph{Sluttillstånd:} Administratör A kunde inte ta bort användare C som är enda i  projektgrupp B.
+\emph{Sluttillstånd:} Oförändrad.
 
 \begin{enumerate}
-\item A väljer projekgrupp B.
-\item A försöker ta bort C som är enda användare i B.
-\item A får bekräftelse att C kan inte tas bort.
-\item Kontrollera att C är inte bortagen.
+
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A försöker skapa en projektgrupp med namnet ''edamer'' utan projektledare.
+\item Kontrollera att ett felmeddelande visas som informerar om att det inte går att skapa en projektgrupp utan projektledare.
+\item Kontrollera att det inte finns några projektgrupper i databasen.
 \end{enumerate}
 
-\textbf{FT 4.4.9 Administratören skapar en projektgrupp med en användare [SRS krav 6.4.41]}
+%FT 4.4.8 
+\item
+\textbf{Administratören försöker att från en projektgrupp som har en (1) användare, ta bort en användare.}
 
-\emph{Starttillstånd} Administratör A är inloggat. 
+\emph{Starttillstånd} Administratör A är inloggad. En projektgrupp G och en användare U finns i systemet. U är medlem i G.
 
-\emph{Sluttillstånd:} Administratör A  skapade  projektgrupp B med en enda användare C.
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A väljer att skapa ny projekgrupp.
-\item A skapar projektgrupp B med en enda användare C.
-\item A får bekräftelse att projektgrupp B är skapat.
-\item Kontrollera att projektgrupp B är skapat.
-\item Kontrollera att projektgrupp B har bara användare C.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A försöker ta bort C ur projektgrupp B
+\item Kontrollera att ett felmeddelande visas som informerar om att det inte går att ta bort U ur G.
+\item Kontrollera att U är medlem i G.
 \end{enumerate}
 
-\textbf{FT 4.4.10 Administratören lägger till användare i en projektgrupp B så att projektgrupp B har 20 an- vändare. [SRS krav 6.4.41]}
+%FT 4.4.9 
+\item
+\textbf{Administratören skapar en projektgrupp med en användare}
 
-\emph{Starttillstånd} Administratör A är inloggat.
+\emph{Starttillstånd} Administratör A är inloggad. En användare U finns i systemet. 
 
-\emph{Sluttillstånd:} Administratör A  skapade  projektgrupp B med en 20  användare.
+\emph{Sluttillstånd:} U och en projektgrupp G finns i systemet.
 
 \begin{enumerate}
-\item A väljer att skapa ny projektgrupp.
-\item A skapar projektgrupp B
-\item A väljer projektgrupp B
-\item A lägger 19 användare i projektgrupp B.
-\item A lägger tjugånde användare i projektgrupp B.
-\item A får bekräftelse att maximal antal användare i projektgrupp B har lagts in.
-\item Kontrollera att alla 20 användare är inlagda i systemet.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A skapar projektgrupp en projektgrupp G med U som projektledare.
+\item Kontrollera att G finns i databasen.
+\item Kontrollera att U är projektledare i G.
 \end{enumerate}
 
-\textbf{FT 4.4.11 Administratören försöker lägga till användare i en projektgrupp så att projektgruppen har 21 användare. [SRS krav 6.4.41]}
+%FT 4.4.10 
+\item
+\textbf{Administratören lägger till en användare i en projektgrupp så att projektgruppen har 20 användare.}
 
-\emph{Starttillstånd} Administratör A är inloggat och har skapat projekgrup B med 20 användare.
+\emph{Starttillstånd} Administratör A är inloggad. Användare U1-u20 finns i systemet. En projektgrupp G finns i systemet. U1-U19 är medlemmar i G.
 
-\emph{Sluttillstånd:} Administratör A  skapade  projektgrupp B med en 20  användare.
+\emph{Sluttillstånd:} Användare U1-U20 finns i systemet. En projektgrupp G finns i systemet. U1-U20 är medlemmar i G.
 
 \begin{enumerate}
-\item A väljer projektgrupp B.
-\item A försöker lägga tjugoförsta användare i projektgrupp B.
-\item A får bekräftelse att tjugoförsta användare kunde inte läggas i projektgrupp B.
-\item Kontrollera att 21-sta användare är inte i systemet.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A lägger till U20 som medlem i G.
+\item Kontrollera att G har 20 medlemmar.
+\item Kontrollera att U20 är medlem i G.
 \end{enumerate}
 
-\textbf{FT 4.4.12 Projektledaren tilldelar tre olika roller till projektmedlemmar i sitt projekt [SRS krav 6.4.42]}
+%FT 4.4.11 
+\item
+\textbf{Administratören försöker lägga till användare i en projektgrupp så att projektgruppen har 21 användare.}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+\emph{Starttillstånd} Administratör A är inloggad. En projektgrupp G och användare U1-U21 finns i systemet. U1-U20 är medlemmar i G.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat användare B roll ”t1”, användare C roll ”t2” och användare D roll ”t3” i sitt projekt E.
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A väljer roll ”t1” till B i projekt E.
-\item A tilldela roll ”t1” till B.
-\item A får bekräftelse att B har roll ”t1”.
-\item A väljer roll ”t2” till C i projekt E.
-\item A tilldela roll ”t2” till C.
-\item A får bekräftelse att C har roll ”t2”.
-\item A väljer roll ”t3” till D i projekt E.
-\item A tilldela roll ”t3” till D.
-\item A får bekräftelse att D har roll ”t3”.
-\item Kontrollera att B har roll ”t1” i projekt E.
-\item Kontrollera att C har roll ”t2” i projekt E.
-\item Kontrollera att D har roll ”t3” i projekt E.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A lägger till U21 som medlem i G.
+\item Kontrollera att ett felmeddelande visas som informerar om att det inte går att lägga till fler medlemmar i G.
+\item Kontrollera att G har 20 medlemmar.
+\item Kontrollera att U21 inte är medlem i G.
 \end{enumerate}
 
-\textbf{FT 4.4.13 Projektledaren försöker tilldela fyra olika roller till projektmedlemmar i sitt projekt [SRS krav 6.4.42]}
+%FT 4.4.12
+\item 
+\textbf{Projektledaren tilldelar tre olika roller till projektmedlemmar i sitt projekt}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+\emph{Starttillstånd} Projektledare A är inloggad. En projektgrupp G och tre användare U1,U2,U3 finns i systemet. U1,U2, U3 är medlemmar i G.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat användare B roll ”t1”, användare C roll ”t2”,användare D roll ”t3” och kunde inte tilldela användare E roll ”t4” i sitt projekt E.
+\emph{Sluttillstånd:} En projektgrupp G och tre användare U1,U2,U3 finns i systemet. U1,U2, U3 är medlemmar i G. U1 har rollen ''t1', U2 har rollen ''t2'' och U3 har rollen ''t3''.
 
 \begin{enumerate}
-\item A väljer roll ”t1” till B i projekt E.
-\item A tilldelar roll ”t1” till B .
-\item A får bekräftelse att  B har roll ”t1”.
-\item A väljer roll ”t2” till C i projekt E.
-\item A tilldela roll ”t2” till C.
-\item A får bekräftelse att C har roll ”t2”.
-\item A väljer roll ”t3” till D i projekt E.
-\item A tilldelar roll ”t3” till D.
-\item A får bekräftelse att D har roll ”t3”
-\item A väljer roll ”t4” till E i projekt E.
-\item A tilldelar roll ”t4” till E i projekt E.
-\item A får bekräftelse att E kan inte tilldelas roll ”t4”.
-\item Kontrollera att B har roll ”t1” i projekt E.
-\item Kontrollera att C har roll ”t2” i projekt E.
-\item Kontrollera att D har roll ”t3” i projekt E.
-\item Kontrollera att E har inte roll ”t4” i projekt E.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t1'' till U1.
+\item A tilldelar rollen ''t2'' till U2.
+\item A tilldelar rollen ''t3'' till U3.
+\item Kontrollera att U1 har rollen ”t1” i G.
+\item Kontrollera att U2 har rollen ”t1” i G.
+\item Kontrollera att U3 har rollen ”t3” i G.
 \end{enumerate}
 
-\textbf{FT 4.4.14 Projektledaren tilldelar 6 projektmedlemmar (B,C,D,E,F,G) i sitt projekt rollen "t1" [SRS krav 6.4.43]}
+%FT 4.4.13 
+\item
+\textbf{Projektledaren försöker tilldela fyra olika roller till projektmedlemmar i sitt projekt}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+\emph{Starttillstånd} Projektledare A är inloggad. En projektgrupp G och tre användare U1,U2,U3,U4 finns i systemet. U1,U2,U3,U4 är medlemmar i G.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar i sitt projekt K  rollen "t1".
+\emph{Sluttillstånd:} En projektgrupp G och tre användare U1,U2,U3,U4 finns i systemet. U1,U2, U3,U4 är medlemmar i G. U1 har rollen ''t1', U2 har rollen ''t2'' och U3 har rollen ''t3''.
 
 \begin{enumerate}
-\item A väljer roll ”t1” till B i projekt K.
-\item A tilldela roll ”t1” till B. 
-\item A får bekräftelse att B har roll ”t1”.
-\item A väljer roll ”t1” till C i projekt K. 
-\item A tilldela roll ”t1” till C. 
-\item A får bekräftelse att C har roll ”t1”.
-\item A väljer roll ”t1” till D i projekt K.
-\item A tilldela roll ”t1” till D.
-\item A får bekräftelse att D har roll ”t1”.
-\item A väljer roll ”t1” till E i projekt K.
-\item A tilldela roll ”t1” till E. 
-\item A får bekräftelse att E har roll ”t1”.
-\item A väljer roll ”t1” till F i projekt K.
-\item A tilldela roll ”t1” till F.
-\item A får bekräftelse att F har roll ”t1”.
-\item A väljer roll ”t1” till G i projekt K.
-\item A tilldela roll ”t1” till G i sin projekt K.
-\item A får bekräftelse att G har roll ”t1”.
-\item Kontrollera att B,C,D,E,F och G har roll ”t1” i projekt K.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t1'' till U1.
+\item A tilldelar rollen ''t2'' till U2.
+\item A tilldelar rollen ''t3'' till U3.
+\item Kontrollera att det inte går att tilldela rollen ''t4'' till U4.
+\item Kontrollera att U1 har rollen ”t1” i G.
+\item Kontrollera att U2 har rollen ”t1” i G.
+\item Kontrollera att U3 har rollen ”t3” i G.
 \end{enumerate}
-\textbf{FT 4.4.15 Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen t2 [SRS krav 6.4.43]}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+%FT 4.4.14 
+\item
+\textbf{Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen ''t1''}
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar(B,C,D,E,F,G) i sitt projekt K rollen "t2".
+\emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U6 och en projektgrupp G finns i systemet. U1-U6 är medlemmar i G.
+
+\emph{Sluttillstånd:} Projektledare A är inloggad. Användare U1-U6 och en projektgrupp G finns i systemet. U1-U6 är medlemmar i G. U1-U6 har rollen ''t1''.
 
 \begin{enumerate}
-\item A väljer roll ”t2” till B i projekt K.
-\item A tilldela roll ”t2” till B . 
-\item A får bekräftelse att B har roll ”t2”.
-\item A väljer roll ”t2” till C i projekt K.
-\item A tilldela roll ”t2” till C. 
-\item A får bekräftelse att C har roll ”t2”.
-\item A väljer roll ”t2” till D i projekt K. 
-\item A tilldela roll ”t2” till D. 
-\item A får bekräftelse att D har roll ”t2”.
-\item A väljer roll ”t2” till E i projekt K. 
-\item A tilldela roll ”t2” till E. 
-\item A får bekräftelse att  E har roll ”t2”.
-\item A väljer roll ”t2” till F i projekt K. 
-\item A tilldela roll ”t2” till F.
-\item A får bekräftelse att  F har roll ”t2”.
-\item A väljer roll ”t2” till G i projekt K. 
-\item A tilldela roll ”t2” till G. 
-\item A får bekräftelse att G har roll ”t2”.
-
-\item Kontrollera att B,C,D,E,F och G har roll ”t2” i projekt K.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t1'' till U1.
+\item A tilldelar rollen ''t1'' till U2.
+\item A tilldelar rollen ''t1'' till U3.
+\item A tilldelar rollen ''t1'' till U4.
+\item A tilldelar rollen ''t1'' till U5.
+\item A tilldelar rollen ''t1'' till U6.
+\item Kontrollera att U1-U6 har rollen ''t1'' i G.
 \end{enumerate}
 
-\textbf{FT 4.4.16 Projektledaren tilldelar 6 projektmedlemmar (B,C,D,E,F,G) i sitt projekt rollen t3 [SRS krav 6.4.43]}
+%FT 4.4.15 
+\item
+\textbf{Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen ''t2''}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+\emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U6 och en projektgrupp G finns i systemet. U1-U6 är medlemmar i G.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar i sitt projekt K rollen "t3".
+\emph{Sluttillstånd:} Projektledare A är inloggad. Användare U1-U6 och en projektgrupp G finns i systemet. U1-U6 är medlemmar i G. U1-U6 har rollen ''t2''.
 
 \begin{enumerate}
-\item A väljer roll ”t3” till B i projekt K. 
-\item A tilldela roll ”t3” till B. 
-\item A får bekräftelse att B har roll ”t3”
-\item A väljer roll ”t3” till C i projekt K.
-\item A tilldela roll ”t3” till C. 
-\item A får bekräftelse att C har roll ”t3”.
-\item A väljer roll ”t3” till D i projekt K. 
-\item A tilldela roll ”t3” till D. 
-\item A får bekräftelse att D har roll ”t3”.
-\item A väljer roll ”t3” till E i projekt K. 
-\item A tilldela roll ”t3” till E. 
-\item A får bekräftelse att E har roll ”t3”.
-\item A väljer roll ”t3” till F i projekt K. 
-\item A tilldela roll ”t3” till F. 
-\item A får bekräftelse att F har roll ”t3”.
-\item A väljer roll ”t3” till G i projekt K.
-\item A tilldela roll ”t3” till G. 
-\item A får bekräftelse att G har roll ”t3”.
-
-\item Kontrollera att B,C,D,E,F och G har roll ”t3” i projekt K.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t2'' till U1.
+\item A tilldelar rollen ''t2'' till U2.
+\item A tilldelar rollen ''t2'' till U3.
+\item A tilldelar rollen ''t2'' till U4.
+\item A tilldelar rollen ''t2'' till U5.
+\item A tilldelar rollen ''t2'' till U6.
+\item Kontrollera att U1-U6 har rollen ''t2'' i G.
 \end{enumerate}
 
-\textbf{FT 4.4.17 Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t1 [SRS krav 6.4.43]}
+%FT 4.4.16 
+\item
+\textbf{Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen ''t3''}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+\emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U6 och en projektgrupp G finns i systemet. U1-U6 är medlemmar i G.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6  projektmedlemmar(B,C,D,E,F,G) i sitt projekt K  rollen "t1" och 7 projektmedlem H kunde inte tilldelas.
+\emph{Sluttillstånd:} Projektledare A är inloggad. Användare U1-U6 och en projektgrupp G finns i systemet. U1-U6 är medlemmar i G. U1-U6 har rollen ''t3''.
 
 \begin{enumerate}
-\item A väljer roll ”t1” till B i projekt K.
-\item A tilldela roll ”t1” till B. 
-\item A får bekräftelse att B har roll ”t1”.
-\item A väljer roll ”t1” till C i projekt K. 
-\item A tilldela roll ”t1” till C. 
-\item A får bekräftelse att C har roll ”t1”.
-\item A väljer roll ”t1” till D i projekt K.
-\item A tilldela roll ”t1” till D. 
-\item A får bekräftelse att D har roll ”t1”.
-\item A väljer roll ”t1” till E i projekt K. 
-\item A tilldela roll ”t1” till E. 
-\item A får bekräftelse att E har roll ”t1”.
-\item A väljer roll ”t1” till F i projekt K.
-\item A tilldela roll ”t1” till F.
-\item A får bekräftelse att F har roll ”t1”.
-\item A väljer roll ”t1” till G i projekt K. 
-\item A tilldela roll ”t1” till G. 
-\item A får bekräftelse att G har roll ”t1”.
-\item A väljer roll ”t1” till H i projekt K. 
-\item A tilldela roll ”t1” till H. 
-\item A får bekräftelse att  H kan inte får roll ”t1”.
-\item Kontrollera att B,C,D,E,F och G har roll ”t1” i projekt K.
-\item Kontrollera att H har inte roll ”t1” i projekt K.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t3'' till U1.
+\item A tilldelar rollen ''t3'' till U2.
+\item A tilldelar rollen ''t3'' till U3.
+\item A tilldelar rollen ''t3'' till U4.
+\item A tilldelar rollen ''t3'' till U5.
+\item A tilldelar rollen ''t3'' till U6.
+\item Kontrollera att U1-U6 har rollen ''t3'' i G.
 \end{enumerate}
 
-\textbf{FT 4.4.18 Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t2[SRS krav 6.4.43]}
+%FT 4.4.17 
+\textbf{Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen ''t1''}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+\emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar (B,C,D,E,F,G) i sitt projekt K  rollen "t2" och 7 projektmedlemm H kunde inte tilldelas.
+\emph{Sluttillstånd:} Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G. U1-U6 har rollen ''t1''.
 
 \begin{enumerate}
-\item A väljer roll ”t2” till B i projekt K. 
-\item A tilldela roll ”t2” till B. 
-\item A får bekräftelse att B har roll ”t2”.
-\item A väljer roll ”t2” till C i projekt K.
-\item A tilldela roll ”t2” till C i. 
-\item A får bekräftelse att C har roll ”t2”.
-\item A väljer roll ”t2” till D i projekt K. 
-\item A tilldela roll ”t2” till D. 
-\item A får bekräftelse att D har roll ”t2”.
-\item A väljer roll ”t2” till E i projekt K. 
-\item A tilldela roll ”t2” till E. 
-\item A får bekräftelse att E har roll ”t2”.
-\item A väljer roll ”t2” till F i projekt K. 
-\item A tilldela roll ”t2” till F. 
-\item A får bekräftelse att F har roll ”t2”.
-\item A väljer roll ”t2” till G i projekt K. 
-\item A tilldela roll ”t2” till G. 
-\item A får bekräftelse att G har roll ”t2”.
-\item A väljer roll ”t2” till H i projekt K. 
-\item A tilldela roll ”t2” till H. 
-\item A får bekräftelse att H kan inte får roll ”t2”.
-\item Kontrollera att B,C,D,E,F och G har roll ”t2” i projekt K.
-\item Kontrollera att H har inte roll ”t2” i projekt K.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t1'' till U1.
+\item A tilldelar rollen ''t1'' till U2.
+\item A tilldelar rollen ''t1'' till U3.
+\item A tilldelar rollen ''t1'' till U4.
+\item A tilldelar rollen ''t1'' till U5.
+\item A tilldelar rollen ''t1'' till U6.
+\item A tilldelar rollen ''t1'' till U7.
+\item Kontrollera att ett felmeddelande visas som informerar om att det inte går att ha fler medlemmar med rollen ''t1''.
+\item Kontrollera att U1-U6 har rollen ''t1'' i G.
+\item Kontrollera att U7 inte har rollen ''t1'' i G.
 \end{enumerate}
 
-\textbf{FT 4.4.19 Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t3 [SRS krav 6.4.43]}
+%FT 4.4.18 
+\textbf{Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen ''t2''}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+\emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar(B,C,D,E,F,G) i sitt projekt K rollen "t3" och sjätte projektmedlem H kunde inte tilldelas rollen "t3" .
+\emph{Sluttillstånd:} Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G. U1-U6 har rollen ''t2''.
 
 \begin{enumerate}
-\item A väljer roll ”t3” till B i projekt K. 
-\item A tilldela roll ”t3” till B. 
-\item A får bekräftelse att B har roll ”t3”.
-\item A väljer roll ”t3” till C i projekt K. 
-\item A tilldela roll ”t3” till C. 
-\item A får bekräftelse att C har roll ”t3”.
-\item A väljer roll ”t3” till D i projekt K. 
-\item A tilldela roll ”t3” till D. 
-\item A får bekräftelse att D har roll ”t3”.
-\item A väljer roll ”t3” till E i projekt K. 
-\item A tilldela roll ”t3” till E. 
-\item A får bekräftelse att E har roll ”t3”.
-\item A väljer roll ”t3” till F i projekt K.
-\item A tilldela roll ”t3” till F.
-\item A får bekräftelse att F har roll ”t3”.
-\item A väljer roll ”t3” till G i projekt K. 
-\item A tilldela roll ”t3” till G. 
-\item A får bekräftelse att G har roll ”t3”
-\item A väljer roll ”t3” till H i projekt K. 
-\item A tilldela roll ”t3” till H. 
-\item A får bekräftelse att H kan inte får roll ”t3”.
-\item Kontrollera att B,C,D,E,F och G har roll ”t3” i projekt K.
-\item Kontrollera att H har inte roll ”t3” i projekt K.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t2'' till U1.
+\item A tilldelar rollen ''t2'' till U2.
+\item A tilldelar rollen ''t2'' till U3.
+\item A tilldelar rollen ''t2'' till U4.
+\item A tilldelar rollen ''t2'' till U5.
+\item A tilldelar rollen ''t2'' till U6.
+\item A tilldelar rollen ''t2'' till U7.
+\item Kontrollera att ett felmeddelande visas som informerar om att det inte går att ha fler medlemmar med rollen ''t2''.
+\item Kontrollera att U1-U6 har rollen ''t2'' i G.
+\item Kontrollera att U7 inte har rollen ''t2'' i G.
 \end{enumerate}
 
-\textbf{FT 4.4.20 Administratören har användarnamnet “admin” och lösenordet “adminpw” [SRS krav 6.4.44]}
+%FT 4.4.19 
+\textbf{Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen ''t3''}
 
-\emph{Starttillstånd} Administratör A är på inloggnings sida och har inte inloggat.
+\emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G.
 
-\emph{Sluttillstånd:} Administratör A är inloggat.
+\emph{Sluttillstånd:} Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G. U1-U6 har rollen ''t3''.
 
 \begin{enumerate}
-\item A skriver användarnamnet ”admin”.
-\item A använder lösenordet ”adminpw”.
-\item A är inloggat och det finns bekräftelse.
-\item Kontrollera att A kan logga in med användarnamn ”admin” och lösenord ”adminpw”.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t3'' till U1.
+\item A tilldelar rollen ''t3'' till U2.
+\item A tilldelar rollen ''t3'' till U3.
+\item A tilldelar rollen ''t3'' till U4.
+\item A tilldelar rollen ''t3'' till U5.
+\item A tilldelar rollen ''t3'' till U6.
+\item A tilldelar rollen ''t3'' till U7.
+\item Kontrollera att ett felmeddelande visas som informerar om att det inte går att ha fler medlemmar med rollen ''t3''.
+\item Kontrollera att U1-U6 har rollen ''t3'' i G.
+\item Kontrollera att U7 inte har rollen ''t3'' i G.
 \end{enumerate}
+
+%FT 4.4.20 
+\item
+\textbf{Administratören har användarnamnet ''admin'' och lösenordet ''adminpw''}
+
+\emph{Starttillstånd} Administratör A är på inloggningssidan.
+
+\emph{Sluttillstånd:} A är inloggad.
+
+\begin{enumerate}
+\item A loggar in med användarenamnet ''admin'' och lösenordet ''adminpw''.
+\item A navigerar till administrationvyn (Figur 5, Ref. 2).
+\item Kontrollera att A är på administrationsvyn.
+\end{enumerate}
+\end{FT}
 
 %+++++++++++++++++++++++++++% 
 %slutet på FT:Administration%
@@ -2769,12 +2689,16 @@ subsubsection{Användare}
 \item
 \textbf{Genomför scenario 6.4.1 i SRS som projektledare}
 
+\emph{**Vilka typer av statistik och rapporter som finns att välja mellan är just nu okänt}
+
 \emph{Starttillstånd:} Projektledare PL inloggad.
 
-\emph{Sluttillstånd:} Projekledare PL inloggad.
+\emph{Sluttillstånd:} Oförändrad.
 
 \begin{enumerate}
 \item
+PL navigerar till tidrapportering och sedan till visa statistik (se ref. 2, figur 7).
+\item 
 PL väljer "Generera statistik" i menyn
 \item
 PL väljer [typ av statistik]
@@ -2794,7 +2718,8 @@ Kontrollera att statistik av typ [typ av statistik] visas.
 \emph{Sluttillstånd:} Projekledare PL inloggad. En godkänd tidsrapport finns i systemet.
 
 \begin{enumerate}
-
+\item
+PL navigerar till tidrapportering och sedan till redigera tidrapport (se ref. 2, figur 7).
 \item
 PL väljer att lista tidrapporter
 \item
@@ -2806,7 +2731,7 @@ PL godkänner rapporten
 \item
 Kontrollera att dialogruta visades
 \item
-Kontrollera att rapporten är godkänd
+Kontrollera att rapporten är godkänd i databasen
 
 \end{enumerate}
 
@@ -2816,7 +2741,7 @@ Kontrollera att rapporten är godkänd
 \item
 \textbf{Genomför scenario 6.4.4 i SRS som projektledare}
 
-\emph{Starttillstånd:} Projektledare L som är projektledare för grupp G är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i G utöver L i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
+\emph{Starttillstånd:} Projektledare L som är projektledare för grupp G är inloggad och befinner sig på sidan ``Visa statistik'' (se ref. 2, figur 7). Det finns tre projektmedlemmar i G utöver L i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
 
 \emph{Sluttillstånd:} Oförändrat.
 
@@ -2850,7 +2775,7 @@ Kontrollera att rapporten är godkänd
 
 \begin{enumerate}
 \item
-A väljer "Generera statistik" i menyn
+A väljer "Generera statistik" i menyn (se ref. 2, figur 7).
 \item
 A väljer [typ av statistik]
 \item 
@@ -2903,7 +2828,7 @@ Kontrollera att rapporten är godkänd
 \item
 \textbf{Genomför scenario 6.4.4 i SRS som administratör}
 
-\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i projektgruppen G i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Visa statistik'' (se ref. 2, figur 7). Det finns tre projektmedlemmar i projektgruppen G i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
 
 \emph{Sluttillstånd:} Oförändrat.
 
@@ -2961,20 +2886,21 @@ Kontrollera att user1-user50 är inloggade.
 Kontrollera att user51 inte är inloggad.
 \end{enumerate}
 
-\item
-\textbf{Logga in med 50 användare}
 
-\emph{Starttillstånd:} Användare user1-user50 finns registrerade med lösenord pass. Inga användare inloggade.
-
-\emph{Sluttillstånd:} Användare user1-user50 är inloggade.
-
-\begin{enumerate}
-
-\item
-Försök logga in användare user1-user50.
-\item
-Kontrollera att user1-user50 är inloggade.
-\end{enumerate}
+%\item
+%\textbf{Logga in med 50 användare}
+%
+%\emph{Starttillstånd:} Användare user1-user50 finns registrerade med lösenord pass. Inga användare inloggade.
+%
+%\emph{Sluttillstånd:} Användare user1-user50 är inloggade.
+%
+%\begin{enumerate}
+%
+%\item
+%Försök logga in användare user1-user50.
+%\item
+%Kontrollera att user1-user50 är inloggade.
+%\end{enumerate}
 
 
 
@@ -3007,8 +2933,6 @@ Alla test ska köras två gånger i veckan.
 
 När något ändras ska helst alla tester köras igen. Om så inte är möjligt ska åtminstone de
 generella kraven och de tester i det område som förändringen påverkade köras.
-Om något ändras inom dessa områden måste följande testfall regressionstestas. Vid varje
-ändring ska de test rörande de generella kraven också testas.
 Områden innefattar:
 
 \begin{itemize}
