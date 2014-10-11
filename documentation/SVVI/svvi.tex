@@ -665,16 +665,16 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \item\textbf{Projektmedlem lyckas uppdatera sin egna osignerade tidrapport}
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T med 20 minuter registrerat på möte finns i systemet.
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
 
-\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, T har nu 30 minuter registrerat på möte.
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, T har nu 30 minuter registrerat på Aktivitet 1, Subaktivitet 1.
 
 \begin{enumerate}
 \item A trycker på ``Uppdatera tidrapport''.
 \item A väljer en av sina egna osignerade tidrapporter.
-\item A skriver in 30 i fältet möte.
+\item A skriver in 30 i fältet Aktivitet 1, Subaktivitet 1.
 \item A trycker på ``Spara''.
-\item Kontrollera i databasen att T har 30 minuter på möte.
+\item Kontrollera i databasen att T har 30 minuter på Aktivitet 1, Subaktivitet 1.
 \end{enumerate}
 
 
@@ -741,7 +741,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren har tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp}
 
-\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Hantera tidrapporter'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G. M1 har en tidrapportering T1 för möte i vecka 1 på 10 minuter och en T2 i vecka 2 på 20 minuter. M2 har en tidrapportering T3 för möte i vecka 2 på 10 minuter och en T4 i vecka 3 på 20 minuter. 
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Hantera tidrapporter'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 1 på 10 minuter och en T2 i vecka 2 på 20 minuter. M2 har en tidrapportering T3 för Aktivitet 1, Subaktivitet 1, i vecka Aktivitet 1, Subaktivitet 1 på 10 minuter och en T4 i vecka 3 på 20 minuter. 
 
 \emph{Sluttillstånd:} Oförändrat.
 
@@ -754,7 +754,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren lyckas godkänna en ej tidigare signerad tidrapport från en medlem i sin projektgrupp}
 
-\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Hantera tidrapporter'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M är en projektmedlem i G. M har en tidrapportering T för möte i vecka 1 på 10 minuter. T är osignerad.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Hantera tidrapporter'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M är en projektmedlem i G. M har en tidrapportering T för Aktivitet 1, Subaktivitet 1, i vecka 1 på 10 minuter. T är osignerad.
 
 \emph{Sluttillstånd:} Oförändrat förutom att T är signerat.
 
@@ -769,14 +769,15 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren lyckas ta tillbaka sitt godkännande från en tidigare godkänd tidrapport}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport godkänd.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport är inte längre godkänd.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Hantera tidrapporter'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M är en projektmedlem i G. M har en tidrapportering T för Aktivitet 1, Subaktivitet 1, i vecka 1 på 10 minuter. T är signerad.
+
+\emph{Sluttillstånd:} Oförändrat förutom att T är osignerad.
 
 \begin{enumerate}
-\item A trycker på ``Godkänn rapporter''.
-\item A väljer en godkänd tidrapport genom att trycka på på dess radioknapp.
-\item A trycker på knappen ``Icke godkänd''.
-\item Kontrollera att tidrapporten är inte längre godkänd.
+\item A trycker på ``Avsignera'' vid T.
+\item T visas.
+\item A trycker på ``Avsignera''.
+\item Kontrollera i databasen att tidrapporten är signerad.
 \end{enumerate}
 
 
@@ -784,14 +785,15 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per användare för samtliga veckor}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M är projektmedlem i G. M har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. 
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer en användare och ``Samtliga veckor''.
-\item A trycker på ``Generera statistik''
-\item Kontrollera att en ny tidrapport genereras med en användares arbetstid summerad för samtliga veckor.
+\item A väljer M och ``Samtliga veckor''.
+\item A trycker på ``Generera statistik''.
+\item Statistiken visas i form av en tidrapport med M och värdet 60 på Aktivitet 1, Subaktivitet 1.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
@@ -799,123 +801,132 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per roll för samtliga veckor}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 1, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer en roll och ``Samtliga veckor''.
+\item A väljer t1 och ``Samtliga veckor''.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med summerad arbetstid för en roll för samtliga veckor.
+\item Statistiken visas i form av en tidrapport för rollen t1 och värdet 130 på Aktivitet 1, Subaktivitet 1.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer ``Statistik per aktivitet''.
+\item A väljer Aktivitet 1 och ``Samtliga veckor''.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med alla aktiviteters arbetstid.
+\item Statistiken visas i form av en tidrapport för med endast Aktivitet 1 ifylld med värdet 30 på Subaktivitet 1 och 70 på Subaktivitet 2.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per vecka}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer ``Statistik per vecka''.
+\item A väljer både M1 och M2 och vecka 2.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med alla veckors arbetstid.
+\item Statistiken visas i form av en tidrapport med M1 och M2 och värdet 10 på Aktivitet 1, Subaktivitet 1 och 20 på Aktivitet 1, Subaktivitet 2.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per användare och aktivitet}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer en användare och en aktivitet.
+\item A väljer M1 och Aktivitet 1.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med en användares arbetstid för specificerad aktivitet.
+\item Statistiken visas i form av en tidrapport för M1 med värdet 10 på Aktivitet 1, Subaktivitet 1 och 20 på Aktivitet 1, Subaktivitet 2.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per användare för utvalda veckor}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer en användare och godtyckliga veckor.
+\item A väljer M1 för vecka 1, 2 och 4.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med en användares arbetstid för specificerade veckor.
+\item Statistiken visas i form av en tidrapport för M1 med värdet 10 på Aktivitet 1, Subaktivitet 1 och 30 på Aktivitet 2, Subaktivitet 1.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per roll och aktivitet}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1, M2 och är projektmedlemmar i G, M1 och M2 har rollen t1, M3 har rollen t2. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter. M3 har en tidrapportering T5 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 40 minuter och en T6 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer en roll och en aktivitet.
+\item A väljer t1 och Aktivitet 1.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med summerad arbetstid för en roll för specificerad aktivitet.
+\item Statistiken visas i form av en tidrapport med värdet 10 på Aktivitet 1, Subaktivitet 1, 90 på Aktivitet 1, Subaktivitet 2 och 30 på Aktivitet 2, Subaktivitet 1.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per roll för utvalda veckor}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1, M2 och är projektmedlemmar i G, M1 och M2 har rollen t1, M3 har rollen t2. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter. M3 har en tidrapportering T5 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 40 minuter och en T6 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer roll och godtyckliga veckor.
+\item A väljer t1 och vecka 1, 2 och 4.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med summerad arbetstid för en roll för specificerade veckor.
+\item Statistiken visas i form av en tidrapport med värdet 10 på Aktivitet 1, Subaktivitet 1, 30 på Aktivitet 2, Subaktivitet 1 och 70 på Aktivitet 1, Subaktivitet 2.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet och vecka}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1, M2 och är projektmedlemmar i G, M1 och M2 har rollen t1, M3 har rollen t2. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter. M3 har en tidrapportering T5 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 40 minuter och en T6 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer en aktivitet och en vecka.
+\item A väljer Aktivitet 1 för vecka 2 och 4.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med total arbetstid från en aktivitet från en specifik vecka.
+\item Statistiken visas i form av en tidrapport med värdet 10 på Aktivitet 1, Subaktivitet 1 och 130 på Aktivitet 1, Subaktivitet 2.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
-\textbf{\emph{Manuell miljö:} Projektledaren kan se sammalagd arbetstid från valda tidrapporter}
+\textbf{Projektledaren kan se sammalagd arbetstid från valda tidrapporter}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 är projektmedlem i G. M har en tidrapportering T i vecka 1 med 20 minuter på Aktivitet 1, Subaktivitet 1, 10 minuter på Aktivitet 2, Subaktivitet 1 och 50 minuter på Aktivitet 2, Subaktivitet 2.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A väljer godtycklig tidrapport.
+\item A väljer M för vecka 1.
 \item Kontrollera att A kan se sammanlagd arbetstid från tidrapporten.
 \end{enumerate}
 
@@ -953,13 +964,6 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \item Utgått
 \item Utgått
-\item Utgått
-\item Utgått
-\item Utgått
-\item Utgått
-\item Utgått
-\item Utgått
-
 
 \item
 \textbf{En tidrapport innehåller information om användarnamn}
@@ -1028,12 +1032,6 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A väljer godtycklig tidrapport
 \item Kontrollera att det visas tydligt om tidrapporten är godkänd eller ej.
 \end{enumerate}
-
-
-\item Utgått
-\item Utgått
-\item Utgått
-\item Utgått
 
 \end{FT}
 %-------------------------------
@@ -2441,7 +2439,7 @@ subsubsection{Användare}
 \end{ST}
 
 
-\end{ST}
+
 
 %++++++++++++++++++++++++%
 %SLUT på ST:autentisering%
@@ -2464,8 +2462,9 @@ subsubsection{Användare}
 \item
 \textbf{Genomför scenario 6.3.1 (Dokumentera arbetstimmar i systemet)}
 
-\emph{Starttillstånd:} Projektmedlem A är inloggad, inne vid huvudmenysidan. Ingen tidigare tidrapport för denne användare finns.\\
-\emph{Sluttillstånd:} Projektmedlem A är inloggad, inne vid tidrapportfunktionalitetssidan. Tidrapport skapad för vecka 51.\\
+\emph{Starttillstånd:} Projektmedlem A är inloggad, inne vid huvudmenysidan. Ingen tidigare tidrapport för denne användare finns.
+
+\emph{Sluttillstånd:} Projektmedlem A är inloggad, inne vid tidrapportfunktionalitetssidan. Tidrapport skapad för vecka 51.
 
 \begin{enumerate}
 \item A skriver in URL för funktionalitetssidan för tidrapportering och får tillgång till sidan.
