@@ -671,7 +671,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A trycker på ``Uppdatera tidrapport''.
-\item A väljer en av sina egna osignerade tidrapporter.
+\item A väljer T.
 \item A skriver in 30 i fältet Aktivitet 1, Subaktivitet 1.
 \item A trycker på ``Spara''.
 \item Kontrollera i databasen att T har 30 minuter på Aktivitet 1, Subaktivitet 1.
@@ -962,64 +962,151 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{FT}
 
-\item
-\textbf{En tidrapport innehåller information om användarnamn}
+\item\textbf{Aktivitetsnamn och subaktivitetsnamn har rätt utseende}
 
-\emph{Starttillstånd:} Inloggad på mysql
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
 
-\emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller användarnamn
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item Få tillgång till databasen
-\item Visa tidrapporterna
-\item Hämta användarnamn från samtliga tidrapporter.
-\item Kontrollera att inget av de hämtade värdena är null.
+\item A trycker på ``Uppdatera tidrapport''.
+\item A väljer T.
+\item För alla aktivitetsnamn, kontrollera att de består av 3-5 tecken och ascii värden 48-57 och 97-122 (0-9 och a-z).
+\item För alla subaktivitetsnamn, kontrollera att de består av 1 tecken och ascii värden 48-57 och 97-122 (0-9 och a-z).
 \end{enumerate}
 
-\item
-\textbf{En tidrapport innehåller information om projektgruppsnamn}
+\item\textbf{Ogiltig tidinformation}
 
-\emph{Starttillstånd:} Inloggad på mysql
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
 
-\emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller projektgruppsnamn
-
-\begin{enumerate}
-\item Få tillgång till databasen
-\item Visa tidrapporterna
-\item Hämta projektgruppsnamn från samtliga tidrapporter.
-\item Kontrollera att inget av de hämtade värdena är null.
-\end{enumerate}
-
-
-
-\item
-\textbf{En tidrapport innehåller information om datum i form av ``dag månad år''}
-
-\emph{Starttillstånd:} Inloggad på mysql
-
-\emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller datum i ``dag månad år''.
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item Få tillgång till databasen
-\item Visa tidrapporterna
-\item Hämta datum från samtliga tidrapporter.
-\item Kontrollera att inget av de hämtade värdena är null.
+\item A trycker på ``Uppdatera tidrapport''.
+\item A väljer T.
+\item A Skriver in ``123456'' på Aktivitet 1, Subaktivitet 1.
+\item A trycker på ``Spara''.
+\item Ett felmeddelande som säger att tidrapporten innehåller ogilitg tidinformation visas.
+\item A trycker på ``OK''.
+\item A Skriver in ``123:5'' på Aktivitet 1, Subaktivitet 1.
+\item A trycker på ``Spara''.
+\item Ett felmeddelande som säger att tidrapporten innehåller ogilitg tidinformation visas.
+\item A trycker på ``OK''.
+\item A Skriver in ``/'' på Aktivitet 1, Subaktivitet 1.
+\item A trycker på ``Spara''.
+\item Ett felmeddelande som säger att tidrapporten innehåller ogilitg tidinformation visas.
+\item A trycker på ``OK''.
 \end{enumerate}
 
 
-\item
-\textbf{En tidrapport innehåller information om veckonummer}
+\item\textbf{Giltig tidinformation}
 
-\emph{Starttillstånd:} Inloggad på mysql
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
 
-\emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller veckonummer.
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 1239 minuter registrerat på Aktivitet 1, Subaktivitet 1 och 0 minuter registrerat på Aktivitet 1, Subaktivitet 2, finns i systemet.
 
 \begin{enumerate}
-\item Få tillgång till databasen
-\item Visa tidrapporterna
-\item Hämta veckonummer från samtliga tidrapporter.
-\item Kontrollera att inget av de hämtade värdena är null.
+ \item A trycker på ``Uppdatera tidrapport''.
+ \item A väljer T.
+ \item A Skriver in ``01239'' på Aktivitet 1, Subaktivitet 1.
+ \item A Skriver in ``0'' på Aktivitet 1, Subaktivitet 2.
+ \item A trycker på ``Spara''.
 \end{enumerate}
+
+\item\textbf{Ogiltigt veckonummer}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
+
+\emph{Sluttillstånd:} Oförändrat.
+
+\begin{enumerate}
+\item A trycker på ``Uppdatera tidrapport''.
+\item A väljer T.
+\item A Skriver in ``123'' på veckonummer.
+\item A trycker på ``Spara''.
+\item Ett felmeddelande som säger att tidrapporten innehåller ogilitgt veckonummer visas.
+\item A trycker på ``OK''.
+\item A Skriver in ``1:'' på veckonummer.
+\item A trycker på ``Spara''.
+\item Ett felmeddelande som säger att tidrapporten innehåller ogilitgt veckonummer visas.
+\item A trycker på ``OK''.
+\item A Skriver in ``/'' på veckonummer.
+\item A trycker på ``Spara''.
+\item Ett felmeddelande som säger att tidrapporten innehåller ogilitgt veckonummer visas.
+\item A trycker på ``OK''.
+\end{enumerate}
+
+\item\textbf{Giltigt veckonummer}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
+
+\emph{Sluttillstånd:} Oförändrat.
+
+\begin{enumerate}
+ \item A trycker på ``Uppdatera tidrapport''.
+ \item A väljer T.
+ \item A Skriver in ``90'' på veckonummer.
+ \item A trycker på ``Spara''.
+\end{enumerate}
+
+% \item
+% \textbf{En tidrapport innehåller information om användarnamn}
+% 
+% \emph{Starttillstånd:} Inloggad på mysql
+% 
+% \emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller användarnamn
+% 
+% \begin{enumerate}
+% \item Få tillgång till databasen
+% \item Visa tidrapporterna
+% \item Hämta användarnamn från samtliga tidrapporter.
+% \item Kontrollera att inget av de hämtade värdena är null.
+% \end{enumerate}
+% 
+% \item
+% \textbf{En tidrapport innehåller information om projektgruppsnamn}
+% 
+% \emph{Starttillstånd:} Inloggad på mysql
+% 
+% \emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller projektgruppsnamn
+% 
+% \begin{enumerate}
+% \item Få tillgång till databasen
+% \item Visa tidrapporterna
+% \item Hämta projektgruppsnamn från samtliga tidrapporter.
+% \item Kontrollera att inget av de hämtade värdena är null.
+% \end{enumerate}
+% 
+% 
+% 
+% \item
+% \textbf{En tidrapport innehåller information om datum i form av ``dag månad år''}
+% 
+% \emph{Starttillstånd:} Inloggad på mysql
+% 
+% \emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller datum i ``dag månad år''.
+% 
+% \begin{enumerate}
+% \item Få tillgång till databasen
+% \item Visa tidrapporterna
+% \item Hämta datum från samtliga tidrapporter.
+% \item Kontrollera att inget av de hämtade värdena är null.
+% \end{enumerate}
+% 
+% 
+% \item
+% \textbf{En tidrapport innehåller information om veckonummer}
+% 
+% \emph{Starttillstånd:} Inloggad på mysql
+% 
+% \emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller veckonummer.
+% 
+% \begin{enumerate}
+% \item Få tillgång till databasen
+% \item Visa tidrapporterna
+% \item Hämta veckonummer från samtliga tidrapporter.
+% \item Kontrollera att inget av de hämtade värdena är null.
+%\end{enumerate}
 
 
 \item
@@ -1033,6 +1120,46 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A Tryck på visa tidrapporter
 \item A väljer godtycklig tidrapport
 \item Kontrollera att det visas tydligt om tidrapporten är godkänd eller ej.
+\end{enumerate}
+
+\item\textbf{Aktivitetsnamn är unika}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
+
+\emph{Sluttillstånd:} Oförändrat.
+
+\begin{enumerate}
+\item A trycker på ``Uppdatera tidrapport''.
+\item A väljer T.
+\item Kontrollera att aktivitetsnamnen är unika.
+\end{enumerate}
+
+\item\textbf{Subaktivitetsnamn är unika}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
+
+\emph{Sluttillstånd:} Oförändrat.
+
+\begin{enumerate}
+\item A trycker på ``Uppdatera tidrapport''.
+\item A väljer T.
+\item Kontrollera att subaktivitetsnamnen är unika.
+\end{enumerate}
+
+\item\textbf{Tidrapporten har rätt utseende}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
+
+\emph{Sluttillstånd:} Oförändrat.
+
+\begin{enumerate}
+\item A trycker på ``Uppdatera tidrapport''.
+\item A väljer T.
+\item Kontrollera att tidrapporten har rätt utseende, se figur 8 i referens 2.
+\item Kontrollera att A:s namn är ifyllt i Namn.
+\item Kontrollera att Datum för senaste ändring är ifyllt på formatet ``dag månad år''.
+\item Kontrollera att Projektgrupp är A:s projektgruppsnamn.
+\item Kontrollera att det finns ett veckonummer.
 \end{enumerate}
 
 \end{FT}

@@ -495,23 +495,30 @@ Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet oc
 \begin{FT}
 
 \item
-\emph En tidrapport innehåller information om användarnamn \req[6.3.29]
-
-
-\item
-\emph En tidrapport innehåller information om projektgruppsnamn \req[6.3.30]
-
+Namnen på aktiviteterna och subaktiviteterna består av 3-5 tecken respektive 1 tecken,
+ascii (decimal) värden 48-57 och 97-122 är tillåtna. \req[6.3.24]
 
 \item
-\emph En tidrapport innehåller information om datum i form av "dag månad år" \req[6.3.31]
+En projektmedlem försöker ge ogiltig tidinformation vid skapandet av tidrapport (giltig tidinformation: 1-5 tecken, ascii (decimal) värden 48-57). \req[6.3.25, 6.1.4]
 
 \item
-\emph En tidrapport innehåller information om veckonummer \req[6.3.32]
+En projektmedlem ger giltig tidinformation vid skapandet av tidrapport (giltig tidinformation: 1-5 tecken, ascii (decimal) värden 48-57). \req[6.3.25]
+
+\item
+En projektmedlem försöker ge ogiltigt veckonummer (giltigt veckonummer: 1-2 tecken, ascii (decimal) värden 48-57). \req[6.3.26, 6.1.4]
+
+\item
+En projektmedlem ger giltigt veckonummer (giltigt veckonummer: 1-2 tecken, ascii (decimal) värden 48-57). \req[6.3.26]
 
 %ändrad 23/9**
 \item
 \emph{Manuell miljö:} Det ska framgå tydligt att en tidrapport är signerad eller inte \req[6.3.33]
 
+\item Aktivitetsnamn är unika. \req[6.3.37]
+
+\item Subaktivitetsnamn är unika. \req[6.3.38]
+
+\item Tidrapporten har rätt utseende. \req[6.3.39, 6.3.29, 6.3.30, 6.3.31, 6.3.32]
 %%ändrad 23/9**
 %\item
 %Generera grundmallen för tidrapporterna automatiskt av systemet \req[6.3.45]
