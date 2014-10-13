@@ -144,6 +144,7 @@ public class LogIn extends servletBase {
        			session.setAttribute("state", state);  // save the state in the session
        			session.setAttribute("name", name);  // save the name in the session
        			session.setAttribute("id", id); // save the userID in the session
+       			access.logInUser(id, session.getId());
        			response.sendRedirect("Start");
        		}
        		else {
