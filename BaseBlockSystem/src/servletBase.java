@@ -97,11 +97,50 @@ public class servletBase extends HttpServlet {
      * Constructs the header of all servlets. 
      * @return String with html code for the header. 
      */
-    protected String getPageIntro() {
+    protected String getPageIntro(HttpServletRequest request) {
     	String intro = "<html>" +
-                       "<head><title> The Base Block System </title></head>" +
+                       "<head><title>New Puss System</title></head>"
+                       + "<style>"
+                       + "ul {list-style-type: none;}"
+                       + "</style>" +
                        "<body>";
+    	if(loggedIn(request)){intro += printMainMenu();}
     	return intro;
+    }
+    
+    /**
+     * Constructs the menu, but only returns the options the user is allowed to view. 
+     * @return String with html for the menu.
+     */
+    protected String printMainMenu(){
+    	String menu = "<ul>"
+    				+"<li><a href='#'>Administration</a>"
+    				+ "<ul>"
+    				+ "<li><a href='#'>Users</a></li>"
+    				+ "<li><a href='#'>Group</a></li>"
+    				+ "</ul>"
+    				+ "</li>"
+    				+ "<li><a href='#'>Project Management</a>"
+    				+ "<ul>"
+    				+ "<li><a href='#'>Users</a></li>"
+    				+ "<li><a href='#'>Reports</a></li>"
+    				+ "<li><a href='#'>Statistics</a></li>"
+    				+ "</ul>"
+    				+ "</li>"
+    				+ "<li><a href='#'>Time Reports</a>"
+    				+ "<ul>"
+    				+ "<li><a href='#'>View</a></li>"
+    				+ "<li><a href='#'>Update</a></li>"
+    				+ "<li><a href='#'>New</a></li>"
+    				+ "<li><a href='#'>Statistics</a></li>"
+    				+ "</ul>"
+    				+ "</li>"
+    				+ "<li><a href='#'>Change Password</a></li>"
+    				+ "<li><a href='#'>Logout</a></li>"
+    				+ "</ul>"
+    			;
+    	
+    	return menu;
     }
 
 }

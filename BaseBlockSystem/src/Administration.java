@@ -152,7 +152,7 @@ public class Administration extends servletBase {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		out.println(getPageIntro());
+		out.println(getPageIntro(request));
 
 		String myName = "";
 		HttpSession session = request.getSession(true);
