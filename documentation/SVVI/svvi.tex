@@ -1,4 +1,4 @@
-﻿\documentclass[a4paper]{article}
+\documentclass[a4paper]{article}
 \usepackage[pdftex]{graphicx}
 \usepackage{anysize}
 \marginsize{3cm}{3cm}{3cm}{3cm}
@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 0.7 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 0.8 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -60,6 +60,7 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.5 & 2 oktober 2014 & TG & Funktionstester för administration tillagt\\
 0.6 & 2 oktober 2014 & TG & Ändringar efter intern granskning\\
 0.7 & 7 oktober 2014 & TG & Ändringar efter informell granskning och SVVS v0.14\\
+0.8 & 10 oktober 2014 & TG & Ändringar efter formell granskning\\
 
 \end{tabular}
 \section{1 Inledning}       
@@ -69,6 +70,7 @@ Detta dokument innehåller detaljerade testinstruktioner som ska genomföras und
 \section{2 Referensdokument}
 \begin{enumerate}
 \item System Validation and Verification Specification 1.0
+\item Software Requirements Specification 0.21
 \end{enumerate}
 
 
@@ -105,40 +107,55 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{FT}
 \item \textbf{Menytillgång}
 
-\emph{Starttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+\emph{Starttillstånd:} Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
 
-\emph{Sluttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+\emph{Sluttillstånd:} Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
 
 \begin{enumerate}
-\item Genomför steg 2-4 för V, M, L och A. Därefter är testet avslutat.
-\item Logga in i systemet.
-\item För alla sidor i systemet, navigera till sidans webbadress och kontrollera att menyn finns tillgänglig.
+\item Genomför steg 2-4 för M, L och A. Därefter är testet avslutat.
+\item Logga in i systemet med rätt lösenord och rätt användarnamn.
+\item För alla sidor i 3a-c kontrollera att menyn finns tillgänglig.
+\begin{enumerate}
+\item För M, navigera till samtliga sidor specificerade i figur 6 (Ref. 2).
+\item För L, navigera till samtliga sidor specificerade i figur 7 (Ref. 2).
+\item För A, navigera till samtliga sidor specificerade i figur 5 (Ref. 2).
+\end{enumerate}
 \item Logga ut ur systemet.
 \end{enumerate}
 
 \item \textbf{Menyinnehåll}
 
-\emph{Starttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+\emph{Starttillstånd:} Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
 
-\emph{Sluttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+\emph{Sluttillstånd:} Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
 
 \begin{enumerate}
-\item Genomför steg 2-4 för V, M, L och A. Därefter är testet avslutat.
-\item Logga in i systemet.
-\item Kontrollera att menyn dirigerar användaren till de funktionaliteter som användaren besitter.
+\item Genomför steg 2-4 för M, L och A. Därefter är testet avslutat.
+\item Logga in i systemet med rätt lösenord ch rätt användarnamn.
+\item Kontrollera att menyn dirigerar användaren till de funktionaliteter som respektive användare besitter i 3a-c.
+\begin{enumerate}
+\item För M, navigera till samtliga sidor specificerade i figur 6 (Ref. 2) från menyn.
+\item För L, navigera till samtliga sidor specificerade i figur 7 (Ref. 2) från menyn.
+\item För A, navigera till samtliga sidor specificerade i figur 5 (Ref. 2) från menyn.
+\end{enumerate}
 \item Logga ut ur systemet.
 \end{enumerate}
 
 \item \textbf{Menyn är konsekvent}
 
-\emph{Starttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+\emph{Starttillstånd:} Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
 
-\emph{Sluttillstånd:} Vanlig användare V är inte inloggad. Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
+\emph{Sluttillstånd:} Projektmedlem M är inte inloggad. Projektledare L är inte inloggad. Administratören A är inte inloggad.
 
 \begin{enumerate}
 \item Genomför steg 2-4 för V, M, L och A. Därefter är testet avslutat.
 \item Logga in i systemet.
-\item För alla sidor i systemet, navigera till sidans webbadress och kontrollera att menyn, så som den ska se ut för den specifika användaren, finns tillgänglig.
+\item Kontrollera att innehållet i menyn är samma för varje specifik användare i 3a-c.
+\begin{enumerate}
+\item För M, navigera till samtliga sidor specificerade i figur 6 (Ref. 2).
+\item För L, navigera till samtliga sidor specificerade i figur 7 (Ref. 2).
+\item För A, navigera till samtliga sidor specificerade i figur 5 (Ref. 2).
+\end{enumerate}
 \item Logga ut ur systemet.
 \end{enumerate}
 
@@ -152,28 +169,43 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Logga in A i systemet.
 \item Klicka på Administration i menyn.
 \item I adressfältet i webbläsaren, lägg till: ``?deletename=\texttt{"}admin\texttt{"}'', och tryck enter.
-\item Kontrollera att ett felmeddelande visas.
+\item Kontrollera att ett felmeddelande visas som tyder på att det är fel input.
 \item Kontrollera i databasen att användaren ``admin'' fortfarande finns kvar.
 \item Logga ut A.
 \end{enumerate}
 
 \item \textbf{Projektledarantal och rollantal i en projektgrupp}
 
-\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G, en projektledare P och två vanliga användare V1 och V2 i systemet. P är projektledare i G.
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Redigera projektmedlemmar'' (Figur 5, Ref. 2). Det finns en projektgrupp G, två projektledare P1 och P2 och en projektmedlem M (Alla medlemmar i G).
 
 \emph{Sluttillstånd:} oförändrat
 
 \begin{enumerate}
-\item Försök lägga till V utan att specificera roll.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera i databasen att V inte har blivit tillagd.
-\item Försök lägga till V med rollen t4.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera i databasen att V inte har blivit tillagd.
-\item Försök lägga till V som projektledare i G.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera i databasen att V inte har blivit tillagd i G.
+\item Försök tilldela rollen t4 till M
+\item Kontrollera att ett felmeddelande visas som visar att denna roll inte finns tillgänglig.
+\item Kontrollera i databasen att M inte har fått rollen t4.
+\item Försök tilldela rollen ``Projektledare'' till M.
+\item Kontrollera att ett felmeddelande visas som visar att det inte kan finnas fler projektledare.
+\item Kontrollera i databasen att M inte har fått rollen ``Projektledare''.
 \end{enumerate}
+
+%\item \textbf{Projektledarantal och rollantal i en projektgrupp}
+%
+%\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Redigera projektmedlemmar'' (Figur 5, Ref. 2). Det finns en projektgrupp G, en projektledare P och två projektmedlemmar M1 och M2 i systemet (Alla medlemmar i G).
+%
+%\emph{Sluttillstånd:} oförändrat
+%
+%\begin{enumerate}
+%\item Försök lägga till V utan att specificera roll.
+%\item Kontrollera att ett felmeddelande visas som visar att du måste välja roll.
+%\item Kontrollera i databasen att V inte har blivit tillagd.
+%\item Försök lägga till V med rollen t4.
+%\item Kontrollera att ett felmeddelande visas som visar att denna roll inte finns tillgänglig.
+%\item Kontrollera i databasen att V inte har blivit tillagd.
+%\item Försök lägga till V som projektledare i G.
+%\item Kontrollera att ett felmeddelande visas.
+%\item Kontrollera i databasen att V inte har blivit tillagd i G.
+%\end{enumerate}
 \end{FT}
 
 %\subsubsection{Projektmedlem}
@@ -181,16 +213,17 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{FT}
 \item \textbf{Projektledarantal}
 
-\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns 3 vanliga användare V1, V2 och V3 i systemet.
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns 3 vanliga användare V1, V2 och V3 i systemet.
 
-\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G där V1 och V2 är projektledare och en vanlig användare V3 i systemet.
+\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgrupper''. Det finns en projektgrupp G där V1 och V2 är projektledare och en vanlig användare V3 i systemet.
 
 \begin{enumerate}
-\item Klicka på lägg till projekt och specificera grupp G och användare V1 som projektledare, klicka ``OK''.
-\item Klicka på ``Lägg till projektledare'' för projektet G och specificera V2, klicka ``OK''.
-\item Klicka på ``Lägg till projektledare'' för projektet G och specificera V3, klicka ``OK''.
-\item Kontrollera att ett felmeddelande visas.
-\item Kontrollera i databasen att V3 inte har blivit tillagd i G.
+\item Klicka på ``Skapa projektgrupp'' och specificera grupp G och användare V1 som projektledare.
+\item Lägg till V2 och V3 i projektgruppen. Klicka ``OK''.
+\item Klicka på ``Redigera projektmedlemmar'' för projektet G och ge rollen ``Projektledare'' till V2, klicka ``OK''.
+\item Ge rollen ``Projektledare'' till V3 för projektgruppen G, klicka ``OK''.
+\item Kontrollera att ett felmeddelande visas som visar att det inte kan finnas fler projektledare.
+\item Kontrollera i databasen att V3 inte har fått rollen ``Projektledare''.
 \end{enumerate}
 
 \end{FT}
@@ -199,14 +232,14 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{FT}
 \item \textbf{Administratören får inte vara med i ett projekt}
 
-\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G.
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns en projektgrupp G.
 
-\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgruppsadministration''. Det finns en projektgrupp G.
+\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgrupper''. Det finns en projektgrupp G.
 
 \begin{enumerate}
 \item För projektet G klicka på ``Lägg till projektmedlem''.
-\item Välj ``admin'' i listan över användare och rollen t1 i listan över roller, klicka på ``OK''.
-\item Kontrollera att ett felmeddelande visas.
+\item Välj ``admin'' i listan över användare, klicka på ``OK''.
+\item Kontrollera att ett felmeddelande visas som visar att Administratören inte får vara med i ett projekt.
 \item Kontrollera att ``admin'' inte finns tillagd i G.
 \end{enumerate}
 \end{FT}
@@ -215,13 +248,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{FT}
 \item \textbf{Förfrågan innan borttagning av projektledare}
 
-\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns två projektledare i systemet, L1 och L2. L1 och L2 är projektledare för projektgrupp G.
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns två projektledare i systemet, L1 och L2. L1 och L2 är projektledare för projektgrupp G.
 
-\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Projektledare L1 finns inte kvar i systemet. Projektledare L2 är projektledare för projektgrupp G.
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper''. Projektledare L1 finns inte kvar i systemet. Projektledare L2 är projektledare för projektgrupp G.
 
 \begin{enumerate}
 \item Klicka på ``Ta bort användare'' för L1.
-\item Kontrollera att en bekräftelseruta visas.
+\item Kontrollera att en bekräftelseruta visas som frågar om du verkligen vill ta bort L1 från G.
 \item Klicka ``Ja''.
 \item Kontrollera att en lista över användare visas där L1 inte är med.
 \item Kontrollera i databasen att L1 inte finns kvar.
@@ -229,13 +262,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \item \textbf{Förfrågan innan borttagning av vanlig användare}
 
-\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en vanlig användare V i systemet.
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns en vanlig användare V i systemet.
 
-\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Vanlig användare L finns inte kvar i systemet.
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper''. Vanlig användare L finns inte kvar i systemet.
 
 \begin{enumerate}
 \item Klicka på ``Ta bort användare'' för V.
-\item Kontrollera att en bekräftelseruta visas.
+\item Kontrollera att en bekräftelseruta visas som frågar om du verkligen vill ta bort L1 från G.
 \item Klicka ``Ja''.
 \item Kontrollera att en lista över användare visas där V inte är med.
 \item Kontrollera i databasen att V inte finns kvar.
@@ -243,13 +276,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \item \textbf{Förfrågan innan ångrad borttagning av projektledare}
 
-\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en projektledare L i systemet.
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns en projektledare L i systemet.
 
-\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en projektledare L i systemet.
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper''. Det finns en projektledare L i systemet.
 
 \begin{enumerate}
 \item Klicka på ``Ta bort användare'' för L.
-\item Kontrollera att en bekräftelseruta visas.
+\item Kontrollera att en bekräftelseruta visas som frågar om du verkligen vill ta bort L1 från G.
 \item Klicka ``Nej''.
 \item Kontrollera att en lista över användare visas där L är med.
 \item Kontrollera i databasen att L finns kvar.
@@ -257,13 +290,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \item \textbf{Förfrågan innan ångrad borttagning av vanlig användare}
 
-\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en vanlig användare V i systemet.
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns en vanlig användare V i systemet.
 
-\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Lista användare''. Det finns en vanlig användare V i systemet.
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper''. Det finns en vanlig användare V i systemet.
 
 \begin{enumerate}
 \item Klicka på ``Ta bort användare'' för V.
-\item Kontrollera att en bekräftelseruta visas.
+\item Kontrollera att en bekräftelseruta visas som frågar om du verkligen vill ta bort L1 från G.
 \item Klicka ``Nej''.
 \item Kontrollera att en lista över användare visas där V är med.
 \item Kontrollera i databasen att V finns kvar.
@@ -333,20 +366,20 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Administratören försöker skapa en användare med för kort användarnamn}
 
-\emph{Starttillstånd:} Administratören A inloggad, inne på sidan "Lista användare", användare B finns inte i systemet.
+\emph{Starttillstånd:} Administratören A inloggad, inne på sidan ''Lista användare '', användare B finns inte i systemet.
 
 \emph{Sluttillstånd:} A inloggad, B finns inte i systemet.
 
 \begin{enumerate}
 \item A fyller i användarnamnet på B och försöker ge B användarnamnet ''Tord'', 4 tecken.
-\item Kontrollera att B inte skapas i systemet.
+\item Kontrollera att B är inte i systemet.
 \item Kontrollera att ett felmeddelande visar varför B inte skapades.
 \end{enumerate}
 
 \item
 \textbf{Administratören försöker skapa en användare med för långt användarnamn}
 
-\emph{Starttillstånd:} Administratören A inloggad, inne på sidan "Lista användare", användare B finns inte i systemet.
+\emph{Starttillstånd:} Administratören A inloggad, inne på sidan ''Lista användare '', användare B finns inte i systemet.
 
 \emph{Sluttillstånd:} A inloggad, B finns inte i systemet
 
@@ -359,7 +392,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Administratören försöker skapa en användare med användarnamn som innehåller icke tillåtna tecken}
 
-\emph{Starttillstånd:} Administratören A inloggad, inne på sidan "Lista användare", användare B finns inte i systemet.
+\emph{Starttillstånd:} Administratören A inloggad, inne på sidan ''Lista användare '', användare B finns inte i systemet.
 
 \emph{Sluttillstånd:} A inloggad, B finns inte i systemet
 
@@ -372,6 +405,19 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \end{itemize}
 \item Kontrollera att B inte skapas i systemet.
 \item Kontrollera att ett felmeddelande visar varför B inte skapades.
+\end{enumerate}
+
+\item
+\textbf{Administratören försöker skapa en ny användare med ett användarnamn som redan finns registrerat hos systemet}
+
+\emph{Starttillstånd:} Administratören A inloggad, användare B finns registrerat hos systemet.
+
+\emph{Sluttillstånd:} Administratören A kunde inte skapa användare B, Använda B är registrerat redan hos systemet.
+
+\begin{enumerate}
+\item A väljer att skapa B.
+\item A kan inte skapa B.
+\item Kontrollera att det finns bara ett användare B i systemet.
 \end{enumerate}
 
 \item
@@ -440,13 +486,19 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Administratören kan ta bort alla användare utom sig själv ur systemet.}
 
-\emph{Starttillstånd:} Administratören A inloggad, sidan för att ta bort användare visas, användare B finns i systemet.
+\emph{Starttillstånd:} Administratören A inloggad, sidan för att ta bort användare visas, användare B, projektledare C finns i systemet.
 
 \emph{Sluttillstånd:} B finns inte i systemet.
 
 \begin{enumerate}
+\item A väljer att ta bor B.
 \item A tar bort B.
-\item Kontrollera att B har tagits bort.
+\item A väljer att ta bor C.
+\item A tar bort C.
+\item A fösöker att ta bor A.
+\item A kan inte ta bort A.
+\item Kontrollera att B och C har tagits bort.
+\item Kontrollera att A är i systemet.
 
 \end{enumerate}
 
@@ -478,7 +530,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A fyller i sitt användarnamn och lösenord sedan klickar den på logga in.
 \item Kontrollera att A bara loggas in om A finns registrerad i systemet.
 \item Kontrollera att A omdirigerades till den sida som har användarfunktionerna.
-\item Kontrollera att sessionens inloggningsstatus är inloggad.
+\item Kontrollera att A är inloggad.
+\item Kontrollera att A är på sidan som har användarfunktionerna.
 \end{enumerate}
 \end{FT}
 
@@ -492,7 +545,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} A inte inloggad, inloggningssidan visas.
 
 \begin{enumerate}
-\item Skriver in URL till funktionalitet "Ändra lösenord".
+\item Skriver in URL för ädringa av lösenord till funktionalitet "Ändra lösenord".
 \item Kontrollera att A omdirigeras till inloggningssidan.
 \item Kontrollera att A inte kommer vidare utan att logga in.
 \end{enumerate}
@@ -539,13 +592,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{En användare försöker logga in på en projektgrupp som denne inte är medlem i.}
 
-\emph{Starttillstånd:} Användaren A inte inloggad, A är medlem i minst en projektgrupp, A tillhör inte projektgrupp B.
+\emph{Starttillstånd:} Användaren A inte inloggad, A är medlem i projektgrupp B, A tillhör inte projektgrupp C.
 
 \emph{Sluttillstånd:} A är inte inloggad.
 
 \begin{enumerate}
 \item A går till inloggningssidan.
-\item A väljer projektgrupp B och försöker logga in.
+\item A väljer projektgrupp C och försöker logga in.
 \item Kontrollera att A inte är inloggad.
 \item Kontrollera att ett felmeddelande visas.
 \end{enumerate}
@@ -563,6 +616,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Kontrollera att A är inloggad.
 \end{enumerate}
 \end{FT}
+
+
+
+
+
+
+
 
 %++++++++++++++++++++++++++% 
 %SLUTET på FT:autentisering%
@@ -590,55 +650,54 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{FT}
 
+\item\textbf{Projektmedlem lyckas skapa en egen osignerad tidrapport}
 
-\item
-%ÄNDRA TILL MANUELL MILJÖ I SVVS%
-\textbf{Projektmedlem lyckas skapa en egen osignerad tidrapport}
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2.
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, ny tidrapport visas.
 
 \begin{enumerate}
 \item A trycker på ``Skapa en ny tidrapport''.
-\item Kontrollera att tidrapportern är skapad.
-\item Kontrollera att tidrapporten inte är signerad när den skapas.
+\item Kontrollera i databasen att tidrapportern är skapad.
+\item Kontrollera i databasen att tidrapporten inte är signerad när den skapas.
 \end{enumerate}
 
-%ÄNDRA MANUELL MILJÖ%
-\item
-\textbf{Projektmedlem lyckas uppdatera sin egna osignerade tidrapport}
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, uppdaterad tidrapport visas.
+\item\textbf{Projektmedlem lyckas uppdatera sin egna osignerade tidrapport}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
+
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, T har nu 30 minuter registrerat på Aktivitet 1, Subaktivitet 1.
 
 \begin{enumerate}
 \item A trycker på ``Uppdatera tidrapport''.
-\item A väljer en av sina egna osignerade tidrapporter.
-\item A skriver in 40 i godtycklig ruta, 20 i en annan.
+\item A väljer T.
+\item A skriver in 30 i fältet Aktivitet 1, Subaktivitet 1.
 \item A trycker på ``Spara''.
-\item Kontrollera att tidrapporten är uppdaterad.
+\item Kontrollera i databasen att T har 30 minuter på Aktivitet 1, Subaktivitet 1.
 \end{enumerate}
 
-%ÄNDRA MANUELL MILJÖ%
-\item
-\textbf{Projektmedlem lyckas ta bort sin egna osignerade tidrapport}
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. En tidrapport finns i systemet.\\
+\item\textbf{Projektmedlem lyckas ta bort sin egna osignerade tidrapport}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En tidrapport finns i systemet.
+
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport raderad.
 
 \begin{enumerate}
 \item A trycker på ``Ta bort tidrapport''.
 \item A väljer en av sina egna osignerade tidrapporter.
 \item A trycker på knappen ``Radera''.
-\item Kontrollera att tidrapporten är raderad.
+\item Kontrollera i databasen att tidrapporten är raderad.
 \end{enumerate}
 
-%MANUELL MILJÖ%
-\item
-\textbf{\emph{Manuell miljö:} Vid tidrapporteringsfunktionaliten kan en projektmedlem endast se sina egna tidrapporter} 
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. A har två sparade tidrapporter.\\
-\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. A har två sparade tidrapporter.
+\item
+\textbf{Vid tidrapporteringsfunktionaliten kan en projektmedlem endast se sina egna tidrapporter} 
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. A har två sparade tidrapporter. Projektmedlem B har två sparade tidrapporter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
 \item A tryck på ``Visa tidrapporter''.
@@ -649,21 +708,22 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektmedlem försöker ta bort en av sina signerade tidrapporter}
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. A har en signerad tidrapport i systemet.\\
-\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport ej raderad.\\
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. A har en signerad tidrapport i systemet.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
 \item A trycker på ``Ta bort tidrapporter''.
 \item A väljer sin signerade tidrapport.
-\item A försöker trycka på knappen "Radera", men tidrapporten raderas inte.
-\item Kontrollera att A får ett felmeddelande.
+\item Kontrollera att funktionaliteten för att radera tidrapporten inte finns.
 \end{enumerate}
 
 \item
 \textbf{Projektmedlem försöker redigera en signerad tidrapport}
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. A har en signerad tidrapport i systemet.\\
-\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, tidrapport ej uppdaterad.
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. A har en signerad tidrapport i systemet.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
 \item A trycker på ``Uppdatera tidrapport''.
@@ -673,49 +733,51 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \end{FT}
 
-%tidrapportering
+
 \subsubsection{Projektledare}
 
 \begin{FT}
 
-%MANUELL MILJÖ%
 \item
-\textbf{\emph{Manuell miljö:} Projektledaren har tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp}
+\textbf{Projektledaren har tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Hantera tidrapporter'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 1 på 10 minuter och en T2 i vecka 2 på 20 minuter. M2 har en tidrapportering T3 för Aktivitet 1, Subaktivitet 1, i vecka Aktivitet 1, Subaktivitet 1 på 10 minuter och en T4 i vecka 3 på 20 minuter. 
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A trycker på ``Visa alla tidrapporter''.
-\item Kontrollera att Projektledaren kan se alla sina projektmedlemmars tidrapporter och att en funktionalitet för signering finns.
+\item A trycker på ``generera tidrapporter''.
+\item Kontrollera att A kan se tidrapporterna T1 till T4.
 \end{enumerate}
 
-%ÄNDRA MANUELL MILJÖ%
-\item
-\textbf{Projektledaren lyckas godkänna en ej tidigare godkänd tidrapport från en medlem i sin projektgrupp}
 
-\emph{Starttillstånd:} Projektledare inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport inte godkänd.\\
-\emph{Sluttillstånd:} Projektledare inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport godkänd.
+\item
+\textbf{Projektledaren lyckas godkänna en ej tidigare signerad tidrapport från en medlem i sin projektgrupp}
+
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Hantera tidrapporter'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M är en projektmedlem i G. M har en tidrapportering T för Aktivitet 1, Subaktivitet 1, i vecka 1 på 10 minuter. T är osignerad.
+
+\emph{Sluttillstånd:} Oförändrat förutom att T är signerat.
 
 \begin{enumerate}
-\item A trycker på ``Godkänn rapporter''.
-\item A väljer en icke godkänd tidrapport genom att trycka på på dess radioknapp.
-\item A trycker på knappen ``Godkänd''.
-\item Kontrollera att tidrapporten är godkänd.
+\item A trycker på ``Signera'' vid T.
+\item T visas.
+\item A trycker på ``Signera''.
+\item Kontrollera i databasen att tidrapporten är signerad.
 \end{enumerate}
 
-%MANUELL MILJÖ%
+
 \item
 \textbf{Projektledaren lyckas ta tillbaka sitt godkännande från en tidigare godkänd tidrapport}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport godkänd.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport är inte längre godkänd.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Hantera tidrapporter'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M är en projektmedlem i G. M har en tidrapportering T för Aktivitet 1, Subaktivitet 1, i vecka 1 på 10 minuter. T är signerad.
+
+\emph{Sluttillstånd:} Oförändrat förutom att T är osignerad.
 
 \begin{enumerate}
-\item A trycker på ``Godkänn rapporter''.
-\item A väljer en godkänd tidrapport genom att trycka på på dess radioknapp.
-\item A trycker på knappen ``Icke godkänd''.
-\item Kontrollera att tidrapporten är inte längre godkänd.
+\item A trycker på ``Avsignera'' vid T.
+\item T visas.
+\item A trycker på ``Avsignera''.
+\item Kontrollera i databasen att tidrapporten är signerad.
 \end{enumerate}
 
 
@@ -723,14 +785,15 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per användare för samtliga veckor}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M är projektmedlem i G. M har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. 
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer en användare och ``Samtliga veckor''.
-\item A trycker på ``Generera statistik''
-\item Kontrollera att en ny tidrapport genereras med en användares arbetstid summerad för samtliga veckor.
+\item A väljer M och ``Samtliga veckor''.
+\item A trycker på ``Generera statistik''.
+\item Statistiken visas i form av en tidrapport med M och värdet 60 på Aktivitet 1, Subaktivitet 1.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
@@ -738,123 +801,132 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per roll för samtliga veckor}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 1, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer en roll och ``Samtliga veckor''.
+\item A väljer t1 och ``Samtliga veckor''.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med summerad arbetstid för en roll för samtliga veckor.
+\item Statistiken visas i form av en tidrapport för rollen t1 och värdet 130 på Aktivitet 1, Subaktivitet 1.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer ``Statistik per aktivitet''.
+\item A väljer Aktivitet 1 och ``Samtliga veckor''.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med alla aktiviteters arbetstid.
+\item Statistiken visas i form av en tidrapport för med endast Aktivitet 1 ifylld med värdet 30 på Subaktivitet 1 och 70 på Subaktivitet 2.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per vecka}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer ``Statistik per vecka''.
+\item A väljer både M1 och M2 och vecka 2.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med alla veckors arbetstid.
+\item Statistiken visas i form av en tidrapport med M1 och M2 och värdet 10 på Aktivitet 1, Subaktivitet 1 och 20 på Aktivitet 1, Subaktivitet 2.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per användare och aktivitet}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer en användare och en aktivitet.
+\item A väljer M1 och Aktivitet 1.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med en användares arbetstid för specificerad aktivitet.
+\item Statistiken visas i form av en tidrapport för M1 med värdet 10 på Aktivitet 1, Subaktivitet 1 och 20 på Aktivitet 1, Subaktivitet 2.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per användare för utvalda veckor}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer en användare och godtyckliga veckor.
+\item A väljer M1 för vecka 1, 2 och 4.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med en användares arbetstid för specificerade veckor.
+\item Statistiken visas i form av en tidrapport för M1 med värdet 10 på Aktivitet 1, Subaktivitet 1 och 30 på Aktivitet 2, Subaktivitet 1.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per roll och aktivitet}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1, M2 och är projektmedlemmar i G, M1 och M2 har rollen t1, M3 har rollen t2. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter. M3 har en tidrapportering T5 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 40 minuter och en T6 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer en roll och en aktivitet.
+\item A väljer t1 och Aktivitet 1.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med summerad arbetstid för en roll för specificerad aktivitet.
+\item Statistiken visas i form av en tidrapport med värdet 10 på Aktivitet 1, Subaktivitet 1, 90 på Aktivitet 1, Subaktivitet 2 och 30 på Aktivitet 2, Subaktivitet 1.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per roll för utvalda veckor}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1, M2 och är projektmedlemmar i G, M1 och M2 har rollen t1, M3 har rollen t2. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter. M3 har en tidrapportering T5 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 40 minuter och en T6 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer roll och godtyckliga veckor.
+\item A väljer t1 och vecka 1, 2 och 4.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med summerad arbetstid för en roll för specificerade veckor.
+\item Statistiken visas i form av en tidrapport med värdet 10 på Aktivitet 1, Subaktivitet 1, 30 på Aktivitet 2, Subaktivitet 1 och 70 på Aktivitet 1, Subaktivitet 2.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet och vecka}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1, M2 och är projektmedlemmar i G, M1 och M2 har rollen t1, M3 har rollen t2. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter. M3 har en tidrapportering T5 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 40 minuter och en T6 i vecka 2 på 20 minuter.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A får tillgång till statistiksidan.
-\item A väljer en aktivitet och en vecka.
+\item A väljer Aktivitet 1 för vecka 2 och 4.
 \item A trycker på ``Generera statistik''.
-\item Kontrollera att en ny tidrapport genereras med total arbetstid från en aktivitet från en specifik vecka.
+\item Statistiken visas i form av en tidrapport med värdet 10 på Aktivitet 1, Subaktivitet 1 och 130 på Aktivitet 1, Subaktivitet 2.
+\item Klicka på ``Tillbaka''.
 \end{enumerate}
 
 
 \item
-\textbf{\emph{Manuell miljö:} Projektledaren kan se sammalagd arbetstid från valda tidrapporter}
+\textbf{Projektledaren kan se sammalagd arbetstid från valda tidrapporter}
 
-\emph{Starttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.\\
-\emph{Sluttillstånd:} Projektledare A inloggad, inne på funktionalitetssidan för tidrapportering.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 är projektmedlem i G. M har en tidrapportering T i vecka 1 med 20 minuter på Aktivitet 1, Subaktivitet 1, 10 minuter på Aktivitet 2, Subaktivitet 1 och 50 minuter på Aktivitet 2, Subaktivitet 2.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A väljer godtycklig tidrapport.
+\item A väljer M för vecka 1.
 \item Kontrollera att A kan se sammanlagd arbetstid från tidrapporten.
 \end{enumerate}
 
@@ -890,76 +962,158 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{FT}
 
-\item Utgått
-\item Utgått
-\item Utgått
-\item Utgått
-\item Utgått
-\item Utgått
-\item Utgått
-\item Utgått
+\item\textbf{Aktivitetsnamn och subaktivitetsnamn har rätt utseende}
 
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
 
-\item
-\textbf{En tidrapport innehåller information om användarnamn}
-
-\emph{Starttillstånd:} Inloggad på mysql\\
-\emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller användarnamn\\
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item Få tillgång till databasen
-\item Visa tidrapporterna
-\item Hämta användarnamn från samtliga tidrapporter.
-\item Kontrollera att inget av de hämtade värdena är null.
+\item A trycker på ``Uppdatera tidrapport''.
+\item A väljer T.
+\item För alla aktivitetsnamn, kontrollera att de består av 3-5 tecken och ascii värden 48-57 och 97-122 (0-9 och a-z).
+\item För alla subaktivitetsnamn, kontrollera att de består av 1 tecken och ascii värden 48-57 och 97-122 (0-9 och a-z).
 \end{enumerate}
 
-\item
-\textbf{En tidrapport innehåller information om projektgruppsnamn}
+\item\textbf{Ogiltig tidinformation}
 
-\emph{Starttillstånd:} Inloggad på mysql\\
-\emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller projektgruppsnamn\\
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
 
-\begin{enumerate}
-\item Få tillgång till databasen
-\item Visa tidrapporterna
-\item Hämta projektgruppsnamn från samtliga tidrapporter.
-\item Kontrollera att inget av de hämtade värdena är null.
-\end{enumerate}
-
-
-
-\item
-\textbf{En tidrapport innehåller information om datum i form av "dag månad år"}
-
-\emph{Starttillstånd:} Inloggad på mysql\\
-\emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller datum i "dag månad år".\\
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item Få tillgång till databasen
-\item Visa tidrapporterna
-\item Hämta datum från samtliga tidrapporter.
-\item Kontrollera att inget av de hämtade värdena är null.
+\item A trycker på ``Uppdatera tidrapport''.
+\item A väljer T.
+\item A Skriver in ``123456'' på Aktivitet 1, Subaktivitet 1.
+\item A trycker på ``Spara''.
+\item Ett felmeddelande som säger att tidrapporten innehåller ogilitg tidinformation visas.
+\item A trycker på ``OK''.
+\item A Skriver in ``123:5'' på Aktivitet 1, Subaktivitet 1.
+\item A trycker på ``Spara''.
+\item Ett felmeddelande som säger att tidrapporten innehåller ogilitg tidinformation visas.
+\item A trycker på ``OK''.
+\item A Skriver in ``/'' på Aktivitet 1, Subaktivitet 1.
+\item A trycker på ``Spara''.
+\item Ett felmeddelande som säger att tidrapporten innehåller ogilitg tidinformation visas.
+\item A trycker på ``OK''.
 \end{enumerate}
 
 
-\item
-\textbf{En tidrapport innehåller information om veckonummer}
+\item\textbf{Giltig tidinformation}
 
-\emph{Starttillstånd:} Inloggad på mysql\\
-\emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller veckonummer.\\
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
+
+\emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 1239 minuter registrerat på Aktivitet 1, Subaktivitet 1 och 0 minuter registrerat på Aktivitet 1, Subaktivitet 2, finns i systemet.
 
 \begin{enumerate}
-\item Få tillgång till databasen
-\item Visa tidrapporterna
-\item Hämta veckonummer från samtliga tidrapporter.
-\item Kontrollera att inget av de hämtade värdena är null.
+ \item A trycker på ``Uppdatera tidrapport''.
+ \item A väljer T.
+ \item A Skriver in ``01239'' på Aktivitet 1, Subaktivitet 1.
+ \item A Skriver in ``0'' på Aktivitet 1, Subaktivitet 2.
+ \item A trycker på ``Spara''.
 \end{enumerate}
+
+\item\textbf{Ogiltigt veckonummer}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
+
+\emph{Sluttillstånd:} Oförändrat.
+
+\begin{enumerate}
+\item A trycker på ``Uppdatera tidrapport''.
+\item A väljer T.
+\item A Skriver in ``123'' på veckonummer.
+\item A trycker på ``Spara''.
+\item Ett felmeddelande som säger att tidrapporten innehåller ogilitgt veckonummer visas.
+\item A trycker på ``OK''.
+\item A Skriver in ``1:'' på veckonummer.
+\item A trycker på ``Spara''.
+\item Ett felmeddelande som säger att tidrapporten innehåller ogilitgt veckonummer visas.
+\item A trycker på ``OK''.
+\item A Skriver in ``/'' på veckonummer.
+\item A trycker på ``Spara''.
+\item Ett felmeddelande som säger att tidrapporten innehåller ogilitgt veckonummer visas.
+\item A trycker på ``OK''.
+\end{enumerate}
+
+\item\textbf{Giltigt veckonummer}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
+
+\emph{Sluttillstånd:} Oförändrat.
+
+\begin{enumerate}
+ \item A trycker på ``Uppdatera tidrapport''.
+ \item A väljer T.
+ \item A Skriver in ``90'' på veckonummer.
+ \item A trycker på ``Spara''.
+\end{enumerate}
+
+% \item
+% \textbf{En tidrapport innehåller information om användarnamn}
+% 
+% \emph{Starttillstånd:} Inloggad på mysql
+% 
+% \emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller användarnamn
+% 
+% \begin{enumerate}
+% \item Få tillgång till databasen
+% \item Visa tidrapporterna
+% \item Hämta användarnamn från samtliga tidrapporter.
+% \item Kontrollera att inget av de hämtade värdena är null.
+% \end{enumerate}
+% 
+% \item
+% \textbf{En tidrapport innehåller information om projektgruppsnamn}
+% 
+% \emph{Starttillstånd:} Inloggad på mysql
+% 
+% \emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller projektgruppsnamn
+% 
+% \begin{enumerate}
+% \item Få tillgång till databasen
+% \item Visa tidrapporterna
+% \item Hämta projektgruppsnamn från samtliga tidrapporter.
+% \item Kontrollera att inget av de hämtade värdena är null.
+% \end{enumerate}
+% 
+% 
+% 
+% \item
+% \textbf{En tidrapport innehåller information om datum i form av ``dag månad år''}
+% 
+% \emph{Starttillstånd:} Inloggad på mysql
+% 
+% \emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller datum i ``dag månad år''.
+% 
+% \begin{enumerate}
+% \item Få tillgång till databasen
+% \item Visa tidrapporterna
+% \item Hämta datum från samtliga tidrapporter.
+% \item Kontrollera att inget av de hämtade värdena är null.
+% \end{enumerate}
+% 
+% 
+% \item
+% \textbf{En tidrapport innehåller information om veckonummer}
+% 
+% \emph{Starttillstånd:} Inloggad på mysql
+% 
+% \emph{Sluttillstånd:} Inloggad på mysql. Alla tidrapporter innehåller veckonummer.
+% 
+% \begin{enumerate}
+% \item Få tillgång till databasen
+% \item Visa tidrapporterna
+% \item Hämta veckonummer från samtliga tidrapporter.
+% \item Kontrollera att inget av de hämtade värdena är null.
+%\end{enumerate}
 
 
 \item
-\textbf{\emph{Manuell miljö:} Det ska framgå tydligt att en tidrapport är signerad eller inte}
+\textbf{Det ska framgå tydligt att en tidrapport är signerad eller inte}
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.\\
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.
+
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.
 
 \begin{enumerate}
@@ -968,11 +1122,45 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Kontrollera att det visas tydligt om tidrapporten är godkänd eller ej.
 \end{enumerate}
 
+\item\textbf{Aktivitetsnamn är unika}
 
-\item Utgått
-\item Utgått
-\item Utgått
-\item Utgått
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
+
+\emph{Sluttillstånd:} Oförändrat.
+
+\begin{enumerate}
+\item A trycker på ``Uppdatera tidrapport''.
+\item A väljer T.
+\item Kontrollera att aktivitetsnamnen är unika.
+\end{enumerate}
+
+\item\textbf{Subaktivitetsnamn är unika}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
+
+\emph{Sluttillstånd:} Oförändrat.
+
+\begin{enumerate}
+\item A trycker på ``Uppdatera tidrapport''.
+\item A väljer T.
+\item Kontrollera att subaktivitetsnamnen är unika.
+\end{enumerate}
+
+\item\textbf{Tidrapporten har rätt utseende}
+
+\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
+
+\emph{Sluttillstånd:} Oförändrat.
+
+\begin{enumerate}
+\item A trycker på ``Uppdatera tidrapport''.
+\item A väljer T.
+\item Kontrollera att tidrapporten har rätt utseende, se figur 8 i referens 2.
+\item Kontrollera att A:s namn är ifyllt i Namn.
+\item Kontrollera att Datum för senaste ändring är ifyllt på formatet ``dag månad år''.
+\item Kontrollera att Projektgrupp är A:s projektgruppsnamn.
+\item Kontrollera att det finns ett veckonummer.
+\end{enumerate}
 
 \end{FT}
 %-------------------------------
@@ -997,52 +1185,52 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \subsubsection{Övergripande}
 \begin{FT}
 \item %FT 4.1.1 
-\textbf{Kontrollera att man från huvudsidan kan komma åt administrationssidan}
+\textbf{Kontrollera att man från ''välj funktion'' sidan kan komma åt ''välj administrationsverktyg'' se figur 5 i ref 2.}
 
-\emph{Starttillstånd:}  Administratör A är inloggad och är på huvudsidan.
+\emph{Starttillstånd:}  Administratör A är inloggad och är på ''välj funktion'' sidan.
 
-\emph{Sluttillstånd:} Administratör A är inloggad och är på administrationssidan.
+\emph{Sluttillstånd:} Oförändrad.
 
 \begin{enumerate}
-\item A är på huvudsidan.
-\item A navigerar till administrationssidan.
-\item Kontrollera att A är på administrationssidan. 
+\item A är på ''välj funktion'' sidan.
+\item kontrollera att ''administrationsvyn'' finns tillgänglig som val. 
+
 \end{enumerate}
 
 \item %FT 4.1.2 
-\textbf{Administratören navigerar till administrationssidan}
+\textbf{Administratören navigerar till ''välj administrationsverktyg'' se figur 5 i refenrens 2.}
 
-\emph{Starttillstånd:} Administratören är på huvudsidan.
+\emph{Starttillstånd:} Administratören är på ''välj funktion'' sidan se figur 5 i ref 2.
 
-\emph{Sluttillstånd:} Administratör är på administrationssidan.
+\emph{Sluttillstånd:} Administratör är på ''välj administrationsverktyg''.
 
 \begin{enumerate}
-\item Administratören navigerar till administrationssida.
-\item Kontrollera att administratören är på administrationssida.
+\item Administratören klickar på ''administrationsvyn''.
+\item Kontrollera att administratören är inne på ''välj administrationsverktyg''.
 \end{enumerate}
 
 \item %FT 4.1.3 
-\textbf{En vanlig användare försöker navigera till administrationsvyn}
+\textbf{En projektmedlem försöker navigera till ''välj administrationsverktyg'' se figur 5 i ref 2.}
 
-\emph{Starttillstånd:} Användare A är på huvudsidan
+\emph{Starttillstånd:} Projektmedlem M är på ''välj funktion'' sidan se figur 3 i ref 2.
 
 \emph{Sluttillstånd:} A är på huvudsidan
 
 \begin{enumerate}
-\item A försöker navigerar till administrationssidan.
-\item kontrollera att A är på huvudsida. 
+\item M klickar på ''administrationsvyn'' se figur 5 i ref 2.
+\item kontrollera att A är på "välj funktion" sidan. 
 \end{enumerate}
 
 \item %FT 4.1.4 
-\textbf{En projektledare försöker navigera till administrationssidan}
+\textbf{En projektledare försöker navigera till ''välj administrationsverktyg'' se figur 5 i ref 2.}
 
-\emph{Starttillstånd:} Projektledare A är inloggad
+\emph{Starttillstånd:} Projektledare L är inloggad
 
 \emph{Sluttillstånd:} A är på huvudsidan 
 
 \begin{enumerate}
-\item A försöker navigera till administrationssida.
-\item Kontrollera att A är på huvudsidan.
+\item L klickar på ''administrationsvyn'' se figur 5 i ref 2.
+\item Kontrollera att A är kvar på ''välj funktion'' sidan se figur 4 i ref 2.
 
 \end{enumerate}
 \end{FT}
@@ -1053,78 +1241,77 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item %FT 4.2.1 
 \textbf{Projektledaren tilldelar en roll till en projektmedlem i sin projektgrupp}
 
-\emph{Starttillstånd:} Projektledaren är inloggat och har tillgång till sin projekgrupp. En projektmedlem B finns i projektledarens grupp.
+\emph{Starttillstånd:} Projektledaren L är inloggat och har tillgång till sin projektgrupp. En projektmedlem M finns i projektledarens grupp.
 
-\emph{Sluttillstånd:} Projektmedlem har fått en roll ”Testare” i sin projektgrupp.
+\emph{Sluttillstånd:} M har fått en roll t1 i sin projektgrupp.
 
 \begin{enumerate}
-\item A väljer att tilldela roll.
-\item A tilldelar roll ”t1 till projektmedlem B.
-\item A sparar ändringar.
-\item A har fått bekräftelse att B har fått roll som ”t1”.
-\item Kontrollera att B har rollen "t1".
+\item P tilldelar roll t1 till M.
+\item P sparar ändringar.
+\item P har fått bekräftelse att M har fått roll som t1.
+\item Kontrollera att M har rollen t1 genom att gå till sidan ''Lista projektmedlemmar'' se figur 7 i ref 2.
 \end{enumerate}
 
 \item %FT 4.2.2 
-\textbf{Projektledaren listar alla ej godkända tidrapporter}
+\textbf{Projektledaren listar alla osignerade tidrapporter}
 
-\emph{Starttillstånd:} Projektledaren A är inloggad och har tillgång till tidrapporter. Två ej godkända och tre godkända tidrapporter med unika upphovsmän finns i systemet.
+\emph{Starttillstånd:} Projektledaren L är inloggad och på sida ''alternativ'' se figur 7 i ref 2. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet under L:s projektgrupp.
 
 \emph{Sluttillstånd:} Alla ej godkända tidrapporter är listade.                          
 
 \begin{enumerate}
-\item A väljer att lista alla ej godkända tidrapporter
-\item Kontrollera att två ej godkända tidrapporter är listade
+\item L väljer ''redigera tidrapport'' och väljer sedan osignerade rapporter.
+\item Kontrollera att två osignerade tidrapporter är listade.
 \end{enumerate}
 
 \item %FT 4.2.3
 \textbf{Projektledaren listar alla godkända tidrapporter}
 
-\emph{Starttillstånd:} Projektledaren A är inloggat och har tillgång till tidrapporter. Två ej godkända och tre godkända tidrapporter med unika upphovsmän finns i systemet.
+\emph{Starttillstånd:} Projektledaren L är inloggad och på sida ''alternativ'' se figur 7 i ref 2. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet under L:s projektgrupp.
 
-\emph{Sluttillstånd:} Alla godkända tidrapporter är listade.
+\emph{Sluttillstånd:} Alla signerade tidrapporter är listade.                          
 
 \begin{enumerate}
-\item A väljer att lista alla godkända tidrapporter
-\item Kontroller att 3 godkända tidrapporter är listade
+\item L väljer ''redigera tidrapport'' och väljer sedan signerade rapporter.
+\item Kontrollera att tre signerade tidrapporter är listade.
 \end{enumerate}
 
 \item %FT 4.2.4 
 \textbf{Projektledaren listar projektets alla tidrapporter och sorterar dom i stigande ordning efter användare}
 
-\emph{Starttillstånd:} Projektledare A är inloggad och har tillgång till tidrapporter. Två ej godkända och tre godkända tidrapporter med unika upphovsmän finns i systemet.
+\emph{Starttillstånd:} Projektledare L är inloggad och på sidan ''alternativ'' se figur 7 ref 2. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet under L:s projektgrupp.
 
 \emph{Sluttillstånd:} Projektets alla tidrapporter är sorterade i stigande ordning efter användare.
 
 \begin{enumerate}
-\item A väljer att lista alla tidrapporter
-\item A väljer att sorterar i stigande ordning efter användare.
+\item L väljer ''redigera tidrapport''.
+\item L sorterar i stigande ordning efter användare.
 \item Kontrollera att 5 tidrapporter är sorterade i stigande ordning efter användare.
 \end{enumerate}
 
 \item %FT 4.2.5 
-\textbf{Projektledaren listar projektets alla tidrapporter och sorterar dem i fallande ordning efter användare}
+\textbf{Projektledaren listar projektets alla tidrapporter och sorterar dom i fallande ordning efter användare}
 
-\emph{Starttillstånd:} Projektledare A är inloggat och har tillgång till tidrapporter. Två ej godkända och tre godkända tidrapporter med unika upphovsmän finns i systemet.
+\emph{Starttillstånd:} Projektledare L är inloggad och på sidan ''alternativ'' se figur 7 ref 2. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet under P:s projektgrupp.
 
-\emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i fallande ordning efter användare
+\emph{Sluttillstånd:} Projektets alla tidrapporter är sorterade i fallande ordning efter användare.
 
 \begin{enumerate}
-\item A väljer att lista alla tidrapporter.
-\item A väljer att sortera i fallande ordning efter användare.
+\item L väljer ''redigera tidrapport''.
+\item L sorterar i fallande ordning efter användare.
 \item Kontrollera att 5 tidrapporter är sorterade i fallande ordning efter användare.
 \end{enumerate}
 
 \item %FT 4.2.6 
 \textbf{Projektledaren listar projektets alla tidrapporter och sorterar dem i stigande ordning efter vecka}
 
-\emph{Starttillstånd:} Projektledare A är inloggad och har tillgång till tidrapporter. Två ej godkända och tre godkända tidrapporter med unika upphovsmän finns i systemet.
+\emph{Starttillstånd:} Projektledare P är inloggad och på sidan ''alternativ'' se figur 7 ref 2. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet under P:s projektgrupp.
 
 \emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i stigande ordning efter vecka.
 
 \begin{enumerate}
-\item A väljer att lista alla tidrapporter.
-\item A väljer att sorterar i stigande ordning efter vecka.
+\item L väljer ''redigera tidrapport''.
+\item L sorterar i stigande ordning efter vecka.
 \item Kontrollera att 5 tidrapporter är sorterade i stigande ordning efter vecka.
 \end{enumerate}
 
@@ -1133,446 +1320,449 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item %FT 4.2.7 
 \textbf{Projektledaren listar projektets alla tidrapporter och sorterar dom i fallande ordning efter vecka} 
 
-\emph{Starttillstånd:} Projektledare A är inloggat och har tillgång till tidrapporter.
+\emph{Starttillstånd:} Projektledare P är inloggad och på sidan ''alternativ'' se figur 7 ref 2. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet under P:s projektgrupp.
 
 \emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i fallande ordning efter vecka.
 
 \begin{enumerate}
-\item A väljer att lista alla tidrapporter
-\item A väljer att sortera i fallande ordning efter vecka
-\item Kontrollera att alla projektet tidrapporter är sorterade i fallande ordning efter vecka.
+\item L väljer ''redigera tidrapport''.
+\item L sorterar i fallande ordning efter vecka.
+\item Kontrollera att 5 tidrapporter är sorterade i fallande ordning efter vecka.
 \end{enumerate}
 
 \item %FT 4.2.8 
 \textbf{Projektledaren listar projektets alla tidrapporter och sorterar dom i stigande ordning efter hurvida rapporten är godkänd eller ej}
 
-\emph{Start tillstånd:} Projektledare A är inloggat och har tillgång till tidrapporter.
+\emph{Start tillstånd:} Projektledare L är inloggad och på sidan ''alternativ'' se figur 7 ref 2. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet under P:s projektgrupp.
 
-\emph{Slut tillstånd:} Projektet alla tidrapporter är sorterade i stigande ordning efter hurvida rapporten är godkänd eller ej.
+\emph{Slut tillstånd:} Projektets alla tidrapporter är sorterade i stigande ordning efter hurvida rapporten är signerad eller ej.
 
 \begin{enumerate}
-\item A väljer att lista alla tidrapporter.
-\item A väljer att sortera i stigande ordning efter hurvida rapporten är godkänd eller ej
-\item Kontrollera att alla projektet tidrapporter är sorterade i stigande ordning efter hurvida rapporten är godkänd eller ej
+\item L väljer ''redigera tidrapport''.
+\item L sorterar i stigande ordning efter hurvida rapporten är signerad eller ej.
+\item Kontrollera att alla projektets tidrapporter är sorterade i stigande ordning efter hurvida rapporten är signerad eller ej.
 \end{enumerate}
 
 \item %FT 4.2.9 
 \textbf{Projektledaren listar projektets alla tidrapporter och sorterar dom i fallande ordning efter hurvida rapporten är godkänd eller ej}
 
-\emph{Starttillstånd:} Projektledare A är inloggat och har tillgång till tidrapporter.
+\emph{Start tillstånd:} Projektledare L är inloggad och på sidan ''alternativ'' se figur 7 ref 2. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet under P:s projektgrupp.
 
-\emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i fallande ordning efter hurvida rapporten är godkänd eller ej.
+\emph{Slut tillstånd:} Projektets alla tidrapporter är sorterade i fallande ordning efter hurvida rapporten är signerad eller ej.
 
 \begin{enumerate}
-\item A väljer att listar alla tidrapporter.
-\item A väljer att sortera i fallande ordning efter hurvida rapporten är godkänd eller ej
-\item Kontrollera att alla projektet tidrapporter är sorterade i fallande ordning efter hurvida rapporten är godkänd eller ej.
+\item L väljer ''redigera tidrapport''.
+\item L sorterar i fallande ordning efter hurvida rapporten är signerad eller ej.
+\item Kontrollera att alla projektets tidrapporter är sorterade i fallande ordning efter hurvida rapporten är signerad eller ej.
 \end{enumerate}
 
 \end{FT}
 
 \subsubsection{Administratör}
+\begin{FT}
+%FT 4.3.1
+\item
+\textbf{Administratören tilldelar en roll till en projektmedlem.}
 
-\textbf{FT 4.3.1 Administratören tilldelar en roll till en projektmedlem [SRS krav 6.4.3]}
+\emph{Starttillstånd:} Administratör A är inloggad och på sidan ''välj administrationsverktyg'' se figure 5 i ref 2, det finns en projektmedlem M.
 
-\emph{Starttillstånd:} Administratör A är inloggat på administratörs sida.
-
-\emph{Sluttillstånd:} Administratör A har tilldelat roll ”t1” till projektmedlem B.
+\emph{Sluttillstånd:} A har tilldelat roll ''t1'' till M.
 
 \begin{enumerate}
-\item A öppnar projekmedlems lista.
-\item A väljer B.
-\item A tilldela roll ”t1” till B.
-\item A får bekräftelse att B har fått roll ”t1”.
-\item Kontrollera att B har roll ”t1”.
+\item A klickar på ''redigera projektmedlemmar'' se figur 5 i ref 2.
+\item A väljer M.
+\item A tilldela roll ''t1'' till M.
+\item A får bekräftelse att M har fått roll som ''t1''.
+\item Kontrollera att M har rollen ''t1'' genom att gå til sidan ''Lista projektgrupper och användare'' se figur 5 i ref 2.
 \end{enumerate}
 
-\textbf{FT 4.3.2 Administratören listar alla ej godkända tidrapporter [SRS krav 6.4.4]}
+\item %FT 4.3.2 
+\textbf{Administratören listar alla osignerade tidrapporter}
 
-\emph{Starttillstånd:} Administratör A är inloggat och har tillgång till tidrapporter.
+\emph{Starttillstånd:} Administratör A är inloggat och är inne på ''välj funktion'' se figur 7 ref 2.
 
 \emph{Sluttillstånd:} Alla ej godkända tidrapporter är listade.
 
 \begin{enumerate}
-\item A väljer att lista alla ej godkända tidrapporter.
-\item Kontrollera att alla ej godkända tidrapporter är listade.
+\item A klickar på ''tidrapportering'' se figur 7 ref 2.
+\item A väljer ''redigera tidrapport'' se figur 7 ref 2.
+\item A väljer att visa osignerade rapporter.
+\item Kontrollera att alla osignerade tidrapporter är listade.
 \end{enumerate}
 
-\textbf{FT 4.3.3 Administratören listar alla godkända tidrapporter [SRS krav 6.4.5]}
+\item %FT 4.3.3 
+\textbf{Administratören listar alla signerade tidrapporter}
 
-\emph{Starttillstånd:}  Administratör A är inloggat och har tillgång till tidrapporter.
+\emph{Starttillstånd:} Administratör A är inloggat och är inne på ''välj funktion'' se figur 7 ref 2.
 
 \emph{Sluttillstånd:} Alla godkända tidrapporter är listade.
 
 \begin{enumerate}
-\item A väljer att lista alla godkända tidrapporter.
-\item Kontrollera att alla godkända tidrapporter är listade.
+\item A klickar på ''tidrapportering'' se figur 7 ref 2.
+\item A väljer ''redigera tidrapport'' se figur 7 ref 2.
+\item A väljer att visa signerade rapporter.
+\item Kontrollera att alla signerade tidrapporter är listade.
 \end{enumerate}
 
-\textbf{FT 4.3.4 Administratören listar ett projekts alla tidrapporter och sorterar dom i stigande ordning efter användare [SRS krav 6.4.11]}
+\item %FT 4.3.4 
+\textbf{Administratören listar ett projekts alla tidrapporter och sorterar dom i stigande ordning efter användare}
 
-\emph{Starttillstånd:} Administratör A är inloggat och har tillgång till tidrapporter.
+\emph{Starttillstånd:} Administratör A är inloggad och på sidan ''alternativ'' se figur 7 ref 2. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet.
 
-\emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i stigande ordning efter användare.
+\emph{Sluttillstånd:} Alla tidrapporter är sorterade i stigande ordning efter användare.
 
 \begin{enumerate}
-\item A väljer att lista alla tidrapporter.
-\item A väljer att sortera i stigande ordning efter användare.
-\item Kontrollera att alla projektets tidrapporter är sorterade i stigande ordning efter användare.
+\item A väljer ''redigera tidrapport''. se figur 7 i ref 2.
+\item A sorterar i stigande ordning efter användare.
+\item Kontrollera att alla projektets tidrapporter är sorterade i stigande ordning efter användare
 \end{enumerate}
 
-\textbf{FT 4.3.5 Administratören listar ett projekts alla tidrapporter och sorterar dom i fallande ordning efter användare [SRS krav 6.4.11]}
+\item %FT 4.3.5 
+\textbf{Administratören listar ett projekts alla tidrapporter och sorterar dom i fallande ordning efter användare}
 
-\emph{Starttillstånd:} Administratör A är inloggat och har tillgång till tidrapporter.
+\emph{Starttillstånd:} Administratör A är inloggad och på sidan ''alternativ'' se figur 7 i ref 2. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet.
 
-\emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i fallande ordning efter användare.
+\emph{Sluttillstånd:} Alla tidrapporter är sorterade i fallande ordning efter användare.
 
 \begin{enumerate}
-\item A väljer att lista alla tidrapporter.
-\item A väljer att sortera i fallande ordning efter användare.
-\item Kontrollera att alla projektets tidrapporter är sorterade i fallande ordning efter användare.
+\item A väljer ''redigera tidrapport''. se figur 7 i ref 2.
+\item A sorterar i fallande ordning efter användare.
+\item Kontrollera att alla projektets tidrapporter är sorterade i fallande ordning efter användare
 \end{enumerate}
 
-\textbf{FT 4.3.6 Administratören listar ett projekts alla tidrapporter och sorterar dom i stigande ordning efter vecka [SRS krav 6.4.11]}
+\item %FT 4.3.6 
+\textbf{Administratören listar ett projekts alla tidrapporter och sorterar dom i stigande ordning efter vecka}
 
-\emph{Starttillstånd:} Administratör A är inloggat och. har tillgång till tidrapporter.
+\emph{Starttillstånd:} Administratör A är inloggad och på sidan ''alternativ'' se figur 7 ref 2. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet.
 
-\emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i stigande ordning efter vecka.
+\emph{Sluttillstånd:} Alla tidrapporter är sorterade i stigande ordning efter vecka.
 
 \begin{enumerate}
-\item A väljer att lista alla tidrapporter.
-\item A väljer att sortera i stigande ordning efter vecka.
-\item Kontrollera att alla projektets tidrapporter är sorterade i stigande ordning efter vecka.
+\item A väljer ''redigera tidrapport''. se figur 7 i ref 2.
+\item A sorterar i stigande ordning efter vecka.
+\item Kontrollera att alla projektets tidrapporter är sorterade i stigande ordning efter vecka
 \end{enumerate}
 
-\textbf{FT 4.3.7 Administratören listar ett projekts alla tidrapporter och sorterar dom i fallande ordning efter vecka [SRS krav 6.4.11]}
+\item %FT 4.3.7 
+\textbf{Administratören listar ett projekts alla tidrapporter och sorterar dom i fallande ordning efter vecka}
 
-\emph{Starttillstånd:} Administratör A är inloggat och har tillgång till tidrapporter.
+\emph{Starttillstånd:} Administratör A är inloggad och på sidan ''alternativ'' se figur 7 i ref 2. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet.
 
-\emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i fallande ordning efter vecka.
+\emph{Sluttillstånd:} Alla tidrapporter är sorterade i fallande ordning efter vecka.
 
 \begin{enumerate}
-\item A väljer att lista alla tidrapporter.
-\item A väljer att sortera i fallande ordning efter vecka.
-\item Kontrollera att alla projektets tidrapporter är sorterade i fallande ordning efter vecka.
+\item A väljer ''redigera tidrapport'' se figur 7 i ref 2.
+\item A sorterar i fallande ordning efter vecka.
+\item Kontrollera att alla projektets tidrapporter är sorterade i fallande ordning efter vecka
 \end{enumerate}
 
-\textbf{FT 4.3.8 Administratören listar ett projekts alla tidrapporter och sorterar dom i stigande ordning efter hurvida rapporten är godkänd eller ej [SRS krav 6.4.11]}
+\item %FT 4.3.8 
+\textbf{Administratören listar ett projekts alla tidrapporter och sorterar dom i stigande ordning efter hurvida rapporten är signerad eller osignerad}
 
-\emph{Starttillstånd:} Administratör A är inloggat och har tillgång till tidrapporter.
+\emph{Starttillstånd:} Administratör A är inloggad och på sidan ''alternativ'' se figur 7 i ref 2. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet.
 
-\emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i stigande ordning efter rapporten är godkänd eller ej.
+\emph{Sluttillstånd:} Alla tidrapporter är sorterade i stigande ordning efter om de är signerade eller osignerade.
 
 \begin{enumerate}
-\item A väljer att lista alla tidrapporter.
-\item A väljer att sortera i stigande ordning efter rapporten är godkänd eller ej.
-\item Kontrollera att alla projektets tidrapporter är sorterade i stigande ordning efter rapporten är godkänd eller ej.
+\item A väljer ''redigera tidrapport'' se figur 7 i ref 2.
+\item A sorterar i stigande ordning efter om de är signerade eller osignerade.
+\item Kontrollera att alla projektets tidrapporter är sorterade i stigande ordning efter om de är signerade eller osignerade.
 \end{enumerate}
 
-\textbf{FT 4.3.9 Administratören listar ett projekts alla tidrapporter och sorterar dom i fallande ordning efter hurvida rapporten är godkänd eller ej [SRS krav 6.4.11]}
+\item %FT 4.3.9 
+\textbf{Administratören listar ett projekts alla tidrapporter och sorterar dom i fallande ordning efter hurvida rapporten är signerad eller ej}
 
-\emph{Starttillstånd:} Administratör A är inloggat och har tillgång till tidrapporter.
+\emph{Starttillstånd:} Administratör A är inloggad och på sidan ''alternativ'' se figur 7 i ref 2. Två osignerade och tre signerade tidrapporter med unika upphovsmän finns i systemet.
 
-\emph{Sluttillstånd:} Projektet alla tidrapporter är sorterade i fallande ordning efter rapporten är godkänd eller ej.
+\emph{Sluttillstånd:} Alla tidrapporter är sorterade i fallande ordning efter om de är signerade eller osignerade.
 
 \begin{enumerate}
-
-\item A väljer att lista alla tidrapporter.
-\item A väljer att sortera i stigande ordning efter rapporten är godkänd eller ej.
-\item Kontrollera att alla projektets tidrapporter är sorterade i fallande ordning efter rapporten är godkänd eller ej.
+\item A väljer ''redigera tidrapport'' se figur 7 i ref 2.
+\item A sorterar i fallande ordning efter om de är signerade eller osignerade.
+\item Kontrollera att alla projektets tidrapporter är sorterade i fallande ordning efter om de är signerade eller osignerade.
 \end{enumerate}
 
-\textbf{FT 4.3.10 Administratören skapar en projektgrupp [SRS krav 6.4.12]}
+\item %FT 4.3.10 
+\textbf{Administratören skapar en projektgrupp}
 
-\emph{Starttillstånd:} Administratör A är inloggat.
+\emph{Starttillstånd:} Administratör A är inloggad och på sida ''välj administrationsverktyg'' se figur 5 i ref 2.
 
-\emph{Sluttillstånd:} Administratör A har sakppat projektgrupp D.
+\emph{Sluttillstånd:} Administratör A har skapat projektgrupp ''grupp''.
 
 \begin{enumerate}
-\item A väljer att skapa ny projektgrupp.
-\item A skriver projektgrupp D.
-\item A for bekräftelse att projektgrupp D är skapat.
-\item Kontrollera att projektgrupp D är skapat.
+\item A väljer ''Projektgrupper'' sedan ''skapa projektgrupp''.
+\item A ger gruppen namnet ''grupp''
+\item A får bekräftelse att projektgrupp ''grupp'' har skapats.
+\item Kontrollera att projektgrupp ''grupp'' existerar i systemet genom att gå till sidan ''Lista projektgrupper och användare'' se figur 5 i ref 2.
 \end{enumerate}
 
-\textbf{FT 4.3.11 En vanlig användare försöker skapa en projektgrupp [SRS krav 6.4.12]}
+\item %FT 4.3.11 
+\textbf{En vanlig användare försöker skapa en projektgrupp}
 
-\emph{Starttillstånd:} Användare A är inloggat.
+\emph{Starttillstånd:} Användare U är inloggat och på sidan ''välj funktion'' se figur 3 i ref 2.
 
-\emph{Sluttillstånd:} Andvändare A kunde inte skappa projektgrupp D.
+\emph{Sluttillstånd:} U kunde inte skappa projektgrupp ''grupp''.
 
 \begin{enumerate}
-\item A försöker nå administrationsvyn.
-\item A får bekräftelse att han/hon saknar administration rättigheter.
-\item Kontrollera att A kan inte nå administrationsvyn.
-\item Kontrollera att A har inte administration rättigheter.
+\item U försöker nå ''välj administrationsverktyg'' se figur 5 i ref 2.
+\item U kan inte nå ''välj administrationsverktyg''.
+\item U ges ett meddelande om att den saknar administrativa rättigheter.
+\item Kontrollera att U kan inte nå ''välj administrationsverktyg''.
 \end{enumerate}
 
-\textbf{FT 4.3.12 En projektledare försöker skapa en projektgrupp [SRS krav 6.4.12]}
+\item %FT 4.3.12 
+\textbf{En projektledare försöker skapa en projektgrupp}
 
-\emph{Starttillstånd:} Projektledare A är inloggat.
+\emph{Starttillstånd:} projektledare L är inloggat och på sidan ''välj funktion'' se figur 4 i ref 2.
 
-\emph{Sluttillstånd:} Projektledare A kunde inte skappa projektgrupp D.
+\emph{Sluttillstånd:} L kunde inte skappa projektgrupp ''grupp''.
 
 \begin{enumerate}
-\item A försöker nå administrationsvyn.
-\item A får bekräftelse att han/hon saknar administration rättigheter.
-\item Kontrollera att A kan inte nå administrationsvyn.
-\item Kontrollera att A har inte administration rättigheter.
-
+\item L försöker nå ''välj administrationsverktyg'' se figur 5 i ref 2.
+\item L kan inte nå ''välj administrationsverktyg''.
+\item L ges ett meddelande om att den saknar administrativa rättigheter.
+\item Kontrollera att L kan inte nå ''välj administrationsverktyg''.
 \end{enumerate}
 
-\textbf{FT 4.3.13 Administratören lägger till en projektledare i en projektgrupp [SRS krav 6.4.13]}
+\item %FT 4.3.13 
+\textbf{Administratören lägger till en projektledare i en projektgrupp}
 
+\emph{Starttillstånd:} Administratör A är inloggat, på sidan ''Lista med projektgrupper och användare'' se figur 5 i ref 2. Projektgrupp G finns och innehåller endast en projektledaren L1.
 
-\emph{Starttillstånd:} Administratör A är inloggat och projektgrupp innehåller endas en projektledaren B.
-
-\emph{Sluttillstånd:}Administratör A har laggt in projekledare C i projektgrupp D.
+\emph{Sluttillstånd:}G har projektledare L1 och L2.
 
 \begin{enumerate}
-\item A öppna projektgrupp D.
-\item A väljer ny projektledare.
-\item A lägger till C i projektgrupp D.
-\item A for bekräftelse att C är inlaggt i projektgrupp D.
-\item Kontrollera att C är i projektgrupp D.
+\item A lägger till L2 i G.
+\item A utser L2 till projektledare i G.
+\item Kontrollera att L2 är projektledare i G genom att gå till sidan ''Lista med projektgrupper och användare'' se figur 5 i ref 2.
 \end{enumerate}
 
-\textbf{FT 4.3.14 Administratören tar bort en projektledare i en projektgrupp [SRS krav 6.4.13]}
+\item %FT 4.3.14
+\textbf{Administratören tar bort en projektledare i en projektgrupp}
 
-\emph{Starttillstånd:} Administratör A är inloggat och projektgrupp D har projektledare B och C.
+\emph{Starttillstånd:} Administratör A är inloggat, på sidan ''Lista med projektgrupper och användare'' se figur 5 i ref 2. Projektgrupp G finns och innehåller två projektledare L1 och L2.
 
-\emph{Sluttillstånd:} Administratör A har tagit bort  in projekledare B i projektgrupp D.
+\emph{Sluttillstånd:} G har projektledare L1.
 
 \begin{enumerate}
-\item A öppna projektgrupp D.
-\item A väljer ta bort projektledare.
-\item A tar bort B i projektgrupp D.
-\item A for bekräftelse att B har taggits  bort i projektgrupp D.
-\item Kontrollera att B är bortaget.
+\item A väljer projektgrupp G.
+\item A tar bort L2 från G.
+\item Kontrollera att L1 är ensam projektledare i G genom att gå till sidan ''Lista med projektgrupper och användare'' se figur 5 i ref 2.
 \end{enumerate}
 
-\textbf{FT 4.3.15 En vanlig användare försöker lägga till en projektledare i en projektgrupp [SRS krav 6.4.13]} 
+\item %FT 4.3.15
+\textbf{En vanlig användare försöker lägga till en projektledare i en projektgrupp} 
 
-\emph{Starttillstånd:} Användare A är inloggat.
+\emph{Starttillstånd:} Användare U är inloggad och inne på sidan ''välj funktion'' se figur 3 i ref 2, Projektgrupp G finns, med endast en projektledare.
 
-\emph{Sluttillstånd:} Användare A kunde inte lägga in projektledare B i projektgrupp D.
+\emph{Sluttillstånd:} Användare U kunde inte lägga in projektledare L i projektgrupp G.
 
 \begin{enumerate}
-\item A väljer att nå sidan för att lägga in B i projektgrupp D.
-\item A får bekräftelse att B har inte rättighet att lägga projektledare i projektgrupp D.
-\item Kontrollera att B är inte medlem i projektgrupp D.
+\item U försöker nå URL för sidan ''Lista med projektgrupper och användare'' se figur 5 i ref 2.
+\item U får ett felmeddelande att den inte har rättigheter för den sidan. 
+\item Kontrollera att G inte har ny projektledare L genom att gå till sidan ''Lista med projektgrupper och användare'' se figur 5 i ref 2 som en administratör.
 \end{enumerate}
 
-\textbf{FT 4.3.16 En vanlig användare försöker ta bort en projektledare i en projektgrupp [SRS krav 6.4.13]}
+\item %FT 4.3.16
+\textbf{En vanlig användare försöker ta bort en projektledare i en projektgrupp}
 
-\emph{Starttillstånd:} Användare A är inloggat.
+\emph{Starttillstånd:} Användare U är inloggad och inne på sidan ''välj funktion'' se figur 3 i ref 2, Projektgrupp G finns, med projektledare L1 och L2.
 
-\emph{Sluttillstånd:} Andvendare A kunde inte lägga in projektledare B i projektgrupp D.
+\emph{Sluttillstånd:} Användare U kunde inte ta bort L från projektgrupp G.
 
 \begin{enumerate}
-\item A väljer att nå sidan för att ta bort B i projektgrupp D.
-\item A får bekräftelse att användare har inte rättigheter att ta bort B i projektgrupp D.
-\item Kontrollera att B är i projektgrupp D.
+\item U försöker nå URL för sidan ''Lista med projektgrupper och användare'' se figur 5 i ref 2.
+\item U får ett felmeddelande att den inte har rättigheter för den sidan. 
+\item Kontrollera att G fortfarande har projektledare L1 och L2 genom att gå till sidan ''Lista med projektgrupper och användare'' se figur 5 i ref 2 som en administratör.
 \end{enumerate}
 
-\textbf{FT 4.3.17 En projektledare försöker ta bort en projektledare i en projektgrupp [SRS krav 6.4.13]}
+\item %FT 4.3.17 
+\textbf{En projektledare försöker ta bort en projektledare i en projektgrupp}
 
-\emph{Starttillstånd:} Projektledare A är inloggat.
+\emph{Starttillstånd:} Projektledare L1 är inloggad och på sidan för ''välj funktion'' se figur 7 i ref 2. Det finns en projektgrupp G med projektledare L1, L2.
 
-\emph{Sluttillstånd:} Projektledare A fick bekräftelse att projektledare B kan inte tas bort i projektgrupp C.
+\emph{Sluttillstånd:} G har fortfarande projektledare L1 och L2.
 
 \begin{enumerate}
-\item A väljer att ta bort projektledar B i projektgrupp C.
-\item A får bekräftelse att B kan inte tas bort i projektgrupp C.
-\item Kontrollera att B är medlem i projektgrupp C.
+\item L1 försöker navigera till URL för ''Lista med projektgrupper och användare'' se figur 5 i ref 2.
+\item L1 får ett felmeddelande om att den inte har rättigheter för den sidan.
+\item Kontrollera att G fortfarande har projektledare L1 och L2 genom att gå till sidan ''Lista med projektgrupper och användare'' se figur 5 i ref 2 som en administratör.
 \end{enumerate}
 
-\textbf{FT 4.3.18 Administratören tar bort en projektgrupp [SRS krav 6.4.14]}
 
-\emph{Starttillstånd:} Administratör A är inloggat.
+\item %FT 4.3.18 
+\textbf{Administratören tar bort en projektgrupp}
 
-\emph{Sluttillstånd:} Administratör A har tagit bort  projektgrupp D.
+\emph{Starttillstånd:} Administratör A är inloggat, det finns en projektgrupp G.
+
+\emph{Sluttillstånd:} G finns inte längre i systemet.
 
 \begin{enumerate}
-\item A väljer att ta bort projektgrupp.
-\item A tar bort projektgrupp D.
-\item A for bekräftelse att projektgrupp D har tagits bort.
-\item Kontrollera att projektgrupp D är bortaget.
+\item A går till URL för sidan ''Projektgrupper'' se figur 5 i ref 2.
+\item A får en bekräftelseruta se krav 6.1.14 i ref 2, och klickar ''ja''.
+\item Kontrollera att G inte längre finns i databasen genom att gå till sidan ''Lista med projektgrupper och användare'' se figur 5 i ref 2.
 \end{enumerate}
 
-\textbf{FT 4.3.19 En vanlig användare försöker ta bort en projektgrupp [SRS krav 6.4.14]}
+\item %FT 4.3.19
+\textbf{En vanlig användare försöker ta bort en projektgrupp}
 
-\emph{Starttillstånd:} Användare A är inloggat.
+\emph{Starttillstånd:} Projektmedlem M är inloggad, det finns en projektgrupp G.
 
-\emph{Sluttillstånd:} Användare A kunde inte nå sidan att ta bort projektgrupp B.
+\emph{Sluttillstånd:} G finns kvar i databasen.
 
 \begin{enumerate}
-\item A försöker nå sida att ta bort projektgrupp B.
-\item A for bekräftelse att han/hon har inte rättigheter att ta bort projektgupp B.
-\item Kontrollera att A kan inte nå sida.
-\item Kontrollera att projektgrupp B är inte bortagen.
+\item M försöker nå URL för sidan ''Projektgrupper'' se figur 5 i ref 2.
+\item M får ett meddelande om att M inte har behörighet för den sidan.
+\item Kontrollera att M kan inte nå sidan.
+\item Kontrollera att projektgrupp G finns kvar i databasen genom att gå till sidan ''Lista med projektgrupper och användare'' se figur 5 i ref 2 som en administratör.
 \end{enumerate}
 
-\textbf{FT 4.3.20 En projektledare försöker ta bort en projektgrupp [SRS krav 6.4.14]}
+\item %FT 4.3.20
+\textbf{En projektledare försöker ta bort en projektgrupp}
 
-\emph{Starttillstånd:} Projektledare A är inloggad.
+\emph{Starttillstånd:} Projektledare L är inloggad och det finns en projektgrupp G.
 
-\emph{Sluttillstånd:} Projektledare A kunde inte nå sidan att ta projektgrupp B.
+\emph{Sluttillstånd:} G finns kvar i databasen.
 
 \begin{enumerate}
-\item A försöker nå sida att ta bort projektgrupp B.
-\item A for bekräftelse att han/hon har inte rättigheter att ta bort projektgupp B.
-\item Kontrollera att A kan inte nå sida.
-\item Kontrollera att projektgrupp B är inte bortagen.
+\item L försöker gå till URL för sidan ''Projektgrupper'' se figur 5 i ref 2.
+\item A får ett meddelande om att A inte har behörighet för den sidan.
+\item Kontrollera att A kan inte nå sidan.
+\item Kontrollera att G finns kvar i databasen genom att gå till sidan ''Lista med projektgrupper och användare'' se figur 5 i ref 2 som en administratör.
 \end{enumerate}
 
-\textbf{FT 4.3.21 Administratören lyckas ta bort en projektgrupp med medlemmar i}
+\item
+\textbf{Administratören kan ta bort en projektgrupp med medlemmar i}
 
-\emph{Starttillstånd:} Administratör A är inloggad. En projektgrupp x finns.
+\emph{Starttillstånd:} Administratören A är inloggad och det finns en projektgrupp G med projektledare L och medlemmar M1 och M2.
 
-\emph{Sluttillstånd:} Administratör A är inloggad, ingen projektgrupp finns i systemet.
+\emph{Sluttilstånd:} G finns inte i databasen längre.
 
 \begin{enumerate}
-\item A skriver in URL för sidan där man tar bort projektgrupper.
-\item Kontrollera att A når sidan.
-\item A väljer projektgrupp x och trycker på ``Radera''.
-\item Kontrollera att projektgruppen är raderad.
+\item A går till URL för sidan ''Projektgrupper'' se figur 5 i ref 2. 
+\item A väljer att ta bort G och klickar ''ja'' på den dialogruta som definieras i krav  6.1.14 i ref 2.
+\item Kontrollera att G inte längre finns i databasen genom att gå till sidan ''Lista med projektgrupper och användare'' se figur 5 i ref 2.
 \end{enumerate}
 
-\textbf{FT 4.3.22 På administrationssidan är alla användare listade med både användarnamn och lösenord [SRS krav 6.4.21]}
+\item %FT 4.3.22
+\textbf{På sidan ''Lista användare med lösenord'' är alla användare listade med både användarnamn och lösenord}
 
-\emph{Starttillstånd:} Administratör A är inloggat.
+\emph{Starttillstånd:} Administratör A är inloggad. I systemet finns det användare U1, U2 och projektmedlemmar M1, M2 och M3.
 
-\emph{Sluttillstånd:} Administatör A har tillgång på alla användare listade med både användarnamn och lösenord.
+\emph{Sluttillstånd:} A kan se alla användare och respektive användares lösenord.
 
 \begin{enumerate}
-\item Kontrollera att A har tillgång till lista på administrationssida var alla användare är listade med både användarnamn och lösenord.
+\item A går till URL för ''Lista användare och lösenord''. 
+\item Kontrollera att A har tillgång till U1, U2, M1, M2 och M3:s användarnamn och lösenord i en lista.
 \end{enumerate}
 
-\textbf{FT 4.3.23 På administrationssidan kan man ta bort en vanlig användare [SRS krav 6.4.22]}
+\item %FT 4.3.23 
+\textbf{På administrationssidan kan man ta bort en vanlig användare}
 
-\emph{Starttillstånd:} Administratör A är inloggat på administrationssidan.
+\emph{Starttillstånd:} Administratör A är inloggad, det finns en användare U i systemet.
 
-\emph{Sluttillstånd:} Administratör A har tagit bort  användare B.
+\emph{Sluttillstånd:} U finns inte längre i systemet.
 
 \begin{enumerate}
-\item A väljer användare B.
-\item A tar bort B.
-\item A for bekräftelse att B har tagits  bort.
-\item Kontrollera att B är bortaget.
+\item A går till URL för ''Lista användare och lösenord'' se figur 5 i ref 2. 
+\item A väljer att ta bort U, och klickar ''ja'' på den dialogruta som definieras i krav 6.1.14 i ref 2.
+\item Kontrollera att U inte finns i databasen längre genom att gå till sida ''Lista användare med lösenord'' se figur 5 i ref 2.
 \end{enumerate}
 
-\textbf{FT 4.3.24 På administrationssidan kan man ta bort en projektledare [SRS krav 6.4.22]}
+\item %FT 4.3.23 
+\textbf{På administrationssidan kan man ta bort en projektledare}
 
-\emph{Starttillstånd:} Administratör A är inloggat på administrationssidan.
+\emph{Starttillstånd:} Administratör A är inloggad, och det finns en projektledare L i systemet.
 
-\emph{Sluttillstånd:} Administratör A har tagit bort  projektledare B.
+\emph{Sluttillstånd:} L finns inte längre i systemet.
 
 \begin{enumerate}
-\item A väljer projektledare B.
-\item A tar bort B.
-\item A for bekräftelse att B har tagits bort.
-\item Kontrollera att B är bortaget.
+\item A går till URL för ''Lista användare och lösenord'' se figur 5 i ref 2.
+\item A väljer att ta bort U, och klickar ''ja'' på den dialogruta som definieras i krav 6.1.14 i ref 2.
+\item Kontrollera att L inte längre finns i databasen genom att gå till sida ''Lista användare med lösenord'' se figur 5 i ref 2..
 \end{enumerate}
 
-\textbf{FT 4.3.25 På administrationssidan kan man inte ta bort en administratör [SRS krav 6.4.22]}
+\item %FT 4.3.24
+\textbf{En administratör kan inte ta bort en administratör}
 
-\emph{Starttillstånd:} Administratör A är inloggat på administrationssidan.
+\emph{Starttillstånd:} Administratör A är inloggad.
 
-\emph{Sluttillstånd:} Administratör A kunde inte ta bort  administratör B.
+\emph{Sluttillstånd:} Administratör A finns kvar i systemet.
 
 \begin{enumerate}
-\item A väljer administratör B..
-\item A tar bort B.
-\item A for bekräftelse att B kan inte tas bort.
-\item Kontrollera att B är inte bortagen.
+\item A går till URL för ''Lista användare och lösenord'' se figur 5 i ref 2.
+\item A väljer att ta bort U, och klickar ''ja'' på den dialogruta som definieras i krav 6.1.14 i ref 2.
+\item A får ett felmeddelande om att den inte kan ta bort en administratör.
+\item Kontrollera att A finns kvar i databasen genom att gå in på ''Lista användare och lösenord igen.
 \end{enumerate}
 
-\textbf{FT 4.3.26 På administrationssidan kan man lägga till en ny användare [SRS krav 6.4.24]}
+\item %FT 4.3.25 
+\textbf{På administrationssidan kan man lägga till en ny användare}
 
-\emph{Starttillstånd:} Administratör A är inloggat på administrationssidan.
+\emph{Starttillstånd:} Administratör A är inloggad, det finns ingen användare ''Kurtan'' i systemet.
 
-\emph{Sluttillstånd:} Administratör A har laggt till ny  användare B.
+\emph{Sluttillstånd:} Det finns en användare ''Kurtan'' i systemet.
 
 \begin{enumerate}
-\item A väljer ny användare.
-\item A lägger användarne B.
-\item A for bekräftelse att B har laggts in.
-\item Kontrollera att det finns användare B.
+\item A går till URL för ''Lista användare och lösenord'' se figur 5 i ref 2.
+\item  A väljer att lägga till användare och anger namnet ''Kurtan''.
+\item Kontrollera genom att gå till ''Lista användare och lösenord'' att ''Kurtan'' finns i databasen.
 \end{enumerate}
 
-\textbf{FT 4.3.27 Administratören skapar en användare och skriver in användarnamn, användarens lösenord genereras slumpmässigt [SRS krav 6.4.25]}
+\item %FT 4.3.26
+\textbf{Administratören skapar en användare och skriver in användarnamn, användarens lösenord genereras slumpmässigt}
 
-\emph{Starttillstånd:} Administratör A är inloggat.
+\emph{Starttillstånd:} Administratör A är inloggad, det finns ingen användare ''Kurtan'' i systemet.
 
-\emph{Sluttillstånd:} Administratör A har skapat  ny  användare B med användarens  lösenord.
+\emph{Sluttillstånd:} ''Kurtan'' finns i systemet med ett unikt lösenord.
 
 \begin{enumerate}
-\item A väljer att skapa ny användare.
-\item A skapa användare B.
-\item A skriver B och automatisk genereras slumpmässignt läsenord.
-\item A har skapat B med användarens lösenord.
-\item Kontrollera att det B kan logga in med tilldelat lösenord.
+\item A går till URL för ''Lista användare och lösenord'' se figur 5 i ref 2.
+\item  A väljer att lägga till användare och anger namnet ''Kurtan''.
+\item Kontrollera genom att gå till ''Lista användare och lösenord'' att ''Kurtan'' finns i databasen.
+\item Kontrollera att ''Kurtan'' har ett unikt lösenord som inte angivits av A.
 \end{enumerate}
 
-<<<<<<< HEAD
-\textbf{FT 4.3.27 Administratören försöker skapa en användare med ett upptaget användarnamn, ett fel meddelande visas [SRS krav 6.4.26]}
-=======
-\textbf{FT 4.3.28 Administratören försöker skapa en användare med ett upptaget användarnamn, ett fel- meddelande visas [SRS krav 6.4.26]}
->>>>>>> 69596f85febe4dcfb61f653107b64ed114cfa343
+\item %FT 4.3.27 
+\textbf{Administratören försöker skapa en användare med ett upptaget användarnamn, ett felmeddelande visas}
 
-\emph{Starttillstånd:} Administratör A är inloggat.
+\emph{Starttillstånd:} Administratör A är inloggad, det finns en användare ''Kurtan'' i systemet med lösenord x.
 
-\emph{Sluttillstånd:} Administratör A kunde inte skapa upptaget användarnamn B.
+\emph{Sluttillstånd:} Det finns bara en användare ''Kurtan'' i systemet, med oförändrat lösenord x.
 
 \begin{enumerate}
-\item A väljer ny användarnamn.
-\item A försöker skapa användarnamn B.
-\item A kan inte skapa användarnamn B. 
-\item A får meddelande att användarnamn B är upptagen.
-\item Kontrollera att det finns inte användarnamn B.
+\item A går till URL för ''Lista användare och lösenord'' se figur 5 i ref 2.
+\item  A väljer att lägga till användare och anger namnet ''Kurtan''.
+\item A får ett felmeddelande om att namnet ''Kurtan'' redan är upptaget.
+\item Kontrollera att det endast finns en användare ''Kurtan'' i databasen genom att gå till sidan ''Lista användare och lösenord''.
+\item Kontrollera att det lösenord som ''Kurtan'' har är oförändrat mot innan A försökte lägga in ''Kurtan'' i systemet.
 \end{enumerate}
 
-\textbf{FT 4.3.29 Administratören försöker skapa en användare med ett ogiltigt användarnamn (giltigt an- vändarnamn: 5-10 tecken, ascii 48-57, 65-90 och 97-122) [SRS krav 6.4.27]} 
+\item %FT 4.3.28
+\textbf{Administratören försöker skapa en användare med ett ogiltigt användarnamn} 
 
-\emph{Starttillstånd:} Administratör A är inloggat.
+\emph{Starttillstånd:} Administratör A är inloggad.
 
-\emph{Sluttillstånd:} Administratör A kunde inte skapa ogiltigt användarnamn B,C och D.
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A väljer ny användarnamn.
-\item A skriver användarenamn B som har mindre än 5 tecken.
-\item A får bekräftelse att det är ogiltig användarnamn B.
-\item A väljer ny användarnamn.
-\item A skriver användarenamn C som har mer än 10 tecken.
-\item A får bekräftelse att det är ogiltig användarnamn C.
-\item A väljer ny användarnamn.
-\item A skriver användarenamn D som innehåller ogilitg accii tecken.
-\item A får bekräftelse att ogiltig tecken används.
-\item Kontrollera att det finns inte användarnamn B,C och D.
+\item A går till URL för ''Lista användare och lösenord'' se figur 5 i ref 2.
+\item A väljer lägg till användare och anger namnet ''Kurtan£''.
+\item A får ett felmeddelande om att ogiltigt namn angivits.
+\item Kontrollera att ''Kurtan£'' inte finns i systemet genom att gå till sidan ''Lista användare och lösenord''.
+\item A väljer lägg till användare och anger namnet ''Kurt''.
+\item A får ett felmeddelande om att ogiltigt namn angivits.
+\item Kontrollera att ''Kurt'' inte finns i systemet genom att gå till sidan ''Lista användare och lösenord''.
 \end{enumerate}
 
-\textbf{FT 4.3.30 Administratören skapar en användare med ett giltigt användarnamn (giltigt användar- namn: 5-10 tecken, ascii 48-57, 65-90 och 97-122) [SRS krav 6.4.27]}
-
-\emph{Starttillstånd:} Administratör A är inloggat.
-
-\emph{Sluttillstånd:} Administratör A skapade giltigt användarnamn B, C och D.
-
+\item %FT 4.3.29 
+\textbf{Administratören skapar en användare med ett giltigt användarnamn}
 \begin{enumerate}
-\item A väljer ny användarnamn.
-\item A skriver användarenamn B som har 5 tecken.
-\item A får bekräftelse att användarnamn B är skapat.
-\item A väljer ny användarnamn.
-\item A skriver användarenamn C som har 10 tecken.
-\item A får bekräftelse att användarnamn C är skapat.
-\item A väljer ny användarnamn.
-\item A skriver användarnamn D som innehålle gilitg accii tecken.
-\item A får bekräftelse att användarnamn D är skapat
-\item Kontrollera att det finns användarnamn B, C och D.
+\item Gör test beskrivet i FT 4.3.26
 \end{enumerate}
 
-
-\textbf{FT 4.3.31 Administratören skapar en tidrapportmall [SRS krav 6.4.28]}
+\item %FT 4.3.30 
+\textbf{Administratören skapar en tidrapportmall}
 
 \emph{Utgår}
 %\emph{Starttillstånd:} Administratör A är inloggat.
@@ -1584,7 +1774,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 %\item Administratör A får bekräftelse att ny tidrappormall har sakpat.
 %\end{enumerate}
 
-\textbf{FT 4.3.32 Administratören försöker ändra en tidrapportmall som en projektgrupp använder [SRS krav 6.4.28]}
+\item %FT 4.3.31 
+\textbf{Administratören försöker ändra en tidrapportmall som en projektgrupp använder}
 
 \emph{Utgår}
 %\emph{Starttillstånd:} Administratör A är inloggat.
@@ -1596,457 +1787,373 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 %\item Administratör A får bekräftelse att  den kan inte användas pga projektgrupp B använder tidrappormall. 
 %\end{enumerate}
 
-
+\end{FT}
 \subsubsection{Data}
-\textbf{FT 4.4.1 Administratören försöker skapa en projektgrupp med ett ogiltigt projektgruppsnamn (gil- tigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) [SRS krav 6.4.37]}
 
-\emph{Starttillstånd} Administratör A  är inloggat.
+%FT 4.4.1 
+\begin{FT}
+\item
+\textbf{Administratören försöker skapa en projektgrupp med ett ogiltigt projektgruppsnamn (gil- tigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122)}
 
-\emph{Sluttillstånd:} Administratör A kunde inte skapa olitigt projektgruppsnamn B.
+\emph{Starttillstånd} Administratör A  är inloggad. En användare U finns i databasen.
+
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A väljer ny projektgruppsnamn.
-\item A skriver projektgruppsnamn B som har mindre än 5 tecken.
-\item A får bekräftelse att det är ogiltig projektgruppsnamn B.
-\item A väljer ny projektgruppsnamn.
-\item A skriver projektgruppsnamn C som har mer än 10 tecken.
-\item A får bekräftelse att det är ogiltig projektgruppsnamn C.
-\item A väljer ny projektgruppsnamn.
-\item A skriver projektgruppsnamn D som innehåller ogilitg accii tecken.
-\item A får bekräftelse att ogiltig tecken används.
-\item Kontrollera att det finns inte  projektgruppsnamn B,C och D.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A försöker skapa en projektgrupp med namnet ''brie'' och med U som projektledare.
+\item Kontrollera att ett felmeddelande visas som informerar om att namnet var för kort.
+\item A försöker skapa en projektgrupp med namnet ''creamcheese''.
+\item Kontrollera att ett felmeddelande visas som informerar om att namnet var för långt.
+\item A försöker skapa en projektgrupp med namnet ''cheddar?'' med U som projektledare.
+\item Kontrollera att ett felmeddelande visas som informerar om att namnet innehöll ett olämpligt tecken.
+\item Kontrollera att det inte finns några projektgrupper i databasen.
 
 \end{enumerate}
 
-\textbf{FT 4.4.2 Administratören försöker skapa en projektgrupp med ett giltigt projektgruppsnamn(giltigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122) [SRS krav 6.4.37]}
+%FT 4.4.2 
+\item
+\textbf{Administratören försöker skapa en projektgrupp med ett giltigt projektgruppsnamn(giltigt projektgruppsnamn: 5-10 tecken, ascii 48-57 och 97-122)}
 
-\emph{Starttillstånd} Administratör A  är inloggat.
+\emph{Starttillstånd} Administratör A  är inloggat. En användare U finns i databasen.
 
-\emph{Sluttillstånd:} Administratör A  skapade  giltigt projektgruppsnamn B.
+\emph{Sluttillstånd:} U och två projektgrupper med namnen ''gouda'' och ''mozzarella'' finns i databasen.
 
 \begin{enumerate}
-\item A väljer ny projektgruppsnamn.
-\item A skriver projektgruppsnamn B som har 5 tecken.
-\item A får bekräftelse att projektgruppsnamn B är skapat.
-\item A väljer ny projektgruppsnamn.
-\item A skriver projektgruppsnamn C som har 10 tecken.
-\item A får bekräftelse att projektgruppsnamn C är skapat.
-\item A väljer ny projektgruppsnamn.
-\item A skriver projektgruppsnamn D som innehåller gilitg accii tecken.
-\item A får bekräftelse att projektgruppsnamn D är skapar.
-\item Kontrollera att det finns projektgruppsnamn B,C och D.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A skapar en projektgrupp med namnet ''gouda'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en projektgrupp med namnet ''mozzarella'' med U som projektledare.
+\item Kontrollera att det finns två projektgrupper i databsen och att de har namnen ''gouda'' respektive ''mozzarella''.
 \end{enumerate}
 
-\textbf{FT 4.4.3 Administratören försöker skapa en projektgrupp med ett upptaget projektgruppsnamn [SRS krav 6.4.38]}
+%FT 4.4.3 
+\item
+\textbf{Administratören försöker skapa en projektgrupp med ett upptaget projektgruppsnamn}
 
-\emph{Starttillstånd} Administratör A är inloggat.
+\emph{Starttillstånd} Administratör A är inloggat. En användare U finns i systemet och en projektgrupp med namnet ''getost'' finns i systemet.
 
-\emph{Sluttillstånd:} Administratör A kunde inte skapa  projektgrupp B med ett uppgaget projekgtruppsnamn.
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A försöker skapa  projektgruppsnamn B med uppteget projektgruppsnamn.
-\item A får bekräftelse att projektgruppsnamn B är upptagen.
-\item Kontrollera att det finns inte två projektgruppsnam B.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A försöker skapa en projektgrupp med namnet ''getost'' med U som projektledare.
+\item Kontrollera att ett felmeddelande visas som informerar om att namnet var upptaget.
+\item Kontrollera att det bara finns en projektgrupp i databasen.
 \end{enumerate}
 
-\textbf{FT 4.4.4 Administratören skapar 5 stycken projektgrupper [SRS krav 6.4.39]}
+%FT 4.4.4 
+\item
+\textbf{Administratören skapar 5 stycken projektgrupper}
 
-\emph{Starttillstånd} Administratör A är inloggat. 
+\emph{Starttillstånd} Administratör A är inloggad. En användare U finns i systemet. 
 
-\emph{Sluttillstånd:} Administratör A har skapat 5 sycken projektgrupp.
+\emph{Sluttillstånd:} U och fem stycken projektgrupper finns i systemet.
 
 \begin{enumerate}
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp B.
-\item A får bekräftelse att projektgrupp B är skapat.
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp C
-\item A får bekräftelse att projektgrupp C är skapat.
-\item A väljer ny projekgrupp.
-\item A skapa projektgrupp D.
-\item A får bekräftelse att projektgrupp D är skapat.
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp E.
-\item A får bekräftelse att projektgrupp E är skapat.
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp F.
-\item A får bekräftelse att projektgrupp F är skapat.
-\item Kontrollera att projektgrupp B,C,D,E och F är skapat.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A skapar en ny projektgrupp med namnet ''grupp1'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp2'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp3'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp4'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp5'' med U som projektledare.
+\item Kontrollera att det finns fem stycken projektgrupper i databasen.
 \end{enumerate}
 
-\textbf{FT 4.4.5 Administratören försöker skapa 6 stycken projektgrupper [SRS krav 6.4.39]}
+%FT 4.4.5 
+\item
+\textbf{Administratören försöker skapa 6 stycken projektgrupper}
 
-\emph{Starttillstånd} Administratör A är inloggat.
+\emph{Starttillstånd} Administratör A är inloggat. En användare U finns i systemet.
 
-\emph{Sluttillstånd:} Administratör A kunde inte skapa 6 sycken  projektgrupp.
+\emph{Sluttillstånd:} U och fem projektgrupper finns i systemet.
 
 \begin{enumerate}
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp B.
-\item A får bekräftelse att projektgrupp B är skapat.
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp C.
-\item A får bekräftelse att projektgrupp C är skapat.
-\item A väljer ny projekgrupp.
-\item A skapa projektgrupp D.
-\item A får bekräftelse att projektgrupp D är skapat.
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp E.
-\item A får bekräftelse att projektgrupp E är skapat.
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp F.
-\item A får bekräftelse att projektgrupp F är skapat.
-\item A väljer ny projekgrupp.
-\item A får bekräftelse att projektgrupp G kan inte skapas.
-\item Kontrollera att projektgrupp B,C,D,E,F är skapat och G finns inte.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A skapar en ny projektgrupp med namnet ''grupp1'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp2'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp3'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp4'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp5'' med U som projektledare.
+\item A navigerar till projektgrupper.
+\item A skapar en ny projektgrupp med namnet ''grupp6'' med U som projektledare.
+\item Kontrollera att ett felmeddelande visas som informerar om att det inte går att lägga till fler projektgrupper.
+\item Kontrollera att det finns exakt fem stycken projektgrupper i databasen.
+\item Kontrollera att det inte finns en projektgrupp med namnet ''grupp6'' i databasen.
 \end{enumerate}
 
-\textbf{FT 4.4.6 Administratören lägger till samma användare i flera projektgrupper [SRS krav 6.4.40]}
+%FT 4.4.6 
+\item
+\textbf{Administratören lägger till samma användare i flera projektgrupper}
 
-\emph{Starttillstånd} Administratör A är inloggat.
+\emph{Starttillstånd} Administratör A är inloggad. Två användare U1, U2 finns i systemet. Två projektgrupper G1,G2 finns i systemet. U1 är projektledare i G1,G2.
 
-<<<<<<< HEAD
-\emph{Sluttillstånd:} Administratör A lägger användare B till projektgrupp C, D, E, F och G.
-=======
-\emph{Sluttillstånd:} Adm"\"inistratör A lägger användare B till   projektgrupp C, D, E, F och G.
->>>>>>> 69596f85febe4dcfb61f653107b64ed114cfa343
+\emph{Sluttillstånd:} Två användare U1, U2 finns i systemet. Två projektgrupper G1,G2 finns i systemet. U1 är projektledare i G1,G2. U2 är medlem i G1 och G2.
 
 \begin{enumerate}
-\item A väljer ny användare.
-\item A skapar användare B.
-\item A får bekräftelse att B är skapat.
-\item A väljer ny projekgrupp.
-\item A skapar projektgrupp C.
-\item A lägger B i projektgrupp C.
-\item A får bekräftelse att B är i projekgrupp C.
-\item A skapar projektgrupp D.
-\item A väljer ny projekgrupp.
-\item A lägger B i projektgrupp D.
-\item A får bekräftelse att B är i projekgrupp D.
-\item A skapar projektgrupp E.
-\item A väljer ny projekgrupp.
-\item A lägger B i projektgrupp E.
-\item A får bekräftelse att B är i projekgrupp E.
-\item A skapar projektgrupp F.
-\item A väljer ny projekgrupp.
-\item A lägger B i projektgrupp F.
-\item A får bekräftelse att B är i projekgrupp F.
-\item A skapar projektgrupp G.
-\item A väljer ny projekgrupp.
-\item A lägger B i projektgrupp G.
-\item A får bekräftelse att B är i projekgrupp G.
-\item Kontrollera att B finns i projektgrupp C,D,E,F och G.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A lägger till U2 i G1.
+\item A lägger till U2 i G2.
+\item Kontrollera att U2 är medlem i G1 och G2 i databasen.
 
 \end{enumerate}
 
-\textbf{FT 4.4.7 Administratören försöker skapa en projektgrupp utan användare [SRS krav 6.4.41]}
+%FT 4.4.7 
+\item
+\textbf{Administratören försöker skapa en projektgrupp utan användare}
 
-\emph{Starttillstånd} Administratör A är inloggat.
+\emph{Starttillstånd} Administratör A är inloggad.
 
-\emph{Sluttillstånd:} Administratör A kunde inte skapa  projektgrupp B utan användare.
-
-\begin{enumerate}
-\item A väljer att skapa projekgrupp.
-\item A skapar tomt B (utan användare).
-\item A får bekräftelse att projektgrupp B är inte skapat.
-\item Kontrollera att projektgrupp B är inte skapat.
-\end{enumerate}
-
-\textbf{FT 4.4.8 Administratören försöker att från en projektgrupp som har en användare, ta bort en användare. [SRS krav 6.4.41]}
-
-\emph{Starttillstånd} Administratör A är inloggat och projektgrupp B har en enda användare (Användare C).
-
-\emph{Sluttillstånd:} Administratör A kunde inte ta bort användare C som är enda i  projektgrupp B.
+\emph{Sluttillstånd:} Oförändrad.
 
 \begin{enumerate}
-\item A väljer projekgrupp B.
-\item A försöker ta bort C som är enda användare i B.
-\item A får bekräftelse att C kan inte tas bort.
-\item Kontrollera att C är inte bortagen.
+
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A försöker skapa en projektgrupp med namnet ''edamer'' utan projektledare.
+\item Kontrollera att ett felmeddelande visas som informerar om att det inte går att skapa en projektgrupp utan projektledare.
+\item Kontrollera att det inte finns några projektgrupper i databasen.
 \end{enumerate}
 
-\textbf{FT 4.4.9 Administratören skapar en projektgrupp med en användare [SRS krav 6.4.41]}
+%FT 4.4.8 
+\item
+\textbf{Administratören försöker att från en projektgrupp som har en (1) användare, ta bort en användare.}
 
-\emph{Starttillstånd} Administratör A är inloggat. 
+\emph{Starttillstånd} Administratör A är inloggad. En projektgrupp G och en användare U finns i systemet. U är medlem i G.
 
-\emph{Sluttillstånd:} Administratör A  skapade  projektgrupp B med en enda användare C.
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A väljer att skapa ny projekgrupp.
-\item A skapar projektgrupp B med en enda användare C.
-\item A får bekräftelse att projektgrupp B är skapat.
-\item Kontrollera att projektgrupp B är skapat.
-\item Kontrollera att projektgrupp B har bara användare C.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A försöker ta bort C ur projektgrupp B
+\item Kontrollera att ett felmeddelande visas som informerar om att det inte går att ta bort U ur G.
+\item Kontrollera att U är medlem i G.
 \end{enumerate}
 
-\textbf{FT 4.4.10 Administratören lägger till användare i en projektgrupp B så att projektgrupp B har 20 an- vändare. [SRS krav 6.4.41]}
+%FT 4.4.9 
+\item
+\textbf{Administratören skapar en projektgrupp med en användare}
 
-\emph{Starttillstånd} Administratör A är inloggat.
+\emph{Starttillstånd} Administratör A är inloggad. En användare U finns i systemet. 
 
-\emph{Sluttillstånd:} Administratör A  skapade  projektgrupp B med en 20  användare.
+\emph{Sluttillstånd:} U och en projektgrupp G finns i systemet.
 
 \begin{enumerate}
-\item A väljer att skapa ny projektgrupp.
-\item A skapar projektgrupp B
-\item A väljer projektgrupp B
-\item A lägger 19 användare i projektgrupp B.
-\item A lägger tjugånde användare i projektgrupp B.
-\item A får bekräftelse att maximal antal användare i projektgrupp B har lagts in.
-\item Kontrollera att alla 20 användare är inlagda i systemet.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A skapar projektgrupp en projektgrupp G med U som projektledare.
+\item Kontrollera att G finns i databasen.
+\item Kontrollera att U är projektledare i G.
 \end{enumerate}
 
-\textbf{FT 4.4.11 Administratören försöker lägga till användare i en projektgrupp så att projektgruppen har 21 användare. [SRS krav 6.4.41]}
+%FT 4.4.10 
+\item
+\textbf{Administratören lägger till en användare i en projektgrupp så att projektgruppen har 20 användare.}
 
-\emph{Starttillstånd} Administratör A är inloggat och har skapat projekgrup B med 20 användare.
+\emph{Starttillstånd} Administratör A är inloggad. Användare U1-u20 finns i systemet. En projektgrupp G finns i systemet. U1-U19 är medlemmar i G.
 
-\emph{Sluttillstånd:} Administratör A  skapade  projektgrupp B med en 20  användare.
+\emph{Sluttillstånd:} Användare U1-U20 finns i systemet. En projektgrupp G finns i systemet. U1-U20 är medlemmar i G.
 
 \begin{enumerate}
-\item A väljer projektgrupp B.
-\item A försöker lägga tjugoförsta användare i projektgrupp B.
-\item A får bekräftelse att tjugoförsta användare kunde inte läggas i projektgrupp B.
-\item Kontrollera att 21-sta användare är inte i systemet.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A lägger till U20 som medlem i G.
+\item Kontrollera att G har 20 medlemmar.
+\item Kontrollera att U20 är medlem i G.
 \end{enumerate}
 
-\textbf{FT 4.4.12 Projektledaren tilldelar tre olika roller till projektmedlemmar i sitt projekt [SRS krav 6.4.42]}
+%FT 4.4.11 
+\item
+\textbf{Administratören försöker lägga till användare i en projektgrupp så att projektgruppen har 21 användare.}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+\emph{Starttillstånd} Administratör A är inloggad. En projektgrupp G och användare U1-U21 finns i systemet. U1-U20 är medlemmar i G.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat användare B roll ”t1”, användare C roll ”t2” och användare D roll ”t3” i sitt projekt E.
+\emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A väljer roll ”t1” till B i projekt E.
-\item A tilldela roll ”t1” till B.
-\item A får bekräftelse att B har roll ”t1”.
-\item A väljer roll ”t2” till C i projekt E.
-\item A tilldela roll ”t2” till C.
-\item A får bekräftelse att C har roll ”t2”.
-\item A väljer roll ”t3” till D i projekt E.
-\item A tilldela roll ”t3” till D.
-\item A får bekräftelse att D har roll ”t3”.
-\item Kontrollera att B har roll ”t1” i projekt E.
-\item Kontrollera att C har roll ”t2” i projekt E.
-\item Kontrollera att D har roll ”t3” i projekt E.
+\item A navigerar till administrationsvyn och sedan till projektgrupper (Figur 5, Ref. 2).
+\item A lägger till U21 som medlem i G.
+\item Kontrollera att ett felmeddelande visas som informerar om att det inte går att lägga till fler medlemmar i G.
+\item Kontrollera att G har 20 medlemmar.
+\item Kontrollera att U21 inte är medlem i G.
 \end{enumerate}
 
-\textbf{FT 4.4.13 Projektledaren försöker tilldela fyra olika roller till projektmedlemmar i sitt projekt [SRS krav 6.4.42]}
+%FT 4.4.12
+\item 
+\textbf{Projektledaren tilldelar tre olika roller till projektmedlemmar i sitt projekt}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+\emph{Starttillstånd} Projektledare A är inloggad. En projektgrupp G och tre användare U1,U2,U3 finns i systemet. U1,U2, U3 är medlemmar i G.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat användare B roll ”t1”, användare C roll ”t2”,användare D roll ”t3” och kunde inte tilldela användare E roll ”t4” i sitt projekt E.
+\emph{Sluttillstånd:} En projektgrupp G och tre användare U1,U2,U3 finns i systemet. U1,U2, U3 är medlemmar i G. U1 har rollen ''t1', U2 har rollen ''t2'' och U3 har rollen ''t3''.
 
 \begin{enumerate}
-\item A väljer roll ”t1” till B i projekt E.
-\item A tilldelar roll ”t1” till B .
-\item A får bekräftelse att  B har roll ”t1”.
-\item A väljer roll ”t2” till C i projekt E.
-\item A tilldela roll ”t2” till C.
-\item A får bekräftelse att C har roll ”t2”.
-\item A väljer roll ”t3” till D i projekt E.
-\item A tilldelar roll ”t3” till D.
-\item A får bekräftelse att D har roll ”t3”
-\item A väljer roll ”t4” till E i projekt E.
-\item A tilldelar roll ”t4” till E i projekt E.
-\item A får bekräftelse att E kan inte tilldelas roll ”t4”.
-\item Kontrollera att B har roll ”t1” i projekt E.
-\item Kontrollera att C har roll ”t2” i projekt E.
-\item Kontrollera att D har roll ”t3” i projekt E.
-\item Kontrollera att E har inte roll ”t4” i projekt E.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t1'' till U1.
+\item A tilldelar rollen ''t2'' till U2.
+\item A tilldelar rollen ''t3'' till U3.
+\item Kontrollera att U1 har rollen ”t1” i G.
+\item Kontrollera att U2 har rollen ”t1” i G.
+\item Kontrollera att U3 har rollen ”t3” i G.
 \end{enumerate}
 
-\textbf{FT 4.4.14 Projektledaren tilldelar 6 projektmedlemmar (B,C,D,E,F,G) i sitt projekt rollen "t1" [SRS krav 6.4.43]}
+%FT 4.4.13 
+\item
+\textbf{Projektledaren försöker tilldela fyra olika roller till projektmedlemmar i sitt projekt}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+\emph{Starttillstånd} Projektledare A är inloggad. En projektgrupp G och tre användare U1,U2,U3,U4 finns i systemet. U1,U2,U3,U4 är medlemmar i G.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar i sitt projekt K  rollen "t1".
+\emph{Sluttillstånd:} En projektgrupp G och tre användare U1,U2,U3,U4 finns i systemet. U1,U2, U3,U4 är medlemmar i G. U1 har rollen ''t1', U2 har rollen ''t2'' och U3 har rollen ''t3''.
 
 \begin{enumerate}
-\item A väljer roll ”t1” till B i projekt K.
-\item A tilldela roll ”t1” till B. 
-\item A får bekräftelse att B har roll ”t1”.
-\item A väljer roll ”t1” till C i projekt K. 
-\item A tilldela roll ”t1” till C. 
-\item A får bekräftelse att C har roll ”t1”.
-\item A väljer roll ”t1” till D i projekt K.
-\item A tilldela roll ”t1” till D.
-\item A får bekräftelse att D har roll ”t1”.
-\item A väljer roll ”t1” till E i projekt K.
-\item A tilldela roll ”t1” till E. 
-\item A får bekräftelse att E har roll ”t1”.
-\item A väljer roll ”t1” till F i projekt K.
-\item A tilldela roll ”t1” till F.
-\item A får bekräftelse att F har roll ”t1”.
-\item A väljer roll ”t1” till G i projekt K.
-\item A tilldela roll ”t1” till G i sin projekt K.
-\item A får bekräftelse att G har roll ”t1”.
-\item Kontrollera att B,C,D,E,F och G har roll ”t1” i projekt K.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t1'' till U1.
+\item A tilldelar rollen ''t2'' till U2.
+\item A tilldelar rollen ''t3'' till U3.
+\item Kontrollera att det inte går att tilldela rollen ''t4'' till U4.
+\item Kontrollera att U1 har rollen ”t1” i G.
+\item Kontrollera att U2 har rollen ”t1” i G.
+\item Kontrollera att U3 har rollen ”t3” i G.
 \end{enumerate}
-\textbf{FT 4.4.15 Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen t2 [SRS krav 6.4.43]}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+%FT 4.4.14 
+\item
+\textbf{Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen ''t1''}
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar(B,C,D,E,F,G) i sitt projekt K rollen "t2".
+\emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U6 och en projektgrupp G finns i systemet. U1-U6 är medlemmar i G.
+
+\emph{Sluttillstånd:} Projektledare A är inloggad. Användare U1-U6 och en projektgrupp G finns i systemet. U1-U6 är medlemmar i G. U1-U6 har rollen ''t1''.
 
 \begin{enumerate}
-\item A väljer roll ”t2” till B i projekt K.
-\item A tilldela roll ”t2” till B . 
-\item A får bekräftelse att B har roll ”t2”.
-\item A väljer roll ”t2” till C i projekt K.
-\item A tilldela roll ”t2” till C. 
-\item A får bekräftelse att C har roll ”t2”.
-\item A väljer roll ”t2” till D i projekt K. 
-\item A tilldela roll ”t2” till D. 
-\item A får bekräftelse att D har roll ”t2”.
-\item A väljer roll ”t2” till E i projekt K. 
-\item A tilldela roll ”t2” till E. 
-\item A får bekräftelse att  E har roll ”t2”.
-\item A väljer roll ”t2” till F i projekt K. 
-\item A tilldela roll ”t2” till F.
-\item A får bekräftelse att  F har roll ”t2”.
-\item A väljer roll ”t2” till G i projekt K. 
-\item A tilldela roll ”t2” till G. 
-\item A får bekräftelse att G har roll ”t2”.
-
-\item Kontrollera att B,C,D,E,F och G har roll ”t2” i projekt K.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t1'' till U1.
+\item A tilldelar rollen ''t1'' till U2.
+\item A tilldelar rollen ''t1'' till U3.
+\item A tilldelar rollen ''t1'' till U4.
+\item A tilldelar rollen ''t1'' till U5.
+\item A tilldelar rollen ''t1'' till U6.
+\item Kontrollera att U1-U6 har rollen ''t1'' i G.
 \end{enumerate}
 
-\textbf{FT 4.4.16 Projektledaren tilldelar 6 projektmedlemmar (B,C,D,E,F,G) i sitt projekt rollen t3 [SRS krav 6.4.43]}
+%FT 4.4.15 
+\item
+\textbf{Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen ''t2''}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+\emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U6 och en projektgrupp G finns i systemet. U1-U6 är medlemmar i G.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar i sitt projekt K rollen "t3".
+\emph{Sluttillstånd:} Projektledare A är inloggad. Användare U1-U6 och en projektgrupp G finns i systemet. U1-U6 är medlemmar i G. U1-U6 har rollen ''t2''.
 
 \begin{enumerate}
-\item A väljer roll ”t3” till B i projekt K. 
-\item A tilldela roll ”t3” till B. 
-\item A får bekräftelse att B har roll ”t3”
-\item A väljer roll ”t3” till C i projekt K.
-\item A tilldela roll ”t3” till C. 
-\item A får bekräftelse att C har roll ”t3”.
-\item A väljer roll ”t3” till D i projekt K. 
-\item A tilldela roll ”t3” till D. 
-\item A får bekräftelse att D har roll ”t3”.
-\item A väljer roll ”t3” till E i projekt K. 
-\item A tilldela roll ”t3” till E. 
-\item A får bekräftelse att E har roll ”t3”.
-\item A väljer roll ”t3” till F i projekt K. 
-\item A tilldela roll ”t3” till F. 
-\item A får bekräftelse att F har roll ”t3”.
-\item A väljer roll ”t3” till G i projekt K.
-\item A tilldela roll ”t3” till G. 
-\item A får bekräftelse att G har roll ”t3”.
-
-\item Kontrollera att B,C,D,E,F och G har roll ”t3” i projekt K.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t2'' till U1.
+\item A tilldelar rollen ''t2'' till U2.
+\item A tilldelar rollen ''t2'' till U3.
+\item A tilldelar rollen ''t2'' till U4.
+\item A tilldelar rollen ''t2'' till U5.
+\item A tilldelar rollen ''t2'' till U6.
+\item Kontrollera att U1-U6 har rollen ''t2'' i G.
 \end{enumerate}
 
-\textbf{FT 4.4.17 Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t1 [SRS krav 6.4.43]}
+%FT 4.4.16 
+\item
+\textbf{Projektledaren tilldelar 6 projektmedlemmar i sitt projekt rollen ''t3''}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+\emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U6 och en projektgrupp G finns i systemet. U1-U6 är medlemmar i G.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6  projektmedlemmar(B,C,D,E,F,G) i sitt projekt K  rollen "t1" och 7 projektmedlem H kunde inte tilldelas.
+\emph{Sluttillstånd:} Projektledare A är inloggad. Användare U1-U6 och en projektgrupp G finns i systemet. U1-U6 är medlemmar i G. U1-U6 har rollen ''t3''.
 
 \begin{enumerate}
-\item A väljer roll ”t1” till B i projekt K.
-\item A tilldela roll ”t1” till B. 
-\item A får bekräftelse att B har roll ”t1”.
-\item A väljer roll ”t1” till C i projekt K. 
-\item A tilldela roll ”t1” till C. 
-\item A får bekräftelse att C har roll ”t1”.
-\item A väljer roll ”t1” till D i projekt K.
-\item A tilldela roll ”t1” till D. 
-\item A får bekräftelse att D har roll ”t1”.
-\item A väljer roll ”t1” till E i projekt K. 
-\item A tilldela roll ”t1” till E. 
-\item A får bekräftelse att E har roll ”t1”.
-\item A väljer roll ”t1” till F i projekt K.
-\item A tilldela roll ”t1” till F.
-\item A får bekräftelse att F har roll ”t1”.
-\item A väljer roll ”t1” till G i projekt K. 
-\item A tilldela roll ”t1” till G. 
-\item A får bekräftelse att G har roll ”t1”.
-\item A väljer roll ”t1” till H i projekt K. 
-\item A tilldela roll ”t1” till H. 
-\item A får bekräftelse att  H kan inte får roll ”t1”.
-\item Kontrollera att B,C,D,E,F och G har roll ”t1” i projekt K.
-\item Kontrollera att H har inte roll ”t1” i projekt K.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t3'' till U1.
+\item A tilldelar rollen ''t3'' till U2.
+\item A tilldelar rollen ''t3'' till U3.
+\item A tilldelar rollen ''t3'' till U4.
+\item A tilldelar rollen ''t3'' till U5.
+\item A tilldelar rollen ''t3'' till U6.
+\item Kontrollera att U1-U6 har rollen ''t3'' i G.
 \end{enumerate}
 
-\textbf{FT 4.4.18 Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t2[SRS krav 6.4.43]}
+%FT 4.4.17 
+\textbf{Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen ''t1''}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+\emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar (B,C,D,E,F,G) i sitt projekt K  rollen "t2" och 7 projektmedlemm H kunde inte tilldelas.
+\emph{Sluttillstånd:} Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G. U1-U6 har rollen ''t1''.
 
 \begin{enumerate}
-\item A väljer roll ”t2” till B i projekt K. 
-\item A tilldela roll ”t2” till B. 
-\item A får bekräftelse att B har roll ”t2”.
-\item A väljer roll ”t2” till C i projekt K.
-\item A tilldela roll ”t2” till C i. 
-\item A får bekräftelse att C har roll ”t2”.
-\item A väljer roll ”t2” till D i projekt K. 
-\item A tilldela roll ”t2” till D. 
-\item A får bekräftelse att D har roll ”t2”.
-\item A väljer roll ”t2” till E i projekt K. 
-\item A tilldela roll ”t2” till E. 
-\item A får bekräftelse att E har roll ”t2”.
-\item A väljer roll ”t2” till F i projekt K. 
-\item A tilldela roll ”t2” till F. 
-\item A får bekräftelse att F har roll ”t2”.
-\item A väljer roll ”t2” till G i projekt K. 
-\item A tilldela roll ”t2” till G. 
-\item A får bekräftelse att G har roll ”t2”.
-\item A väljer roll ”t2” till H i projekt K. 
-\item A tilldela roll ”t2” till H. 
-\item A får bekräftelse att H kan inte får roll ”t2”.
-\item Kontrollera att B,C,D,E,F och G har roll ”t2” i projekt K.
-\item Kontrollera att H har inte roll ”t2” i projekt K.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t1'' till U1.
+\item A tilldelar rollen ''t1'' till U2.
+\item A tilldelar rollen ''t1'' till U3.
+\item A tilldelar rollen ''t1'' till U4.
+\item A tilldelar rollen ''t1'' till U5.
+\item A tilldelar rollen ''t1'' till U6.
+\item A tilldelar rollen ''t1'' till U7.
+\item Kontrollera att ett felmeddelande visas som informerar om att det inte går att ha fler medlemmar med rollen ''t1''.
+\item Kontrollera att U1-U6 har rollen ''t1'' i G.
+\item Kontrollera att U7 inte har rollen ''t1'' i G.
 \end{enumerate}
 
-\textbf{FT 4.4.19 Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen t3 [SRS krav 6.4.43]}
+%FT 4.4.18 
+\textbf{Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen ''t2''}
 
-\emph{Starttillstånd} Projektledare A är inloggat.
+\emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G.
 
-\emph{Sluttillstånd:} Projektledare A  har tilldelat 6 projektmedlemmar(B,C,D,E,F,G) i sitt projekt K rollen "t3" och sjätte projektmedlem H kunde inte tilldelas rollen "t3" .
+\emph{Sluttillstånd:} Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G. U1-U6 har rollen ''t2''.
 
 \begin{enumerate}
-\item A väljer roll ”t3” till B i projekt K. 
-\item A tilldela roll ”t3” till B. 
-\item A får bekräftelse att B har roll ”t3”.
-\item A väljer roll ”t3” till C i projekt K. 
-\item A tilldela roll ”t3” till C. 
-\item A får bekräftelse att C har roll ”t3”.
-\item A väljer roll ”t3” till D i projekt K. 
-\item A tilldela roll ”t3” till D. 
-\item A får bekräftelse att D har roll ”t3”.
-\item A väljer roll ”t3” till E i projekt K. 
-\item A tilldela roll ”t3” till E. 
-\item A får bekräftelse att E har roll ”t3”.
-\item A väljer roll ”t3” till F i projekt K.
-\item A tilldela roll ”t3” till F.
-\item A får bekräftelse att F har roll ”t3”.
-\item A väljer roll ”t3” till G i projekt K. 
-\item A tilldela roll ”t3” till G. 
-\item A får bekräftelse att G har roll ”t3”
-\item A väljer roll ”t3” till H i projekt K. 
-\item A tilldela roll ”t3” till H. 
-\item A får bekräftelse att H kan inte får roll ”t3”.
-\item Kontrollera att B,C,D,E,F och G har roll ”t3” i projekt K.
-\item Kontrollera att H har inte roll ”t3” i projekt K.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t2'' till U1.
+\item A tilldelar rollen ''t2'' till U2.
+\item A tilldelar rollen ''t2'' till U3.
+\item A tilldelar rollen ''t2'' till U4.
+\item A tilldelar rollen ''t2'' till U5.
+\item A tilldelar rollen ''t2'' till U6.
+\item A tilldelar rollen ''t2'' till U7.
+\item Kontrollera att ett felmeddelande visas som informerar om att det inte går att ha fler medlemmar med rollen ''t2''.
+\item Kontrollera att U1-U6 har rollen ''t2'' i G.
+\item Kontrollera att U7 inte har rollen ''t2'' i G.
 \end{enumerate}
 
-\textbf{FT 4.4.20 Administratören har användarnamnet “admin” och lösenordet “adminpw” [SRS krav 6.4.44]}
+%FT 4.4.19 
+\textbf{Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen ''t3''}
 
-\emph{Starttillstånd} Administratör A är på inloggnings sida och har inte inloggat.
+\emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G.
 
-\emph{Sluttillstånd:} Administratör A är inloggat.
+\emph{Sluttillstånd:} Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G. U1-U6 har rollen ''t3''.
 
 \begin{enumerate}
-\item A skriver användarnamnet ”admin”.
-\item A använder lösenordet ”adminpw”.
-\item A är inloggat och det finns bekräftelse.
-\item Kontrollera att A kan logga in med användarnamn ”admin” och lösenord ”adminpw”.
+\item A navigerar till administrationsvyn och sedan till redigera projektmedlemmar (Figur 5, Ref. 2).
+\item A tilldelar rollen ''t3'' till U1.
+\item A tilldelar rollen ''t3'' till U2.
+\item A tilldelar rollen ''t3'' till U3.
+\item A tilldelar rollen ''t3'' till U4.
+\item A tilldelar rollen ''t3'' till U5.
+\item A tilldelar rollen ''t3'' till U6.
+\item A tilldelar rollen ''t3'' till U7.
+\item Kontrollera att ett felmeddelande visas som informerar om att det inte går att ha fler medlemmar med rollen ''t3''.
+\item Kontrollera att U1-U6 har rollen ''t3'' i G.
+\item Kontrollera att U7 inte har rollen ''t3'' i G.
 \end{enumerate}
+
+%FT 4.4.20 
+\item
+\textbf{Administratören har användarnamnet ''admin'' och lösenordet ''adminpw''}
+
+\emph{Starttillstånd} Administratör A är på inloggningssidan.
+
+\emph{Sluttillstånd:} A är inloggad.
+
+\begin{enumerate}
+\item A loggar in med användarenamnet ''admin'' och lösenordet ''adminpw''.
+\item A navigerar till administrationvyn (Figur 5, Ref. 2).
+\item Kontrollera att A är på administrationsvyn.
+\end{enumerate}
+\end{FT}
 
 %+++++++++++++++++++++++++++% 
 %slutet på FT:Administration%
@@ -2251,8 +2358,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 %++++++++++++++++++++++++++%
 \subsection{Autentisering}
 
-
-\subsubsection{Användare}
+subsubsection{Användare}
 
 \begin{ST}
 
@@ -2317,11 +2423,6 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \begin{enumerate}
 \item A väljer att skapa projektgrupp.
-\item
-\begin{enumerate}
-\item A väljer att skapa en tidsrapportmall.
-\item A väljer en befintlig tidsrapportmall.
-\end{enumerate}
 \item A får nu fylla i ett projektgruppsnamn och tycker därefter på ''ok''.
 \item 
 \begin{enumerate}
@@ -2386,6 +2487,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \end{ST}
 
+
+
+
 %++++++++++++++++++++++++%
 %SLUT på ST:autentisering%
 %++++++++++++++++++++++++%
@@ -2407,8 +2511,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Genomför scenario 6.3.1 (Dokumentera arbetstimmar i systemet)}
 
-\emph{Starttillstånd:} Projektmedlem A är inloggad, inne vid huvudmenysidan. Ingen tidigare tidrapport för denne användare finns.\\
-\emph{Sluttillstånd:} Projektmedlem A är inloggad, inne vid tidrapportfunktionalitetssidan. Tidrapport skapad för vecka 51.\\
+\emph{Starttillstånd:} Projektmedlem A är inloggad, inne vid huvudmenysidan. Ingen tidigare tidrapport för denne användare finns.
+
+\emph{Sluttillstånd:} Projektmedlem A är inloggad, inne vid tidrapportfunktionalitetssidan. Tidrapport skapad för vecka 51.
 
 \begin{enumerate}
 \item A skriver in URL för funktionalitetssidan för tidrapportering och får tillgång till sidan.
@@ -2446,20 +2551,19 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \end{enumerate}
 
-
-
 \item
 \textbf{Genomför scenario 6.3.2 (Ta bort/redigera arbetstimmar i systemet)}
 
-\emph{Starttillstånd:} Projektmedlem A är inloggad, inne vid huvudmenysidan. Två tidrapporter finns. En signerad, för vecka 12. En osignerad för vecka 51.\\
-\emph{Sluttillstånd:} Projektmedlem A är inloggad, inne vid tidrapportfunktionalitetssidan. En tidrapport finns. En signerad, för vecka 12.\\
+\emph{Starttillstånd:} Projektmedlem A är inloggad, inne vid huvudmenysidan. Två tidrapporter finns. En signerad, för vecka 12. En osignerad för vecka 51.
+
+\emph{Sluttillstånd:} Projektmedlem A är inloggad, inne vid tidrapportfunktionalitetssidan. En tidrapport finns. En signerad, för vecka 12.
 
 \begin{enumerate}
 \item A skriver in URL för funktionalitetssidan för tidrapportering och får tillgång till sidan.
 \item A väljer ``Ta bort/redigera tidrapport''.
 \item Kontrollera att A får upp en lista med tidrapporter.
 \item A väljer tidrapporten för vecka 12.
-\item Kontrollera att funktionaliten för redigering eller radering av tidrapporten inte finns.\\
+\item Kontrollera att funktionaliten för redigering eller radering av tidrapporten inte finns.
 \item A skriver in URL för ``Ta bort/redigera tidrapporter''.
 \item A väljer tidrapporten för vecka 51.
 \item Kontrollera att A kan välja både ``Redigera'' och ``Ta bort''.
@@ -2485,26 +2589,19 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Kontrollera att tidrapport är borttagen.
 \end{enumerate}
 
-\begin{figure}
-\centering
-\includegraphics[width=1.1\textwidth,height=0.7\textheight]{flow_time_proj_mem}
-\caption{Diagram som visar användarfall för en projektmedlem.}
-\label{fig:vertical_offset}
-\end{figure}
-
-
 \item
-\textbf{Systemet stödjer stegen i figur 1}
+\textbf{Systemet stödjer stegen i figur 5 (Ref. 2)} 
 
-\emph{Starttillstånd:} Projektmedlem A är inte inloggad. Signerad tidrapport y finns i systemet. \\
-\emph{Sluttillstånd:} Projektmedlem A är inte inloggad. Osignerad tidrapport x och signerad tidrapport y finns i systemet.\\
+\emph{Starttillstånd:} Projektmedlem A är inte inloggad. Signerad tidrapport y finns i systemet.
+
+\emph{Sluttillstånd:} Projektmedlem A är inte inloggad. Osignerad tidrapport x och signerad tidrapport y finns i systemet.
 
 \begin{enumerate}
 
 \item A skriver in URL för inloggningssidan.
 \item A loggar in, fel lösenord rätt användarnamn. Misslyckas, sidan laddas om.
 \item A skriver in rätt lösenord och rätt användarnamn, lyckas, huvudsidan visas.
-\item Kontrollera att A kan se projektmedlemsfunktionaliteter på funktionalitetssidan I.\\
+\item Kontrollera att A kan se projektmedlemsfunktionaliteter på funktionalitetssidan I.
 \item A väljer ``Lista medlemmar''.
 \item Kontrollera att alla projektmedlemmar i As grupp listas.
 \item A går tillbaka till I.
@@ -2519,7 +2616,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item A väljer tidrapport x.
 \item A ändrar/tar bort rapporten.
 \item A väljer ``Visa statistik''.
-\item Kontrollera att olika sorters statistik listas (statistik per användare, per roll etc.).\\
+\item Kontrollera att olika sorters statistik listas (statistik per användare, per roll etc.).
 \item A genererar statistik per roll, alla veckor.
 \item A loggar ut.
 \item Kontrollera att A är utloggad.
@@ -2532,20 +2629,14 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \subsubsection{Projektledare}
 
-\begin{figure}
-\centering
-\includegraphics[width=1.1\textwidth,height=0.7\textheight]{flow_time_proj_leader}
-\caption{Diagram som visar användarfall för en projektledare.}
-\label{fig:vertical_offset}
-\end{figure}
-
-
 %MAX 100 RAPPORTER KRAV INTE MED
 \begin{ST}
 \item 
-\textbf{Systemet stödjer stegen i figur 2}\\
-\emph{Starttillstånd:} Projektledare A inte inloggad. Projektmedlem B har rollen t1, en osignerad tidrapport x.\\
-\emph{Sluttillstånd:} Projektledare A inte inloggad. Projektmedlem B har rollen t2, en signerad tidrapport x.\\
+\textbf{Systemet stödjer stegen i figur 6 (Ref. 2)}
+
+\emph{Starttillstånd:} Projektledare A inte inloggad. Projektmedlem B har rollen t1, en osignerad tidrapport x.
+
+\emph{Sluttillstånd:} Projektledare A inte inloggad. Projektmedlem B har rollen t2, en signerad tidrapport x.
 
 \begin{enumerate}
 
@@ -2602,12 +2693,16 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Genomför scenario 6.4.1 i SRS som projektledare}
 
+\emph{**Vilka typer av statistik och rapporter som finns att välja mellan är just nu okänt}
+
 \emph{Starttillstånd:} Projektledare PL inloggad.
 
-\emph{Sluttillstånd:} Projekledare PL inloggad.
+\emph{Sluttillstånd:} Oförändrad.
 
 \begin{enumerate}
 \item
+PL navigerar till tidrapportering och sedan till visa statistik (se ref. 2, figur 7).
+\item 
 PL väljer "Generera statistik" i menyn
 \item
 PL väljer [typ av statistik]
@@ -2627,7 +2722,8 @@ Kontrollera att statistik av typ [typ av statistik] visas.
 \emph{Sluttillstånd:} Projekledare PL inloggad. En godkänd tidsrapport finns i systemet.
 
 \begin{enumerate}
-
+\item
+PL navigerar till tidrapportering och sedan till redigera tidrapport (se ref. 2, figur 7).
 \item
 PL väljer att lista tidrapporter
 \item
@@ -2639,7 +2735,7 @@ PL godkänner rapporten
 \item
 Kontrollera att dialogruta visades
 \item
-Kontrollera att rapporten är godkänd
+Kontrollera att rapporten är godkänd i databasen
 
 \end{enumerate}
 
@@ -2649,7 +2745,7 @@ Kontrollera att rapporten är godkänd
 \item
 \textbf{Genomför scenario 6.4.4 i SRS som projektledare}
 
-\emph{Starttillstånd:} Projektledare L som är projektledare för grupp G är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i G utöver L i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
+\emph{Starttillstånd:} Projektledare L som är projektledare för grupp G är inloggad och befinner sig på sidan ``Visa statistik'' (se ref. 2, figur 7). Det finns tre projektmedlemmar i G utöver L i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
 
 \emph{Sluttillstånd:} Oförändrat.
 
@@ -2683,7 +2779,7 @@ Kontrollera att rapporten är godkänd
 
 \begin{enumerate}
 \item
-A väljer "Generera statistik" i menyn
+A väljer "Generera statistik" i menyn (se ref. 2, figur 7).
 \item
 A väljer [typ av statistik]
 \item 
@@ -2736,7 +2832,7 @@ Kontrollera att rapporten är godkänd
 \item
 \textbf{Genomför scenario 6.4.4 i SRS som administratör}
 
-\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Visa statistik''. Det finns tre projektmedlemmar i projektgruppen G i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Visa statistik'' (se ref. 2, figur 7). Det finns tre projektmedlemmar i projektgruppen G i systemet, M1, M2 och M3. M1 heter ``axelg'', M2 heter ``axelu'', M3 heter ``johan''. De har två tidsrapporteringar var för vecka 1 och 2. M1 har en tidrapport T1a som innehåller 10 minuter registrerat på möte vecka 1 och en tidsrapport T1b som innehåller 15 minuter registrerat på möte vecka 2. M2 har en tidrapport T2a som innehåller 20 minuter registrerat på möte vecka 1 och en tidsrapport T2b som innehåller 25 minuter registrerat på möte vecka 2. M3 har en tidrapport T3a som innehåller 30 minuter registrerat på möte vecka 1 och en tidsrapport T3b som innehåller 35 minuter registrerat på möte vecka 2. Alla tidrapporter för vecka 1 är signerade, alla tidrapporter för vecka 2 är osignerade.
 
 \emph{Sluttillstånd:} Oförändrat.
 
@@ -2794,20 +2890,21 @@ Kontrollera att user1-user50 är inloggade.
 Kontrollera att user51 inte är inloggad.
 \end{enumerate}
 
-\item
-\textbf{Logga in med 50 användare}
 
-\emph{Starttillstånd:} Användare user1-user50 finns registrerade med lösenord pass. Inga användare inloggade.
-
-\emph{Sluttillstånd:} Användare user1-user50 är inloggade.
-
-\begin{enumerate}
-
-\item
-Försök logga in användare user1-user50.
-\item
-Kontrollera att user1-user50 är inloggade.
-\end{enumerate}
+%\item
+%\textbf{Logga in med 50 användare}
+%
+%\emph{Starttillstånd:} Användare user1-user50 finns registrerade med lösenord pass. Inga användare inloggade.
+%
+%\emph{Sluttillstånd:} Användare user1-user50 är inloggade.
+%
+%\begin{enumerate}
+%
+%\item
+%Försök logga in användare user1-user50.
+%\item
+%Kontrollera att user1-user50 är inloggade.
+%\end{enumerate}
 
 
 
@@ -2840,8 +2937,6 @@ Alla test ska köras två gånger i veckan.
 
 När något ändras ska helst alla tester köras igen. Om så inte är möjligt ska åtminstone de
 generella kraven och de tester i det område som förändringen påverkade köras.
-Om något ändras inom dessa områden måste följande testfall regressionstestas. Vid varje
-ändring ska de test rörande de generella kraven också testas.
 Områden innefattar:
 
 \begin{itemize}

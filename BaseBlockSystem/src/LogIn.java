@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/LogIn")
 public class LogIn extends servletBase {
+	private int id;
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -69,6 +70,7 @@ public class LogIn extends servletBase {
 		    while (rs.next( ) && !userChecked) {
 		    	String nameSaved = rs.getString("username"); 
 		    	String passwordSaved = rs.getString("password");
+		    	id = rs.getInt("ID");
 		    	if (name.equals(nameSaved)) {
 		    		userChecked = true;
 		    		userOk = password.equals(passwordSaved);
@@ -120,6 +122,7 @@ public class LogIn extends servletBase {
         		state = LOGIN_TRUE;
        			session.setAttribute("state", state);  // save the state in the session
        			session.setAttribute("name", name);  // save the name in the session
+       			session.setAttribute("id", id);
        			response.sendRedirect("functionality.html");
        		}
        		else {
