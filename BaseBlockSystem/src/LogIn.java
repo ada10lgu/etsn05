@@ -74,6 +74,7 @@ public class LogIn extends servletBase {
 		    		if(loggedIn==1){
 			    		id=-1;
 			    		out.println("<p>User was already logged in </p>");
+			    		rs.close();
 			    		stmt.close();
 			    		return false;
 			    	}
@@ -84,13 +85,14 @@ public class LogIn extends servletBase {
 		    		if(!userOk){
 		    			out.println("<p>That was not a valid user name / password. </p>");
 		    		}
-		    		else{
-		    			stmt.executeUpdate("Update users SET is_logged_in=1 where ID=" + id);
-		    		}
 		    	}
+		    }
+		    if(userOk){
+		    	stmt.executeUpdate("Update users SET is_logged_in=1 where ID=" + id);
 		    }
 		    stmt.close();
 		} catch (SQLException ex) {
+			System.out.println("here");
 		    System.out.println("SQLException: " + ex.getMessage());
 		    System.out.println("SQLState: " + ex.getSQLState());
 		    System.out.println("VendorError: " + ex.getErrorCode());
