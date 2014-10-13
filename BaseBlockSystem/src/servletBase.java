@@ -1,5 +1,4 @@
 import java.sql.Connection;
-
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,6 +36,7 @@ public class servletBase extends HttpServlet {
 	protected static final int LOGIN_FALSE = 0;
 	protected static final int LOGIN_TRUE = 1;	
 	protected Connection conn = null;
+	protected Access access;
 	
 	/**
 	 * Constructs a servlet and makes a connection to the database. 
@@ -59,6 +59,7 @@ public class servletBase extends HttpServlet {
 		    	}
 
 		    stmt.close();
+	    	access = new Access(conn);
 			
 		} catch (SQLException ex) {
 		    System.out.println("SQLException: " + ex.getMessage());
@@ -75,12 +76,23 @@ public class servletBase extends HttpServlet {
      * @return true if the user is logged in, otherwise false.
      */
     protected boolean loggedIn(HttpServletRequest request) {
+    	boolean isActive = false;
     	HttpSession session = request.getSession(true);
+    	
     	Object objectState = session.getAttribute("state");
     	int state = LOGIN_FALSE;
 		if (objectState != null) 
 			state = (Integer) objectState; 
-		return (state == LOGIN_TRUE);
+		if(state == LOGIN_TRUE){
+			// See if user is Active
+	    	int userID;
+	    	Object userIDObject = session.getAttribute("id");
+	    	if(userIDObject != null){		
+	    		userID = (int) session.getAttribute("id");
+	    		isActive = access.updateLog(userID, session.getId());
+	    	}
+		}
+		return (state == LOGIN_TRUE) && isActive;
     }
     
     /**
@@ -135,7 +147,7 @@ public class servletBase extends HttpServlet {
     				+ "<li><a href='#'>Statistics</a></li>"
     				+ "</ul>"
     				+ "</li>"
-    				+ "<li><a href='#'>Change Password</a></li>"
+    				+ "<li><a href='ChangePassword'>Change Password</a></li>"
     				+ "<li><a href='#'>Logout</a></li>"
     				+ "</ul>"
     			;

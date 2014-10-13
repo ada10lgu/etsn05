@@ -203,7 +203,7 @@ public class Administration extends servletBase {
 					while (rs.next( )) {
 						String name = rs.getString("username");
 						String pw = rs.getString("password");
-						int id=rs.getInt("ID");
+						int id = rs.getInt("ID");
 						String deleteURL = "Administration?deletename="+name+"&deleteid="+id;
 						String deleteCode = "<a href=" + formElement(deleteURL) +
 								" onclick="+formElement("return confirm('Are you sure you want to delete "+name+"?')") + 

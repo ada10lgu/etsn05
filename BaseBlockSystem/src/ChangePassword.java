@@ -22,8 +22,8 @@ public class ChangePassword extends servletBase {
 		String html;
 		html = "<p> <form name=" + formElement("input");
 		html += " method=" + formElement("get");
-		html += "<p> Old password: <input type=" + formElement("text") + " name=" + formElement("oldpw") + '>';     	
-		html += "<p> New password: <input type=" + formElement("text") + " name=" + formElement("newpw") + '>';  
+		html += "<p> Old password: <input type=" + formElement("password") + " name=" + formElement("oldpw") + '>';     	
+		html += "<p> New password: <input type=" + formElement("password") + " name=" + formElement("newpw") + '>';  
 		html += "<input type=" + formElement("submit") + "value=" + formElement("Change") + '>';
 		html += "</form>";
 		return html;
@@ -38,8 +38,7 @@ public class ChangePassword extends servletBase {
 		HttpSession session = request.getSession(true);
 		Object nameObj = session.getAttribute("name");
 		Object idObj = session.getAttribute("id");
-		int id =(int)idObj;
-		System.out.println(id);
+		int id = (int)idObj;
 		String oldPw = request.getParameter("oldpw");
 		String newPw = request.getParameter("newpw");
 		

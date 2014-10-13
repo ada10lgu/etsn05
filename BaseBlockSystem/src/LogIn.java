@@ -65,20 +65,20 @@ public class LogIn extends servletBase {
 		try{
 			Statement stmt = conn.createStatement();		    
 		    ResultSet rs = stmt.executeQuery("select * from users"); 
-		    while (rs.next( ) && !userChecked) {
+		    while (rs.next() && !userChecked) {
 		    	String nameSaved = rs.getString("username"); 
 		    	String passwordSaved = rs.getString("password");
 		    	int loggedIn = rs.getInt("is_logged_in");
 		    	id = rs.getInt("ID");
 		    	if (name.equals(nameSaved)) {
-		    		if(loggedIn==1){
+		    	/*	if(loggedIn==1){
 			    		id=-1;
 			    		out.println("<p>User was already logged in </p>");
 			    		rs.close();
 			    		stmt.close();
 			    		return false;
 			    	}
-		    		
+		    	*/	
 		    		
 		    		userChecked = true;
 		    		userOk = password.equals(passwordSaved);
@@ -92,7 +92,6 @@ public class LogIn extends servletBase {
 		    }
 		    stmt.close();
 		} catch (SQLException ex) {
-			System.out.println("here");
 		    System.out.println("SQLException: " + ex.getMessage());
 		    System.out.println("SQLState: " + ex.getSQLState());
 		    System.out.println("VendorError: " + ex.getErrorCode());
@@ -143,18 +142,15 @@ public class LogIn extends servletBase {
         password = request.getParameter("password"); // get the entered password
         if (name != null && password != null) {
         	if (checkUser(name, password,out)) {
-        		
-        		
+        		        		
         		state = LOGIN_TRUE;
        			session.setAttribute("state", state);  // save the state in the session
        			session.setAttribute("name", name);  // save the name in the session
        			session.setAttribute("id", id); // save the userID in the session
+       			access.logInUser(id, session.getId());
        			response.sendRedirect("Start");
-        		
        		}
-       		else {
-       			
-       			
+       		else {       			
        			//prints error message in checkUser
        			out.println(loginRequestForm());
        		}
