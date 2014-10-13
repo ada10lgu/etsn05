@@ -122,7 +122,7 @@ public class LogIn extends servletBase {
         		state = LOGIN_TRUE;
        			session.setAttribute("state", state);  // save the state in the session
        			session.setAttribute("name", name);  // save the name in the session
-       			session.setAttribute("id", id);
+       			session.setAttribute("id", id); // save the userID in the session
        			response.sendRedirect("functionality.html");
        		}
        		else {
