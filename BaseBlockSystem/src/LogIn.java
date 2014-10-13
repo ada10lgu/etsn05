@@ -105,7 +105,7 @@ public class LogIn extends servletBase {
 		int state;
 
 		PrintWriter out = response.getWriter();
-		out.println(getPageIntro(request));
+		out.println(getPageIntro());
 		
 		if (loggedIn(request)) {
 			session.setAttribute("state", LOGIN_FALSE);
