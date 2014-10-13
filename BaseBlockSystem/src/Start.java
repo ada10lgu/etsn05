@@ -38,11 +38,12 @@ public class Start extends servletBase {
 		HttpSession session = request.getSession(true);
 		PrintWriter out = response.getWriter();
 		
-		if(loggedIn(request)){
+		if (loggedIn(request)){
 			out.println(getPageIntro());
 			out.println(printMainMenu());
 		}
-	
+		else {
+			response.sendRedirect("LogIn");
+		}
 	}
-
 }

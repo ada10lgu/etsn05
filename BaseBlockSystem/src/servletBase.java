@@ -46,8 +46,7 @@ public class servletBase extends HttpServlet {
     	try{	
     		Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404?" +
-            "user=puss1404&password=ptqp44ed");			
-			       
+            "user=puss1404&password=ptqp44ed");			       
 						
 			// Display the contents of the database in the console. 
 			// This should be removed in the final version
@@ -56,16 +55,14 @@ public class servletBase extends HttpServlet {
 		    while (rs.next( )) {
 		    	String name = rs.getString("username"); 
 		    	System.out.println("base " + name);
-		    	}
-
+		    }
 		    stmt.close();
-			
 		} catch (SQLException ex) {
 		    System.out.println("SQLException: " + ex.getMessage());
 		    System.out.println("SQLState: " + ex.getSQLState());
 		    System.out.println("VendorError: " + ex.getErrorCode());
-		}catch(ClassNotFoundException e){
-			
+		} catch(ClassNotFoundException e){
+			e.printStackTrace();
 		}
     }
     
@@ -78,8 +75,9 @@ public class servletBase extends HttpServlet {
     	HttpSession session = request.getSession(true);
     	Object objectState = session.getAttribute("state");
     	int state = LOGIN_FALSE;
-		if (objectState != null) 
+		if (objectState != null) { 
 			state = (Integer) objectState; 
+		}
 		return (state == LOGIN_TRUE);
     }
     
@@ -139,7 +137,6 @@ public class servletBase extends HttpServlet {
     				+ "<li><a href='#'>Logout</a></li>"
     				+ "</ul>"
     			;
-    	
     	return menu;
     }
 
