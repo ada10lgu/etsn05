@@ -97,14 +97,14 @@ public class servletBase extends HttpServlet {
      * Constructs the header of all servlets. 
      * @return String with html code for the header. 
      */
-    protected String getPageIntro(HttpServletRequest request) {
+    protected String getPageIntro() {
     	String intro = "<html>" +
                        "<head><title>New Puss System</title></head>"
                        + "<style>"
                        + "ul {list-style-type: none;}"
                        + "</style>" +
                        "<body>";
-    	if(loggedIn(request)){intro += printMainMenu();}
+    	
     	return intro;
     }
     
