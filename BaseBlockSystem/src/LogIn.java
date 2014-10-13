@@ -1,6 +1,4 @@
 import java.io.*;
-
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -59,7 +57,7 @@ public class LogIn extends servletBase {
      * @param password The password of the user
      * @return true if the user should be accepted
      */
-    private boolean checkUser(String name, String password) {
+    private boolean checkUser(String name, String password,PrintWriter out) {
 		
 		boolean userOk = false;
 		boolean userChecked = false;
@@ -70,10 +68,25 @@ public class LogIn extends servletBase {
 		    while (rs.next( ) && !userChecked) {
 		    	String nameSaved = rs.getString("username"); 
 		    	String passwordSaved = rs.getString("password");
+		    	int loggedIn = rs.getInt("is_logged_in");
 		    	id = rs.getInt("ID");
 		    	if (name.equals(nameSaved)) {
+		    		if(loggedIn==1){
+			    		id=-1;
+			    		out.println("<p>User was already logged in </p>");
+			    		stmt.close();
+			    		return false;
+			    	}
+		    		
+		    		
 		    		userChecked = true;
 		    		userOk = password.equals(passwordSaved);
+		    		if(!userOk){
+		    			out.println("<p>That was not a valid user name / password. </p>");
+		    		}
+		    		else{
+		    			stmt.executeUpdate("Update users SET is_logged_in=1 where ID=" + id);
+		    		}
 		    	}
 		    }
 		    stmt.close();
@@ -109,6 +122,15 @@ public class LogIn extends servletBase {
 		
 		if (loggedIn(request)) {
 			session.setAttribute("state", LOGIN_FALSE);
+			Statement stmt;
+			try {
+				stmt = conn.createStatement();
+				stmt.executeUpdate("Update users SET is_logged_in=0 where ID=" + session.getAttribute("id"));
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+			
 			out.println("<p>You are now logged out</p>");
 		}
 		
@@ -118,15 +140,20 @@ public class LogIn extends servletBase {
         name = request.getParameter("user"); // get the string that the user entered in the form
         password = request.getParameter("password"); // get the entered password
         if (name != null && password != null) {
-        	if (checkUser(name, password)) {
+        	if (checkUser(name, password,out)) {
+        		
+        		
         		state = LOGIN_TRUE;
        			session.setAttribute("state", state);  // save the state in the session
        			session.setAttribute("name", name);  // save the name in the session
        			session.setAttribute("id", id);
        			response.sendRedirect("functionality.html");
+        		
        		}
        		else {
-       			out.println("<p>That was not a valid user name / password. </p>");
+       			
+       			
+       			//prints error message in checkUser
        			out.println(loginRequestForm());
        		}
        	}else{ // name was null, probably because no form has been filled out yet. Display form.
@@ -135,6 +162,8 @@ public class LogIn extends servletBase {
 		
 		out.println("</body></html>");
 	}
+
+
 
 	/**
 	 * All requests are forwarded to the doGet method. 
