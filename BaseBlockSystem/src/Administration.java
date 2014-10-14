@@ -2,18 +2,17 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import java.util.Random;
 
 /**
  * Servlet implementation class Administration. 
@@ -116,22 +115,21 @@ public class Administration extends servletBase {
 	 */
 	//Ändra beskrivningen ovan i STLDD
 
-	//ta bort alla gruppgrejer
-	//ta bort alla tidsrapporter
-	//ta bort alla logggrejer
 	private boolean deleteUser(int userID) {
 		try{
 			Statement stmt = conn.createStatement();
+			Statement stmt2 = conn.createStatement();
 			boolean removeGroup = false;
+			ArrayList<Integer> groupsToRemove = new ArrayList<Integer>();
 			//Check if the user is the only projectleader in any group
 			ResultSet rs = stmt.executeQuery("Select * from user_group where user_id = " + userID);
 			while(rs.next()){
-				if(rs.getString("role") == "projectleader"){
-					ResultSet groupMembers = stmt.executeQuery("Select * from user_group where user_id = " + rs.getInt("group_id"));
+				if(rs.getString("role").equals("Project Leader")){
+					ResultSet groupMembers = stmt2.executeQuery("Select * from user_group where group_id = " + rs.getInt("group_id"));
 					int countLeaders = 0;
 					int countMembers = 0;
 					while(groupMembers.next()){
-						if(groupMembers.getString("role") == "projectleader"){
+						if(groupMembers.getString("role").equals("Project Leader")){
 							countLeaders++;
 						}
 						countMembers++;
@@ -140,50 +138,31 @@ public class Administration extends servletBase {
 						return false;		
 					} else if(countLeaders == 1 && countMembers  == 1){
 						removeGroup = true;
+						groupsToRemove.add(rs.getInt("group_id"));
 					}
 				}
 			}
-			System.out.println("Ok to remove");
+
 			//OK to remove, start with the time reports
-			rs.first();
-			while(rs.next()){
-				// Kanske en INNER JOIN på följande????????????????????????????
-				int userGroupID = rs.getInt("ID");
-				ResultSet reports = stmt.executeQuery("Select * from report where user_group_id = " + userGroupID);
-				while(reports.next()){
-					stmt.executeQuery("Delete * from report_times where report_id = " + reports.getInt("ID"));
-				}
-				stmt.executeQuery("Delete * from reports where user_group_id = " + userGroupID);
-			}
-			System.out.println("kommer vi hit?");
-			
-			
-			//Remove group connections and finally the user
-			//rs.first();
-			 
-		//	System.out.println(result);
-			System.out.println("användar id "+userID);
-			ResultSet rsTemp = stmt.executeQuery("Select * from user_group where user_id=" + userID);
-			while(rsTemp.next()){
-				System.out.println("UserID "+rsTemp.getString("user_id"));
-				System.out.println("GroupId "+rsTemp.getString("group_id"));
-			}
 			rs = stmt.executeQuery("Select * from user_group where user_id = " + userID);
 			while(rs.next()){
-				System.out.println("Remove from group");
-				stmt.executeUpdate("delete from user_group where user_id=" + userID); 
-				System.out.println("lyckades ta bort");
+				// Kanske en INNER JOIN på följande????????????????????????????
+				int userGroupID = rs.getInt("id");
+				ResultSet reports = stmt2.executeQuery("Select * from reports where user_group_id = " + userGroupID);
+				while(reports.next()){
+					Statement stmt3 = conn.createStatement();
+					stmt3.executeUpdate("Delete from report_times where report_id = " + reports.getInt("id"));
+				}
+				stmt2.executeUpdate("Delete from reports where user_group_id = " + userGroupID);
+
 			}
-			System.out.println("här?");
-			ResultSet rsTemp2 = stmt.executeQuery("Select * from user_group where user_id=" + userID);
-			System.out.println("nu borde settet vara tomt");
-			while(rsTemp2.next()){
-				System.out.println("UserID "+rsTemp2.getString("user_id"));
-				System.out.println("GroupId "+rsTemp2.getString("group_id"));
+			stmt.executeUpdate("delete from user_group where user_id=" + userID); 
+			stmt.executeUpdate("Delete from log where user_id = " + userID);
+			if(removeGroup){
+				for(int i=0;i<groupsToRemove.size();i++){
+					stmt.executeUpdate("delete from groups where ID=" + groupsToRemove.get(i));
+				}
 			}
-			
-			
-			System.out.println("okej hit");
 			int result= stmt.executeUpdate("delete from users where ID=" + userID);
 			stmt.close();
 			if(result==1){
