@@ -35,37 +35,41 @@ public class ProjectLeader extends servletBase {
 		// TODO Auto-generated constructor stub
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
+		out.println(printMainMenu());
 		String myName = "";
 		HttpSession session = request.getSession(true);
 		//WHICH OF THESE NEED TO BE FETCHED?
 		Object nameObj = session.getAttribute("name");
 		Object groupObj = session.getAttribute("groupID");
 		int groupID = (int)groupObj;
-		
 		String role = request.getParameter("role");
 		String userID = request.getParameter("userID");
-		//String groupID = request.getParameter("groupID");
 		
 		if (nameObj != null) {
 			myName = (String)nameObj;  // if the name exists typecast the name to a string
 		}
 		// check that the user is logged in
+		//SHOULD CHECK THAT THE USER IS A PROJECT LEADER/ADMINISTRATOR
 		if (!loggedIn(request)) {
 			response.sendRedirect("LogIn");
 		} else {
 			out.println("<h1>Project Management " + "</h1>");
 			if (userID != null) {
-				int ID = Integer.parseInt(userID);
-				changeRole(ID, role);
+				int userIDint = Integer.parseInt(userID);
+				changeRole(userIDint, role);
 			} else {
 				showAllUsers(groupID, out);
 			}
 		}
 	}
-
+		/**
+		 * Displays a list of all the users in a group, their role and a button to change the role
+		 * @param ID group ID
+		 * @param out PrintWriter
+		 */
 		private void showAllUsers(int ID, PrintWriter out) {
 			try {
 				Statement stmt = conn.createStatement();		    
@@ -76,7 +80,6 @@ public class ProjectLeader extends servletBase {
 				while (rs.next( )) {
 					String name = rs.getString("username");
 					String role = rs.getString("role");
-					System.out.println(name+role);
 					int id=rs.getInt("ID");
 					String changeRoleURL = "ProjectLeader?changeRole="+role+"username="+name;
 					String roleCode = "<a href=" + formElement(changeRoleURL) +"> Change Role </a>";
@@ -95,18 +98,22 @@ public class ProjectLeader extends servletBase {
 				System.out.println("VendorError: " + ex.getErrorCode());
 			}
 		}
-
+		/**
+		 * Changes the role of a user in the group
+		 * @param ID the user to be changed
+		 * @param role the new role for the user
+		 */
 		private void changeRole(int ID, String role) {
-			// TODO Auto-generated method stub
+			//NOT YET IMPLEMENTED
 
 		}
 
 		/**
 		 *
 		 */
-		protected void doPost(HttpServletRequest request,
+		protected void doGet(HttpServletRequest request,
 				HttpServletResponse response) throws ServletException, IOException {
-			// TODO Auto-generated method stub
+			doPost(request, response);
 		}
 
 	}

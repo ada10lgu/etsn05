@@ -51,14 +51,14 @@ public class servletBase extends HttpServlet {
 						
 			// Display the contents of the database in the console. 
 			// This should be removed in the final version
-			Statement stmt = conn.createStatement();		    
+			/*Statement stmt = conn.createStatement();		    
 		    ResultSet rs = stmt.executeQuery("select * from users"); 
 		    while (rs.next( )) {
 		    	String name = rs.getString("username"); 
 		    	System.out.println("base " + name);
 		    }
 		    access = new Access(conn);
-		    stmt.close();
+		    stmt.close();*/
 		} catch (SQLException ex) {
 		    System.out.println("SQLException: " + ex.getMessage());
 		    System.out.println("SQLState: " + ex.getSQLState());
@@ -86,11 +86,11 @@ public class servletBase extends HttpServlet {
     			Object userIDObject = session.getAttribute("id");
     			if(userIDObject != null){		
     				userID = (int) session.getAttribute("id");
-    				isActive = access.updateLog(userID, session.getId());
+    				//isActive = access.updateLog(userID, session.getId());
     			}
     		} 
     	}
-    	return (state == LOGIN_TRUE) && isActive;
+    	return (state == LOGIN_TRUE); //&& isActive;
     }
     
     /**

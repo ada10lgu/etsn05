@@ -119,7 +119,6 @@ public class LogIn extends servletBase {
 		// Get the session
 		HttpSession session = request.getSession(true);
 		int state;
-
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
 
@@ -142,10 +141,10 @@ public class LogIn extends servletBase {
 
 		name = request.getParameter("user"); // get the string that the user entered in the form
 		password = request.getParameter("password"); // get the entered password
-		groupID = request.getParameter("groupID"); // get the entered password
+		groupID = request.getParameter("groupID"); // get the group name
 		int groupExists = -1;
 		if (groupID != null) {
-			groupExists = checkGroup(groupID);
+			groupExists = checkGroup(groupID); //Check that the group name exists
 		}
 
 		if (name != null && password != null && groupExists != -1) {
@@ -155,10 +154,9 @@ public class LogIn extends servletBase {
 				session.setAttribute("groupID", groupExists); // save the groupID in the session
 				session.setAttribute("name", name);  // save the name in the session
 				session.setAttribute("id", id); // save the userID in the session
-				access.logInUser(id, session.getId());
+				//access.logInUser(id, session.getId());
 				response.sendRedirect("Start");
-			}
-			else {
+			} else {
 				//prints error message in checkUser
 				out.println(loginRequestForm());
 			}
@@ -167,7 +165,12 @@ public class LogIn extends servletBase {
 		}
 		out.println("</body></html>");
 	}
-
+	
+	/**
+	 * Checks that the group iD2 exists.
+	 * @param iD2 group name
+	 * @return If the group exists, returns the group ID. Else -1
+	 */
 	private int checkGroup(String iD2) {
 		try {
 			Statement stmt = conn.createStatement();		    

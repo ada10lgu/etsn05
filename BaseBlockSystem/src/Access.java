@@ -33,7 +33,7 @@ public class Access {
 				if(newTS.getTime() - oldTS.getTime() > accessTime){
 					return false;
 				}
-				stmt.executeUpdate("Update log SET time = '" + newTS +"' where user_id = " +userID+ " AND session = '" +session+ "'");
+				stmt.executeUpdate("Update log SET time = '" + newTS +"' where user_id = '" +userID+ "' AND session = '" +session+ "'");
 				return true;
 			}
 		} catch (SQLException e) {
@@ -55,7 +55,7 @@ public class Access {
 			stmt = conn.createStatement();
 			Timestamp newTS = new Timestamp(System.currentTimeMillis());
 			
-			ResultSet rs = stmt.executeQuery("Select * from log where user_id = '" +userID+ "' AND session = '" +session+ "'");
+			ResultSet rs = stmt.executeQuery("Select * from log where user_id = " +userID+ " AND session = '" +session+ "'");
 			if(rs.first()){
 				stmt.executeUpdate("Update log SET time = '" + newTS +"' where user_id = " +userID+ " AND session = '" +session+ "'");
 				return true;
