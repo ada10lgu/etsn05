@@ -43,7 +43,7 @@ public class ProjectLeader extends servletBase {
 		//WHICH OF THESE NEED TO BE FETCHED?
 		Object nameObj = session.getAttribute("name");
 		Object groupObj = session.getAttribute("groupID");
-		String groupID = (String)groupObj;
+		int groupID = (int)groupObj;
 		
 		String role = request.getParameter("role");
 		String userID = request.getParameter("userID");
@@ -61,8 +61,7 @@ public class ProjectLeader extends servletBase {
 				int ID = Integer.parseInt(userID);
 				changeRole(ID, role);
 			} else {
-				int ID = Integer.parseInt(groupID);
-				showAllUsers(ID, out);
+				showAllUsers(groupID, out);
 			}
 		}
 	}

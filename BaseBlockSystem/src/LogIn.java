@@ -143,17 +143,16 @@ public class LogIn extends servletBase {
 		name = request.getParameter("user"); // get the string that the user entered in the form
 		password = request.getParameter("password"); // get the entered password
 		groupID = request.getParameter("groupID"); // get the entered password
-		boolean groupExists = false;
+		int groupExists = -1;
 		if (groupID != null) {
-			int ID = Integer.parseInt(groupID);
-			groupExists = checkGroup(ID);
+			groupExists = checkGroup(groupID);
 		}
 
-		if (name != null && password != null && groupExists) {
+		if (name != null && password != null && groupExists != -1) {
 			if (checkUser(name, password, out)) {
 				state = LOGIN_TRUE;
 				session.setAttribute("state", state);  // save the state in the session
-				session.setAttribute("groupID", groupID); // save the groupID in the session
+				session.setAttribute("groupID", groupExists); // save the groupID in the session
 				session.setAttribute("name", name);  // save the name in the session
 				session.setAttribute("id", id); // save the userID in the session
 				access.logInUser(id, session.getId());
@@ -169,15 +168,13 @@ public class LogIn extends servletBase {
 		out.println("</body></html>");
 	}
 
-	private boolean checkGroup(int iD2) {
+	private int checkGroup(String iD2) {
 		try {
 			Statement stmt = conn.createStatement();		    
-			ResultSet rs = stmt.executeQuery("select * from user_group"); 
-			while (rs.next()) {
-				int currentID = rs.getInt("group_ID");
-				if (currentID == iD2) {
-					return true;
-				}
+			ResultSet rs = stmt.executeQuery("select * from groups where name='" + iD2 +"'");
+			if (rs.first()) {
+				int currentID = rs.getInt("id");
+				return currentID;
 			}
 			stmt.close();
 		} catch (SQLException ex) {
@@ -186,7 +183,7 @@ public class LogIn extends servletBase {
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}
-		return false;
+		return -1;
 	}
 
 	/**
