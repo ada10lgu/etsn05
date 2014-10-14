@@ -44,7 +44,8 @@ public class LogIn extends servletBase {
     	html += "<p> <form name=" + formElement("input");
     	html += " method=" + formElement("post");
     	html += "<p> Name: <input type=" + formElement("text") + " name=" + formElement("user") + '>'; 
-    	html += "<p> Password: <input type=" + formElement("password") + " name=" + formElement("password") + '>';  
+    	html += "<p> Password: <input type=" + formElement("password") + " name=" + formElement("password") + '>';
+    	html += "<p> Group: <input type=" + formElement("text") + " name=" + formElement("groupID") + '>';
     	html += "<p> <input type=" + formElement("submit") + "value=" + formElement("Submit") + '>';
     	html += "</form>";
     	return html;
@@ -72,13 +73,13 @@ public class LogIn extends servletBase {
 			    	int loggedIn = rs.getInt("is_logged_in");
 			    	id = rs.getInt("ID");
 			    	if (name.equals(nameSaved)) {
-			    		if (loggedIn==1) {
+			    		/*if (loggedIn==1) {
 				    		id=-1;
 				    		out.println("<p>User was already logged in </p>");
 				    		rs.close();
 				    		stmt.close();
 				    		return false;
-				    	}
+				    	}*/
 			    		userChecked = true;
 			    		userOk = password.equals(passwordSaved);
 			    		if(!userOk){
@@ -135,13 +136,22 @@ public class LogIn extends servletBase {
 		
 		String name;
 		String password;
+		String groupID;
 				
         name = request.getParameter("user"); // get the string that the user entered in the form
         password = request.getParameter("password"); // get the entered password
-        if (name != null && password != null) {
+        groupID = request.getParameter("groupID"); // get the entered password
+        boolean groupExists = false;
+        if (groupID != null) {
+        	int ID = Integer.parseInt(groupID);
+        	groupExists = checkGroup(ID);
+        }
+        
+        if (name != null && password != null && groupExists) {
         	if (checkUser(name, password, out)) {
         		state = LOGIN_TRUE;
        			session.setAttribute("state", state);  // save the state in the session
+       			session.setAttribute("groupID", groupID); // save the groupID in the session
        			session.setAttribute("name", name);  // save the name in the session
        			session.setAttribute("id", id); // save the userID in the session
        			access.logInUser(id, session.getId());
@@ -155,6 +165,26 @@ public class LogIn extends servletBase {
        		out.println(loginRequestForm());
        	}
 		out.println("</body></html>");
+	}
+
+	private boolean checkGroup(int iD2) {
+		try {
+			Statement stmt = conn.createStatement();		    
+		    ResultSet rs = stmt.executeQuery("select * from user_group"); 
+		    while (rs.next()) {
+		    	int currentID = rs.getInt("group_ID");
+		    	if (currentID == iD2) {
+		    		return true;
+		    	}
+		    }
+		    stmt.close();
+		} catch (SQLException ex) {
+			System.out.println("here");
+		    System.out.println("SQLException: " + ex.getMessage());
+		    System.out.println("SQLState: " + ex.getSQLState());
+		    System.out.println("VendorError: " + ex.getErrorCode());
+		}
+		return false;
 	}
 
 	/**
