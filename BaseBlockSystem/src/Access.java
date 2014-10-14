@@ -26,7 +26,7 @@ public class Access {
 		long accessTime = 20*60*1000;  			//Efter hur många inaktiva millisekunder man ska loggas ut 
 		try {
 			Statement stmt = conn.createStatement();		
-			ResultSet rs = stmt.executeQuery("Select * from log where user_id = '" +userID+ "'AND session = '" +session+ "'");
+			ResultSet rs = stmt.executeQuery("Select * from log where user_id = '" +userID+ "' AND session = '" +session+ "'");
 			
 			if(rs.first()){
 				Timestamp oldTS = rs.getTimestamp("time");
@@ -55,7 +55,7 @@ public class Access {
 			stmt = conn.createStatement();
 			Timestamp newTS = new Timestamp(System.currentTimeMillis());
 			
-			ResultSet rs = stmt.executeQuery("Select * from log where user_id = '" +userID+ "'AND session = '" +session+ "'");
+			ResultSet rs = stmt.executeQuery("Select * from log where user_id = '" +userID+ "' AND session = '" +session+ "'");
 			if(rs.first()){
 				stmt.executeUpdate("Update log SET time = '" + newTS +"' where user_id = " +userID+ " AND session = '" +session+ "'");
 				return true;

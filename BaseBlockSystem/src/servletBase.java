@@ -88,7 +88,7 @@ public class servletBase extends HttpServlet {
     				userID = (int) session.getAttribute("id");
     				isActive = access.updateLog(userID, session.getId());
     			}
-    		}
+    		} 
     	}
     	return (state == LOGIN_TRUE) && isActive;
     }
