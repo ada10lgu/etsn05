@@ -72,14 +72,14 @@ public class LogIn extends servletBase {
 			    	int loggedIn = rs.getInt("is_logged_in");
 			    	id = rs.getInt("ID");
 			    	if (name.equals(nameSaved)) {
-			    		if (loggedIn==1) {
+			  /*  		if (loggedIn==1) {
 				    		id=-1;
 				    		out.println("<p>User was already logged in </p>");
 				    		rs.close();
 				    		stmt.close();
 				    		return false;
 				    	}
-			    		userChecked = true;
+			   */ 		userChecked = true;
 			    		userOk = password.equals(passwordSaved);
 			    		if(!userOk){
 			    			out.println("<p>That was not a valid user name / password. </p>");

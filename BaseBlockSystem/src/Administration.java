@@ -114,7 +114,7 @@ public class Administration extends servletBase {
 	 * If the user does not exist in the database nothing happens. 
 	 * @param name name of user to be deleted. 
 	 */
-
+	//Ändra beskrivningen ovan i STLDD
 
 	//ta bort alla gruppgrejer
 	//ta bort alla tidsrapporter
@@ -122,14 +122,73 @@ public class Administration extends servletBase {
 	private boolean deleteUser(int userID) {
 		try{
 			Statement stmt = conn.createStatement();
-			String statement = "delete from users where ID=" + userID; 
-			int result= stmt.executeUpdate(statement); 
+			boolean removeGroup = false;
+			//Check if the user is the only projectleader in any group
+			ResultSet rs = stmt.executeQuery("Select * from user_group where user_id = " + userID);
+			while(rs.next()){
+				if(rs.getString("role") == "projectleader"){
+					ResultSet groupMembers = stmt.executeQuery("Select * from user_group where user_id = " + rs.getInt("group_id"));
+					int countLeaders = 0;
+					int countMembers = 0;
+					while(groupMembers.next()){
+						if(groupMembers.getString("role") == "projectleader"){
+							countLeaders++;
+						}
+						countMembers++;
+					}
+					if(countLeaders == 1 && countMembers  > 1){		//The user is the only leader in at least one group
+						return false;		
+					} else if(countLeaders == 1 && countMembers  == 1){
+						removeGroup = true;
+					}
+				}
+			}
+			System.out.println("Ok to remove");
+			//OK to remove, start with the time reports
+			rs.first();
+			while(rs.next()){
+				// Kanske en INNER JOIN på följande????????????????????????????
+				int userGroupID = rs.getInt("ID");
+				ResultSet reports = stmt.executeQuery("Select * from report where user_group_id = " + userGroupID);
+				while(reports.next()){
+					stmt.executeQuery("Delete * from report_times where report_id = " + reports.getInt("ID"));
+				}
+				stmt.executeQuery("Delete * from reports where user_group_id = " + userGroupID);
+			}
+			System.out.println("kommer vi hit?");
+			
+			
+			//Remove group connections and finally the user
+			//rs.first();
+			 
+		//	System.out.println(result);
+			System.out.println("användar id "+userID);
+			ResultSet rsTemp = stmt.executeQuery("Select * from user_group where user_id=" + userID);
+			while(rsTemp.next()){
+				System.out.println("UserID "+rsTemp.getString("user_id"));
+				System.out.println("GroupId "+rsTemp.getString("group_id"));
+			}
+			rs = stmt.executeQuery("Select * from user_group where user_id = " + userID);
+			while(rs.next()){
+				System.out.println("Remove from group");
+				stmt.executeUpdate("delete from user_group where user_id=" + userID); 
+				System.out.println("lyckades ta bort");
+			}
+			System.out.println("här?");
+			ResultSet rsTemp2 = stmt.executeQuery("Select * from user_group where user_id=" + userID);
+			System.out.println("nu borde settet vara tomt");
+			while(rsTemp2.next()){
+				System.out.println("UserID "+rsTemp2.getString("user_id"));
+				System.out.println("GroupId "+rsTemp2.getString("group_id"));
+			}
+			
+			
+			System.out.println("okej hit");
+			int result= stmt.executeUpdate("delete from users where ID=" + userID);
 			stmt.close();
 			if(result==1){
 				return true;
 			}
-
-
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
@@ -225,11 +284,11 @@ public class Administration extends servletBase {
 				}
 				out.println(addUserForm());
 
-				out.println("<p><a href =" + formElement("functionality.html") + "> Functionality selection page </p>");
+				out.println("<p><a href =" + formElement("Start") + "> Functionality selection page </p>");
 				out.println("<p><a href =" + formElement("LogIn") + "> Log out </p>");
 				out.println("</body></html>");
 			} else  // name not admin
-				response.sendRedirect("functionality.html");
+				response.sendRedirect("Start");
 	}
 
 	/**

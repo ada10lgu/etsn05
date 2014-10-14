@@ -88,7 +88,7 @@ public class servletBase extends HttpServlet {
     				userID = (int) session.getAttribute("id");
     				isActive = access.updateLog(userID, session.getId());
     			}
-    		}
+    		} 
     	}
     	return (state == LOGIN_TRUE) && isActive;
     }
@@ -124,10 +124,10 @@ public class servletBase extends HttpServlet {
      */
     protected String printMainMenu(){
     	String menu = "<ul>"
-    				+"<li><a href='#'>Administration</a>"
-    				+ "<ul>"
-    				+ "<li><a href='#'>Users</a></li>"
-    				+ "<li><a href='#'>Group</a></li>"
+    			+"<li><a href=" + formElement("Administration") + ">Administration</a>"
+    			+ "<ul>"
+    			+ "<li><a href=" + formElement("Administration") + ">Users</a></li>"
+    			+ "<li><a href= " + formElement("ProjectGroupAdmin") + ">Group</a></li>"
     				+ "</ul>"
     				+ "</li>"
     				+ "<li><a href='#'>Project Management</a>"
