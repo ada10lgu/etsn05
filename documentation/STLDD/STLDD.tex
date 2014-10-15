@@ -6,16 +6,16 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}       
 \usepackage[swedish]{babel}      
-\usepackage{epstopdf}     % FÃ¶r svensk avstavning och svenska
+\usepackage{epstopdf}     % För svensk avstavning och svenska
 \usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
 \usepackage[scaled]{helvet}
-\usepackage{morefloats} %sÃ¥ att man kan ha fler float-bilder
+\usepackage{morefloats} %så att man kan ha fler float-bilder
 %\restylefloat{table}
 \usepackage{etoolbox}
 \usepackage{hanging}
 \usepackage{listings}
 \usepackage{graphicx}
-\usepackage[width=.75\textwidth]{caption} %sÃ¥ all bildtext blir smalare
+\usepackage[width=.75\textwidth]{caption} %så all bildtext blir smalare
 
 \lstset{language=SQL}
 
@@ -40,11 +40,11 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 
-\fancyhead[R]{Datum: \today | Version: 0.6 | Dokumentnummer: PUSS144404}
+\fancyhead[R]{Datum: \today | Version: 0.7 | Dokumentnummer: PUSS144404}
 
 
 \title{STLDD - Software Top Level Design Document: NewPussSystem}                  	
-\author{Systemarkitektgruppen \\ Nina Khayyami | Johan RÃ¶nnÃ¥ker |Martin Lichota | Marcel Tovar Rascon}
+\author{Systemarkitektgruppen \\ Nina Khayyami | Johan Rönnåker |Martin Lichota | Marcel Tovar Rascon}
 \date{}
 
 \begin{document}
@@ -58,17 +58,18 @@
 
 \begin{tabular}{ l l l p{8.5cm} }
 Ver. & Datum & Ansv. & Beskrivning \\\hline
-0.1 & 30 september 2014 & SG & Struktur fÃ¶r dokumentet\\
-0.2 & 2 oktober 2014 & SG & Lagt in klass-diagram, ER-diagram, sekvens-diagram samt lagt in all text. FÃ¤rdigt fÃ¶r informell granskning.\\
-0.3 & 7 oktober 2014 & SG & Uppdaterat klassbeskrivningar, klassmetoder, klassdiagram, SQL-frÃ¥gor, sessionsinformation, sekvensdiagram samt figurbeskrivningar.\\
+0.1 & 30 september 2014 & SG & Struktur för dokumentet\\
+0.2 & 2 oktober 2014 & SG & Lagt in klass-diagram, ER-diagram, sekvens-diagram samt lagt in all text. Färdigt för informell granskning.\\
+0.3 & 7 oktober 2014 & SG & Uppdaterat klassbeskrivningar, klassmetoder, klassdiagram, SQL-frågor, sessionsinformation, sekvensdiagram samt figurbeskrivningar.\\
 0.4 & 7 oktober 2014 & SG & Uppdaterat enligt informella granskningsprotokollet.\\
-0.5 & 7 oktober 2014 & SG & Uppdaterat klassdiagram, uppdaterat sekvensdiagram fÃ¶r klassen ProjectGroupAdmin, rÃ¤ttat stavfel och syntaxfel.\\
-0.6 & 7 oktober 2014 & SG & Uppdaterat klassdiagram, sekvensdiagram och ett litet fel i metodbeskrivningen. 
+0.5 & 7 oktober 2014 & SG & Uppdaterat klassdiagram, uppdaterat sekvensdiagram för klassen ProjectGroupAdmin, rättat stavfel och syntaxfel.\\
+0.6 & 7 oktober 2014 & SG & Uppdaterat klassdiagram, sekvensdiagram och ett litet fel i metodbeskrivningen.\\
+0.7 & 15 oktober 2014 & SG & Uppdaterat klassdiagram med två nya klasser och fixat småfel i ER-diagram.
 
 \end{tabular}
 \newpage
 \section{Inledning}       
-Dokumentet beskriver hÃ¶gnivÃ¥designen fÃ¶r NewPussSystem tidrapporteringssystem.
+Dokumentet beskriver högnivådesignen för NewPussSystem tidrapporteringssystem.
 
 
 
@@ -81,15 +82,15 @@ Dokumentet beskriver hÃ¶gnivÃ¥designen fÃ¶r NewPussSystem tidrapporteringssystem
 
 
 \section{Sammanfattning}
-Systemet Ã¤r implementerat i en Tomcat server med fÃ¶ljande klasser och klassmetoder:
+Systemet är implementerat i en Tomcat server med följande klasser och klassmetoder:
 
 \subsection{Klasser}
 \begin{hangparas}{1.5em}{1}
-\textbf{class servletBase} Den hÃ¤r klassen Ã¤r superklass Ã¥t alla servlets i systemet. FÃ¶r beskrivning se sidan 2 i referensdokument 2.\end{hangparas} 
+\textbf{class servletBase} Den här klassen är superklass åt alla servlets i systemet. För beskrivning se sidan 2 i referensdokument 2.\end{hangparas} 
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class Administration} Se sida 2 i referensdokument 2. En Ã¤ndring har gjorts dÃ¤r metoden deleteUser ska returnera en boolean och inparametern Ã¤ndras till (int id).\end{hangparas}
+\textbf{class Administration} Se sida 2 i referensdokument 2. En ändring har gjorts där metoden deleteUser ska returnera en boolean och inparametern ändras till (int id).\end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
@@ -97,31 +98,40 @@ Systemet Ã¤r implementerat i en Tomcat server med fÃ¶ljande klasser och klassmet
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class Access} Den hÃ¤r klassen anvÃ¤nder sig av tabellen log och users i databasen fÃ¶r att hÃ¥lla koll pÃ¥ vilka som Ã¤r inloggade och aktiva. Har en anvÃ¤ndare varit inaktiv mer Ã¤n 20 minuter, se dokumentreferens 1 krav 6.2.9, sÃ¥ nekar den Ã¥tkomst och loggar ut anvÃ¤ndaren. \end{hangparas}
+\textbf{class Access} Den här klassen använder sig av tabellen log och users i databasen för att hålla koll på vilka som är inloggade och aktiva. Har en användare varit inaktiv mer än 20 minuter, se dokumentreferens 1 krav 6.2.9, så nekar den åtkomst och loggar ut användaren. \end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class ProjectGroupAdmin} Den hÃ¤r servleten Ã¤rver frÃ¥n ServletBase. FÃ¶rst kontrollerar den att anvÃ¤ndaren har behÃ¶righet att besÃ¶ka sidan. Om sÃ¥ Ã¤r fallet presenteras en tabell med information om varje projektgrupp (namn, projektledare). I tabellen kan administratÃ¶ren vÃ¤lja att radera gruppen och att lÃ¤gga till/radera en projektledare. Projektgruppsnamnet i tabellen lÃ¤nkar administratÃ¶ren till projektledarens Ã¤ndringsmeny. NedanfÃ¶r tabellen finns en meny dÃ¤r administratÃ¶ren kan vÃ¤lja att lÃ¤gga till nya projektgrupper, lÃ¤gga till/ta bort anvÃ¤ndare i projektgrupper, gÃ¥ tillbaka till startsidan fÃ¶r administration, gÃ¥ tillbaka till den gemensamma fÃ¶rsta inloggningssidan, samt logga ut.\end{hangparas}
+\textbf{class ProjectGroupAdmin} Den här servleten ärver från ServletBase. Först kontrollerar den att användaren har behörighet att besöka sidan. Om så är fallet presenteras en tabell med information om varje projektgrupp (namn, projektledare). I tabellen kan administratören välja att radera gruppen och att lägga till/radera en projektledare. Projektgruppsnamnet i tabellen länkar administratören till projektledarens ändringsmeny. Nedanför tabellen finns en meny där administratören kan välja att lägga till nya projektgrupper, gå tillbaka till startsidan för administration, gå tillbaka till den gemensamma första inloggningssidan, samt logga ut.\end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class TimeReporting} Den hÃ¤r servleten Ã¤rver frÃ¥n ServletBase och presenterar en undermeny med menyval relaterade till tidrapportering. FÃ¶rutom undermenyn kommer fÃ¶rsta sidan att vara tom. NÃ¤r ett val i undermenyn gÃ¶rs, kommer klassen att hantera den valda funktionen. Funktionerna som finns inkluderar att lista tidrapporter, visa och uppdatera tidrapporter samt skapa nya tidrapporter.\end{hangparas}
+\textbf{class TimeReporting} Den här servleten ärver från ServletBase och presenterar en undermeny med menyval relaterade till tidrapportering. Förutom undermenyn kommer första sidan att vara tom. När ett val i undermenyn görs, kommer klassen att hantera den valda funktionen. Funktionerna som finns inkluderar att lista tidrapporter, visa och uppdatera tidrapporter samt skapa nya tidrapporter.\end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class ReportGenerator} Den hÃ¤r statiska klassen Ã¤r en nÃ¤stlad klass som har metoder som tar emot referenser till databasen och ritar upp en tidrapport med relevanta data. De olika tidrapporter som kan ritas upp Ã¤r: en redigerbar, ny och tom tidrapport, en redigerbar existerande tidrapport och en icke redigerbar existerande tidrapport.\end{hangparas}
+\textbf{class ReportGenerator} Den här statiska klassen är en nästlad klass som har metoder som tar emot referenser till databasen och ritar upp en tidrapport med relevanta data. De olika tidrapporter som kan ritas upp är: en redigerbar, ny och tom tidrapport, en redigerbar existerande tidrapport och en icke redigerbar existerande tidrapport.\end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class ProjectLeader} Den hÃ¤r servleten Ã¤rver frÃ¥n ServletBase och visar en lista Ã¶ver alla anvÃ¤ndare. HÃ¤rifrÃ¥n kan projektledaren Ã¤ndra projektmedlemmarnas roller. \end{hangparas}
+\textbf{class ProjectLeader} Den här servleten ärver från ServletBase och visar en lista över alla användare. Härifrån kan projektledaren ändra projektmedlemmarnas roller. \end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class ReportHandling} Den hÃ¤r servleten Ã¤rver frÃ¥n ServletBase och visar tvÃ¥ listor; en lista med signerade och en lista med osignerade tidrapporter om man vÃ¤ljer att hantera tidrapporter. Projektledaren kan hÃ¤r signera eller avsignera rapporter.\end{hangparas}
+\textbf{class ReportHandling} Den här servleten ärver från ServletBase och visar två listor; en lista med signerade och en lista med osignerade tidrapporter om man väljer att hantera tidrapporter. Projektledaren kan här signera eller avsignera rapporter.\end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class Statistics} Den hÃ¤r servleten Ã¤rver frÃ¥n ServletBase och visar vissa funktioner om man vÃ¤ljer att generera statistik. Funktioner som kan vÃ¤ljas Ã¤r t.ex. att visa vilken vecka som det har tidrapporterats mest tid.\\ \end{hangparas}
+\textbf{class Statistics} Den här servleten ärver från ServletBase och visar vissa funktioner om man väljer att generera statistik. Funktioner som kan väljas är t.ex. att visa vilken vecka som det har tidrapporterats mest tid. \end{hangparas}
+
+\vspace{5mm}
+\begin{hangparas}{1.5em}{1}
+\textbf{class Start} Den här servleten ärver från ServletBase och skapar den statiska menyn som finns tillgänglig för användaren på alla sidor i systemet. \end{hangparas}
+
+\vspace{5mm}
+\begin{hangparas}{1.5em}{1}
+\textbf{class GroupHandling} Den här servleten ärver från ServletBase och hanterar användarna i en projektgrupp. \\
+\end{hangparas}
 
 \subsection{Klassmetoder}
 Nedan beskrivs alla klassmetoder till klasserna som presenterats under rubriken 3.1 Klasser.
@@ -201,7 +211,7 @@ Removes the user from the group. Which user and group are found in the database'
 
 \begin{hangparas}{1.5em}{1}
 private void viewReportList(int userID)\\
-Prints out a list of the userâ€™s own reports. \\
+Prints out a list of the user’s own reports. \\
 @param userID: The id of the user.
 \end{hangparas}
 
@@ -363,25 +373,26 @@ Ett klassdiagram med alla klasser visas i Figur \ref{umldiagram}.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=160mm]{UML.jpg}
-\caption{Klassdiagram Ã¶ver alla klasser i systemet. \label{umldiagram}}
+\includegraphics[width=160mm]{UML_14okt.jpg}
+\caption{Klassdiagram över alla klasser i systemet. \label{umldiagram}}
 \end{figure}
 
 
 
 \section{Databas}
 
-ER-diagram Ã¶ver databasen fÃ¶r systemet visas i figur \ref{ER}. Databasen kan skapas frÃ¥n scratch med fÃ¶ljande SQL kommandon: \\
+ER-diagram över databasen för systemet visas i figur \ref{ER}. Databasen kan skapas från scratch med följande SQL kommandon: \\
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=120mm]{DB__1___9_.png}
-\caption{ER-diagram Ã¶ver databasen fÃ¶r systemet \label{ER}}
+\includegraphics[width=120mm]{DB_14okt.jpg}
+\caption{ER-diagram över databasen för systemet \label{ER}}
 \end{figure}
 
 \begin{lstlisting}
-mysql> create database base;
-mysql> use base;
+mysql> create database puss1404;
+
+mysql> use puss1404;
 
 mysql> CREATE TABLE IF NOT EXISTS `groups` (
     ->   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -468,8 +479,6 @@ mysql> CREATE TABLE IF NOT EXISTS `users` (
     ->   `username` varchar(10) NOT NULL,
     ->   `password` varchar(10) NOT NULL,
     ->   `is_admin` tinyint(4) NOT NULL,
-    ->   `is_project_leader` tinyint(4) NOT NULL,
-    ->   `is_logged_in` tinyint(4) NOT NULL,
     ->   PRIMARY KEY (`id`),
     ->   UNIQUE KEY `username` (`username`)
     -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -506,208 +515,208 @@ mysql> ALTER TABLE `user_group`
 
 
 \section{Information lagrad i sessioner}
-I en pÃ¥gÃ¥ende session sparas fÃ¶ljande attribut i sessionen:
+I en pågående session sparas följande attribut i sessionen:
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{Session session}: AnvÃ¤ndarens sessions-id.
+\textbf{Session session}: Användarens sessions-id.
 \end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{String name}: AnvÃ¤ndarens anvÃ¤ndarnamn, e.g. 'admin'. 
+\textbf{String name}: Användarens användarnamn, e.g. 'admin'. 
 \end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{int userID}: AnvÃ¤ndarens id. 
+\textbf{int userID}: Användarens id. 
 \end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{int userGroupID}: Id som sÃ¤ger vilken grupp anvÃ¤ndaren Ã¤r inloggad fÃ¶r. 
+\textbf{int userGroupID}: Id som säger vilken grupp användaren är inloggad för. 
 \end{hangparas}
 
 \section{Sekvensdiagram}
 
-Observera att inte alla meddelanden visas i fÃ¶ljande sekvensdiagram, utan endast de meddelanden som krÃ¤vs fÃ¶r att fÃ¶rstÃ¥ sekvensen.
+Observera att inte alla meddelanden visas i följande sekvensdiagram, utan endast de meddelanden som krävs för att förstå sekvensen.
 
 \subsection{class Administration}
-Figur 2 i dokumentreferens 2 visar sekvensen fÃ¶r hur servleten Administration hanterar att administratÃ¶ren lÃ¤gger till en ny anvÃ¤ndare.
+Figur 2 i dokumentreferens 2 visar sekvensen för hur servleten Administration hanterar att administratören lägger till en ny användare.
 
 
 \subsection{class ProjectGroupAdmin}
-Figur \ref{addGroup} visar hur servleten ProjectGroupAdmin hanterar en fÃ¶rfrÃ¥gan om att lÃ¤gga till en ny projektgrupp och Figur \ref{addGroupFail} visar hur den hanteras nÃ¤r den misslyckas. 
+Figur \ref{addGroup} visar hur servleten ProjectGroupAdmin hanterar en förfrågan om att lägga till en ny projektgrupp och Figur \ref{addGroupFail} visar hur den hanteras när den misslyckas. 
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{SeqDia__addGroup_FINAL.jpg}
-\caption{Sekvensdiagram som visar hur en lyckad fÃ¶rfrÃ¥gan om att lÃ¤gga till en ny projektgrupp hanteras i klassen ProjectGroupAdmin. \label{addGroup}}
+\caption{Sekvensdiagram som visar hur en lyckad förfrågan om att lägga till en ny projektgrupp hanteras i klassen ProjectGroupAdmin. \label{addGroup}}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{SeqDia__addGroup_Fail_FINAL.jpg}
-\caption{Sekvensdiagram som visar hur en misslyckad fÃ¶rfrÃ¥gan om att lÃ¤gga till en ny projektgrupp hanteras i klassen ProjectGroupAdmin. \label{addGroupFail}}
+\caption{Sekvensdiagram som visar hur en misslyckad förfrågan om att lägga till en ny projektgrupp hanteras i klassen ProjectGroupAdmin. \label{addGroupFail}}
 \end{figure}
 
 \noindent
-Figur \ref{addUserToGroup} visar hur servleten ProjectGroupAdmin hanterar en fÃ¶rfrÃ¥gan om att lÃ¤gga till en anvÃ¤ndare i en projektgrupp, medan Figur \ref{addUserToGroupFail} visar hur det hanteras nÃ¤r den misslyckas.
+Figur \ref{addUserToGroup} visar hur servleten ProjectGroupAdmin hanterar en förfrågan om att lägga till en användare i en projektgrupp, medan Figur \ref{addUserToGroupFail} visar hur det hanteras när den misslyckas.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{SeqDia__addUserToGroup_FINAL.jpg}
-\caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en fÃ¶rfrÃ¥gan om att lÃ¤gga till en anvÃ¤ndare i en projektgrupp.
+\caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en förfrågan om att lägga till en användare i en projektgrupp.
 \label{addUserToGroup}}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{SeqDia__addUserToGroup_Fail_FINAL.jpg}
-\caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en misslyckad fÃ¶rfrÃ¥gan om att lÃ¤gga till en anvÃ¤ndare i en projektgrupp.
+\caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en misslyckad förfrågan om att lägga till en användare i en projektgrupp.
 \label{addUserToGroupFail}}
 \end{figure}
 
 \noindent
-Figur \ref{removeUserFromGroup} visar hur servleten ProjectGroupAdmin hanterar en fÃ¶rfrÃ¥gan om att ta bort en anvÃ¤ndare frÃ¥n en projektgrupp, medan Figur \ref{removeUserFromGroupFail} visar hur det hanteras nÃ¤r den misslyckas.
+Figur \ref{removeUserFromGroup} visar hur servleten ProjectGroupAdmin hanterar en förfrågan om att ta bort en användare från en projektgrupp, medan Figur \ref{removeUserFromGroupFail} visar hur det hanteras när den misslyckas.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{SeqDia__removeUserFromGroup_FINAL.jpg}
-\caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en fÃ¶rfrÃ¥gan om att ta bort en anvÃ¤ndare frÃ¥n en projektgrupp.
+\caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en förfrågan om att ta bort en användare från en projektgrupp.
 \label{removeUserFromGroup}}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{SeqDia__removeUserFromGroup_Fail_FINAL.jpg}
-\caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en misslyckad fÃ¶rfrÃ¥gan om att ta bort en anvÃ¤ndare frÃ¥n en projektgrupp.
+\caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en misslyckad förfrågan om att ta bort en användare från en projektgrupp.
 \label{removeUserFromGroupFail}}
 \end{figure}
 
 \noindent
-Figur \ref{removeGroup} visar hur servleten ProjectGroupAdmin hanterar en fÃ¶rfrÃ¥gan om att ta bort en projektgrupp.
+Figur \ref{removeGroup} visar hur servleten ProjectGroupAdmin hanterar en förfrågan om att ta bort en projektgrupp.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{SeqDia__removeGroup_FINAL.jpg}
-\caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en fÃ¶rfrÃ¥gan om att ta bort en projektgrupp.
+\caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en förfrågan om att ta bort en projektgrupp.
 \label{removeGroup}}
 \end{figure}
 
 \subsection{TimeReporting}
-Figur \ref{newReport} visar hur servleten TimeReporting hanterar en fÃ¶rfrÃ¥gan om att skapa en ny tidrapport som lÃ¤ggs till i databasen.
+Figur \ref{newReport} visar hur servleten TimeReporting hanterar en förfrågan om att skapa en ny tidrapport som läggs till i databasen.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{newReport_successful.jpg}
-\caption{Visar sekvensen av de grundlÃ¤ggande metodanrop som sker dÃ¥ anvÃ¤ndaren framgÃ¥ngsrikt skapar en ny tidrapport i klassen TimeReporting.
+\caption{Visar sekvensen av de grundläggande metodanrop som sker då användaren framgångsrikt skapar en ny tidrapport i klassen TimeReporting.
 \label{newReport}}
 \end{figure}
 
 \noindent
-Figur \ref{removeReport} visar hur servleten TimeReporting hanterar en fÃ¶rfrÃ¥gan om att ta bort en tidrapport och Figur \ref{removeReportFail} visar hur det hanteras nÃ¤r den misslyckas.
+Figur \ref{removeReport} visar hur servleten TimeReporting hanterar en förfrågan om att ta bort en tidrapport och Figur \ref{removeReportFail} visar hur det hanteras när den misslyckas.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{removeReport_successful.jpg}
-\caption{Visar sekvensen av de grundlÃ¤ggande metodanrop som sker i klassen TimeReporting dÃ¥ anvÃ¤ndaren framgÃ¥ngsrikt tar bort en tidrapport som inte Ã¤r signerad.
+\caption{Visar sekvensen av de grundläggande metodanrop som sker i klassen TimeReporting då användaren framgångsrikt tar bort en tidrapport som inte är signerad.
 \label{removeReport}}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{removeReport_unsuccessful.jpg}
-\caption{Visar sekvensen av de grundlÃ¤ggande metodanrop som sker i klassen TimeReporting dÃ¥ anvÃ¤ndaren misslyckat fÃ¶rsÃ¶ker ta bort en tidrapport som Ã¤r signerad.
+\caption{Visar sekvensen av de grundläggande metodanrop som sker i klassen TimeReporting då användaren misslyckat försöker ta bort en tidrapport som är signerad.
 \label{removeReportFail}}
 \end{figure}
 
 \noindent
-Figur \ref{updateReportSigned} visar hur servleten TimeReporting hanterar en fÃ¶rfrÃ¥gan om att uppdatera en tidrapport som redan blivit signerad och Figur \ref{updateReportUnsigned} visar hur en fÃ¶rfrÃ¥gan om att uppdatera en tidrapport som Ã¤nnu inte blivit signerad hanteras.
+Figur \ref{updateReportSigned} visar hur servleten TimeReporting hanterar en förfrågan om att uppdatera en tidrapport som redan blivit signerad och Figur \ref{updateReportUnsigned} visar hur en förfrågan om att uppdatera en tidrapport som ännu inte blivit signerad hanteras.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{updateReport_signed.jpg}
-\caption{Visar sekvensen av de grundlÃ¤ggande metodanrop som sker i klassen TimeReporting dÃ¥ anvÃ¤ndaren misslyckat fÃ¶rsÃ¶ker uppdatera en tidrapport som Ã¤r signerad.
+\caption{Visar sekvensen av de grundläggande metodanrop som sker i klassen TimeReporting då användaren misslyckat försöker uppdatera en tidrapport som är signerad.
 \label{updateReportSigned}}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{updateReport_unsigned.jpg}
-\caption{Visar sekvensen av de grundlÃ¤ggande metodanrop som sker i klassen TimeReporting dÃ¥ anvÃ¤ndaren framgÃ¥ngsrikt uppdaterar en tidrapport som inte Ã¤r signerad.
+\caption{Visar sekvensen av de grundläggande metodanrop som sker i klassen TimeReporting då användaren framgångsrikt uppdaterar en tidrapport som inte är signerad.
 \label{updateReportUnsigned}}
 \end{figure}
 
 \noindent
-Figur \ref{viewReportList} visar hur servleten TimeReporting hanterar en fÃ¶rfrÃ¥gan om att skriva ut en anvÃ¤ndares alla tidrapporter, Figur \ref{viewReportListFail} visar hur den hanteras nÃ¤r den misslyckas.
+Figur \ref{viewReportList} visar hur servleten TimeReporting hanterar en förfrågan om att skriva ut en användares alla tidrapporter, Figur \ref{viewReportListFail} visar hur den hanteras när den misslyckas.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{viewReportList_successful.jpg}
-\caption{Visar sekvensen av de grundlÃ¤ggande metodanrop som sker i klassen TimeReporting dÃ¥ anvÃ¤ndaren framgÃ¥ngsrikt listar alla sina befintliga tidrapporter.
+\caption{Visar sekvensen av de grundläggande metodanrop som sker i klassen TimeReporting då användaren framgångsrikt listar alla sina befintliga tidrapporter.
 \label{viewReportList}}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{viewReportList_unsuccessful.jpg}
-\caption{Visar sekvensen av de grundlÃ¤ggande metodanrop som sker i klassen TimeReporting dÃ¥ anvÃ¤ndaren misslyckat fÃ¶rsÃ¶ker lista alla sina befintliga tidrapporter, dÃ¥ denne inte har nÃ¥gra befintliga tidrapporter.
+\caption{Visar sekvensen av de grundläggande metodanrop som sker i klassen TimeReporting då användaren misslyckat försöker lista alla sina befintliga tidrapporter, då denne inte har några befintliga tidrapporter.
 \label{viewReportListFail}}
 \end{figure}
 
 
 \subsection{ProjectLeader}
-Figur \ref{assignRole} visar hur servleten ProjectLeader hanterar en fÃ¶rfrÃ¥gan om att Ã¤ndra en projektroll fÃ¶r en anvÃ¤ndare.
+Figur \ref{assignRole} visar hur servleten ProjectLeader hanterar en förfrågan om att ändra en projektroll för en användare.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{assignRole.jpg}
-\caption{Sekvensdiagram som beskriver hur klassen ProjectLeader hanterar en fÃ¶rfrÃ¥gan om att Ã¤ndra en projektroll fÃ¶r en anvÃ¤ndare.
+\caption{Sekvensdiagram som beskriver hur klassen ProjectLeader hanterar en förfrågan om att ändra en projektroll för en användare.
 \label{assignRole}}
 \end{figure}
 
 \subsection{ReportHandling}
 
-Figur \ref{showAllViewReport} visar hur servleten ReportHandling hanterar en fÃ¶rfrÃ¥gan om att visa alla tidrapporter i projektgruppen, signerade samt osignerade. Figur \ref{signedReport} visar hur servleten ProjectLeader hanterar en fÃ¶rfrÃ¥gan om att signera en rapport.
+Figur \ref{showAllViewReport} visar hur servleten ReportHandling hanterar en förfrågan om att visa alla tidrapporter i projektgruppen, signerade samt osignerade. Figur \ref{signedReport} visar hur servleten ProjectLeader hanterar en förfrågan om att signera en rapport.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{showAllViewReport.jpg}
-\caption{Sekvensdiagram som visar hur klassen ReportHandling hanterar en fÃ¶rfrÃ¥gan om att visa alla tidrapporter i en projektgrupp.
+\caption{Sekvensdiagram som visar hur klassen ReportHandling hanterar en förfrågan om att visa alla tidrapporter i en projektgrupp.
 \label{showAllViewReport}}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{signedReport.jpg}
-\caption{Sekvensdiagram som visar hur klassen ReportHandling hanterar en fÃ¶rfrÃ¥gan om att signera en rapport.
+\caption{Sekvensdiagram som visar hur klassen ReportHandling hanterar en förfrågan om att signera en rapport.
 \label{signedReport}}
 \end{figure}
 
 \subsection{Statistics}
-Figur \ref{busiestWeek} visar hur servleten Statistics hanterar en fÃ¶rfrÃ¥gan om att visa vilken vecka som har flest totala inlagda minuter.\\
-Figur \ref{commonActivity} visar hur servleten Statistics hanterar en fÃ¶rfrÃ¥gan om att visa vilken aktivitet som har flest totala inlagda minuter.\\
-Figur \ref{generateStatisticsReport} visar hur servleten Statistics hanterar en fÃ¶rfrÃ¥gan om att visa en tidrapport som sammanfattar arbetet utfÃ¶rt i en viss aktivitet av en viss grupp/undergrupp under en specifik tid.
+Figur \ref{busiestWeek} visar hur servleten Statistics hanterar en förfrågan om att visa vilken vecka som har flest totala inlagda minuter.\\
+Figur \ref{commonActivity} visar hur servleten Statistics hanterar en förfrågan om att visa vilken aktivitet som har flest totala inlagda minuter.\\
+Figur \ref{generateStatisticsReport} visar hur servleten Statistics hanterar en förfrågan om att visa en tidrapport som sammanfattar arbetet utfört i en viss aktivitet av en viss grupp/undergrupp under en specifik tid.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{busiestWeek.jpg}
-\caption{Sekvensdiagram som visar hur en fÃ¶rfrÃ¥gan om att visa vilken vecka som har flest totala inlagda minuter hanteras i klassen Statistics.
+\caption{Sekvensdiagram som visar hur en förfrågan om att visa vilken vecka som har flest totala inlagda minuter hanteras i klassen Statistics.
 \label{busiestWeek}}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{commonActivity.jpg}
-\caption{Sekvensdiagram som beskriver hur en fÃ¶rfrÃ¥gan om att visa vilken aktivitet som har flest totala inlagda minuter hanteras i klassen Statistics.
+\caption{Sekvensdiagram som beskriver hur en förfrågan om att visa vilken aktivitet som har flest totala inlagda minuter hanteras i klassen Statistics.
 \label{commonActivity}}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=90mm]{generateStatisticsReport.jpg}
-\caption{Sekvensdiagram som visar hur klassen Statistics hanterar en fÃ¶rfrÃ¥gan om att visa en tidrapport som sammanfattar arbetet utfÃ¶rt i en viss aktivitet av en viss grupp/undergrupp under en specifik tid.
+\caption{Sekvensdiagram som visar hur klassen Statistics hanterar en förfrågan om att visa en tidrapport som sammanfattar arbetet utfört i en viss aktivitet av en viss grupp/undergrupp under en specifik tid.
 \label{generateStatisticsReport}}
 \end{figure}
 
