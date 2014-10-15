@@ -118,10 +118,27 @@ public class Administration extends servletBase {
 
 	//ta bort alla gruppgrejer
 	//ta bort alla tidsrapporter
-	//ta bort alla logggrejer
+	//Scenario 6.4.7.
+	
+	//du får alltid ta bort en användare om denne inte är ensam projektledare med misnt en annan medlem
+	// är du ensam projektledare utan någon mer medlem ta också bort gruppen
+	
 	private boolean deleteUser(int userID) {
+		int groupId;
 		try{
 			Statement stmt = conn.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("select * from user_group WHERE user_id="+userID); 
+		    while (rs.next()) {
+		    	if(rs.getString("role").equals("projectleader")){
+		    		groupId=rs.getInt("group_id");
+		    		ResultSet rs2 = stmt.executeQuery("select * from user_group WHERE user_id="+userID); 
+		    	}
+		    	
+		    	
+		    }
+			
+			
 			String statement = "delete from users where ID=" + userID; 
 			int result= stmt.executeUpdate(statement); 
 			stmt.close();
