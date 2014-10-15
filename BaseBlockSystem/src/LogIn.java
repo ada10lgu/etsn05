@@ -45,6 +45,21 @@ public class LogIn extends servletBase {
 		html += " method=" + formElement("post");
 		html += "<p> Name: <input type=" + formElement("text") + " name=" + formElement("user") + '>'; 
 		html += "<p> Password: <input type=" + formElement("password") + " name=" + formElement("password") + '>';
+		html += "<select name='group'>";
+		
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from groups");
+			while(rs.next()){
+				html += "<option value=" + rs.getInt("id") + ">" + rs.getString("name") + "</option>" ;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		    
+		html += "</select>";
 		html += "<p> Group: <input type=" + formElement("text") + " name=" + formElement("groupID") + '>';
 		html += "<p> <input type=" + formElement("submit") + "value=" + formElement("Submit") + '>';
 		html += "</form>";
@@ -130,7 +145,7 @@ public class LogIn extends servletBase {
 			access.logOutUser((Integer) session.getAttribute("id"), session.getId());
 			out.println("<p>You are now logged out</p>");
 		}
-
+		
 		String name;
 		String password;
 		String groupID;
