@@ -115,7 +115,9 @@ public class Administration extends servletBase {
 	 */
 	//Ändra beskrivningen ovan i STLDD
 
+
 	private boolean deleteUser(int userID) {
+		int groupId;
 		try{
 			Statement stmt = conn.createStatement();
 			Statement stmt2 = conn.createStatement();
