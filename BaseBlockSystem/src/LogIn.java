@@ -72,16 +72,9 @@ public class LogIn extends servletBase {
 				while (rs.next() && !userChecked) {
 					String nameSaved = rs.getString("username"); 
 					passwordSaved = rs.getString("password");
-					int loggedIn = rs.getInt("is_logged_in");
+					
 					id = rs.getInt("ID");
 					if (name.equals(nameSaved)) {
-						/*if (loggedIn==1) {
-				    		id=-1;
-				    		out.println("<p>User was already logged in </p>");
-				    		rs.close();
-				    		stmt.close();
-				    		return false;
-				    	}*/
 						userChecked = true;
 						userOk = password.equals(passwordSaved);
 						if(!userOk){
@@ -89,9 +82,7 @@ public class LogIn extends servletBase {
 						}
 					}
 				}
-				if (userOk) {
-					stmt.executeUpdate("Update users SET is_logged_in=1 where ID=" + id);
-				}
+				
 				stmt.close();
 				userChecked = true;
 				userOk = password.equals(passwordSaved);
@@ -101,9 +92,7 @@ public class LogIn extends servletBase {
 
 
 
-				if (userOk) {
-					stmt.executeUpdate("Update users SET is_logged_in=1 where ID=" + id);
-				}
+				
 				stmt.close();
 			} catch (SQLException ex) {
 				System.out.println("here");

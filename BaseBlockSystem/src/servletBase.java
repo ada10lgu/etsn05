@@ -57,8 +57,9 @@ public class servletBase extends HttpServlet {
 		    	String name = rs.getString("username"); 
 		    	System.out.println("base " + name);
 		    }
-		    access = new Access(conn);
+		    
 		    stmt.close();*/
+			access = new Access(conn);
 		} catch (SQLException ex) {
 		    System.out.println("SQLException: " + ex.getMessage());
 		    System.out.println("SQLState: " + ex.getSQLState());
