@@ -100,6 +100,7 @@ public class LogIn extends servletBase {
 				}
 
 
+
 				if (userOk) {
 					stmt.executeUpdate("Update users SET is_logged_in=1 where ID=" + id);
 				}
@@ -156,6 +157,9 @@ public class LogIn extends servletBase {
 		int groupExists = -1;
 		if (groupID != null) {
 			groupExists = checkGroup(groupID); //Check that the group name exists
+		} 
+		if (name != null && name.equals("admin")) { //If user is admin, ignore group choice
+			groupExists = -2;
 		}
 
 		if (name != null && password != null && groupExists != -1) {
@@ -182,7 +186,7 @@ public class LogIn extends servletBase {
 	 * @param iD2 group name
 	 * @return If the group exists, returns the group ID. Else -1
 	 */
-	private int checkGroup(String iD2) {
+	public int checkGroup(String iD2) {
 		try {
 			Statement stmt = conn.createStatement();		    
 			ResultSet rs = stmt.executeQuery("select * from groups where name='" + iD2 +"'");

@@ -43,6 +43,11 @@ public class ProjectLeader extends servletBase {
 		String myName = "";
 		HttpSession session = request.getSession(true);
 		// WHICH OF THESE NEED TO BE FETCHED?
+		String groupIDString = request.getParameter("groupID");
+		if (groupIDString != null) {
+			int groupIDint = Integer.parseInt(groupIDString);
+			session.setAttribute("groupID", groupIDint);
+		}
 		Object nameObj = session.getAttribute("name");
 		Object groupObj = session.getAttribute("groupID");
 		int groupID = (int) groupObj;
@@ -62,12 +67,57 @@ public class ProjectLeader extends servletBase {
 			if (userID != null) {
 				int userIDint = Integer.parseInt(userID);
 				changeRole(userIDint, role);
+			} else if (myName.equals("admin")){
+				//SHOW LIST OF GROUPS AND USERS
+				listAllGroups(out);
+				showAllUsers(groupID, out);
 			} else {
 				showAllUsers(groupID, out);
 			}
 		} else {
 			out.println("<p>You do not have access to this page</p>");
 		}
+	}
+
+	private void listAllGroups(PrintWriter out) {
+		try {
+			Statement stmt = conn.createStatement();		    
+		    ResultSet rs = stmt.executeQuery("select * from groups order by name asc");
+		    out.println("<p>Project groups:</p>");
+		    out.println("<table border=" + formElement("1") + ">");
+		    out.println("<tr><td>NAME</td><td>Projectleader 1</td><td>Projectleader 2</td><td></td></tr>");
+		    while (rs.next( )) {
+		    	String name = rs.getString("name");
+		    	//Hämta projektledarnas namn
+		    	int groupID = 0;
+		    	Statement stmt1 = conn.createStatement();		    
+				ResultSet rs1 = stmt1.executeQuery("select * from groups where name='" + name +"'");
+				if (rs1.first()) {
+					groupID = rs1.getInt("id");
+				}
+				stmt1.close();
+		    	String editURL = "ProjectLeader?groupID="+groupID;//osäker på denna raden
+		    	String editCode = "<a href=" + formElement(editURL) +
+		    			            " onclick="+formElement("return confirm('Are you sure you want to edit "+name+"?')") + 
+		    			            "> edit </a>";
+		    	if (name.equals("admin")) 
+		    		editCode = "";
+		    	out.println("<tr>");
+		    	out.println("<td>" + name + "</td>");
+		    	out.println("<td>" + " " + "</td>");
+		    	out.println("<td>" + " " + "</td>");
+		    	out.println("<td>" + editCode + "</td>");
+		    	out.println("</tr>");
+		    }
+		    out.println("</table>");
+		    stmt.close();
+		} catch (SQLException ex) {
+		    System.out.println("SQLException: " + ex.getMessage());
+		    System.out.println("SQLState: " + ex.getSQLState());
+		    System.out.println("VendorError: " + ex.getErrorCode());
+		}
+		//out.println(addProjectForm());
+		
 	}
 
 	/**
