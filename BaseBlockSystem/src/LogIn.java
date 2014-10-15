@@ -45,7 +45,7 @@ public class LogIn extends servletBase {
 		html += " method=" + formElement("post");
 		html += "<p> Name: <input type=" + formElement("text") + " name=" + formElement("user") + '>'; 
 		html += "<p> Password: <input type=" + formElement("password") + " name=" + formElement("password") + '>';
-		html += "<select name='group'>";
+		html += "<select name='groupID'>";
 		
 		Statement stmt;
 		try {
@@ -59,8 +59,8 @@ public class LogIn extends servletBase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		    
-		html += "</select>";
-		html += "<p> Group: <input type=" + formElement("text") + " name=" + formElement("groupID") + '>';
+		html += "</select><br>";
+		//html += "<p> Group: <input type=" + formElement("text") + " name=" + formElement("groupID") + '>';
 		html += "<p> <input type=" + formElement("submit") + "value=" + formElement("Submit") + '>';
 		html += "</form>";
 		return html;
