@@ -178,6 +178,7 @@ public class ProjectGroupAdmin extends servletBase {
 	 * 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		access.updateLog(null, null);
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
 		

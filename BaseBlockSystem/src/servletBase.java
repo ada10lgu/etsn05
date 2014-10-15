@@ -57,8 +57,9 @@ public class servletBase extends HttpServlet {
 		    	String name = rs.getString("username"); 
 		    	System.out.println("base " + name);
 		    }
-		    access = new Access(conn);
+		    
 		    stmt.close();*/
+			access = new Access(conn);
 		} catch (SQLException ex) {
 		    System.out.println("SQLException: " + ex.getMessage());
 		    System.out.println("SQLState: " + ex.getSQLState());
@@ -86,11 +87,11 @@ public class servletBase extends HttpServlet {
     			Object userIDObject = session.getAttribute("id");
     			if(userIDObject != null){		
     				userID = (int) session.getAttribute("id");
-    				//isActive = access.updateLog(userID, session.getId());
+    				isActive = access.updateLog(userID, session.getId());
     			}
     		} 
     	}
-    	return (state == LOGIN_TRUE); //&& isActive;
+    	return (state == LOGIN_TRUE && isActive);
     }
     
     /**

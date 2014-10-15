@@ -221,6 +221,7 @@ public class GroupHandling extends servletBase {
 	 * 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		access.updateLog(null, null);
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
 		HttpSession session = request.getSession(true);

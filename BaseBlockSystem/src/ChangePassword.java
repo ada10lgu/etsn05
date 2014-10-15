@@ -32,6 +32,7 @@ public class ChangePassword extends servletBase {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		access.updateLog(null, null);
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
 		

@@ -72,16 +72,9 @@ public class LogIn extends servletBase {
 				while (rs.next() && !userChecked) {
 					String nameSaved = rs.getString("username"); 
 					passwordSaved = rs.getString("password");
-					int loggedIn = rs.getInt("is_logged_in");
+					
 					id = rs.getInt("ID");
 					if (name.equals(nameSaved)) {
-						/*if (loggedIn==1) {
-				    		id=-1;
-				    		out.println("<p>User was already logged in </p>");
-				    		rs.close();
-				    		stmt.close();
-				    		return false;
-				    	}*/
 						userChecked = true;
 						userOk = password.equals(passwordSaved);
 						if(!userOk){
@@ -89,9 +82,7 @@ public class LogIn extends servletBase {
 						}
 					}
 				}
-				if (userOk) {
-					stmt.executeUpdate("Update users SET is_logged_in=1 where ID=" + id);
-				}
+				
 				stmt.close();
 				userChecked = true;
 				userOk = password.equals(passwordSaved);
@@ -101,9 +92,7 @@ public class LogIn extends servletBase {
 
 
 
-				if (userOk) {
-					stmt.executeUpdate("Update users SET is_logged_in=1 where ID=" + id);
-				}
+				
 				stmt.close();
 			} catch (SQLException ex) {
 				System.out.println("here");
@@ -129,6 +118,8 @@ public class LogIn extends servletBase {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get the session
+		
+		access.updateLog(null, null);
 		HttpSession session = request.getSession(true);
 		int state;
 		PrintWriter out = response.getWriter();
@@ -136,14 +127,7 @@ public class LogIn extends servletBase {
 
 		if (loggedIn(request)) {
 			session.setAttribute("state", LOGIN_FALSE);
-			Statement stmt;
-			try {
-				stmt = conn.createStatement();
-				stmt.executeUpdate("Update users SET is_logged_in=0 where ID=" + session.getAttribute("id"));
-				stmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			access.logOutUser((Integer) session.getAttribute("id"), session.getId());
 			out.println("<p>You are now logged out</p>");
 		}
 
@@ -164,13 +148,20 @@ public class LogIn extends servletBase {
 
 		if (name != null && password != null && groupExists != -1) {
 			if (checkUser(name, password, out)) {
+				if(!access.updateLog(id, session.getId())){
 				state = LOGIN_TRUE;
 				session.setAttribute("state", state);  // save the state in the session
 				session.setAttribute("groupID", groupExists); // save the groupID in the session
 				session.setAttribute("name", name);  // save the name in the session
 				session.setAttribute("id", id); // save the userID in the session
 				//access.logInUser(id, session.getId());
+				
+				
+				
+				//UPPDATERA LOGIN
+				access.logInUser(id, session.getId());
 				response.sendRedirect("Start");
+				}
 			} else {
 				//prints error message in checkUser
 				out.println(loginRequestForm());
