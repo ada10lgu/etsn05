@@ -140,7 +140,7 @@ public class LogIn extends servletBase {
 		groupID = request.getParameter("groupID"); // get the group name
 		int groupExists = -1;
 		if (groupID != null) {
-			groupExists = checkGroup(groupID); //Check that the group name exists
+			groupExists = checkGroup(groupID); //Check that the group name exists, -1 if it doesnt
 		} 
 		if (name != null && name.equals("admin")) { //If user is admin, ignore group choice
 			groupExists = -2;
@@ -150,10 +150,12 @@ public class LogIn extends servletBase {
 			if (checkUser(name, password, out)) {
 				if(!access.updateLog(id, session.getId())){
 				state = LOGIN_TRUE;
-				session.setAttribute("state", state);  // save the state in the session
+				session.setAttribute("state", state);  // save the state in the session 
 				session.setAttribute("groupID", groupExists); // save the groupID in the session
+				//Enligt STLDD sparar vi INTE groupID!
 				session.setAttribute("name", name);  // save the name in the session
 				session.setAttribute("id", id); // save the userID in the session
+				session.setAttribute("role", arg1);// save project role in session
 				//access.logInUser(id, session.getId());
 				
 				
