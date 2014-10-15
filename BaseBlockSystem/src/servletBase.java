@@ -51,14 +51,14 @@ public class servletBase extends HttpServlet {
 						
 			// Display the contents of the database in the console. 
 			// This should be removed in the final version
-			Statement stmt = conn.createStatement();		    
+			/*Statement stmt = conn.createStatement();		    
 		    ResultSet rs = stmt.executeQuery("select * from users"); 
 		    while (rs.next( )) {
 		    	String name = rs.getString("username"); 
 		    	System.out.println("base " + name);
 		    }
 		    access = new Access(conn);
-		    stmt.close();
+		    stmt.close();*/
 		} catch (SQLException ex) {
 		    System.out.println("SQLException: " + ex.getMessage());
 		    System.out.println("SQLState: " + ex.getSQLState());
@@ -86,11 +86,11 @@ public class servletBase extends HttpServlet {
     			Object userIDObject = session.getAttribute("id");
     			if(userIDObject != null){		
     				userID = (int) session.getAttribute("id");
-    				isActive = access.updateLog(userID, session.getId());
+    				//isActive = access.updateLog(userID, session.getId());
     			}
-    		}
+    		} 
     	}
-    	return (state == LOGIN_TRUE) && isActive;
+    	return (state == LOGIN_TRUE); //&& isActive;
     }
     
     /**
@@ -124,19 +124,15 @@ public class servletBase extends HttpServlet {
      */
     protected String printMainMenu(){
     	String menu = "<ul>"
-    				/*+"<li><a href='#'>Administration</a>"
-    				+ "<ul>"
-    				+ "<li><a href='#'>Users</a></li>"
-    				+ "<li><a href='#'>Group</a></li>"*/
-    				+"<li><a href=" + formElement("Administration") + ">Administration</a>"
+    				+ "<li><a href=" + formElement("Administration") + ">Administration</a>"
     				+ "<ul>"
     				+ "<li><a href=" + formElement("Administration") + ">Users</a></li>"
-    				+ "<li><a href= " + formElement("ProjectGroupAdmin") + ">Group</a></li>"
+    				+ "<li><a href=" + formElement("ProjectGroupAdmin") + ">Group</a></li>"
     				+ "</ul>"
     				+ "</li>"
-    				+ "<li><a href='#'>Project Management</a>"
+    				+ "<li><a href=" + formElement("ProjectLeader") + ">Project Management</a>"
     				+ "<ul>"
-    				+ "<li><a href='#'>Users</a></li>"
+    				+ "<li><a href=" + formElement("ProjectLeader") + ">Users</a></li>"
     				+ "<li><a href='#'>Reports</a></li>"
     				+ "<li><a href='#'>Statistics</a></li>"
     				+ "</ul>"

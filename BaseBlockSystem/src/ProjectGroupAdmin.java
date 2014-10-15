@@ -108,7 +108,10 @@ public class ProjectGroupAdmin extends servletBase {
 			}    	
 		return ok;
 	}
-	
+	/**
+	 * 
+	 * @param out
+	 */
 	private void listGroups(PrintWriter out) {
 		//boolean resultOk = false;
 		try {

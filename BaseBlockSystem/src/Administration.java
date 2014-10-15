@@ -2,18 +2,17 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import java.util.Random;
 
 /**
  * Servlet implementation class Administration. 
@@ -114,22 +113,61 @@ public class Administration extends servletBase {
 	 * If the user does not exist in the database nothing happens. 
 	 * @param name name of user to be deleted. 
 	 */
+	//Ändra beskrivningen ovan i STLDD
 
-
-	//ta bort alla gruppgrejer
-	//ta bort alla tidsrapporter
-	//ta bort alla logggrejer
 	private boolean deleteUser(int userID) {
 		try{
 			Statement stmt = conn.createStatement();
-			String statement = "delete from users where ID=" + userID; 
-			int result= stmt.executeUpdate(statement); 
+			Statement stmt2 = conn.createStatement();
+			boolean removeGroup = false;
+			ArrayList<Integer> groupsToRemove = new ArrayList<Integer>();
+			//Check if the user is the only projectleader in any group
+			ResultSet rs = stmt.executeQuery("Select * from user_group where user_id = " + userID);
+			while(rs.next()){
+				if(rs.getString("role").equals("Project Leader")){
+					ResultSet groupMembers = stmt2.executeQuery("Select * from user_group where group_id = " + rs.getInt("group_id"));
+					int countLeaders = 0;
+					int countMembers = 0;
+					while(groupMembers.next()){
+						if(groupMembers.getString("role").equals("Project Leader")){
+							countLeaders++;
+						}
+						countMembers++;
+					}
+					if(countLeaders == 1 && countMembers  > 1){		//The user is the only leader in at least one group
+						return false;		
+					} else if(countLeaders == 1 && countMembers  == 1){
+						removeGroup = true;
+						groupsToRemove.add(rs.getInt("group_id"));
+					}
+				}
+			}
+
+			//OK to remove, start with the time reports
+			rs = stmt.executeQuery("Select * from user_group where user_id = " + userID);
+			while(rs.next()){
+				// Kanske en INNER JOIN på följande????????????????????????????
+				int userGroupID = rs.getInt("id");
+				ResultSet reports = stmt2.executeQuery("Select * from reports where user_group_id = " + userGroupID);
+				while(reports.next()){
+					Statement stmt3 = conn.createStatement();
+					stmt3.executeUpdate("Delete from report_times where report_id = " + reports.getInt("id"));
+				}
+				stmt2.executeUpdate("Delete from reports where user_group_id = " + userGroupID);
+
+			}
+			stmt.executeUpdate("delete from user_group where user_id=" + userID); 
+			stmt.executeUpdate("Delete from log where user_id = " + userID);
+			if(removeGroup){
+				for(int i=0;i<groupsToRemove.size();i++){
+					stmt.executeUpdate("delete from groups where ID=" + groupsToRemove.get(i));
+				}
+			}
+			int result= stmt.executeUpdate("delete from users where ID=" + userID);
 			stmt.close();
 			if(result==1){
 				return true;
 			}
-
-
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
@@ -225,11 +263,11 @@ public class Administration extends servletBase {
 				}
 				out.println(addUserForm());
 
-				out.println("<p><a href =" + formElement("functionality.html") + "> Functionality selection page </p>");
+				out.println("<p><a href =" + formElement("Start") + "> Functionality selection page </p>");
 				out.println("<p><a href =" + formElement("LogIn") + "> Log out </p>");
 				out.println("</body></html>");
 			} else  // name not admin
-				response.sendRedirect("functionality.html");
+				response.sendRedirect("Start");
 	}
 
 	/**
