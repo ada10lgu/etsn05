@@ -170,7 +170,7 @@ public class LogIn extends servletBase {
 				//Enligt STLDD sparar vi INTE groupID!
 				session.setAttribute("name", name);  // save the name in the session
 				session.setAttribute("id", id); // save the userID in the session
-				session.setAttribute("role", arg1);// save project role in session
+				//session.setAttribute("role", arg1);// save project role in session
 				//access.logInUser(id, session.getId());
 				
 				
