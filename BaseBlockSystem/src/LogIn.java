@@ -45,7 +45,7 @@ public class LogIn extends servletBase {
 		html += " method=" + formElement("post");
 		html += "<p> Name: <input type=" + formElement("text") + " name=" + formElement("user") + '>'; 
 		html += "<p> Password: <input type=" + formElement("password") + " name=" + formElement("password") + '>';
-		html += "<select name='groupID'>";
+		html += "<br><select name='groupID'>";
 		
 		Statement stmt;
 		try {
@@ -59,14 +59,18 @@ public class LogIn extends servletBase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		    
-		html += "</select><br>";
+		html += "</select>";
 		//html += "<p> Group: <input type=" + formElement("text") + " name=" + formElement("groupID") + '>';
 		html += "<p> <input type=" + formElement("submit") + "value=" + formElement("Submit") + '>';
 		html += "</form>";
 		return html;
 	}
 
-
+	
+	
+	//Denna bör kolla användarnamn, pass och valt grupp
+	//sedan lagra alla sessionsvariabler som vi vill ha, såsom roll usergroupid id med mera
+	//lägg till inparameter gruóupid id som fås ur select boxen
 	/**
 	 * Checks with the database if the user should be accepted
 	 * @param name The name of the user
@@ -168,9 +172,12 @@ public class LogIn extends servletBase {
 				session.setAttribute("state", state);  // save the state in the session 
 				session.setAttribute("groupID", groupExists); // save the groupID in the session
 				//Enligt STLDD sparar vi INTE groupID!
+				
 				session.setAttribute("name", name);  // save the name in the session
 				session.setAttribute("id", id); // save the userID in the session
-				//session.setAttribute("role", arg1);// save project role in session
+				//session.setAttribute("role", role);//WE WANT TO save project role in session
+				//session.setAttribute("usergroupid", usergroupid) we WANT to save usergroupid
+				
 				//access.logInUser(id, session.getId());
 				
 				
@@ -189,6 +196,9 @@ public class LogIn extends servletBase {
 		out.println("</body></html>");
 	}
 
+	
+	//Hela den här metoden kan tas bort eftersom användaren väljer grupp ur en lista vid inloggning.
+	//Vi ska heller itne kolla mot sträng utan mot id vilket vi bör göra i metoden ovan (checkUser)
 	/**
 	 * Checks that the group iD2 exists.
 	 * @param iD2 group name
