@@ -124,10 +124,10 @@ public class servletBase extends HttpServlet {
      */
     protected String printMainMenu(){
     	String menu = "<ul>"
-    				+"<li><a href=" + formElement("Administration") + ">Administration</a>"
+    				+ "<li><a href=" + formElement("Administration") + ">Administration</a>"
     				+ "<ul>"
     				+ "<li><a href=" + formElement("Administration") + ">Users</a></li>"
-    				+ "<li><a href= " + formElement("ProjectGroupAdmin") + ">Group</a></li>"
+    				+ "<li><a href=" + formElement("ProjectGroupAdmin") + ">Group</a></li>"
     				+ "</ul>"
     				+ "</li>"
     				+ "<li><a href=" + formElement("ProjectLeader") + ">Project Management</a>"

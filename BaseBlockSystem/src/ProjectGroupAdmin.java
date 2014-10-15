@@ -72,9 +72,20 @@ public class ProjectGroupAdmin extends servletBase {
 	 * Deletes a project group
 	 * @param projectID: The id of the project group which will be deleted
 	 * @return boolean: True if the project is deleted successfully
+	 * @throws SQLException 
 	 */
-	private boolean deleteProject(int projectID) {
-		return false;
+	private boolean deleteProject(int projectID) throws SQLException {
+		boolean resultOk = true;
+		Statement stmt = conn.createStatement();
+		String statement = "delete from user_group where group_id=" + projectID;
+		stmt.executeUpdate(statement); 
+		statement = "delete from groups where id=" + projectID;
+		int result = stmt.executeUpdate(statement); 
+		if(result != 1){
+			resultOk = false;
+		}
+		stmt.close();
+		return resultOk;
 	}
 
 	/**
@@ -97,19 +108,34 @@ public class ProjectGroupAdmin extends servletBase {
 			}    	
 		return ok;
 	}
-	
+	/**
+	 * 
+	 * @param out
+	 */
 	private void listGroups(PrintWriter out) {
 		//boolean resultOk = false;
 		try {
-			Statement stmt = conn.createStatement();		    
+			Statement stmt = conn.createStatement();	
+			Statement stmt2 = conn.createStatement();
 		    ResultSet rs = stmt.executeQuery("select * from groups order by name asc");
 		    out.println("<p>Project groups:</p>");
 		    out.println("<table border=" + formElement("1") + ">");
 		    out.println("<tr><td>NAME</td><td>Projectleader 1</td><td>Projectleader 2</td><td></td></tr>");
 		    while (rs.next( )) {
 		    	String name = rs.getString("name");
-		    	//Hämta projektledarnas namn
-		    	String deleteURL = "ProjectGroupAdmin?deletename="+name;//osäker på denna raden
+		    	//Hämta projektledarnas namn (DETTA ÄR INTE FÄRDIGT ÄN)
+		    	/*
+		    	ResultSet rsGroupID = stmt2.executeQuery("select * from groups where name = '" + name + "'");
+		    	int groupID = rsGroupID.getInt("id");
+		    	ResultSet rsUsersInGroup = stmt2.executeQuery("select * from user_group where group_id = '" + groupID + "'");
+		    	while(rsUsersInGroup.next()){
+		    		String role = rsUsersInGroup.getString("role");
+		    		
+		    		
+		    	}*/
+		    	//Här ska namnen vara hämtade
+		    	
+		    	String deleteURL = "ProjectGroupAdmin?deletename="+name;
 		    	String deleteCode = "<a href=" + formElement(deleteURL) +
 		    			            " onclick="+formElement("return confirm('Are you sure you want to delete "+name+"?')") + 
 		    			            "> delete </a>";
@@ -185,18 +211,31 @@ public class ProjectGroupAdmin extends servletBase {
 						out.println("<p>Error: Suggested name not allowed</p>");
 				}
 					
-				// check if the administrator wants to delete a project by clicking the URL in the list
-				/*String deleteName = request.getParameter("deletename");
+				//check if the administrator wants to delete a project by clicking the URL in the list
+				String deleteName = request.getParameter("deletename");
 				if (deleteName != null) {
-					if (checkNewName(deleteName)) {
-						//deleteProject(deleteName); Hämta id för gruppen vars namn är deleteName
-					}	else
-						out.println("<p>Error: URL wrong</p>");
-				}*/
-				
-				else {
-					listGroups(out);
+					Statement stmt;
+					try {
+						stmt = conn.createStatement();
+						ResultSet rs = stmt.executeQuery("select * from groups where name = '" + deleteName + "'");
+						if(rs.first()){
+							int deleteID = rs.getInt("id");
+							if(deleteProject(deleteID)){
+								out.println("Project group was successfully removed");
+							}else{
+								out.println("Project group was not removed");
+							}
+						}		
+					} catch (SQLException ex) {
+						System.out.println("SQLState: " + ex.getSQLState());
+						System.out.println("VendorError: " + ex.getErrorCode());
+					}
+					
 				}
+				
+				
+				listGroups(out);
+				
 				
 				out.println("<p><a href =" + formElement("Start") + "> Start page </p>");
 				out.println("<p><a href =" + formElement("LogIn") + "> Log out </p>");

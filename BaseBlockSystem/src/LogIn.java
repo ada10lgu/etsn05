@@ -62,14 +62,16 @@ public class LogIn extends servletBase {
 
 		boolean userOk = false;
 		boolean userChecked = false;
+		Statement stmt;
 
 		if (name != null && password != null) {
 			try {
-				Statement stmt = conn.createStatement();		    
-				ResultSet rs = stmt.executeQuery("select * from users"); 
+				stmt = conn.createStatement();		    
+				ResultSet rs = stmt.executeQuery("select * from users");
+				String passwordSaved = "";
 				while (rs.next() && !userChecked) {
 					String nameSaved = rs.getString("username"); 
-					String passwordSaved = rs.getString("password");
+					passwordSaved = rs.getString("password");
 					int loggedIn = rs.getInt("is_logged_in");
 					id = rs.getInt("ID");
 					if (name.equals(nameSaved)) {
@@ -82,11 +84,22 @@ public class LogIn extends servletBase {
 				    	}*/
 						userChecked = true;
 						userOk = password.equals(passwordSaved);
-					if(!userOk){
-						out.println("<p>That was not a valid user name / password. </p>");
+						if(!userOk){
+							out.println("<p>That was not a valid user name / password. </p>");
 						}
 					}
 				}
+				if (userOk) {
+					stmt.executeUpdate("Update users SET is_logged_in=1 where ID=" + id);
+				}
+				stmt.close();
+				userChecked = true;
+				userOk = password.equals(passwordSaved);
+				if(!userOk){
+					out.println("<p>That was not a valid user name / password. </p>");
+				}
+
+
 
 				if (userOk) {
 					stmt.executeUpdate("Update users SET is_logged_in=1 where ID=" + id);
@@ -169,7 +182,7 @@ public class LogIn extends servletBase {
 		}
 		out.println("</body></html>");
 	}
-	
+
 	/**
 	 * Checks that the group iD2 exists.
 	 * @param iD2 group name
