@@ -111,7 +111,8 @@ public class servletBase extends HttpServlet {
     	String intro = "<html>" +
                        "<head><title>New Puss System</title></head>"
                        + "<style>"
-                       + "ul {list-style-type: none;}"
+                       + "ul {list-style-type: none;"
+                       + "float: left;}"
                        + "</style>" +
                        "<body>";
     	
