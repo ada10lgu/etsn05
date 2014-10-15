@@ -16,7 +16,7 @@ public class Access {
 
 
 	/**
-	 * Updates the log with a new timestamps for the given user and session.
+	 * Updates the log with a new timestamp for the given user and session.
 	 * @param userID: The requesting users id.
 	 * @param session: The requesting users session id.
 	 * @return boolean - True if the user has not been inactive for too long.

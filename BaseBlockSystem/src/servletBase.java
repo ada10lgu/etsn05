@@ -113,7 +113,10 @@ public class servletBase extends HttpServlet {
                        "<head><title>New Puss System</title></head>"
                        + "<style>"
                        + "ul {list-style-type: none;"
-                       + "float: left;}"
+                       + "}"
+                       + ".menu{"
+                       + "float: left;"
+                       + "}"
                        + "</style>" +
                        "<body>";
     	
@@ -125,7 +128,7 @@ public class servletBase extends HttpServlet {
      * @return String with html for the menu.
      */
     protected String printMainMenu(){
-    	String menu = "<ul>"
+    	String menu = "<div class='menu'><ul>"
     				+ "<li><a href=" + formElement("Administration") + ">Administration</a>"
     				+ "<ul>"
     				+ "<li><a href=" + formElement("Administration") + ">Users</a></li>"
@@ -149,7 +152,7 @@ public class servletBase extends HttpServlet {
     				+ "</li>"
     				+ "<li><a href='#'>Change Password</a></li>"
     				+ "<li><a href='#'>Logout</a></li>"
-    				+ "</ul>"
+    				+ "</ul></div>"
     			;
     	return menu;
     }
