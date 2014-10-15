@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/ChangePassword")
 public class ChangePassword extends servletBase {
 
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * generates a form for changing password
 	 * @return HTML code for the form
@@ -29,7 +31,6 @@ public class ChangePassword extends servletBase {
 		return html;
 	}
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
@@ -43,17 +44,18 @@ public class ChangePassword extends servletBase {
 		String oldPw = request.getParameter("oldpw");
 		String newPw = request.getParameter("newpw");
 		
-		if (nameObj != null)
+		if (nameObj != null) {
 			myName = (String)nameObj;  // if the name exists typecast the name to a string
+		}
 
 		// check that the user is logged in
-		if (!loggedIn(request)){
+		if (!loggedIn(request)) {
 			response.sendRedirect("LogIn");
-		}else{
+		} else {
 			if (myName.equals("admin")) { 
 				out.println("<p>Error: Admin is not allowed to change password</p>");
 			} else {
-				if(oldPw!=null&&newPw!=null){
+				if (oldPw!=null&&newPw!=null) {
 					Statement stmt;
 					try {
 						stmt = conn.createStatement();
@@ -61,37 +63,24 @@ public class ChangePassword extends servletBase {
 						ResultSet rs= stmt.executeQuery(statement);
 						String pw = null;
 						while (rs.next( )) {
-							
 							pw = rs.getString("password");
-						
-							}
-						if(pw.equals(oldPw)){
-							
-						
-							
+						}
+						if (pw.equals(oldPw)) {
 							stmt = conn.createStatement();
 							statement = "Update users SET password='"+newPw+"' where ID=" + id; 
 							stmt.executeUpdate(statement);
-							
 							out.println("<p>Successfully changed password</p>");
-						}
-						else{
+						} else {
 							out.println("<p>Error: entered old password does not match password in database</p>");
 						}
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				 
-					
 				}
 				out.println(changePasswordForm());
 			}
 		}
-
 	}
-
-
 
 }
 

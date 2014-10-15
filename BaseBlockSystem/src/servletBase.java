@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *  mysql> insert into users (name, password) values('admin', 'adminp'); 
  *  
  *  @author Martin Host
- *  @version 1.0
+ *  @version 1.0 
  *  
  */
 public class servletBase extends HttpServlet {
@@ -37,6 +37,7 @@ public class servletBase extends HttpServlet {
 	protected static final int LOGIN_FALSE = 0;
 	protected static final int LOGIN_TRUE = 1;	
 	protected Connection conn = null;
+	protected Access access;
 	
 	/**
 	 * Constructs a servlet and makes a connection to the database. 
@@ -46,26 +47,24 @@ public class servletBase extends HttpServlet {
     	try{	
     		Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404?" +
-            "user=puss1404&password=ptqp44ed");			
-			       
+            "user=puss1404&password=ptqp44ed");			       
 						
 			// Display the contents of the database in the console. 
 			// This should be removed in the final version
-			Statement stmt = conn.createStatement();		    
+			/*Statement stmt = conn.createStatement();		    
 		    ResultSet rs = stmt.executeQuery("select * from users"); 
 		    while (rs.next( )) {
 		    	String name = rs.getString("username"); 
 		    	System.out.println("base " + name);
-		    	}
-
-		    stmt.close();
-			
+		    }
+		    access = new Access(conn);
+		    stmt.close();*/
 		} catch (SQLException ex) {
 		    System.out.println("SQLException: " + ex.getMessage());
 		    System.out.println("SQLState: " + ex.getSQLState());
 		    System.out.println("VendorError: " + ex.getErrorCode());
-		}catch(ClassNotFoundException e){
-			
+		} catch(ClassNotFoundException e){
+			e.printStackTrace();
 		}
     }
     
@@ -75,12 +74,23 @@ public class servletBase extends HttpServlet {
      * @return true if the user is logged in, otherwise false.
      */
     protected boolean loggedIn(HttpServletRequest request) {
+    	boolean isActive = false;
     	HttpSession session = request.getSession(true);
     	Object objectState = session.getAttribute("state");
     	int state = LOGIN_FALSE;
-		if (objectState != null) 
-			state = (Integer) objectState; 
-		return (state == LOGIN_TRUE);
+    	if (objectState != null) { 
+    		state = (Integer) objectState; 
+    		if(state == LOGIN_TRUE){
+    			// See if user is Active
+    			int userID;
+    			Object userIDObject = session.getAttribute("id");
+    			if(userIDObject != null){		
+    				userID = (int) session.getAttribute("id");
+    				//isActive = access.updateLog(userID, session.getId());
+    			}
+    		} 
+    	}
+    	return (state == LOGIN_TRUE); //&& isActive;
     }
     
     /**
@@ -114,15 +124,15 @@ public class servletBase extends HttpServlet {
      */
     protected String printMainMenu(){
     	String menu = "<ul>"
-    				+"<li><a href='#'>Administration</a>"
+    				+"<li><a href=" + formElement("Administration") + ">Administration</a>"
     				+ "<ul>"
-    				+ "<li><a href='#'>Users</a></li>"
-    				+ "<li><a href='#'>Group</a></li>"
+    				+ "<li><a href=" + formElement("Administration") + ">Users</a></li>"
+    				+ "<li><a href= " + formElement("ProjectGroupAdmin") + ">Group</a></li>"
     				+ "</ul>"
     				+ "</li>"
-    				+ "<li><a href='#'>Project Management</a>"
+    				+ "<li><a href=" + formElement("ProjectLeader") + ">Project Management</a>"
     				+ "<ul>"
-    				+ "<li><a href='#'>Users</a></li>"
+    				+ "<li><a href=" + formElement("ProjectLeader") + ">Users</a></li>"
     				+ "<li><a href='#'>Reports</a></li>"
     				+ "<li><a href='#'>Statistics</a></li>"
     				+ "</ul>"
@@ -139,7 +149,6 @@ public class servletBase extends HttpServlet {
     				+ "<li><a href='#'>Logout</a></li>"
     				+ "</ul>"
     			;
-    	
     	return menu;
     }
 
