@@ -86,11 +86,11 @@ public class servletBase extends HttpServlet {
     			Object userIDObject = session.getAttribute("id");
     			if(userIDObject != null){		
     				userID = (int) session.getAttribute("id");
-    				//isActive = access.updateLog(userID, session.getId());
+    				isActive = access.updateLog(userID, session.getId());
     			}
     		} 
     	}
-    	return (state == LOGIN_TRUE); //&& isActive;
+    	return (state == LOGIN_TRUE && isActive);
     }
     
     /**

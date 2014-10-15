@@ -116,6 +116,8 @@ public class LogIn extends servletBase {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get the session
+		
+		access.updateLog(null, null);
 		HttpSession session = request.getSession(true);
 		int state;
 		PrintWriter out = response.getWriter();
@@ -123,14 +125,7 @@ public class LogIn extends servletBase {
 
 		if (loggedIn(request)) {
 			session.setAttribute("state", LOGIN_FALSE);
-			Statement stmt;
-			try {
-				stmt = conn.createStatement();
-				stmt.executeUpdate("Update users SET is_logged_in=0 where ID=" + session.getAttribute("id"));
-				stmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			access.logOutUser((Integer) session.getAttribute("id"), session.getId());
 			out.println("<p>You are now logged out</p>");
 		}
 
@@ -151,13 +146,20 @@ public class LogIn extends servletBase {
 
 		if (name != null && password != null && groupExists != -1) {
 			if (checkUser(name, password, out)) {
+				if(!access.updateLog(id, session.getId())){
 				state = LOGIN_TRUE;
 				session.setAttribute("state", state);  // save the state in the session
 				session.setAttribute("groupID", groupExists); // save the groupID in the session
 				session.setAttribute("name", name);  // save the name in the session
 				session.setAttribute("id", id); // save the userID in the session
 				//access.logInUser(id, session.getId());
+				
+				
+				
+				//UPPDATERA LOGIN
+				access.logInUser(id, session.getId());
 				response.sendRedirect("Start");
+				}
 			} else {
 				//prints error message in checkUser
 				out.println(loginRequestForm());

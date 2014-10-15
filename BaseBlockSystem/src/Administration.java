@@ -191,6 +191,7 @@ public class Administration extends servletBase {
 	 * 
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		access.updateLog(null, null);
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
 
@@ -201,8 +202,9 @@ public class Administration extends servletBase {
 			myName = (String)nameObj;  // if the name exists typecast the name to a string
 
 		// check that the user is logged in
-		if (!loggedIn(request))
+		if (!loggedIn(request)){
 			response.sendRedirect("LogIn");
+		}
 		else
 			if (myName.equals("admin")) {
 				out.println("<h1>Administration page " + "</h1>");
