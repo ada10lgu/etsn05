@@ -25,208 +25,198 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/LogIn")
 public class LogIn extends servletBase {
-	private int id;
-	private static final long serialVersionUID = 1L;
+	private HttpSession session;
+	static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public LogIn() {
-		super();
-	}
+ * @see HttpServlet#HttpServlet()
+ */
+public LogIn() {
+	super();
+}
 
-	/**
-	 * Generates a form for login. 
-	 * @return HTML code for the form
-	 */
-	protected String loginRequestForm() {
-		String html = "<p>Please enter your name and password in order to log in:</p>";
-		html += "<p> <form name=" + formElement("input");
-		html += " method=" + formElement("post");
-		html += "<p> Name: <input type=" + formElement("text") + " name=" + formElement("user") + '>'; 
-		html += "<p> Password: <input type=" + formElement("password") + " name=" + formElement("password") + '>';
-		html += "<br><select name='groupID'>";
+/**
+ * Generates a form for login. 
+ * @return HTML code for the form
+ */
+protected String loginRequestForm() {
+	String html = "<p>Please enter your name and password in order to log in:</p>";
+	html += "<p> <form name=" + formElement("input");
+	html += " method=" + formElement("post");
+	html += "<p> Name: <input type=" + formElement("text") + " name=" + formElement("user") + '>'; 
+	html += "<p> Password: <input type=" + formElement("password") + " name=" + formElement("password") + '>';
+	html += "<br><select name='groupID'>";
+	
+	Statement stmt;
+	try {
+		stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from groups");
+		while(rs.next()){
+			html += "<option value=" + rs.getInt("id") + ">" + rs.getString("name") + "</option>" ;
+		}
 		
-		Statement stmt;
-		try {
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from groups");
-			while(rs.next()){
-				html += "<option value=" + rs.getInt("id") + ">" + rs.getString("name") + "</option>" ;
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		    
-		html += "</select>";
-		//html += "<p> Group: <input type=" + formElement("text") + " name=" + formElement("groupID") + '>';
-		html += "<p> <input type=" + formElement("submit") + "value=" + formElement("Submit") + '>';
-		html += "</form>";
-		return html;
-	}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}		    
+	html += "</select>";
+	//html += "<p> Group: <input type=" + formElement("text") + " name=" + formElement("groupID") + '>';
+	html += "<p> <input type=" + formElement("submit") + "value=" + formElement("Submit") + '>';
+	html += "</form>";
+	return html;
+}
 
+
+/**
+ * Checks with the database if the user should be accepted based on user name, password
+ * and if the user is a member of the specified project group.
+ * @param name The name of the user
+ * @param password The password of the user
+ * @param groupID: The id of the project group
+ * @return true if the user should be accepted
+ */
+private boolean checkUser(String name, String password, int groupID, PrintWriter out) {
+
+	boolean userOk = false;
+	boolean userChecked = false;
+	Statement stmt;
 	
-	
-	//Denna bör kolla användarnamn, pass och valt grupp
-	//sedan lagra alla sessionsvariabler som vi vill ha, såsom roll usergroupid id med mera
-	//lägg till inparameter gruóupid id som fås ur select boxen
-	/**
-	 * Checks with the database if the user should be accepted
-	 * @param name The name of the user
-	 * @param password The password of the user
-	 * @return true if the user should be accepted
-	 */
-	private boolean checkUser(String name, String password, PrintWriter out) {
-
-		boolean userOk = false;
-		boolean userChecked = false;
-		Statement stmt;
-
+	try {
 		if (name != null && password != null) {
-			try {
-				stmt = conn.createStatement();		    
-				ResultSet rs = stmt.executeQuery("select * from users");
-				String passwordSaved = "";
-				while (rs.next() && !userChecked) {
-					String nameSaved = rs.getString("username"); 
-					passwordSaved = rs.getString("password");
-					
-					id = rs.getInt("ID");
-					if (name.equals(nameSaved)) {
-						userChecked = true;
-						userOk = password.equals(passwordSaved);
-						if(!userOk){
-							out.println("<p>That was not a valid user name / password. </p>");
-						}
+			stmt = conn.createStatement();		    
+			ResultSet rs = stmt.executeQuery("select * from users");
+		
+			String passwordSaved = "";
+			int userID = -1;
+			while (rs.next() && !userChecked) { //go through every user
+				String nameSaved = rs.getString("username"); 
+				passwordSaved = rs.getString("password");
+				userID = rs.getInt("ID");
+			
+				if (name.equals(nameSaved)) { //check if the username is correct
+					userChecked = true; //we can stop looking
+					if(checkGroup(groupID, userID)){ //Check if user is a member of the selected group.
+						userOk = password.equals(passwordSaved); //is the password correct?
+					} else {
+						out.println("<p>You are not a member of the selected project group. </p>");
 					}
 				}
-				
-				stmt.close();
-				userChecked = true;
-				userOk = password.equals(passwordSaved);
-				if(!userOk){
-					out.println("<p>That was not a valid user name / password. </p>");
-				}
-
-
-
-				
-				stmt.close();
-			} catch (SQLException ex) {
-				System.out.println("here");
-				System.out.println("SQLException: " + ex.getMessage());
-				System.out.println("SQLState: " + ex.getSQLState());
-				System.out.println("VendorError: " + ex.getErrorCode());
-			}
-		}
-		return userOk;
-	}
-
-
-
-	/**
-	 * Implementation of all input to the servlet. All post-messages are forwarded to this method. 
-	 * 
-	 * First logout the user, then check if he/she has provided a username and a password. 
-	 * If he/she has, it is checked with the database and if it matches then the session state is 
-	 * changed to login, the username that is saved in the session is updated, and the user is 
-	 * relocated to the functionality page. 
-	 * 
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Get the session
-		
-		access.updateLog(null, null);
-		HttpSession session = request.getSession(true);
-		int state;
-		PrintWriter out = response.getWriter();
-		out.println(getPageIntro());
-
-		if (loggedIn(request)) {
-			session.setAttribute("state", LOGIN_FALSE);
-			access.logOutUser((Integer) session.getAttribute("id"), session.getId());
-			out.println("<p>You are now logged out</p>");
-		}
-		
-		String name;
-		String password;
-		String groupID;
-
-		name = request.getParameter("user"); // get the string that the user entered in the form
-		password = request.getParameter("password"); // get the entered password
-		groupID = request.getParameter("groupID"); // get the group name
-		int groupExists = -1;
-		if (groupID != null) {
-			groupExists = checkGroup(groupID); //Check that the group name exists, -1 if it doesnt
-		} 
-		if (name != null && name.equals("admin")) { //If user is admin, ignore group choice
-			groupExists = -2;
-		}
-
-		if (name != null && password != null && groupExists != -1) {
-			if (checkUser(name, password, out)) {
-				if(!access.updateLog(id, session.getId())){
-				state = LOGIN_TRUE;
-				session.setAttribute("state", state);  // save the state in the session 
-				session.setAttribute("groupID", groupExists); // save the groupID in the session
-				//Enligt STLDD sparar vi INTE groupID!
-				
-				session.setAttribute("name", name);  // save the name in the session
-				session.setAttribute("id", id); // save the userID in the session
-				//session.setAttribute("role", role);//WE WANT TO save project role in session
-				//session.setAttribute("usergroupid", usergroupid) we WANT to save usergroupid
-				
-				//access.logInUser(id, session.getId());
-				
-				
-				
-				//UPPDATERA LOGIN
-				access.logInUser(id, session.getId());
-				response.sendRedirect("Start");
-				}
-			} else {
-				//prints error message in checkUser
-				out.println(loginRequestForm());
-			}
-		} else { // name was null, probably because no form has been filled out yet. Display form.
-			out.println(loginRequestForm());
-		}
-		out.println("</body></html>");
-	}
-
-	
-	//Hela den här metoden kan tas bort eftersom användaren väljer grupp ur en lista vid inloggning.
-	//Vi ska heller itne kolla mot sträng utan mot id vilket vi bör göra i metoden ovan (checkUser)
-	/**
-	 * Checks that the group iD2 exists.
-	 * @param iD2 group name
-	 * @return If the group exists, returns the group ID. Else -1
-	 */
-	public int checkGroup(String iD2) {
-		try {
-			Statement stmt = conn.createStatement();		    
-			ResultSet rs = stmt.executeQuery("select * from groups where name='" + iD2 +"'");
-			if (rs.first()) {
-				int currentID = rs.getInt("id");
-				return currentID;
 			}
 			stmt.close();
-		} catch (SQLException ex) {
-			System.out.println("here");
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
+			
+			//userChecked = true; behövs väl inte?
+			//userOk = password.equals(passwordSaved);
+			
+			if(userOk){ //if the user is accepted, save the session variables.
+				session.setAttribute("session", session.getId()); //
+				session.setAttribute("name", name);
+				session.setAttribute("userID", userID);
+				//userGroupID is saved in session inside method checkGroup()
+			} else {
+				out.println("<p>That was not a valid user name / password. </p>");
+			}
+			stmt.close();
 		}
-		return -1;
+	} catch (SQLException ex) {
+		System.out.println("SQLException: " + ex.getMessage());
+		System.out.println("SQLState: " + ex.getSQLState());
+		System.out.println("VendorError: " + ex.getErrorCode());
 	}
+	return userOk;
+}
 
-	/**
-	 * All requests are forwarded to the doGet method. 
-	 * 
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+/**
+ * This method checks if a user is a member of a specific project group, if so it
+ * sets the sessionAttribute userGroupID.
+ * @param groupID: The id of the project group.
+ * @param userID: The id of the user.
+ * @return True if the user is a member of the group.
+ */
+private boolean checkGroup(int groupID, int userID) {
+	boolean groupOK = false;
+	Statement stmt;
+	
+	try {
+		stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from user_group where user_id=" +userID); //get all project groups that the user is member of.
+		while(rs.next()){
+			if(groupID == rs.getInt("group_id")) { //If the groupid is correct the user is a member.
+				session.setAttribute("userGroupID", rs.getInt("ID")); //save userGroupID in session
+				groupOK = true;
+			}
+		}
+		stmt.close();
+	} catch(SQLException e) {
+		System.out.println("SQLException: " + e.getMessage());
+		System.out.println("SQLState: " + e.getSQLState());
+		System.out.println("VendorError: " + e.getErrorCode());
+	}
+	
+	return groupOK;
+	
+}
+
+
+
+/**
+ * Implementation of all input to the servlet. All post-messages are forwarded to this method. 
+ * 
+ * First logout the user, then check if he/she has provided a username and a password. 
+ * If he/she has, it is checked with the database and if it matches then the session state is 
+ * changed to login, the username that is saved in the session is updated, and the user is 
+ * relocated to the functionality page. 
+ * 
+ * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+ */
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	System.out.println("doGet()");
+	int state;
+	String name;
+	String password;
+	int groupID;
+	
+	access.updateLog(null, null); //check timestamps
+	
+	session = request.getSession(true); //get session
+	PrintWriter out = response.getWriter();
+	out.println(getPageIntro());
+	
+	if (loggedIn(request)) {
+		session.setAttribute("state", LOGIN_FALSE);
+		access.logOutUser((Integer) session.getAttribute("id"), session.getId());
+		out.println("<p>You are now logged out</p>");
+	}
+	
+	name = request.getParameter("user"); // get the string that the user entered in the form
+	password = request.getParameter("password"); // get the entered password
+	groupID = Integer.parseInt(request.getParameter("groupID")); //get the group id of the selected group
+	
+	if(name != null && password != null){
+		//Check if user exists, has correct password and is member of the group. Saves session attributes if true.
+		if(checkUser(name, password, groupID,out)){ 
+			if(!access.updateLog((Integer) session.getAttribute("userID"), session.getId())){ //logged out or inactive for over 20min
+				//UPPDATERA LOGIN ??
+				access.logInUser((Integer) session.getAttribute("id"), session.getId());
+				session.setAttribute("state", LOGIN_TRUE);
+				response.sendRedirect("Start");
+			}
+		} else {
+			//prints error message in checkUser
+			out.println(loginRequestForm());
+		}
+	} else { // name was null, probably because no form has been filled out yet. Display form.
+		out.println(loginRequestForm());
+	}
+	
+	out.println("</body></html>");
+}
+
+
+/**
+ * All requests are forwarded to the doGet method. 
+ * 
+ * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+ */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
