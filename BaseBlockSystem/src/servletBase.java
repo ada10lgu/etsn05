@@ -130,7 +130,7 @@ public class servletBase extends HttpServlet {
     				+ "<li><a href= " + formElement("ProjectGroupAdmin") + ">Group</a></li>"
     				+ "</ul>"
     				+ "</li>"
-    				+ "<li><a href='#'>Project Management</a>"
+    				+ "<li><a href=" + formElement("ProjectLeader") + ">Project Management</a>"
     				+ "<ul>"
     				+ "<li><a href=" + formElement("ProjectLeader") + ">Users</a></li>"
     				+ "<li><a href='#'>Reports</a></li>"

@@ -35,27 +35,29 @@ public class ProjectLeader extends servletBase {
 		// TODO Auto-generated constructor stub
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
 		out.println(printMainMenu());
 		String myName = "";
 		HttpSession session = request.getSession(true);
-		//WHICH OF THESE NEED TO BE FETCHED?
+		// WHICH OF THESE NEED TO BE FETCHED?
 		Object nameObj = session.getAttribute("name");
 		Object groupObj = session.getAttribute("groupID");
-		int groupID = (int)groupObj;
+		int groupID = (int) groupObj;
 		String role = request.getParameter("role");
 		String userID = request.getParameter("userID");
-		
+
 		if (nameObj != null) {
-			myName = (String)nameObj;  // if the name exists typecast the name to a string
+			myName = (String) nameObj; // if the name exists typecast the name
+										// to a string
 		}
-		// check that the user is logged in
-		//SHOULD CHECK THAT THE USER IS A PROJECT LEADER/ADMINISTRATOR
-		if (!loggedIn(request)) {
+		boolean isAllowed = projectLeaderOrAdmin(myName);
+
+		if (!loggedIn(request)) { //Check that user is logged in
 			response.sendRedirect("LogIn");
-		} else {
+		} else if (isAllowed) { //Check that user is allowed
 			out.println("<h1>Project Management " + "</h1>");
 			if (userID != null) {
 				int userIDint = Integer.parseInt(userID);
@@ -63,57 +65,102 @@ public class ProjectLeader extends servletBase {
 			} else {
 				showAllUsers(groupID, out);
 			}
+		} else {
+			out.println("<p>You do not have access to this page</p>");
 		}
 	}
-		/**
-		 * Displays a list of all the users in a group, their role and a button to change the role
-		 * @param ID group ID
-		 * @param out PrintWriter
-		 */
-		private void showAllUsers(int ID, PrintWriter out) {
+
+	/**
+	 * Checks if the user is either an admin or a Project Leader of the group
+	 * 
+	 * @param myName
+	 * @return true if the user is admin/project leader, else false
+	 */
+	private boolean projectLeaderOrAdmin(String myName) {
+		if (myName.equals("admin")) {
+			return true;
+		} else {
 			try {
-				Statement stmt = conn.createStatement();		    
-				ResultSet rs = stmt.executeQuery("select * from user_group INNER JOIN users on user_group.user_id = users.ID where user_group.group_id = '"+ID+"'");
-				out.println("<p>Project users:</p>");
-				out.println("<table border=" + formElement("1") + ">");
-				out.println("<tr><td>NAME</td><td>ROLE</td><td></td></tr>");
-				while (rs.next( )) {
-					String name = rs.getString("username");
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt
+						.executeQuery("select * from user_group INNER JOIN users on user_group.user_id = users.ID where users.username = '"
+								+ myName + "'");
+				if (rs.first()) {
 					String role = rs.getString("role");
-					int id=rs.getInt("ID");
-					String changeRoleURL = "ProjectLeader?changeRole="+role+"username="+name;
-					String roleCode = "<a href=" + formElement(changeRoleURL) +"> Change Role </a>";
-					//NO BUTTON FOR PROJECT LEADERS
-					out.println("<tr>");
-					out.println("<td>" + name + "</td>");
-					out.println("<td>" + role + "</td>");
-					out.println("<td>" + roleCode + "</td>");
-					out.println("</tr>");
+					if (role.equals("Project Leader")) {
+						return true;
+					}
 				}
-				out.println("</table>");
-				stmt.close();
 			} catch (SQLException ex) {
 				System.out.println("SQLException: " + ex.getMessage());
 				System.out.println("SQLState: " + ex.getSQLState());
 				System.out.println("VendorError: " + ex.getErrorCode());
 			}
 		}
-		/**
-		 * Changes the role of a user in the group
-		 * @param ID the user to be changed
-		 * @param role the new role for the user
-		 */
-		private void changeRole(int ID, String role) {
-			//NOT YET IMPLEMENTED
+		return false;
+	}
 
+	/**
+	 * Displays a list of all the users in a group, their role and a button to
+	 * change the role
+	 * 
+	 * @param ID
+	 *            group ID
+	 * @param out
+	 *            PrintWriter
+	 */
+	private void showAllUsers(int ID, PrintWriter out) {
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("select * from user_group INNER JOIN users on user_group.user_id = users.ID where user_group.group_id = '"
+							+ ID + "'");
+			out.println("<p>Project users:</p>");
+			out.println("<table border=" + formElement("1") + ">");
+			out.println("<tr><td>NAME</td><td>ROLE</td><td></td></tr>");
+			while (rs.next()) {
+				String name = rs.getString("username");
+				String role = rs.getString("role");
+				int id = rs.getInt("ID");
+				String changeRoleURL = "ProjectLeader?changeRole=" + role
+						+ "username=" + name;
+				String roleCode = "<a href=" + formElement(changeRoleURL)
+						+ "> Change Role </a>";
+				// NO BUTTON FOR PROJECT LEADERS
+				out.println("<tr>");
+				out.println("<td>" + name + "</td>");
+				out.println("<td>" + role + "</td>");
+				out.println("<td>" + roleCode + "</td>");
+				out.println("</tr>");
+			}
+			out.println("</table>");
+			stmt.close();
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
 		}
+	}
 
-		/**
-		 *
-		 */
-		protected void doGet(HttpServletRequest request,
-				HttpServletResponse response) throws ServletException, IOException {
-			doPost(request, response);
-		}
+	/**
+	 * Changes the role of a user in the group
+	 * 
+	 * @param ID
+	 *            the user to be changed
+	 * @param role
+	 *            the new role for the user
+	 */
+	private void changeRole(int ID, String role) {
+		// NOT YET IMPLEMENTED
 
 	}
+
+	/**
+	 *
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+}
