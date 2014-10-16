@@ -66,6 +66,7 @@ public class servletBase extends HttpServlet {
 		    System.out.println("SQLState: " + ex.getSQLState());
 		    System.out.println("VendorError: " + ex.getErrorCode());
 		} catch(ClassNotFoundException e){
+			System.out.println("Can't find mysql connector. ");
 			e.printStackTrace();
 		}
     }
