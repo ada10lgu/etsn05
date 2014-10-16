@@ -44,14 +44,10 @@ public class ProjectLeader extends servletBase {
 		String myName = "";
 		HttpSession session = request.getSession(true);
 		// WHICH OF THESE NEED TO BE FETCHED?
-		String groupIDString = request.getParameter("groupID");
-		if (groupIDString != null) {
-			int groupIDint = Integer.parseInt(groupIDString);
-			session.setAttribute("groupID", groupIDint);
-		}
+		//String groupIDString = request.getParameter("groupID");
 		Object nameObj = session.getAttribute("name");
 		Object groupObj = session.getAttribute("groupID");
-		int groupID = (int) groupObj;
+		int groupID = Integer.parseInt((String) groupObj);
 		String role = request.getParameter("role");
 		String userID = request.getParameter("userID");
 
@@ -160,19 +156,18 @@ public class ProjectLeader extends servletBase {
 	 * @param out
 	 *            PrintWriter
 	 */
-	private void showAllUsers(int ID, PrintWriter out) {
+	private void showAllUsers(int groupID, PrintWriter out) {
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt
-					.executeQuery("select * from user_group INNER JOIN users on user_group.user_id = users.ID where user_group.group_id = '"
-							+ ID + "'");
+					.executeQuery("select * from user_group INNER JOIN users on user_group.user_id = users.ID where user_group.group_id = "
+							+ groupID + "");
 			out.println("<p>Project users:</p>");
 			out.println("<table border=" + formElement("1") + ">");
 			out.println("<tr><td>NAME</td><td>ROLE</td><td></td></tr>");
 			while (rs.next()) {
 				String name = rs.getString("username");
 				String role = rs.getString("role");
-				int id = rs.getInt("ID");
 				String changeRoleURL = "ProjectLeader?changeRole=" + role
 						+ "username=" + name;
 				String roleCode = "<a href=" + formElement(changeRoleURL)
