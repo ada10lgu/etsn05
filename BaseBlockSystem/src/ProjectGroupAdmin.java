@@ -236,9 +236,6 @@ public class ProjectGroupAdmin extends servletBase {
 				
 				listGroups(out);
 				
-				
-				out.println("<p><a href =" + formElement("Start") + "> Start page </p>");
-				out.println("<p><a href =" + formElement("LogIn") + "> Log out </p>");
 				out.println("</body></html>");
 			} else  // name not admin
 				response.sendRedirect("Start");

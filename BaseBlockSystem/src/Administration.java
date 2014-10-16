@@ -265,10 +265,7 @@ public class Administration extends servletBase {
 					System.out.println("SQLState: " + ex.getSQLState());
 					System.out.println("VendorError: " + ex.getErrorCode());
 				}
-				out.println(addUserForm());
-
-				out.println("<p><a href =" + formElement("Start") + "> Functionality selection page </p>");
-				out.println("<p><a href =" + formElement("LogIn") + "> Log out </p>");
+				out.println(addUserForm());				
 				out.println("</body></html>");
 			} else  // name not admin
 				response.sendRedirect("Start");
