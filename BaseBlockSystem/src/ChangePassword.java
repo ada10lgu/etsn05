@@ -40,7 +40,7 @@ public class ChangePassword extends servletBase {
 		String myName = "";
 		HttpSession session = request.getSession(true);
 		Object nameObj = session.getAttribute("name");
-		Object idObj = session.getAttribute("id");
+		Object idObj = session.getAttribute("userID");
 		int id =(int)idObj;
 		System.out.println(id);
 		String oldPw = request.getParameter("oldpw");
