@@ -55,7 +55,7 @@ public class ProjectGroupAdmin extends servletBase {
 			if (rs.first()) {
 				resultOk = rs.getInt("id");
 			} else {
-				System.out.println("NO SUCH ID");
+	//			System.out.println("NO SUCH ID");
 			}
 			stmt.close();
 
@@ -139,7 +139,7 @@ public class ProjectGroupAdmin extends servletBase {
 		    	String deleteCode = "<a href=" + formElement(deleteURL) +
 		    			            " onclick="+formElement("return confirm('Are you sure you want to delete "+name+"?')") + 
 		    			            "> delete </a>";
-		    	if (name.equals("admin")) 
+		    	if (name.equals(ADMIN)) 
 		    		deleteCode = "";
 		    	out.println("<tr>");
 		    	out.println("<td>" + name + "</td>");
@@ -192,7 +192,7 @@ public class ProjectGroupAdmin extends servletBase {
 		if (!loggedIn(request))
 			response.sendRedirect("LogIn");
 		else
-			if (myName.equals("admin")) {
+			if (myName.equals(ADMIN)) {
 				out.println("<h1>Project group administration page " + "</h1>");
 				
 				// check if the administrator wants to add a new project group in the form

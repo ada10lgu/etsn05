@@ -54,7 +54,7 @@ public class ChangePassword extends servletBase {
 		if (!loggedIn(request)) {
 			response.sendRedirect("LogIn");
 		} else {
-			if (myName.equals("admin")) { 
+			if (myName.equals(ADMIN)) { 
 				out.println("<p>Error: Admin is not allowed to change password</p>");
 			} else {
 				if (oldPw!=null&&newPw!=null) {

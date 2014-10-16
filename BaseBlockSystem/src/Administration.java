@@ -127,12 +127,12 @@ public class Administration extends servletBase {
 			//Check if the user is the only projectleader in any group
 			ResultSet rs = stmt.executeQuery("Select * from user_group where user_id = " + userID);
 			while(rs.next()){
-				if(rs.getString("role").equals("Project Leader")){
+				if(rs.getString("role").equals(PROJECT_LEADER)){
 					ResultSet groupMembers = stmt2.executeQuery("Select * from user_group where group_id = " + rs.getInt("group_id"));
 					int countLeaders = 0;
 					int countMembers = 0;
 					while(groupMembers.next()){
-						if(groupMembers.getString("role").equals("Project Leader")){
+						if(groupMembers.getString("role").equals(PROJECT_LEADER)){
 							countLeaders++;
 						}
 						countMembers++;
@@ -207,7 +207,7 @@ public class Administration extends servletBase {
 			response.sendRedirect("LogIn");
 		}
 		else
-			if (myName.equals("admin")) {
+			if (myName.equals(ADMIN)) {
 				out.println("<h1>Administration page " + "</h1>");
 
 				// check if the administrator wants to add a new user in the form
@@ -251,7 +251,7 @@ public class Administration extends servletBase {
 						String deleteCode = "<a href=" + formElement(deleteURL) +
 								" onclick="+formElement("return confirm('Are you sure you want to delete "+name+"?')") + 
 								"> delete </a>";
-						if (name.equals("admin")) 
+						if (name.equals(ADMIN)) 
 							deleteCode = "";
 						out.println("<tr>");
 						out.println("<td>" + name + "</td>");

@@ -37,7 +37,7 @@ public class GroupHandling extends servletBase {
 			Statement stmt1 = conn.createStatement();		    
 			ResultSet rs = stmt1.executeQuery("select * from user_group where group_id = '" + groupID + "'");
 			if (!rs.first()) {
-				role = "Project Leader";
+				role = PROJECT_LEADER;
 			} else {
 				role = request.getParameter("role");
 			}
@@ -78,7 +78,7 @@ public class GroupHandling extends servletBase {
 				roleCounter++;
 			}
 		}
-		if (((role.equals("Project Leader") && roleCounter<2) || (!role.equals("Project Leader") && roleCounter<6)) && total < 20 && !roleAlreadyAssigned) {
+		if (((role.equals(PROJECT_LEADER) && roleCounter<2) || (!role.equals(PROJECT_LEADER) && roleCounter<6)) && total < 20 && !roleAlreadyAssigned) {
 			String statement = "insert into user_group (user_id, group_id, role) values('" + userID + "', '" + groupID + "', '" + role + "')";
 			stmt.executeUpdate(statement);
 			return true;
@@ -100,11 +100,11 @@ public class GroupHandling extends servletBase {
 			Statement stmt = conn.createStatement();
 			ResultSet rsRoleOfUser = stmt.executeQuery("select * from user_group where group_id = '" + groupID + "'" + " and user_id = '" + userID + "'");
 			if(rsRoleOfUser.first()){
-				if(rsRoleOfUser.getString("role").equals("Project Leader")){
+				if(rsRoleOfUser.getString("role").equals(PROJECT_LEADER)){
 					isProjectLeader = true;
 					ResultSet rs = stmt.executeQuery("select * from user_group where group_id = '" + groupID + "'");
 					while(rs.next()){
-						if(rs.getString("role").equals("Project Leader")){
+						if(rs.getString("role").equals(PROJECT_LEADER)){
 							projectLeaderCounter++;
 						}
 					}
@@ -147,10 +147,10 @@ public class GroupHandling extends servletBase {
 
 				//THE FOLLOWING CODE IS UGLY AND WILL BE CHANGED
 				String name = rs.getString("username");
-				String addPG = "GroupHandling?addname="+name+"&role=Project Leader";
-				String addT1 = "GroupHandling?addname="+name+"&role=t1";
-				String addT2 = "GroupHandling?addname="+name+"&role=t2";
-				String addT3 = "GroupHandling?addname="+name+"&role=t3";
+				String addPG = "GroupHandling?addname="+name+"&role=" + PROJECT_LEADER;
+				String addT1 = "GroupHandling?addname="+name+"&role=" + t1;
+				String addT2 = "GroupHandling?addname="+name+"&role=" + t2;
+				String addT3 = "GroupHandling?addname="+name+"&role=" + t3;
 				String removeURL = "GroupHandling?removename="+name;
 				String addCodePG = "<a href=" + formElement(addPG) +
 						" onclick="+formElement("return confirm('Are you sure you want to add "+name+"?')") + 
@@ -168,7 +168,7 @@ public class GroupHandling extends servletBase {
 						" onclick="+formElement("return confirm('Are you sure you want to remove "+name+"?')") + 
 						"> remove </a>";
 				out.println("<tr>");
-				if(rs.getString("username").equals("admin")){
+				if(rs.getString("username").equals(ADMIN)){
 					out.println("<tr>");
 					out.println("<td>" + name + "</td>");
 					out.println("<td>" + "" + "</td>");
@@ -234,7 +234,7 @@ public class GroupHandling extends servletBase {
 		if (!loggedIn(request))
 			response.sendRedirect("LogIn");
 		else {
-			if (myName.equals("admin")) {
+			if (myName.equals(ADMIN)) {
 				out.println("<h1>Group Handling " + "</h1>");
 				try {
 					String addToGroup = request.getParameter("addname");

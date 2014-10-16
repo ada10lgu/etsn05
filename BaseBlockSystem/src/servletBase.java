@@ -39,6 +39,11 @@ public class servletBase extends HttpServlet {
 	protected Connection conn = null;
 	protected Access access;
 	
+	protected static final String ADMIN = "admin";
+	protected static final String PROJECT_LEADER = "Project Leader";
+	protected static final String t1 = "t1";
+	protected static final String t2 = "t2";
+	protected static final String t3 = "t3";
 	
 	/**
 	 * Constructs a servlet and makes a connection to the database. 
