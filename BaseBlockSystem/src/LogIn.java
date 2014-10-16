@@ -99,8 +99,6 @@ public class LogIn extends servletBase {
 					userID = rs.getInt("ID");					
 					if (checkGroup(groupID, userID, name)) { 
 						userOk = true;
-					} else {
-						out.println("<p>You are not a member of the selected project group. </p>");
 					}
 				}				
 				stmt.close();
