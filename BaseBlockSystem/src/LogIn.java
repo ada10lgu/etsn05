@@ -137,7 +137,8 @@ public class LogIn extends servletBase {
 		try {
 			if (name.equals("admin")) {
 				session.setAttribute("role", "admin");
-				session.setAttribute("userGroupID", "0");
+				session.setAttribute("userGroupID", 0);
+				session.setAttribute("groupID", 0);
 				groupOK = true;
 			}else{
 				stmt = conn.createStatement();
@@ -145,6 +146,7 @@ public class LogIn extends servletBase {
 				if (rs.first()) {
 					session.setAttribute("userGroupID", rs.getInt("ID")); // save userGroupID in session
 					session.setAttribute("role", rs.getString("role"));
+					session.setAttribute("groupID", groupIDstr);
 					groupOK = true;
 				}
 				stmt.close();
