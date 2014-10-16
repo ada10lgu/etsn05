@@ -93,10 +93,7 @@ public class LogIn extends servletBase {
 		try {
 			if (name != null && password != null && groupID != null) {
 				stmt = conn.createStatement();
-				ResultSet rs = stmt
-						.executeQuery("select * from users where username = "
-								+ formElement(name) + " and password = "
-								+ formElement(password));
+				ResultSet rs = stmt.executeQuery("select * from users where username = "+ formElement(name) + " and password = "+ formElement(password));
 				int userID = -1;
 				if (rs.first()) {
 					userID = rs.getInt("ID");					
@@ -107,13 +104,11 @@ public class LogIn extends servletBase {
 					}
 				}				
 				stmt.close();
-				if (userOk) { // if the user is accepted, save the session
-								// variables.
-					session.setAttribute("session", session.getId()); //
+				if (userOk) { // if the user is accepted, save the session variables
+					session.setAttribute("session", session.getId());
 					session.setAttribute("name", name);
 					session.setAttribute("userID", userID);
-					// userGroupID is saved in session inside method
-					// checkGroup()
+					// userGroupID is saved in session inside method checkGroup()
 				} else {
 					out.println("<p>That was not a valid user name / password. </p>");
 				}
@@ -148,14 +143,9 @@ public class LogIn extends servletBase {
 				groupOK = true;
 			}else{
 				stmt = conn.createStatement();
-				ResultSet rs = stmt
-						.executeQuery("select * from user_group where user_id="
-								+ userID + " and group_id = " + groupIDstr);
+				ResultSet rs = stmt.executeQuery("select * from user_group where user_id="+ userID + " and group_id = " + groupIDstr);
 				if (rs.first()) {
-					session.setAttribute("userGroupID", rs.getInt("ID")); // save
-																			// userGroupID
-																			// in
-																			// session
+					session.setAttribute("userGroupID", rs.getInt("ID")); // save userGroupID in session
 					session.setAttribute("role", rs.getString("role"));
 					groupOK = true;
 				}
@@ -185,7 +175,6 @@ public class LogIn extends servletBase {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// int state;
 		String name;
 		String password;
 		String groupID;
@@ -196,7 +185,7 @@ public class LogIn extends servletBase {
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
 		
-		// Om anv‰ndaren ‰r inloggad sÂ, logga ut.
+		// Om anv√§ndaren √§r inloggad s√•, logga ut.
 		if (loggedIn(request)) {
 			session.setAttribute("state", LOGIN_FALSE);
 			access.logOutUser((Integer) session.getAttribute("userID"),
@@ -206,26 +195,19 @@ public class LogIn extends servletBase {
 			out.println("Not logged in");
 		}
 
-		name = request.getParameter("user"); // get the string that the user
-												// entered in the form
+		name = request.getParameter("user"); // get the string that the user entered in the form
 		password = request.getParameter("password"); // get the entered password
-		groupID = request.getParameter("groupID"); // get the group id of the
-													// selected group
-		out.println("<br>name " +name);
-		out.println("<br>pass " + password);
-		out.println("<br>group" + groupID);
+		groupID = request.getParameter("groupID"); // get the group id of the selected group
+
 		if (name != null && password != null && groupID != null) {
 			
-			// Check if user exists, has correct password and is member of the
-			// group. Saves session attributes if true.
+			// Check if user exists, has correct password and is member of the group. Saves session attributes if true.
 			if (checkUser(name, password, groupID, out)) {
 				if (!access.updateLog((int) session.getAttribute("userID"),
-						session.getId())) { // logged out or inactive for over
-											// 20min
+						session.getId())) { // logged out or inactive for over 20min
 					out.println("We got stuff from user");
-					// UPPDATERA LOGIN ??
-					access.logInUser((int) session.getAttribute("userID"),
-							session.getId());
+					//Good to go --> LOGIN!
+					access.logInUser((int) session.getAttribute("userID"),session.getId());
 					session.setAttribute("state", LOGIN_TRUE);
 					response.sendRedirect("Start");
 				}
@@ -235,10 +217,7 @@ public class LogIn extends servletBase {
 				// prints error message in checkUser
 				out.println(loginRequestForm());
 			}
-		} else { // name was null, probably because no form has been filled out
-					// yet. Display form.
-			
-			
+		} else { // name was null, probably because no form has been filled out yet. Display form.
 			out.println(loginRequestForm());
 		}
 
