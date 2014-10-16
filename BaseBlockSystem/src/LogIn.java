@@ -191,16 +191,13 @@ public class LogIn extends servletBase {
 			access.logOutUser((Integer) session.getAttribute("userID"),
 					session.getId());
 			out.println("<p>You are now logged out</p>");
-		}else{
-			out.println("Not logged in");
 		}
 
 		name = request.getParameter("user"); // get the string that the user entered in the form
 		password = request.getParameter("password"); // get the entered password
 		groupID = request.getParameter("groupID"); // get the group id of the selected group
 
-		if (name != null && password != null && groupID != null) {
-			
+		if (name != null && password != null && groupID != null) {			
 			// Check if user exists, has correct password and is member of the group. Saves session attributes if true.
 			if (checkUser(name, password, groupID, out)) {
 				if (!access.updateLog((int) session.getAttribute("userID"),
@@ -210,10 +207,11 @@ public class LogIn extends servletBase {
 					access.logInUser((int) session.getAttribute("userID"),session.getId());
 					session.setAttribute("state", LOGIN_TRUE);
 					response.sendRedirect("Start");
+				}else{
+					out.println("Unable to log in.");
+					out.println(loginRequestForm());
 				}
-				
 			} else {
-				out.println("Nope");
 				// prints error message in checkUser
 				out.println(loginRequestForm());
 			}
