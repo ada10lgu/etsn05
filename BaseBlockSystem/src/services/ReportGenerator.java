@@ -99,6 +99,7 @@ public final class ReportGenerator {
 		html += "</form>";
 		
 		return null;
+		
 	}
 	
 	/**
