@@ -23,14 +23,14 @@ public class ChangePassword extends servletBase {
 	private String changePasswordForm() {
 		String html;
 		html = "<p> <form name=" + formElement("input");
-		html += " method=" + formElement("get");
+		html += " method=" + formElement("post");
 		html += "<p> Old password: <input type=" + formElement("text") + " name=" + formElement("oldpw") + '>';     	
 		html += "<p> New password: <input type=" + formElement("text") + " name=" + formElement("newpw") + '>';  
 		html += "<input type=" + formElement("submit") + "value=" + formElement("Change") + '>';
 		html += "</form>";
 		return html;
 	}
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		access.updateLog(null, null);
 		
@@ -82,6 +82,10 @@ public class ChangePassword extends servletBase {
 				out.println(changePasswordForm());
 			}
 		}
+	}
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 }
