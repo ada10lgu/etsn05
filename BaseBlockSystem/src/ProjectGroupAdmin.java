@@ -229,11 +229,8 @@ public class ProjectGroupAdmin extends servletBase {
 					} catch (SQLException ex) {
 						System.out.println("SQLState: " + ex.getSQLState());
 						System.out.println("VendorError: " + ex.getErrorCode());
-					}
-					
+					}					
 				}
-				
-				
 				listGroups(out);
 				
 				out.println("</body></html>");
