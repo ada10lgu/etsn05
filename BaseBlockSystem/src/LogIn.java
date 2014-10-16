@@ -236,7 +236,7 @@ public class LogIn extends servletBase {
 						session.getId())) { // logged out or inactive for over
 											// 20min
 					// UPPDATERA LOGIN ??
-					access.logInUser((Integer) session.getAttribute("id"),
+					access.logInUser((Integer) session.getAttribute("userID"),
 							session.getId());
 					session.setAttribute("state", LOGIN_TRUE);
 					response.sendRedirect("Start");
