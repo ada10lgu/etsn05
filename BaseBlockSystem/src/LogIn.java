@@ -137,7 +137,7 @@ public class LogIn extends servletBase {
 		try {
 			if (name.equals("admin")) {
 				session.setAttribute("role", "admin");
-				session.setAttribute("userGroupID", "0");
+				session.setAttribute("userGroupID", 0);
 				groupOK = true;
 			}else{
 				stmt = conn.createStatement();
