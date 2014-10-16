@@ -138,13 +138,14 @@ public class LogIn extends servletBase {
 			if (name.equals("admin")) {
 				session.setAttribute("role", "admin");
 				session.setAttribute("userGroupID", 0);
-				groupOK = true;
+				session.setAttribute("groupID", 0);
 			}else{
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery("select * from user_group where user_id="+ userID + " and group_id = " + groupIDstr);
 				if (rs.first()) {
 					session.setAttribute("userGroupID", rs.getInt("ID")); // save userGroupID in session
 					session.setAttribute("role", rs.getString("role"));
+					session.setAttribute("groupID", groupIDstr);
 					groupOK = true;
 				}
 				stmt.close();
