@@ -110,6 +110,7 @@ public class Administration extends servletBase {
 
 	/**
 	 * Deletes a user from the database. 
+	 * If and only if the user is the only Project Leader in a group with a least two members the user is not removed. 
 	 * If the user does not exist in the database nothing happens. 
 	 * @param name name of user to be deleted. 
 	 */

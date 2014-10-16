@@ -43,9 +43,7 @@ public class GroupHandling extends servletBase {
 			}
 
 			if (role!=null) {
-				if (!addAsRoleOk(userID, groupID, role)) {
-					resultOk = false;
-				}
+				resultOk = addAsRoleOk(userID, groupID, role);
 			} else {
 				resultOk = false;
 			}
