@@ -51,12 +51,10 @@ public class servletBase extends HttpServlet {
             "user=puss1404&password=ptqp44ed");	
 			access = new Access(conn);
 		} catch (SQLException ex) {
-			System.out.println("HERE!!!");
 		    System.out.println("SQLException: " + ex.getMessage());
 		    System.out.println("SQLState: " + ex.getSQLState());
 		    System.out.println("VendorError: " + ex.getErrorCode());
 		} catch(ClassNotFoundException e){
-			System.out.println("Can't find mysql connector. ");
 			e.printStackTrace();
 		}
     }
