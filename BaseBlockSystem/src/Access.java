@@ -23,7 +23,6 @@ public class Access {
 	 * @return boolean - True if the user has not been inactive for too long.
 	 */
 	public boolean updateLog(Integer userID, String session){
-
 		Timestamp newTS = new Timestamp(System.currentTimeMillis());	
 		long accessTime = time_minutes*60*1000;  			//Efter hur många inaktiva millisekunder man ska loggas ut 
 		try {
@@ -52,8 +51,7 @@ public class Access {
 				}
 			} 
 		}
-		catch (SQLException e) {
-			System.out.println("here");
+		catch (SQLException e) {			
 			e.printStackTrace();
 		}
 		return false;		

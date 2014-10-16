@@ -142,7 +142,7 @@ public class servletBase extends HttpServlet {
     				+ "<li><a href='#'>Statistics</a></li>"
     				+ "</ul>"
     				+ "</li>"
-    				+ "<li><a href='#'>Change Password</a></li>"
+    				+ "<li><a href='ChangePassword'>Change Password</a></li>"
     				+ "<li><a href='LogIn'>Logout</a></li>"
     				+ "</ul></div>"
     			;
