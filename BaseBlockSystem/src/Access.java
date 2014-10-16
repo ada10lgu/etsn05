@@ -9,11 +9,12 @@ import java.sql.Timestamp;
 public class Access {
 
 	private Connection conn;
-
+	
+	private static int time_minutes = 5;
+	
 	public Access(Connection conn){
 		this.conn = conn;
 	}
-
 
 	/**
 	 * Updates the log with a new timestamp for the given user and session.
@@ -24,7 +25,7 @@ public class Access {
 	public boolean updateLog(Integer userID, String session){
 
 		Timestamp newTS = new Timestamp(System.currentTimeMillis());	
-		long accessTime = 20*60*1000;  			//Efter hur många inaktiva millisekunder man ska loggas ut 
+		long accessTime = time_minutes*60*1000;  			//Efter hur många inaktiva millisekunder man ska loggas ut 
 		try {
 			Statement stmt = conn.createStatement();
 			Statement tempStmt = conn.createStatement();
@@ -36,10 +37,8 @@ public class Access {
 						tempStmt.executeUpdate("DELETE from log where user_id="+rs.getInt("user_id"));
 					}
 				}
-
 				return false;
 			}
-
 			else{
 				ResultSet rs = stmt.executeQuery("Select * from log where user_id = " +userID+ "");
 				if(rs.first()){
@@ -52,31 +51,12 @@ public class Access {
 					return true;
 				}
 			} 
-
 		}
 		catch (SQLException e) {
 			System.out.println("here");
 			e.printStackTrace();
 		}
-		return false;
-		//		Timestamp newTS = new Timestamp(System.currentTimeMillis());	
-		//		long accessTime = 20*60*1000;  			//Efter hur många inaktiva millisekunder man ska loggas ut 
-		//		try {
-		//			Statement stmt = conn.createStatement();		
-		//			ResultSet rs = stmt.executeQuery("Select * from log where user_id = '" +userID+ "' AND session = '" +session+ "'");
-		//			
-		//			if(rs.first()){
-		//				Timestamp oldTS = rs.getTimestamp("time");
-		//				if(newTS.getTime() - oldTS.getTime() > accessTime){
-		//					return false;
-		//				}
-		//				stmt.executeUpdate("Update log SET time = '" + newTS +"' where user_id = '" +userID+ "' AND session = '" +session+ "'");
-		//				return true;
-		//			}
-		//		} catch (SQLException e) {
-		//			e.printStackTrace();
-		//		}	
-		//		return false;	
+		return false;		
 	}
 
 	/**
@@ -95,24 +75,6 @@ public class Access {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-//		Statement stmt;
-//		try {
-//			stmt = conn.createStatement();
-//			Timestamp newTS = new Timestamp(System.currentTimeMillis());
-//
-//			ResultSet rs = stmt.executeQuery("Select * from log where user_id = " +userID);
-//			if(rs.first()){
-//				stmt.executeUpdate("Update log SET time = '" + newTS +"' where user_id = " +userID+ " AND session = '" +session+ "'");
-//				return true;
-//			} 			
-//			stmt.executeUpdate("Insert into log (user_id, time, session) values(" +userID+ ", '" +newTS+ "', '" +session+ "')");
-//			return true;
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return false;
 	}
 
 	/**
