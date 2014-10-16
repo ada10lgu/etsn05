@@ -3,6 +3,7 @@ package services;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +28,11 @@ public final class ReportGenerator {
 	private static final String[] activity_description = new String[]{"Utveckla ny kod, testfall och dokumentation inklusive dokumentation av systemet",
 		"Tid spenderad på förberedelser inför och på informella granskningar", "Tid spenderad på förberedelser inför och på formella granskningar",
 		"Tid spenderad på ombearbetning, förbättring, revision eller korrektion av dokument och design objekt"};
+	
+	private static final String[] act_sub_names = new String[]{"SDP_U", "SDP_I", "SDP_F", "SDP_O", "SRS_U", "SRS_I", "SRS_F", "SRS_O", 
+		"SVVS_U", "SVVS_I", "SVVS_F", "SVVS_O", "STLDD_U", "STLDD_I", "STLDD_F", "STLDD_O", "SVVI_U", "SVVI_I", "SVVI_F", "SVVI_O", 
+		"SDDD_U", "SDDD_I", "SDDD_F", "SDDD_O", "SVVR_U", "SVVR_I", "SVVR_F", "SVVR_O", "SSD_U", "SSD_I", "SSD_F", "SSD_O", 
+		"Slutrapoort_U", "Slutrapport_I", "Slutrapport_F", "Slutrapport_O"};
 	
 	private ReportGenerator() {
 		
@@ -137,10 +143,11 @@ public final class ReportGenerator {
 		
 		String html = "";
 		html += "<style type='text/css'>"
+				+ "table {border: 1px solid black; border-collapse: collapse; width: 700px; text-align: left;}"
 				+ "td {border: 1px solid black; width: 100px;}"
 				+ ".grey {background-color: #dddddd;}"
 				+ "</style>";
-		html += "<table style='border: 1px solid black; border-collapse: collapse; width: 700px; text-align: left;'>";
+		html += "<table>";
 		html += 	"<tr>";
 		html +=			"<td><b>Namn</td><td colspan='4'>"+name+"</td><td><b>Datum</td><td>"+date.toString()+"</td>";
 		html += 	"</tr>";		
@@ -233,7 +240,6 @@ public final class ReportGenerator {
 		html += "</table>";
 		
 		return html;
-		
 	}
 	
 	/**
@@ -241,7 +247,176 @@ public final class ReportGenerator {
 	 * @param data: Contains the data that should be printed in the time report.
 	 */
 	public static String updateReport(ResultSet data) {
-		return null;
+		if (data == null) {
+			init_test_data();
+		} else {
+			init_data(data);
+		}
+		
+		String html = "";
+		/*
+		html += "<SCRIPT TYPE='text/javascript'>";
+		html += "// copyright 1999 Idocs, Inc. http://www.idocs.com";
+		html += "// Distribute this script freely but keep this notice in place";
+		html += "function numbersonly(myfield, e)";
+		html += "{";
+		html += "	var key;";
+		html += "	var keychar;";
+		html += "	if (window.event)";
+
+		html += "		key = window.event.keyCode;";
+		html += "	else if (e)";
+		html += "		key = e.which;";
+		html += "	else";
+		html += "		return true;";
+		html += "	keychar = String.fromCharCode(key);";
+	
+		html += "	// control keys";
+		html += "	if ((key==null) || (key==0) || (key==8) ||"; 
+		html += "	    (key==9) || (key==13) || (key==27) )";
+		html += "	   return true;";
+	
+		html += "	// numbers";
+		html += "	else if ((('0123456789').indexOf(keychar) > -1))";
+		html += "	   return true;";
+	
+		html += "	// decimal point jump";
+		html += "	else if (dec && (keychar == '.'))";
+		html += "	   {";
+		html += "	   myfield.form.elements[dec].focus();";
+		html += "	   return false;";
+		html += "	   }";
+		
+		html += "	else";
+		html += "		return false;";
+		html += "	}";
+		html += "</SCRIPT>";
+		*/
+		/*
+		html += "<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>";
+		
+		html += "<script type='text/javascript'>"
+				+ "		$(document).ready(function(){"
+				+ "			$(this).keypress(function(){"
+				+ "				if (!$(this).isNumeric($(this).innerHTML))"
+				+ "				$(this).innerHTML = '';"
+				+ "			});"
+				+ "		});"
+				+ "</script>"; 
+		*/
+		
+		html += "<style type='text/css'>"
+				+ "table {border: 1px solid black; border-collapse: collapse; width: 700px; text-align: left;}"
+				+ "td {border: 1px solid black; width: 100px;}"
+				+ ".grey {background-color: #dddddd;}"
+				+ "input {width: 100px;}"
+				+ "</style>";
+		
+		html += "<form method='post' action='TimeReporting?action=updateReport'>";
+		html += 	"<table>";
+		html += 		"<tr>";
+		html +=				"<td><b>Namn</td><td colspan='4'>"+name+"</td><td><b>Datum</td><td>"+date.toString()+"</td>";
+		html +=			"</tr>";		
+		html += 		"<tr>";
+		html +=				"<td><b>Projektgrupp</td><td colspan='4'>"+project_group+"</td><td><b>Vecka</td><td>"+week_number+"</td>";
+		html += 		"</tr>";
+		html += 		"<tr>";
+		html += 			"<td colspan='6' class='grey'><b>Del A - Total tid denna vecka (minuter)</td><td>"+total_time+"</td>";
+		html += 		"</tr>";
+		html += 		"<tr>";
+		html += 			"<td colspan='7' class='grey'><b>Del B - Antal minuter per aktivitet och subaktivitet</td>";
+		html +=			"</tr>";
+		html += 		"<tr>";
+		html += 			"<td><b>Nummer</td><td><b>Aktivitet</td><td><b>U</td><td><b>I</td><td><b>F</td><td><b>O</td><td><b>Totaltid</td>";
+		html +=			"</tr>";
+		int k = 0;
+		int l = 0;
+		for (int i = 0; i < 9; i++) {
+			html += 	"<tr>";
+			for (int j = 0; j < 7; j++) {
+				if (j == 0) {
+					html += "<td>"+upper_numbers[i]+"</td>";
+				}
+				if (j == 1) {
+					html += "<td>"+upper_activities[i]+"</td>";
+				}
+				if (1 < j && j < 6) {
+					html += "<td><input type='text' name='"+act_sub_names[l]+"' value='";
+					if (act_sub[k] > 0) {
+						html += act_sub[k];
+					}
+					html += "' /></td>";
+					k++;
+					l++;
+				}
+				if ( j == 6) {
+					html += "<td></td>";
+					k++;
+				}
+			}
+			html += 	"</tr>";
+		}
+		html +=			"<tr>";
+		html += 			"<td><b>Summa</td><td class='grey'></td><td></td><td></td><td></td><td></td><td class='grey'></td>";			
+		html +=			"</tr>";
+		k = 0;
+		for (int i = 0; i < 9; i++) {
+			html += 	"<tr>";
+			for (int j = 0; j < 3; j++) {
+				if (j == 0) {
+					html += "<td>"+lower_numbers[i]+"</td>";
+				}
+				if (j == 1) {
+					html += "<td colspan='5'>"+lower_activities[i]+"</td>";
+				}
+				if (j == 2) {
+					html += "<td><input type='text' name='"+lower_activities[i]+"' value='";
+					if (act[k] > 0) {
+						html += act[k];
+					}
+					html += "' /></td>";
+					k++;
+					l++;
+				}	
+			}
+			html += 	"</tr>";
+		}
+		html += 		"<tr>";
+		html += 			"<td colspan='7' class='grey'><b>Del C - Antal minuter spenderat på de olika subaktiviteterna</td>";
+		html += 		"</tr>";
+		html += 		"<tr>";
+		html += 			"<td><b>Aktivitetstyp</td><td><b>Aktivitetskod</td><td colspan='4'><b>Beskrivning</td><td><b>Summa</td>";
+		html += 		"</tr>";
+		k = 0;
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (j == 0) {
+					html += "<td>"+activity_type[i]+"</td>";
+				}
+				if (j == 1) {
+					html += "<td>"+activity_code[i]+"</td>";
+				}
+				if (j == 2) {
+					html += "<td colspan='4'>"+activity_description[i]+"</td>";
+				}
+				if (j == 3) {
+					html += "<td></td>";
+				}
+			}
+			html += 	"</tr>";
+		}	
+		html += 		"<tr>";
+		html += 			"<td colspan='7' class='grey'><b>Del D - Signatur</td>";
+		html += 		"</tr>";
+		html += 		"<tr>";
+		html += 			"<td><b>Signerad</td><td colspan='5'></td><td></td>";
+		html += 		"</tr>";
+		
+		html += 	"</table>";
+		html += 	"<input type='submit' />";
+		html += "</form>";
+		
+		return html;
 	}
 	
 	/**
@@ -249,7 +424,114 @@ public final class ReportGenerator {
 	 * @param weekNumber: Specifies the week number for the report that should be created.
 	 * @param session: Contain information about the user which should be pre-filled in the html-form.
 	 */
-	public static String newReport(int weekNumber, HttpSession session) {
-		return null;
+	public static String newReport(int weekNumber, String user_name, String group) {
+		name = user_name;
+		Calendar cal = Calendar.getInstance();
+		date = new Date(cal.getTimeInMillis());
+		project_group = group;
+		week_number = weekNumber;
+		
+		String html = "";
+		
+		html += "<style type='text/css'>"
+				+ "table {border: 1px solid black; border-collapse: collapse; width: 700px; text-align: left;}"
+				+ "td {border: 1px solid black; width: 100px;}"
+				+ ".grey {background-color: #dddddd;}"
+				+ "input {width: 100px;}"
+				+ "</style>";
+		
+		html += "<form method='post' action='TimeReporting?action=addNewReport'>";
+		html += 	"<table>";
+		html += 		"<tr>";
+		html +=				"<td><b>Namn</td><td colspan='4'>"+name+"</td><td><b>Datum</td><td>"+date.toString()+"</td>";
+		html +=			"</tr>";		
+		html += 		"<tr>";
+		html +=				"<td><b>Projektgrupp</td><td colspan='4'>"+project_group+"</td><td><b>Vecka</td><td>"+week_number+"</td>";
+		html += 		"</tr>";
+		html += 		"<tr>";
+		html += 			"<td colspan='6' class='grey'><b>Del A - Total tid denna vecka (minuter)</td><td></td>";
+		html += 		"</tr>";
+		html += 		"<tr>";
+		html += 			"<td colspan='7' class='grey'><b>Del B - Antal minuter per aktivitet och subaktivitet</td>";
+		html +=			"</tr>";
+		html += 		"<tr>";
+		html += 			"<td><b>Nummer</td><td><b>Aktivitet</td><td><b>U</td><td><b>I</td><td><b>F</td><td><b>O</td><td><b>Totaltid</td>";
+		html +=			"</tr>";
+		int k = 0;
+		int l = 0;
+		for (int i = 0; i < 9; i++) {
+			html += 	"<tr>";
+			for (int j = 0; j < 7; j++) {
+				if (j == 0) {
+					html += "<td>"+upper_numbers[i]+"</td>";
+				}
+				if (j == 1) {
+					html += "<td>"+upper_activities[i]+"</td>";
+				}
+				if (1 < j && j < 6) {
+					html += "<td><input type='text' name='"+act_sub_names[l]+"' /></td>";
+					l++;
+				}
+				if ( j == 6) {
+					html += "<td></td>";
+				}
+			}
+			html += 	"</tr>";
+		}
+		html +=			"<tr>";
+		html += 			"<td><b>Summa</td><td class='grey'></td><td></td><td></td><td></td><td></td><td class='grey'></td>";			
+		html +=			"</tr>";
+		k = 0;
+		for (int i = 0; i < 9; i++) {
+			html += 	"<tr>";
+			for (int j = 0; j < 3; j++) {
+				if (j == 0) {
+					html += "<td>"+lower_numbers[i]+"</td>";
+				}
+				if (j == 1) {
+					html += "<td colspan='5'>"+lower_activities[i]+"</td>";
+				}
+				if (j == 2) {
+					html += "<td><input type='text' name='"+lower_activities[i]+"' /></td>";
+				}	
+			}
+			html += 	"</tr>";
+		}
+		html += 		"<tr>";
+		html += 			"<td colspan='7' class='grey'><b>Del C - Antal minuter spenderat på de olika subaktiviteterna</td>";
+		html += 		"</tr>";
+		html += 		"<tr>";
+		html += 			"<td><b>Aktivitetstyp</td><td><b>Aktivitetskod</td><td colspan='4'><b>Beskrivning</td><td><b>Summa</td>";
+		html += 		"</tr>";
+		k = 0;
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (j == 0) {
+					html += "<td>"+activity_type[i]+"</td>";
+				}
+				if (j == 1) {
+					html += "<td>"+activity_code[i]+"</td>";
+				}
+				if (j == 2) {
+					html += "<td colspan='4'>"+activity_description[i]+"</td>";
+				}
+				if (j == 3) {
+					html += "<td></td>";
+				}
+			}
+			html += 	"</tr>";
+		}	
+		html += 		"<tr>";
+		html += 			"<td colspan='7' class='grey'><b>Del D - Signatur</td>";
+		html += 		"</tr>";
+		html += 		"<tr>";
+		html += 			"<td><b>Signerad</td><td colspan='5'></td><td></td>";
+		html += 		"</tr>";
+		
+		html += 	"</table>";
+		html += 	"<input type='submit' />";
+		html += "</form>";
+		
+		return html;
 	}
 }
