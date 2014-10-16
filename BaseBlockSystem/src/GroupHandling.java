@@ -134,62 +134,35 @@ public class GroupHandling extends servletBase {
 	/**
 	 * Lists all users
 	 * @param out: needed for printing
+	 * @param groupID: don't print already added users
 	 */
-	private void listUsers(PrintWriter out){
+	private void listUsers(PrintWriter out, int groupID){
 		try {
 
-			Statement stmt = conn.createStatement();		    
+			Statement stmt = conn.createStatement();
+			Statement stmt2 = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from users order by username asc");
 			out.println("<p>Users:</p>");
 			out.println("<table border=" + formElement("1") + ">");
-			out.println("<tr><td>NAME</td><td>ADD AS PG</td><td>ADD AS T1</td><td>ADD AS T2</td><td>ADD AS T3</td><td>REMOVE</td></tr>");
+			out.println("<tr><td>Username</td><td>Select user</td></tr>");
+			out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post"));
 			while (rs.next( )) {
-
-				//THE FOLLOWING CODE IS UGLY AND WILL BE CHANGED
+				ResultSet rsGroup = stmt2.executeQuery("select * from user_group where user_id=" + 
+								rs.getInt("id") + " AND group_id=" + groupID); //om detta != null så finns redan användaren i gruppen
 				String name = rs.getString("username");
-				String addPG = "GroupHandling?addname="+name+"&role=" + PROJECT_LEADER;
-				String addT1 = "GroupHandling?addname="+name+"&role=" + t1;
-				String addT2 = "GroupHandling?addname="+name+"&role=" + t2;
-				String addT3 = "GroupHandling?addname="+name+"&role=" + t3;
-				String removeURL = "GroupHandling?removename="+name;
-				String addCodePG = "<a href=" + formElement(addPG) +
-						" onclick="+formElement("return confirm('Are you sure you want to add "+name+"?')") + 
-						"> add </a>";
-				String addCodeT1 = "<a href=" + formElement(addT1) +
-						" onclick="+formElement("return confirm('Are you sure you want to add "+name+"?')") + 
-						"> add </a>";
-				String addCodeT2 = "<a href=" + formElement(addT2) +
-						" onclick="+formElement("return confirm('Are you sure you want to add "+name+"?')") + 
-						"> add </a>";
-				String addCodeT3 = "<a href=" + formElement(addT3) +
-						" onclick="+formElement("return confirm('Are you sure you want to add "+name+"?')") + 
-						"> add </a>";
-				String removeCode = "<a href=" + formElement(removeURL) +
-						" onclick="+formElement("return confirm('Are you sure you want to remove "+name+"?')") + 
-						"> remove </a>";
-				out.println("<tr>");
-				if(rs.getString("username").equals(ADMIN)){
+				if(!rs.getString("username").equals(ADMIN) && !rsGroup.first()){
 					out.println("<tr>");
 					out.println("<td>" + name + "</td>");
-					out.println("<td>" + "" + "</td>");
-					out.println("<td>" + "" + "</td>");
-					out.println("<td>" + "" + "</td>");
-					out.println("<td>" + "" + "</td>");
-					out.println("<td>" + "" + "</td>");
-					out.println("</tr>");
-				}else{
-					out.println("<td>" + name + "</td>");
-					out.println("<td>" + addCodePG + "</td>");
-					out.println("<td>" + addCodeT1 + "</td>");
-					out.println("<td>" + addCodeT2 + "</td>");
-					out.println("<td>" + addCodeT3 + "</td>");
-					out.println("<td>" + removeCode + "</td>");
+					String userID = "" + rs.getInt("id");
+					out.println("<td>" + "<input type=" + formElement("radio") + " name=" + formElement("selectedradiouser") +
+							" value=" + formElement(userID) +"></td>");		//radiobutton
 					out.println("</tr>");
 				}
-				//UGLY CODE END
 			}
 			out.println("</table>");
-			out.println("<input type=" + formElement("submit") + "value=" + formElement("OK") + '>');
+			out.println(selectRoleList());
+			out.println("<p><input type=" + formElement("submit") + "value=" + formElement("Add user") + '>');
+			out.println("</form>");
 			stmt.close();
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
@@ -197,6 +170,26 @@ public class GroupHandling extends servletBase {
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}
 
+	}
+
+	/**
+	 * List all roles
+	 * @return The html-string for a drop down list of all roles
+	 */
+	private String selectRoleList(){
+		String html = "";
+		html += "<br><select name='role'>";
+		html += "<option value='0' selected='true'>Select a role</option>";
+		html += "<option value=" + PROJECT_LEADER + ">"
+				+ PROJECT_LEADER + "</option>";
+		html += "<option value=" + t1 + ">"
+				+ t1 + "</option>";
+		html += "<option value=" + t2 + ">"
+				+ t2 + "</option>";
+		html += "<option value=" + t3 + ">"
+				+ t3 + "</option>";
+		html += "</select>";
+		return html;
 	}
 
 	/**
@@ -228,65 +221,31 @@ public class GroupHandling extends servletBase {
 		int groupID = (int)groupIDObject;
 		Object nameObj = session.getAttribute("name");
 		String myName = "";
-		if (nameObj != null)
+		if (nameObj != null) {
 			myName = (String)nameObj;  // if the name exists typecast the name to a string
-
-		if (!loggedIn(request))
+		}
+		if (!loggedIn(request)){
 			response.sendRedirect("LogIn");
-		else {
+		} else {
 			if (myName.equals(ADMIN)) {
 				out.println("<h1>Group Handling " + "</h1>");
-				try {
-					String addToGroup = request.getParameter("addname");
-					if (addToGroup != null) {
-						Statement stmt = conn.createStatement();
-						ResultSet rs = stmt.executeQuery("select * from users where username = '"+addToGroup+"'");
-						if (rs.first()) {
-							int userID = rs.getInt("id");
-							if (!addUserToGroup(userID, groupID, request)) {
-								out.println("User was not added to group");
-							} else {
-								out.println("User was successfully added to group");
-							}
-						} else {
-							System.out.println("NO SUCH NAME");
-						}
-						//stmt.close();
+				String userIdString = request.getParameter("selectedradiouser");
+				if (userIdString != null) {
+					int userID = Integer.parseInt(userIdString);
+					if (!addUserToGroup(userID, groupID, request)) {
+						out.println("User was not added to group");
+					} else {
+						out.println("User was successfully added to group");
 					}
-				} catch (SQLException ex) {
-					// System.out.println("SQLException: " + ex.getMessage());
-					System.out.println("SQLState: " + ex.getSQLState());
-					System.out.println("VendorError: " + ex.getErrorCode());
 				}
-				try {
-					String removeFromGroup = request.getParameter("removename");
-					if (removeFromGroup != null) {
-						Statement stmt = conn.createStatement();
-						ResultSet rs = stmt.executeQuery("select * from users where username = '"+removeFromGroup+"'");
-						if (rs.first()) {
-							int userID = rs.getInt("id");
-							if(removeUserFromGroup(userID, groupID)){
-								out.println("User was successfully removed from group");
-							}else{
-								out.println("User was not removed from group");
-							}
-						}
-						stmt.close();
-					}
-				} catch (SQLException ex) {
-					// System.out.println("SQLException: " + ex.getMessage());
-					System.out.println("SQLState: " + ex.getSQLState());
-					System.out.println("VendorError: " + ex.getErrorCode());
-				}
-				listUsers(out);
+				listUsers(out, groupID);
 			}
 		}
 	}
 }
-
-/*
+	/*
 +"<li><a href=" + formElement("Administration") + ">Administration</a>"
 + "<ul>"
 + "<li><a href=" + formElement("Administration") + ">Users</a></li>"
 + "<li><a href= " + formElement("ProjectGroupAdmin") + ">Group</a></li>"
- */
+	 */
