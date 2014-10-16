@@ -47,18 +47,7 @@ public class servletBase extends HttpServlet {
     	try{	
     		Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404?" +
-            "user=puss1404&password=ptqp44ed");			       
-						
-			// Display the contents of the database in the console. 
-			// This should be removed in the final version
-			/*Statement stmt = conn.createStatement();		    
-		    ResultSet rs = stmt.executeQuery("select * from users"); 
-		    while (rs.next( )) {
-		    	String name = rs.getString("username"); 
-		    	System.out.println("base " + name);
-		    }
-		    
-		    stmt.close();*/
+            "user=puss1404&password=ptqp44ed");	
 			access = new Access(conn);
 		} catch (SQLException ex) {
 			System.out.println("HERE!!!");
@@ -82,16 +71,18 @@ public class servletBase extends HttpServlet {
     	Object objectState = session.getAttribute("state");
     	int state = LOGIN_FALSE;
     	if (objectState != null) { 
-    		state = (Integer) objectState; 
+    		state = (int) objectState; 
     		if(state == LOGIN_TRUE){
     			// See if user is Active
     			int userID;
-    			Object userIDObject = session.getAttribute("id");
+    			Object userIDObject = session.getAttribute("userID");
     			if(userIDObject != null){		
-    				userID = (int) session.getAttribute("id");
+    				userID = (int) session.getAttribute("userID");
     				isActive = access.updateLog(userID, session.getId());
     			}
     		} 
+    	}else{
+    		return false;
     	}
     	return (state == LOGIN_TRUE && isActive);
     }
@@ -153,7 +144,7 @@ public class servletBase extends HttpServlet {
     				+ "</ul>"
     				+ "</li>"
     				+ "<li><a href='#'>Change Password</a></li>"
-    				+ "<li><a href='#'>Logout</a></li>"
+    				+ "<li><a href='LogIn'>Logout</a></li>"
     				+ "</ul></div>"
     			;
     	return menu;

@@ -189,9 +189,9 @@ public class LogIn extends servletBase {
 		String name;
 		String password;
 		String groupID;
-
+		
 		access.updateLog(null, null); // check timestamps
-
+		
 		session = request.getSession(true); // get session
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
@@ -211,29 +211,34 @@ public class LogIn extends servletBase {
 		password = request.getParameter("password"); // get the entered password
 		groupID = request.getParameter("groupID"); // get the group id of the
 													// selected group
-		
+		out.println("<br>name " +name);
+		out.println("<br>pass " + password);
+		out.println("<br>group" + groupID);
 		if (name != null && password != null && groupID != null) {
 			
 			// Check if user exists, has correct password and is member of the
 			// group. Saves session attributes if true.
 			if (checkUser(name, password, groupID, out)) {
-				if (!access.updateLog((Integer) session.getAttribute("userID"),
+				if (!access.updateLog((int) session.getAttribute("userID"),
 						session.getId())) { // logged out or inactive for over
 											// 20min
 					out.println("We got stuff from user");
 					// UPPDATERA LOGIN ??
-					access.logInUser((Integer) session.getAttribute("userID"),
+					access.logInUser((int) session.getAttribute("userID"),
 							session.getId());
 					session.setAttribute("state", LOGIN_TRUE);
 					response.sendRedirect("Start");
 				}
 				
 			} else {
+				out.println("Nope");
 				// prints error message in checkUser
 				out.println(loginRequestForm());
 			}
 		} else { // name was null, probably because no form has been filled out
 					// yet. Display form.
+			
+			
 			out.println(loginRequestForm());
 		}
 
