@@ -48,8 +48,14 @@ public class ProjectLeader extends servletBase {
 		Object nameObj = session.getAttribute("name");
 		Object groupObj = session.getAttribute("groupID");
 		int groupID = Integer.parseInt((String) groupObj);
+		String newGroupIDStr = request.getParameter("groupID");
+		if (newGroupIDStr != null) {
+			int newGroupID = Integer.parseInt(newGroupIDStr);
+			groupID = newGroupID;
+			session.setAttribute("groupID", newGroupIDStr);
+		}
 		String role = request.getParameter("role");
-		String userID = request.getParameter("userID");
+		String username = request.getParameter("changename");
 
 		if (nameObj != null) {
 			myName = (String) nameObj; // if the name exists typecast the name
@@ -61,9 +67,24 @@ public class ProjectLeader extends servletBase {
 			response.sendRedirect("LogIn");
 		} else if (isAllowed) { //Check that user is allowed
 			out.println("<h1>Project Management " + "</h1>");
-			if (userID != null) {
-				int userIDint = Integer.parseInt(userID);
-				changeRole(userIDint, role);
+			if (username != null) {
+				if (myName.equals("admin")) {
+					listAllGroups(out);
+				}
+				try {
+					Statement stmt1 = conn.createStatement();		    
+					ResultSet rs1 = stmt1.executeQuery("select * from user_group INNER JOIN users on user_group.user_id = users.id where user_group.group_id = "+groupID+" and users.username = '"+username+"'");
+					rs1.first();
+					int userIDint = rs1.getInt("user_group.ID");
+					if(!changeRole(userIDint, role)) {
+						out.println("<p>User role was not changed, likely due to too many users having that role</p>");
+					}
+					showAllUsers(groupID, out);
+				} catch (SQLException ex) {
+				    System.out.println("SQLException: " + ex.getMessage());
+				    System.out.println("SQLState: " + ex.getSQLState());
+				    System.out.println("VendorError: " + ex.getErrorCode());
+				}
 			} else if (myName.equals("admin")){
 				//SHOW LIST OF GROUPS AND USERS
 				listAllGroups(out);
@@ -156,7 +177,66 @@ public class ProjectLeader extends servletBase {
 	 * @param out
 	 *            PrintWriter
 	 */
+	
 	private void showAllUsers(int groupID, PrintWriter out) {
+		try {
+			Statement s = conn.createStatement();		    
+			ResultSet r = s.executeQuery("select * from groups where ID = "+groupID);
+			String groupName = "";
+			if (r.first()) {
+				groupName = r.getString("name");
+			}
+			
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("select * from user_group INNER JOIN users on user_group.user_id = users.ID where user_group.group_id = "
+							+ groupID + "");
+			out.println("<p><b>Users in "+groupName+"</b></p>");
+			out.println("<table border=" + formElement("1") + ">");
+			out.println("<tr><td>NAME</td><td>ROLE</td><td>CHANGE TO PG</td><td>CHANGE TO T1</td><td>CHANGE TO T2</td><td>CHANGE TO T3</td>");
+			while (rs.next( )) {
+
+				//THE FOLLOWING CODE IS UGLY AND WILL BE CHANGED
+				String name = rs.getString("username");
+				String role = rs.getString("role");
+				String addPG = "ProjectLeader?changename="+name+"&role=" + PROJECT_LEADER;
+				String addT1 = "ProjectLeader?changename="+name+"&role=" + t1;
+				String addT2 = "ProjectLeader?changename="+name+"&role=" + t2;
+				String addT3 = "ProjectLeader?changename="+name+"&role=" + t3;
+				String addCodePG = "<a href=" + formElement(addPG) +
+						" onclick="+formElement("return confirm('Are you sure you want to change role of "+name+"?')") + 
+						"> add </a>";
+				String addCodeT1 = "<a href=" + formElement(addT1) +
+						" onclick="+formElement("return confirm('Are you sure you want to change role of "+name+"?')") + 
+						"> add </a>";
+				String addCodeT2 = "<a href=" + formElement(addT2) +
+						" onclick="+formElement("return confirm('Are you sure you want to change role of "+name+"?')") + 
+						"> add </a>";
+				String addCodeT3 = "<a href=" + formElement(addT3) +
+						" onclick="+formElement("return confirm('Are you sure you want to change role of "+name+"?')") + 
+						"> add </a>";
+				out.println("<tr>");
+				out.println("<td>" + name + "</td>");
+				out.println("<td>" + role + "</td>");
+				out.println("<td>" + addCodePG + "</td>");
+				out.println("<td>" + addCodeT1 + "</td>");
+				out.println("<td>" + addCodeT2 + "</td>");
+				out.println("<td>" + addCodeT3 + "</td>");
+				out.println("</tr>");
+				
+				//UGLY CODE END
+			}
+			out.println("</table>");
+			out.println("<input type=" + formElement("submit") + "value=" + formElement("OK") + '>');
+			stmt.close();
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+		}
+	}
+	
+	private void showAllUsersOld(int groupID, PrintWriter out) {
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt
@@ -196,9 +276,43 @@ public class ProjectLeader extends servletBase {
 	 * @param role
 	 *            the new role for the user
 	 */
-	private void changeRole(int ID, String role) {
-		// NOT YET IMPLEMENTED
-
+	private boolean changeRole(int userGroupID, String role) {
+		boolean changeOK = false;
+		
+		try {
+			Statement stmt2 = conn.createStatement();
+			ResultSet rs2 = stmt2.executeQuery("select * from user_group where ID = "+userGroupID);
+			rs2.first();
+			int groupID = rs2.getInt("group_id");
+			String currentRole = rs2.getString("role");
+			Statement stmt1 = conn.createStatement();
+			ResultSet rs1 = stmt1.executeQuery("select * from user_group where group_id = "+groupID);
+			int roleCount = 0;
+			int plCount = 0;
+			while (rs1.next()) {
+				if (rs1.getString("role").equals(PROJECT_LEADER)) {
+					plCount++;
+				} else {
+				roleCount++;
+				}
+			}
+			if (currentRole.equals(PROJECT_LEADER) && plCount == 1) {
+				return false;
+			} else {
+				if ((role.equals(PROJECT_LEADER) && plCount < 2) || ((!role.equals(PROJECT_LEADER)) && roleCount < 6)) {
+					Statement stmt = conn.createStatement();
+					String statement = "Update user_group SET role='"+role+"' where ID=" + userGroupID; 
+					stmt.executeUpdate(statement);
+					changeOK = true;
+				}
+			}
+			
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+		}
+		return changeOK;
 	}
 
 	/**
