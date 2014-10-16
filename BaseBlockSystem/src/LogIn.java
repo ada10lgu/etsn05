@@ -138,7 +138,8 @@ public class LogIn extends servletBase {
 			if (name.equals("admin")) {
 				session.setAttribute("role", "admin");
 				session.setAttribute("userGroupID", 0);
-				session.setAttribute("groupID", 0);
+				session.setAttribute("groupID", "0");
+				groupOK = true;
 			}else{
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery("select * from user_group where user_id="+ userID + " and group_id = " + groupIDstr);
