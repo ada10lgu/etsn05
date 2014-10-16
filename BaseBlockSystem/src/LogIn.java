@@ -88,44 +88,25 @@ public class LogIn extends servletBase {
 	private boolean checkUser(String name, String password, String groupID,
 			PrintWriter out) {
 
-		boolean userOk = false;
-		boolean userChecked = false;
+		boolean userOk = false;		
 		Statement stmt;
-
 		try {
-			if (name != null && password != null) {
+			if (name != null && password != null && groupID != null) {
 				stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from users");
-
-				String passwordSaved = "";
+				ResultSet rs = stmt
+						.executeQuery("select * from users where username = "
+								+ formElement(name) + " and password = "
+								+ formElement(password));
 				int userID = -1;
-				while (rs.next() && !userChecked) { // go through every user
-					String nameSaved = rs.getString("username");
-					passwordSaved = rs.getString("password");
-					userID = rs.getInt("ID");
-
-					if (name.equals(nameSaved)) { // check if the username is
-													// correct
-						userChecked = true; // we can stop looking
-						if (checkGroup(groupID, userID, name)) { // Check if
-																	// user is a
-																	// member of
-																	// the
-																	// selected
-																	// group.
-							userOk = password.equals(passwordSaved); // is the
-																		// password
-																		// correct?
-						} else {
-							out.println("<p>You are not a member of the selected project group. </p>");
-						}
+				if (rs.first()) {
+					userID = rs.getInt("ID");					
+					if (checkGroup(groupID, userID, name)) { 
+						userOk = true;
+					} else {
+						out.println("<p>You are not a member of the selected project group. </p>");
 					}
-				}
+				}				
 				stmt.close();
-
-				// userChecked = true; beh√∂vs v√§l inte?
-				// userOk = password.equals(passwordSaved);
-
 				if (userOk) { // if the user is accepted, save the session
 								// variables.
 					session.setAttribute("session", session.getId()); //
@@ -161,32 +142,32 @@ public class LogIn extends servletBase {
 		Statement stmt;
 
 		try {
-			if (groupIDstr != null) {
-				int groupID = Integer.parseInt(groupIDstr);
+			if (name.equals("admin")) {
+				session.setAttribute("role", "admin");
+				session.setAttribute("userGroupID", "0");
+				groupOK = true;
+			}else{
 				stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from user_group where user_id="+ userID); // get all project groups that the user is member of.
-				while (rs.next()) {
-					if (groupID == rs.getInt("group_id")) { // If the groupid is correct the user is a member.
-						session.setAttribute("userGroupID", rs.getInt("ID")); // save userGroupID in session
-						session.setAttribute("role", rs.getString("role"));
-						groupOK = true;
-					}
-				}
-				stmt.close();
-			} else {
-				if(name.equals("admin")){
-					session.setAttribute("role", "admin");
+				ResultSet rs = stmt
+						.executeQuery("select * from user_group where user_id="
+								+ userID + " and group_id = " + groupIDstr);
+				if (rs.first()) {
+					session.setAttribute("userGroupID", rs.getInt("ID")); // save
+																			// userGroupID
+																			// in
+																			// session
+					session.setAttribute("role", rs.getString("role"));
 					groupOK = true;
 				}
+				stmt.close();
 			}
+			
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("VendorError: " + e.getErrorCode());
 		}
-
 		return groupOK;
-
 	}
 
 	/**
@@ -204,7 +185,7 @@ public class LogIn extends servletBase {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		//int state;
+		// int state;
 		String name;
 		String password;
 		String groupID;
@@ -214,12 +195,15 @@ public class LogIn extends servletBase {
 		session = request.getSession(true); // get session
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
-
+		
+		// Om anv‰ndaren ‰r inloggad sÂ, logga ut.
 		if (loggedIn(request)) {
 			session.setAttribute("state", LOGIN_FALSE);
 			access.logOutUser((Integer) session.getAttribute("userID"),
 					session.getId());
 			out.println("<p>You are now logged out</p>");
+		}else{
+			out.println("Not logged in");
 		}
 
 		name = request.getParameter("user"); // get the string that the user
@@ -227,20 +211,23 @@ public class LogIn extends servletBase {
 		password = request.getParameter("password"); // get the entered password
 		groupID = request.getParameter("groupID"); // get the group id of the
 													// selected group
-
-		if (name != null && password != null) {
+		
+		if (name != null && password != null && groupID != null) {
+			
 			// Check if user exists, has correct password and is member of the
 			// group. Saves session attributes if true.
 			if (checkUser(name, password, groupID, out)) {
 				if (!access.updateLog((Integer) session.getAttribute("userID"),
 						session.getId())) { // logged out or inactive for over
 											// 20min
+					out.println("We got stuff from user");
 					// UPPDATERA LOGIN ??
 					access.logInUser((Integer) session.getAttribute("userID"),
 							session.getId());
 					session.setAttribute("state", LOGIN_TRUE);
 					response.sendRedirect("Start");
 				}
+				
 			} else {
 				// prints error message in checkUser
 				out.println(loginRequestForm());
