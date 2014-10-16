@@ -224,6 +224,7 @@ public class GroupHandling extends servletBase {
 		access.updateLog(null, null);
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
+		out.println(printMainMenu());
 		HttpSession session = request.getSession(true);
 		Object groupIDObject = session.getAttribute("groupHandlingID");
 		int groupID = (int)groupIDObject;

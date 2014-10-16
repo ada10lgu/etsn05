@@ -181,7 +181,7 @@ public class ProjectGroupAdmin extends servletBase {
 		access.updateLog(null, null);
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
-		
+		out.println(printMainMenu());
 		String myName = "";
     	HttpSession session = request.getSession(true);
     	Object nameObj = session.getAttribute("name");
@@ -229,16 +229,10 @@ public class ProjectGroupAdmin extends servletBase {
 					} catch (SQLException ex) {
 						System.out.println("SQLState: " + ex.getSQLState());
 						System.out.println("VendorError: " + ex.getErrorCode());
-					}
-					
+					}					
 				}
-				
-				
 				listGroups(out);
 				
-				
-				out.println("<p><a href =" + formElement("Start") + "> Start page </p>");
-				out.println("<p><a href =" + formElement("LogIn") + "> Log out </p>");
 				out.println("</body></html>");
 			} else  // name not admin
 				response.sendRedirect("Start");
