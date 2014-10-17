@@ -114,6 +114,8 @@ public class servletBase extends HttpServlet {
                        + ".menu{"
                        + "float: left;"
                        + "margin-right: 15px;"
+                       + "height: 100%;"
+                       + ""
                        + "}"
                        + "</style>" +
                        "<body>";
