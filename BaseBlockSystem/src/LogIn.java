@@ -41,7 +41,7 @@ public class LogIn extends servletBase {
 	 * @return HTML code for the form
 	 */
 	protected String loginRequestForm() {
-		String html = "<p>Please enter your name and password in order to log in:</p>";
+		String html = "<p>Please enter your and and name and password in order to log in:</p>";
 		html += "<p> <form name=" + formElement("input");
 		html += " method=" + formElement("post");
 		html += "<p> Name: <input type=" + formElement("text") + " name="
