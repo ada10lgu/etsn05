@@ -42,7 +42,7 @@ public class GroupHandling extends servletBase {
 				role = request.getParameter("role");
 			}
 
-			if (role!=null) {
+			if (!role.equals("0")) {
 				resultOk = addAsRoleOk(userID, groupID, role);
 			} else {
 				resultOk = false;
@@ -71,9 +71,9 @@ public class GroupHandling extends servletBase {
 		boolean roleAlreadyAssigned = false;
 		while (rs.next( )) {
 			total++;
-			if (rs.getInt("user_id") == userID) {
+			/*if (rs.getInt("user_id") == userID) {//Kollar om användaren redan finns med i gruppen men vi har ändrat så att bara användare utanför gruppen listas
 				roleAlreadyAssigned = true;
-			}
+			}*/
 			if (rs.getString("role").equals(role)) {
 				roleCounter++;
 			}
@@ -180,13 +180,13 @@ public class GroupHandling extends servletBase {
 		String html = "";
 		html += "<br><select name='role'>";
 		html += "<option value='0' selected='true'>Select a role</option>";
-		html += "<option value=" + PROJECT_LEADER + ">"
+		html += "<option value=" + formElement(PROJECT_LEADER) + ">"
 				+ PROJECT_LEADER + "</option>";
-		html += "<option value=" + t1 + ">"
+		html += "<option value=" + formElement(t1) + ">"
 				+ t1 + "</option>";
-		html += "<option value=" + t2 + ">"
+		html += "<option value=" + formElement(t2) + ">"
 				+ t2 + "</option>";
-		html += "<option value=" + t3 + ">"
+		html += "<option value=" + formElement(t3) + ">"
 				+ t3 + "</option>";
 		html += "</select>";
 		return html;
