@@ -33,7 +33,7 @@ public final class ReportGenerator {
 		"SDDD_U", "SDDD_I", "SDDD_F", "SDDD_O", "SVVR_U", "SVVR_I", "SVVR_F", "SVVR_O", "SSD_U", "SSD_I", "SSD_F", "SSD_O", 
 		"Slutrapoort_U", "Slutrapport_I", "Slutrapport_F", "Slutrapport_O"};
 	
-	private ReportGenerator() {
+	public ReportGenerator() {
 		
 	}
 	

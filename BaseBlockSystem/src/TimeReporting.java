@@ -17,6 +17,13 @@ public class TimeReporting extends servletBase{
 	
 	private PrintWriter out;
 	private HttpSession session;
+	private String function = null;
+	protected static final String VIEW = "view";
+	protected static final String UPDATE = "update";
+	protected static final String NEW = "new";
+	protected static final String PRINT_NEW = "printNew";
+	protected static final String ADD_NEW = "addNew";
+	protected static final String STATISTICS = "statistics";
 	
 	public TimeReporting(){
 		super();
@@ -35,7 +42,9 @@ public class TimeReporting extends servletBase{
 			out.println("<p>Time Reports:</p>");
 		    out.println("<table border=" + formElement("1") + ">");
 		    out.println("<tr><td>Last Modifed</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
-			while(rs.next()){
+		    int inWhile = 0;
+		    while(rs.next()){
+		    	inWhile = 1;
 				int date = rs.getInt("date");
 				int week = rs.getInt("week");
 				int totalTime = rs.getInt("total_time");
@@ -48,13 +57,14 @@ public class TimeReporting extends servletBase{
 				out.println("<td>" + formElement(signString(signed)) + "</td>");
 				out.println("</tr>");
 			}
+		    if (inWhile == 0){
+		    	out.println("No reports to show");
+		    }
 		} catch(SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("VendorError: " + e.getErrorCode());
-		}
-		
-		
+		}	
 	}
 	
 	private String signString(int signed){
@@ -88,7 +98,10 @@ public class TimeReporting extends servletBase{
 	 * @param weekNumber: The weeknumber for the time report.
 	 */
 	private void printNewReport(int weekNumber){
-		
+		ReportGenerator rg = new ReportGenerator();
+		String name = (String) session.getAttribute("name");
+		String group = (String) session.getAttribute("groupID");
+		out.println(rg.newReport(weekNumber, name, group));
 	}
 	
 	/**
@@ -113,6 +126,7 @@ public class TimeReporting extends servletBase{
 	 */
 	private void addNewReport(){
 		
+		//newReport(int weekNumber, String user_name, String group);
 	}
 	
 	/**
@@ -138,17 +152,45 @@ public class TimeReporting extends servletBase{
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doPost");
 		access.updateLog(null, null); // check timestamps
 		out = response.getWriter();
 		out.println(getPageIntro());
 		out.println(printMainMenu());
 		session = request.getSession();
+		String function = request.getParameter("function");
+		
+		int week;
+		
 		if (!loggedIn(request)){
 			response.sendRedirect("LogIn");
+		} else if (function != null) {
+			switch (function) {
+			case VIEW:
+				viewReportList((int) session.getAttribute("userGroupID"));
+				break;
+			case UPDATE:
+				break;
+			case NEW: //when user chooses New in menu
+				//out.println(requestWeekForm()); create request for weeknumber and a ok button
+				//check inside requestWeekForm that weeknumber is entered correctly and if so
+				//change function = PRINT_NEW
+				break;
+			case PRINT_NEW:
+				//week = request.getParameter("week"); //get weeknumber
+				//printNewReport(week); //print the shell for the report
+				//when user presses "done" check that everything is filled out correctly 
+				//change inside printNewReport() function = ADD_NEW
+				break;
+			case ADD_NEW:
+				break;
+			case STATISTICS:
+				break;
+			}
 		} else {
 			viewReportList((int) session.getAttribute("userGroupID"));
 		}
+		
+		
 	}
 	
 

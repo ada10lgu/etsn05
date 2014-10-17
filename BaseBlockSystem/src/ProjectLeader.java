@@ -56,7 +56,6 @@ public class ProjectLeader extends servletBase {
 		}
 		String role = request.getParameter("role");
 		String username = request.getParameter("changename");
-		System.out.println(role+ "doPost");
 
 		if (nameObj != null) {
 			myName = (String) nameObj; // if the name exists typecast the name
@@ -82,7 +81,6 @@ public class ProjectLeader extends servletBase {
 					}
 					showAllUsers(groupID, out);
 				} catch (SQLException ex) {
-					System.out.println("doPost");
 				    System.out.println("SQLException: " + ex.getMessage());
 				    System.out.println("SQLState: " + ex.getSQLState());
 				    System.out.println("VendorError: " + ex.getErrorCode());
