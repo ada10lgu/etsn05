@@ -1,0 +1,3 @@
+127.0.0.1 - - [17/Oct/2014:14:10:09 +0200] "GET /BaseBlockSystem/LogIn HTTP/1.1" 200 548
+127.0.0.1 - - [17/Oct/2014:14:10:09 +0200] "GET /favicon.ico HTTP/1.1" 200 21630
+127.0.0.1 - - [17/Oct/2014:14:20:32 +0200] "GET /BaseBlockSystem/LogIn HTTP/1.1" 200 548
