@@ -87,7 +87,7 @@ public class LogIn extends servletBase {
 	 */
 	private boolean checkUser(String name, String password, String groupID,
 			PrintWriter out) {
-		out.println("checkUser");
+		System.out.println("checkUser"); //TA BORT
 		boolean userOk = false;		
 		Statement stmt;
 		try {
@@ -96,7 +96,7 @@ public class LogIn extends servletBase {
 				ResultSet rs = stmt.executeQuery("select * from users where username = "+ formElement(name) + " and password = "+ formElement(password));
 				int userID = -1;
 				if (rs.first()) {
-					out.println("checkUser() rs.first()");
+					System.out.println("checkUser() rs.first()"); //TA BORT
 					userID = rs.getInt("ID");					
 					if (checkGroup(groupID, userID, name, out)) { 
 						userOk = true;
@@ -137,7 +137,7 @@ public class LogIn extends servletBase {
 
 		try {
 			if (name.equals(ADMIN)) {
-				out.println("checkGroup if ADMIN");
+				System.out.println("checkGroup if ADMIN");//TA BORT
 				session.setAttribute("role", ADMIN);
 				session.setAttribute("userGroupID", 0);
 				session.setAttribute("groupID", "0");
@@ -180,7 +180,7 @@ public class LogIn extends servletBase {
 		String name;
 		String password;
 		String groupID;
-		
+		System.out.println("doGet()");
 		access.updateLog(null, null); // check timestamps
 		
 		session = request.getSession(true); // get session
@@ -190,8 +190,7 @@ public class LogIn extends servletBase {
 		// Om användaren är inloggad så, logga ut.
 		if (loggedIn(request)) {
 			session.setAttribute("state", LOGIN_FALSE);
-			access.logOutUser((Integer) session.getAttribute("userID"),
-					session.getId());
+			access.logOutUser((Integer) session.getAttribute("userID"),session.getId());
 			out.println("<p>You are now logged out</p>");
 		}
 
