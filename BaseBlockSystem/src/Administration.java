@@ -94,8 +94,10 @@ public class Administration extends servletBase {
 		boolean resultOk = true;
 		try{
 			Statement stmt = conn.createStatement();
-			String statement = "insert into users (username, password,is_admin,is_project_leader,is_logged_in) values('" + name + "', '" + 
-					createPassword() + "',"+0+","+0+","+0+")";
+			/*String statement = "insert into users (username, password,is_admin,is_project_leader,is_logged_in) values('" + name + "', '" + 
+					createPassword() + "',"+0+","+0+","+0+")";*/
+			String statement = "insert into users (username, password,is_admin) values('" + name + "', '" + 
+					createPassword() + "',"+0+")";
 			stmt.executeUpdate(statement); 
 			stmt.close();
 
