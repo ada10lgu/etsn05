@@ -99,7 +99,9 @@ public class ProjectLeader extends servletBase {
 
 	private void listAllGroups(PrintWriter out) {
 		try {
-			Statement stmt = conn.createStatement();		    
+			Statement stmt = conn.createStatement();
+			Statement stmt2 = conn.createStatement();
+			Statement stmt3 = conn.createStatement();
 		    ResultSet rs = stmt.executeQuery("select * from groups order by name asc");
 		    out.println("<p>Project groups:</p>");
 		    out.println("<table border=" + formElement("1") + ">");
@@ -107,14 +109,19 @@ public class ProjectLeader extends servletBase {
 		    while (rs.next( )) {
 		    	String name = rs.getString("name");
 		    	//Hämta projektledarnas namn
-		    	int groupID = 0;
-		    	Statement stmt1 = conn.createStatement();		    
-				ResultSet rs1 = stmt1.executeQuery("select * from groups where name='" + name +"'");
-				if (rs1.first()) {
-					groupID = rs1.getInt("id");
-				}
-				stmt1.close();
-		    	String editURL = "ProjectLeader?groupID="+groupID;//osäker på denna raden
+		    	ResultSet rsGroup = stmt2.executeQuery("select * from groups where name = '" + name + "'");
+		    	rsGroup.first();
+		    	int groupID = rsGroup.getInt("id");
+		    	ResultSet rsPL = stmt3.executeQuery("select users.id, users.username from user_group inner join users on user_group.user_id = users.id where user_group.group_id = " + groupID + " and user_group.role = " + formElement(PROJECT_LEADER)); 
+		    	
+		    	//Hämta projektledarnas namn 
+		    	String[] projectLeaders = {"", ""};
+		    	int i = 0;
+		    	while(rsPL.next()){
+		    		projectLeaders[i] = rsPL.getString("username");
+		    		i++;
+		    	}
+		    	String editURL = "ProjectLeader?groupID="+groupID;
 		    	String editCode = "<a href=" + formElement(editURL) +
 		    			            " onclick="+formElement("return confirm('Are you sure you want to edit "+name+"?')") + 
 		    			            "> edit </a>";
@@ -122,8 +129,8 @@ public class ProjectLeader extends servletBase {
 		    		editCode = "";
 		    	out.println("<tr>");
 		    	out.println("<td>" + name + "</td>");
-		    	out.println("<td>" + " " + "</td>");
-		    	out.println("<td>" + " " + "</td>");
+		    	out.println("<td>" + projectLeaders[0] + "</td>");
+		    	out.println("<td>" + projectLeaders[1] + "</td>");
 		    	out.println("<td>" + editCode + "</td>");
 		    	out.println("</tr>");
 		    }
