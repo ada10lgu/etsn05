@@ -140,7 +140,7 @@ public class servletBase extends HttpServlet {
     				+ "<li><a href='#'>Statistics</a></li>"
     				+ "</ul>"
     				+ "</li>"
-    				+ "<li><a href='#'>Time Reports</a>"
+    				+ "<li><a href=" + formElement("TimeReporting") + ">Time Reports</a>"
     				+ "<ul>"
     				+ "<li><a href='#'>View</a></li>"
     				+ "<li><a href='#'>Update</a></li>"
