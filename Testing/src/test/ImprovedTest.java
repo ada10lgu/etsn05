@@ -1,5 +1,7 @@
 package test;
 
+import static org.junit.Assert.*;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,7 +14,7 @@ import org.junit.*;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.*;
 
 public class ImprovedTest {
 	private static final String path = "tomcat/apache-tomcat-7.0.55/bin/";
@@ -30,6 +32,16 @@ public class ImprovedTest {
 		try {
 			Process process = Runtime.getRuntime().exec(path + "startup.sh");
 			System.out.println("server startad");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@AfterClass
+	public static void StopServer() {
+		try {
+			Process process = Runtime.getRuntime().exec(path + "shutdown.sh");
+			System.out.println("server stoppad");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -91,14 +103,33 @@ public class ImprovedTest {
 
 		webClient.closeAllWindows();
 	}
+	
+	@Test
+	public void submittingForm() throws Exception {
+	    final WebClient webClient = new WebClient();
 
-	@AfterClass
-	public static void StopServer() {
-		try {
-			Process process = Runtime.getRuntime().exec(path + "shutdown.sh");
-			System.out.println("server stoppad");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	    // Get the first page
+	    final HtmlPage page1 = webClient.getPage("http://localhost:8080/BaseBlockSystem/LogIn");
+
+	    // Get the form that we are dealing with and within that form, 
+	    // find the submit button and the field that we want to change.
+	    final HtmlForm form = page1.getFormByName("input");
+
+	    final HtmlSubmitInput button = form.getInputByValue("Submit");
+	    final HtmlTextInput userField = form.getInputByName("user");
+	    final HtmlPasswordInput passwordField = form.getInputByName("password");
+	    //final HtmlSelect groupList = form.getSelectByName("groupID");
+
+	    // Change the value of the text field
+	    userField.setValueAttribute("admin");
+	    passwordField.setValueAttribute("adminpw");
+	    //groupList.setSelectedAttribute("91", true);
+
+	    // Now submit the form by clicking the button and get back the second page.
+	    final HtmlPage page2 = button.click();
+	    System.out.println(page2.getUrl());
+	    assertEquals("fail!", "http://localhost:8080/BaseBlockSystem/Start", page2.getUrl());
+	    //assertTrue(true);
+	    webClient.closeAllWindows();
 	}
 }
