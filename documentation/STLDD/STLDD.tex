@@ -40,7 +40,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 
-\fancyhead[R]{Datum: \today | Version: 0.9 | Dokumentnummer: PUSS144404}
+\fancyhead[R]{Datum: \today | Version: 1.0 | Dokumentnummer: PUSS144404}
 
 
 \title{STLDD - Software Top Level Design Document: NewPussSystem}                  	
@@ -66,7 +66,8 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.6 & 7 oktober 2014 & SG & Uppdaterat klassdiagram, sekvensdiagram och ett litet fel i metodbeskrivningen.\\
 0.7 & 15 oktober 2014 & SG & Uppdaterat klassdiagram med två nya klasser och fixat småfel i ER-diagram.\\
 0.8 & 15 oktoboer 2014 & SG & Uppdaterat sessionsvariabler.\\
-0.9 & 16 oktober 2014 & SG & Lade till groupID som sessionsvariabel.
+0.9 & 16 oktober 2014 & SG & Lade till groupID som sessionsvariabel.\\
+1.0 & 17 oktober 2014 & SG & Ändringar i klasserna och metodbeskrivningarna samt klassdiagrammet. Färdig för baseline.
 
 \end{tabular}
 \newpage
@@ -88,15 +89,18 @@ Systemet är implementerat i en Tomcat server med följande klasser och klassmet
 
 \subsection{Klasser}
 \begin{hangparas}{1.5em}{1}
-\textbf{class servletBase} Den här klassen är superklass åt alla servlets i systemet. För beskrivning se sidan 2 i referensdokument 2.\end{hangparas} 
+\textbf{class servletBase} Den här klassen är superklass åt alla servlets i systemet. För beskrivning se sidan 2 i referensdokument 2.
+\end{hangparas} 
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class Administration} Se sida 2 i referensdokument 2. En ändring har gjorts där metoden deleteUser ska returnera en boolean och inparametern ändras till (int id).\end{hangparas}
+\textbf{class Administration} Se sida 2 i referensdokument 2. En ändring har gjorts där metoden deleteUser ska returnera en boolean och inparametern ändras till (int id).
+\end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class LogIn} Se sida 2 i referensdokument 2.\end{hangparas}
+\textbf{class LogIn} Se sida 2 i referensdokument 2.
+\end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
@@ -104,35 +108,42 @@ Systemet är implementerat i en Tomcat server med följande klasser och klassmet
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class ProjectGroupAdmin} Den här servleten ärver från ServletBase. Först kontrollerar den att användaren har behörighet att besöka sidan. Om så är fallet presenteras en tabell med information om varje projektgrupp (namn, projektledare). I tabellen kan administratören välja att radera gruppen och att lägga till/radera en projektledare. Projektgruppsnamnet i tabellen länkar administratören till projektledarens ändringsmeny. Nedanför tabellen finns en meny där administratören kan välja att lägga till nya projektgrupper, gå tillbaka till startsidan för administration, gå tillbaka till den gemensamma första inloggningssidan, samt logga ut.\end{hangparas}
+\textbf{class ProjectGroupAdmin} Den här servleten ärver från ServletBase. Först kontrollerar den att användaren har behörighet att besöka sidan. Om så är fallet presenteras en tabell med information om varje projektgrupp (namn, projektledare). I tabellen kan administratören välja att radera gruppen och att lägga till/radera en projektledare. Projektgruppsnamnet i tabellen länkar administratören till projektledarens ändringsmeny. Nedanför tabellen finns en meny där administratören kan välja att lägga till nya projektgrupper, gå tillbaka till startsidan för administration, gå tillbaka till den gemensamma första inloggningssidan, samt logga ut.
+\end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class TimeReporting} Den här servleten ärver från ServletBase och presenterar en undermeny med menyval relaterade till tidrapportering. Förutom undermenyn kommer första sidan att vara tom. När ett val i undermenyn görs, kommer klassen att hantera den valda funktionen. Funktionerna som finns inkluderar att lista tidrapporter, visa och uppdatera tidrapporter samt skapa nya tidrapporter.\end{hangparas}
+\textbf{class GroupHandling} Den här servleten ärver från ServletBase och hanterar användarna i en projektgrupp.
+\end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class ReportGenerator} Den här statiska klassen är en nästlad klass som har metoder som tar emot referenser till databasen och ritar upp en tidrapport med relevanta data. De olika tidrapporter som kan ritas upp är: en redigerbar, ny och tom tidrapport, en redigerbar existerande tidrapport och en icke redigerbar existerande tidrapport.\end{hangparas}
+\textbf{class TimeReporting} Den här servleten ärver från ServletBase och presenterar en undermeny med menyval relaterade till tidrapportering. Förutom undermenyn kommer första sidan att vara tom. När ett val i undermenyn görs, kommer klassen att hantera den valda funktionen. Funktionerna som finns inkluderar att lista tidrapporter, visa och uppdatera tidrapporter samt skapa nya tidrapporter.
+\end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class ProjectLeader} Den här servleten ärver från ServletBase och visar en lista över alla användare. Härifrån kan projektledaren ändra projektmedlemmarnas roller. \end{hangparas}
+\textbf{class ReportGenerator} Den här statiska klassen är en nästlad klass som har metoder som tar emot referenser till databasen och ritar upp en tidrapport med relevanta data. De olika tidrapporter som kan ritas upp är: en redigerbar, ny och tom tidrapport, en redigerbar existerande tidrapport och en icke redigerbar existerande tidrapport.
+\end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class ReportHandling} Den här servleten ärver från ServletBase och visar två listor; en lista med signerade och en lista med osignerade tidrapporter om man väljer att hantera tidrapporter. Projektledaren kan här signera eller avsignera rapporter.\end{hangparas}
+\textbf{class ProjectLeader} Den här servleten ärver från ServletBase och visar en lista över alla användare. Härifrån kan projektledaren ändra projektmedlemmarnas roller. 
+\end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class Statistics} Den här servleten ärver från ServletBase och visar vissa funktioner om man väljer att generera statistik. Funktioner som kan väljas är t.ex. att visa vilken vecka som det har tidrapporterats mest tid. \end{hangparas}
+\textbf{class ReportHandling} Den här servleten ärver från ServletBase och visar två listor; en lista med signerade och en lista med osignerade tidrapporter om man väljer att hantera tidrapporter. Projektledaren kan här signera eller avsignera rapporter.
+\end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class Start} Den här servleten ärver från ServletBase och skapar den statiska menyn som finns tillgänglig för användaren på alla sidor i systemet. \end{hangparas}
+\textbf{class Statistics} Den här servleten ärver från ServletBase och visar vissa funktioner om man väljer att generera statistik. Funktioner som kan väljas är t.ex. att visa vilken vecka som det har tidrapporterats mest tid. 
+\end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class GroupHandling} Den här servleten ärver från ServletBase och hanterar användarna i en projektgrupp. \\
+\textbf{class Start} Den här servleten ärver från ServletBase och skapar den statiska menyn som finns tillgänglig för användaren på alla sidor i systemet.\\
 \end{hangparas}
 
 \subsection{Klassmetoder}
@@ -171,7 +182,7 @@ Updates the database, sets the user as logged out, removes the current session i
 \begin{hangparas}{1.5em}{1}
 private String addProjectForm()\\
 Constructs a form for adding project groups.\\
-@return String - The html-code for constructing the form.
+@return String: The html-code for constructing the form.
 \end{hangparas}
 
 \vspace{5mm}
@@ -192,27 +203,70 @@ Deletes a project group.\\
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-private boolean addUserToGroup(int userID, int groupID, String role)\\
-Adds a user with a role to a group.\\
-@param userID: The id of the user who will be added to the group.\\
-@param groupID: The id of the group to which the user will be added to.\\
-@param role: The role the user will have in the group.\\
-@ return boolean: True if the user was successfully added.
+private boolean checkNewName(String name)\\
+Checks if a project name corresponds to the requirements for project names. \\
+@param name: The investigated project name.\\
+@return boolean: True if the project name corresponds to the requirements.
 \end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-private boolean removeUserFromGroup(int userGroupID)\\
-Removes the user from the group. Which user and group are found in the database's tabel user\_group.\\
-@param userGroupID: The ID of the row in the table user\_group on which the user and group can be found.\\
-@return boolean: True if the user was successfully removed.\\
+private void listGroups(PrintWriter out)\\
+Lists all the projects group.\\
+@param out: PrintWriter object that is needed for print outs.\\
 \end{hangparas}
 
+\subsubsection{GroupHandling}
+
+\vspace{5mm}
+\begin{hangparas}{1.5em}{1}
+private boolean addUserToGroup(int userID, int groupID, HttpServletRequest request)\\
+Adds a user with a role to a project group.\\
+@param userID: The id of the user who will be added to the project group.\\
+@param groupID: The id of the project group to which the user will be added to.\\
+@param request: The HttpServletRequest.\\
+@return boolean: True if the user was successfully added.
+\end{hangparas}
+
+\vspace{5mm}
+\begin{hangparas}{1.5em}{1}
+private boolean addAsRoleOk(int userID, int groupID, String role)\\
+Checks if it's ok to add a user to a project group and if it's ok the user is added.\\
+@param userID: The id of the user who will be added to the project group.\\
+@param groupID: The id of the group to which the user will be added to.\\
+@param role: The role the user will have in the project group.\\
+@return boolean: true if the user was successfully added.\\
+@throws SQLException
+\end{hangparas}
+
+\vspace{5mm}
+\begin{hangparas}{1.5em}{1}
+private boolean removeUserFromGroup(int userID, int groupID)\\
+Removes the user from the project group.\\
+@param userID: The id of the user who will be removed from the project group.\\
+@param groupID: The id of the group to which the user will be removed from.\\
+@return boolean: True if the user was successfully removed.
+\end{hangparas}
+
+\vspace{5mm}
+\begin{hangparas}{1.5em}{1}
+private void listUsers(PrintWriter out, int groupID)\\
+Lists all users.\\
+@param out: PrintWriter object needed for printing.\\
+@param groupID: Don't print already added users from this project group.
+\end{hangparas}
+
+\vspace{5mm}
+\begin{hangparas}{1.5em}{1}
+private String selectRoleList()\\
+List all roles in the system.\\
+@return The html-string for a drop down list of all roles.\\
+\end{hangparas}
 
 \subsubsection{class TimeReporting}
 
 \begin{hangparas}{1.5em}{1}
-private void viewReportList(int userID)\\
+private void viewReportList(int userGroupID)\\
 Prints out a list of the user’s own reports. \\
 @param userID: The id of the user.
 \end{hangparas}
@@ -269,32 +323,36 @@ Filters what time reports that should be shown in the list.\\
 \subsubsection{class ReportGenerator}
 
 \begin{hangparas}{1.5em}{1}
-public static void viewReport(ResultSet data)\\
+public static String viewReport(ResultSet data)\\
 Prints out a time report in the right format and with the data specified by the ResultSet parameter.\\
-@param data: Specifies which data to print in the time report. 
+@param data: Specifies which data to print in the time report. \\
+@return String: A string containing html code.
 \end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-public static void updateReport(ResultSet data)\\
+public static String updateReport(ResultSet data)\\
 Prints out a html-form in the right format and with the data specified by the ResultSet parameter.\\ 
-@param data: Specifies which data to print in the html-form.
+@param data: Specifies which data to print in the html-form.\\
+@return String: A string containing html code.
 \end{hangparas}
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-public static void newReport(int weekNumber)\\
+public static String newReport(int weekNumber)\\
 Prints out a time report html-form prefilled with data.\\
 @param weekNumber: Specifies for which week the data should be shown.\\
+@return String: A string containing html code.\\
 \end{hangparas}
  
 
 \subsubsection{class ProjectLeader}
 
 \begin{hangparas}{1.5em}{1}
-public void showAllUsers(int groupID)\\
+public void showAllUsers(int groupID, PrintWriter out)\\
 Shows a list of all the users in the system.\\
 @param groupID: The group which members should be listed.
+@param out: PrintWriter object needed for print outs.
 \end{hangparas}
 
 \vspace{5mm}
@@ -303,7 +361,13 @@ public boolean changeRole(int userGroupID, String role)\\
 Assigns a role to a user in a project group.\\
 @param userGroupID: The user to be assigned a role, and in which group.\\
 @param role: Which role to assign.\\
-@return boolean: True if the user was successfully added.\\
+@return boolean: True if the user was successfully added.
+\end{hangparas}
+
+\vspace{5mm}
+\begin{hangparas}{1.5em}{1}
+private String selectRoleList()\\
+Creates html code to produce a drop down menu with roles.
 \end{hangparas}
 
 \subsubsection{class ReportHandling}
@@ -325,7 +389,7 @@ Unsigns a time report.\\
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-private void showAllReports(int group)\\
+private void showAllReports(int groupID)\\
 Shows a list of all the time reports, from the specified group with the given id.\\
 @param group: The project leaders group id.\\
 \end{hangparas}
@@ -375,7 +439,7 @@ Ett klassdiagram med alla klasser visas i Figur \ref{umldiagram}.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=160mm]{UML_14okt.jpg}
+\includegraphics[width=160mm]{UML_17okt.jpg}
 \caption{Klassdiagram över alla klasser i systemet. \label{umldiagram}}
 \end{figure}
 
