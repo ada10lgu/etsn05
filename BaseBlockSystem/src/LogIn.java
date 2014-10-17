@@ -87,7 +87,7 @@ public class LogIn extends servletBase {
 	 */
 	private boolean checkUser(String name, String password, String groupID,
 			PrintWriter out) {
-
+		out.println("checkUser");
 		boolean userOk = false;		
 		Statement stmt;
 		try {
@@ -96,8 +96,9 @@ public class LogIn extends servletBase {
 				ResultSet rs = stmt.executeQuery("select * from users where username = "+ formElement(name) + " and password = "+ formElement(password));
 				int userID = -1;
 				if (rs.first()) {
+					out.println("checkUser() rs.first()");
 					userID = rs.getInt("ID");					
-					if (checkGroup(groupID, userID, name)) { 
+					if (checkGroup(groupID, userID, name, out)) { 
 						userOk = true;
 					}
 				}				
@@ -130,12 +131,13 @@ public class LogIn extends servletBase {
 	 *            : The id of the user.
 	 * @return True if the user is a member of the group.
 	 */
-	private boolean checkGroup(String groupIDstr, int userID, String name) {
+	private boolean checkGroup(String groupIDstr, int userID, String name, PrintWriter out) {
 		boolean groupOK = false;
 		Statement stmt;
 
 		try {
 			if (name.equals(ADMIN)) {
+				out.println("checkGroup if ADMIN");
 				session.setAttribute("role", ADMIN);
 				session.setAttribute("userGroupID", 0);
 				session.setAttribute("groupID", "0");
