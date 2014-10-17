@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-
+@WebServlet("/TimeReporting")
 public class TimeReporting extends servletBase{
 	
 	private PrintWriter out;
@@ -41,6 +41,12 @@ public class TimeReporting extends servletBase{
 				int totalTime = rs.getInt("total_time");
 				int signed = rs.getInt("signed");
 				//print in box
+				out.println("<tr>");
+				out.println("<td>" + date + "</td>");
+				out.println("<td>" + week + "</td>");
+				out.println("<td>" + totalTime + "</td>");
+				out.println("<td>" + formElement(signString(signed)) + "</td>");
+				out.println("</tr>");
 			}
 		} catch(SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
@@ -49,6 +55,14 @@ public class TimeReporting extends servletBase{
 		}
 		
 		
+	}
+	
+	private String signString(int signed){
+		String signedStr = "N";
+		if (signed == 1) {
+			signedStr = "Y";
+		}
+		return signedStr;
 	}
 	
 	/**
@@ -130,11 +144,11 @@ public class TimeReporting extends servletBase{
 		out.println(getPageIntro());
 		out.println(printMainMenu());
 		session = request.getSession();
-//		if (!loggedIn(request)){
-//			response.sendRedirect("LogIn");
-//		} else {
-//			viewReportList((int) session.getAttribute("userGroupID"));
-//		}
+		if (!loggedIn(request)){
+			response.sendRedirect("LogIn");
+		} else {
+			viewReportList((int) session.getAttribute("userGroupID"));
+		}
 	}
 	
 
