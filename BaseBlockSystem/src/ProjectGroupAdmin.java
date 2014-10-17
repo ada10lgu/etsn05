@@ -117,24 +117,33 @@ public class ProjectGroupAdmin extends servletBase {
 		try {
 			Statement stmt = conn.createStatement();	
 			Statement stmt2 = conn.createStatement();
+			Statement stmt3 = conn.createStatement();
 		    ResultSet rs = stmt.executeQuery("select * from groups order by name asc");
 		    out.println("<p>Project groups:</p>");
 		    out.println("<table border=" + formElement("1") + ">");
 		    out.println("<tr><td>NAME</td><td>Projectleader 1</td><td>Projectleader 2</td><td></td></tr>");
-		    while (rs.next( )) {
+		    while (rs.next()) {
 		    	String name = rs.getString("name");
-		    	//Hämta projektledarnas namn (DETTA ÄR INTE FÄRDIGT ÄN)
-		    	/*
-		    	ResultSet rsGroupID = stmt2.executeQuery("select * from groups where name = '" + name + "'");
-		    	int groupID = rsGroupID.getInt("id");
+		    	ResultSet rsGroup = stmt2.executeQuery("select * from groups where name = '" + name + "'");
+		    	rsGroup.first();
+		    	int groupID = rsGroup.getInt("id");
+		    	ResultSet rsPL = stmt3.executeQuery("select users.id, users.username from user_group inner join users on user_group.user_id = users.id where user_group.group_id = " + groupID + " and user_group.role = " + formElement(PROJECT_LEADER)); 
+		    	
+		    	//Hämta projektledarnas namn 
+		    	String[] projectLeaders = {"", ""};
+		    	int i = 0;
+		    	while(rsPL.next()){
+		    		projectLeaders[i] = rsPL.getString("username");
+		    		i++;
+		    	}
+		    	
+		    	
 		    	ResultSet rsUsersInGroup = stmt2.executeQuery("select * from user_group where group_id = '" + groupID + "'");
 		    	while(rsUsersInGroup.next()){
 		    		String role = rsUsersInGroup.getString("role");
 		    		
 		    		
-		    	}*/
-		    	//Här ska namnen vara hämtade
-		    	
+		    	}		    	
 		    	String deleteURL = "ProjectGroupAdmin?deletename="+name;
 		    	String deleteCode = "<a href=" + formElement(deleteURL) +
 		    			            " onclick="+formElement("return confirm('Are you sure you want to delete "+name+"?')") + 
@@ -143,8 +152,8 @@ public class ProjectGroupAdmin extends servletBase {
 		    		deleteCode = "";
 		    	out.println("<tr>");
 		    	out.println("<td>" + name + "</td>");
-		    	out.println("<td>" + " " + "</td>");
-		    	out.println("<td>" + " " + "</td>");
+		    	out.println("<td>" + projectLeaders[0] + "</td>");
+		    	out.println("<td>" + projectLeaders[1] + "</td>");
 		    	out.println("<td>" + deleteCode + "</td>");
 		    	out.println("</tr>");
 		    }
