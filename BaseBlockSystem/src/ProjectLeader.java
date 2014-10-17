@@ -290,13 +290,13 @@ public class ProjectLeader extends servletBase {
 		String html = "";
 		html += "<br><select name='role'>";
 		html += "<option value='0' selected='true'>Select a role</option>";
-		html += "<option value=" + PROJECT_LEADER + ">"
+		html += "<option value=" + formElement(PROJECT_LEADER) + ">"
 				+ PROJECT_LEADER + "</option>";
-		html += "<option value=" + t1 + ">"
+		html += "<option value=" + formElement(t1) + ">"
 				+ t1 + "</option>";
-		html += "<option value=" + t2 + ">"
+		html += "<option value=" + formElement(t2) + ">"
 				+ t2 + "</option>";
-		html += "<option value=" + t3 + ">"
+		html += "<option value=" + formElement(t3) + ">"
 				+ t3 + "</option>";
 		html += "</select>";
 		return html;
@@ -314,9 +314,6 @@ public class ProjectLeader extends servletBase {
 		boolean changeOK = false;
 		
 		try {
-			if (role.equals("Project")) {
-				role = PROJECT_LEADER;
-			}
 			Statement stmt2 = conn.createStatement();
 			ResultSet rs2 = stmt2.executeQuery("select * from user_group where ID = "+userGroupID);
 			rs2.first();
@@ -330,8 +327,8 @@ public class ProjectLeader extends servletBase {
 			while (rs1.next()) {
 				if (rs1.getString("role").equals(PROJECT_LEADER)) {
 					plCount++;
-				} else {
-				roleCount++;
+				} else if (rs1.getString("role").equals(role)){
+					roleCount++;
 				}
 			}
 			if (currentRole.equals(PROJECT_LEADER) && plCount == 1) {
