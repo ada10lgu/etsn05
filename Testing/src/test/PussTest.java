@@ -30,7 +30,7 @@ public abstract class PussTest {
 	
 	public static final String TOMCAT_PATH = "tomcat/apache-tomcat-7.0.55/bin/";
 	public static final String STARTUP_SHELL = "startup.sh";
-	public static final String SHUTDOWN_SHELL = "startup.sh";
+	public static final String SHUTDOWN_SHELL = "shutdown.sh";
 	
 	public static final String START_URL = "http://localhost:8080/BaseBlockSystem/Start";
 	public static final String LOGIN_URL = "http://localhost:8080/BaseBlockSystem/LogIn";
@@ -39,7 +39,7 @@ public abstract class PussTest {
 	
 	@BeforeClass
 	public static void initiateServerAndDB() {
-		startServer();
+		//startServer();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404?" + "user=puss1404&password=ptqp44ed");	
