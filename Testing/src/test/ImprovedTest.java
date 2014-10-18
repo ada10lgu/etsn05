@@ -104,7 +104,6 @@ public class ImprovedTest extends PussTest{
 	
 	@Test
 	public void dbTest() {
-//		StartServer();
 		try {
 //			addUser("olle", "olle", 0);
 			deleteUser("olle");

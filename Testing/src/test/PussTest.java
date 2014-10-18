@@ -45,12 +45,23 @@ public abstract class PussTest {
 	
 	protected void addUser(String username, String password, int is_admin) throws SQLException {
 		String query = "insert into users (username, password, is_admin) values ('" + username + "', '" + password + "', " + is_admin +");";
-		sendSQLCommand(query);		
+		sendSQLCommand(query);
+		query = "select id from users where username='" + username + ';"
+		Resultset rs 
 	}
 	
 	protected void deleteUser(String username) throws SQLException {
 		String query = "delete from users where username  = '" + username + "';";
 		sendSQLCommand(query);
+	}
+	
+	protected void addGroup(String name) throws SQLException {
+		String query = "insert into groups (name) values ('" + name + "');";
+		sendSQLCommand(query);
+	}
+	
+	protected void assignGroup(String username, String group) throws SQLException {
+		String query = ""
 	}
 	
 	protected static void startServer() {
