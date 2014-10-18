@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.sql.SQLException;
 
 import org.junit.Test;
 
@@ -56,5 +57,5 @@ public class AdministrationTest extends PussTest{
 	    
 	}
 		
-	}
+}
 
