@@ -2,31 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/xml-apis-1.4.01.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/xercesImpl-2.11.0.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/xalan-2.7.1.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/serializer-2.7.1.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/sac-1.3.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/nekohtml-1.9.21.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/junit-4.12-beta-1.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/jetty-websocket-8.1.15.v20140411.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/jetty-util-8.1.15.v20140411.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/jetty-io-8.1.15.v20140411.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/jetty-http-8.1.15.v20140411.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/httpmime-4.3.3.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/httpcore-4.3.2.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/httpclient-4.3.3.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/htmlunit-core-js-2.15.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/htmlunit-2.15.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/hamcrest-core-1.3.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/cssparser-0.9.14.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/commons-logging-1.1.3.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/commons-lang3-3.3.2.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/commons-io-2.4.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="/h/d9/g/atf10ago/Documents/progstor/etsn05/Testing/libs/commons-codec-1.9.jar"/>
-=======
 	<classpathentry kind="lib" path="libs/commons-codec-1.9.jar"/>
 	<classpathentry kind="lib" path="libs/commons-collections-3.2.1.jar"/>
 	<classpathentry kind="lib" path="libs/commons-io-2.4.jar"/>
@@ -51,6 +26,6 @@
 	<classpathentry kind="lib" path="libs/xml-apis-1.4.01.jar"/>
 	<classpathentry kind="lib" path="libs/hamcrest-core-1.3.jar"/>
 	<classpathentry kind="lib" path="tomcat/apache-tomcat-7.0.55/lib/mysql-connector-java-5.1.32-bin.jar"/>
->>>>>>> 37484b714c8dbdfba374156a682c7e3d23c79968
+
 	<classpathentry kind="output" path="bin"/>
 </classpath>
