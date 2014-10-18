@@ -8,6 +8,7 @@
 *.war
 *.ear
 *.log
+*.txt
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -23,4 +24,6 @@ documentation/SRS/SRS.blg
 documentation/SVVS/svvs - gransking 1.aux
 documentation/SVVS/svvs - gransking 1.log
 documentation/SRS/.DS_Store
+Testing/.classpath
+Testing/tomcat/apache-tomcat-7.0.55/logs/catalina.out
 .DS_Store

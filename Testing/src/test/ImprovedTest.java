@@ -9,6 +9,7 @@ import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.SQLException;
 
 import org.junit.*;
 
@@ -69,6 +70,7 @@ public class ImprovedTest extends PussTest{
 		webClient.closeAllWindows();
 	}
 	
+//	@Ignore
 	@Test
 	public void login() throws Exception {
 	    final WebClient webClient = new WebClient();
@@ -98,5 +100,17 @@ public class ImprovedTest extends PussTest{
 	    HtmlAnchor logout = page2.getAnchorByHref("LogIn");
 	    logout.click();
 	    webClient.closeAllWindows();
+	}
+	
+	@Test
+	public void dbTest() {
+//		StartServer();
+		try {
+//			addUser("olle", "olle", 0);
+			deleteUser("olle");
+			assertTrue(true);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -24,8 +24,8 @@ public class StartServerTest {
 	public static void main(String[] args) {
 		StartServer();
 //		runTest();
-		test2();
-		StopServer();
+//		test2();
+//		StopServer();
 	}
 
 	public static void StartServer() {
