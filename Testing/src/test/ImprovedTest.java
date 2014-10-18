@@ -16,15 +16,7 @@ import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.*;
 
-public class ImprovedTest {
-	private static final String TOMCAT_PATH = "tomcat/apache-tomcat-7.0.55/bin/";
-	private static final String STARTUP_SHELL = "startup.sh";
-	private static final String SHUTDOWN_SHELL = "startup.sh";
-	
-	private static final String LOGIN_URL = "http://localhost:8080/BaseBlockSystem/LogIn";
-	private static final String LOGIN_T3 = "91";
-	
-	private static final String START_URL = "http://localhost:8080/BaseBlockSystem/Start";
+public class ImprovedTest extends PussTest{
 	
 	/**
 	@BeforeClass
@@ -100,9 +92,9 @@ public class ImprovedTest {
 
 	    // Now submit the form by clicking the button and get back the second page.
 	    final HtmlPage page2 = button.click();
-	    System.out.println(page2.getUrl());
+
 	    assertEquals("jonatan could not log in", START_URL, page2.getUrl().toString());
-	    //assertTrue(true);
+
 	    HtmlAnchor logout = page2.getAnchorByHref("LogIn");
 	    logout.click();
 	    webClient.closeAllWindows();
