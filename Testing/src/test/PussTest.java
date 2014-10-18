@@ -62,6 +62,12 @@ public abstract class PussTest {
 		sendSQLCommand(query);
 	}
 	
+	protected void clearSessions() throws SQLException {
+		String query = "delete from log;";
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate(query);
+	}
+	
 	protected void assignGroup(String username, String group) throws SQLException {
 		String query = "";
 	}
