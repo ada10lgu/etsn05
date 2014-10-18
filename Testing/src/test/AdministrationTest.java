@@ -19,6 +19,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 
 public class AdministrationTest extends PussTest{
+
 	@Test
 	public void FT4_1_1() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
 		clearSessions();
