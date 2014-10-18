@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 public abstract class PussTest {
@@ -21,7 +22,8 @@ public abstract class PussTest {
 	public static final String LOGIN_T3 = "91";
 	
 	@BeforeClass
-	public static void initiateDB() {
+	public static void initiateServerAndDB() {
+		startServer();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404?" + "user=puss1404&password=ptqp44ed");	
@@ -29,6 +31,11 @@ public abstract class PussTest {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@AfterClass
+	public static void tearDown() {
+		shutDownServer();
 	}
 	
 	protected void sendSQLCommand(String query) throws SQLException {
@@ -46,19 +53,19 @@ public abstract class PussTest {
 		sendSQLCommand(query);
 	}
 	
-	protected void StartServer() {
+	protected static void startServer() {
 		try {
 			Process process = Runtime.getRuntime().exec(TOMCAT_PATH + STARTUP_SHELL);
-			System.out.println("server startad");
+			System.out.println("server started");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	protected void shutDownServer() {
+	protected static void shutDownServer() {
 		try {
 			Process process = Runtime.getRuntime().exec(TOMCAT_PATH + SHUTDOWN_SHELL);
-			System.out.println("server startad");
+			System.out.println("server stopped");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

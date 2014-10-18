@@ -70,8 +70,8 @@ public class ImprovedTest extends PussTest{
 		webClient.closeAllWindows();
 	}
 	
-	@Ignore
-//	@Test
+//	@Ignore
+	@Test
 	public void login() throws Exception {
 	    final WebClient webClient = new WebClient();
 
@@ -104,10 +104,11 @@ public class ImprovedTest extends PussTest{
 	
 	@Test
 	public void dbTest() {
-		StartServer();
+//		StartServer();
 		try {
 //			addUser("olle", "olle", 0);
 			deleteUser("olle");
+			assertTrue(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

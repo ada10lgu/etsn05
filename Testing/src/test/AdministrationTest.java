@@ -1,5 +1,10 @@
 package test;
 
-public class AdministrationTest extends PussTest{
+import org.junit.Test;
 
+public class AdministrationTest extends PussTest{
+	@Test
+	public void FT6_4_15(){
+		
+	}
 }
