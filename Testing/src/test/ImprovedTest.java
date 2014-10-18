@@ -17,20 +17,20 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.*;
 
 public class ImprovedTest {
-	private static final String path = "tomcat/apache-tomcat-7.0.55/bin/";
-
-	//
-	// public static void main(String[] args) {
-	// StartServer();
-	// // runTest();
-	// test2();
-	// StopServer();
-	// }
-
+	private static final String TOMCAT_PATH = "tomcat/apache-tomcat-7.0.55/bin/";
+	private static final String STARTUP_SHELL = "startup.sh";
+	private static final String SHUTDOWN_SHELL = "startup.sh";
+	
+	private static final String LOGIN_URL = "http://localhost:8080/BaseBlockSystem/LogIn";
+	private static final String LOGIN_T3 = "91";
+	
+	private static final String START_URL = "http://localhost:8080/BaseBlockSystem/Start";
+	
+	/**
 	@BeforeClass
 	public static void StartServer() {
 		try {
-			Process process = Runtime.getRuntime().exec(path + "startup.sh");
+			Runtime.getRuntime().exec(TOMCAT_PATH + STARTUP_SHELL);
 			System.out.println("server startad");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -40,42 +40,15 @@ public class ImprovedTest {
 	@AfterClass
 	public static void StopServer() {
 		try {
-			Process process = Runtime.getRuntime().exec(path + "shutdown.sh");
+			Runtime.getRuntime().exec(TOMCAT_PATH + SHUTDOWN_SHELL);
 			System.out.println("server stoppad");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	@Ignore
-	public void runTest() {
-		try {
-			URL url = new URL("http://localhost:8080/BaseBlockSystem/LogIn");
-			URLConnection connection = url.openConnection();
-			connection.setDoOutput(true);
-
-			OutputStreamWriter out = new OutputStreamWriter(
-					connection.getOutputStream());
-			out.write("user=" + "admin");
-			out.write("password=" + "adminpw");
-			out.close();
-
-			BufferedReader in = new BufferedReader(new InputStreamReader(
-					connection.getInputStream()));
-			String decodedString;
-			while ((decodedString = in.readLine()) != null) {
-				System.out.println(decodedString);
-			}
-			in.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println("running test");
-	}
-
-	@Test
-	public void test2() {
+	public void example() {
 		final WebClient webClient = new WebClient();
 		HtmlPage page = null;
 		try {
@@ -105,11 +78,11 @@ public class ImprovedTest {
 	}
 	
 	@Test
-	public void submittingForm() throws Exception {
+	public void login() throws Exception {
 	    final WebClient webClient = new WebClient();
 
 	    // Get the first page
-	    final HtmlPage page1 = webClient.getPage("http://localhost:8080/BaseBlockSystem/LogIn");
+	    final HtmlPage page1 = webClient.getPage(LOGIN_URL);
 
 	    // Get the form that we are dealing with and within that form, 
 	    // find the submit button and the field that we want to change.
@@ -118,18 +91,20 @@ public class ImprovedTest {
 	    final HtmlSubmitInput button = form.getInputByValue("Submit");
 	    final HtmlTextInput userField = form.getInputByName("user");
 	    final HtmlPasswordInput passwordField = form.getInputByName("password");
-	    //final HtmlSelect groupList = form.getSelectByName("groupID");
+	    final HtmlSelect groupList = form.getSelectByName("groupID");
 
 	    // Change the value of the text field
-	    userField.setValueAttribute("admin");
-	    passwordField.setValueAttribute("adminpw");
-	    //groupList.setSelectedAttribute("91", true);
+	    userField.setValueAttribute("jonatan");
+	    passwordField.setValueAttribute("jonatan");
+	    groupList.setSelectedAttribute(LOGIN_T3, true);
 
 	    // Now submit the form by clicking the button and get back the second page.
 	    final HtmlPage page2 = button.click();
 	    System.out.println(page2.getUrl());
-	    assertEquals("fail!", "http://localhost:8080/BaseBlockSystem/Start", page2.getUrl());
+	    assertEquals("jonatan could not log in", START_URL, page2.getUrl().toString());
 	    //assertTrue(true);
+	    HtmlAnchor logout = page2.getAnchorByHref("LogIn");
+	    logout.click();
 	    webClient.closeAllWindows();
 	}
 }
