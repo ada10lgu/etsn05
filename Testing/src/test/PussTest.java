@@ -34,6 +34,7 @@ public abstract class PussTest {
 	
 	public static final String START_URL = "http://localhost:8080/BaseBlockSystem/Start";
 	public static final String LOGIN_URL = "http://localhost:8080/BaseBlockSystem/LogIn";
+	public static final String ADMINISTRATION_URL = "http://localhost:8080/BaseBlockSystem/Administration";
 	public static final String LOGIN_T3 = "91";
 	
 	@BeforeClass
