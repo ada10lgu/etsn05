@@ -2,6 +2,9 @@ import java.io.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.sql.Date;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -139,8 +142,68 @@ public class TimeReporting extends servletBase{
 	 * Inserts the data from the new report form into the database.
 	 */
 	private void addNewReport(HttpServletRequest request){
-		String test = request.getParameter("SDP_U");
-		System.out.println(test);
+		try {
+			int totalTime = 0;
+			String[] act_sub_values = new String[ReportGenerator.act_sub_names.length];
+			String[] lower_activity_values = new String[ReportGenerator.lower_activities.length];
+			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+				String value = request.getParameter(ReportGenerator.act_sub_names[i]);
+				if (!value.equals("")) {
+					act_sub_values[i] = value;
+					totalTime += Integer.parseInt(value);
+				} else {
+					act_sub_values[i] = "0";
+				}
+			}
+
+			for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
+				String value = request.getParameter(ReportGenerator.lower_activities[i]);
+				if (!value.equals("")) {
+					lower_activity_values[i] = value;
+					totalTime += Integer.parseInt(value);
+				} else {
+					lower_activity_values[i] = "0";
+				}
+			}
+			
+			Calendar cal = Calendar.getInstance();
+			Date date = new Date(cal.getTimeInMillis()); //PUTTING THIS DATE OBJECT INTO THE DATABASE DOESN'T WORK, PLEASE HAVE A LOOK
+			System.out.println(date); //DEBUGGING PRINT
+			String week = request.getParameter("week");
+			int userGroupID = (int) session.getAttribute("userGroupID");
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("INSERT INTO reports (user_group_id, date, week, total_time, signed) VALUES ("+userGroupID+","+date+","+week+","+totalTime+","+0+")");
+			stmt.close();
+			
+			Statement stmt1 = conn.createStatement();
+			ResultSet rs = stmt1.executeQuery("Select * from reports where user_group_id = "+userGroupID+" and week ="+week);
+			int reportID = -1;
+			if (rs.first()) {
+				reportID = rs.getInt("ID");
+			}
+			stmt1.close();
+			
+			String q = "INSERT INTO report_times VALUES ("+reportID+",";
+			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+				String valueStr = act_sub_values[i];
+				q += valueStr+",";
+			}
+
+			for (int i = 0; i<ReportGenerator.lower_activities.length-1; i++) {
+				String valueStr = lower_activity_values[i];
+				q += valueStr+",";
+			}
+
+			q += lower_activity_values[lower_activity_values.length-1]+");";
+
+			Statement stmt2 = conn.createStatement();
+			stmt2.executeUpdate(q);
+			stmt2.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("VendorError: " + e.getErrorCode());
+		}
 	}
 	
 	/**
@@ -172,7 +235,6 @@ public class TimeReporting extends servletBase{
 		out.println(printMainMenu());
 		session = request.getSession();
 		function = request.getParameter("function");
-		System.out.println(function);
 		String weekStr = request.getParameter("week");
 		
 		if (!loggedIn(request)){
@@ -199,9 +261,6 @@ public class TimeReporting extends servletBase{
 				//ADD CHECK IF WEEK IS CORRECT FORMAT
 				int week = Integer.parseInt(weekStr);
 				printNewReport(week, out);
-					//when user presses "done" check that everything is filled out correctly 
-					//change inside printNewReport() function = ADD_NEW
-			
 				break;
 			case ADD_NEW:
 				addNewReport(request);
