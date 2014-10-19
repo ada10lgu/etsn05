@@ -439,7 +439,7 @@ public final class ReportGenerator {
 				+ "input {width: 100px;}"
 				+ "</style>";
 		
-		html += "<form method='post' action='TimeReporting?action=addNewReport'>";
+		html += "<form method='post' action='TimeReporting?action=addNewReport&function=addNew'>";
 		html += 	"<table>";
 		html += 		"<tr>";
 		html +=				"<td><b>Namn</td><td colspan='4'>"+name+"</td><td><b>Datum</td><td>"+date.toString()+"</td>";

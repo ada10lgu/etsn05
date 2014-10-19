@@ -19,11 +19,13 @@ public class TimeReporting extends servletBase{
 	private HttpSession session;
 	private String function = null;
 	protected static final String VIEW = "view";
+	protected static final String VIEW_REPORT = "viewReport";
 	protected static final String UPDATE = "update";
 	protected static final String NEW = "new";
 	protected static final String PRINT_NEW = "printNew";
 	protected static final String ADD_NEW = "addNew";
 	protected static final String STATISTICS = "statistics";
+	
 	
 	public TimeReporting(){
 		super();
@@ -41,16 +43,19 @@ public class TimeReporting extends servletBase{
 			//create table
 			out.println("<p>Time Reports:</p>");
 		    out.println("<table border=" + formElement("1") + ">");
-		    out.println("<tr><td>Last Modifed</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
+		    out.println("<tr><td>Selection</td><td>Last update</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
 		    int inWhile = 0;
 		    while(rs.next()){
 		    	inWhile = 1;
+		    	String reportID = ""+rs.getInt("ID");
 				int date = rs.getInt("date");
 				int week = rs.getInt("week");
 				int totalTime = rs.getInt("total_time");
 				int signed = rs.getInt("signed");
 				//print in box
 				out.println("<tr>");
+				out.println("<td>" + "<input type=" + formElement("radio") + " name=" + formElement("reportID") +
+						" value=" + formElement(reportID) +"></td>");		//radiobutton
 				out.println("<td>" + date + "</td>");
 				out.println("<td>" + week + "</td>");
 				out.println("<td>" + totalTime + "</td>");
@@ -68,9 +73,9 @@ public class TimeReporting extends servletBase{
 	}
 	
 	private String signString(int signed){
-		String signedStr = "N";
+		String signedStr = "NO";
 		if (signed == 1) {
-			signedStr = "Y";
+			signedStr = "YES";
 		}
 		return signedStr;
 	}
@@ -97,11 +102,20 @@ public class TimeReporting extends servletBase{
 	 * Prints out the new timereport html-form.
 	 * @param weekNumber: The weeknumber for the time report.
 	 */
-	private void printNewReport(int weekNumber){
-		ReportGenerator rg = new ReportGenerator();
-		String name = (String) session.getAttribute("name");
-		String group = (String) session.getAttribute("groupID");
-		out.println(rg.newReport(weekNumber, name, group));
+	private void printNewReport(int weekNumber, PrintWriter out){
+
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select name from groups where ID=" + (String) session.getAttribute("groupID"));
+			if(rs.first()){
+				String groupName = rs.getString("name");
+				out.println(ReportGenerator.newReport(weekNumber,(String) session.getAttribute("name"), groupName));
+			}
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("VendorError: " + e.getErrorCode());
+		}
 	}
 	
 	/**
@@ -124,9 +138,9 @@ public class TimeReporting extends servletBase{
 	/**
 	 * Inserts the data from the new report form into the database.
 	 */
-	private void addNewReport(){
-		
-		//newReport(int weekNumber, String user_name, String group);
+	private void addNewReport(HttpServletRequest request){
+		String test = request.getParameter("SDP_U");
+		System.out.println(test);
 	}
 	
 	/**
@@ -157,40 +171,73 @@ public class TimeReporting extends servletBase{
 		out.println(getPageIntro());
 		out.println(printMainMenu());
 		session = request.getSession();
-		String function = request.getParameter("function");
-		
-		int week;
+		function = request.getParameter("function");
+		System.out.println(function);
+		String weekStr = request.getParameter("week");
 		
 		if (!loggedIn(request)){
 			response.sendRedirect("LogIn");
-		} else if (function != null) {
+		} else if (function != null && !isAdmin()) {
 			switch (function) {
 			case VIEW:
+				//String testReport 
 				viewReportList((int) session.getAttribute("userGroupID"));
 				break;
-			case UPDATE:
+			case VIEW_REPORT:
 				break;
-			case NEW: //when user chooses New in menu
-				//out.println(requestWeekForm()); create request for weeknumber and a ok button
-				//check inside requestWeekForm that weeknumber is entered correctly and if so
-				//change function = PRINT_NEW
+			case UPDATE:
+				System.out.println("getParameter works!");
+				break;
+			case NEW:
+				if (weekStr != null){
+					response.sendRedirect("TimeReporting?function=printNew&week="+weekStr);
+				} else {
+					out.println(requestWeekForm()); //create request for weeknumber and a ok button.
+				}
 				break;
 			case PRINT_NEW:
-				//week = request.getParameter("week"); //get weeknumber
-				//printNewReport(week); //print the shell for the report
-				//when user presses "done" check that everything is filled out correctly 
-				//change inside printNewReport() function = ADD_NEW
+				//ADD CHECK IF WEEK IS CORRECT FORMAT
+				int week = Integer.parseInt(weekStr);
+				printNewReport(week, out);
+					//when user presses "done" check that everything is filled out correctly 
+					//change inside printNewReport() function = ADD_NEW
+			
 				break;
 			case ADD_NEW:
+				addNewReport(request);
+				response.sendRedirect("TimeReporting?function=view");
 				break;
 			case STATISTICS:
 				break;
 			}
+		} else if (isAdmin()){
+			out.println("Admin is not allowed to reach this page");
 		} else {
 			viewReportList((int) session.getAttribute("userGroupID"));
 		}
 		
 		
+	}
+
+	private boolean isAdmin() {
+		String name = (String) session.getAttribute("name");
+		if (name.equals(ADMIN)) {
+			return true;
+		}
+		return false;
+	}
+
+	private String requestWeekForm() {
+		String html = "<p>Please enter week number:</p>";
+		html += "<p> <form name=" + formElement("input");
+		html += " method=" + formElement("post");
+		html += "<p> Week Number: <input type=" + formElement("text") + " name="
+				+ formElement("week") + '>';
+		html += "<hidden name='function' value='printNew'>";
+		html += "<p> <input type=" + formElement("submit") + "value="
+				+ formElement("Submit") + '>';
+		html += "</form>";
+		return html;
 	}
 	
 

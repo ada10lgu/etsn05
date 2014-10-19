@@ -186,67 +186,6 @@ public class ProjectLeader extends servletBase {
 	 *            PrintWriter
 	 */
 	
-	private void showAllUsersOld(int groupID, PrintWriter out) {
-		try {
-			Statement s = conn.createStatement();		    
-			ResultSet r = s.executeQuery("select * from groups where ID = "+groupID);
-			String groupName = "";
-			if (r.first()) {
-				groupName = r.getString("name");
-			}
-			
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt
-					.executeQuery("select * from user_group INNER JOIN users on user_group.user_id = users.ID where user_group.group_id = "
-							+ groupID + "");
-			if (groupName.equals("")) {
-				out.println("<p><b>Choose a group to edit</b></p>");
-			} else {
-				out.println("<p><b>Users in "+groupName+"</b></p>");
-				out.println("<table border=" + formElement("1") + ">");
-				out.println("<tr><td>NAME</td><td>ROLE</td><td>CHANGE TO PG</td><td>CHANGE TO T1</td><td>CHANGE TO T2</td><td>CHANGE TO T3</td>");
-				while (rs.next( )) {
-
-					//THE FOLLOWING CODE IS UGLY AND WILL BE CHANGED
-					String name = rs.getString("username");
-					String role = rs.getString("role");
-					String addPG = "ProjectLeader?changename="+name+"&role=" + PROJECT_LEADER;
-					String addT1 = "ProjectLeader?changename="+name+"&role=" + t1;
-					String addT2 = "ProjectLeader?changename="+name+"&role=" + t2;
-					String addT3 = "ProjectLeader?changename="+name+"&role=" + t3;
-					String addCodePG = "<a href=" + formElement(addPG) +
-							" onclick="+formElement("return confirm('Are you sure you want to change role of "+name+"?')") + 
-							"> add </a>";
-					String addCodeT1 = "<a href=" + formElement(addT1) +
-							" onclick="+formElement("return confirm('Are you sure you want to change role of "+name+"?')") + 
-							"> add </a>";
-					String addCodeT2 = "<a href=" + formElement(addT2) +
-							" onclick="+formElement("return confirm('Are you sure you want to change role of "+name+"?')") + 
-							"> add </a>";
-					String addCodeT3 = "<a href=" + formElement(addT3) +
-							" onclick="+formElement("return confirm('Are you sure you want to change role of "+name+"?')") + 
-							"> add </a>";
-					out.println("<tr>");
-					out.println("<td>" + name + "</td>");
-					out.println("<td>" + role + "</td>");
-					out.println("<td>" + addCodePG + "</td>");
-					out.println("<td>" + addCodeT1 + "</td>");
-					out.println("<td>" + addCodeT2 + "</td>");
-					out.println("<td>" + addCodeT3 + "</td>");
-					out.println("</tr>");
-
-					//UGLY CODE END
-				}
-			}
-			out.println("</table>");
-			stmt.close();
-		} catch (SQLException ex) {
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		}
-	}
-	
 	private void showAllUsers(int groupID, PrintWriter out) {
 		try {
 			Statement s = conn.createStatement();		    
