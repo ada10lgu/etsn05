@@ -396,21 +396,25 @@ public class TimeReporting extends servletBase{
 				break;
 			case NEW:
 				if (weekStr != null){
-					response.sendRedirect("TimeReporting?function=printNew&week="+weekStr);
+					if (checkInt(weekStr)&&(Integer.parseInt(weekStr)<100)){
+						if (weekOk(userGroupID, weekStr)) {
+							response.sendRedirect("TimeReporting?function=printNew&week="+weekStr);
+						} else {
+							out.println("You already have a report for this week");
+							out.println(requestWeekForm());
+						}
+					} else {
+						out.println("Wrong format");
+						out.println(requestWeekForm());
+					}
+					
 				} else {
 					out.println(requestWeekForm()); //create request for weeknumber and a ok button.
 				}
 				break;
 			case PRINT_NEW:
-				if (checkInt(weekStr)) {
-					if (weekOk(userGroupID, weekStr)) {
-						int week = Integer.parseInt(weekStr);
-						printNewReport(week, out);
-					} 
-				} else {
-					out.println("You already have a report for this week or the format is wrong.");
-					out.println(requestWeekForm());
-				}
+				int week = Integer.parseInt(weekStr);
+				printNewReport(week, out);
 				break;
 			case ADD_NEW:
 				if(addNewReport(request)){
@@ -435,7 +439,12 @@ public class TimeReporting extends servletBase{
 	private boolean checkInt(String str) {
 		try {
 			int integer = Integer.parseInt(str);
-			return true;
+			if(integer>=0&&integer<100000){
+				return true;
+			}
+			else {
+				return false;
+			}
 		} catch(Exception e) {
 			return false;
 		}
