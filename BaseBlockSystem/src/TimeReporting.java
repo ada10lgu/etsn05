@@ -59,7 +59,7 @@ public class TimeReporting extends servletBase{
 		    while(rs.next()){		    	
 		    	inWhile = 1;
 		    	String reportID = ""+rs.getInt("ID");
-				Date date = rs.getDate("date");
+				Date date = rs.getDate("date"); 
 				int week = rs.getInt("week");
 				int totalTime = rs.getInt("total_time");
 				int signed = rs.getInt("signed");
@@ -67,7 +67,7 @@ public class TimeReporting extends servletBase{
 				out.println("<tr>");
 				out.println("<td>" + "<input type=" + formElement("radio") + " name=" + formElement("reportID") +
 						" value=" + formElement(reportID) +"></td>");		//radiobutton
-				out.println("<td>" + date + "</td>");
+				out.println("<td>" + date.toString() + "</td>");
 				out.println("<td>" + week + "</td>");
 				out.println("<td>" + totalTime + "</td>");
 				out.println("<td>" + signString(signed) + "</td>");
@@ -106,7 +106,7 @@ public class TimeReporting extends servletBase{
 		    while(rs.next()){		    	
 		    	inWhile = 1;
 		    	String reportID = ""+rs.getInt("ID");
-				int date = rs.getInt("date");
+				Date date = rs.getDate("date");
 				int week = rs.getInt("week");
 				int totalTime = rs.getInt("total_time");
 				int signed = rs.getInt("signed");
@@ -114,7 +114,7 @@ public class TimeReporting extends servletBase{
 				out.println("<tr>");
 				out.println("<td>" + "<input type=" + formElement("radio") + " name=" + formElement("reportID") +
 						" value=" + formElement(reportID) +"></td>");		//radiobutton
-				out.println("<td>" + date + "</td>");
+				out.println("<td>" + date.toString() + "</td>");
 				out.println("<td>" + week + "</td>");
 				out.println("<td>" + totalTime + "</td>");
 				out.println("<td>" + signString(signed) + "</td>");
@@ -293,7 +293,7 @@ public class TimeReporting extends servletBase{
 			}
 			
 			Calendar cal = Calendar.getInstance();
-			Date date = new Date(cal.getTimeInMillis()); //PUTTING THIS DATE OBJECT INTO THE DATABASE DOESN'T WORK, PLEASE HAVE A LOOK
+			Date date = new Date(cal.getTimeInMillis()); 
 			//String week = request.getParameter("week");
 			//int userGroupID = (int) session.getAttribute("userGroupID");
 
@@ -639,7 +639,7 @@ public class TimeReporting extends servletBase{
 				out.println("<tr>");
 				out.println("<td>" + "<input type=" + formElement("checkbox") + " name=" + formElement("reportID"+nbrOfReports) +
 						" value=" + formElement(reportID) +"></td>");		//radiobutton
-				out.println("<td>" + date + "</td>");
+				out.println("<td>" + date.toString() + "</td>");
 				out.println("<td>" + week + "</td>");
 				out.println("<td>" + totalTime + "</td>");
 				out.println("<td>" + signString(signed) + "</td>");
