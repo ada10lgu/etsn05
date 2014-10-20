@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -35,11 +36,12 @@ public abstract class PussTest {
 	public static final String START_URL = "http://localhost:8080/BaseBlockSystem/Start";
 	public static final String LOGIN_URL = "http://localhost:8080/BaseBlockSystem/LogIn";
 	public static final String ADMINISTRATION_URL = "http://localhost:8080/BaseBlockSystem/Administration";
+	public static final String TIMEREPORTING_URL = "http://localhost:8080/BaseBlockSystem/TimeReporting";
 	public static final String LOGIN_T3 = "91";
 	
 	@BeforeClass
 	public static void initiateServerAndDB() {
-		//startServer();
+		startServer();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404?" + "user=puss1404&password=ptqp44ed");	
@@ -51,12 +53,19 @@ public abstract class PussTest {
 	
 	@AfterClass
 	public static void tearDown() {
-		shutDownServer();
+		//shutDownServer();
 		try {
 			webClient.closeAllWindows();
 		} catch(Exception e) {
 //			e.printStackTrace();
 		}
+	}
+	
+	@After
+	public void clearSessions() throws SQLException {
+		String query = "delete from log;";
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate(query);
 	}
 	
 	protected void sendSQLCommand(String query) throws SQLException {
@@ -119,12 +128,6 @@ public abstract class PussTest {
 		ResultSet rs = sendSQLQuery(query);
 		rs.next();
 		return rs.getInt(1);
-	}
-	
-	protected void clearSessions() throws SQLException {
-		String query = "delete from log;";
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(query);
 	}
 	
 	protected void assignGroup(int userId, int groupId, String role) throws SQLException {

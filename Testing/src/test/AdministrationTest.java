@@ -1,6 +1,6 @@
 package test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -97,6 +97,32 @@ public class AdministrationTest extends PussTest{
 	    
 	}	
 	
+	@Test
+	public void FT4_4_1() {
+		try {
+			addGroup("group");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			fail("kunde inte lägga in grupp i databasen");
+		}
+		
+		String username = "admin";
+		String password = "adminpw";
+		String group = "group1";
+		HtmlPage page = null;
+		try {
+			page = login(username, password, group);
+		} catch (FailingHttpStatusCodeException | IOException e) {
+			e.printStackTrace();
+			fail("Admin kunde inte logga in");
+		}
+		
+		assertEquals("Admin blev inte inloggad", START_URL, page.getUrl().toString());
+		
+		HtmlAnchor anchor = page.getAnchorByName("ProjectGroupAdmin");
+		//TODO fortsätt
+		
+	}
 	
 	
 	
