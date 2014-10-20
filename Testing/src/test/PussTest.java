@@ -52,7 +52,7 @@ public abstract class PussTest {
 	
 	@AfterClass
 	public static void tearDown() {
-		//shutDownServer();
+		shutDownServer();
 		try {
 			webClient.closeAllWindows();
 		} catch(Exception e) {
