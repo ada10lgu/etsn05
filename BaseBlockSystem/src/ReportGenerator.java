@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 public final class ReportGenerator {
@@ -33,7 +35,7 @@ public final class ReportGenerator {
 		"SDDD_U", "SDDD_I", "SDDD_F", "SDDD_O", "SVVR_U", "SVVR_I", "SVVR_F", "SVVR_O", "SSD_U", "SSD_I", "SSD_F", "SSD_O", 
 		"Slutrapport_U", "Slutrapport_I", "Slutrapport_F", "Slutrapport_O"};
 	
-	public ReportGenerator() {
+	private ReportGenerator() {
 		
 	}
 	
@@ -123,8 +125,90 @@ public final class ReportGenerator {
 			sub[0] = act_sub[0] + act_sub[5] +act_sub[10] +act_sub[15] + act_sub[20] + act_sub[25] +act_sub[30] +act_sub[35] + act_sub[40];
 			sub[1] = act_sub[1] + act_sub[6] +act_sub[11] +act_sub[16] + act_sub[21] + act_sub[26] +act_sub[31] +act_sub[36] + act_sub[41];
 			sub[2] = act_sub[2] + act_sub[7] +act_sub[12] +act_sub[17] + act_sub[22] + act_sub[27] +act_sub[32] +act_sub[37] + act_sub[42];
-			sub[3] = act_sub[3] + act_sub[8] +act_sub[13] +act_sub[18] + act_sub[23] + act_sub[28] +act_sub[33] +act_sub[38] + act_sub[43];	
+			sub[3] = act_sub[3] + act_sub[8] +act_sub[13] +act_sub[18] + act_sub[23] + act_sub[28] +act_sub[33] +act_sub[38] + act_sub[43];
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static void init_data(Map<String, Integer> data) {
+		try {
+			name = "Statistics";
+			date = new Date(System.currentTimeMillis()); 
+			project_group = "";
+			week_number = -1;
+			signed = -1;
+			
+			act_sub[0] = data.get("SDP_U");
+			act_sub[1] = data.get("SDP_I");
+			act_sub[2] = data.get("SDP_F");
+			act_sub[3] = data.get("SDP_O");
+			act_sub[4] = act_sub[0] + act_sub[1] +act_sub[2] +act_sub[3];
+			act_sub[5] = data.get("SRS_U");
+			act_sub[6] = data.get("SRS_I");
+			act_sub[7] = data.get("SRS_F");
+			act_sub[8] = data.get("SRS_O");
+			act_sub[9] = act_sub[5] + act_sub[6] +act_sub[7] +act_sub[8];
+			act_sub[10] = data.get("SVVS_U");
+			act_sub[11] = data.get("SVVS_I");
+			act_sub[12] = data.get("SVVS_F");
+			act_sub[13] = data.get("SVVS_O");
+			act_sub[14] = act_sub[10] + act_sub[11] +act_sub[12] +act_sub[13];
+			act_sub[15] = data.get("STLDD_U");
+			act_sub[16] = data.get("STLDD_I");
+			act_sub[17] = data.get("STLDD_F");
+			act_sub[18] = data.get("STLDD_O");
+			act_sub[19] = act_sub[15] + act_sub[16] +act_sub[17] +act_sub[18];
+			act_sub[20] = data.get("SVVI_U");
+			act_sub[21] = data.get("SVVI_I");
+			act_sub[22] = data.get("SVVI_F");
+			act_sub[23] = data.get("SVVI_O");
+			act_sub[24] = act_sub[20] + act_sub[21] +act_sub[22] +act_sub[23];
+			act_sub[25] = data.get("SDDD_U");
+			act_sub[26] = data.get("SDDD_I");
+			act_sub[27] = data.get("SDDD_F");
+			act_sub[28] = data.get("SDDD_O");
+			act_sub[29] = act_sub[25] + act_sub[26] +act_sub[27] +act_sub[28];
+			act_sub[30] = data.get("SVVR_U");
+			act_sub[31] = data.get("SVVR_I");
+			act_sub[32] = data.get("SVVR_F");
+			act_sub[33] = data.get("SVVR_O");
+			act_sub[34] = act_sub[30] + act_sub[31] +act_sub[32] +act_sub[33];
+			act_sub[35] = data.get("SSD_U");
+			act_sub[36] = data.get("SSD_I");
+			act_sub[37] = data.get("SSD_F");
+			act_sub[38] = data.get("SSD_O");
+			act_sub[39] = act_sub[35] + act_sub[36] +act_sub[37] +act_sub[38];
+			act_sub[40] = data.get("Slutrapport_U");
+			act_sub[41] = data.get("Slutrapport_I");
+			act_sub[42] = data.get("Slutrapport_F");
+			act_sub[43] = data.get("Slutrapport_O");
+			act_sub[44] = act_sub[40] + act_sub[41] +act_sub[42] +act_sub[43];
+			
+			act[0] = data.get("Funktionstest");
+			act[1] = data.get("Systemtest");
+			act[2] = data.get("Regressionstest");
+			act[3] = data.get("Meeting");
+			act[4] = data.get("Lecture");
+			act[5] = data.get("Excersice");
+			act[6] = data.get("Terminal");
+			act[7] = data.get("Study");
+			act[8] = data.get("Other");
+			
+			sub[0] = act_sub[0] + act_sub[5] +act_sub[10] +act_sub[15] + act_sub[20] + act_sub[25] +act_sub[30] +act_sub[35] + act_sub[40];
+			sub[1] = act_sub[1] + act_sub[6] +act_sub[11] +act_sub[16] + act_sub[21] + act_sub[26] +act_sub[31] +act_sub[36] + act_sub[41];
+			sub[2] = act_sub[2] + act_sub[7] +act_sub[12] +act_sub[17] + act_sub[22] + act_sub[27] +act_sub[32] +act_sub[37] + act_sub[42];
+			sub[3] = act_sub[3] + act_sub[8] +act_sub[13] +act_sub[18] + act_sub[23] + act_sub[28] +act_sub[33] +act_sub[38] + act_sub[43];	
+			
+			total_time = 0;
+			for (int i : act) {
+				total_time += i;
+			}
+			for (int i = 4; i < act_sub.length; i = i + 5) {
+				int k = act_sub[i];
+				total_time += k;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -139,7 +223,23 @@ public final class ReportGenerator {
 		} else {
 			init_data(data);
 		}
-		
+		return generateViewReport();
+	}
+	
+	/**
+	 * Generates a String-representation of a time report containing the data specified by the data parameter.
+	 * @param data: Contains the data that should be printed in the time report.
+	 */
+	public static String viewReport(Map<String, Integer> data) {
+		if (data == null) {
+			init_test_data();
+		} else {
+			init_data(data);
+		}
+		return generateViewReport();
+	}
+	
+	private static String generateViewReport() {
 		String html = "";
 		html += "<style type='text/css'>"
 				+ "table {border: 1px solid black; border-collapse: collapse; width: 700px; text-align: left;}"
@@ -193,7 +293,6 @@ public final class ReportGenerator {
 					html += "<td colspan='5'>"+lower_activities[i]+"</td>";
 				}
 				if (j == 2) {
-					//html += "<td>"+act_sub[k]+"</td>";
 					html += "<td>"+act[k]+"</td>";
 					k++;
 				}	
@@ -231,9 +330,10 @@ public final class ReportGenerator {
 		html += 		"<td><b>Signerad</td><td colspan='5'></td>";
 		if (signed == 0) {
 			html +=		"<td>NO</td>";
-		}
-		if (signed == 1) {
+		} else if (signed == 1) {
 			html +=		"<td>YES</td>";
+		} else {
+			html += 	"<td></td>";
 		}
 		html += 	"</tr>";
 		
