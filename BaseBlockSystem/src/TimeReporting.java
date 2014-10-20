@@ -141,7 +141,7 @@ public class TimeReporting extends servletBase{
 	/**
 	 * Inserts the data from the new report form into the database.
 	 */
-	private void addNewReport(HttpServletRequest request){
+	private boolean addNewReport(HttpServletRequest request){
 		try {
 			int totalTime = 0;
 			String[] act_sub_values = new String[ReportGenerator.act_sub_names.length];
@@ -150,8 +150,11 @@ public class TimeReporting extends servletBase{
 				String value = request.getParameter(ReportGenerator.act_sub_names[i]);
 				if (!value.equals("")) {
 					act_sub_values[i] = value;
+					if(!checkInt(value)){
+						return false;
+					}
 					totalTime += Integer.parseInt(value);
-				} else {
+				}else {
 					act_sub_values[i] = "0";
 				}
 			}
@@ -160,6 +163,9 @@ public class TimeReporting extends servletBase{
 				String value = request.getParameter(ReportGenerator.lower_activities[i]);
 				if (!value.equals("")) {
 					lower_activity_values[i] = value;
+					if(!checkInt(value)){
+						return false;
+					}
 					totalTime += Integer.parseInt(value);
 				} else {
 					lower_activity_values[i] = "0";
@@ -217,9 +223,10 @@ public class TimeReporting extends servletBase{
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("VendorError: " + e.getErrorCode());
 		}
+		return true;
 	}
 	
-	private boolean weekOk(int userGroupID, int week) {
+	private boolean weekOk(int userGroupID, String week) {
 		try {
 			Statement stmt1 = conn.createStatement();
 			ResultSet rs = stmt1.executeQuery("select * from reports where user_group_id = "+userGroupID+" and week = "+week);
@@ -290,17 +297,24 @@ public class TimeReporting extends servletBase{
 				break;
 			case PRINT_NEW:
 				//ADD CHECK IF WEEK IS CORRECT FORMAT
-				int week = Integer.parseInt(weekStr);
-				if (weekOk(userGroupID, week)) {
-					printNewReport(week, out);
+				
+				if (checkInt(weekStr)) {
+					if (weekOk(userGroupID, weekStr)) {
+						int week = Integer.parseInt(weekStr);
+						printNewReport(week, out);
+					} 
 				} else {
-					out.println("You already have a report for this week");
+					out.println("You already have a report for this week or the format is wrong.");
 					out.println(requestWeekForm());
 				}
 				break;
 			case ADD_NEW:
-				addNewReport(request);
-				response.sendRedirect("TimeReporting?function=view");
+				if(addNewReport(request)){
+					response.sendRedirect("TimeReporting?function=view");
+				} else {
+					out.println("<p>Wrong format input, use only numbers.</p>");
+					printNewReport(Integer.parseInt(weekStr), out);
+				}
 				break;
 			case STATISTICS:
 				break;
@@ -312,6 +326,15 @@ public class TimeReporting extends servletBase{
 		}
 		
 		
+	}
+
+	private boolean checkInt(String str) {
+		try {
+			int integer = Integer.parseInt(str);
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
 	}
 
 	private boolean isAdmin() {
