@@ -493,7 +493,6 @@ public class TimeReporting extends servletBase{
 		
 	
 		int userGroupID = (int) session.getAttribute("userGroupID");
-
 		if (!loggedIn(request)){
 			response.sendRedirect("LogIn");
 		} else if (function != null && !isAdmin()) {
@@ -577,6 +576,7 @@ public class TimeReporting extends servletBase{
 				}
 				break;
 			case STATISTICS:
+				System.out.println(success);
 				if (success != null) {
 					if (success.equals("false")) {
 						out.println("<p>No reports chosen</p>");
@@ -590,7 +590,7 @@ public class TimeReporting extends servletBase{
 				if (!timeReports.isEmpty()) {
 					stats.generateSummarizedReport(timeReports, response);
 				} else {
-					response.sendRedirect("TimeReporting?function=Statistics&success=false");
+					response.sendRedirect("TimeReporting?function=statistics&success=false");
 				}
 				break;
 			}
@@ -646,8 +646,8 @@ public class TimeReporting extends servletBase{
 				out.println("</tr>");
 			}
 		    out.println("</table>");
-		    out.println("<hidden name='nbrOfReports' value="+nbrOfReports+">");
-		    out.println("<hidden name='function' value="+formElement(PRINT_STATISTICS)+">");
+		    //out.println("<hidden name='nbrOfReports' value="+nbrOfReports+">");
+		    //out.println("<hidden name='function' value='printStatistics'>");
 		    out.println("<input  type=" + formElement("submit") + " value="+ formElement("View") +">");
 		    out.println("</form>");
 		    if (inWhile == 0){
