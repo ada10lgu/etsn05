@@ -583,7 +583,6 @@ public class TimeReporting extends servletBase{
 				}
 				break;
 			case STATISTICS:
-				System.out.println(success);
 				if (success != null) {
 					if (success.equals("false")) {
 						out.println("<p>No reports chosen</p>");
@@ -613,7 +612,7 @@ public class TimeReporting extends servletBase{
 		List<Integer> timeReports = new ArrayList<Integer>();
 		//int nbrOfReports = Integer.parseInt(request.getParameter(""));
 		for (int i=1; i<=nbrOfReports; i++) {
-			String reportIDstr = request.getParameter("reportID"+i);
+			String reportIDstr = request.getParameter("reportIDs"+i);
 			if (reportIDstr != null) {
 				int reportID = Integer.parseInt(reportIDstr);
 				timeReports.add(reportID);
