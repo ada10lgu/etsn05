@@ -52,7 +52,9 @@ public class servletBase extends HttpServlet {
     	try{	
     		Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404?" +
-            "user=puss1404&password=ptqp44ed");	
+            "user=puss1404&password=ptqp44ed");
+//			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404test?" +
+//            "user=puss1404test&password=j5jipsh1"); //för testarna
 			access = new Access(conn);
 		} catch (SQLException ex) {
 		    System.out.println("SQLException: " + ex.getMessage());
