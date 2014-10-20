@@ -30,11 +30,13 @@ public abstract class PussTest {
 	public static final String STARTUP_SHELL = "startup.sh";
 	public static final String SHUTDOWN_SHELL = "shutdown.sh";
 	
+	public static final String GROUP_HANDLING_URL = "http://localhost:8080/BaseBlockSystem/GroupHandling";
 	public static final String GROUP_ADMIN_URL = "http://localhost:8080/BaseBlockSystem/ProjectGroupAdmin";
 	public static final String START_URL = "http://localhost:8080/BaseBlockSystem/Start";
 	public static final String LOGIN_URL = "http://localhost:8080/BaseBlockSystem/LogIn";
 	public static final String ADMINISTRATION_URL = "http://localhost:8080/BaseBlockSystem/Administration";
 	public static final String TIMEREPORTING_URL = "http://localhost:8080/BaseBlockSystem/TimeReporting";
+	
 	public static final String LOGIN_T3 = "91";
 	
 	@BeforeClass
@@ -83,7 +85,11 @@ public abstract class PussTest {
 	protected int addUser(String username, String password, int is_admin) throws SQLException {
 		String query = "insert into users (username, password, is_admin) values ('" + username + "', '" + password + "', " + is_admin +");";
 		sendSQLCommand(query);
-		query = "select id from users where username='" + username + "';";
+		return getUserId(username);
+	}
+	
+	protected int getUserId(String username) throws SQLException {
+		String query = "select id from users where username='" + username + "';";
 		ResultSet rs = sendSQLQuery(query);
 		rs.next();
 		return rs.getInt(1);

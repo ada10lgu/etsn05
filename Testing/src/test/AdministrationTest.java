@@ -5,16 +5,20 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.DomElement;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
+import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
+import com.gargoylesoftware.htmlunit.html.HtmlRadioButtonInput;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
@@ -171,7 +175,7 @@ public class AdministrationTest extends PussTest {
 		final HtmlSubmitInput button3 = form3.getInputByValue("Add project");
 		final HtmlTextInput projectNameField3 = form3
 				.getInputByName("projectname");
-		projectNameField2.setValueAttribute(tooLongGroupName);
+		projectNameField3.setValueAttribute(tooLongGroupName);
 		try {
 			page = button3.click();
 		} catch (IOException e) {
@@ -181,6 +185,8 @@ public class AdministrationTest extends PussTest {
 		assertEquals(
 				"Admin kunde lägga till en projektgrupp med ett för långt namn",
 				GROUP_ADMIN_URL, page.getUrl().toString());
+		
+		//TODO kontrollera att databsen är tom
 	}
 
 	@Test
@@ -189,12 +195,17 @@ public class AdministrationTest extends PussTest {
 		String username = "leader";
 		String password = "leader";
 		String group = null;
-		String projectGroup1 = "gouda";
+		String projectGroupName1 = "gouda";
 		String projectGroup2 = "mozzarella";
+		int userId = -1;
 		try {
-			addUser(username, password, 0);
+			userId = addUser(username, password, 0);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			try {
+				userId = getUserId(username);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 		HtmlPage page = null;
 		try {
@@ -213,7 +224,32 @@ public class AdministrationTest extends PussTest {
 		assertEquals("Admin hamnade inte på projektadministrationssidan",
 				GROUP_ADMIN_URL, page.getUrl().toString());
 		
-		//
+		//lägg till projektgrupp
+		final HtmlForm form1 = page.getFormByName("input");
+		final HtmlSubmitInput button1 = form1.getInputByValue("Add project");
+		final HtmlTextInput projectNameField1 = form1
+				.getInputByName("projectname");
+		projectNameField1.setValueAttribute(projectGroupName1);
+		try {
+			page = button1.click();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		assertEquals("Admin kunde inte skapa projektgrupp med namnet: " + projectGroupName1,
+				GROUP_HANDLING_URL, page.getUrl().toString());
+		final HtmlForm form2 = page.getFormByName("input");
+		List<HtmlRadioButtonInput> radioButtons = form2.getRadioButtonsByName("selectedradiouser");
+		for(HtmlRadioButtonInput radioButton : radioButtons) {
+			if(userId == Integer.parseInt(radioButton.getValueAttribute())) {
+				try {
+					radioButton.click();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
+			}
+		}
+		
 	}
 
 }
