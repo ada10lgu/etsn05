@@ -19,11 +19,13 @@ import javax.servlet.http.HttpServletResponse;
 public class ReportHandling extends servletBase{
 	
 	private PrintWriter out;
-	private String sort = "username asc";
-	
+	private String sort;
+	private int reportID;
 	
 	public ReportHandling(){
 		super();
+		sort = "username asc";
+		reportID = -1;
 	}
 
 	private String signString(int signed){
@@ -49,6 +51,8 @@ public class ReportHandling extends servletBase{
 			out.println("<tr><td>Selection</td><td>Username</td><td>Last update</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
 			
 			out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post"));
+			out.println(selectSortList());
+			out.println("<p><input type=" + formElement("submit") + " name='sort' value="+ formElement("Sort") + '>');
 			while(rs.next()){
 		    	String reportID = ""+rs.getInt("ID");
 		    	String userName = rs.getString("username");
@@ -66,8 +70,7 @@ public class ReportHandling extends servletBase{
 				out.println("<td>" + formElement(signString(signed)) + "</td>");
 				out.println("</tr>");
 			}
-			out.println(selectSortList());
-			out.println("<p><input type=" + formElement("submit") + "value=" + formElement("Sort") + '>');
+			out.println("<p><input type=" + formElement("submit") + " name='view' value=" + formElement("View") + '>');
 			out.println("</form>");
 			out.println("</div>");
 		} catch (SQLException e) {
@@ -79,7 +82,7 @@ public class ReportHandling extends servletBase{
 	private String selectSortList(){
 		String html = "";
 		html += "<br><select name='sort'>";
-		html += "<option value='username asc' selected='true'>Sort by: </option>";
+		html += "<option value='0' selected='true'>Sort by: </option>";
 		html += "<option value=" + formElement("username asc") + ">"
 				+ "Namn, stigande" + "</option>";
 		html += "<option value=" + formElement("username desc" ) + ">"
@@ -94,6 +97,58 @@ public class ReportHandling extends servletBase{
 				+ "Osignerat/Signerat" + "</option>";
 		html += "</select>";
 		return html;
+	}
+	
+	/**
+	 * Fetches the data for the time report specified by the reportID parameter
+	 * and passes the data on to the static method viewReport in the static ReportGenerator class.
+	 * @param reportID: The id of the time report.
+	 */
+	private void printViewReport(){
+		try {
+			Statement stmt = conn.createStatement();
+			String query = "select reports.week, reports.total_time, reports.signed, ";
+			String q = "";
+			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+				String valueStr = "report_times." + ReportGenerator.act_sub_names[i];
+				q += valueStr+",";
+			}
+			for (int i = 0; i<ReportGenerator.lower_activities.length-1; i++) {
+				String valueStr = ReportGenerator.lower_activities[i];
+				q += valueStr+",";
+			}
+			q += ReportGenerator.lower_activities[ReportGenerator.lower_activities.length-1];
+			query += q;
+			query += ", reports.user_group_id, reports.date, users.username, groups.name from reports";
+			String inner = " inner join report_times on reports.id = report_times.report_id";			
+			String inner1 = " inner join user_group on reports.user_group_id = user_group.id";
+			String inner2 = " inner join users on user_group.user_id = users.id";
+			String inner3 = " inner join groups on user_group.group_id = groups.id";
+			String end = " where reports.id = " + reportID;
+			query += inner;
+			query += inner1;
+			query += inner2;
+			query += inner3;
+			query += end;
+			ResultSet rs = stmt.executeQuery(query);
+			if(rs.first()){				
+				out.println(ReportGenerator.viewReport(rs));
+				rs = stmt.executeQuery("Select signed from reports where id=" + reportID);
+				rs.first();
+				out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post"));
+				if(rs.getInt("signed") == 0){
+					out.println("<p><input type=" + formElement("submit") + " name='sign' value="+ formElement("Sign") + '>');
+				} else {
+					out.println("<p><input type=" + formElement("submit") + " name='unsign' value="+ formElement("Unsign") + '>');
+				}
+				out.println("</form>");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("VendorError: " + e.getErrorCode());
+		}
 	}
 	
 	/**
@@ -115,19 +170,50 @@ public class ReportHandling extends servletBase{
 		out = response.getWriter();
 		out.println(getPageIntro());
 		out.println(printMainMenu(request));
-		HttpSession session = request.getSession();
-		//     	HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession(true);
 		Object groupIDObject = session.getAttribute("groupID");
 		int groupID = -1;
 		if(groupIDObject != null) {		
 			groupID = Integer.parseInt((String) groupIDObject);
-			
-			sort = request.getParameter("sort"); 
-			showAllReports(groupID);
+			String reportIDString = request.getParameter("reportID");
+			String buttonView = request.getParameter("view");
+			if(reportIDString != null && buttonView != null){
+				reportID = Integer.parseInt(reportIDString);
+				printViewReport();
+			} else {
+				// Will be fixed soon
+				/*				String buttonSign = request.getParameter("sign");
+				String buttonUnsign = request.getParameter("unsign");
+				if(buttonSign != null){
+					System.out.println("inne i sign");
+					Statement stmt;
+					try {
+						stmt = conn.createStatement();
+						String statement = "Update reports SET signed = 1 where ID=" + reportID; 
+						stmt.executeUpdate(statement);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}			
+				}	
+				if(buttonUnsign != null){
+					Statement stmt;
+					try {
+						stmt = conn.createStatement();
+						String statement = "Update reports SET signed = 0 where ID=" + reportID; 
+						stmt.executeUpdate(statement);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}			
+				}			
+				 */				String buttonSort = request.getParameter("sort");
+				 if(buttonSort != null){
+					 String sortOrder = request.getParameter("sort");
+					 if(!sortOrder.equals("0")){
+						 sort = sortOrder;
+					 }
+				 }			
+				 showAllReports(groupID);
+			}
 		}
-		
 	}
-
-
-
 }
