@@ -56,7 +56,7 @@ public class TimeReporting extends servletBase{
 		    while(rs.next()){		    	
 		    	inWhile = 1;
 		    	String reportID = ""+rs.getInt("ID");
-				int date = rs.getInt("date");
+				Date date = rs.getDate("date");
 				int week = rs.getInt("week");
 				int totalTime = rs.getInt("total_time");
 				int signed = rs.getInt("signed");
@@ -67,7 +67,7 @@ public class TimeReporting extends servletBase{
 				out.println("<td>" + date + "</td>");
 				out.println("<td>" + week + "</td>");
 				out.println("<td>" + totalTime + "</td>");
-				out.println("<td>" + formElement(signString(signed)) + "</td>");
+				out.println("<td>" + signString(signed) + "</td>");
 			//	out.println("<td>" + "<a href='TimeReporting?function="+ VIEW_REPORT + "&reportID="+ reportID + "'>View" + "</a></td>");
 				//out.println("<td>" + "<a href='TimeReporting?function="+ UPDATE + "&reportID="+ reportID + "'>Update" + "</a></td>");
 				out.println("</tr>");
@@ -114,7 +114,7 @@ public class TimeReporting extends servletBase{
 				out.println("<td>" + date + "</td>");
 				out.println("<td>" + week + "</td>");
 				out.println("<td>" + totalTime + "</td>");
-				out.println("<td>" + formElement(signString(signed)) + "</td>");
+				out.println("<td>" + signString(signed) + "</td>");
 				//out.println("<td>" + "<a href='TimeReporting?function="+ VIEW_REPORT + "&reportID="+ reportID + "'>Delete" + "</a></td>");
 				//out.println("<td>" + "<a href='TimeReporting?function="+ UPDATE + "&reportID="+ reportID + "'>Update" + "</a></td>");
 				out.println("</tr>");
@@ -385,7 +385,7 @@ public class TimeReporting extends servletBase{
 			}
 			
 			Calendar cal = Calendar.getInstance();
-			Date date = new Date(cal.getTimeInMillis()); //PUTTING THIS DATE OBJECT INTO THE DATABASE DOESN'T WORK, PLEASE HAVE A LOOK
+			Date date = new Date(cal.getTimeInMillis()); 
 			String week = request.getParameter("week");
 			int userGroupID = (int) session.getAttribute("userGroupID");
 
@@ -436,12 +436,12 @@ public class TimeReporting extends servletBase{
 		return true;
 	}
 	
-	private boolean weekOk(int userGroupID, String week) {
+	private int weekOk(int userGroupID, String week) {
 		try {
 			Statement stmt1 = conn.createStatement();
 			ResultSet rs = stmt1.executeQuery("select * from reports where user_group_id = "+userGroupID+" and week = "+week);
 			if (rs.first()) {
-				return false;
+				return rs.getInt("id");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -449,7 +449,7 @@ public class TimeReporting extends servletBase{
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("VendorError: " + e.getErrorCode());
 		}
-		return true;
+		return -1;
 
 	}
 
@@ -486,6 +486,7 @@ public class TimeReporting extends servletBase{
 		String reportID = request.getParameter("reportID");
 		String update = request.getParameter("update");
 		String delete = request.getParameter("delete");
+		String success = request.getParameter("success");
 		
 	
 		int userGroupID = (int) session.getAttribute("userGroupID");
@@ -498,6 +499,9 @@ public class TimeReporting extends servletBase{
 				//String testReport 
 				if(reportID != null){					
 					response.sendRedirect("TimeReporting?function=viewReport&reportID="+reportID);
+				}
+				if (success != null && success.equals("true")){
+					out.println("Time report was saved successfully");
 				}
 				viewReportList((int) session.getAttribute("userGroupID"));
 				break;
@@ -528,7 +532,7 @@ public class TimeReporting extends servletBase{
 				break;
 			case ADD_UPDATE_REPORT:
 				if(updateReport(Integer.parseInt(reportID),request)){
-					response.sendRedirect("TimeReporting?function=view");
+					response.sendRedirect("TimeReporting?function=view&success=true");
 				} else {
 					out.println("<p>Wrong format input, use only numbers and the numbers have to be between 0-99999.</p>");
 					printNewReport(Integer.parseInt(weekStr), out);
@@ -538,19 +542,23 @@ public class TimeReporting extends servletBase{
 			case NEW:
 				if (weekStr != null){
 					if (checkInt(weekStr)&&(Integer.parseInt(weekStr)<100)){
-						if (weekOk(userGroupID, weekStr)) {
+						int weekOk = weekOk(userGroupID, weekStr);
+						if (weekOk < 0) {
 							response.sendRedirect("TimeReporting?function=printNew&week="+weekStr);
 						} else {
-							out.println("You already have a report for this week");
-							out.println(requestWeekForm());
+							if(!isSigned(weekOk)){
+								response.sendRedirect("TimeReporting?function=updateReport&reportID="+weekOk);
+							} else {
+								response.sendRedirect("TimeReporting?function=viewReport&reportID="+weekOk);
+							}
 						}
 					} else {
 						out.println("Wrong format");
-						out.println(requestWeekForm());
+						out.println(requestWeekForm(request));
 					}
 					
 				} else {
-					out.println(requestWeekForm()); //create request for weeknumber and a ok button.
+					out.println(requestWeekForm(request)); //create request for weeknumber and a ok button.
 				}
 				break;
 			case PRINT_NEW:
@@ -559,7 +567,7 @@ public class TimeReporting extends servletBase{
 				break;
 			case ADD_NEW:
 				if(addNewReport(request)){
-					response.sendRedirect("TimeReporting?function=view");
+					response.sendRedirect("TimeReporting?function=view&success=true");
 				} else {
 					out.println("<p>Wrong format input, use only numbers and the numbers have to be between 0-99999.</p>");
 					printNewReport(Integer.parseInt(weekStr), out);
@@ -575,6 +583,21 @@ public class TimeReporting extends servletBase{
 		}
 		
 		
+	}
+
+	private boolean isSigned(int reportID) {
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select signed from reports where id="+reportID);
+			if(rs.first() && rs.getInt("signed") == 1){
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	private boolean checkInt(String str) {
@@ -599,7 +622,25 @@ public class TimeReporting extends servletBase{
 		return false;
 	}
 
-	private String requestWeekForm() {
+	private String requestWeekForm(HttpServletRequest request) {
+		String message = "";
+		int latestWeek = -1;
+		int userGroupID = (int) session.getAttribute("userGroupID");
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select week from reports where id=(select max(id) from reports) and user_group_id="+userGroupID);
+			if(rs.first()){
+				latestWeek = rs.getInt("week");
+				message += "The latest report that was created was week " + latestWeek;
+			} else {
+				message += "There are no previous reports.";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		String html = "<p>Please enter week number:</p>";
 		html += "<p> <form name=" + formElement("input");
 		html += " method=" + formElement("post");
@@ -608,6 +649,7 @@ public class TimeReporting extends servletBase{
 		html += "<hidden name='function' value='printNew'>";
 		html += "<p> <input type=" + formElement("submit") + "value="
 				+ formElement("Submit") + '>';
+		html += "<p>"+message+"</p>";
 		html += "</form>";
 		return html;
 	}
