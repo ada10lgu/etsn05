@@ -25,6 +25,8 @@ public class TimeReporting extends servletBase{
 	protected static final String VIEW_REPORT = "viewReport";
 	protected static final String UPDATE = "update";
 	protected static final String UPDATE_REPORT = "updateReport";
+	protected static final String ADD_UPDATE_REPORT = "addUpdateReport";
+	
 	protected static final String NEW = "new";
 	protected static final String PRINT_NEW = "printNew";
 	protected static final String ADD_NEW = "addNew";
@@ -45,7 +47,7 @@ public class TimeReporting extends servletBase{
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from reports where user_group_id=" + userGroupID + " order by week asc");
 			//create table
-			out.println("<form name=" + formElement("input") + " method=" + formElement("post"));
+			out.println("<form name=" + formElement("input") + " method=" + formElement("post")+ ">");
 			out.println("<p>Time Reports:</p>");
 		    out.println("<table border=" + formElement("1") + ">");
 		    out.println("<tr><td>Selection</td><td>Last update</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
@@ -97,7 +99,7 @@ public class TimeReporting extends servletBase{
 		    out.println("<table border=" + formElement("1") + ">");
 		    out.println("<tr><td>Selection</td><td>Last update</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
 		    int inWhile = 0;
-		    out.println("<form name=" + formElement("input") + " method=" + formElement("post"));	    	
+		    out.println("<form name=" + formElement("input") + " method=" + formElement("post") +">");	    	
 		    while(rs.next()){		    	
 		    	inWhile = 1;
 		    	String reportID = ""+rs.getInt("ID");
@@ -113,12 +115,15 @@ public class TimeReporting extends servletBase{
 				out.println("<td>" + week + "</td>");
 				out.println("<td>" + totalTime + "</td>");
 				out.println("<td>" + formElement(signString(signed)) + "</td>");
-			//	out.println("<td>" + "<a href='TimeReporting?function="+ VIEW_REPORT + "&reportID="+ reportID + "'>View" + "</a></td>");
+				//out.println("<td>" + "<a href='TimeReporting?function="+ VIEW_REPORT + "&reportID="+ reportID + "'>Delete" + "</a></td>");
 				//out.println("<td>" + "<a href='TimeReporting?function="+ UPDATE + "&reportID="+ reportID + "'>Update" + "</a></td>");
 				out.println("</tr>");
 			}
-		    out.println("<hidden name='function' value='updateReport'");		    
-		    out.println("<input  type=" + formElement("submit") + " value="+ formElement("Update") +">");
+		    out.println("</table>");
+		    out.println("<hidden name='function' value='updateReport'>");
+		    
+		    out.println("<input  type=" + formElement("submit") + " name='update' value="+ formElement("Update") +">");
+		    out.println("<input  type=" + formElement("submit") + " name='delete' value="+ formElement("Delete") +">");
 		    out.println("</form>");
 		    if (inWhile == 0){
 		    	out.println("No reports to show");
@@ -188,7 +193,42 @@ public class TimeReporting extends servletBase{
 	 * @param reportID: The id of the time report.
 	 */
 	private void printUpdateReport(int reportID){
-		
+		try {
+			Statement stmt = conn.createStatement();
+			String query = "select reports.week, reports.total_time, reports.signed, ";
+			String q = "";
+			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+				String valueStr = "report_times." + ReportGenerator.act_sub_names[i];
+				q += valueStr+",";
+			}
+			for (int i = 0; i<ReportGenerator.lower_activities.length-1; i++) {
+				String valueStr = ReportGenerator.lower_activities[i];
+				q += valueStr+",";
+			}
+			q += ReportGenerator.lower_activities[ReportGenerator.lower_activities.length-1];
+			query += q;
+
+			query += ", reports.user_group_id, reports.date, users.username, groups.name from reports";
+			String inner = " inner join report_times on reports.id = report_times.report_id";			
+			String inner1 = " inner join user_group on reports.user_group_id = user_group.id";
+			String inner2 = " inner join users on user_group.user_id = users.id";
+			String inner3 = " inner join groups on user_group.group_id = groups.id";
+			String end = " where reports.id = " + reportID;
+			query += inner;
+			query += inner1;
+			query += inner2;
+			query += inner3;
+			query += end;
+			ResultSet rs = stmt.executeQuery(query);
+			if(rs.first()){				
+				out.println(ReportGenerator.updateReport(rs,reportID));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("VendorError: " + e.getErrorCode());
+		}
 	}
 	
 	/**
@@ -218,8 +258,81 @@ public class TimeReporting extends servletBase{
 	 * Updates the data stored in the database for the report specified by the reportID parameter. 
 	 * @param reportID: The id of the time report to update.
 	 */
-	private void updateReport(int reportID){
-		
+	private boolean updateReport(int reportID, HttpServletRequest request){
+		try {
+			int totalTime = 0;
+			String[] act_sub_values = new String[ReportGenerator.act_sub_names.length];
+			String[] lower_activity_values = new String[ReportGenerator.lower_activities.length];
+			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+				String value = request.getParameter(ReportGenerator.act_sub_names[i]);
+				if (!value.equals("")) {
+					act_sub_values[i] = value;
+					if(!checkInt(value)){
+						return false;
+					}
+					totalTime += Integer.parseInt(value);
+				}else {
+					act_sub_values[i] = "0";
+				}
+			}
+
+			for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
+				String value = request.getParameter(ReportGenerator.lower_activities[i]);
+				if (!value.equals("")) {
+					lower_activity_values[i] = value;
+					if(!checkInt(value)){
+						return false;
+					}
+					totalTime += Integer.parseInt(value);
+				} else {
+					lower_activity_values[i] = "0";
+				}
+			}
+			
+			Calendar cal = Calendar.getInstance();
+			Date date = new Date(cal.getTimeInMillis()); //PUTTING THIS DATE OBJECT INTO THE DATABASE DOESN'T WORK, PLEASE HAVE A LOOK
+			//String week = request.getParameter("week");
+			//int userGroupID = (int) session.getAttribute("userGroupID");
+
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE reports SET date='"+date.toString()+"',total_time="+totalTime+" WHERE id="+reportID);
+			stmt.executeUpdate("DELETE FROM report_times WHERE report_id="+reportID);
+			stmt.close();
+
+			String q = "INSERT INTO report_times (report_id, ";
+			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+				String valueStr = ReportGenerator.act_sub_names[i];
+				q += valueStr+",";
+			}
+
+			for (int i = 0; i<ReportGenerator.lower_activities.length-1; i++) {
+				String valueStr = ReportGenerator.lower_activities[i];
+				q += valueStr+",";
+			}
+			q += ReportGenerator.lower_activities[ReportGenerator.lower_activities.length-1];
+
+			q += ") VALUES ("+reportID+",";
+			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+				String valueStr = act_sub_values[i];
+				q += valueStr+",";
+			}
+
+			for (int i = 0; i<ReportGenerator.lower_activities.length-1; i++) {
+				String valueStr = lower_activity_values[i];
+				q += valueStr+",";
+			}
+			q += lower_activity_values[lower_activity_values.length-1]+");";
+			Statement stmt2 = conn.createStatement();
+			stmt2.executeUpdate(q);
+			stmt2.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("VendorError: " + e.getErrorCode());
+		}
+		return true;
 	}
 	
 	/**
@@ -228,7 +341,13 @@ public class TimeReporting extends servletBase{
 	 * @param reportID: The id of the time report to delete.
 	 */
 	private void deleteReport(int reportID){
-		
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("DELETE FROM report_times WHERE report_id="+reportID);
+			stmt.executeUpdate("DELETE FROM reports WHERE id="+reportID);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -304,7 +423,6 @@ public class TimeReporting extends servletBase{
 				q += valueStr+",";
 			}
 			q += lower_activity_values[lower_activity_values.length-1]+");";
-			System.out.println(q);
 			Statement stmt2 = conn.createStatement();
 			stmt2.executeUpdate(q);
 			stmt2.close();
@@ -366,6 +484,8 @@ public class TimeReporting extends servletBase{
 		function = request.getParameter("function");
 		String weekStr = request.getParameter("week");
 		String reportID = request.getParameter("reportID");
+		String update = request.getParameter("update");
+		String delete = request.getParameter("delete");
 		
 	
 		int userGroupID = (int) session.getAttribute("userGroupID");
@@ -388,11 +508,33 @@ public class TimeReporting extends servletBase{
 				//printViewReport(reportID);
 				break;
 			case UPDATE:
-				updateReportList((int) session.getAttribute("userGroupID"));				
+			if(delete!=null&&reportID!=null){
+				deleteReport(Integer.parseInt(reportID));
+				updateReportList((int) session.getAttribute("userGroupID"));
+				
+			}
+			else if(update!=null&&reportID!=null){
+				response.sendRedirect("TimeReporting?function=updateReport&reportID="+reportID);
+			}
+			else{
+				updateReportList((int) session.getAttribute("userGroupID"));	
+			}
 				break;
 			case UPDATE_REPORT:  
-				//updateReport(reportID);
+				if(reportID != null){		
+					printUpdateReport(Integer.parseInt(reportID));
+					
+				}
 				break;
+			case ADD_UPDATE_REPORT:
+				if(updateReport(Integer.parseInt(reportID),request)){
+					response.sendRedirect("TimeReporting?function=view");
+				} else {
+					out.println("<p>Wrong format input, use only numbers and the numbers have to be between 0-99999.</p>");
+					printNewReport(Integer.parseInt(weekStr), out);
+				}
+				break;	
+				
 			case NEW:
 				if (weekStr != null){
 					if (checkInt(weekStr)&&(Integer.parseInt(weekStr)<100)){
@@ -419,7 +561,7 @@ public class TimeReporting extends servletBase{
 				if(addNewReport(request)){
 					response.sendRedirect("TimeReporting?function=view");
 				} else {
-					out.println("<p>Wrong format input, use only numbers.</p>");
+					out.println("<p>Wrong format input, use only numbers and the numbers have to be between 0-99999.</p>");
 					printNewReport(Integer.parseInt(weekStr), out);
 				}
 				break;
