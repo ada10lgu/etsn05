@@ -155,7 +155,6 @@ public class TimeReporting extends servletBase{
 			}
 			query += q;
 			query += " inner join report_times on reports.id = report_times.report_id where reports.id = " + reportID;
-			System.out.println(query);
 			ResultSet rs = stmt.executeQuery(query);
 			if(rs.first()){				
 				out.println(ReportGenerator.viewReport(rs));
@@ -264,7 +263,6 @@ public class TimeReporting extends servletBase{
 			if (rs.first()) {
 				reportID = rs.getInt("id");
 			}
-			System.out.println(reportID);
 			stmt.close();
 
 			String q = "INSERT INTO report_times (report_id, ";
