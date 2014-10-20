@@ -39,7 +39,7 @@ public abstract class PussTest {
 	
 	@BeforeClass
 	public static void initiateServerAndDB() {
-		//startServer();
+		startServer();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404?" + "user=puss1404&password=ptqp44ed");	
@@ -51,7 +51,7 @@ public abstract class PussTest {
 	
 	@AfterClass
 	public static void tearDown() {
-		shutDownServer();
+		//shutDownServer();
 		try {
 			webClient.closeAllWindows();
 		} catch(Exception e) {
