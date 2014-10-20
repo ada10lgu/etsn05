@@ -67,7 +67,7 @@ public class ProjectLeader extends servletBase {
 			response.sendRedirect("LogIn");
 		} else if (isAllowed) { //Check that user is allowed
 			out.println("<h1>Project Management " + "</h1>");
-			if (username != null) {
+			if (username != null && !role.equals("0")) {
 				if (myName.equals("admin")) {
 					listAllGroups(out);
 				}

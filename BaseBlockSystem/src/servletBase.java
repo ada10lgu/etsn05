@@ -117,6 +117,9 @@ public class servletBase extends HttpServlet {
                        + "height: 100%;"
                        + ""
                        + "}"
+                       + ".floati{"
+                       + "float:left;"
+                       + "}"
                        + "</style>" +
                        "<body>";
     	
