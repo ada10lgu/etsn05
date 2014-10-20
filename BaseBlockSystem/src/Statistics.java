@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -122,8 +123,9 @@ public class Statistics extends servletBase {
     private boolean generateSummarizedReport(List<Integer> timeReports, HttpServletResponse response){
     	PrintWriter out;
     	try {
-			Statement stmt = conn.createStatement();
-			String query = "select reports.week, reports.total_time, reports.signed, ";
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		
+			String query = "select reports.id, reports.week, reports.total_time, reports.signed, ";
 			String q = "";
 			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
 				String valueStr = "report_times." + ReportGenerator.act_sub_names[i];
@@ -153,12 +155,14 @@ public class Statistics extends servletBase {
 			query += end;
 			ResultSet rs = stmt.executeQuery(query);
 			rs.first();
-			while(rs.next()){				
+			while(rs.next()){
+				
 				for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
 					int val = rs.getInt(ReportGenerator.act_sub_names[i]);
 					rs.previous();
 					val += rs.getInt(ReportGenerator.act_sub_names[i]);
 					rs.updateInt(ReportGenerator.act_sub_names[i], val);
+					rs.updateRow();
 					rs.next();
 				}
 				for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
@@ -166,9 +170,11 @@ public class Statistics extends servletBase {
 					rs.previous();
 					val += rs.getInt(ReportGenerator.act_sub_names[i]);
 					rs.updateInt(ReportGenerator.act_sub_names[i], val);
+					rs.updateRow();
 					rs.next();
 				}	
 				rs.deleteRow();
+				rs.refreshRow();
 				rs.first();
 			}
 			
@@ -325,7 +331,24 @@ public class Statistics extends servletBase {
 			case "commonActivity" :
 				out.println("Common : " + commonActivity(Integer.parseInt((String)session.getAttribute("groupID"))));
 				break;	
+			case "AllReports" :
+			
+	        	try {
+	        		Statement stmt = conn.createStatement();
+					ResultSet rs = stmt.executeQuery("select * from reports");
+					List<Integer> ids = new ArrayList<Integer>();
+					while(rs.next()){
+						ids.add(rs.getInt("id"));
+					}
+					generateSummarizedReport(ids, response);
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+				out.println("Common : " + commonActivity(Integer.parseInt((String)session.getAttribute("groupID"))));
+				break;	
 			}
+			
 		}else{
 			out.print(printOptions());
 		}
@@ -335,7 +358,7 @@ public class Statistics extends servletBase {
 	private String printOptions(){
 		String html ="<ul><li><a href='Statistics?function=busiestWeek'>Busy week</a></li>";
 		html += "<li><a href='Statistics?function=commonActivity'>Common</a></li>";
-		
+		html += "<li><a href='Statistics?function=AllReports'>All reports</a></li>";
 		return html;
 	}
 
