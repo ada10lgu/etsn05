@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -82,29 +83,31 @@ public class Statistics extends servletBase {
 			query += inner3;
 			query += end;
 			ResultSet rs = stmt.executeQuery(query);
-			rs.first();
-			while(rs.next()){				
+			Map<String, Integer> total = new HashMap<String, Integer>();
+			if (rs.next()) {
 				for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
 					int val = rs.getInt(ReportGenerator.act_sub_names[i]);
-					rs.previous();
-					val += rs.getInt(ReportGenerator.act_sub_names[i]);
-					rs.updateInt(ReportGenerator.act_sub_names[i], val);
-					rs.next();
+					total.put(ReportGenerator.act_sub_names[i], val);
 				}
 				for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
+					int val = rs.getInt(ReportGenerator.lower_activities[i]);
+					total.put(ReportGenerator.lower_activities[i], val);
+				}
+			}
+			while(rs.next()){
+				for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
 					int val = rs.getInt(ReportGenerator.act_sub_names[i]);
-					rs.previous();
-					val += rs.getInt(ReportGenerator.act_sub_names[i]);
-					rs.updateInt(ReportGenerator.act_sub_names[i], val);
-					rs.next();
-				}	
-				rs.deleteRow();
-				rs.first();
+					total.put(ReportGenerator.act_sub_names[i], total.get(ReportGenerator.act_sub_names[i]) + val);
+				}
+				for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
+					int val = rs.getInt(ReportGenerator.lower_activities[i]);
+					total.put(ReportGenerator.lower_activities[i], total.get(ReportGenerator.lower_activities[i]) + val);
+				}
 			}
 			
 			if(rs.first()){		
 				out = response.getWriter();
-				out.println(ReportGenerator.viewReport(rs));
+				out.println(ReportGenerator.viewReport(total));
 				return true;
 			}
 		} catch (Exception e) {
@@ -123,7 +126,7 @@ public class Statistics extends servletBase {
     protected boolean generateSummarizedReport(List<Integer> timeReports, HttpServletResponse response){
     	PrintWriter out;
     	try {
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			Statement stmt = conn.createStatement();
 		
 			String query = "select reports.id, reports.week, reports.total_time, reports.signed, ";
 			String q = "";
@@ -153,43 +156,40 @@ public class Statistics extends servletBase {
 			query += inner2;
 			query += inner3;
 			query += end;
-			ResultSet rs = stmt.executeQuery(query);
-			rs.first();
-			while(rs.next()){
-				
+			ResultSet rs = stmt.executeQuery(query);			
+			Map<String, Integer> total = new HashMap<String, Integer>();
+			if (rs.next()) {
 				for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
 					int val = rs.getInt(ReportGenerator.act_sub_names[i]);
-					rs.previous();
-					val += rs.getInt(ReportGenerator.act_sub_names[i]);
-					rs.updateInt(ReportGenerator.act_sub_names[i], val);
-					rs.updateRow();
-					rs.next();
+					total.put(ReportGenerator.act_sub_names[i], val);
 				}
 				for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
+					int val = rs.getInt(ReportGenerator.lower_activities[i]);
+					total.put(ReportGenerator.lower_activities[i], val);
+				}
+			}
+			while(rs.next()){
+				for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
 					int val = rs.getInt(ReportGenerator.act_sub_names[i]);
-					rs.previous();
-					val += rs.getInt(ReportGenerator.act_sub_names[i]);
-					rs.updateInt(ReportGenerator.act_sub_names[i], val);
-					rs.updateRow();
-					rs.next();
-				}	
-				rs.deleteRow();
-				rs.refreshRow();
-				rs.first();
+					total.put(ReportGenerator.act_sub_names[i], total.get(ReportGenerator.act_sub_names[i]) + val);
+				}
+				for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
+					int val = rs.getInt(ReportGenerator.lower_activities[i]);
+					total.put(ReportGenerator.lower_activities[i], total.get(ReportGenerator.lower_activities[i]) + val);
+				}
 			}
 			
-			if(rs.first()){		
-				out = response.getWriter();
-				out.println(ReportGenerator.viewReport(rs));
-				return true;
-			}
+			out = response.getWriter();
+			out.println(ReportGenerator.viewReport(total));
+			return true;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("SQLException: " + e.getMessage());
 			return false;
 		}
-    	return false;
     }
+   
     /**
      * Finds the activity that has the most combined minutes reported by the users in the projectgroup.
      * @param groupID: The project leaders group id.
@@ -254,6 +254,7 @@ public class Statistics extends servletBase {
     	
     	return common;
     }
+    
     /**
      * Finds the week with the most combined minutes reported by the users in the project group.
      * @param groupID: The project leaders group id.
@@ -296,7 +297,6 @@ public class Statistics extends servletBase {
     	//f�r varje vecka addera
     	//kolla den med mest
     	//reuturnera veckonummer
-    	
     	return busiestWeek;
     }
     
@@ -332,7 +332,6 @@ public class Statistics extends servletBase {
 				out.println("Common : " + commonActivity(Integer.parseInt((String)session.getAttribute("groupID"))));
 				break;	
 			case "AllReports" :
-			
 	        	try {
 	        		Statement stmt = conn.createStatement();
 					ResultSet rs = stmt.executeQuery("select * from reports");
@@ -345,7 +344,6 @@ public class Statistics extends servletBase {
 					
 					e.printStackTrace();
 				}
-				out.println("Common : " + commonActivity(Integer.parseInt((String)session.getAttribute("groupID"))));
 				break;	
 			}
 			
