@@ -10,10 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.*;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
@@ -33,6 +30,7 @@ public abstract class PussTest {
 	public static final String STARTUP_SHELL = "startup.sh";
 	public static final String SHUTDOWN_SHELL = "shutdown.sh";
 	
+	public static final String GROUP_ADMIN_URL = "http://localhost:8080/BaseBlockSystem/ProjectGroupAdmin";
 	public static final String START_URL = "http://localhost:8080/BaseBlockSystem/Start";
 	public static final String LOGIN_URL = "http://localhost:8080/BaseBlockSystem/LogIn";
 	public static final String ADMINISTRATION_URL = "http://localhost:8080/BaseBlockSystem/Administration";
@@ -53,7 +51,7 @@ public abstract class PussTest {
 	
 	@AfterClass
 	public static void tearDown() {
-		//shutDownServer();
+		shutDownServer();
 		try {
 			webClient.closeAllWindows();
 		} catch(Exception e) {
@@ -92,28 +90,26 @@ public abstract class PussTest {
 	}
 	
 	protected void deleteUser(String username) throws SQLException {
-		String query = "select id from users where username = '" + username + "';";
-		ResultSet rs = sendSQLQuery(query);
-		rs.next();
-		int userId = rs.getInt(1);
-		query = "delete from user_group where user_id = " + userId + ";";
-		sendSQLCommand(query);
-		
-		query = "delete from log where user_id = " + userId + ";";
-		sendSQLCommand(query);
-		
-		query = "delete from users where username  = '" + username + "';";
-		sendSQLCommand(query);
-		
+		ResultSet rs = getUserByName(username);
+		if (rs.next()) {
+			int userId = rs.getInt(1);
+			String query = "delete from user_group where user_id = " + userId + ";";
+			sendSQLCommand(query);
+			
+			query = "delete from log where user_id = " + userId + ";";
+			sendSQLCommand(query);
+			
+			query = "delete from users where username = '" + username + "';";
+			sendSQLCommand(query);
+		}
 	}
 	
 	protected void deleteGroup(String groupName) throws SQLException {
-		String query = "select id from groups where name = '" + groupName + "';";
-		ResultSet rs = sendSQLQuery(query);
+		ResultSet rs = getGroupByName(groupName);
 		if(rs.next()) {
 			int groupId = rs.getInt(1);
 			
-			query = "delete from user_group where group_id = " + groupId + ";";
+			String query = "delete from user_group where id = " + groupId + ";";
 			sendSQLCommand(query);
 			
 			query = "delete from groups where name = '" + groupName + "';";
@@ -128,6 +124,27 @@ public abstract class PussTest {
 		ResultSet rs = sendSQLQuery(query);
 		rs.next();
 		return rs.getInt(1);
+	}
+	
+
+
+	private ResultSet getUserByName(String username) throws SQLException {
+		String query = "select id from users where username = '" + username + "';";
+		return sendSQLQuery(query);
+	}
+	
+	private ResultSet getGroupByName(String groupName) throws SQLException {
+		String query = "select id from groups where name = '" + groupName + "';";
+		return sendSQLQuery(query);
+	}
+	
+	protected void addUserToGroup(String username, String groupName, String role) throws SQLException {
+		ResultSet userRS = getUserByName(username);
+		userRS.next();
+		ResultSet groupRS = getGroupByName(groupName);
+		groupRS.next();
+		String query = "insert into user_group (user_id, group_id, role) values (" + userRS.getInt(1) + ", " + groupRS.getInt(1) + ", '" + role +"');";
+		sendSQLCommand(query);
 	}
 	
 	protected int assignGroup(int userId, int groupId, String role) throws SQLException {
@@ -167,12 +184,14 @@ public abstract class PussTest {
 	    final HtmlSubmitInput button = form.getInputByValue("Submit");
 	    final HtmlTextInput userField = form.getInputByName("user");
 	    final HtmlPasswordInput passwordField = form.getInputByName("password");
-	    final HtmlSelect groupList = form.getSelectByName("groupID");
 
 	    // Change the value of the text field
 	    userField.setValueAttribute(username);
 	    passwordField.setValueAttribute(password);
-	    groupList.setSelectedAttribute(groupList.getOptionByText(group), true);
+	    if(group != null) {
+	    	final HtmlSelect groupList = form.getSelectByName("groupID");
+	    	groupList.setSelectedAttribute(groupList.getOptionByText(group), true);
+	    }
 	    //	    groupList.setSelectedAttribute(LOGIN_T3, true);
 
 	    // Now submit the form by clicking the button and get back the second page.
