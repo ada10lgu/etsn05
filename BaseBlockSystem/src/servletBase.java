@@ -147,7 +147,7 @@ public class servletBase extends HttpServlet {
         	menu+= "<ul>";
         	menu+= "<li><a href='ProjectLeader'>Users</a></li>";
         	menu+= "<li><a href='#'>Reports</a></li>";
-        	menu+= "<li><a href='#'>Statistics</a></li>";
+        	menu+= "<li><a href='Statistics'>Statistics</a></li>";
         	menu+= "</ul>";
         	menu+= "</li>";
     	}    	
