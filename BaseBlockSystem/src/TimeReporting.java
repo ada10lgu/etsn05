@@ -45,11 +45,11 @@ public class TimeReporting extends servletBase{
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from reports where user_group_id=" + userGroupID + " order by week asc");
 			//create table
+			out.println("<form name=" + formElement("input") + " method=" + formElement("post"));
 			out.println("<p>Time Reports:</p>");
 		    out.println("<table border=" + formElement("1") + ">");
 		    out.println("<tr><td>Selection</td><td>Last update</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
-		    int inWhile = 0;
-		    out.println("<form name=" + formElement("input") + " method=" + formElement("post"));
+		    int inWhile = 0;   
 	    	
 		    while(rs.next()){		    	
 		    	inWhile = 1;
@@ -70,7 +70,8 @@ public class TimeReporting extends servletBase{
 				//out.println("<td>" + "<a href='TimeReporting?function="+ UPDATE + "&reportID="+ reportID + "'>Update" + "</a></td>");
 				out.println("</tr>");
 			}
-		    out.println("<hidden name='function' value='viewReport'");		    
+		    out.println("</table>");
+		    out.println("<hidden name='function' value='viewReport'>");		    
 		    out.println("<input  type=" + formElement("submit") + " value="+ formElement("View") +">");
 		    out.println("</form>");
 		    if (inWhile == 0){
@@ -146,9 +147,17 @@ public class TimeReporting extends servletBase{
 	private void printViewReport(int reportID){
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select reports.*, report_times.* from reports inner join report_times on reports.id=report_times.report_id ");
-			if(rs.first()){
-				String groupName = rs.getString("name");
+			String query = "select reports.week, reports.total_time, reports.signed, reports.user_group_id, ";
+			String q = "";
+			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+				String valueStr = "report_times." + ReportGenerator.act_sub_names[i];
+				q += valueStr+",";
+			}
+			query += q;
+			query += " inner join report_times on reports.id = report_times.report_id where reports.id = " + reportID;
+			System.out.println(query);
+			ResultSet rs = stmt.executeQuery(query);
+			if(rs.first()){				
 				out.println(ReportGenerator.viewReport(rs));
 			}
 		} catch (SQLException e) {
@@ -335,7 +344,9 @@ public class TimeReporting extends servletBase{
 		session = request.getSession();
 		function = request.getParameter("function");
 		String weekStr = request.getParameter("week");
-		int reportID = Integer.parseInt(request.getParameter("reportID"));
+		String reportID = request.getParameter("reportID");
+		
+	
 		int userGroupID = (int) session.getAttribute("userGroupID");
 
 		if (!loggedIn(request)){
@@ -344,16 +355,20 @@ public class TimeReporting extends servletBase{
 			switch (function) {
 			case VIEW:
 				//String testReport 
+				if(reportID != null){
+					
+				}
 				viewReportList((int) session.getAttribute("userGroupID"));
 				break;
 			case VIEW_REPORT:
-				printViewReport(reportID);
+				
+				//printViewReport(reportID);
 				break;
 			case UPDATE:
 				updateReportList((int) session.getAttribute("userGroupID"));				
 				break;
 			case UPDATE_REPORT:  
-				updateReport(reportID);
+				//updateReport(reportID);
 				break;
 			case NEW:
 				if (weekStr != null){
