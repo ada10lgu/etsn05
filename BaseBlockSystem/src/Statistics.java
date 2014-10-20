@@ -125,69 +125,72 @@ public class Statistics extends servletBase {
      */
     protected boolean generateSummarizedReport(List<Integer> timeReports, HttpServletResponse response){
     	PrintWriter out;
-    	try {
-			Statement stmt = conn.createStatement();
-		
-			String query = "select reports.id, reports.week, reports.total_time, reports.signed, ";
-			String q = "";
-			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
-				String valueStr = "report_times." + ReportGenerator.act_sub_names[i];
-				q += valueStr+",";
-			}
-			for (int i = 0; i<ReportGenerator.lower_activities.length-1; i++) {
-				String valueStr = ReportGenerator.lower_activities[i];
-				q += valueStr+",";
-			}
-			q += ReportGenerator.lower_activities[ReportGenerator.lower_activities.length-1];
-			query += q;
-			query += ", reports.user_group_id, reports.date, users.username, groups.name from reports";
-			String inner = " inner join report_times on reports.id = report_times.report_id";			
-			String inner1 = " inner join user_group on reports.user_group_id = user_group.id";
-			String inner2 = " inner join users on user_group.user_id = users.id";
-			String inner3 = " inner join groups on user_group.group_id = groups.id";
-			String end = " where";
-			for(int id : timeReports){
-				end += " reports.id = " + id + " or ";				
-			}
-			end += " reports.signed = 1";
+    	if (timeReports != null && !timeReports.isEmpty()) {
+	    	try {
+				Statement stmt = conn.createStatement();
 			
-			query += inner;
-			query += inner1;
-			query += inner2;
-			query += inner3;
-			query += end;
-			ResultSet rs = stmt.executeQuery(query);			
-			Map<String, Integer> total = new HashMap<String, Integer>();
-			if (rs.next()) {
+				String query = "select reports.id, reports.week, reports.total_time, reports.signed, ";
+				String q = "";
 				for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
-					int val = rs.getInt(ReportGenerator.act_sub_names[i]);
-					total.put(ReportGenerator.act_sub_names[i], val);
+					String valueStr = "report_times." + ReportGenerator.act_sub_names[i];
+					q += valueStr+",";
 				}
-				for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
-					int val = rs.getInt(ReportGenerator.lower_activities[i]);
-					total.put(ReportGenerator.lower_activities[i], val);
+				for (int i = 0; i<ReportGenerator.lower_activities.length-1; i++) {
+					String valueStr = ReportGenerator.lower_activities[i];
+					q += valueStr+",";
 				}
+				q += ReportGenerator.lower_activities[ReportGenerator.lower_activities.length-1];
+				query += q;
+				query += ", reports.user_group_id, reports.date, users.username, groups.name from reports";
+				String inner = " inner join report_times on reports.id = report_times.report_id";			
+				String inner1 = " inner join user_group on reports.user_group_id = user_group.id";
+				String inner2 = " inner join users on user_group.user_id = users.id";
+				String inner3 = " inner join groups on user_group.group_id = groups.id";
+				String end = " where";
+				for(int id : timeReports){
+					end += " reports.id = " + id + " or ";				
+				}
+				end += " reports.signed = 1";
+				
+				query += inner;
+				query += inner1;
+				query += inner2;
+				query += inner3;
+				query += end;
+				ResultSet rs = stmt.executeQuery(query);			
+				Map<String, Integer> total = new HashMap<String, Integer>();
+				if (rs.next()) {
+					for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+						int val = rs.getInt(ReportGenerator.act_sub_names[i]);
+						total.put(ReportGenerator.act_sub_names[i], val);
+					}
+					for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
+						int val = rs.getInt(ReportGenerator.lower_activities[i]);
+						total.put(ReportGenerator.lower_activities[i], val);
+					}
+				}
+				while(rs.next()){
+					for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+						int val = rs.getInt(ReportGenerator.act_sub_names[i]);
+						total.put(ReportGenerator.act_sub_names[i], total.get(ReportGenerator.act_sub_names[i]) + val);
+					}
+					for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
+						int val = rs.getInt(ReportGenerator.lower_activities[i]);
+						total.put(ReportGenerator.lower_activities[i], total.get(ReportGenerator.lower_activities[i]) + val);
+					}
+				}
+				
+				out = response.getWriter();
+				out.println(ReportGenerator.viewReport(total));
+				return true;
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("SQLException: " + e.getMessage());
+				return false;
 			}
-			while(rs.next()){
-				for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
-					int val = rs.getInt(ReportGenerator.act_sub_names[i]);
-					total.put(ReportGenerator.act_sub_names[i], total.get(ReportGenerator.act_sub_names[i]) + val);
-				}
-				for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
-					int val = rs.getInt(ReportGenerator.lower_activities[i]);
-					total.put(ReportGenerator.lower_activities[i], total.get(ReportGenerator.lower_activities[i]) + val);
-				}
-			}
-			
-			out = response.getWriter();
-			out.println(ReportGenerator.viewReport(total));
-			return true;
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("SQLException: " + e.getMessage());
-			return false;
-		}
+    	}
+    	return false;
     }
    
     /**
@@ -300,63 +303,141 @@ public class Statistics extends servletBase {
     	return busiestWeek;
     }
     
-	/**
+    /**
+	 * Checks if the user is either an admin or a Project Leader of the group
+	 * 
+	 * @param myName
+	 * @return true if the user is admin/project leader, else false
+	 */
+	private boolean projectLeaderOrAdmin(String myName) {
+		if (myName.equals("admin")) {
+			return true;
+		} else {
+			try {
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt
+						.executeQuery("select * from user_group INNER JOIN users on user_group.user_id = users.ID where users.username = '"
+								+ myName + "'");
+				if (rs.first()) {
+					String role = rs.getString("role");
+					if (role.equals("Project Leader")) {
+						return true;
+					}
+				}
+			} catch (SQLException ex) {
+				System.out.println("SQLException: " + ex.getMessage());
+				System.out.println("SQLState: " + ex.getSQLState());
+				System.out.println("VendorError: " + ex.getErrorCode());
+			}
+		}
+		return false;
+	}
+    
+    /**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-		access.updateLog(null, null); // check timestamps
 		HttpSession session = request.getSession(true);
-		out = response.getWriter();
-		out.println(getPageIntro());
-		out.println(printMainMenu(request));
-		String function = request.getParameter("function");
-		if(function != null){
-			switch(function){
-			case "busiestWeek" :
-				int val = busiestWeek(Integer.parseInt((String)session.getAttribute("groupID")));
-				if(val < 0){
-					out.print("No results");
-				}else{
-					out.println("Busisest week : " + val);
-				}				
-				break;
-			case "commonActivity" :
-				out.println("Common : " + commonActivity(Integer.parseInt((String)session.getAttribute("groupID"))));
-				break;	
-			case "AllReports" :
-	        	try {
-	        		Statement stmt = conn.createStatement();
-					ResultSet rs = stmt.executeQuery("select * from reports");
-					List<Integer> ids = new ArrayList<Integer>();
-					while(rs.next()){
-						ids.add(rs.getInt("id"));
+		String username = (String) session.getAttribute("name");
+		if (projectLeaderOrAdmin(username)) {
+			String html = "";
+			PrintWriter out = response.getWriter();
+			access.updateLog(null, null); // check timestamps
+			int groupID = Integer.parseInt((String)session.getAttribute("groupID"));
+			out = response.getWriter();
+			out.println(getPageIntro());
+			out.println(printMainMenu(request));
+			String function = request.getParameter("function");
+			if(function != null){
+				switch(function){
+				case "busiestWeek" :
+					int val = busiestWeek(groupID);
+					if(val < 0){
+						out.print("No results");
+					}else{
+						out.println("Busisest week : " + val);
+					}				
+					break;
+				case "commonActivity" :
+					out.println("Common : " + commonActivity(groupID));
+					break;	
+				case "AllReports" :
+		        	try {
+		        		Statement stmt = conn.createStatement();
+						ResultSet rs = stmt.executeQuery("select * from reports");
+						List<Integer> ids = new ArrayList<Integer>();
+						while(rs.next()){
+							ids.add(rs.getInt("id"));
+						}
+						generateSummarizedReport(ids, response);
+					} catch (SQLException e) {
+						
+						e.printStackTrace();
 					}
-					generateSummarizedReport(ids, response);
-				} catch (SQLException e) {
+					break;
+				case "chooseGroups":
+					try {
+						Statement stmt = conn.createStatement();
+						ResultSet groups = stmt.executeQuery("select * from groups");
+						stmt.close();
+						html = "<form action='chooseStatistics'>";
+						if (username.equals("admin")) {
+							html += "<select name='group'>";
+							while(groups.next()) {
+								html += "<option value='"+groups.getInt("id")+"'>"+groups.getString("name")+"</option>";
+							}
+							html += "</select>";
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					break;
+				case "chooseStatistics":
+					try {
+						if (groupID < 1) {
+							groupID = Integer.parseInt(request.getParameter("group"));
+						}
+						Statement stmt1 = conn.createStatement();
+						ResultSet users = stmt1.executeQuery("select users.id, users.username from user_group INNER JOIN users on user_group.user_id = users.ID where user_group.group_id = " + groupID);
+						stmt1.close();
+						Statement stmt2 = conn.createStatement();
+						ResultSet weeks = stmt2.executeQuery("select reports.week from user_group INNER JOIN reports on user_group.id = reports.user_group_id where user_group.group_id = " + groupID);
+						stmt2.close();
+						html = "<from action='generateStatisticsReport'>";
+						while (users.next()) {
+							html += "<input type='radio' name='user' value>";
+						}
+						html += "<input type='radio' name='user' value='>"+users.getInt("id")+"'>"+users.getString("username")+"</input>";
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					break;
+				case "generateStatisticsReport":
 					
-					e.printStackTrace();
+					break;
 				}
-				break;	
+				
+			}else{
+				out.print(printOptions());
 			}
-			
-		}else{
-			out.print(printOptions());
 		}
-		
+			
 	}
-	
+		
 	private String printOptions(){
 		String html ="<ul><li><a href='Statistics?function=busiestWeek'>Busy week</a></li>";
 		html += "<li><a href='Statistics?function=commonActivity'>Common</a></li>";
 		html += "<li><a href='Statistics?function=AllReports'>All reports</a></li>";
+		html += "<li><a href='Statistics?function=generateStatisticsReport'>Generate custom statistics</a></li>";
 		return html;
 	}
 
