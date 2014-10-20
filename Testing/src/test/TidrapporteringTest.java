@@ -47,7 +47,7 @@ final WebClient webClient = new WebClient();
    // Change the value of the text field
    userField.setValueAttribute("kallekal");
    passwordField.setValueAttribute("kallekal");
-   groupList.setSelectedAttribute(LOGIN_T3, true);
+   groupList.setSelectedAttribute("91", true);
    
 
    // Now submit the form by clicking the button and get back the second page.
@@ -113,7 +113,7 @@ final WebClient webClient = new WebClient();
    // Change the value of the text field
    userField.setValueAttribute("kallekal");
    passwordField.setValueAttribute("kallekal");
-   groupList.setSelectedAttribute(LOGIN_T3, true);
+   groupList.setSelectedAttribute("91", true);
    
 
    // Now submit the form by clicking the button and get back the second page.

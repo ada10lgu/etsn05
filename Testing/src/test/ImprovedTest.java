@@ -90,7 +90,7 @@ public class ImprovedTest extends PussTest{
 	    // Change the value of the text field
 	    userField.setValueAttribute("jonatan");
 	    passwordField.setValueAttribute("jonatan");
-	    groupList.setSelectedAttribute(LOGIN_T3, true);
+	    groupList.setSelectedAttribute("91", true);
 
 	    // Now submit the form by clicking the button and get back the second page.
 	    final HtmlPage page2 = button.click();
