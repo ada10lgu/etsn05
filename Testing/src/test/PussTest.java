@@ -30,14 +30,16 @@ public abstract class PussTest {
 	public static final String STARTUP_SHELL = "startup.sh";
 	public static final String SHUTDOWN_SHELL = "shutdown.sh";
 	
+	public static final String GROUP_ADMIN_URL = "http://localhost:8080/BaseBlockSystem/ProjectGroupAdmin";
 	public static final String START_URL = "http://localhost:8080/BaseBlockSystem/Start";
 	public static final String LOGIN_URL = "http://localhost:8080/BaseBlockSystem/LogIn";
 	public static final String ADMINISTRATION_URL = "http://localhost:8080/BaseBlockSystem/Administration";
+	public static final String TIMEREPORTING_URL = "http://localhost:8080/BaseBlockSystem/TimeReporting";
 	public static final String LOGIN_T3 = "91";
 	
 	@BeforeClass
 	public static void initiateServerAndDB() {
-		//startServer();
+		startServer();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404?" + "user=puss1404&password=ptqp44ed");	
@@ -49,12 +51,19 @@ public abstract class PussTest {
 	
 	@AfterClass
 	public static void tearDown() {
-		shutDownServer();
+		//shutDownServer();
 		try {
 			webClient.closeAllWindows();
 		} catch(Exception e) {
 //			e.printStackTrace();
 		}
+	}
+	
+	@After
+	public void clearSessions() throws SQLException {
+		String query = "delete from log;";
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate(query);
 	}
 	
 	protected void sendSQLCommand(String query) throws SQLException {
@@ -117,6 +126,7 @@ public abstract class PussTest {
 		return rs.getInt(1);
 	}
 	
+
 	private ResultSet getUserByName(String username) throws SQLException {
 		String query = "select id from users where username = '" + username + "';";
 		return sendSQLQuery(query);
@@ -134,12 +144,6 @@ public abstract class PussTest {
 		groupRS.next();
 		String query = "insert into user_group (user_id, group_id, role) values (" + userRS.getInt(1) + ", " + groupRS.getInt(1) + ", '" + role +"');";
 		sendSQLCommand(query);
-	}
-	
-	protected void clearSessions() throws SQLException {
-		String query = "delete from log;";
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(query);
 	}
 	
 	protected void assignGroup(int userId, int groupId, String role) throws SQLException {
