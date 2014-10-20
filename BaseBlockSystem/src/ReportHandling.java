@@ -19,8 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ReportHandling extends servletBase{
 	
 	private PrintWriter out;
-	private HttpSession session;
-	private String function = null;
+	private String sort = "username asc";
 	
 	
 	public ReportHandling(){
@@ -35,17 +34,15 @@ public class ReportHandling extends servletBase{
 		return signedStr;
 	}
 	
+	
 	private void showAllReports(int groupID){
 		try {
+			
 			Statement stmt = conn.createStatement();
-		//	ResultSet rs = stmt.executeQuery("select users.name, reports.id, reports.date, reports.week, reports.total_time, reports.signed "
-		//									+ "from reports INNER JOIN user_group on reports.user_group_id = user_group.id "
 			ResultSet rs = stmt.executeQuery("select users.username, reports.id, reports.date, reports.week, reports.total_time, reports.signed "
 											+ " from user_group INNER JOIN reports on user_group.id = reports.user_group_id "
 											+ " INNER JOIN users on user_group.user_id = users.id"
-											+ " where user_group.group_id =" + groupID);
- 
-			
+											+ " where user_group.group_id =" + groupID+ " order by "+ sort);
 			out.println("<div class='floati'>");
 			out.println("<p>Time reports: </p>");
 			out.println("<table border=" + formElement("1") + ">");
@@ -69,6 +66,7 @@ public class ReportHandling extends servletBase{
 				out.println("<td>" + formElement(signString(signed)) + "</td>");
 				out.println("</tr>");
 			}
+			out.println(selectSortList());
 			out.println("<p><input type=" + formElement("submit") + "value=" + formElement("Sort") + '>');
 			out.println("</form>");
 			out.println("</div>");
@@ -77,11 +75,11 @@ public class ReportHandling extends servletBase{
 		}
 		
 	}
-	
+
 	private String selectSortList(){
 		String html = "";
 		html += "<br><select name='sort'>";
-		html += "<option value='0' selected='true'>Sort by: </option>";
+		html += "<option value='username asc' selected='true'>Sort by: </option>";
 		html += "<option value=" + formElement("username asc") + ">"
 				+ "Namn, stigande" + "</option>";
 		html += "<option value=" + formElement("username desc" ) + ">"
@@ -92,7 +90,7 @@ public class ReportHandling extends servletBase{
 				+ "Vecka, fallande" + "</option>";
 		html += "<option value=" + formElement("signed desc") + ">"
 				+ "Signerat/Osignerat" + "</option>";
-		html += "<option value=" + formElement("sigend asc") + ">"
+		html += "<option value=" + formElement("signed asc") + ">"
 				+ "Osignerat/Signerat" + "</option>";
 		html += "</select>";
 		return html;
@@ -117,14 +115,15 @@ public class ReportHandling extends servletBase{
 		out = response.getWriter();
 		out.println(getPageIntro());
 		out.println(printMainMenu(request));
-		session = request.getSession();
+		HttpSession session = request.getSession();
 		//     	HttpSession session = request.getSession(true);
 		Object groupIDObject = session.getAttribute("groupID");
 		int groupID = -1;
-		if(groupIDObject != null) {
+		if(groupIDObject != null) {		
 			groupID = Integer.parseInt((String) groupIDObject);
+			
+			sort = request.getParameter("sort"); 
 			showAllReports(groupID);
-			out.println(selectSortList());
 		}
 		
 	}
