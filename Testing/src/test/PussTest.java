@@ -61,7 +61,7 @@ public abstract class PussTest {
 	}
 	
 	@After
-	protected void clearSessions() throws SQLException {
+	public void clearSessions() throws SQLException {
 		String query = "delete from log;";
 		Statement stmt = conn.createStatement();
 		stmt.executeUpdate(query);
