@@ -36,7 +36,7 @@ public abstract class PussTest {
 	public static final String START_URL = "http://localhost:8080/BaseBlockSystem/Start";
 	public static final String LOGIN_URL = "http://localhost:8080/BaseBlockSystem/LogIn";
 	public static final String ADMINISTRATION_URL = "http://localhost:8080/BaseBlockSystem/Administration";
-	public static final String TIMEREPORTING_URL = "http://localhost:8080/BaseBlockSystem/TimeReporting";
+	public static final String TIMEREPORTING_URL = "http://localhost:8080/BaseBlockSystem/TimeReporting?function=view";
 	public static final String LOGIN_T3 = "91";
 	
 	@BeforeClass
@@ -130,10 +130,19 @@ public abstract class PussTest {
 		return rs.getInt(1);
 	}
 	
-	protected void assignGroup(int userId, int groupId, String role) throws SQLException {
+	protected int assignGroup(int userId, int groupId, String role) throws SQLException {
 		String query = "insert into user_group (user_id, group_id, role) values (" + userId + ", " + groupId + ", '" + role + "');";
 		sendSQLCommand(query);
-
+		query = "select id from user_group where user_id ='" + userId + "';";
+		ResultSet rs = sendSQLQuery(query);
+		rs.next();
+		return rs.getInt(1);
+	}
+	
+	protected ResultSet signedReports(int userid) throws SQLException {
+		String query = "select signed from reports where user_group_id ='" + userid + "';";
+		ResultSet rs = sendSQLQuery(query);
+		return rs;
 	}
 	
 	protected static void startServer() {
