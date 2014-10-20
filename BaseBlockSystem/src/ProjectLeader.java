@@ -40,7 +40,7 @@ public class ProjectLeader extends servletBase {
 		access.updateLog(null, null);
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
-		out.println(printMainMenu());
+		out.println(printMainMenu(request));
 		String myName = "";
 		HttpSession session = request.getSession(true);
 		// WHICH OF THESE NEED TO BE FETCHED?

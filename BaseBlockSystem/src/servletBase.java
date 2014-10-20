@@ -1,5 +1,4 @@
 import java.sql.Connection;
-
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -127,36 +126,44 @@ public class servletBase extends HttpServlet {
     }
     
     /**
+     * TODO//
      * Constructs the menu, but only returns the options the user is allowed to view. 
      * @return String with html for the menu.
      */
-    protected String printMainMenu(){
-    	String menu = "<div class='menu'><ul>"
-    				+ "<li><a href=" + formElement("Administration") + ">Administration</a>"
-    				+ "<ul>"
-    				+ "<li><a href=" + formElement("Administration") + ">Users</a></li>"
-    				+ "<li><a href=" + formElement("ProjectGroupAdmin") + ">Group</a></li>"
-    				+ "</ul>"
-    				+ "</li>"
-    				+ "<li><a href=" + formElement("ProjectLeader") + ">Project Management</a>"
-    				+ "<ul>"
-    				+ "<li><a href=" + formElement("ProjectLeader") + ">Users</a></li>"
-    				+ "<li><a href='#'>Reports</a></li>"
-    				+ "<li><a href='#'>Statistics</a></li>"
-    				+ "</ul>"
-    				+ "</li>"
-    				+ "<li><a href='TimeReporting?function=view'>Time Reports</a>"
-    				+ "<ul>"
-    				+ "<li><a href='TimeReporting?function=view'>View</a></li>"
-    				+ "<li><a href='TimeReporting?function=update'>Update</a></li>"
-    				+ "<li><a href='TimeReporting?function=new'>New</a></li>"
-    				+ "<li><a href='TimeReporting?function=statistics'>Statistics</a></li>"
-    				+ "</ul>"
-    				+ "</li>"
-    				+ "<li><a href='ChangePassword'>Change Password</a></li>"
-    				+ "<li><a href='LogIn'>Logout</a></li>"
-    				+ "</ul></div>"
-    			;
+    protected String printMainMenu(HttpServletRequest request){
+    	HttpSession session = request.getSession(true);
+    	String role = (String) session.getAttribute("role");
+    	String menu = "<div class='menu'><ul>";
+    	if(role.equals(ADMIN)) {
+    		menu+= "<li><a href='Administration'>Administration</a>";
+	    	menu+="<ul>";
+	    	menu+= "<li><a href='Administration'>Users</a></li>";
+	    	menu+= "<li><a href='ProjectGroupAdmin'>Group</a></li>";
+	    	menu+= "</ul>";
+	    	menu+= "</li>";
+    	}
+    	if(role.equals(PROJECT_LEADER)){
+    		menu+= "<li><a href='ProjectLeader'>Project Management</a>";
+        	menu+= "<ul>";
+        	menu+= "<li><a href='ProjectLeader'>Users</a></li>";
+        	menu+= "<li><a href='#'>Reports</a></li>";
+        	menu+= "<li><a href='#'>Statistics</a></li>";
+        	menu+= "</ul>";
+        	menu+= "</li>";
+    	}    	
+    	if(!role.equals(ADMIN)){
+    		menu+= "<li><a href='TimeReporting?function=view'>Time Reports</a>";
+        	menu+= "<ul>";
+        	menu+= "<li><a href='TimeReporting?function=view'>View</a></li>";
+        	menu+= "<li><a href='TimeReporting?function=update'>Update</a></li>";
+        	menu+= "<li><a href='TimeReporting?function=new'>New</a></li>";
+        	menu+= "<li><a href='TimeReporting?function=statistics'>Statistics</a></li>";
+        	menu+= "</ul>";
+        	menu+= "</li>";
+        	menu+= "<li><a href='ChangePassword'>Change Password</a></li>";
+    	}    	
+    	menu+= "<li><a href='LogIn'>Logout</a></li>";
+    	menu+= "</ul></div>";
     	return menu;
     }
 

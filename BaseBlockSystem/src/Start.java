@@ -41,7 +41,7 @@ public class Start extends servletBase {
 		
 		if (loggedIn(request)){
 			out.println(getPageIntro());
-			out.println(printMainMenu());
+			out.println(printMainMenu(request));
 		}
 		else {
 			response.sendRedirect("LogIn");
