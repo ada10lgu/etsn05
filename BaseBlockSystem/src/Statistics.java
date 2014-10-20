@@ -296,6 +296,10 @@ public class Statistics extends servletBase {
     		ex.printStackTrace();
     	}
     	
+    	//h�mta alla
+    	//f�r varje vecka addera
+    	//kolla den med mest
+    	//reuturnera veckonummer
     	return busiestWeek;
     }
     

@@ -36,7 +36,10 @@ public class ReportHandling extends servletBase{
 		return signedStr;
 	}
 	
-	
+	/**
+	 * Shows a list of all the time reports, from the specified group with the given id.
+	 * @param group: The project leaders group id.
+	 */
 	private void showAllReports(int groupID){
 		try {
 			
@@ -56,7 +59,7 @@ public class ReportHandling extends servletBase{
 			while(rs.next()){
 		    	String reportID = ""+rs.getInt("ID");
 		    	String userName = rs.getString("username");
-				int date = rs.getInt("date");
+				Date date = rs.getDate("date");
 				int week = rs.getInt("week");
 				int totalTime = rs.getInt("total_time");
 				int signed = rs.getInt("signed");
@@ -64,7 +67,7 @@ public class ReportHandling extends servletBase{
 				out.println("<td>" + "<input type=" + formElement("radio") + " name=" + formElement("reportID") +
 						" value=" + formElement(reportID) +"></td>");		//radiobutton
 				out.println("<td>" + userName + "</td>");				
-				out.println("<td>" + date + "</td>");
+				out.println("<td>" + date.toString() + "</td>");
 				out.println("<td>" + week + "</td>");
 				out.println("<td>" + totalTime + "</td>");
 				out.println("<td>" + formElement(signString(signed)) + "</td>");
@@ -78,7 +81,11 @@ public class ReportHandling extends servletBase{
 		}
 		
 	}
-
+	
+	/**
+	 * Constructs a html string for a drop down list with the sort alternatives.
+	 * @return a html string
+	 */
 	private String selectSortList(){
 		String html = "";
 		html += "<br><select name='sort'>";
@@ -131,7 +138,8 @@ public class ReportHandling extends servletBase{
 			query += inner3;
 			query += end;
 			ResultSet rs = stmt.executeQuery(query);
-			if(rs.first()){				
+			if(rs.first()){	
+				out.println("<div class='floati'>");
 				out.println(ReportGenerator.viewReport(rs));
 				rs = stmt.executeQuery("Select signed from reports where id=" + reportID);
 				rs.first();
@@ -142,6 +150,7 @@ public class ReportHandling extends servletBase{
 					out.println("<p><input type=" + formElement("submit") + " name='unsign' value="+ formElement("Unsign") + '>');
 				}
 				out.println("</form>");
+				out.println("</div>");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -151,6 +160,46 @@ public class ReportHandling extends servletBase{
 		}
 	}
 	
+	/**
+	 * Signs a time report
+	 * @param timeReportID: The id of the report that will be signed.
+	 * @return boolean: True if the time report was successfully signed.
+	 */
+	private boolean signTimeReport(int timeReportID){
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			String statement = "Update reports SET signed = 1 where ID=" + timeReportID; 
+			int i = stmt.executeUpdate(statement);
+			if(i == 1){
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return false;
+	}
+	
+	/**
+	 * Unsigns a time report
+	 * @param timeReportID: The id of the report that will be unsigned.
+	 * @return boolean: True if the time report was successfully unsigned.
+	 */
+	private boolean unsignTimeReport(int timeReportID){
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			String statement = "Update reports SET signed = 0 where ID=" + timeReportID; 
+			int i = stmt.executeUpdate(statement);
+			if(i == 1){
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return false;
+	}
+
 	/**
 	 * 
 	 */
@@ -181,38 +230,22 @@ public class ReportHandling extends servletBase{
 				reportID = Integer.parseInt(reportIDString);
 				printViewReport();
 			} else {
-				// Will be fixed soon
-				/*				String buttonSign = request.getParameter("sign");
+				String buttonSign = request.getParameter("sign");
 				String buttonUnsign = request.getParameter("unsign");
 				if(buttonSign != null){
-					System.out.println("inne i sign");
-					Statement stmt;
-					try {
-						stmt = conn.createStatement();
-						String statement = "Update reports SET signed = 1 where ID=" + reportID; 
-						stmt.executeUpdate(statement);
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}			
+					signTimeReport(reportID);
 				}	
 				if(buttonUnsign != null){
-					Statement stmt;
-					try {
-						stmt = conn.createStatement();
-						String statement = "Update reports SET signed = 0 where ID=" + reportID; 
-						stmt.executeUpdate(statement);
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}			
+					unsignTimeReport(reportID);	
 				}			
-				 */				String buttonSort = request.getParameter("sort");
-				 if(buttonSort != null){
-					 String sortOrder = request.getParameter("sort");
-					 if(!sortOrder.equals("0")){
-						 sort = sortOrder;
-					 }
-				 }			
-				 showAllReports(groupID);
+				String buttonSort = request.getParameter("sort");
+				if(buttonSort != null){
+					String sortOrder = request.getParameter("sort");
+					if(!sortOrder.equals("0")){
+						sort = sortOrder;
+					}
+				}			
+				showAllReports(groupID);
 			}
 		}
 	}
