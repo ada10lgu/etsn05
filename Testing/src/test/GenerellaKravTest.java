@@ -1,9 +1,13 @@
 package test;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.sql.SQLException;
 
 import org.junit.Test;
 
+import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
+import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
@@ -16,14 +20,51 @@ public class GenerellaKravTest extends PussTest {
 	 * sidor som visas av systemet [SRS krav 6.1.1]
 	 * 
 	 * @throws SQLException
+	 * @throws IOException 
+	 * @throws MalformedURLException 
+	 * @throws FailingHttpStatusCodeException 
 	 */
 	@Test
-	public void FT1_1_1() throws SQLException {
-		addGroup("menygrupp");
-		addUser("victor", "victor", 0);
-		addUser("mrsmith", "mrsmith", 0);
-		addUserToGroup("victor", "menygrupp", "Project Leader");
-		addUserToGroup("mrsmith", "menygrupp", "t1");
+	public void FT1_1_1() throws SQLException, FailingHttpStatusCodeException, MalformedURLException, IOException {
+		final String GROUP = "menygrupp";
+		final String LEADER = "victor";
+		final String MEMBER = "mrsmith";
+		
+		addGroup(GROUP);
+		addUser(LEADER, LEADER, 0);
+		addUser(MEMBER, MEMBER, 0);
+		addUserToGroup(LEADER, GROUP, "Project Leader");
+		addUserToGroup(MEMBER, GROUP, "t1");
+		
+		String[] adminPages = new String[3];
+		adminPages[0] = GROUP_ADMIN_URL;
+		adminPages[1] = START_URL;
+		//adminPages[2] = ;
+		
+		String[] leaderPages = new String[5];
+		leaderPages[0] = PROJECT_LEADER_URL;
+		leaderPages[1] = TIMEREPORTING_URL;
+		leaderPages[2] = REPORT_HANDLING_URL;
+		leaderPages[3] = CHANGE_PASSWORD_URL;
+		leaderPages[4] = START_URL;
+		
+		String[] memberPages = new String[12];
+		//memberPages[0] = ;
+		
+		
+		final WebClient webClient = new WebClient();
+		
+		HtmlPage page = login(ADMIN_USERNAME, ADMIN_PASSWORD, GROUP);
+		
+		page = login(LEADER, LEADER, GROUP);
+		
+		for(int i = 0; i < leaderPages.length; i++) {
+			page = webClient.getPage(leaderPages[i]);
+			String html = page.asText();
+			Assert.assertTrue("The meny does not exist on page: " + leaderPages[i], html.contains("<div class='menu'>"));
+		}
+		
+		
 		deleteUser("mrsmith");
 		deleteUser("victor");
 		deleteGroup("menygrupp");
@@ -34,12 +75,12 @@ public class GenerellaKravTest extends PussTest {
 
 	}
 
-	@Test
+	@Ignore
 	public void FT1_1_3() {
 
 	}
 	
-	@Test
+	@Ignore
 	public void FT1_1_5(){
 		String g = "SouthPark";
 		String pOne = "Cartman";

@@ -26,6 +26,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 public class TidrapporteringTest extends PussTest{
 	
 
+
 	@Test
 	public void FT3_1_1() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
 		//Projektmedlem lyckas skapa en egen osignerad tidrapport
@@ -37,7 +38,7 @@ public class TidrapporteringTest extends PussTest{
 		final WebClient webClient = new WebClient();
 
 		// Get the first page
-		final HtmlPage page1 = webClient.getPage(LOGIN_URL);
+		final HtmlPage page1 = webClient.getPage("91");
 
 		// Get the form that we are dealing with and within that form, 
 		// find the submit button and the field that we want to change.
@@ -51,7 +52,7 @@ public class TidrapporteringTest extends PussTest{
 		// Change the value of the text field
 		userField.setValueAttribute("kallekal");
 		passwordField.setValueAttribute("kallekal");
-		groupList.setSelectedAttribute(LOGIN_T3, true);
+		groupList.setSelectedAttribute("91", true);
 
 
 		// Now submit the form by clicking the button and get back the second page.
@@ -129,7 +130,7 @@ public class TidrapporteringTest extends PussTest{
 		final WebClient webClient = new WebClient();
 
 		// Get the first page
-		final HtmlPage page1 = webClient.getPage(LOGIN_URL);
+		final HtmlPage page1 = webClient.getPage("91");
 
 		// Get the form that we are dealing with and within that form, 
 		// find the submit button and the field that we want to change.
@@ -143,7 +144,7 @@ public class TidrapporteringTest extends PussTest{
 		// Change the value of the text field
 		userField.setValueAttribute("kallekal");
 		passwordField.setValueAttribute("kallekal");
-		groupList.setSelectedAttribute(LOGIN_T3, true);
+		groupList.setSelectedAttribute("91", true);
 
 
 		// Now submit the form by clicking the button and get back the second page.
@@ -208,7 +209,7 @@ public class TidrapporteringTest extends PussTest{
 		final WebClient webClient = new WebClient();
 
 		// Get the first page
-		final HtmlPage page1 = webClient.getPage(LOGIN_URL);
+		final HtmlPage page1 = webClient.getPage("91");
 
 		// Get the form that we are dealing with and within that form, 
 		// find the submit button and the field that we want to change.
@@ -222,7 +223,7 @@ public class TidrapporteringTest extends PussTest{
 		// Change the value of the text field
 		userField.setValueAttribute("kallekal");
 		passwordField.setValueAttribute("kallekal");
-		groupList.setSelectedAttribute(LOGIN_T3, true);
+		groupList.setSelectedAttribute("91", true);
 
 
 		// Now submit the form by clicking the button and get back the second page.

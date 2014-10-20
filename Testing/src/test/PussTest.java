@@ -34,8 +34,16 @@ public abstract class PussTest {
 	public static final String START_URL = "http://localhost:8080/BaseBlockSystem/Start";
 	public static final String LOGIN_URL = "http://localhost:8080/BaseBlockSystem/LogIn";
 	public static final String ADMINISTRATION_URL = "http://localhost:8080/BaseBlockSystem/Administration";
+
 	public static final String TIMEREPORTING_URL = "http://localhost:8080/BaseBlockSystem/TimeReporting?function=view";
-	public static final String LOGIN_T3 = "91";
+
+	public static final String PROJECT_LEADER_URL = "http://localhost:8080/BaseBlockSystem/ProjectLeader";
+	public static final String REPORT_HANDLING_URL = "http://localhost:8080/BaseBlockSystem/ReportHandling";
+	public static final String CHANGE_PASSWORD_URL = "http://localhost:8080/BaseBlockSystem/ChangePassword";
+	
+	public static final String ADMIN_USERNAME = "admin";
+	public static final String ADMIN_PASSWORD = "adminpw";
+
 	
 	@BeforeClass
 	public static void initiateServerAndDB() {
