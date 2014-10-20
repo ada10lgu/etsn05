@@ -120,7 +120,7 @@ public class Statistics extends servletBase {
      * @param timeReports: The time reports which it will summarize from.
      * @return boolean: True if the time report was successfully generated.
      */
-    private boolean generateSummarizedReport(List<Integer> timeReports, HttpServletResponse response){
+    protected boolean generateSummarizedReport(List<Integer> timeReports, HttpServletResponse response){
     	PrintWriter out;
     	try {
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -292,8 +292,8 @@ public class Statistics extends servletBase {
     		ex.printStackTrace();
     	}
     	
-    	//hämta alla
-    	//för varje vecka addera
+    	//hï¿½mta alla
+    	//fï¿½r varje vecka addera
     	//kolla den med mest
     	//reuturnera veckonummer
     	
