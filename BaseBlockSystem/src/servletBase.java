@@ -141,7 +141,7 @@ public class servletBase extends HttpServlet {
     				+ "<li><a href=" + formElement("ProjectLeader") + ">Project Management</a>"
     				+ "<ul>"
     				+ "<li><a href=" + formElement("ProjectLeader") + ">Users</a></li>"
-    				+ "<li><a href='#'>Reports</a></li>"
+    				+ "<li><a href=" + formElement("ReportHandling") + ">Reports</a></li>"
     				+ "<li><a href='#'>Statistics</a></li>"
     				+ "</ul>"
     				+ "</li>"
