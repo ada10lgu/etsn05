@@ -490,6 +490,13 @@ public class TimeReporting extends servletBase{
 		String update = request.getParameter("update");
 		String delete = request.getParameter("delete");
 		String success = request.getParameter("success");
+		String submitStatistics = request.getParameter("submitStatistics");
+		List<Integer> timeReports = new ArrayList<Integer>();
+		if(submitStatistics != null){
+			function = PRINT_STATISTICS;
+			timeReports = getTimeReports(request, Integer.parseInt(submitStatistics));
+		}
+		
 		
 	
 		int userGroupID = (int) session.getAttribute("userGroupID");
@@ -586,9 +593,11 @@ public class TimeReporting extends servletBase{
 				break;
 			case PRINT_STATISTICS:
 				Statistics stats = new Statistics();
-				List<Integer> timeReports = getTimeReports(request);
-				if (!stats.generateSummarizedReport(timeReports, response)) {
-					response.sendRedirect("TimeReporting?function=Statistics&success=false");
+				
+				boolean test = stats.generateSummarizedReport(timeReports, response);
+				System.out.println("inne i print statistics "+test);
+				if (!test) {
+					response.sendRedirect("TimeReporting?function=statistics&success=false");
 				}
 				break;
 			}
@@ -601,9 +610,9 @@ public class TimeReporting extends servletBase{
 		
 	}
 
-	private List<Integer> getTimeReports(HttpServletRequest request) {
+	private List<Integer> getTimeReports(HttpServletRequest request, int nbrOfReports) {
 		List<Integer> timeReports = new ArrayList<Integer>();
-		int nbrOfReports = Integer.parseInt(request.getParameter("nbrOfReports"));
+		//int nbrOfReports = Integer.parseInt(request.getParameter(""));
 		for (int i=1; i<=nbrOfReports; i++) {
 			String reportIDstr = request.getParameter("reportID"+i);
 			if (reportIDstr != null) {
@@ -635,7 +644,7 @@ public class TimeReporting extends servletBase{
 				int signed = rs.getInt("signed");
 				//print in box
 				out.println("<tr>");
-				out.println("<td>" + "<input type=" + formElement("checkbox") + " name=" + formElement("reportID"+nbrOfReports) +
+				out.println("<td>" + "<input type=" + formElement("checkbox") + " name=" + formElement("reportIDs"+nbrOfReports) +
 						" value=" + formElement(reportID) +"></td>");		//radiobutton
 				out.println("<td>" + date + "</td>");
 				out.println("<td>" + week + "</td>");
@@ -644,9 +653,8 @@ public class TimeReporting extends servletBase{
 				out.println("</tr>");
 			}
 		    out.println("</table>");
-		    out.println("<hidden name='nbrOfReports' value="+nbrOfReports+">");
-		    out.println("<hidden name='function' value="+formElement(PRINT_STATISTICS)+">");
-		    out.println("<input  type=" + formElement("submit") + " value="+ formElement("View") +">");
+		    //out.println("<hidden name='function' value="+formElement(PRINT_STATISTICS)+">");
+		    out.println("<button type=" + formElement("submit") + "name='submitStatistics' value="+ nbrOfReports +">View </button>");
 		    out.println("</form>");
 		    if (inWhile == 0){
 		    	out.println("No reports to show");
