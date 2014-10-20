@@ -174,12 +174,14 @@ public abstract class PussTest {
 	    final HtmlSubmitInput button = form.getInputByValue("Submit");
 	    final HtmlTextInput userField = form.getInputByName("user");
 	    final HtmlPasswordInput passwordField = form.getInputByName("password");
-	    final HtmlSelect groupList = form.getSelectByName("groupID");
 
 	    // Change the value of the text field
 	    userField.setValueAttribute(username);
 	    passwordField.setValueAttribute(password);
-	    groupList.setSelectedAttribute(groupList.getOptionByText(group), true);
+	    if(group != null) {
+	    	final HtmlSelect groupList = form.getSelectByName("groupID");
+	    	groupList.setSelectedAttribute(groupList.getOptionByText(group), true);
+	    }
 	    //	    groupList.setSelectedAttribute(LOGIN_T3, true);
 
 	    // Now submit the form by clicking the button and get back the second page.
