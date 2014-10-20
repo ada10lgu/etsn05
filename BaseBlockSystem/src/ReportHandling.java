@@ -145,9 +145,11 @@ public class ReportHandling extends servletBase{
 				rs.first();
 				out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post"));
 				if(rs.getInt("signed") == 0){
-					out.println("<p><input type=" + formElement("submit") + " name='sign' value="+ formElement("Sign") + '>');
+					out.println("<p><input type=" + formElement("submit") + " name='sign' value="+ formElement("Sign") 
+							+ " onclick=" +formElement("return confirm('Are you sure you want to sign this report?')") + '>');
 				} else {
-					out.println("<p><input type=" + formElement("submit") + " name='unsign' value="+ formElement("Unsign") + '>');
+					out.println("<p><input type=" + formElement("submit") + " name='unsign' value="+ formElement("Unsign") 
+							+ " onclick=" +formElement("return confirm('Are you sure you want to unsign this report?')") + '>');
 				}
 				out.println("</form>");
 				out.println("</div>");
