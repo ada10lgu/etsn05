@@ -223,31 +223,35 @@ public class ReportHandling extends servletBase{
 		out.println(printMainMenu(request));
 		HttpSession session = request.getSession(true);
 		Object groupIDObject = session.getAttribute("groupID");
-		int groupID = -1;
 		if(groupIDObject != null) {		
-			groupID = Integer.parseInt((String) groupIDObject);
-			String reportIDString = request.getParameter("reportID");
-			String buttonView = request.getParameter("view");
-			if(reportIDString != null && buttonView != null){
-				reportID = Integer.parseInt(reportIDString);
-				printViewReport();
+			int groupID = Integer.parseInt((String) groupIDObject);
+			if(groupID > 0){
+				String reportIDString = request.getParameter("reportID");
+				String buttonView = request.getParameter("view");
+				if(reportIDString != null && buttonView != null){
+					reportID = Integer.parseInt(reportIDString);
+					printViewReport();
+				} else {
+					String buttonSign = request.getParameter("sign");
+					String buttonUnsign = request.getParameter("unsign");
+					if(buttonSign != null){
+						signTimeReport(reportID);
+					}	
+					if(buttonUnsign != null){
+						unsignTimeReport(reportID);	
+					}			
+					String buttonSort = request.getParameter("sort");
+					if(buttonSort != null){
+						String sortOrder = request.getParameter("sort");
+						if(!sortOrder.equals("0")){
+							sort = sortOrder;
+						}
+					}			
+					showAllReports(groupID);
+				}
 			} else {
-				String buttonSign = request.getParameter("sign");
-				String buttonUnsign = request.getParameter("unsign");
-				if(buttonSign != null){
-					signTimeReport(reportID);
-				}	
-				if(buttonUnsign != null){
-					unsignTimeReport(reportID);	
-				}			
-				String buttonSort = request.getParameter("sort");
-				if(buttonSort != null){
-					String sortOrder = request.getParameter("sort");
-					if(!sortOrder.equals("0")){
-						sort = sortOrder;
-					}
-				}			
-				showAllReports(groupID);
+				out.println("Choose a group");
+				//Shows a table of all the groups to choose from!
 			}
 		}
 	}
