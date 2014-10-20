@@ -370,8 +370,6 @@ public class TimeReporting extends servletBase{
 				}
 				break;
 			case PRINT_NEW:
-				//ADD CHECK IF WEEK IS CORRECT FORMAT
-				
 				if (checkInt(weekStr)) {
 					if (weekOk(userGroupID, weekStr)) {
 						int week = Integer.parseInt(weekStr);
