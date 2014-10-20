@@ -147,19 +147,36 @@ public class TimeReporting extends servletBase{
 	private void printViewReport(int reportID){
 		try {
 			Statement stmt = conn.createStatement();
-			String query = "select reports.week, reports.total_time, reports.signed, reports.user_group_id, ";
+			String query = "select reports.week, reports.total_time, reports.signed, ";
 			String q = "";
 			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
 				String valueStr = "report_times." + ReportGenerator.act_sub_names[i];
 				q += valueStr+",";
 			}
+			for (int i = 0; i<ReportGenerator.lower_activities.length-1; i++) {
+				String valueStr = ReportGenerator.lower_activities[i];
+				q += valueStr+",";
+			}
+			q += ReportGenerator.lower_activities[ReportGenerator.lower_activities.length-1];
 			query += q;
-			query += " inner join report_times on reports.id = report_times.report_id where reports.id = " + reportID;
+
+			query += ", reports.user_group_id, reports.date, users.username, groups.name from reports";
+			String inner = " inner join report_times on reports.id = report_times.report_id";			
+			String inner1 = " inner join user_group on reports.user_group_id = user_group.id";
+			String inner2 = " inner join users on user_group.user_id = users.id";
+			String inner3 = " inner join groups on user_group.group_id = groups.id";
+			String end = " where reports.id = " + reportID;
+			query += inner;
+			query += inner1;
+			query += inner2;
+			query += inner3;
+			query += end;
 			ResultSet rs = stmt.executeQuery(query);
 			if(rs.first()){				
 				out.println(ReportGenerator.viewReport(rs));
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println("SQLException: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("VendorError: " + e.getErrorCode());
@@ -360,13 +377,15 @@ public class TimeReporting extends servletBase{
 			switch (function) {
 			case VIEW:
 				//String testReport 
-				if(reportID != null){
-					
+				if(reportID != null){					
+					response.sendRedirect("TimeReporting?function=viewReport&reportID="+reportID);
 				}
 				viewReportList((int) session.getAttribute("userGroupID"));
 				break;
 			case VIEW_REPORT:
-				
+				if(reportID != null){		
+					printViewReport(Integer.parseInt(reportID));
+				}
 				//printViewReport(reportID);
 				break;
 			case UPDATE:
