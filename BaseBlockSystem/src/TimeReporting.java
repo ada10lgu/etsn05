@@ -159,7 +159,6 @@ public class TimeReporting extends servletBase{
 			}
 			q += ReportGenerator.lower_activities[ReportGenerator.lower_activities.length-1];
 			query += q;
-
 			query += ", reports.user_group_id, reports.date, users.username, groups.name from reports";
 			String inner = " inner join report_times on reports.id = report_times.report_id";			
 			String inner1 = " inner join user_group on reports.user_group_id = user_group.id";
@@ -362,7 +361,7 @@ public class TimeReporting extends servletBase{
 		access.updateLog(null, null); // check timestamps
 		out = response.getWriter();
 		out.println(getPageIntro());
-		out.println(printMainMenu());
+		out.println(printMainMenu(request));
 		session = request.getSession();
 		function = request.getParameter("function");
 		String weekStr = request.getParameter("week");

@@ -36,7 +36,7 @@ public class ChangePassword extends servletBase {
 		
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
-		out.println(printMainMenu());
+		out.println(printMainMenu(request));
 		String myName = "";
 		HttpSession session = request.getSession(true);
 		Object nameObj = session.getAttribute("name");
