@@ -16,7 +16,7 @@ public final class ReportGenerator {
 	private static int signed = -1;
 	private static int[] act_sub = new int[45];
 	private static int[] act = new int[9];
-	private static int[] sub = new int[4];
+	private static int[] sub = new int[5];
 	
 	private static final int[] upper_numbers = new int[]{11, 12, 13, 14, 15, 16, 17, 18, 19};
 	private static final String[] upper_activities = new String[]{"SDP", "SRS", "SVVS", "STLDD", "SVVI", "SDDD", "SVVR", "SSD", "Slutrapport"};
@@ -31,7 +31,7 @@ public final class ReportGenerator {
 	protected static final String[] act_sub_names = new String[]{"SDP_U", "SDP_I", "SDP_F", "SDP_O", "SRS_U", "SRS_I", "SRS_F", "SRS_O", 
 		"SVVS_U", "SVVS_I", "SVVS_F", "SVVS_O", "STLDD_U", "STLDD_I", "STLDD_F", "STLDD_O", "SVVI_U", "SVVI_I", "SVVI_F", "SVVI_O", 
 		"SDDD_U", "SDDD_I", "SDDD_F", "SDDD_O", "SVVR_U", "SVVR_I", "SVVR_F", "SVVR_O", "SSD_U", "SSD_I", "SSD_F", "SSD_O", 
-		"Slutrapoort_U", "Slutrapport_I", "Slutrapport_F", "Slutrapport_O"};
+		"Slutrapport_U", "Slutrapport_I", "Slutrapport_F", "Slutrapport_O"};
 	
 	public ReportGenerator() {
 		
