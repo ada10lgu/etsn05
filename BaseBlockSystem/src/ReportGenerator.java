@@ -246,7 +246,7 @@ public final class ReportGenerator {
 	 * Generates a String-representation of a time report HTML-form pre-filled with the data specified by the data parameter.
 	 * @param data: Contains the data that should be printed in the time report.
 	 */
-	public static String updateReport(ResultSet data) {
+	public static String updateReport(ResultSet data, int reportID) {
 		if (data == null) {
 			init_test_data();
 		} else {
@@ -312,7 +312,8 @@ public final class ReportGenerator {
 				+ "input {width: 100px;}"
 				+ "</style>";
 		
-		html += "<form method='post' action='TimeReporting?action=updateReport'>";
+	//	html += "<form method='post' action='TimeReporting?action=updateReport'>";
+		html += "<form method='post' action='TimeReporting?action=updateReport&function=addUpdateReport&reportID="+reportID+"'>";
 		html += 	"<table>";
 		html += 		"<tr>";
 		html +=				"<td><b>Namn</td><td colspan='4'>"+name+"</td><td><b>Datum</td><td>"+date.toString()+"</td>";

@@ -116,7 +116,7 @@ public class ReportHandling extends servletBase{
 		access.updateLog(null, null); // check timestamps
 		out = response.getWriter();
 		out.println(getPageIntro());
-		out.println(printMainMenu());
+		out.println(printMainMenu(request));
 		session = request.getSession();
 		//     	HttpSession session = request.getSession(true);
 		Object groupIDObject = session.getAttribute("groupID");
