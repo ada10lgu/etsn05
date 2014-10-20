@@ -32,8 +32,8 @@ public class AutentiseringTest extends PussTest{
 		
 		try {
 			//TODO ändra till clearDatabase();
-//			deleteGroup(groupname);
-//			deleteUser(username);
+			deleteGroup(groupname);
+			deleteUser(username);
 			
 			userId = addUser(username, password, is_admin);
 			groupId = addGroup(groupname);

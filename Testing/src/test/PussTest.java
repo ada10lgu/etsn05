@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -57,6 +58,13 @@ public abstract class PussTest {
 		} catch(Exception e) {
 //			e.printStackTrace();
 		}
+	}
+	
+	@After
+	protected void clearSessions() throws SQLException {
+		String query = "delete from log;";
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate(query);
 	}
 	
 	protected void sendSQLCommand(String query) throws SQLException {
@@ -119,12 +127,6 @@ public abstract class PussTest {
 		ResultSet rs = sendSQLQuery(query);
 		rs.next();
 		return rs.getInt(1);
-	}
-	
-	protected void clearSessions() throws SQLException {
-		String query = "delete from log;";
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(query);
 	}
 	
 	protected void assignGroup(int userId, int groupId, String role) throws SQLException {
