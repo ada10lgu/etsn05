@@ -587,9 +587,7 @@ public class TimeReporting extends servletBase{
 			case PRINT_STATISTICS:
 				Statistics stats = new Statistics();
 				List<Integer> timeReports = getTimeReports(request);
-				if (!timeReports.isEmpty()) {
-					stats.generateSummarizedReport(timeReports, response);
-				} else {
+				if (!stats.generateSummarizedReport(timeReports, response)) {
 					response.sendRedirect("TimeReporting?function=Statistics&success=false");
 				}
 				break;
