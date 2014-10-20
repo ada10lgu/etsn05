@@ -24,6 +24,7 @@ public class TimeReporting extends servletBase{
 	protected static final String VIEW = "view";
 	protected static final String VIEW_REPORT = "viewReport";
 	protected static final String UPDATE = "update";
+	protected static final String UPDATE_REPORT = "updateReport";
 	protected static final String NEW = "new";
 	protected static final String PRINT_NEW = "printNew";
 	protected static final String ADD_NEW = "addNew";
@@ -36,7 +37,7 @@ public class TimeReporting extends servletBase{
 
 	//EDIT STLDD - change parameter userID --> userGroupID
 	/**
-	 * Prints out a list of the user’s own reports. 
+	 * Prints out a list of the users own reports. 
 	 * @param userGroupID: The id of the user.
 	 */
 	private void viewReportList(int userGroupID){
@@ -48,7 +49,9 @@ public class TimeReporting extends servletBase{
 		    out.println("<table border=" + formElement("1") + ">");
 		    out.println("<tr><td>Selection</td><td>Last update</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
 		    int inWhile = 0;
-		    while(rs.next()){
+		    out.println("<form name=" + formElement("input") + " method=" + formElement("post"));
+	    	
+		    while(rs.next()){		    	
 		    	inWhile = 1;
 		    	String reportID = ""+rs.getInt("ID");
 				int date = rs.getInt("date");
@@ -63,8 +66,13 @@ public class TimeReporting extends servletBase{
 				out.println("<td>" + week + "</td>");
 				out.println("<td>" + totalTime + "</td>");
 				out.println("<td>" + formElement(signString(signed)) + "</td>");
+			//	out.println("<td>" + "<a href='TimeReporting?function="+ VIEW_REPORT + "&reportID="+ reportID + "'>View" + "</a></td>");
+				//out.println("<td>" + "<a href='TimeReporting?function="+ UPDATE + "&reportID="+ reportID + "'>Update" + "</a></td>");
 				out.println("</tr>");
 			}
+		    out.println("<hidden name='function' value='viewReport'");		    
+		    out.println("<input  type=" + formElement("submit") + " value="+ formElement("View") +">");
+		    out.println("</form>");
 		    if (inWhile == 0){
 		    	out.println("No reports to show");
 		    }
@@ -74,6 +82,53 @@ public class TimeReporting extends servletBase{
 			System.out.println("VendorError: " + e.getErrorCode());
 		}	
 	}
+	
+	/**
+	 * Prints out a list of the users own reports. 
+	 * @param userGroupID: The id of the user.
+	 */
+	private void updateReportList(int userGroupID){
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from reports where user_group_id=" + userGroupID + " and signed=0 order by week asc");
+			//create table 
+			out.println("<p>Time Reports:</p>");
+		    out.println("<table border=" + formElement("1") + ">");
+		    out.println("<tr><td>Selection</td><td>Last update</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
+		    int inWhile = 0;
+		    out.println("<form name=" + formElement("input") + " method=" + formElement("post"));	    	
+		    while(rs.next()){		    	
+		    	inWhile = 1;
+		    	String reportID = ""+rs.getInt("ID");
+				int date = rs.getInt("date");
+				int week = rs.getInt("week");
+				int totalTime = rs.getInt("total_time");
+				int signed = rs.getInt("signed");
+				//print in box
+				out.println("<tr>");
+				out.println("<td>" + "<input type=" + formElement("radio") + " name=" + formElement("reportID") +
+						" value=" + formElement(reportID) +"></td>");		//radiobutton
+				out.println("<td>" + date + "</td>");
+				out.println("<td>" + week + "</td>");
+				out.println("<td>" + totalTime + "</td>");
+				out.println("<td>" + formElement(signString(signed)) + "</td>");
+			//	out.println("<td>" + "<a href='TimeReporting?function="+ VIEW_REPORT + "&reportID="+ reportID + "'>View" + "</a></td>");
+				//out.println("<td>" + "<a href='TimeReporting?function="+ UPDATE + "&reportID="+ reportID + "'>Update" + "</a></td>");
+				out.println("</tr>");
+			}
+		    out.println("<hidden name='function' value='updateReport'");		    
+		    out.println("<input  type=" + formElement("submit") + " value="+ formElement("Update") +">");
+		    out.println("</form>");
+		    if (inWhile == 0){
+		    	out.println("No reports to show");
+		    }
+		} catch(SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("VendorError: " + e.getErrorCode());
+		}	
+	}
+	
 	
 	private String signString(int signed){
 		String signedStr = "NO";
@@ -88,8 +143,19 @@ public class TimeReporting extends servletBase{
 	 * and passes the data on to the static method viewReport in the static ReportGenerator class.
 	 * @param reportID: The id of the time report.
 	 */
-	private void viewReport(int reportID){
-		
+	private void printViewReport(int reportID){
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select reports.*, report_times.* from reports inner join report_times on reports.id=report_times.report_id ");
+			if(rs.first()){
+				String groupName = rs.getString("name");
+				out.println(ReportGenerator.viewReport(rs));
+			}
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("VendorError: " + e.getErrorCode());
+		}
 	}
 	
 	/**
@@ -120,6 +186,9 @@ public class TimeReporting extends servletBase{
 			System.out.println("VendorError: " + e.getErrorCode());
 		}
 	}
+	
+	
+	
 	
 	/**
 	 * Updates the data stored in the database for the report specified by the reportID parameter. 
@@ -273,8 +342,9 @@ public class TimeReporting extends servletBase{
 		session = request.getSession();
 		function = request.getParameter("function");
 		String weekStr = request.getParameter("week");
+		int reportID = Integer.parseInt(request.getParameter("reportID"));
 		int userGroupID = (int) session.getAttribute("userGroupID");
-		
+
 		if (!loggedIn(request)){
 			response.sendRedirect("LogIn");
 		} else if (function != null && !isAdmin()) {
@@ -284,9 +354,13 @@ public class TimeReporting extends servletBase{
 				viewReportList((int) session.getAttribute("userGroupID"));
 				break;
 			case VIEW_REPORT:
+				printViewReport(reportID);
 				break;
 			case UPDATE:
-				System.out.println("getParameter works!");
+				updateReportList((int) session.getAttribute("userGroupID"));				
+				break;
+			case UPDATE_REPORT:  
+				updateReport(reportID);
 				break;
 			case NEW:
 				if (weekStr != null){
