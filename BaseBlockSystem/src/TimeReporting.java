@@ -237,22 +237,34 @@ public class TimeReporting extends servletBase{
 			
 			Calendar cal = Calendar.getInstance();
 			Date date = new Date(cal.getTimeInMillis()); //PUTTING THIS DATE OBJECT INTO THE DATABASE DOESN'T WORK, PLEASE HAVE A LOOK
-			System.out.println(date); //DEBUGGING PRINT
 			String week = request.getParameter("week");
 			int userGroupID = (int) session.getAttribute("userGroupID");
+
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("INSERT INTO reports (user_group_id, date, week, total_time, signed) VALUES ("+userGroupID+","+date+","+week+","+totalTime+","+0+")");
-			stmt.close();
-			
+			stmt.executeUpdate("INSERT INTO reports (user_group_id, date, week, total_time, signed) VALUES ("+userGroupID+",'"+date.toString()+"',"+week+","+totalTime+","+0+")");
+
 			Statement stmt1 = conn.createStatement();
-			ResultSet rs = stmt1.executeQuery("Select * from reports where user_group_id = "+userGroupID+" and week ="+week);
+			ResultSet rs = stmt1.executeQuery("select * from reports where user_group_id = "+userGroupID+" and week = "+week); 
 			int reportID = -1;
 			if (rs.first()) {
-				reportID = rs.getInt("ID");
+				reportID = rs.getInt("id");
 			}
-			stmt1.close();
-			
-			String q = "INSERT INTO report_times VALUES ("+reportID+",";
+			System.out.println(reportID);
+			stmt.close();
+
+			String q = "INSERT INTO report_times (report_id, ";
+			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+				String valueStr = ReportGenerator.act_sub_names[i];
+				q += valueStr+",";
+			}
+
+			for (int i = 0; i<ReportGenerator.lower_activities.length-1; i++) {
+				String valueStr = ReportGenerator.lower_activities[i];
+				q += valueStr+",";
+			}
+			q += ReportGenerator.lower_activities[ReportGenerator.lower_activities.length-1];
+
+			q += ") VALUES ("+reportID+",";
 			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
 				String valueStr = act_sub_values[i];
 				q += valueStr+",";
@@ -262,19 +274,37 @@ public class TimeReporting extends servletBase{
 				String valueStr = lower_activity_values[i];
 				q += valueStr+",";
 			}
-
 			q += lower_activity_values[lower_activity_values.length-1]+");";
-
+			System.out.println(q);
 			Statement stmt2 = conn.createStatement();
 			stmt2.executeUpdate(q);
 			stmt2.close();
+
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println("SQLException: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("VendorError: " + e.getErrorCode());
 		}
 	}
 	
+	private boolean weekOk(int userGroupID, int week) {
+		try {
+			Statement stmt1 = conn.createStatement();
+			ResultSet rs = stmt1.executeQuery("select * from reports where user_group_id = "+userGroupID+" and week = "+week);
+			if (rs.first()) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("VendorError: " + e.getErrorCode());
+		}
+		return true;
+
+	}
+
 	/**
 	 * Filters what time reports that should be shown in the list.
 	 * @param filter: The filter that should be applied.
@@ -306,6 +336,8 @@ public class TimeReporting extends servletBase{
 		function = request.getParameter("function");
 		String weekStr = request.getParameter("week");
 		int reportID = Integer.parseInt(request.getParameter("reportID"));
+		int userGroupID = (int) session.getAttribute("userGroupID");
+
 		if (!loggedIn(request)){
 			response.sendRedirect("LogIn");
 		} else if (function != null && !isAdmin()) {
@@ -333,7 +365,12 @@ public class TimeReporting extends servletBase{
 			case PRINT_NEW:
 				//ADD CHECK IF WEEK IS CORRECT FORMAT
 				int week = Integer.parseInt(weekStr);
-				printNewReport(week, out);
+				if (weekOk(userGroupID, week)) {
+					printNewReport(week, out);
+				} else {
+					out.println("You already have a report for this week");
+					out.println(requestWeekForm());
+				}
 				break;
 			case ADD_NEW:
 				addNewReport(request);
