@@ -181,11 +181,9 @@ public class ReportHandling extends servletBase{
 				reportID = Integer.parseInt(reportIDString);
 				printViewReport();
 			} else {
-				// Will be fixed soon
-				/*				String buttonSign = request.getParameter("sign");
+				String buttonSign = request.getParameter("sign");
 				String buttonUnsign = request.getParameter("unsign");
 				if(buttonSign != null){
-					System.out.println("inne i sign");
 					Statement stmt;
 					try {
 						stmt = conn.createStatement();
@@ -205,14 +203,14 @@ public class ReportHandling extends servletBase{
 						e.printStackTrace();
 					}			
 				}			
-				 */				String buttonSort = request.getParameter("sort");
-				 if(buttonSort != null){
-					 String sortOrder = request.getParameter("sort");
-					 if(!sortOrder.equals("0")){
-						 sort = sortOrder;
-					 }
-				 }			
-				 showAllReports(groupID);
+				String buttonSort = request.getParameter("sort");
+				if(buttonSort != null){
+					String sortOrder = request.getParameter("sort");
+					if(!sortOrder.equals("0")){
+						sort = sortOrder;
+					}
+				}			
+				showAllReports(groupID);
 			}
 		}
 	}
