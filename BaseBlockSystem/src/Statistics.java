@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.sql.Statement;
 
@@ -30,17 +31,88 @@ public class Statistics extends servletBase {
     }
     /**
      * Shows a time report based on the parameters requested by the user.
-     *@param groupID: The project leaders group id.
-     *@param userID: The user for the time report.
-     *@param role: The role of the user(s) for the time report.
-     *@param weeks: The weeks for which the time report will be shown.
-     *@param activity: The activity that will be included in the time report.
-     *@return boolean: True if the report was successfully generated and shown.
+     * @param groupID: The project leaders group id.
+     * @param userID: The user for the time report.
+     * @param role: The role of the user(s) for the time report.
+     * @param weeks: The weeks for which the time report will be shown.
+     * @return boolean: True if the report was successfully generated and shown.
      */
-    private boolean generateStatisticsReport(int groupID, int userID, String role, String weeks, String activity){
-    	
-    	
+    private boolean generateStatisticsReport(int groupID, int userID, String role, String weeks, HttpServletResponse response){
+    	PrintWriter out;
+    	try {
+			Statement stmt = conn.createStatement();
+			
+			String query = "select reports.week, reports.total_time, reports.signed, ";
+			String q = "";
+			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+				String valueStr = "report_times." + ReportGenerator.act_sub_names[i];
+				q += valueStr+",";
+			}
+			for (int i = 0; i<ReportGenerator.lower_activities.length-1; i++) {
+				String valueStr = ReportGenerator.lower_activities[i];
+				q += valueStr+",";
+			}
+			q += ReportGenerator.lower_activities[ReportGenerator.lower_activities.length-1];
+			query += q;
+			query += ", reports.user_group_id, reports.date, users.username, groups.name from reports";
+			String inner = " inner join report_times on reports.id = report_times.report_id";			
+			String inner1 = " inner join user_group on reports.user_group_id = user_group.id";
+			String inner2 = " inner join users on user_group.user_id = users.id";
+			String inner3 = " inner join groups on user_group.group_id = groups.id";
+			String end = " where user_group.group_id= " + groupID;
+			
+			if(userID != -1){
+				end += " and user_group.user_id =  " + userID;
+			}else if(role != null){
+				end += " and user_group.role = " + formElement(role);
+			}
+			
+			if(weeks.contains("-")){
+				String[] split = weeks.split("-");
+				end += " and reports.week >= " + split[0] + " and reports.week <= " + split[1];
+			}else if(weeks != null){
+				end += " and reports.week = " + weeks;
+			}
+			end += " and reports.signed = 1";
+			
+			query += inner;
+			query += inner1;
+			query += inner2;
+			query += inner3;
+			query += end;
+			ResultSet rs = stmt.executeQuery(query);
+			rs.first();
+			while(rs.next()){				
+				for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+					int val = rs.getInt(ReportGenerator.act_sub_names[i]);
+					rs.previous();
+					val += rs.getInt(ReportGenerator.act_sub_names[i]);
+					rs.updateInt(ReportGenerator.act_sub_names[i], val);
+					rs.next();
+				}
+				for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
+					int val = rs.getInt(ReportGenerator.act_sub_names[i]);
+					rs.previous();
+					val += rs.getInt(ReportGenerator.act_sub_names[i]);
+					rs.updateInt(ReportGenerator.act_sub_names[i], val);
+					rs.next();
+				}	
+				rs.deleteRow();
+				rs.first();
+			}
+			
+			if(rs.first()){		
+				out = response.getWriter();
+				out.println(ReportGenerator.viewReport(rs));
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("SQLException: " + e.getMessage());
+			return false;
+		}
     	return false;
+
     }
     /**
      * Shows a time report with the summarized activity from several time reports.
@@ -72,7 +144,7 @@ public class Statistics extends servletBase {
 			for(int id : timeReports){
 				end += " reports.id = " + id + " or ";				
 			}
-			end += "signed = 1";
+			end += " reports.signed = 1";
 			
 			query += inner;
 			query += inner1;
@@ -136,7 +208,7 @@ public class Statistics extends servletBase {
 			query += ", reports.user_group_id from reports";
 			String inner = " inner join report_times on reports.id = report_times.report_id";			
 			String inner1 = " inner join user_group on reports.user_group_id = user_group.id";
-			String end = " where signed = 1 and user_group.group_id = " + groupID;
+			String end = " where reports.signed = 1 and user_group.group_id = " + groupID;
 			query += inner;
 			query += inner1;
 			query += end;
@@ -186,10 +258,14 @@ public class Statistics extends servletBase {
     	int busiestWeek = 0;
     	int sumWeek = 0; 
     	try{
-    		String query = "select reports.week, reports.total_time from reports inner join user_group on reports.user_group_id=user_group.id where user_group.group_id = " + groupID + " order by reports.week";
+    		String query = "select reports.week, reports.total_time from reports inner join user_group on reports.user_group_id=user_group.id where user_group.group_id = " + groupID + " and reports.signed=1 order by reports.week";
+    		System.out.println(query);
+    		
     		Statement stmt = conn.createStatement();
         	ResultSet rs = stmt.executeQuery(query);        	
-        	rs.first();
+        	if(!rs.first()){        		
+        		return -1;
+        	}
         	currentWeek = rs.getInt("week");
         	sumWeek = rs.getInt("total_time");
         	int sumBusiestWeek = sumWeek;
@@ -229,8 +305,38 @@ public class Statistics extends servletBase {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		access.updateLog(null, null); // check timestamps
+		HttpSession session = request.getSession(true);
+		out = response.getWriter();
+		out.println(getPageIntro());
+		out.println(printMainMenu(request));
+		String function = request.getParameter("function");
+		if(function != null){
+			switch(function){
+			case "busiestWeek" :
+				int val = busiestWeek(Integer.parseInt((String)session.getAttribute("groupID")));
+				if(val < 0){
+					out.print("No results");
+				}else{
+					out.println("Busisest week : " + val);
+				}				
+				break;
+			case "commonActivity" :
+				out.println("Common : " + commonActivity(Integer.parseInt((String)session.getAttribute("groupID"))));
+				break;	
+			}
+		}else{
+			out.print(printOptions());
+		}
 		
+	}
 	
+	private String printOptions(){
+		String html ="<ul><li><a href='Statistics?function=busiestWeek'>Busy week</a></li>";
+		html += "<li><a href='Statistics?function=commonActivity'>Common</a></li>";
+		
+		return html;
 	}
 
 }
