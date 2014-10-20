@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -37,17 +38,78 @@ public class Statistics extends servletBase {
      *@return boolean: True if the report was successfully generated and shown.
      */
     private boolean generateStatisticsReport(int groupID, int userID, String role, String weeks, String activity){
+    	
+    	
     	return false;
     }
     /**
      * Shows a time report with the summarized activity from several time reports.
      * @param timeReports: The time reports which it will summarize from.
-     * @param activity: The activity which will be summarized.
-     * @param subactivity: The subactivity which will be summarized.
      * @return boolean: True if the time report was successfully generated.
      */
-    private boolean generateSummarizedReport(List<Integer> timeReports, String activity){
-    	
+    private boolean generateSummarizedReport(List<Integer> timeReports, HttpServletResponse response){
+    	PrintWriter out;
+    	try {
+			Statement stmt = conn.createStatement();
+			String query = "select reports.week, reports.total_time, reports.signed, ";
+			String q = "";
+			for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+				String valueStr = "report_times." + ReportGenerator.act_sub_names[i];
+				q += valueStr+",";
+			}
+			for (int i = 0; i<ReportGenerator.lower_activities.length-1; i++) {
+				String valueStr = ReportGenerator.lower_activities[i];
+				q += valueStr+",";
+			}
+			q += ReportGenerator.lower_activities[ReportGenerator.lower_activities.length-1];
+			query += q;
+			query += ", reports.user_group_id, reports.date, users.username, groups.name from reports";
+			String inner = " inner join report_times on reports.id = report_times.report_id";			
+			String inner1 = " inner join user_group on reports.user_group_id = user_group.id";
+			String inner2 = " inner join users on user_group.user_id = users.id";
+			String inner3 = " inner join groups on user_group.group_id = groups.id";
+			String end = " where";
+			for(int id : timeReports){
+				end += " reports.id = " + id + " or ";				
+			}
+			end += "signed = 1";
+			
+			query += inner;
+			query += inner1;
+			query += inner2;
+			query += inner3;
+			query += end;
+			ResultSet rs = stmt.executeQuery(query);
+			rs.first();
+			while(rs.next()){				
+				for (int i = 0; i<ReportGenerator.act_sub_names.length; i++) {
+					int val = rs.getInt(ReportGenerator.act_sub_names[i]);
+					rs.previous();
+					val += rs.getInt(ReportGenerator.act_sub_names[i]);
+					rs.updateInt(ReportGenerator.act_sub_names[i], val);
+					rs.next();
+				}
+				for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
+					int val = rs.getInt(ReportGenerator.act_sub_names[i]);
+					rs.previous();
+					val += rs.getInt(ReportGenerator.act_sub_names[i]);
+					rs.updateInt(ReportGenerator.act_sub_names[i], val);
+					rs.next();
+				}	
+				rs.deleteRow();
+				rs.first();
+			}
+			
+			if(rs.first()){		
+				out = response.getWriter();
+				out.println(ReportGenerator.viewReport(rs));
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("SQLException: " + e.getMessage());
+			return false;
+		}
     	return false;
     }
     /**
@@ -92,7 +154,7 @@ public class Statistics extends servletBase {
 					map.put(ReportGenerator.act_sub_names[i], map.get(ReportGenerator.act_sub_names[i])+ val);								
 				}
 				for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
-					int val = rs.getInt(ReportGenerator.act_sub_names[i]);
+					int val = rs.getInt(ReportGenerator.lower_activities[i]);
 					map.put(ReportGenerator.lower_activities[i], map.get(ReportGenerator.lower_activities[i])+ val);		
 				}				
 			}
@@ -104,6 +166,7 @@ public class Statistics extends servletBase {
 					highest = map.get(activity);
 				}	
 			}
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("SQLException: " + e.getMessage());
@@ -140,9 +203,9 @@ public class Statistics extends servletBase {
         				sumBusiestWeek = sumWeek;
         			}
         			currentWeek = rs.getInt("week");
-        		}
-        		
+        		}        		
         	}
+        	stmt.close();
     	}catch (Exception ex){
     		ex.printStackTrace();
     	}
