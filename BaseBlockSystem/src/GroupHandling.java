@@ -135,34 +135,64 @@ public class GroupHandling extends servletBase {
 	 * Lists all users
 	 * @param out: needed for printing
 	 * @param groupID: don't print already added users
+	 * @param inGroup: check if you want to list users inside of group
 	 */
-	private void listUsers(PrintWriter out, int groupID){
+	private void listUsers(PrintWriter out, int groupID, boolean inGroup){
 		try {
-
+			out.println("<div class='floati'>");
 			Statement stmt = conn.createStatement();
+			ResultSet rsgrp = stmt.executeQuery("select * from groups where id=" + groupID);
+			rsgrp.first();
+			String groupName = rsgrp.getString("name");
+			stmt = conn.createStatement();
 			Statement stmt2 = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from users order by username asc");
-			out.println("<p>Users:</p>");
-			out.println("<table border=" + formElement("1") + ">");
-			out.println("<tr><td>Username</td><td>Select user</td></tr>");
+			if(inGroup){
+				out.println("<p>Remove user from: " + groupName + "</p>");
+				out.println("<table border=" + formElement("1") + ">");
+				out.println("<tr><td>Username</td><td>Role</td><td></td></tr>");
+			}else{
+				out.println("<p>Add user to: " + groupName + "</p>");
+				out.println("<table border=" + formElement("1") + ">");
+				out.println("<tr><td>Username</td><td>Select user</td></tr>");
+			}
+
 			out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post"));
 			while (rs.next( )) {
 				ResultSet rsGroup = stmt2.executeQuery("select * from user_group where user_id=" + 
 								rs.getInt("id") + " AND group_id=" + groupID); //om detta != null så finns redan användaren i gruppen
 				String name = rs.getString("username");
-				if(!rs.getString("username").equals(ADMIN) && !rsGroup.first()){
+				boolean print = false;
+				if(inGroup){
+					print = rsGroup.first();
+				} else {
+					print = !rsGroup.first();
+				}
+				if(!rs.getString("username").equals(ADMIN) && print){
 					out.println("<tr>");
 					out.println("<td>" + name + "</td>");
 					String userID = "" + rs.getInt("id");
-					out.println("<td>" + "<input type=" + formElement("radio") + " name=" + formElement("selectedradiouser") +
-							" value=" + formElement(userID) +"></td>");		//radiobutton
+					if(inGroup){
+						out.println("<td>" + rsGroup.getString("role") + "</td>");
+						String deleteURL = "GroupHandling?deletename="+userID;
+				    	String deleteCode = "<a href=" + formElement(deleteURL) +
+				    			            " onclick="+formElement("return confirm('Are you sure you want to delete "+name+" from " + groupName+"?')") + 
+				    			            "> delete </a>";
+				    	out.println("<td>" + deleteCode + "</td>");
+					}else{
+						out.println("<td>" + "<input type=" + formElement("radio") + " name=" + formElement("selectedradiouser") +
+								" value=" + formElement(userID) +"></td>");		//radiobutton
+					}
 					out.println("</tr>");
 				}
 			}
-			out.println("</table>");
-			out.println(selectRoleList());
-			out.println("<p><input type=" + formElement("submit") + "value=" + formElement("Add user") + '>');
+			out.println("</table>");	
+			if(!inGroup){
+				out.println(selectRoleList());
+				out.println("<p><input type=" + formElement("submit") + "value=" + formElement("Add user") + '>');
+			}
 			out.println("</form>");
+			out.println("</div>");
 			stmt.close();
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
@@ -215,12 +245,13 @@ public class GroupHandling extends servletBase {
 		access.updateLog(null, null);
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
-		out.println(printMainMenu());
+		out.println(printMainMenu(request));
 		HttpSession session = request.getSession(true);
 		Object groupIDObject = session.getAttribute("groupHandlingID");
 		int groupID = (int)groupIDObject;
 		Object nameObj = session.getAttribute("name");
 		String myName = "";
+		String op = request.getParameter("operation");
 		if (nameObj != null) {
 			myName = (String)nameObj;  // if the name exists typecast the name to a string
 		}
@@ -229,16 +260,44 @@ public class GroupHandling extends servletBase {
 		} else {
 			if (myName.equals(ADMIN)) {
 				out.println("<h1>Group Handling " + "</h1>");
+				
+				//Add user to group (LEFT TABLE)
 				String userIdString = request.getParameter("selectedradiouser");
 				if (userIdString != null) {
 					int userID = Integer.parseInt(userIdString);
 					if (!addUserToGroup(userID, groupID, request)) {
-						out.println("User was not added to group");
+						response.sendRedirect("GroupHandling?operation=FailedAdd");
 					} else {
-						out.println("User was successfully added to group");
+						response.sendRedirect("GroupHandling?operation=Added");
 					}
 				}
-				listUsers(out, groupID);
+				//Remove user from group (RIGHT TABLE)
+				String deleteName = request.getParameter("deletename");
+				if (deleteName != null) {
+					int userID = Integer.parseInt(deleteName);
+					boolean removed = removeUserFromGroup(userID, groupID);
+					if(removed){
+						response.sendRedirect("GroupHandling?operation=Removed");
+					}else{
+						response.sendRedirect("GroupHandling?operation=FailedRemoved");
+					}
+				}
+				listUsers(out, groupID, false);//Print users outside of the group
+				listUsers(out, groupID, true);//Print users already in the group
+				if(op !=null){
+					out.println("<div class='floati'>");
+					switch(op){
+						case "FailedAdd": out.println("User was not added, please make sure<br>that you have selected a role and that<br>the limitations have not been reached.");
+						break;
+						case "Added": out.println("User was added");
+						break;
+						case "Removed": out.println("User was removed ");
+						break;
+						case "FailedRemoved": out.println("User was not removed because there<br>is only one project leader left.");
+						break;						
+					}
+					out.println("</div>");
+				}
 			}
 		}
 	}

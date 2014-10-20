@@ -121,9 +121,16 @@ public abstract class PussTest {
 		return rs.getInt(1);
 	}
 	
+	protected void clearSessions() throws SQLException {
+		String query = "delete from log;";
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate(query);
+	}
+	
 	protected void assignGroup(int userId, int groupId, String role) throws SQLException {
 		String query = "insert into user_group (user_id, group_id, role) values (" + userId + ", " + groupId + ", '" + role + "');";
 		sendSQLCommand(query);
+
 	}
 	
 	protected static void startServer() {

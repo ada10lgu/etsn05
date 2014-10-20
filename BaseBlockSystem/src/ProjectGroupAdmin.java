@@ -121,7 +121,7 @@ public class ProjectGroupAdmin extends servletBase {
 		    ResultSet rs = stmt.executeQuery("select * from groups order by name asc");
 		    out.println("<p>Project groups:</p>");
 		    out.println("<table border=" + formElement("1") + ">");
-		    out.println("<tr><td>NAME</td><td>Projectleader 1</td><td>Projectleader 2</td><td></td></tr>");
+		    out.println("<tr><td>NAME</td><td>Projectleader 1</td><td>Projectleader 2</td><td></td><td></td></tr>");
 		    while (rs.next()) {
 		    	String name = rs.getString("name");
 		    	ResultSet rsGroup = stmt2.executeQuery("select * from groups where name = '" + name + "'");
@@ -148,12 +148,17 @@ public class ProjectGroupAdmin extends servletBase {
 		    	String deleteCode = "<a href=" + formElement(deleteURL) +
 		    			            " onclick="+formElement("return confirm('Are you sure you want to delete "+name+"?')") + 
 		    			            "> delete </a>";
-		    	if (name.equals(ADMIN)) 
-		    		deleteCode = "";
+		    	String editURL = "ProjectGroupAdmin?editid="+groupID;
+		    	String editCode = "<a href=" + formElement(editURL) +
+		    			            " onclick="+formElement("return confirm('Are you sure you want to edit "+name+"?')") + 
+		    			            "> edit </a>";
+		    	/*if (name.equals(ADMIN)) 
+		    		deleteCode = "";*/ //name är gruppnamnet
 		    	out.println("<tr>");
 		    	out.println("<td>" + name + "</td>");
 		    	out.println("<td>" + projectLeaders[0] + "</td>");
 		    	out.println("<td>" + projectLeaders[1] + "</td>");
+		    	out.println("<td>" + editCode + "</td>");
 		    	out.println("<td>" + deleteCode + "</td>");
 		    	out.println("</tr>");
 		    }
@@ -190,7 +195,7 @@ public class ProjectGroupAdmin extends servletBase {
 		access.updateLog(null, null);
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
-		out.println(printMainMenu());
+		out.println(printMainMenu(request));
 		String myName = "";
     	HttpSession session = request.getSession(true);
     	Object nameObj = session.getAttribute("name");
@@ -239,6 +244,13 @@ public class ProjectGroupAdmin extends servletBase {
 						System.out.println("SQLState: " + ex.getSQLState());
 						System.out.println("VendorError: " + ex.getErrorCode());
 					}					
+				}
+				String editIDString = request.getParameter("editid");
+				if(editIDString != null){
+					int editID = Integer.parseInt(editIDString);
+					System.out.println(editID);
+					session.setAttribute("groupHandlingID", editID);
+					response.sendRedirect("GroupHandling");		
 				}
 				listGroups(out);
 				

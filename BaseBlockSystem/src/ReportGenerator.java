@@ -16,22 +16,22 @@ public final class ReportGenerator {
 	private static int signed = -1;
 	private static int[] act_sub = new int[45];
 	private static int[] act = new int[9];
-	private static int[] sub = new int[4];
+	private static int[] sub = new int[5];
 	
 	private static final int[] upper_numbers = new int[]{11, 12, 13, 14, 15, 16, 17, 18, 19};
 	private static final String[] upper_activities = new String[]{"SDP", "SRS", "SVVS", "STLDD", "SVVI", "SDDD", "SVVR", "SSD", "Slutrapport"};
 	private static final int[] lower_numbers = new int[]{21, 22, 23, 30, 41, 42, 43, 44, 100};
-	private static final String[] lower_activities = new String[]{"Funktionstest", "Systemtest", "Regressionstest", "Meeting", "Lecture", "Excersice", "Terminal", "Study", "Other"};
+	protected static final String[] lower_activities = new String[]{"Funktionstest", "Systemtest", "Regressionstest", "Meeting", "Lecture", "Excersice", "Terminal", "Study", "Other"};
 	private static final String[] activity_type = new String[]{"Utveckling och dokumentation", "Informell granskning", "Formell granskning", "Ombearbetning"};
 	private static final String[] activity_code = new String[]{"U", "I", "F", "O"};
 	private static final String[] activity_description = new String[]{"Utveckla ny kod, testfall och dokumentation inklusive dokumentation av systemet",
 		"Tid spenderad på förberedelser inför och på informella granskningar", "Tid spenderad på förberedelser inför och på formella granskningar",
 		"Tid spenderad på ombearbetning, förbättring, revision eller korrektion av dokument och design objekt"};
 	
-	private static final String[] act_sub_names = new String[]{"SDP_U", "SDP_I", "SDP_F", "SDP_O", "SRS_U", "SRS_I", "SRS_F", "SRS_O", 
+	protected static final String[] act_sub_names = new String[]{"SDP_U", "SDP_I", "SDP_F", "SDP_O", "SRS_U", "SRS_I", "SRS_F", "SRS_O", 
 		"SVVS_U", "SVVS_I", "SVVS_F", "SVVS_O", "STLDD_U", "STLDD_I", "STLDD_F", "STLDD_O", "SVVI_U", "SVVI_I", "SVVI_F", "SVVI_O", 
 		"SDDD_U", "SDDD_I", "SDDD_F", "SDDD_O", "SVVR_U", "SVVR_I", "SVVR_F", "SVVR_O", "SSD_U", "SSD_I", "SSD_F", "SSD_O", 
-		"Slutrapoort_U", "Slutrapport_I", "Slutrapport_F", "Slutrapport_O"};
+		"Slutrapport_U", "Slutrapport_I", "Slutrapport_F", "Slutrapport_O"};
 	
 	public ReportGenerator() {
 		
@@ -122,8 +122,8 @@ public final class ReportGenerator {
 			
 			sub[0] = act_sub[0] + act_sub[5] +act_sub[10] +act_sub[15] + act_sub[20] + act_sub[25] +act_sub[30] +act_sub[35] + act_sub[40];
 			sub[1] = act_sub[1] + act_sub[6] +act_sub[11] +act_sub[16] + act_sub[21] + act_sub[26] +act_sub[31] +act_sub[36] + act_sub[41];
-			sub[3] = act_sub[2] + act_sub[7] +act_sub[12] +act_sub[17] + act_sub[22] + act_sub[27] +act_sub[32] +act_sub[37] + act_sub[42];
-			sub[4] = act_sub[3] + act_sub[8] +act_sub[13] +act_sub[18] + act_sub[23] + act_sub[28] +act_sub[33] +act_sub[38] + act_sub[43];	
+			sub[2] = act_sub[2] + act_sub[7] +act_sub[12] +act_sub[17] + act_sub[22] + act_sub[27] +act_sub[32] +act_sub[37] + act_sub[42];
+			sub[3] = act_sub[3] + act_sub[8] +act_sub[13] +act_sub[18] + act_sub[23] + act_sub[28] +act_sub[33] +act_sub[38] + act_sub[43];	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -193,7 +193,8 @@ public final class ReportGenerator {
 					html += "<td colspan='5'>"+lower_activities[i]+"</td>";
 				}
 				if (j == 2) {
-					html += "<td>"+act_sub[k]+"</td>";
+					//html += "<td>"+act_sub[k]+"</td>";
+					html += "<td>"+act[k]+"</td>";
 					k++;
 				}	
 			}
@@ -245,7 +246,7 @@ public final class ReportGenerator {
 	 * Generates a String-representation of a time report HTML-form pre-filled with the data specified by the data parameter.
 	 * @param data: Contains the data that should be printed in the time report.
 	 */
-	public static String updateReport(ResultSet data) {
+	public static String updateReport(ResultSet data, int reportID) {
 		if (data == null) {
 			init_test_data();
 		} else {
@@ -311,7 +312,8 @@ public final class ReportGenerator {
 				+ "input {width: 100px;}"
 				+ "</style>";
 		
-		html += "<form method='post' action='TimeReporting?action=updateReport'>";
+	//	html += "<form method='post' action='TimeReporting?action=updateReport'>";
+		html += "<form method='post' action='TimeReporting?action=updateReport&function=addUpdateReport&reportID="+reportID+"'>";
 		html += 	"<table>";
 		html += 		"<tr>";
 		html +=				"<td><b>Namn</td><td colspan='4'>"+name+"</td><td><b>Datum</td><td>"+date.toString()+"</td>";
@@ -439,7 +441,7 @@ public final class ReportGenerator {
 				+ "input {width: 100px;}"
 				+ "</style>";
 		
-		html += "<form method='post' action='TimeReporting?action=addNewReport'>";
+		html += "<form method='post' action='TimeReporting?action=addNewReport&function=addNew&week="+week_number+"'>";
 		html += 	"<table>";
 		html += 		"<tr>";
 		html +=				"<td><b>Namn</td><td colspan='4'>"+name+"</td><td><b>Datum</td><td>"+date.toString()+"</td>";
