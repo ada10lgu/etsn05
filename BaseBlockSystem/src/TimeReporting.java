@@ -159,6 +159,7 @@ public class TimeReporting extends servletBase{
 			}
 			q += ReportGenerator.lower_activities[ReportGenerator.lower_activities.length-1];
 			query += q;
+
 			query += ", reports.user_group_id, reports.date, users.username, groups.name from reports";
 			String inner = " inner join report_times on reports.id = report_times.report_id";			
 			String inner1 = " inner join user_group on reports.user_group_id = user_group.id";
@@ -170,7 +171,6 @@ public class TimeReporting extends servletBase{
 			query += inner2;
 			query += inner3;
 			query += end;
-			System.out.println(query);
 			ResultSet rs = stmt.executeQuery(query);
 			if(rs.first()){				
 				out.println(ReportGenerator.viewReport(rs));
@@ -280,7 +280,6 @@ public class TimeReporting extends servletBase{
 			if (rs.first()) {
 				reportID = rs.getInt("id");
 			}
-			System.out.println(reportID);
 			stmt.close();
 
 			String q = "INSERT INTO report_times (report_id, ";
