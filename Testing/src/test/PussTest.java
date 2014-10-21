@@ -114,6 +114,11 @@ public abstract class PussTest {
 		//TODO implementera när det finns en test DB.
 	}
 	
+	protected HtmlPage getPageByAnchor(HtmlPage page, String anchor) throws IOException {
+		HtmlAnchor htmlAnchor = page.getAnchorByHref(anchor);
+		return page = htmlAnchor.click();
+	}
+	
 	protected int addUser(String username, String password, int is_admin) throws SQLException {
 		String query = "insert into users (username, password, is_admin) values ('" + username + "', '" + password + "', " + is_admin +");";
 		sendSQLCommand(query);
