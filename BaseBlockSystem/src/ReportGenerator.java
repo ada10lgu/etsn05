@@ -22,13 +22,19 @@ public final class ReportGenerator {
 	
 	private static final int[] upper_numbers = new int[]{11, 12, 13, 14, 15, 16, 17, 18, 19};
 	private static final String[] upper_activities = new String[]{"SDP", "SRS", "SVVS", "STLDD", "SVVI", "SDDD", "SVVR", "SSD", "Slutrapport"};
+	private static final String[] upper_activities_names = new String[]{"SDP", "SRS", "SVVS", "STLDD", "SVVI", "SDDD", "SVVR", "SSD", "Final Report"};
 	private static final int[] lower_numbers = new int[]{21, 22, 23, 30, 41, 42, 43, 44, 100};
+	protected static final String[] lower_activities_names = new String[]{"Functional test", "System test", "Regression test", "Meeting", "Lecture", "Excercise", "Computer exercise", "Home reading", "Other"};
 	protected static final String[] lower_activities = new String[]{"Funktionstest", "Systemtest", "Regressionstest", "Meeting", "Lecture", "Excersice", "Terminal", "Study", "Other"};
-	private static final String[] activity_type = new String[]{"Utveckling och dokumentation", "Informell granskning", "Formell granskning", "Ombearbetning"};
+	private static final String[] activity_type = new String[]{"Development and documentation", "Informal review", "Formal review", "Rework, improvement or correction"};
+	//private static final String[] activity_type = new String[]{"Utveckling och dokumentation", "Informell granskning", "Formell granskning", "Ombearbetning"};
 	private static final String[] activity_code = new String[]{"U", "I", "F", "O"};
-	private static final String[] activity_description = new String[]{"Utveckla ny kod, testfall och dokumentation inklusive dokumentation av systemet",
+	private static final String[] activity_description = new String[]{"Developing new code, test cases and documentation including documentation of the system",
+		"Time spent preparing and at meeting for informal reviews", "Time spent preparing and at meeting for formal reviews",
+		"Time spent improving, revising or correction documents and design objects"};
+	/*private static final String[] activity_description = new String[]{"Utveckla ny kod, testfall och dokumentation inklusive dokumentation av systemet",
 		"Tid spenderad på förberedelser inför och på informella granskningar", "Tid spenderad på förberedelser inför och på formella granskningar",
-		"Tid spenderad på ombearbetning, förbättring, revision eller korrektion av dokument och design objekt"};
+		"Tid spenderad på ombearbetning, förbättring, revision eller korrektion av dokument och design objekt"};*/
 	
 	protected static final String[] act_sub_names = new String[]{"SDP_U", "SDP_I", "SDP_F", "SDP_O", "SRS_U", "SRS_I", "SRS_F", "SRS_O", 
 		"SVVS_U", "SVVS_I", "SVVS_F", "SVVS_O", "STLDD_U", "STLDD_I", "STLDD_F", "STLDD_O", "SVVI_U", "SVVI_I", "SVVI_F", "SVVI_O", 
@@ -248,19 +254,19 @@ public final class ReportGenerator {
 				+ "</style>";
 		html += "<table>";
 		html += 	"<tr>";
-		html +=			"<td><b>Namn</td><td colspan='4'>"+name+"</td><td><b>Datum</td><td>"+date.toString()+"</td>";
+		html +=			"<td><b>Name</td><td colspan='4'>"+name+"</td><td><b>Date</td><td>"+date.toString()+"</td>";
 		html += 	"</tr>";		
 		html += 	"<tr>";
-		html +=			"<td><b>Projektgrupp</td><td colspan='4'>"+project_group+"</td><td><b>Vecka</td><td>"+week_number+"</td>";
+		html +=			"<td><b>Project group</td><td colspan='4'>"+project_group+"</td><td><b>Week</td><td>"+week_number+"</td>";
 		html += 	"</tr>";
 		html += 	"<tr>";
-		html += 		"<td colspan='6' class='grey'><b>Del A - Total tid denna vecka (minuter)</td><td>"+total_time+"</td>";
+		html += 		"<td colspan='6' class='grey'><b>Part A - Total time this week (minutes)</td><td>"+total_time+"</td>";
 		html += 	"</tr>";
 		html += 	"<tr>";
-		html += 		"<td colspan='7' class='grey'><b>Del B - Antal minuter per aktivitet och subaktivitet</td>";
+		html += 		"<td colspan='7' class='grey'><b>Part B - Number of minutes per activity</td>";
 		html += 	"</tr>";
 		html += 	"<tr>";
-		html += 		"<td><b>Nummer</td><td><b>Aktivitet</td><td><b>U</td><td><b>I</td><td><b>F</td><td><b>O</td><td><b>Totaltid</td>";
+		html += 		"<td><b>Number</td><td><b>Activity</td><td><b>U</td><td><b>I</td><td><b>F</td><td><b>O</td><td><b>Total time</td>";
 		html += 	"</tr>";
 		int k = 0;
 		for (int i = 0; i < 9; i++) {
@@ -270,7 +276,7 @@ public final class ReportGenerator {
 					html += "<td>"+upper_numbers[i]+"</td>";
 				}
 				if (j == 1) {
-					html += "<td>"+upper_activities[i]+"</td>";
+					html += "<td>"+upper_activities_names[i]+"</td>";
 				}
 				if (j > 1) {
 					html += "<td>"+act_sub[k]+"</td>";
@@ -280,7 +286,7 @@ public final class ReportGenerator {
 			html += "</tr>";
 		}
 		html +=		"<tr>";
-		html += 		"<td><b>Summa</td><td class='grey'></td><td>"+sub[0]+"</td><td>"+sub[1]+"</td><td>"+sub[2]+"</td><td>"+sub[3]+"</td><td class='grey'></td>";			
+		html += 		"<td><b>Sum</td><td class='grey'></td><td>"+sub[0]+"</td><td>"+sub[1]+"</td><td>"+sub[2]+"</td><td>"+sub[3]+"</td><td class='grey'></td>";			
 		html +=		"</tr>";
 		k = 0;
 		for (int i = 0; i < 9; i++) {
@@ -290,7 +296,7 @@ public final class ReportGenerator {
 					html += "<td>"+lower_numbers[i]+"</td>";
 				}
 				if (j == 1) {
-					html += "<td colspan='5'>"+lower_activities[i]+"</td>";
+					html += "<td colspan='5'>"+lower_activities_names[i]+"</td>";
 				}
 				if (j == 2) {
 					html += "<td>"+act[k]+"</td>";
@@ -300,10 +306,10 @@ public final class ReportGenerator {
 			html += "</tr>";
 		}
 		html += 	"<tr>";
-		html += 		"<td colspan='7' class='grey'><b>Del C - Antal minuter spenderat på de olika subaktiviteterna</td>";
+		html += 		"<td colspan='7' class='grey'><b>Part C - Time spent at different types of sub activities</td>";
 		html += 	"</tr>";
 		html += 	"<tr>";
-		html += 		"<td><b>Aktivitetstyp</td><td><b>Aktivitetskod</td><td colspan='4'><b>Beskrivning</td><td><b>Summa</td>";
+		html += 		"<td><b>Activity type</td><td><b>Activity code</td><td colspan='4'><b>Description</td><td><b>Sum</td>";
 		html += 	"</tr>";
 		k = 0;
 		for (int i = 0; i < 4; i++) {
@@ -327,7 +333,7 @@ public final class ReportGenerator {
 		html += 		"<td colspan='7' class='grey'><b>Del D - Signatur</td>";
 		html += 	"</tr>";
 		html += 	"<tr>";
-		html += 		"<td><b>Signerad</td><td colspan='5'></td>";
+		html += 		"<td><b>Signed</td><td colspan='5'></td>";
 		if (signed == 0) {
 			html +=		"<td>NO</td>";
 		} else if (signed == 1) {
@@ -354,81 +360,28 @@ public final class ReportGenerator {
 		}
 		
 		String html = "";
-		/*
-		html += "<SCRIPT TYPE='text/javascript'>";
-		html += "// copyright 1999 Idocs, Inc. http://www.idocs.com";
-		html += "// Distribute this script freely but keep this notice in place";
-		html += "function numbersonly(myfield, e)";
-		html += "{";
-		html += "	var key;";
-		html += "	var keychar;";
-		html += "	if (window.event)";
-
-		html += "		key = window.event.keyCode;";
-		html += "	else if (e)";
-		html += "		key = e.which;";
-		html += "	else";
-		html += "		return true;";
-		html += "	keychar = String.fromCharCode(key);";
-	
-		html += "	// control keys";
-		html += "	if ((key==null) || (key==0) || (key==8) ||"; 
-		html += "	    (key==9) || (key==13) || (key==27) )";
-		html += "	   return true;";
-	
-		html += "	// numbers";
-		html += "	else if ((('0123456789').indexOf(keychar) > -1))";
-		html += "	   return true;";
-	
-		html += "	// decimal point jump";
-		html += "	else if (dec && (keychar == '.'))";
-		html += "	   {";
-		html += "	   myfield.form.elements[dec].focus();";
-		html += "	   return false;";
-		html += "	   }";
-		
-		html += "	else";
-		html += "		return false;";
-		html += "	}";
-		html += "</SCRIPT>";
-		*/
-		/*
-		html += "<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>";
-		
-		html += "<script type='text/javascript'>"
-				+ "		$(document).ready(function(){"
-				+ "			$(this).keypress(function(){"
-				+ "				if (!$(this).isNumeric($(this).innerHTML))"
-				+ "				$(this).innerHTML = '';"
-				+ "			});"
-				+ "		});"
-				+ "</script>"; 
-		*/
-		
 		html += "<style type='text/css'>"
 				+ "table {border: 1px solid black; border-collapse: collapse; width: 700px; text-align: left;}"
 				+ "td {border: 1px solid black; width: 100px;}"
 				+ ".grey {background-color: #dddddd;}"
 				+ "input {width: 100px;}"
 				+ "</style>";
-		
-	//	html += "<form method='post' action='TimeReporting?action=updateReport'>";
 		html += "<form method='post' action='TimeReporting?action=updateReport&function=addUpdateReport&reportID="+reportID+"'>";
 		html += 	"<table>";
 		html += 		"<tr>";
-		html +=				"<td><b>Namn</td><td colspan='4'>"+name+"</td><td><b>Datum</td><td>"+date.toString()+"</td>";
+		html +=				"<td><b>Name</td><td colspan='4'>"+name+"</td><td><b>Date</td><td>"+date.toString()+"</td>";
 		html +=			"</tr>";		
 		html += 		"<tr>";
-		html +=				"<td><b>Projektgrupp</td><td colspan='4'>"+project_group+"</td><td><b>Vecka</td><td>"+week_number+"</td>";
+		html +=				"<td><b>Project group</td><td colspan='4'>"+project_group+"</td><td><b>Week</td><td>"+week_number+"</td>";
 		html += 		"</tr>";
 		html += 		"<tr>";
-		html += 			"<td colspan='6' class='grey'><b>Del A - Total tid denna vecka (minuter)</td><td>"+total_time+"</td>";
+		html += 			"<td colspan='6' class='grey'><b>Part A - Total time this week (minutes)</td><td>"+total_time+"</td>";
 		html += 		"</tr>";
 		html += 		"<tr>";
-		html += 			"<td colspan='7' class='grey'><b>Del B - Antal minuter per aktivitet och subaktivitet</td>";
+		html += 			"<td colspan='7' class='grey'><b>Part B - Number of minutes per activity</td>";
 		html +=			"</tr>";
 		html += 		"<tr>";
-		html += 			"<td><b>Nummer</td><td><b>Aktivitet</td><td><b>U</td><td><b>I</td><td><b>F</td><td><b>O</td><td><b>Totaltid</td>";
+		html += 			"<td><b>Number</td><td><b>Acitivity</td><td><b>U</td><td><b>I</td><td><b>F</td><td><b>O</td><td><b>Total time</td>";
 		html +=			"</tr>";
 		int k = 0;
 		int l = 0;
@@ -439,7 +392,7 @@ public final class ReportGenerator {
 					html += "<td>"+upper_numbers[i]+"</td>";
 				}
 				if (j == 1) {
-					html += "<td>"+upper_activities[i]+"</td>";
+					html += "<td>"+upper_activities_names[i]+"</td>";
 				}
 				if (1 < j && j < 6) {
 					html += "<td><input type='text' name='"+act_sub_names[l]+"' value='";
@@ -458,7 +411,7 @@ public final class ReportGenerator {
 			html += 	"</tr>";
 		}
 		html +=			"<tr>";
-		html += 			"<td><b>Summa</td><td class='grey'></td><td></td><td></td><td></td><td></td><td class='grey'></td>";			
+		html += 			"<td><b>Sum</td><td class='grey'></td><td></td><td></td><td></td><td></td><td class='grey'></td>";			
 		html +=			"</tr>";
 		k = 0;
 		for (int i = 0; i < 9; i++) {
@@ -468,10 +421,10 @@ public final class ReportGenerator {
 					html += "<td>"+lower_numbers[i]+"</td>";
 				}
 				if (j == 1) {
-					html += "<td colspan='5'>"+lower_activities[i]+"</td>";
+					html += "<td colspan='5'>"+lower_activities_names[i]+"</td>";
 				}
 				if (j == 2) {
-					html += "<td><input type='text' name='"+lower_activities[i]+"' value='";
+					html += "<td><input type='text' name='"+lower_activities_names[i]+"' value='";
 					if (act[k] > 0) {
 						html += act[k];
 					}
@@ -483,10 +436,10 @@ public final class ReportGenerator {
 			html += 	"</tr>";
 		}
 		html += 		"<tr>";
-		html += 			"<td colspan='7' class='grey'><b>Del C - Antal minuter spenderat på de olika subaktiviteterna</td>";
+		html += 			"<td colspan='7' class='grey'><b>Part C - Time spent at different types of sub activities</td>";
 		html += 		"</tr>";
 		html += 		"<tr>";
-		html += 			"<td><b>Aktivitetstyp</td><td><b>Aktivitetskod</td><td colspan='4'><b>Beskrivning</td><td><b>Summa</td>";
+		html += 			"<td><b>Activity type</td><td><b>Activity code</td><td colspan='4'><b>Description</td><td><b>Sum</td>";
 		html += 		"</tr>";
 		k = 0;
 		for (int i = 0; i < 4; i++) {
@@ -510,11 +463,11 @@ public final class ReportGenerator {
 		html += 			"<td colspan='7' class='grey'><b>Del D - Signatur</td>";
 		html += 		"</tr>";
 		html += 		"<tr>";
-		html += 			"<td><b>Signerad</td><td colspan='5'></td><td></td>";
+		html += 			"<td><b>Signed</td><td colspan='5'></td><td></td>";
 		html += 		"</tr>";
 		
 		html += 	"</table>";
-		html += 	"<input type='submit' />";
+		html += 	"<input type='submit' value='Save'/>";
 		html += "</form>";
 		
 		return html;
@@ -550,13 +503,13 @@ public final class ReportGenerator {
 		html +=				"<td><b>Projektgrupp</td><td colspan='4'>"+project_group+"</td><td><b>Vecka</td><td>"+week_number+"</td>";
 		html += 		"</tr>";
 		html += 		"<tr>";
-		html += 			"<td colspan='6' class='grey'><b>Del A - Total tid denna vecka (minuter)</td><td></td>";
+		html += 			"<td colspan='6' class='grey'><b>Part A - Total time this week (minutes)</td><td></td>";
 		html += 		"</tr>";
 		html += 		"<tr>";
-		html += 			"<td colspan='7' class='grey'><b>Del B - Antal minuter per aktivitet och subaktivitet</td>";
+		html += 			"<td colspan='7' class='grey'><b>Part B - Number of minutes per activity</td>";
 		html +=			"</tr>";
 		html += 		"<tr>";
-		html += 			"<td><b>Nummer</td><td><b>Aktivitet</td><td><b>U</td><td><b>I</td><td><b>F</td><td><b>O</td><td><b>Totaltid</td>";
+		html += 			"<td><b>Number</td><td><b>Activity</td><td><b>U</td><td><b>I</td><td><b>F</td><td><b>O</td><td><b>Total time</td>";
 		html +=			"</tr>";
 		int k = 0;
 		int l = 0;
@@ -567,7 +520,7 @@ public final class ReportGenerator {
 					html += "<td>"+upper_numbers[i]+"</td>";
 				}
 				if (j == 1) {
-					html += "<td>"+upper_activities[i]+"</td>";
+					html += "<td>"+upper_activities_names[i]+"</td>";
 				}
 				if (1 < j && j < 6) {
 					html += "<td><input type='text' name='"+act_sub_names[l]+"' /></td>";
@@ -580,7 +533,7 @@ public final class ReportGenerator {
 			html += 	"</tr>";
 		}
 		html +=			"<tr>";
-		html += 			"<td><b>Summa</td><td class='grey'></td><td></td><td></td><td></td><td></td><td class='grey'></td>";			
+		html += 			"<td><b>Sum</td><td class='grey'></td><td></td><td></td><td></td><td></td><td class='grey'></td>";			
 		html +=			"</tr>";
 		k = 0;
 		for (int i = 0; i < 9; i++) {
@@ -590,19 +543,19 @@ public final class ReportGenerator {
 					html += "<td>"+lower_numbers[i]+"</td>";
 				}
 				if (j == 1) {
-					html += "<td colspan='5'>"+lower_activities[i]+"</td>";
+					html += "<td colspan='5'>"+lower_activities_names[i]+"</td>";
 				}
 				if (j == 2) {
-					html += "<td><input type='text' name='"+lower_activities[i]+"' /></td>";
+					html += "<td><input type='text' name='"+lower_activities_names[i]+"' /></td>";
 				}	
 			}
 			html += 	"</tr>";
 		}
 		html += 		"<tr>";
-		html += 			"<td colspan='7' class='grey'><b>Del C - Antal minuter spenderat på de olika subaktiviteterna</td>";
+		html += 			"<td colspan='7' class='grey'><b>Part C - Time spent at different types of sub activities</td>";
 		html += 		"</tr>";
 		html += 		"<tr>";
-		html += 			"<td><b>Aktivitetstyp</td><td><b>Aktivitetskod</td><td colspan='4'><b>Beskrivning</td><td><b>Summa</td>";
+		html += 			"<td><b>Activity type</td><td><b>Activity code</td><td colspan='4'><b>Description</td><td><b>Sum</td>";
 		html += 		"</tr>";
 		k = 0;
 		for (int i = 0; i < 4; i++) {
@@ -626,11 +579,11 @@ public final class ReportGenerator {
 		html += 			"<td colspan='7' class='grey'><b>Del D - Signatur</td>";
 		html += 		"</tr>";
 		html += 		"<tr>";
-		html += 			"<td><b>Signerad</td><td colspan='5'></td><td></td>";
+		html += 			"<td><b>Signed</td><td colspan='5'></td><td></td>";
 		html += 		"</tr>";
 		
 		html += 	"</table>";
-		html += 	"<input type='submit' />";
+		html += 	"<input type='submit' value='Save'/>";
 		html += "</form>";
 		
 		return html;
