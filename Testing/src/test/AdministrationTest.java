@@ -12,10 +12,8 @@ import org.junit.Test;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.DomElement;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
-import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
 import com.gargoylesoftware.htmlunit.html.HtmlRadioButtonInput;
@@ -28,7 +26,7 @@ public class AdministrationTest extends PussTest {
 	@Ignore
 	public void FT4_1_1() throws FailingHttpStatusCodeException,
 			MalformedURLException, IOException, SQLException {
-		clearSessions();
+		clearDatabase();
 		final WebClient webClient = new WebClient();
 
 		// Get the first page
@@ -59,7 +57,7 @@ public class AdministrationTest extends PussTest {
 		assertEquals("Administration are not acces to administrations page",
 				ADMINISTRATION_URL, page3.getUrl().toString());
 
-		clearSessions();
+		clearDatabase();
 
 		webClient.closeAllWindows();
 
@@ -68,7 +66,7 @@ public class AdministrationTest extends PussTest {
 	@Ignore
 	public void FT4_1_2() throws FailingHttpStatusCodeException,
 			MalformedURLException, IOException, SQLException {
-		clearSessions();
+		clearDatabase();
 		final WebClient webClient = new WebClient();
 
 	    // Get the first page
@@ -99,7 +97,7 @@ public class AdministrationTest extends PussTest {
 
 	    assertEquals("Vanligt avnändare kan åtkom åt administration sida", START_URL, page3.getUrl().toString());
 
-	    clearSessions();
+	    clearDatabase();
 	    
 	    webClient.closeAllWindows();
 	    

@@ -69,10 +69,19 @@ public abstract class PussTest {
 	}
 	
 	@After
-	public void clearSessions() throws SQLException {
-		String query = "delete from log;";
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(query);
+	public void clearDatabase() throws SQLException {
+		String query = "delete from groups;";
+		sendSQLCommand(query);
+		query = "delete from log;";
+		sendSQLCommand(query);
+		query = "delete from report_times;";
+		sendSQLCommand(query);
+		query = "delete from reports;";
+		sendSQLCommand(query);
+		query = "delete from user_group;";
+		sendSQLCommand(query);
+		query = "delete from users where username <> 'admin'";
+		sendSQLCommand(query);
 	}
 	
 	protected void sendSQLCommand(String query) throws SQLException {
@@ -225,6 +234,6 @@ public abstract class PussTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}	
 	
 }
