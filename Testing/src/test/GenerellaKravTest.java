@@ -6,9 +6,8 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
-import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
+import com.gargoylesoftware.htmlunit.Page;
+import com.gargoylesoftware.htmlunit.WebResponse;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 import org.junit.*;
@@ -17,15 +16,22 @@ public class GenerellaKravTest extends PussTest {
 
 	private void checkMenuAs(String username, String password,
 			String groupName, String[] userPages, String expectedMenu)
-			throws FailingHttpStatusCodeException, MalformedURLException,
-			IOException {
+			throws MalformedURLException, IOException {
 		HtmlPage page = login(username, password, groupName);
 		for (int i = 0; i < userPages.length; i++) {
-			page = webClient.getPage(userPages[i]);
-			String html = page.asText();
-			html.indexOf("<div class = 'menu'>");
-			String menu = html.substring(html.indexOf("<div class = 'menu'>"),
-					html.indexOf("<\\div>"));
+			page = switchPage(page, userPages[i]);
+			WebResponse response = page.getWebResponse();
+			String content = response.getContentAsString();
+
+			int menuStartIndex = content.indexOf("<div class = 'menu'>");
+			int menuEndIndex = content.indexOf("</div>") + "</div>".length();
+
+			if (menuStartIndex > -1 || menuEndIndex > -1 + "</div>".length()) {
+				Assert.fail("Menu not available on page: " + userPages[i]);
+			}
+
+			String menu = content.substring(menuStartIndex, menuEndIndex);
+
 			Assert.assertEquals("The menu does not look right at page: "
 					+ userPages[i] + "for user: " + username, expectedMenu,
 					menu);
@@ -36,16 +42,16 @@ public class GenerellaKravTest extends PussTest {
 	 * Alla typer av inloggade användare har tillgång till menyn på samtliga
 	 * sidor som visas av systemet [SRS krav 6.1.1]
 	 */
-	@Ignore
-	public void FT1_1_1() throws SQLException, FailingHttpStatusCodeException,
-			MalformedURLException, IOException {
+	@Test
+	public void FT1_1_1() throws SQLException, MalformedURLException,
+			IOException {
 		final String group = "menygrupp";
 		final String leader = "victor";
 		final String member = "mrsmith";
 
-		final String expectedAdminMenu = "";
-		final String expectedLeaderMenu = "";
-		final String expectedMemberMenu = "";
+		final String expectedAdminMenu = "<div class='menu'><ul><li><a href='Administration'>Administration</a><ul><li><a href='Administration'>Users</a></li><li><a href='ProjectGroupAdmin'>Group</a></li></ul></li><li><a href='LogIn'>Logout</a></li></ul></div>";
+		final String expectedLeaderMenu = "<div class='menu'><ul><li><a href='Administration'>Administration</a><ul><li><a href='Administration'>Users</a></li><li><a href='ProjectGroupAdmin'>Group</a></li></ul></li><li><a href='LogIn'>Logout</a></li></ul></div>";
+		final String expectedMemberMenu = "<div class='menu'><ul><li><a href='Administration'>Administration</a><ul><li><a href='Administration'>Users</a></li><li><a href='ProjectGroupAdmin'>Group</a></li></ul></li><li><a href='LogIn'>Logout</a></li></ul></div>";
 
 		addGroup(group);
 		addUser(leader, leader, 0);
@@ -53,12 +59,14 @@ public class GenerellaKravTest extends PussTest {
 		addUserToGroup(leader, group, "Project Leader");
 		addUserToGroup(member, group, "t1");
 
-		String[] adminPages = { GROUP_ADMIN_URL, START_URL, ADMINISTRATION_URL };
+		String[] adminPages = { GROUP_ADMIN, START, ADMINISTRATION };
 
-		String[] leaderPages = { PROJECT_LEADER_URL, TIMEREPORTING_URL,
-				REPORT_HANDLING_URL, CHANGE_PASSWORD_URL, START_URL };
+		String[] leaderPages = { PROJECT_LEADER, TIMEREPORTING,
+				TIMEREPORTING_UPDATE, TIMEREPORTING_NEW,
+				TIMEREPORTING_STATISTICS, REPORT_HANDLING,
+				CHANGE_PASSWORD, START };
 
-		String[] memberPages = { START_URL, ADMINISTRATION_URL };
+		String[] memberPages = { START, ADMINISTRATION };
 
 		checkMenuAs(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP, adminPages,
 				expectedAdminMenu);
@@ -98,22 +106,23 @@ public class GenerellaKravTest extends PussTest {
 	 * typer av roller: t1, t2, och t3. [SRS krav 6.1.6]
 	 */
 	@Ignore
-	public void FT1_1_5() throws SQLException, FailingHttpStatusCodeException, MalformedURLException, IOException {
+	public void FT1_1_5() throws SQLException, MalformedURLException,
+			IOException {
 		final String group = "endast";
 		final String leader1 = "maxtva";
 		final String leader2 = "maxen";
 		final String member = "member";
-		
+
 		addGroup(group);
 		addUser(leader1, leader1, 0);
 		addUser(leader2, leader2, 0);
 		addUser(member, member, 0);
-		
+
 		addUserToGroup(leader1, group, "Project Leader");
 		addUserToGroup(leader2, group, "Project Leader");
-		addUserToGroup(member, group, "t1");
-		
+
 		HtmlPage page = login(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP);
+		page = switchPage(page, GROUP_ADMIN);
 	}
 
 	/**
