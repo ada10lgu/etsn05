@@ -1,7 +1,5 @@
 package test;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.Connection;
@@ -15,7 +13,9 @@ import org.junit.*;
 
 import sun.misc.Cleaner;
 
+import com.gargoylesoftware.htmlunit.ConfirmHandler;
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
+import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
@@ -56,6 +56,8 @@ public abstract class PussTest {
 	@BeforeClass
 	public static void initiateServerAndDB() {
 		restartServer();
+		webClient = new WebClient();
+		webClient.setConfirmHandler(new ConfirmHandler() {public boolean handleConfirm(Page page, String message) {return true;}});
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404test?" +
@@ -63,8 +65,6 @@ public abstract class PussTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
 	
 	@AfterClass
@@ -79,24 +79,24 @@ public abstract class PussTest {
 	
 	@Before
 	public void setUp() throws SQLException{
-//		clearDatabase();
+		clearDatabase();
 	}
 	
 	@After
 	public void clearDatabase() throws SQLException {
 		
-//		String query = "delete from report_times;";
-//		sendSQLCommand(query);
-//		query = "delete from reports;";
-//		sendSQLCommand(query);
-//		query = "delete from user_group;";
-//		sendSQLCommand(query);
-//		query = "delete from groups;";
-//		sendSQLCommand(query);
-//		query = "delete from log;";
-//		sendSQLCommand(query);
-//		query = "delete from users where username <> 'admin';";
-//		sendSQLCommand(query);
+		String query = "delete from report_times;";
+		sendSQLCommand(query);
+		query = "delete from reports;";
+		sendSQLCommand(query);
+		query = "delete from user_group;";
+		sendSQLCommand(query);
+		query = "delete from groups;";
+		sendSQLCommand(query);
+		query = "delete from log;";
+		sendSQLCommand(query);
+		query = "delete from users where username <> 'admin';";
+		sendSQLCommand(query);
 		
 	}
 	
@@ -215,7 +215,7 @@ public abstract class PussTest {
 	}
 	
 	protected HtmlPage login(String username, String password, String group) throws FailingHttpStatusCodeException, MalformedURLException, IOException {
-		webClient = new WebClient();
+		
 
 	    // Get the first page
 	    final HtmlPage page1 = webClient.getPage(LOGIN_URL);
