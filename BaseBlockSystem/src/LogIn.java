@@ -10,19 +10,6 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class LogIn
- * 
- * A log-in page.
- * 
- * The first thing that happens is that the user is logged out if he/she is
- * logged in. Then the user is asked for name and password. If the user is
- * logged in he/she is directed to the functionality page.
- * 
- * @author Martin Host
- * @version 1.0
- * 
- */
 @WebServlet("/LogIn")
 public class LogIn extends servletBase {
 	private HttpSession session;
@@ -60,12 +47,8 @@ public class LogIn extends servletBase {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		html += "</select>";
-		// html += "<p> Group: <input type=" + formElement("text") + " name=" +
-		// formElement("groupID") + '>';
 		html += "<p> <input type=" + formElement("submit") + "value="
 				+ formElement("Submit") + '>';
 		html += "</form>";
@@ -182,7 +165,7 @@ public class LogIn extends servletBase {
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
 		
-		// Om användaren är inloggad så, logga ut.
+		// If user is logged in, log out.
 		if (loggedIn(request)) {
 			session.setAttribute("state", LOGIN_FALSE);
 			access.logOutUser((Integer) session.getAttribute("userID"),session.getId());
