@@ -28,7 +28,7 @@ public class AutentiseringTest extends PussTest{
 		
 		String groupname = "groupz";
 		String username = "Cartman";
-		String password = "pass12";
+		String password = "passwo";
 		String role = "t1";
 		
 		int is_admin = 0;
@@ -92,7 +92,7 @@ public class AutentiseringTest extends PussTest{
 		
 		String groupname = "groupz";
 		String username = "Cartman";
-		String password = "pass12";		
+		String password = "passwo";		
 		String role = "t1";
 		
 		int is_admin = 0;
@@ -118,9 +118,7 @@ public class AutentiseringTest extends PussTest{
 			e.printStackTrace();
 		}
 		assertEquals(username + " could not log in", START_URL, page.getUrl().toString());
-		shutDownServer();
-		startServer();
-		
+		restartServer();
 		WebClient w2 = new WebClient();
 		
 		try {
@@ -162,31 +160,359 @@ public class AutentiseringTest extends PussTest{
 			addName = form.getInputByName("addname");
 			addUser = form.getInputByValue("Add user");
 			
-			addName.setValueAttribute("Tord");
+			addName.setValueAttribute("Stan");
 			page = addUser.click();
 			
 			ResultSet rs = sendSQLQuery("select * from users;");
 			
 			while(!rs.isLast()){
 				rs.next();
-				if(rs.getString(2).equals("Tord")){
-					fail("Tord has been added!");
+				if(rs.getString(2).equals("Stan")){
+					fail("Stan has been added!");
 				}
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		assertTrue(page.asText().contains("Error: Suggesten name not allowed"));
 		System.out.println("FT2_1_3");
 	}
 	
 	@Test
+	public void FT2_1_4(){
+		
+		String admin = "admin";
+		String adminpw = "adminpw";
+		
+		HtmlPage page = null;
+		HtmlAnchor anchor = null;
+		HtmlForm form = null;
+		HtmlTextInput addName = null;
+		HtmlSubmitInput addUser = null;
+		
+		try {
+			page = login(admin, adminpw, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		anchor = page.getAnchorByHref("Administration");
+		try {
+			page = anchor.click();
+			form = page.getFormByName("input");
+			addName = form.getInputByName("addname");
+			addUser = form.getInputByValue("Add user");
+			
+			addName.setValueAttribute("EricCartman");
+			page = addUser.click();
+			
+			ResultSet rs = sendSQLQuery("select * from users;");
+			
+			while(!rs.isLast()){
+				rs.next();
+				if(rs.getString(2).equals("EricCartman")){
+					fail("EricCartman has been added!");
+				}
+			}
+			assertTrue(page.asText().contains("Error: Suggesten name not allowed"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("FT2_1_4");
+	}
+	
+	@Test
+	public void FT2_1_5(){
+		
+		String admin = "admin";
+		String adminpw = "adminpw";
+		
+		HtmlPage page = null;
+		HtmlAnchor anchor = null;
+		HtmlForm form = null;
+		HtmlTextInput addName = null;
+		HtmlSubmitInput addUser = null;
+		
+		try {
+			page = login(admin, adminpw, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		anchor = page.getAnchorByHref("Administration");
+		try {
+			page = anchor.click();
+			form = page.getFormByName("input");
+			addName = form.getInputByName("addname");
+			addUser = form.getInputByValue("Add user");
+			
+			addName.setValueAttribute("Mr Garrison");
+			page = addUser.click();
+			
+			ResultSet rs = sendSQLQuery("select * from users;");
+			
+			while(!rs.isLast()){
+				rs.next();
+				if(rs.getString(2).equals("Mr Garrison")){
+					fail("Mr Garrison has been added!");
+				}
+			}
+			assertTrue(page.asText().contains("Error: Suggesten name not allowed"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("FT2_1_5");
+	}
+	
+	@Test
+	public void FT2_1_6(){
+		
+		String admin = "admin";
+		String adminpw = "adminpw";
+		
+		String username = "MrHat";
+		String password = "passwo";
+		
+		HtmlPage page = null;
+		HtmlAnchor anchor = null;
+		HtmlForm form = null;
+		HtmlTextInput addName = null;
+		HtmlSubmitInput addUser = null;
+		
+		try {
+			addUser(username, password, 0);
+			page = login(admin, adminpw, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		anchor = page.getAnchorByHref("Administration");
+		try {
+			page = anchor.click();
+			form = page.getFormByName("input");
+			addName = form.getInputByName("addname");
+			addUser = form.getInputByValue("Add user");
+			
+			addName.setValueAttribute(username);
+			page = addUser.click();
+			
+			ResultSet rs = sendSQLQuery("select * from users;");
+			
+			int counter = 0;
+			while(!rs.isLast()){
+				rs.next();
+				if(rs.getString(2).equals(username)){
+					counter++;
+				}
+				if(counter == 2){
+					fail(username + " has been added twice!");
+				}
+			}
+			assertTrue(page.asText().contains("Error: Suggested user name not possible to add"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("FT2_1_6");
+	}
+	
+	@Test
+	public void FT2_1_7(){
+		
+		String admin = "admin";
+		String adminpw = "adminpw";
+		
+		String username = "MrHat";
+		String password = "passwo";
+		String role = "t1";
+		String groupName = "SouthPark";
+		
+		String newPassword = "tolongp";
+		
+		int userId = -1;
+		int groupId = -1;
+		
+		HtmlPage page = null;
+		HtmlAnchor anchor = null;
+		HtmlForm form = null;
+		HtmlTextInput oldPass = null;
+		HtmlTextInput newPass = null;
+		HtmlSubmitInput changePass = null;
+		
+		try {
+			userId = addUser(username, password, 0);
+			groupId = addGroup(groupName);
+			assignGroup(userId, groupId, role);
+			page = login(username, password, groupName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		anchor = page.getAnchorByHref("ChangePassword");
+		try {
+			page = anchor.click();
+			form = page.getFormByName("input");
+			oldPass = form.getInputByName("oldpw");
+			newPass = form.getInputByName("newpw");
+			changePass = form.getInputByValue("Change");
+			
+			oldPass.setValueAttribute(password);
+			newPass.setValueAttribute(newPassword);
+			page = changePass.click();
+			
+			ResultSet rs = sendSQLQuery("select * from users;");
+
+			while(rs.next()){
+				if(rs.getString(3).equals(newPassword)){
+					fail("Changed to too long password!");
+				}
+			}
+			
+			assertTrue(page.asText().contains("Error"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("FT2_1_7");
+	}
+	
+	@Test
+	public void FT2_1_8(){
+		
+		String admin = "admin";
+		String adminpw = "adminpw";
+		
+		String username = "MrHat";
+		String password = "passwo";
+		String role = "t1";
+		String groupName = "SouthPark";
+		
+		String newPassword = "sym ol";
+		
+		int userId = -1;
+		int groupId = -1;
+		
+		HtmlPage page = null;
+		HtmlAnchor anchor = null;
+		HtmlForm form = null;
+		HtmlTextInput oldPass = null;
+		HtmlTextInput newPass = null;
+		HtmlSubmitInput changePass = null;
+		
+		try {
+			userId = addUser(username, password, 0);
+			groupId = addGroup(groupName);
+			assignGroup(userId, groupId, role);
+			page = login(username, password, groupName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		anchor = page.getAnchorByHref("ChangePassword");
+		try {
+			page = anchor.click();
+			form = page.getFormByName("input");
+			oldPass = form.getInputByName("oldpw");
+			newPass = form.getInputByName("newpw");
+			changePass = form.getInputByValue("Change");
+			
+			oldPass.setValueAttribute(password);
+			newPass.setValueAttribute(newPassword);
+			page = changePass.click();
+			
+			ResultSet rs = sendSQLQuery("select * from users;");
+
+			while(rs.next()){
+				if(rs.getString(3).equals(newPassword)){
+					fail("Changed to illegal symbol password!");
+				}
+			}
+			
+			assertTrue(page.asText().contains("Error"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("FT2_1_8");
+	}
+
+	@Test
+	public void FT2_2_1(){
+		
+		String logOutLink = "LogIn";
+		
+		String group = "Lorde";
+		
+		String projectLeader = "Timmy";
+		String projectLeaderPass = "TTimmy";
+		String projectLeaderRole = "Project Leader";
+		
+		String projectMember = "Jimmy";
+		String projectMemberPass = "Jjjjii";
+		String memberRole = "t1";
+		
+		int projLeaderId = -1;
+		int projMemberId = -1;
+		int groupId = -1;
+		
+		HtmlPage page = null;
+		HtmlAnchor logOutButton = null;
+		try {
+			projLeaderId = addUser(projectLeader, projectLeaderPass, 0);
+			projMemberId = addUser(projectMember, projectMemberPass, 0);
+			groupId = addGroup(group);
+			
+			assignGroup(projLeaderId, groupId, projectLeaderRole);
+			assignGroup(projMemberId, groupId, memberRole);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			//Admin pages - logout links
+			page = login(ADMIN_USERNAME,ADMIN_PASSWORD, ADMIN_GROUP);
+			logOutButton = page.getAnchorByHref(logOutLink);
+			assertNotEquals(null, logOutButton);
+			
+			page = webClient.getPage(ADMINISTRATION_URL);
+			logOutButton = page.getAnchorByHref(logOutLink);
+			assertNotEquals(null, logOutButton);
+			
+			page = webClient.getPage(GROUP_ADMIN_URL);
+			logOutButton = page.getAnchorByHref(logOutLink);
+			assertNotEquals(null, logOutButton);
+			
+			page = webClient.getPage(GROUP_HANDLING_URL);
+			System.out.println(page.asText());
+			logOutButton = page.getAnchorByHref(logOutLink);
+			assertNotEquals(null, logOutButton);
+			
+			page = webClient.getPage(PROJECT_LEADER_URL);
+			logOutButton = page.getAnchorByHref(logOutLink);
+			assertNotEquals(null, logOutButton);
+			
+			page = webClient.getPage(REPORT_HANDLING_URL);
+			logOutButton = page.getAnchorByHref(logOutLink);
+			assertNotEquals(null, logOutButton);
+			
+			page = webClient.getPage(STATISTICS_URL);
+			logOutButton = page.getAnchorByHref(logOutLink);
+			assertNotEquals(null, logOutButton);
+			
+			logOutButton.click();
+			assertEquals("Logout button does not work!", LOGIN_URL,page.getUrl().toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	@Test
+	
 	public void FT2_5_4(){
 		
 		String groupname = "groupz";
 		String username = "Cartman";
-		String password = "pass12";
+		String password = "passwo";
 
 		
 		String role = "t1";
@@ -207,11 +533,7 @@ public class AutentiseringTest extends PussTest{
 		HtmlPage page = null;
 		try {
 			page = login(username, password, groupname);
-		} catch (FailingHttpStatusCodeException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}		
 		try {

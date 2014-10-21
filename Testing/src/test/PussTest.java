@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.*;
 
@@ -43,6 +44,7 @@ public abstract class PussTest {
 	public static final String PROJECT_LEADER_URL = "http://localhost:8080/BaseBlockSystem/ProjectLeader";
 	public static final String REPORT_HANDLING_URL = "http://localhost:8080/BaseBlockSystem/ReportHandling";
 	public static final String CHANGE_PASSWORD_URL = "http://localhost:8080/BaseBlockSystem/ChangePassword";
+	public static final String STATISTICS_URL = "http://localhost:8080/BaseBlockSystem/Statistics";
 	
 	public static final String ADMIN_USERNAME = "admin";
 	public static final String ADMIN_PASSWORD = "adminpw";
@@ -77,22 +79,23 @@ public abstract class PussTest {
 	public void setUp() throws SQLException{
 		clearDatabase();
 	}
+	
 	@After
 	public void clearDatabase() throws SQLException {
 		
-		String query = "delete from user_group;";
+		String query = "delete from report_times;";
+		sendSQLCommand(query);
+		query = "delete from reports;";
+		sendSQLCommand(query);
+		query = "delete from user_group;";
 		sendSQLCommand(query);
 		query = "delete from groups;";
 		sendSQLCommand(query);
 		query = "delete from log;";
 		sendSQLCommand(query);
-		query = "delete from report_times;";
-		sendSQLCommand(query);
-		query = "delete from reports;";
-		sendSQLCommand(query);
-
 		query = "delete from users where username <> 'admin';";
 		sendSQLCommand(query);
+		
 	}
 	
 	protected void sendSQLCommand(String query) throws SQLException {
@@ -236,6 +239,18 @@ public abstract class PussTest {
 //	    logout.click();
 //	    webClient.closeAllWindows();
 	    return page2;
+	}
+	
+	protected static void restartServer(){
+		try {
+			System.out.print("Server Restarting....");
+			Process process = Runtime.getRuntime().exec(TOMCAT_PATH + SHUTDOWN_SHELL);
+			Process process2 = Runtime.getRuntime().exec(TOMCAT_PATH + STARTUP_SHELL);
+			TimeUnit.SECONDS.sleep(2);
+			System.out.println(" Done!");
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	protected static void shutDownServer() {
