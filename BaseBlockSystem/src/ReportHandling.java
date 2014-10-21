@@ -50,7 +50,7 @@ public class ReportHandling extends servletBase{
 			}
 			s.close();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select users.username, reports.id, reports.date, reports.week, reports.total_time, reports.signed "
+			ResultSet rs = stmt.executeQuery("select users.username, user_group.role, reports.id, reports.date, reports.week, reports.total_time, reports.signed "
 											+ " from user_group INNER JOIN reports on user_group.id = reports.user_group_id "
 											+ " INNER JOIN users on user_group.user_id = users.id"
 											+ " where user_group.group_id =" + groupID+ " order by "+ sort);
@@ -129,6 +129,10 @@ public class ReportHandling extends servletBase{
 				+ "Signerat/Osignerat" + "</option>";
 		html += "<option value=" + formElement("signed asc") + ">"
 				+ "Osignerat/Signerat" + "</option>";
+		html += "<option value=" + formElement("role desc") + ">"
+				+ "Roll stigande" + "</option>";
+		html += "<option value=" + formElement("role asc") + ">"
+				+ "Roll fallande" + "</option>";
 		html += "</select>";
 		return html;
 	}
