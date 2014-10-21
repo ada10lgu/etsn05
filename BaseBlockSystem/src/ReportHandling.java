@@ -55,14 +55,13 @@ public class ReportHandling extends servletBase{
 											+ " INNER JOIN users on user_group.user_id = users.id"
 											+ " where user_group.group_id =" + groupID+ " order by "+ sort);
 			out.println("<div class='floati'>");
-			out.println("<p><b>Time reports for "+groupName+"</b></p>");
+			out.println("<b>Time reports for "+groupName+"</b>");
 			out.println("<table border=" + formElement("1") + ">");
 			out.println("<tr><td>Selection</td><td>Username</td><td>Last update</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
 			
 			out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post"));
 			out.println(selectSortList());
 			out.println("<input type=" + formElement("submit") + " name='sort' value="+ formElement("Sort") + '>');
-			out.println("<p>");
 			while(rs.next()){
 		    	String reportID = ""+rs.getInt("ID");
 		    	String userName = rs.getString("username");
@@ -289,7 +288,9 @@ public class ReportHandling extends servletBase{
 							sort = sortOrder;
 						}
 					}	
-					listAllGroups(out);
+					if(session.getAttribute("name").equals(ADMIN)){
+						listAllGroups(out);
+					}
 					showAllReports(groupID);
 				}
 			} else {

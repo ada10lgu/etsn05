@@ -51,7 +51,8 @@ public class TimeReporting extends servletBase{
 			ResultSet rs = stmt.executeQuery("select * from reports where user_group_id=" + userGroupID + " order by week asc");
 			//create table
 			out.println("<form name=" + formElement("input") + " method=" + formElement("post")+ ">");
-			out.println("<p>Time Reports:</p>");
+			out.println("<h1>Time Reports - View</h1>");
+			out.println("Select a time report to view");
 		    out.println("<table border=" + formElement("1") + ">");
 		    out.println("<tr><td>Selection</td><td>Last update</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
 		    int inWhile = 0;   
@@ -98,7 +99,8 @@ public class TimeReporting extends servletBase{
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from reports where user_group_id=" + userGroupID + " and signed=0 order by week asc");
 			//create table 
-			out.println("<p>Time Reports:</p>");
+			out.println("<h1>Time Reports - Update/Delete</h1>");
+			out.println("Select a time report to update/delete");
 		    out.println("<table border=" + formElement("1") + ">");
 		    out.println("<tr><td>Selection</td><td>Last update</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
 		    int inWhile = 0;
@@ -592,7 +594,7 @@ public class TimeReporting extends servletBase{
 						out.println("<p>No reports chosen</p>");
 					}
 				}
-				viewStatisticsReportList(userGroupID);
+				statisticsReportList(userGroupID);
 				break;
 			case PRINT_STATISTICS:
 				Statistics stats = new Statistics();
@@ -625,13 +627,14 @@ public class TimeReporting extends servletBase{
 		return timeReports;
 	}
 
-	private void viewStatisticsReportList(int userGroupID) {
+	private void statisticsReportList(int userGroupID) {
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from reports where user_group_id=" + userGroupID + " order by week asc");
 			//create table
 			out.println("<form name=" + formElement("input") + " method=" + formElement("post")+ ">");
-			out.println("<p>Time Reports:</p>");
+			out.println("<h1>Time Reports - Statistics</h1>");
+			out.println("<p>Select time reports that you want to summerize and click view</p>");
 		    out.println("<table border=" + formElement("1") + ">");
 		    out.println("<tr><td>Selection</td><td>Last update</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
 		    int inWhile = 0;   
@@ -725,14 +728,14 @@ public class TimeReporting extends servletBase{
 			e.printStackTrace();
 		}
 		
-		
-		String html = "<p>Please enter week number:</p>";
+		String html = "<h1>Time Reports - New </h1>"; 
+		html += "<p>Please enter week number:</p>";
 		html += "<p> <form name=" + formElement("input");
 		html += " method=" + formElement("post");
 		html += "<p> Week Number: <input type=" + formElement("text") + " name="
 				+ formElement("week") + '>';
 		html += "<hidden name='function' value='printNew'>";
-		html += "<p> <input type=" + formElement("submit") + "value="
+		html += "<input type=" + formElement("submit") + "value="
 				+ formElement("Submit") + '>';
 		html += "<p>"+message+"</p>";
 		html += "</form>";
