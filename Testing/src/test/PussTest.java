@@ -241,6 +241,12 @@ public abstract class PussTest {
 	    return page2;
 	}
 	
+	protected HtmlPage switchPage(HtmlPage page, String anchor) throws IOException{
+		HtmlAnchor anchorPage = page.getAnchorByHref("anchor");
+		final HtmlPage newPage = anchorPage.click();
+		return newPage;
+	}
+	
 	protected static void restartServer(){
 		try {
 			System.out.print("Server Restarting....");
