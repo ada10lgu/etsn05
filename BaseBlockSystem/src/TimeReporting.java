@@ -286,7 +286,7 @@ public class TimeReporting extends servletBase{
 			}
 
 			for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
-				String value = request.getParameter(ReportGenerator.lower_activities[i]);
+				String value = request.getParameter(ReportGenerator.lower_activities_names[i]);
 				if (!value.equals("")) {
 					lower_activity_values[i] = value;
 					if(!checkInt(value)){
@@ -381,7 +381,7 @@ public class TimeReporting extends servletBase{
 			}
 
 			for (int i = 0; i<ReportGenerator.lower_activities.length; i++) {
-				String value = request.getParameter(ReportGenerator.lower_activities[i]);
+				String value = request.getParameter(ReportGenerator.lower_activities_names[i]);
 				if (!value.equals("")) {
 					lower_activity_values[i] = value;
 					if(!checkInt(value)){
