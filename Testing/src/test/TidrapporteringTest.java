@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.Ignore;
@@ -15,33 +17,38 @@ import org.junit.Test;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.DomElement;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
+import com.gargoylesoftware.htmlunit.html.HtmlRadioButtonInput;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 
 public class TidrapporteringTest extends PussTest{
 	
-
+	private HtmlPage loginAdmin() throws FailingHttpStatusCodeException, MalformedURLException, IOException{
+		return login("admin", "adminpw", null);
+	}
 
 	@Test
 	public void FT3_1_1() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
 		//Projektmedlem lyckas skapa en egen osignerad tidrapport
-		//MySQL skapa projektmedlem A: kallekal
-		clearDatabase();
 		
+		//MySQL skapa projektmedlem A: kallekal
 		String name = "kallekal";
 		String password = "kallekal";
-		String groupName = "Projekt1";
+		String groupName = "Project1";
+		//int groupId = 302;
 		
 		int userId =addUser(name,password, 0);
 		int groupId = addGroup(groupName);
 		int userGroupId = assignGroup(userId, groupId, "t1");
-		//Projektmedlem A loggar in
 		
+
+		//Projektmedlem A loggar in		
 		HtmlPage page =null;
 		
 		HtmlPage page2 = login(name, password, groupName);
@@ -51,7 +58,7 @@ public class TidrapporteringTest extends PussTest{
 
 		assertEquals("A could not access Tidrapportering", TIMEREPORTING_URL, page3.getUrl().toString());
 
-
+		
 		//Starttillstånd färdigt
 
 
@@ -92,18 +99,23 @@ public class TidrapporteringTest extends PussTest{
 		////////////////////
 		//Testfall avslutad
 
-
-
-		
-
-
-		clearDatabase();
-
-		webClient.closeAllWindows();
+	
+	
+			
+	
+//			reports = sendSQLQuery("Select * from reports where user_group_id = " + userGroupId);
+//			while(reports.next()){
+//			sendSQLQuery("Delete from report_times where report_id = " + reports.getInt("id"));
+//			}
+//			sendSQLQuery("Delete from reports where user_group_id = " + userGroupId);
+//	
+//			deleteUser("kallekal");
+			
+			webClient.closeAllWindows();
 
 	}	
 
-	@Ignore
+	@Test
 	public void FT3_1_2() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
 		//Projektmedlem lyckas uppdatera sin egen osignerade tidrapport
 
@@ -123,118 +135,114 @@ public class TidrapporteringTest extends PussTest{
 		
 		HtmlPage page2 = login(name, password, groupName);
 
-		HtmlAnchor tidrapportpage = page2.getAnchorByHref("TimeReporting?function=view");
-		final HtmlPage page3 = tidrapportpage.click();
+		HtmlPage newTid = switchPage(page2, "TimeReporting?function=new");
 
-		assertEquals("A could not access Tidrapportering", TIMEREPORTING_URL, page3.getUrl().toString());
+		HtmlForm weekForm = newTid.getFormByName("input");
 
-
-		//Starttillstånd färdigt
-
-
-		//Testfall inleds
-		////////////////
-		////////////////
-
-		HtmlPage page4 = page3.getAnchorByHref("TimeReporting?function=new").click();
-		
-		HtmlForm form2 = page4.getFormByName("input");
-		
-		HtmlSubmitInput button2 = form2.getInputByValue("Submit");
-		HtmlTextInput weekField = form2.getInputByName("week");
+		HtmlSubmitInput button2 = weekForm.getInputByValue("Submit");
+		HtmlTextInput weekField = weekForm.getInputByName("week");
 
 		weekField.setValueAttribute("5");
-		
-		HtmlPage page5 = button2.click();
-		
-		HtmlForm form3 = page5.getForms().get(0);
-		
-		
-		final HtmlSubmitInput button3 = form3.getInputByValue("Save");
-		button3.click();
 
-		clearDatabase();
+		HtmlPage newRapport = button2.click();
 
+		
+		//Redigera tidrapport
+		HtmlForm editForm = newRapport.getForms().get(0);
+		
+		HtmlSubmitInput reportButton = editForm.getInputByValue("Save");
+		HtmlTextInput inputField = editForm.getInputByName("SVVR_U");
+		
+		inputField.setValueAttribute("30");
+
+		reportButton.click();
+
+		ResultSet rs = sendSQLQuery("select id from reports where user_group_id = " + userGroupId + ";");
+		rs.next();
+		int reportId = rs.getInt(1);
+		ResultSet rs2 = sendSQLQuery("select count(*) from report_times where SVVR_U=30 and report_id = " + reportId + ";");
+		rs2.next();
+		
+		assertTrue("Tidrapport ej ändrad", rs2.getInt(1)== 1);
+
+
+		
+		
 		webClient.closeAllWindows();
 
 	}
 	
-	@Ignore
+	@Test
 	public void FT3_1_3() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
-		//Projektmedlem lyckas ta bort sin egna tidrapport
-
-		//Projektmedlem lyckas skapa en egen osignerad tidrapport
+		
+		//Projektmedlem lyckas ta bort sin egna tidrappport
 		//MySQL skapa projektmedlem A: kallekal
-		int id =addUser("kallekal", "kallekal", 0);
-		assignGroup(id, 91, "t1");
+		
+		//MySQL skapa projektmedlem A: kallekal
+		clearDatabase();
+		
+		String name = "kallekal";
+		String password = "kallekal";
+		String groupName = "Projekt1";
+		
+		int userId =addUser(name,password, 0);
+		int groupId = addGroup(groupName);
+		int userGroupId = assignGroup(userId, groupId, "t1");
 		//Projektmedlem A loggar in
-		clearDatabase();
-		final WebClient webClient = new WebClient();
+		
+		HtmlPage page =null;
+		
+		HtmlPage page2 = login(name, password, groupName);
 
-		// Get the first page
-		final HtmlPage page1 = webClient.getPage("91");
+		HtmlPage newTid = switchPage(page2, "TimeReporting?function=new");
 
-		// Get the form that we are dealing with and within that form, 
-		// find the submit button and the field that we want to change.
-		final HtmlForm form = page1.getFormByName("input");
+		HtmlForm weekForm = newTid.getFormByName("input");
 
-		final HtmlSubmitInput button = form.getInputByValue("Submit");
-		final HtmlTextInput userField = form.getInputByName("user");
-		final HtmlPasswordInput passwordField = form.getInputByName("password");
-		final HtmlSelect groupList = form.getSelectByName("groupID");
+		HtmlSubmitInput button2 = weekForm.getInputByValue("Submit");
+		HtmlTextInput weekField = weekForm.getInputByName("week");
 
-		// Change the value of the text field
-		userField.setValueAttribute("kallekal");
-		passwordField.setValueAttribute("kallekal");
-		groupList.setSelectedAttribute("91", true);
+		weekField.setValueAttribute("5");
 
+		HtmlPage newRapport = button2.click();
 
-		// Now submit the form by clicking the button and get back the second page.
-		final HtmlPage page2 = button.click();
+		
+		//Redigera tidrapport
+		HtmlForm editForm = newRapport.getForms().get(0);
+		
+		HtmlSubmitInput reportButton = editForm.getInputByValue("Save");
+		HtmlTextInput inputField = editForm.getInputByName("SVVR_U");
+		
+		inputField.setValueAttribute("30");
 
-		assertEquals("user could not log in", START_URL, page2.getUrl().toString());
+		HtmlPage page3 = reportButton.click();
+		
+		HtmlPage updatePage = switchPage(page3, "TimeReporting?function=update");
 
-		HtmlAnchor tidrapportpage = page2.getAnchorByHref("Tidrapportering");
-		final HtmlPage page3 = tidrapportpage.click();
-
-		assertEquals("A could not access Tidrapportering", TIMEREPORTING_URL, page3.getUrl().toString());
-
-		page3.getAnchorByHref("New").click();
-
-		//Starttillstånd färdigt
-
-
-		//Testfall inleds
-		////////////////
-		////////////////
-
-		HtmlAnchor upptidrapportpage = page3.getAnchorByHref("Uppdatera tidrapport");
-
-		final HtmlPage page4 = upptidrapportpage.click();
-
-		//SKRIV IN 30 I RUTA
-
-
-
-
-		//Mysql kod kolla att tidrapport skapad
-		//Mysql kolla att tidrapport är osignerad
-
-
-		///////////////////
-		////////////////////
-		////////////////////
-		//Testfall avslutad
-
-
-
-
-		//Mysql ta bort As tidrapport
-		//Mysql ta bort A 
-
-		clearDatabase();
-
+		HtmlForm updateForm = updatePage.getFormByName("input");
+		
+		//List<HtmlRadioButtonInput> radioList = updateForm.getRadioButtonsByName("reportID");
+		List<DomElement> radioList = updatePage.getElementsByIdAndOrName("reportID");
+		
+		HtmlRadioButtonInput radio = null;
+		DomElement dom = radioList.get(0);
+		radio = (HtmlRadioButtonInput) dom;		
+		radio.click();
+		HtmlSubmitInput deleteButton = updateForm.getInputByValue("Delete");
+		
+		ResultSet rs = sendSQLQuery("select count(*) from reports where user_group_id = " + userGroupId + ";");
+		rs.next();
+		assertTrue("blabla", rs.getInt(1) != 0 );
+				
+		deleteButton.click();
+		
+		ResultSet rs2 = sendSQLQuery("select count(*) from reports where user_group_id = " + userGroupId + ";");
+		rs2.next();
+		assertTrue("blabla", rs2.getInt(1) == 0 );
+		
+//		ResultSet rs = sendSQLQuery("select id from reports where user_group_id = " + userGroupId + ";");
+//		rs.next();
+		
 		webClient.closeAllWindows();
-
+		
 	}
 }

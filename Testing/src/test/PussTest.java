@@ -100,6 +100,7 @@ public abstract class PussTest {
 		sendSQLCommand(query);
 		
 	}
+		
 	
 	protected void sendSQLCommand(String query) throws SQLException {
 		Statement stmt = conn.createStatement();
@@ -132,7 +133,7 @@ public abstract class PussTest {
 		ResultSet rs = getUserByName(username);
 		if (rs.next()) {
 			int userId = rs.getInt(1);
-			String query = "delete from user_group where user_id = " + userId + ";";
+			String query = "delete from report_times where user_id = " + userId + ";";
 			sendSQLCommand(query);
 			
 			query = "delete from log where user_id = " + userId + ";";
@@ -214,15 +215,15 @@ public abstract class PussTest {
 		webClient = new WebClient();
 
 	    // Get the first page
-	    final HtmlPage page1 = webClient.getPage(LOGIN_URL);
+	    HtmlPage page1 = webClient.getPage(LOGIN_URL);
 
 	    // Get the form that we are dealing with and within that form, 
 	    // find the submit button and the field that we want to change.
-	    final HtmlForm form = page1.getFormByName("input");
+	    HtmlForm form = page1.getFormByName("input");
 
-	    final HtmlSubmitInput button = form.getInputByValue("Submit");
-	    final HtmlTextInput userField = form.getInputByName("user");
-	    final HtmlPasswordInput passwordField = form.getInputByName("password");
+	    HtmlSubmitInput button = form.getInputByValue("Submit");
+	    HtmlTextInput userField = form.getInputByName("user");
+	    HtmlPasswordInput passwordField = form.getInputByName("password");
 
 	    // Change the value of the text field
 	    userField.setValueAttribute(username);
@@ -245,7 +246,7 @@ public abstract class PussTest {
 	}
 	
 	protected HtmlPage switchPage(HtmlPage page, String anchor) throws IOException{
-		HtmlAnchor anchorPage = page.getAnchorByHref("anchor");
+		HtmlAnchor anchorPage = page.getAnchorByHref(anchor);
 		final HtmlPage newPage = anchorPage.click();
 		return newPage;
 	}

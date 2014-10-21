@@ -2,6 +2,7 @@ package test;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.junit.Test;
@@ -17,11 +18,8 @@ public class Annat extends PussTest {
 //	public Annat(){
 //		
 //	}
-	@Test
-	public void TaBortKalle() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+
 	
-		deleteUser("kallekal");
-	}
 	
 	@Test
 	public void addSpecificUser() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
