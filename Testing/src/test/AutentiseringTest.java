@@ -25,6 +25,7 @@ public class AutentiseringTest extends PussTest{
 	//not working do manuall
 	@Ignore
 	public void FT2_1_1(){
+		
 		String groupname = "groupz";
 		String username = "Cartman";
 		String password = "pass12";
@@ -88,6 +89,7 @@ public class AutentiseringTest extends PussTest{
 
 	@Test
 	public void FT2_1_2(){
+		
 		String groupname = "groupz";
 		String username = "Cartman";
 		String password = "pass12";		
@@ -138,6 +140,7 @@ public class AutentiseringTest extends PussTest{
 
 	@Test
 	public void FT2_1_3(){
+		
 		String admin = "admin";
 		String adminpw = "adminpw";
 		
@@ -175,7 +178,7 @@ public class AutentiseringTest extends PussTest{
 			e.printStackTrace();
 		}
 		
-		
+		System.out.println("FT2_1_3");
 	}
 	
 	@Test
