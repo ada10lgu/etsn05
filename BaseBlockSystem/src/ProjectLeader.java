@@ -41,6 +41,7 @@ public class ProjectLeader extends servletBase {
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
 		out.println(printMainMenu(request));
+		
 		String myName = "";
 		HttpSession session = request.getSession(true);
 		// WHICH OF THESE NEED TO BE FETCHED?
@@ -48,12 +49,17 @@ public class ProjectLeader extends servletBase {
 		Object nameObj = session.getAttribute("name");
 		Object groupObj = session.getAttribute("groupID");
 		int groupID = Integer.parseInt((String) groupObj);
-		String newGroupIDStr = request.getParameter("groupID");
-		if (newGroupIDStr != null) {
-			int newGroupID = Integer.parseInt(newGroupIDStr);
-			groupID = newGroupID;
-			session.setAttribute("groupID", newGroupIDStr);
+		if(request.getParameter("OK") != null){
+			System.out.println("Knapptryck");
+			String newGroupIDStr = request.getParameter("SelectedGroupID");
+			if (newGroupIDStr != null) {
+				System.out.println(newGroupIDStr);
+				int newGroupID = Integer.parseInt(newGroupIDStr);
+				groupID = newGroupID;
+				session.setAttribute("groupID", newGroupIDStr);
+			}
 		}
+		System.out.println(groupID);
 		String role = request.getParameter("role");
 		String username = request.getParameter("changename");
 
@@ -61,11 +67,10 @@ public class ProjectLeader extends servletBase {
 			myName = (String) nameObj; // if the name exists typecast the name
 										// to a string
 		}
-		boolean isAllowed = projectLeaderOrAdmin(myName);
 
 		if (!loggedIn(request)) { //Check that user is logged in
 			response.sendRedirect("LogIn");
-		} else if (isAllowed) { //Check that user is allowed
+		} else if (projectLeaderOrAdmin(myName)) { //Check that user is allowed
 			out.println("<h1>Project Management " + "</h1>");
 			if (username != null && !role.equals("0")) {
 				if (myName.equals("admin")) {
@@ -98,7 +103,7 @@ public class ProjectLeader extends servletBase {
 	}
 
 	private void listAllGroups(PrintWriter out) {
-		try {
+/*		try {
 			Statement stmt = conn.createStatement();
 			Statement stmt2 = conn.createStatement();
 			Statement stmt3 = conn.createStatement();
@@ -110,8 +115,11 @@ public class ProjectLeader extends servletBase {
 		    	String name = rs.getString("name");
 		    	//Hämta projektledarnas namn
 		    	ResultSet rsGroup = stmt2.executeQuery("select * from groups where name = '" + name + "'");
-		    	rsGroup.first();
+				rsGroup.first();
 		    	int groupID = rsGroup.getInt("id");
+		    	
+	//	    	int groupID = rs.getInt("id");
+		    	
 		    	ResultSet rsPL = stmt3.executeQuery("select users.id, users.username from user_group inner join users on user_group.user_id = users.id where user_group.group_id = " + groupID + " and user_group.role = " + formElement(PROJECT_LEADER)); 
 		    	
 		    	//Hämta projektledarnas namn 
@@ -143,7 +151,31 @@ public class ProjectLeader extends servletBase {
 		    System.out.println("VendorError: " + ex.getErrorCode());
 		}
 		//out.println(addProjectForm());
+	*/
+		out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post"));
+		out.println(selectGroupList());
+		out.println("<input type=" + formElement("submit") + " name='OK' value="+ formElement("OK") + '>');
+		out.println("</form>");
 		
+	}
+	
+	private String selectGroupList(){
+		try {
+			String html = "";
+			html += "<br><select name='SelectedGroupID'>";
+			html += "<option value='0' selected='true'>Select group: </option>";
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from groups order by name asc");
+			while(rs.next()){
+				html += "<option value=" + rs.getInt("id") + ">"
+						+ rs.getString("name") + "</option>";
+			}
+			html += "</select>";
+			return html;	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "";
 	}
 
 	/**

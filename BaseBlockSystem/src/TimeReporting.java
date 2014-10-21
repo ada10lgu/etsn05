@@ -224,7 +224,9 @@ public class TimeReporting extends servletBase{
 			query += end;
 			ResultSet rs = stmt.executeQuery(query);
 			if(rs.first()){				
+				out.println("<div class='floati'>");
 				out.println(ReportGenerator.updateReport(rs,reportID));
+				out.println("</div>");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -245,7 +247,9 @@ public class TimeReporting extends servletBase{
 			ResultSet rs = stmt.executeQuery("select name from groups where ID=" + (String) session.getAttribute("groupID"));
 			if(rs.first()){
 				String groupName = rs.getString("name");
+				out.println("<div class='floati'>");
 				out.println(ReportGenerator.newReport(weekNumber,(String) session.getAttribute("name"), groupName));
+				out.println("</div>");
 			}
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
