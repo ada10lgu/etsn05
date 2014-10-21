@@ -109,7 +109,7 @@ public abstract class PussTest {
 		if(rs.next()) {
 			int groupId = rs.getInt(1);
 			
-			String query = "delete from user_group where id = " + groupId + ";";
+			String query = "delete from user_group where group_id = " + groupId + ";";
 			sendSQLCommand(query);
 			
 			query = "delete from groups where name = '" + groupName + "';";
