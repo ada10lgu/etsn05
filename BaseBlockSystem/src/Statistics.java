@@ -84,7 +84,6 @@ public class Statistics extends servletBase {
 			query += inner2;
 			query += inner3;
 			query += end;
-			//System.out.println(query);
 			ResultSet rs = stmt.executeQuery(query);
 			Map<String, Integer> total = new HashMap<String, Integer>();
 			if (rs.next()) {
@@ -163,7 +162,6 @@ public class Statistics extends servletBase {
 				query += inner2;
 				query += inner3;
 				query += end;
-				//System.out.println(query);
 				ResultSet rs = stmt.executeQuery(query);			
 				Map<String, Integer> total = new HashMap<String, Integer>();
 				if (rs.next()) {
@@ -192,7 +190,6 @@ public class Statistics extends servletBase {
 				return true;
 				
 			} catch (Exception e) {
-				e.printStackTrace();
 				System.out.println("SQLException: " + e.getMessage());
 				return false;
 			}
@@ -302,11 +299,6 @@ public class Statistics extends servletBase {
     	}catch (Exception ex){
     		ex.printStackTrace();
     	}
-    	
-    	//hï¿½mta alla
-    	//fï¿½r varje vecka addera
-    	//kolla den med mest
-    	//reuturnera veckonummer
     	return busiestWeek;
     }
     
@@ -357,7 +349,6 @@ public class Statistics extends servletBase {
 		String username = (String) session.getAttribute("name");
 		boolean isAdmin = username.equals("admin");
 		if (projectLeaderOrAdmin(username)) {
-			String html = "";
 			PrintWriter out = response.getWriter();
 			access.updateLog(null, null); // check timestamps
 			int groupID = Integer.parseInt((String)session.getAttribute("groupID"));
@@ -365,7 +356,7 @@ public class Statistics extends servletBase {
 			out.println(getPageIntro());
 			out.println(printMainMenu(request));
 			out.println("<div class='floati'>");
-			String selectedGroup = "";//håller koll på den grupp admin har valt
+			String selectedGroup = "";
 			if(!isAdmin){
 				selectedGroup = "" + groupID;
 			}else{
@@ -421,10 +412,15 @@ public class Statistics extends servletBase {
 		}
 			
 	}
-		
+	
+	/**
+	 * Prints the options.
+	 * @param groupID: The id of the selected group
+	 * @param isAdmin: Boolean if user is admin.
+	 * @return String: Html code
+	 */
 	private String printOptions(String groupID, boolean isAdmin){		
 		String html ="<h1>Generate Statistics</h1>";
-		//generate stats for selected reports (select reports from a list? checkboxes?)
 		html +="<div class='floati'>";
 		if(isAdmin){
 			html += "<form name=" + formElement("chooseGroup") + " method=" + formElement("post")+ ">";						
@@ -468,17 +464,14 @@ public class Statistics extends servletBase {
 			html += "</form>";
 		}
 		html+= "</div>";
-		//print a list with all reports from the group where signed= 1
-		
-		
-		
-		//html += "<ul><li><a href='Statistics?function=busiestWeek'>Busy week</a></li>";
-	//	html += "<li><a href='Statistics?function=commonActivity'>Common</a></li>";
-	//	html += "<li><a href='Statistics?function=AllReports'>All reports</a></li>";
-	//	html += "<li><a href='Statistics?function=generateStatisticsReport'>Generate custom statistics</a></li>";
-		
 		return html;
 	}
+	
+	/**
+	 * Gets list of users
+	 * @param groupID: The id of the group the users are part of.
+	 * @return String: html code
+	 */
 	private String getUsersList(String groupID){
 		String html ="";
 		html += "<select name='userID'>";
@@ -496,7 +489,12 @@ public class Statistics extends servletBase {
 		html += "</select>";		
 		return html;
 	}
-
+	
+	/**
+	 * Gets a list of all the groups.
+	 * @param currentgroupID: Id of current selected group.
+	 * @return String: Html code
+	 */
 	private String getGroupsList(String currentgroupID){
 		String html ="";
 		html += "<select name='groupID'>";
@@ -517,6 +515,12 @@ public class Statistics extends servletBase {
 		html += "</select>";		
 		return html;
 	}
+	
+	/**
+	 * Gets a table with reports.
+	 * @param groupID: The id of the group for which the reports will be shown.
+	 * @return String: Html code.
+	 */
 	private String getReportsTable(String groupID){
 		String html ="";
 		try {

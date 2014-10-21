@@ -49,7 +49,7 @@ public class GroupHandling extends servletBase {
 			}
 		} catch (SQLException ex) {
 			resultOk = false;
-			// System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}
@@ -71,9 +71,6 @@ public class GroupHandling extends servletBase {
 		boolean roleAlreadyAssigned = false;
 		while (rs.next( )) {
 			total++;
-			/*if (rs.getInt("user_id") == userID) {//Kollar om användaren redan finns med i gruppen men vi har ändrat så att bara användare utanför gruppen listas
-				roleAlreadyAssigned = true;
-			}*/
 			if (rs.getString("role").equals(role)) {
 				roleCounter++;
 			}
@@ -118,12 +115,11 @@ public class GroupHandling extends servletBase {
 					resultOk = false;
 				}
 			}else{
-				//Man försöker ta bort en projektledare och antalet PL < 2
 				resultOk = false;
 			}
 		} catch (SQLException ex) {
 			resultOk = false;
-			// System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}
@@ -160,7 +156,7 @@ public class GroupHandling extends servletBase {
 			out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post"));
 			while (rs.next( )) {
 				ResultSet rsGroup = stmt2.executeQuery("select * from user_group where user_id=" + 
-								rs.getInt("id") + " AND group_id=" + groupID); //om detta != null så finns redan användaren i gruppen
+								rs.getInt("id") + " AND group_id=" + groupID); //if this != null the user is already member of group
 				String name = rs.getString("username");
 				boolean print = false;
 				if(inGroup){
@@ -302,9 +298,3 @@ public class GroupHandling extends servletBase {
 		}
 	}
 }
-	/*
-+"<li><a href=" + formElement("Administration") + ">Administration</a>"
-+ "<ul>"
-+ "<li><a href=" + formElement("Administration") + ">Users</a></li>"
-+ "<li><a href= " + formElement("ProjectGroupAdmin") + ">Group</a></li>"
-	 */

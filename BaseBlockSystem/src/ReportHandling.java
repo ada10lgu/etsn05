@@ -28,6 +28,11 @@ public class ReportHandling extends servletBase{
 		reportID = -1;
 	}
 
+	/**
+	 * Returns the string representation of a signed or unsigned time report.
+	 * @param signed: int that shows if the report is signed or not. 0=not signed 1=signed
+	 * @return String: The string representation.
+	 */
 	private String signString(int signed){
 		String signedStr = "NO";
 		if (signed == 1) {
@@ -50,7 +55,7 @@ public class ReportHandling extends servletBase{
 			}
 			s.close();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select users.username, reports.id, reports.date, reports.week, reports.total_time, reports.signed "
+			ResultSet rs = stmt.executeQuery("select users.username, user_group.role, reports.id, reports.date, reports.week, reports.total_time, reports.signed "
 											+ " from user_group INNER JOIN reports on user_group.id = reports.user_group_id "
 											+ " INNER JOIN users on user_group.user_id = users.id"
 											+ " where user_group.group_id =" + groupID+ " order by "+ sort);
@@ -129,6 +134,10 @@ public class ReportHandling extends servletBase{
 				+ "Signerat/Osignerat" + "</option>";
 		html += "<option value=" + formElement("signed asc") + ">"
 				+ "Osignerat/Signerat" + "</option>";
+		html += "<option value=" + formElement("role desc") + ">"
+				+ "Roll stigande" + "</option>";
+		html += "<option value=" + formElement("role asc") + ">"
+				+ "Roll fallande" + "</option>";
 		html += "</select>";
 		return html;
 	}
@@ -230,7 +239,7 @@ public class ReportHandling extends servletBase{
 	}
 
 	/**
-	 * 
+	 * Redirect to doPost
 	 */
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
@@ -263,8 +272,7 @@ public class ReportHandling extends servletBase{
 			}
 		}
 		
-		Object groupIDObject = session.getAttribute("groupID");
-		//if(groupIDObject != null) {		
+		Object groupIDObject = session.getAttribute("groupID");		
 			groupID = Integer.parseInt((String) groupIDObject);
 			if(groupID > 0){
 				String reportIDString = request.getParameter("reportID");
@@ -296,6 +304,5 @@ public class ReportHandling extends servletBase{
 			} else {
 				listAllGroups(out);
 			}
-	//	}
 	}
 }

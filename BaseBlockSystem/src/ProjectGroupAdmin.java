@@ -44,9 +44,6 @@ public class ProjectGroupAdmin extends servletBase {
 	 */
 	private int addProject(String name) {
 		int resultOk = -1;
-		
-	
-		//Detta ska komma efter att man har valt en projektledare
 		try{
 			Statement stmt = conn.createStatement();
 			String statement = "insert into groups (name) values('" + name + "')";
@@ -54,14 +51,12 @@ public class ProjectGroupAdmin extends servletBase {
 			ResultSet rs = stmt.executeQuery("select * from groups where name = '"+name+"'");
 			if (rs.first()) {
 				resultOk = rs.getInt("id");
-			} else {
-	//			System.out.println("NO SUCH ID");
-			}
+			} 
 			stmt.close();
 
 		} catch (SQLException ex) {
 			resultOk = -1;
-			// System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}
@@ -117,18 +112,15 @@ public class ProjectGroupAdmin extends servletBase {
 				boolean thisOk = ((ci>=48 && ci<=57) || 
 						(ci>=65 && ci<=90) ||
 						(ci>=97 && ci<=122));
-				//String extra = (thisOk ? "OK" : "notOK");
-				//System.out.println("bokst:" + name.charAt(i) + " " + (int)name.charAt(i) + " " + extra);
 				ok = ok && thisOk;
 			}    	
 		return ok;
 	}
 	/**
-	 * 
-	 * @param out
+	 * Lists all groups.
+	 * @param out: PrintWriter object needed for print outs.
 	 */
 	private void listGroups(PrintWriter out) {
-		//boolean resultOk = false;
 		try {
 			Statement stmt = conn.createStatement();	
 			Statement stmt2 = conn.createStatement();
@@ -143,8 +135,7 @@ public class ProjectGroupAdmin extends servletBase {
 		    	rsGroup.first();
 		    	int groupID = rsGroup.getInt("id");
 		    	ResultSet rsPL = stmt3.executeQuery("select users.id, users.username from user_group inner join users on user_group.user_id = users.id where user_group.group_id = " + groupID + " and user_group.role = " + formElement(PROJECT_LEADER)); 
-		    	
-		    	//Hämta projektledarnas namn 
+		   
 		    	String[] projectLeaders = {"", ""};
 		    	int i = 0;
 		    	while(rsPL.next()){
@@ -167,8 +158,6 @@ public class ProjectGroupAdmin extends servletBase {
 		    	String editCode = "<a href=" + formElement(editURL) +
 		    			            " onclick="+formElement("return confirm('Are you sure you want to edit "+name+"?')") + 
 		    			            "> edit </a>";
-		    	/*if (name.equals(ADMIN)) 
-		    		deleteCode = "";*/ //name är gruppnamnet
 		    	out.println("<tr>");
 		    	out.println("<td>" + name + "</td>");
 		    	out.println("<td>" + projectLeaders[0] + "</td>");
@@ -226,18 +215,31 @@ public class ProjectGroupAdmin extends servletBase {
 				
 				// check if the administrator wants to add a new project group in the form
 				String newName = request.getParameter("projectname");
+				
 				if (newName != null) {
-					if (checkNewName(newName)) {
-						int addPossible = addProject(newName);
-						if (addPossible == -1) {
-							out.println("<p>Error: Suggested project group name not possible to add</p>");
+					int nbrOfGroups = 0;
+					try {
+						Statement stmt = conn.createStatement();
+						ResultSet rs = stmt.executeQuery("select count(*) AS total from groups");
+						rs.first();
+						nbrOfGroups = rs.getInt("total");
+					} catch (SQLException e) {
+					}
+					if (nbrOfGroups <5){
+						if (checkNewName(newName)) {
+							int addPossible = addProject(newName);
+							if (addPossible == -1) {
+								out.println("<p>Error: Suggested project group name not possible to add</p>");
+							} else {
+								session.setAttribute("groupHandlingID", addPossible);
+								response.sendRedirect("GroupHandling");
+							}
+
 						} else {
-							session.setAttribute("groupHandlingID", addPossible);
-							response.sendRedirect("GroupHandling");
+							out.println("<p>Error: Suggested name not allowed</p>");
 						}
-						
-					}	else
-						out.println("<p>Error: Suggested name not allowed</p>");
+					} else
+						out.println("<p>Error: The system does not allow more groups than 5.</p>");
 				}
 					
 				//check if the administrator wants to delete a project by clicking the URL in the list
@@ -263,7 +265,6 @@ public class ProjectGroupAdmin extends servletBase {
 				String editIDString = request.getParameter("editid");
 				if(editIDString != null){
 					int editID = Integer.parseInt(editIDString);
-					System.out.println(editID);
 					session.setAttribute("groupHandlingID", editID);
 					response.sendRedirect("GroupHandling");		
 				}
