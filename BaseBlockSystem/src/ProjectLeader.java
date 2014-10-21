@@ -50,16 +50,15 @@ public class ProjectLeader extends servletBase {
 		Object groupObj = session.getAttribute("groupID");
 		int groupID = Integer.parseInt((String) groupObj);
 		if(request.getParameter("OK") != null){
-			System.out.println("Knapptryck");
 			String newGroupIDStr = request.getParameter("SelectedGroupID");
 			if (newGroupIDStr != null) {
-				System.out.println(newGroupIDStr);
 				int newGroupID = Integer.parseInt(newGroupIDStr);
-				groupID = newGroupID;
-				session.setAttribute("groupID", newGroupIDStr);
+				if(newGroupID != 0){
+					groupID = newGroupID;
+					session.setAttribute("groupID", newGroupIDStr);
+				}
 			}
 		}
-		System.out.println(groupID);
 		String role = request.getParameter("role");
 		String username = request.getParameter("changename");
 
@@ -93,7 +92,9 @@ public class ProjectLeader extends servletBase {
 			} else if (myName.equals("admin")){
 				//SHOW LIST OF GROUPS AND USERS
 				listAllGroups(out);
-				showAllUsers(groupID, out);
+				if(groupID != 0){
+					showAllUsers(groupID, out);
+				}
 			} else {
 				showAllUsers(groupID, out);
 			}
@@ -102,66 +103,10 @@ public class ProjectLeader extends servletBase {
 		}
 	}
 
-	private void listAllGroups(PrintWriter out) {
-/*		try {
-			Statement stmt = conn.createStatement();
-			Statement stmt2 = conn.createStatement();
-			Statement stmt3 = conn.createStatement();
-		    ResultSet rs = stmt.executeQuery("select * from groups order by name asc");
-		    out.println("<p>Project groups:</p>");
-		    out.println("<table border=" + formElement("1") + ">");
-		    out.println("<tr><td>NAME</td><td>Projectleader 1</td><td>Projectleader 2</td><td></td></tr>");
-		    while (rs.next( )) {
-		    	String name = rs.getString("name");
-		    	//Hämta projektledarnas namn
-		    	ResultSet rsGroup = stmt2.executeQuery("select * from groups where name = '" + name + "'");
-				rsGroup.first();
-		    	int groupID = rsGroup.getInt("id");
-		    	
-	//	    	int groupID = rs.getInt("id");
-		    	
-		    	ResultSet rsPL = stmt3.executeQuery("select users.id, users.username from user_group inner join users on user_group.user_id = users.id where user_group.group_id = " + groupID + " and user_group.role = " + formElement(PROJECT_LEADER)); 
-		    	
-		    	//Hämta projektledarnas namn 
-		    	String[] projectLeaders = {"", ""};
-		    	int i = 0;
-		    	while(rsPL.next()){
-		    		projectLeaders[i] = rsPL.getString("username");
-		    		i++;
-		    	}
-		    	String editURL = "ProjectLeader?groupID="+groupID;
-		    	String editCode = "<a href=" + formElement(editURL) +
-		    			            " onclick="+formElement("return confirm('Are you sure you want to edit "+name+"?')") + 
-		    			            "> edit </a>";
-		    	if (name.equals("admin")) 
-		    		editCode = "";
-		    	out.println("<tr>");
-		    	out.println("<td>" + name + "</td>");
-		    	out.println("<td>" + projectLeaders[0] + "</td>");
-		    	out.println("<td>" + projectLeaders[1] + "</td>");
-		    	out.println("<td>" + editCode + "</td>");
-		    	out.println("</tr>");
-		    }
-		    out.println("</table>");
-		    stmt.close();
-		} catch (SQLException ex) {
-			System.out.println("listAllGroups");
-		    System.out.println("SQLException: " + ex.getMessage());
-		    System.out.println("SQLState: " + ex.getSQLState());
-		    System.out.println("VendorError: " + ex.getErrorCode());
-		}
-		//out.println(addProjectForm());
-	*/
-		out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post"));
-		out.println(selectGroupList());
-		out.println("<input type=" + formElement("submit") + " name='OK' value="+ formElement("OK") + '>');
-		out.println("</form>");
-		
-	}
-	
-	private String selectGroupList(){
+	private void listAllGroups(PrintWriter out){
 		try {
 			String html = "";
+			html += "<p> <form name=" + formElement("input") + " method=" + formElement("post");
 			html += "<br><select name='SelectedGroupID'>";
 			html += "<option value='0' selected='true'>Select group: </option>";
 			Statement stmt = conn.createStatement();
@@ -171,11 +116,12 @@ public class ProjectLeader extends servletBase {
 						+ rs.getString("name") + "</option>";
 			}
 			html += "</select>";
-			return html;	
+			html += "<input type=" + formElement("submit") + " name='OK' value="+ formElement("OK") + '>';
+			html += "</form>";
+			out.println(html);	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return "";
 	}
 
 	/**
