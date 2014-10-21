@@ -1,9 +1,10 @@
 package test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.junit.Ignore;
@@ -85,7 +86,7 @@ public class AutentiseringTest extends PussTest{
 	    assertEquals(username + " could log in a second time", LOGIN_URL, page2.getUrl().toString());
 	}
 
-	@Ignore
+	@Test
 	public void FT2_1_2(){
 		String groupname = "groupz";
 		String username = "Cartman";
@@ -139,7 +140,6 @@ public class AutentiseringTest extends PussTest{
 	public void FT2_1_3(){
 		String admin = "admin";
 		String adminpw = "adminpw";
-		String group = "SP";
 		
 		HtmlPage page = null;
 		HtmlAnchor anchor = null;
@@ -148,8 +148,7 @@ public class AutentiseringTest extends PussTest{
 		HtmlSubmitInput addUser = null;
 		
 		try {
-			addGroup(group);
-			page = login(admin, adminpw, group);
+			page = login(admin, adminpw, null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -160,16 +159,26 @@ public class AutentiseringTest extends PussTest{
 			addName = form.getInputByName("addname");
 			addUser = form.getInputByValue("Add user");
 			
-			addName.setValueAttribute("Torde");
+			addName.setValueAttribute("Tord");
 			page = addUser.click();
 			
-		} catch (IOException e) {
+			ResultSet rs = sendSQLQuery("select * from users;");
+			
+			while(!rs.isLast()){
+				rs.next();
+				if(rs.getString(2).equals("Tord")){
+					fail("Tord has been added!");
+				}
+			}
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		
 	}
-	@Ignore
+	
+	@Test
 	public void FT2_5_4(){
 		
 		String groupname = "groupz";

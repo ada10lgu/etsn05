@@ -44,14 +44,15 @@ public abstract class PussTest {
 	
 	public static final String ADMIN_USERNAME = "admin";
 	public static final String ADMIN_PASSWORD = "adminpw";
-
+	public static final String ADMIN_GROUP = null;
 	
 	@BeforeClass
 	public static void initiateServerAndDB() {
 		startServer();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404?" + "user=puss1404&password=ptqp44ed");	
+			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404test?" +
+		            "user=puss1404test&password=j5jipsh1");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -69,10 +70,19 @@ public abstract class PussTest {
 	}
 	
 	@After
-	public void clearSessions() throws SQLException {
-		String query = "delete from log;";
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(query);
+	public void clearDatabase() throws SQLException {
+		String query = "delete from groups;";
+		sendSQLCommand(query);
+		query = "delete from log;";
+		sendSQLCommand(query);
+		query = "delete from report_times;";
+		sendSQLCommand(query);
+		query = "delete from reports;";
+		sendSQLCommand(query);
+		query = "delete from user_group;";
+		sendSQLCommand(query);
+		query = "delete from users where username <> 'admin'";
+		sendSQLCommand(query);
 	}
 	
 	protected void sendSQLCommand(String query) throws SQLException {
@@ -122,7 +132,7 @@ public abstract class PussTest {
 		if(rs.next()) {
 			int groupId = rs.getInt(1);
 			
-			String query = "delete from user_group where id = " + groupId + ";";
+			String query = "delete from user_group where group_id = " + groupId + ";";
 			sendSQLCommand(query);
 			
 			query = "delete from groups where name = '" + groupName + "';";
@@ -225,6 +235,6 @@ public abstract class PussTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}	
 	
 }

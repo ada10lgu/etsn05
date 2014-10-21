@@ -34,7 +34,7 @@ public class TidrapporteringTest extends PussTest{
 		int id =addUser("kallekal", "kallekal", 0);
 		int userGroupId = assignGroup(id, 91, "t1");
 		//Projektmedlem A loggar in
-		clearSessions();
+		clearDatabase();
 		final WebClient webClient = new WebClient();
 
 		// Get the first page
@@ -111,7 +111,7 @@ public class TidrapporteringTest extends PussTest{
 		deleteUser("kallekal");
 
 
-		clearSessions();
+		clearDatabase();
 
 		webClient.closeAllWindows();
 
@@ -126,7 +126,7 @@ public class TidrapporteringTest extends PussTest{
 		int id =addUser("kallekal", "kallekal", 0);
 		assignGroup(id, 91, "t1");
 		//Projektmedlem A loggar in
-		clearSessions();
+		clearDatabase();
 		final WebClient webClient = new WebClient();
 
 		// Get the first page
@@ -190,7 +190,7 @@ public class TidrapporteringTest extends PussTest{
 		//Mysql ta bort As tidrapport
 		//Mysql ta bort A 
 
-		clearSessions();
+		clearDatabase();
 
 		webClient.closeAllWindows();
 
@@ -205,7 +205,7 @@ public class TidrapporteringTest extends PussTest{
 		int id =addUser("kallekal", "kallekal", 0);
 		assignGroup(id, 91, "t1");
 		//Projektmedlem A loggar in
-		clearSessions();
+		clearDatabase();
 		final WebClient webClient = new WebClient();
 
 		// Get the first page
@@ -269,7 +269,7 @@ public class TidrapporteringTest extends PussTest{
 		//Mysql ta bort As tidrapport
 		//Mysql ta bort A 
 
-		clearSessions();
+		clearDatabase();
 
 		webClient.closeAllWindows();
 

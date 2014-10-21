@@ -42,20 +42,27 @@ public class ReportHandling extends servletBase{
 	 */
 	private void showAllReports(int groupID){
 		try {
-			
+			Statement s = conn.createStatement();		    
+			ResultSet r = s.executeQuery("select * from groups where ID = "+groupID);
+			String groupName = "";
+			if (r.first()) {
+				groupName = r.getString("name");
+			}
+			s.close();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select users.username, reports.id, reports.date, reports.week, reports.total_time, reports.signed "
 											+ " from user_group INNER JOIN reports on user_group.id = reports.user_group_id "
 											+ " INNER JOIN users on user_group.user_id = users.id"
 											+ " where user_group.group_id =" + groupID+ " order by "+ sort);
 			out.println("<div class='floati'>");
-			out.println("<p>Time reports: </p>");
+			out.println("<p><b>Time reports for "+groupName+"</b></p>");
 			out.println("<table border=" + formElement("1") + ">");
 			out.println("<tr><td>Selection</td><td>Username</td><td>Last update</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
 			
 			out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post"));
 			out.println(selectSortList());
-			out.println("<p><input type=" + formElement("submit") + " name='sort' value="+ formElement("Sort") + '>');
+			out.println("<input type=" + formElement("submit") + " name='sort' value="+ formElement("Sort") + '>');
+			out.println("<p>");
 			while(rs.next()){
 		    	String reportID = ""+rs.getInt("ID");
 		    	String userName = rs.getString("username");
@@ -73,13 +80,34 @@ public class ReportHandling extends servletBase{
 				out.println("<td>" + formElement(signString(signed)) + "</td>");
 				out.println("</tr>");
 			}
-			out.println("<p><input type=" + formElement("submit") + " name='view' value=" + formElement("View") + '>');
+			out.println("</table><p><input type=" + formElement("submit") + " name='view' value=" + formElement("View") + '>');
 			out.println("</form>");
 			out.println("</div>");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private void listAllGroups(PrintWriter out){
+		try {
+			String html = "";
+			html += "<p> <form name=" + formElement("input") + " method=" + formElement("post");
+			html += "<br><select name='SelectedGroupID'>";
+			html += "<option value='0' selected='true'>Select group: </option>";
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from groups order by name asc");
+			while(rs.next()){
+				html += "<option value=" + rs.getInt("id") + ">"
+						+ rs.getString("name") + "</option>";
+			}
+			html += "</select>";
+			html += "<input type=" + formElement("submit") + " name='OK' value="+ formElement("OK") + '>';
+			html += "</form>";
+			out.println(html);	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -221,10 +249,24 @@ public class ReportHandling extends servletBase{
 		out = response.getWriter();
 		out.println(getPageIntro());
 		out.println(printMainMenu(request));
+		out.println("<h1>Project Management " + "</h1>");
 		HttpSession session = request.getSession(true);
+		int groupID;
+		
+		if(request.getParameter("OK") != null){
+			String newGroupIDStr = request.getParameter("SelectedGroupID");
+			if (newGroupIDStr != null) {
+				int newGroupID = Integer.parseInt(newGroupIDStr);
+				if(newGroupID != 0){
+					groupID = newGroupID;
+					session.setAttribute("groupID", newGroupIDStr);
+				}
+			}
+		}
+		
 		Object groupIDObject = session.getAttribute("groupID");
-		if(groupIDObject != null) {		
-			int groupID = Integer.parseInt((String) groupIDObject);
+		//if(groupIDObject != null) {		
+			groupID = Integer.parseInt((String) groupIDObject);
 			if(groupID > 0){
 				String reportIDString = request.getParameter("reportID");
 				String buttonView = request.getParameter("view");
@@ -246,13 +288,13 @@ public class ReportHandling extends servletBase{
 						if(!sortOrder.equals("0")){
 							sort = sortOrder;
 						}
-					}			
+					}	
+					listAllGroups(out);
 					showAllReports(groupID);
 				}
 			} else {
-				out.println("Choose a group");
-				//Shows a table of all the groups to choose from!
+				listAllGroups(out);
 			}
-		}
+	//	}
 	}
 }
