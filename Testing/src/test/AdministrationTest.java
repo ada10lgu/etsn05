@@ -101,7 +101,7 @@ public class AdministrationTest extends PussTest {
 	}
 
 	private HtmlPage getPageByAnchor(HtmlPage page, String anchor) throws IOException {
-		HtmlAnchor htmlAnchor = page.getAnchorByHref("ProjectGroupAdmin");
+		HtmlAnchor htmlAnchor = page.getAnchorByHref(anchor);
 		return page = htmlAnchor.click();
 	}
 
@@ -497,6 +497,21 @@ public class AdministrationTest extends PussTest {
 
 	@Test
 	public void FT4_4_6() {
-		
+		String username1 = "user1";
+		String password1 = "pass12";
+		String username2 = "user2";
+		String password2 = "pass12";
+		String groupName1 = "group1";
+		String groupName2 = "group2";
+		try {
+			addUser(username1, password1, 0);
+			addUser(username2, password2, 0);
+			addGroup(groupName1);
+			addGroup(groupName2);
+			addUserToGroup(username1, groupName1, "Project Leader");
+			addUserToGroup(username1, groupName2, "Project Leader");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
