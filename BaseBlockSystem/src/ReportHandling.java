@@ -28,6 +28,11 @@ public class ReportHandling extends servletBase{
 		reportID = -1;
 	}
 
+	/**
+	 * Returns the string representation of a signed or unsigned time report.
+	 * @param signed: int that shows if the report is signed or not. 0=not signed 1=signed
+	 * @return String: The string representation.
+	 */
 	private String signString(int signed){
 		String signedStr = "NO";
 		if (signed == 1) {
@@ -234,7 +239,7 @@ public class ReportHandling extends servletBase{
 	}
 
 	/**
-	 * 
+	 * Redirect to doPost
 	 */
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
@@ -267,8 +272,7 @@ public class ReportHandling extends servletBase{
 			}
 		}
 		
-		Object groupIDObject = session.getAttribute("groupID");
-		//if(groupIDObject != null) {		
+		Object groupIDObject = session.getAttribute("groupID");		
 			groupID = Integer.parseInt((String) groupIDObject);
 			if(groupID > 0){
 				String reportIDString = request.getParameter("reportID");
@@ -300,6 +304,5 @@ public class ReportHandling extends servletBase{
 			} else {
 				listAllGroups(out);
 			}
-	//	}
 	}
 }
