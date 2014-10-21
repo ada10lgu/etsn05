@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.WebResponse;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 import org.junit.*;
 
@@ -16,9 +17,9 @@ public class GenerellaKravTest extends PussTest {
 	private void checkMenuAs(String username, String password,
 			String groupName, String[] userPages, String expectedMenu)
 			throws MalformedURLException, IOException {
-		login(username, password, groupName);
+		HtmlPage page = login(username, password, groupName);
 		for (int i = 0; i < userPages.length; i++) {
-			Page page = webClient.getPage(userPages[i]);
+			page = switchPage(page, userPages[i]);
 			WebResponse response = page.getWebResponse();
 			String content = response.getContentAsString();
 
@@ -58,14 +59,14 @@ public class GenerellaKravTest extends PussTest {
 		addUserToGroup(leader, group, "Project Leader");
 		addUserToGroup(member, group, "t1");
 
-		String[] adminPages = { GROUP_ADMIN_URL, START_URL, ADMINISTRATION_URL };
+		String[] adminPages = { GROUP_ADMIN, START, ADMINISTRATION };
 
-		String[] leaderPages = { PROJECT_LEADER_URL, TIMEREPORTING_URL,
-				TIMEREPORTING_URL_UPDATE, TIMEREPORTING_URL_NEW,
-				TIMEREPORTING_URL_STATISTICS, REPORT_HANDLING_URL,
-				CHANGE_PASSWORD_URL, START_URL };
+		String[] leaderPages = { PROJECT_LEADER, TIMEREPORTING,
+				TIMEREPORTING_UPDATE, TIMEREPORTING_NEW,
+				TIMEREPORTING_STATISTICS, REPORT_HANDLING,
+				CHANGE_PASSWORD, START };
 
-		String[] memberPages = { START_URL, ADMINISTRATION_URL };
+		String[] memberPages = { START, ADMINISTRATION };
 
 		checkMenuAs(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP, adminPages,
 				expectedAdminMenu);
@@ -119,9 +120,9 @@ public class GenerellaKravTest extends PussTest {
 
 		addUserToGroup(leader1, group, "Project Leader");
 		addUserToGroup(leader2, group, "Project Leader");
-	//	addUserToGroup(member, group, "t1");
 
-		login(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP);
+		HtmlPage page = login(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP);
+		page = switchPage(page, GROUP_ADMIN);
 	}
 
 	/**

@@ -1,7 +1,5 @@
 package test;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.Connection;
@@ -12,8 +10,6 @@ import java.sql.Statement;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.*;
-
-import sun.misc.Cleaner;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
@@ -33,21 +29,24 @@ public abstract class PussTest {
 	public static final String STARTUP_SHELL = "startup.sh";
 	public static final String SHUTDOWN_SHELL = "shutdown.sh";
 	
-	public static final String GROUP_HANDLING_URL = "http://localhost:8080/BaseBlockSystem/GroupHandling";
-	public static final String GROUP_ADMIN_URL = "http://localhost:8080/BaseBlockSystem/ProjectGroupAdmin";
-	public static final String START_URL = "http://localhost:8080/BaseBlockSystem/Start";
-	public static final String LOGIN_URL = "http://localhost:8080/BaseBlockSystem/LogIn";
-	public static final String ADMINISTRATION_URL = "http://localhost:8080/BaseBlockSystem/Administration";
-
-	public static final String TIMEREPORTING_URL = "http://localhost:8080/BaseBlockSystem/TimeReporting?function=view";
-	public static final String TIMEREPORTING_URL_UPDATE = "http://localhost:8080/BaseBlockSystem/TimeReporting?function=update";
-	public static final String TIMEREPORTING_URL_NEW = "http://localhost:8080/BaseBlockSystem/TimeReporting?function=new";
-	public static final String TIMEREPORTING_URL_STATISTICS = "http://localhost:8080/BaseBlockSystem/TimeReporting?function=statistics";
+	public static final String BASIC_URL = "http://localhost:8080/BaseBlockSystem/";
 	
-	public static final String PROJECT_LEADER_URL = "http://localhost:8080/BaseBlockSystem/ProjectLeader";
-	public static final String REPORT_HANDLING_URL = "http://localhost:8080/BaseBlockSystem/ReportHandling";
-	public static final String CHANGE_PASSWORD_URL = "http://localhost:8080/BaseBlockSystem/ChangePassword";
-	public static final String STATISTICS_URL = "http://localhost:8080/BaseBlockSystem/Statistics";
+	public static final String GROUP_HANDLING = "GroupHandling", GROUP_HANDLING_URL = BASIC_URL + GROUP_HANDLING;
+	public static final String GROUP_ADMIN = "ProjectGroupAdmin", GROUP_ADMIN_URL = BASIC_URL + GROUP_ADMIN;
+
+	public static final String START = "Start", START_URL = BASIC_URL + START;
+	public static final String LOGIN = "LogIn", LOGIN_URL = BASIC_URL + LOGIN;
+	public static final String ADMINISTRATION = "Administration", ADMINISTRATION_URL = BASIC_URL + ADMINISTRATION;
+
+	public static final String TIMEREPORTING = "TimeReporting?function=view", TIMEREPORTING_URL = BASIC_URL + TIMEREPORTING;
+	public static final String TIMEREPORTING_UPDATE = "TimeReporting?function=update", TIMEREPORTING_URL_UPDATE = BASIC_URL + TIMEREPORTING_UPDATE;
+	public static final String TIMEREPORTING_NEW = "TimeReporting?function=new", TIMEREPORTING_URL_NEW = BASIC_URL + TIMEREPORTING_NEW;
+	public static final String TIMEREPORTING_STATISTICS = "TimeReporting?function=statistics", TIMEREPORTING_URL_STATISTICS = BASIC_URL + TIMEREPORTING_STATISTICS;
+	
+	public static final String PROJECT_LEADER = "ProjectLeader", PROJECT_LEADER_URL = BASIC_URL + PROJECT_LEADER;
+	public static final String REPORT_HANDLING = "ReportHandling", REPORT_HANDLING_URL = BASIC_URL + REPORT_HANDLING;
+	public static final String CHANGE_PASSWORD = "ChangePassword", CHANGE_PASSWORD_URL = BASIC_URL + CHANGE_PASSWORD;
+	public static final String STATISTICS = "Statistics", STATISTICS_URL = BASIC_URL + STATISTICS;
 	
 	public static final String ADMIN_USERNAME = "admin";
 	public static final String ADMIN_PASSWORD = "adminpw";
@@ -55,8 +54,7 @@ public abstract class PussTest {
 	
 	@BeforeClass
 	public static void initiateServerAndDB() {
-		shutDownServer();
-		startServer();
+		restartServer();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404test?" +
@@ -80,7 +78,7 @@ public abstract class PussTest {
 	
 	@Before
 	public void setUp() throws SQLException{
-		clearDatabase();
+//		clearDatabase();
 	}
 	
 	@After
@@ -98,7 +96,6 @@ public abstract class PussTest {
 //		sendSQLCommand(query);
 //		query = "delete from users where username <> 'admin';";
 //		sendSQLCommand(query);
-//		
 	}
 	
 	protected void sendSQLCommand(String query) throws SQLException {
@@ -113,6 +110,11 @@ public abstract class PussTest {
 	
 	protected void clearDataBase() {
 		//TODO implementera när det finns en test DB.
+	}
+	
+	protected HtmlPage getPageByAnchor(HtmlPage page, String anchor) throws IOException {
+		HtmlAnchor htmlAnchor = page.getAnchorByHref(anchor);
+		return page = htmlAnchor.click();
 	}
 	
 	protected int addUser(String username, String password, int is_admin) throws SQLException {
@@ -242,6 +244,12 @@ public abstract class PussTest {
 //	    logout.click();
 //	    webClient.closeAllWindows();
 	    return page2;
+	}
+	
+	protected HtmlPage switchPage(HtmlPage page, String anchor) throws IOException{
+		HtmlAnchor anchorPage = page.getAnchorByHref(anchor);
+		final HtmlPage newPage = anchorPage.click();
+		return newPage;
 	}
 	
 	protected static void restartServer(){

@@ -18,8 +18,18 @@ public class Annat extends PussTest {
 //		
 //	}
 	@Test
-	public void FT4_1_2() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+	public void TaBortKalle() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
 	
 		deleteUser("kallekal");
+	}
+	
+	@Test
+	public void addSpecificUser() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+		int a = addUser("johant", "johant",0);
+		int b = addGroup("testare");
+		assignGroup(a, b, "Project Leader");
+		System.out.println("före");
+		System.in.read();
+		System.out.println("efter");
 	}
 }

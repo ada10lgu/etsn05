@@ -45,6 +45,9 @@ public final class ReportGenerator {
 		
 	}
 	
+	/**
+	 * Test initializer.
+	 */
 	private static void init_test_data() {
 		name = "Test User";
 		date = new Date(0);
@@ -62,7 +65,10 @@ public final class ReportGenerator {
 			sub[i] = i;
 		}
 	}
-	
+	/**
+	 * Initializes the data
+	 * @param data: the data to initialize.
+	 */
 	private static void init_data(ResultSet data) {
 		try {
 			name = data.getString("username");
@@ -137,6 +143,10 @@ public final class ReportGenerator {
 		}
 	}
 	
+	/**
+	 * Initializes the data.
+	 * @param data: The data to be initialized.
+	 */
 	private static void init_data(Map<String, Integer> data) {
 		try {
 			name = "Statistics";
@@ -245,6 +255,10 @@ public final class ReportGenerator {
 		return generateViewReport();
 	}
 	
+	/**
+	 * Generates a report with values from the initialized data.
+	 * @return String: Html code
+	 */
 	private static String generateViewReport() {
 		String html = "";
 		html += "<style type='text/css'>"

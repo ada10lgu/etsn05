@@ -10,7 +10,7 @@ public class Access {
 
 	private Connection conn;
 	
-	private static int time_minutes = 5;
+	private static int time_minutes =20;
 	
 	public Access(Connection conn){
 		this.conn = conn;
@@ -24,7 +24,7 @@ public class Access {
 	 */
 	public boolean updateLog(Integer userID, String session){
 		Timestamp newTS = new Timestamp(System.currentTimeMillis());	
-		long accessTime = time_minutes*60*1000;  			//Efter hur många inaktiva millisekunder man ska loggas ut 
+		long accessTime = time_minutes*60*1000; //Efter hur många inaktiva millisekunder man ska loggas ut 
 		try {
 			Statement stmt = conn.createStatement();
 			Statement tempStmt = conn.createStatement();
@@ -51,8 +51,7 @@ public class Access {
 				}
 			} 
 		}
-		catch (SQLException e) {			
-			e.printStackTrace();
+		catch (SQLException e) {
 		}
 		return false;		
 	}
@@ -71,7 +70,6 @@ public class Access {
 			Timestamp newTS = new Timestamp(System.currentTimeMillis());
 			stmt.executeUpdate("Insert into log (user_id, time, session) values(" +userID+ ", '" +newTS+ "', '" +session+ "')");
 		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -87,10 +85,8 @@ public class Access {
 		Statement stmt;
 		try {
 			stmt = conn.createStatement();
-			Timestamp newTS = new Timestamp(System.currentTimeMillis());
 			stmt.executeUpdate("Delete from log where user_id="+userID);
 		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 	}
 

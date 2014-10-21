@@ -13,16 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import java.util.Random;
 
-/**
- * Servlet implementation class Administration. Constructs a page for
- * administration purpose. Checks first if the user is logged in and then if it
- * is the administrator. If that is OK it displays all users and a form for
- * adding new users.
- * 
- * @author Martin Host
- * @version 1.0
- */
-
 @WebServlet("/ProjectLeader")
 public class ProjectLeader extends servletBase {
 	private static final long serialVersionUID = 1L;
@@ -32,7 +22,6 @@ public class ProjectLeader extends servletBase {
 	 */
 	public ProjectLeader() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void doPost(HttpServletRequest request,
@@ -44,8 +33,6 @@ public class ProjectLeader extends servletBase {
 		
 		String myName = "";
 		HttpSession session = request.getSession(true);
-		// WHICH OF THESE NEED TO BE FETCHED?
-		//String groupIDString = request.getParameter("groupID");
 		Object nameObj = session.getAttribute("name");
 		Object groupObj = session.getAttribute("groupID");
 		int groupID = Integer.parseInt((String) groupObj);
@@ -210,6 +197,10 @@ public class ProjectLeader extends servletBase {
 		}
 	}
 	
+	/**
+	 * Returns html for a list with selection of roles.
+	 * @return String: Html code
+	 */
 	private String selectRoleList(){
 		String html = "";
 		html += "<br><select name='role'>";
@@ -267,7 +258,6 @@ public class ProjectLeader extends servletBase {
 			}
 			
 		} catch (SQLException ex) {
-			System.out.println("changeRole");
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());

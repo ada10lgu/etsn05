@@ -39,8 +39,7 @@ public class TimeReporting extends servletBase{
 	public TimeReporting(){
 		super();
 	}
-
-	//EDIT STLDD - change parameter userID --> userGroupID
+	
 	/**
 	 * Prints out a list of the users own reports. 
 	 * @param userGroupID: The id of the user.
@@ -72,8 +71,6 @@ public class TimeReporting extends servletBase{
 				out.println("<td>" + week + "</td>");
 				out.println("<td>" + totalTime + "</td>");
 				out.println("<td>" + signString(signed) + "</td>");
-			//	out.println("<td>" + "<a href='TimeReporting?function="+ VIEW_REPORT + "&reportID="+ reportID + "'>View" + "</a></td>");
-				//out.println("<td>" + "<a href='TimeReporting?function="+ UPDATE + "&reportID="+ reportID + "'>Update" + "</a></td>");
 				out.println("</tr>");
 			}
 		    out.println("</table>");
@@ -120,8 +117,6 @@ public class TimeReporting extends servletBase{
 				out.println("<td>" + week + "</td>");
 				out.println("<td>" + totalTime + "</td>");
 				out.println("<td>" + signString(signed) + "</td>");
-				//out.println("<td>" + "<a href='TimeReporting?function="+ VIEW_REPORT + "&reportID="+ reportID + "'>Delete" + "</a></td>");
-				//out.println("<td>" + "<a href='TimeReporting?function="+ UPDATE + "&reportID="+ reportID + "'>Update" + "</a></td>");
 				out.println("</tr>");
 			}
 		    out.println("</table>");
@@ -140,7 +135,11 @@ public class TimeReporting extends servletBase{
 		}	
 	}
 	
-	
+	/**
+	 * Creates the string representation for a signed or unsigned report.
+	 * @param signed: int signed 0=unsigned 1=signed
+	 * @return String: string representation
+	 */
 	private String signString(int signed){
 		String signedStr = "NO";
 		if (signed == 1) {
@@ -185,7 +184,6 @@ public class TimeReporting extends servletBase{
 				out.println(ReportGenerator.viewReport(rs));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			System.out.println("SQLException: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("VendorError: " + e.getErrorCode());
@@ -231,7 +229,6 @@ public class TimeReporting extends servletBase{
 				out.println("</div>");
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			System.out.println("SQLException: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("VendorError: " + e.getErrorCode());
@@ -299,9 +296,7 @@ public class TimeReporting extends servletBase{
 			}
 			
 			Calendar cal = Calendar.getInstance();
-			Date date = new Date(cal.getTimeInMillis()); 
-			//String week = request.getParameter("week");
-			//int userGroupID = (int) session.getAttribute("userGroupID");
+			Date date = new Date(cal.getTimeInMillis());
 
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("UPDATE reports SET date='"+date.toString()+"',total_time="+totalTime+" WHERE id="+reportID);
@@ -336,7 +331,6 @@ public class TimeReporting extends servletBase{
 			stmt2.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			System.out.println("SQLException: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("VendorError: " + e.getErrorCode());
@@ -355,12 +349,13 @@ public class TimeReporting extends servletBase{
 			stmt.executeUpdate("DELETE FROM report_times WHERE report_id="+reportID);
 			stmt.executeUpdate("DELETE FROM reports WHERE id="+reportID);
 		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 	}
 	
 	/**
 	 * Inserts the data from the new report form into the database.
+	 * @param request: The HttpServletRequest for this session.
+	 * return boolean: True if successful operation.
 	 */
 	private boolean addNewReport(HttpServletRequest request){
 		try {
@@ -445,6 +440,12 @@ public class TimeReporting extends servletBase{
 		return true;
 	}
 	
+	/**
+	 * Checks if the week is valid and doesnt already exist.
+	 * @param userGroupID: User group id of the user that creates the report.
+	 * @param week: The week to be tested.
+	 * @return int: Returns the id of the report with the existing week, if week doesnt exist returns -1
+	 */
 	private int weekOk(int userGroupID, String week) {
 		try {
 			Statement stmt1 = conn.createStatement();
@@ -460,14 +461,6 @@ public class TimeReporting extends servletBase{
 		}
 		return -1;
 
-	}
-
-	/**
-	 * Filters what time reports that should be shown in the list.
-	 * @param filter: The filter that should be applied.
-	 */
-	private void filterReportList(String filter){
-		
 	}
 	
 	/**
@@ -509,7 +502,6 @@ public class TimeReporting extends servletBase{
 		} else if (function != null && !isAdmin()) {
 			switch (function) {
 			case VIEW:
-				//String testReport 
 				if(reportID != null){					
 					response.sendRedirect("TimeReporting?function=viewReport&reportID="+reportID);
 				}
@@ -523,10 +515,8 @@ public class TimeReporting extends servletBase{
 				if(reportID != null){
 					out.println("<h1>Time Reports - Report</h1>");
 					printViewReport(Integer.parseInt(reportID));
-				}
-				//viewReportList(userGroupID);
+				};
 				out.println("</div>");
-				//printViewReport(reportID);
 				break;
 			case UPDATE:
 			if(delete!=null&&reportID!=null){
@@ -546,8 +536,7 @@ public class TimeReporting extends servletBase{
 				if(reportID != null){
 					out.println("<h1>Time Reports - Update</h1>");
 					printUpdateReport(Integer.parseInt(reportID));					
-				}
-				//updateReportList(userGroupID);	
+				}	
 				out.println("</div>");
 				break;
 			case ADD_UPDATE_REPORT:
@@ -621,9 +610,14 @@ public class TimeReporting extends servletBase{
 		
 	}
 
+	/**
+	 * Gets the report ids of the timereports that are selected.
+	 * @param request: HttpServletRequest of the session
+	 * @param nbrOfReports: Number of reports shown in the list.
+	 * @return List<Integer>: List with time report ids.
+	 */
 	private List<Integer> getTimeReports(HttpServletRequest request, int nbrOfReports) {
 		List<Integer> timeReports = new ArrayList<Integer>();
-		//int nbrOfReports = Integer.parseInt(request.getParameter(""));
 		for (int i=1; i<=nbrOfReports; i++) {
 			String reportIDstr = request.getParameter("reportIDs"+i);
 			if (reportIDstr != null) {
@@ -633,7 +627,11 @@ public class TimeReporting extends servletBase{
 		}
 		return timeReports;
 	}
-
+	
+	/**
+	 * Creates a list of reports that can be used for generating statistics.
+	 * @param userGroupID: User group id for the user.
+	 */
 	private void statisticsReportList(int userGroupID) {
 		try {
 			Statement stmt = conn.createStatement();
@@ -665,7 +663,6 @@ public class TimeReporting extends servletBase{
 				out.println("</tr>");
 			}
 		    out.println("</table>");
-		    //out.println("<hidden name='function' value="+formElement(PRINT_STATISTICS)+">");
 		    out.println("<button type=" + formElement("submit") + "name='submitStatistics' value="+ nbrOfReports +">View </button>");
 		    out.println("</form>");
 		    if (inWhile == 0){
@@ -678,6 +675,11 @@ public class TimeReporting extends servletBase{
 		}	
 	}
 
+	/**
+	 * Checks if a report is signed.
+	 * @param reportID: Id of the report to be checked.
+	 * @return boolean: True if the report is signed.
+	 */
 	private boolean isSigned(int reportID) {
 		Statement stmt;
 		try {
@@ -689,12 +691,15 @@ public class TimeReporting extends servletBase{
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return false;
 	}
 
+	/**
+	 * Checks if the input is valid.
+	 * @param str: input to be checked.
+	 * @return boolean: True if the input is valid.
+	 */
 	private boolean checkInt(String str) {
 		try {
 			int integer = Integer.parseInt(str);
@@ -709,6 +714,10 @@ public class TimeReporting extends servletBase{
 		}
 	}
 
+	/**
+	 * Checks if a user is Admin.
+	 * @return boolean: True if the user is Admin.
+	 */
 	private boolean isAdmin() {
 		String name = (String) session.getAttribute("name");
 		if (name.equals(ADMIN)) {
@@ -717,6 +726,11 @@ public class TimeReporting extends servletBase{
 		return false;
 	}
 
+	/**
+	 * Creates the form to fill in a week number when a report is created.
+	 * @param request: HttpServletRequest for the session.
+	 * @return String: Html code.
+	 */
 	private String requestWeekForm(HttpServletRequest request) {
 		String message = "";
 		int latestWeek = -1;
@@ -731,8 +745,6 @@ public class TimeReporting extends servletBase{
 				message += "There are no previous reports.";
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		String html = "<h1>Time Reports - New </h1>"; 

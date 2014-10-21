@@ -14,15 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class Administration. 
- * Constructs a page for administration purpose. 
- * Checks first if the user is logged in and then if it is the administrator. 
- * If that is OK it displays all users and a form for adding new users.
- * 
- *  @author Martin Host
- *  @version 1.0
- */
 @WebServlet("/Administration")
 public class Administration extends servletBase {
 	private static final long serialVersionUID = 1L;
@@ -33,7 +24,6 @@ public class Administration extends servletBase {
 	 */
 	public Administration() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -64,8 +54,6 @@ public class Administration extends servletBase {
 				boolean thisOk = ((ci>=48 && ci<=57) || 
 						(ci>=65 && ci<=90) ||
 						(ci>=97 && ci<=122));
-				//String extra = (thisOk ? "OK" : "notOK");
-				//System.out.println("bokst:" + name.charAt(i) + " " + (int)name.charAt(i) + " " + extra);
 				ok = ok && thisOk;
 			}    	
 		return ok;
@@ -79,7 +67,7 @@ public class Administration extends servletBase {
 		String result = "";
 		Random r = new Random();
 		for (int i=0; i<PASSWORD_LENGTH; i++)
-			result += (char)(r.nextInt(26)+97); // 122-97+1=26
+			result += (char)(r.nextInt(26)+97); 
 		return result;
 	}
 
@@ -94,8 +82,6 @@ public class Administration extends servletBase {
 		boolean resultOk = true;
 		try{
 			Statement stmt = conn.createStatement();
-			/*String statement = "insert into users (username, password,is_admin,is_project_leader,is_logged_in) values('" + name + "', '" + 
-					createPassword() + "',"+0+","+0+","+0+")";*/
 			String statement = "insert into users (username, password,is_admin) values('" + name + "', '" + 
 					createPassword() + "',"+0+")";
 			stmt.executeUpdate(statement); 
@@ -103,7 +89,6 @@ public class Administration extends servletBase {
 
 		} catch (SQLException ex) {
 			resultOk = false;
-			// System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}
@@ -116,17 +101,12 @@ public class Administration extends servletBase {
 	 * If the user does not exist in the database nothing happens. 
 	 * @param name name of user to be deleted. 
 	 */
-	//Ändra beskrivningen ovan i STLDD
-
-
 	private boolean deleteUser(int userID) {
-		int groupId;
 		try{
 			Statement stmt = conn.createStatement();
 			Statement stmt2 = conn.createStatement();
 			boolean removeGroup = false;
 			ArrayList<Integer> groupsToRemove = new ArrayList<Integer>();
-			//Check if the user is the only projectleader in any group
 			ResultSet rs = stmt.executeQuery("Select * from user_group where user_id = " + userID);
 			while(rs.next()){
 				if(rs.getString("role").equals(PROJECT_LEADER)){
@@ -139,7 +119,7 @@ public class Administration extends servletBase {
 						}
 						countMembers++;
 					}
-					if(countLeaders == 1 && countMembers  > 1){		//The user is the only leader in at least one group
+					if(countLeaders == 1 && countMembers  > 1){	//The user is the only leader in at least one group
 						return false;		
 					} else if(countLeaders == 1 && countMembers  == 1){
 						removeGroup = true;
@@ -151,7 +131,6 @@ public class Administration extends servletBase {
 			//OK to remove, start with the time reports
 			rs = stmt.executeQuery("Select * from user_group where user_id = " + userID);
 			while(rs.next()){
-				// Kanske en INNER JOIN på följande????????????????????????????
 				int userGroupID = rs.getInt("id");
 				ResultSet reports = stmt2.executeQuery("Select * from reports where user_group_id = " + userGroupID);
 				while(reports.next()){
@@ -278,7 +257,7 @@ public class Administration extends servletBase {
 	 *
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
