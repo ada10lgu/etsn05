@@ -74,17 +74,32 @@ public class ProjectGroupAdmin extends servletBase {
 	 * @return boolean: True if the project is deleted successfully
 	 * @throws SQLException 
 	 */
-	private boolean deleteProject(int projectID) throws SQLException {
+	private boolean deleteProject(int projectID) {
 		boolean resultOk = true;
-		Statement stmt = conn.createStatement();
-		String statement = "delete from user_group where group_id=" + projectID;
-		stmt.executeUpdate(statement); 
-		statement = "delete from groups where id=" + projectID;
-		int result = stmt.executeUpdate(statement); 
-		if(result != 1){
-			resultOk = false;
+		try{
+			
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("Select reports.id from reports INNER JOIN user_group on reports.user_group_id = user_group.id"
+								+ " where user_group.group_id=" + projectID);
+			while(rs.next()){
+				conn.createStatement().executeUpdate("Delete from report_times where report_id=" + rs.getInt("reports.id"));
+				conn.createStatement().executeUpdate("Delete from reports where id=" + rs.getInt("reports.id"));
+			}
+			
+			
+			String statement = "delete from user_group where group_id=" + projectID;
+			conn.createStatement().executeUpdate(statement); 
+			statement = "delete from groups where id=" + projectID;
+			int result = conn.createStatement().executeUpdate(statement); 
+			if(result != 1){
+				resultOk = false;
+			}
+			stmt.close();
+		}catch(Exception ex){
+			ex.printStackTrace();
+			return false;
 		}
-		stmt.close();
+		
 		return resultOk;
 	}
 
