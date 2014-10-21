@@ -40,7 +40,10 @@ public abstract class PussTest {
 	public static final String ADMINISTRATION_URL = "http://localhost:8080/BaseBlockSystem/Administration";
 
 	public static final String TIMEREPORTING_URL = "http://localhost:8080/BaseBlockSystem/TimeReporting?function=view";
-
+	public static final String TIMEREPORTING_URL_UPDATE = "http://localhost:8080/BaseBlockSystem/TimeReporting?function=update";
+	public static final String TIMEREPORTING_URL_NEW = "http://localhost:8080/BaseBlockSystem/TimeReporting?function=new";
+	public static final String TIMEREPORTING_URL_STATISTICS = "http://localhost:8080/BaseBlockSystem/TimeReporting?function=statistics";
+	
 	public static final String PROJECT_LEADER_URL = "http://localhost:8080/BaseBlockSystem/ProjectLeader";
 	public static final String REPORT_HANDLING_URL = "http://localhost:8080/BaseBlockSystem/ReportHandling";
 	public static final String CHANGE_PASSWORD_URL = "http://localhost:8080/BaseBlockSystem/ChangePassword";
@@ -239,6 +242,12 @@ public abstract class PussTest {
 //	    logout.click();
 //	    webClient.closeAllWindows();
 	    return page2;
+	}
+	
+	protected HtmlPage switchPage(HtmlPage page, String anchor) throws IOException{
+		HtmlAnchor anchorPage = page.getAnchorByHref("anchor");
+		final HtmlPage newPage = anchorPage.click();
+		return newPage;
 	}
 	
 	protected static void restartServer(){
