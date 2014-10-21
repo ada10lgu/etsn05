@@ -263,7 +263,6 @@ public class ProjectGroupAdmin extends servletBase {
 				String editIDString = request.getParameter("editid");
 				if(editIDString != null){
 					int editID = Integer.parseInt(editIDString);
-					System.out.println(editID);
 					session.setAttribute("groupHandlingID", editID);
 					response.sendRedirect("GroupHandling");		
 				}
