@@ -51,7 +51,8 @@ public abstract class PussTest {
 		startServer();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404?" + "user=puss1404&password=ptqp44ed");	
+			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404test?" +
+		            "user=puss1404test&password=j5jipsh1");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -131,7 +132,7 @@ public abstract class PussTest {
 		if(rs.next()) {
 			int groupId = rs.getInt(1);
 			
-			String query = "delete from user_group where id = " + groupId + ";";
+			String query = "delete from user_group where group_id = " + groupId + ";";
 			sendSQLCommand(query);
 			
 			query = "delete from groups where name = '" + groupName + "';";

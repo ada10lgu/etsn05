@@ -19705,3 +19705,12 @@ okt 21, 2014 11:23:44 FM org.apache.coyote.AbstractProtocol start
 INFO: Starting ProtocolHandler ["ajp-bio-8009"]
 okt 21, 2014 11:23:44 FM org.apache.catalina.startup.Catalina start
 INFO: Server startup in 1480 ms
+okt 21, 2014 11:27:42 FM org.apache.catalina.startup.HostConfig undeploy
+INFO: Undeploying context [/BaseBlockSystem]
+okt 21, 2014 11:27:43 FM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 21, 2014 11:27:43 FM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 165 ms
+tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 21, 2014 11:27:45 FM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 213 ms
