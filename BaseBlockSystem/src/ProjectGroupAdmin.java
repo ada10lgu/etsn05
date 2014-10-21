@@ -226,18 +226,33 @@ public class ProjectGroupAdmin extends servletBase {
 				
 				// check if the administrator wants to add a new project group in the form
 				String newName = request.getParameter("projectname");
+				
 				if (newName != null) {
-					if (checkNewName(newName)) {
-						int addPossible = addProject(newName);
-						if (addPossible == -1) {
-							out.println("<p>Error: Suggested project group name not possible to add</p>");
+					int nbrOfGroups = 0;
+					try {
+						Statement stmt = conn.createStatement();
+						ResultSet rs = stmt.executeQuery("select count(*) AS total from groups");
+						rs.first();
+						nbrOfGroups = rs.getInt("total");
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if (nbrOfGroups <5){
+						if (checkNewName(newName)) {
+							int addPossible = addProject(newName);
+							if (addPossible == -1) {
+								out.println("<p>Error: Suggested project group name not possible to add</p>");
+							} else {
+								session.setAttribute("groupHandlingID", addPossible);
+								response.sendRedirect("GroupHandling");
+							}
+
 						} else {
-							session.setAttribute("groupHandlingID", addPossible);
-							response.sendRedirect("GroupHandling");
+							out.println("<p>Error: Suggested name not allowed</p>");
 						}
-						
-					}	else
-						out.println("<p>Error: Suggested name not allowed</p>");
+					} else
+						out.println("<p>Error: The system does not allow more groups than 5.</p>");
 				}
 					
 				//check if the administrator wants to delete a project by clicking the URL in the list
