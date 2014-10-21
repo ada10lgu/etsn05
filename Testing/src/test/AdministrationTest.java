@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,6 +16,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
+import com.gargoylesoftware.htmlunit.html.HtmlRadioButtonInput;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
@@ -24,7 +26,7 @@ public class AdministrationTest extends PussTest {
 	@Ignore
 	public void FT4_1_1() throws FailingHttpStatusCodeException,
 			MalformedURLException, IOException, SQLException {
-		clearSessions();
+		clearDatabase();
 		final WebClient webClient = new WebClient();
 
 		// Get the first page
@@ -55,7 +57,7 @@ public class AdministrationTest extends PussTest {
 		assertEquals("Administration are not acces to administrations page",
 				ADMINISTRATION_URL, page3.getUrl().toString());
 
-		clearSessions();
+		clearDatabase();
 
 		webClient.closeAllWindows();
 
@@ -64,44 +66,42 @@ public class AdministrationTest extends PussTest {
 	@Ignore
 	public void FT4_1_2() throws FailingHttpStatusCodeException,
 			MalformedURLException, IOException, SQLException {
-		clearSessions();
+		clearDatabase();
 		final WebClient webClient = new WebClient();
 
-		// Get the first page
-		final HtmlPage page1 = webClient.getPage(LOGIN_URL);
+	    // Get the first page
+	    final HtmlPage page1 = webClient.getPage(LOGIN_URL);
 
-		// Get the form that we are dealing with and within that form,
-		// find the submit button and the field that we want to change.
-		final HtmlForm form = page1.getFormByName("input");
+	    // Get the form that we are dealing with and within that form, 
+	    // find the submit button and the field that we want to change.
+	    final HtmlForm form = page1.getFormByName("input");
 
-		final HtmlSubmitInput button = form.getInputByValue("Submit");
-		final HtmlTextInput userField = form.getInputByName("user");
-		final HtmlPasswordInput passwordField = form.getInputByName("password");
-		final HtmlSelect groupList = form.getSelectByName("groupID");
+	    final HtmlSubmitInput button = form.getInputByValue("Submit");
+	    final HtmlTextInput userField = form.getInputByName("user");
+	    final HtmlPasswordInput passwordField = form.getInputByName("password");
+	    final HtmlSelect groupList = form.getSelectByName("groupID");
 
-		// Change the value of the text field
-		userField.setValueAttribute("jonatan");
-		passwordField.setValueAttribute("jonatan");
-		groupList.setSelectedAttribute(LOGIN_T3, true);
+	    // Change the value of the text field
+	    userField.setValueAttribute("jonatan");
+	    passwordField.setValueAttribute("jonatan");
+	    groupList.setSelectedAttribute("91", true);
+	    
 
-		// Now submit the form by clicking the button and get back the second
-		// page.
-		final HtmlPage page2 = button.click();
+	    // Now submit the form by clicking the button and get back the second page.
+	    final HtmlPage page2 = button.click();
+	    
+	    assertEquals("user could not log in", START_URL, page2.getUrl().toString());
+	    
+	    HtmlAnchor administrationpage = page2.getAnchorByHref("Administration");
+	    final HtmlPage page3 = administrationpage.click();
 
-		assertEquals("user could not log in", START_URL, page2.getUrl()
-				.toString());
+	    assertEquals("Vanligt avnändare kan åtkom åt administration sida", START_URL, page3.getUrl().toString());
 
-		HtmlAnchor administrationpage = page2.getAnchorByHref("Administration");
-		final HtmlPage page3 = administrationpage.click();
-
-		assertEquals("Vanligt avnändare kan åtkom åt administration sida",
-				START_URL, page3.getUrl().toString());
-
-		clearSessions();
-
-		webClient.closeAllWindows();
-
-	}
+	    clearDatabase();
+	    
+	    webClient.closeAllWindows();
+	    
+	}	
 
 	@Test
 	public void FT4_4_1() {
@@ -171,7 +171,7 @@ public class AdministrationTest extends PussTest {
 		final HtmlSubmitInput button3 = form3.getInputByValue("Add project");
 		final HtmlTextInput projectNameField3 = form3
 				.getInputByName("projectname");
-		projectNameField2.setValueAttribute(tooLongGroupName);
+		projectNameField3.setValueAttribute(tooLongGroupName);
 		try {
 			page = button3.click();
 		} catch (IOException e) {
@@ -181,6 +181,8 @@ public class AdministrationTest extends PussTest {
 		assertEquals(
 				"Admin kunde lägga till en projektgrupp med ett för långt namn",
 				GROUP_ADMIN_URL, page.getUrl().toString());
+		
+		//TODO kontrollera att databsen är tom
 	}
 
 	@Test
@@ -189,12 +191,17 @@ public class AdministrationTest extends PussTest {
 		String username = "leader";
 		String password = "leader";
 		String group = null;
-		String projectGroup1 = "gouda";
+		String projectGroupName1 = "gouda";
 		String projectGroup2 = "mozzarella";
+		int userId = -1;
 		try {
-			addUser(username, password, 0);
+			userId = addUser(username, password, 0);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			try {
+				userId = getUserId(username);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 		HtmlPage page = null;
 		try {
@@ -213,7 +220,32 @@ public class AdministrationTest extends PussTest {
 		assertEquals("Admin hamnade inte på projektadministrationssidan",
 				GROUP_ADMIN_URL, page.getUrl().toString());
 		
-		//
+		//lägg till projektgrupp
+		final HtmlForm form1 = page.getFormByName("input");
+		final HtmlSubmitInput button1 = form1.getInputByValue("Add project");
+		final HtmlTextInput projectNameField1 = form1
+				.getInputByName("projectname");
+		projectNameField1.setValueAttribute(projectGroupName1);
+		try {
+			page = button1.click();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		assertEquals("Admin kunde inte skapa projektgrupp med namnet: " + projectGroupName1,
+				GROUP_HANDLING_URL, page.getUrl().toString());
+		final HtmlForm form2 = page.getFormByName("input");
+		List<HtmlRadioButtonInput> radioButtons = form2.getRadioButtonsByName("selectedradiouser");
+		for(HtmlRadioButtonInput radioButton : radioButtons) {
+			if(userId == Integer.parseInt(radioButton.getValueAttribute())) {
+				try {
+					radioButton.click();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
+			}
+		}
+		
 	}
 
 }

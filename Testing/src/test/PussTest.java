@@ -30,12 +30,21 @@ public abstract class PussTest {
 	public static final String STARTUP_SHELL = "startup.sh";
 	public static final String SHUTDOWN_SHELL = "shutdown.sh";
 	
+	public static final String GROUP_HANDLING_URL = "http://localhost:8080/BaseBlockSystem/GroupHandling";
 	public static final String GROUP_ADMIN_URL = "http://localhost:8080/BaseBlockSystem/ProjectGroupAdmin";
 	public static final String START_URL = "http://localhost:8080/BaseBlockSystem/Start";
 	public static final String LOGIN_URL = "http://localhost:8080/BaseBlockSystem/LogIn";
 	public static final String ADMINISTRATION_URL = "http://localhost:8080/BaseBlockSystem/Administration";
-	public static final String TIMEREPORTING_URL = "http://localhost:8080/BaseBlockSystem/TimeReporting";
-	public static final String LOGIN_T3 = "91";
+
+	public static final String TIMEREPORTING_URL = "http://localhost:8080/BaseBlockSystem/TimeReporting?function=view";
+
+	public static final String PROJECT_LEADER_URL = "http://localhost:8080/BaseBlockSystem/ProjectLeader";
+	public static final String REPORT_HANDLING_URL = "http://localhost:8080/BaseBlockSystem/ReportHandling";
+	public static final String CHANGE_PASSWORD_URL = "http://localhost:8080/BaseBlockSystem/ChangePassword";
+	
+	public static final String ADMIN_USERNAME = "admin";
+	public static final String ADMIN_PASSWORD = "adminpw";
+	public static final String ADMIN_GROUP = null;
 	
 	@BeforeClass
 	public static void initiateServerAndDB() {
@@ -60,10 +69,19 @@ public abstract class PussTest {
 	}
 	
 	@After
-	public void clearSessions() throws SQLException {
-		String query = "delete from log;";
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(query);
+	public void clearDatabase() throws SQLException {
+		String query = "delete from groups;";
+		sendSQLCommand(query);
+		query = "delete from log;";
+		sendSQLCommand(query);
+		query = "delete from report_times;";
+		sendSQLCommand(query);
+		query = "delete from reports;";
+		sendSQLCommand(query);
+		query = "delete from user_group;";
+		sendSQLCommand(query);
+		query = "delete from users where username <> 'admin'";
+		sendSQLCommand(query);
 	}
 	
 	protected void sendSQLCommand(String query) throws SQLException {
@@ -83,7 +101,11 @@ public abstract class PussTest {
 	protected int addUser(String username, String password, int is_admin) throws SQLException {
 		String query = "insert into users (username, password, is_admin) values ('" + username + "', '" + password + "', " + is_admin +");";
 		sendSQLCommand(query);
-		query = "select id from users where username='" + username + "';";
+		return getUserId(username);
+	}
+	
+	protected int getUserId(String username) throws SQLException {
+		String query = "select id from users where username='" + username + "';";
 		ResultSet rs = sendSQLQuery(query);
 		rs.next();
 		return rs.getInt(1);
@@ -127,6 +149,7 @@ public abstract class PussTest {
 	}
 	
 
+
 	private ResultSet getUserByName(String username) throws SQLException {
 		String query = "select id from users where username = '" + username + "';";
 		return sendSQLQuery(query);
@@ -146,10 +169,19 @@ public abstract class PussTest {
 		sendSQLCommand(query);
 	}
 	
-	protected void assignGroup(int userId, int groupId, String role) throws SQLException {
+	protected int assignGroup(int userId, int groupId, String role) throws SQLException {
 		String query = "insert into user_group (user_id, group_id, role) values (" + userId + ", " + groupId + ", '" + role + "');";
 		sendSQLCommand(query);
-
+		query = "select id from user_group where user_id ='" + userId + "';";
+		ResultSet rs = sendSQLQuery(query);
+		rs.next();
+		return rs.getInt(1);
+	}
+	
+	protected ResultSet signedReports(int userid) throws SQLException {
+		String query = "select signed from reports where user_group_id ='" + userid + "';";
+		ResultSet rs = sendSQLQuery(query);
+		return rs;
 	}
 	
 	protected static void startServer() {
@@ -202,6 +234,6 @@ public abstract class PussTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}	
 	
 }

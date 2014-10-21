@@ -52,7 +52,9 @@ public class servletBase extends HttpServlet {
     	try{	
     		Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404?" +
-            "user=puss1404&password=ptqp44ed");	
+            "user=puss1404&password=ptqp44ed");
+//			conn = DriverManager.getConnection("jdbc:mysql://vm26.cs.lth.se/puss1404test?" +
+//            "user=puss1404test&password=j5jipsh1"); //för testarna
 			access = new Access(conn);
 		} catch (SQLException ex) {
 		    System.out.println("SQLException: " + ex.getMessage());
@@ -142,7 +144,7 @@ public class servletBase extends HttpServlet {
 	    	menu+= "</ul>";
 	    	menu+= "</li>";
     	}
-    	if(role.equals(PROJECT_LEADER)){
+    	if(role.equals(PROJECT_LEADER) || role.equals(ADMIN)){
     		menu+= "<li><a href='ProjectLeader'>Project Management</a>";
         	menu+= "<ul>";
         	menu+= "<li><a href='ProjectLeader'>Users</a></li>";
