@@ -44,7 +44,7 @@ public abstract class PussTest {
 	
 	public static final String ADMIN_USERNAME = "admin";
 	public static final String ADMIN_PASSWORD = "adminpw";
-
+	public static final String ADMIN_GROUP = null;
 	
 	@BeforeClass
 	public static void initiateServerAndDB() {
