@@ -2,12 +2,14 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,7 +41,7 @@ public class Statistics extends servletBase {
      * @param weeks: The weeks for which the time report will be shown.
      * @return boolean: True if the report was successfully generated and shown.
      */
-    private boolean generateStatisticsReport(int groupID, int userID, String role, String weeks, HttpServletResponse response){
+    private boolean generateStatisticsReport(String groupID, String userID, String role, String weeks, HttpServletResponse response){
     	PrintWriter out;
     	try {
 			Statement stmt = conn.createStatement();
@@ -63,7 +65,7 @@ public class Statistics extends servletBase {
 			String inner3 = " inner join groups on user_group.group_id = groups.id";
 			String end = " where user_group.group_id= " + groupID;
 			
-			if(userID != -1){
+			if(!userID.equals("-1")){
 				end += " and user_group.user_id =  " + userID;
 			}else if(role != null){
 				end += " and user_group.role = " + formElement(role);
@@ -72,7 +74,7 @@ public class Statistics extends servletBase {
 			if(weeks.contains("-")){
 				String[] split = weeks.split("-");
 				end += " and reports.week >= " + split[0] + " and reports.week <= " + split[1];
-			}else if(weeks != null){
+			}else if(weeks != null && !weeks.equals("")){
 				end += " and reports.week = " + weeks;
 			}
 			end += " and reports.signed = 1";
@@ -82,6 +84,7 @@ public class Statistics extends servletBase {
 			query += inner2;
 			query += inner3;
 			query += end;
+			//System.out.println(query);
 			ResultSet rs = stmt.executeQuery(query);
 			Map<String, Integer> total = new HashMap<String, Integer>();
 			if (rs.next()) {
@@ -147,16 +150,19 @@ public class Statistics extends servletBase {
 				String inner2 = " inner join users on user_group.user_id = users.id";
 				String inner3 = " inner join groups on user_group.group_id = groups.id";
 				String end = " where";
-				for(int id : timeReports){
-					end += " reports.id = " + id + " or ";				
+				for(int i = 0; i < timeReports.size(); i++){
+					end += " reports.id = " + timeReports.get(i);
+					if(i != timeReports.size()-1){
+						end += " or ";
+					}
 				}
-				end += " reports.signed = 1";
 				
 				query += inner;
 				query += inner1;
 				query += inner2;
 				query += inner3;
 				query += end;
+				//System.out.println(query);
 				ResultSet rs = stmt.executeQuery(query);			
 				Map<String, Integer> total = new HashMap<String, Integer>();
 				if (rs.next()) {
@@ -348,6 +354,7 @@ public class Statistics extends servletBase {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("name");
+		boolean isAdmin = username.equals("admin");
 		if (projectLeaderOrAdmin(username)) {
 			String html = "";
 			PrintWriter out = response.getWriter();
@@ -356,89 +363,195 @@ public class Statistics extends servletBase {
 			out = response.getWriter();
 			out.println(getPageIntro());
 			out.println(printMainMenu(request));
+			out.println("<div class='floati'>");
+			String selectedGroup = "";//håller koll på den grupp admin har valt
+			if(!isAdmin){
+				selectedGroup = "" + groupID;
+			}else{
+				String gr = request.getParameter("groupID");
+				if(gr == null){
+					String gr_sel = request.getParameter("alreadySelected");
+					if(gr_sel == null){
+						selectedGroup = "0";
+					}else{
+						selectedGroup = gr_sel;
+						System.out.println("ALREADY SEL");
+					}
+				}else{
+					selectedGroup = gr;
+				}
+			}
 			String function = request.getParameter("function");
 			if(function != null){
-				switch(function){
-				case "busiestWeek" :
-					int val = busiestWeek(groupID);
-					if(val < 0){
-						out.print("No results");
-					}else{
-						out.println("Busisest week : " + val);
-					}				
-					break;
-				case "commonActivity" :
-					out.println("Common : " + commonActivity(groupID));
-					break;	
-				case "AllReports" :
-		        	try {
-		        		Statement stmt = conn.createStatement();
-						ResultSet rs = stmt.executeQuery("select * from reports");
+			
+				switch(function){				
+				case "generateSelectedReports": //user selected reports from a table
+					out.println("<h1>Summarized report</h1>");
+					String[] checkedIds = request.getParameterValues("reportID");					
+					if(checkedIds != null){
 						List<Integer> ids = new ArrayList<Integer>();
-						while(rs.next()){
-							ids.add(rs.getInt("id"));
-						}
-						generateSummarizedReport(ids, response);
-					} catch (SQLException e) {
-						
-						e.printStackTrace();
-					}
-					break;
-				case "chooseGroups":
-					try {
-						Statement stmt = conn.createStatement();
-						ResultSet groups = stmt.executeQuery("select * from groups");
-						stmt.close();
-						html = "<form action='chooseStatistics'>";
-						if (username.equals("admin")) {
-							html += "<select name='group'>";
-							while(groups.next()) {
-								html += "<option value='"+groups.getInt("id")+"'>"+groups.getString("name")+"</option>";
+						for(String s : checkedIds){
+							ids.add(Integer.parseInt(s));							
+						}					
+						if(ids.size() != 0){
+							if(!generateSummarizedReport(ids, response)){
+								out.println("No report was generated");
 							}
-							html += "</select>";
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
+						}						
 					}
 					break;
-				case "chooseStatistics":
-					try {
-						if (groupID < 1) {
-							groupID = Integer.parseInt(request.getParameter("group"));
-						}
-						Statement stmt1 = conn.createStatement();
-						ResultSet users = stmt1.executeQuery("select users.id, users.username from user_group INNER JOIN users on user_group.user_id = users.ID where user_group.group_id = " + groupID);
-						stmt1.close();
-						Statement stmt2 = conn.createStatement();
-						ResultSet weeks = stmt2.executeQuery("select reports.week from user_group INNER JOIN reports on user_group.id = reports.user_group_id where user_group.group_id = " + groupID);
-						stmt2.close();
-						html = "<from action='generateStatisticsReport'>";
-						while (users.next()) {
-							html += "<input type='radio' name='user' value>";
-						}
-						html += "<input type='radio' name='user' value='>"+users.getInt("id")+"'>"+users.getString("username")+"</input>";
-					} catch (Exception e) {
-						e.printStackTrace();
+				case "generateStatsReports" :
+					System.out.println("YAY");
+					String role = request.getParameter("roles");
+					String userID = request.getParameter("userID");
+					String weeks = request.getParameter("weeks");
+					if(!generateStatisticsReport(selectedGroup, userID, role, weeks, response)){
+						out.println("No report was generated");
 					}
-					break;
-				case "generateStatisticsReport":
-					
 					break;
 				}
 				
-			}else{
-				out.print(printOptions());
+				
 			}
+			out.print(printOptions(selectedGroup, isAdmin)); 
+			
+			out.println("</div>");
+			
 		}
 			
 	}
 		
-	private String printOptions(){
-		String html ="<ul><li><a href='Statistics?function=busiestWeek'>Busy week</a></li>";
-		html += "<li><a href='Statistics?function=commonActivity'>Common</a></li>";
-		html += "<li><a href='Statistics?function=AllReports'>All reports</a></li>";
-		html += "<li><a href='Statistics?function=generateStatisticsReport'>Generate custom statistics</a></li>";
+	private String printOptions(String groupID, boolean isAdmin){		
+		String html ="<h1>Generate Statistics</h1>";
+		//generate stats for selected reports (select reports from a list? checkboxes?)
+		html +="<div class='floati'>";
+		if(isAdmin){
+			html += "<form name=" + formElement("chooseGroup") + " method=" + formElement("post")+ ">";						
+			html += getGroupsList(groupID);
+			html += "<input  type=" + formElement("submit") + " value="+ formElement("Select group") +">";			
+			html += "<input type='hidden' name='function' value='selectGroup'>";
+			html += "</form>";
+		}
+		if(!groupID.equals("0")){
+			html += "<form name=" + formElement("selectedReports") + " method=" + formElement("post")+ ">";
+			if(isAdmin){
+				html += "<input type='hidden' name='alreadySelected' value=" + formElement(groupID) + ">";
+			}
+			html += "<input type='hidden' name='function' value='generateSelectedReports'>";
+			html += getReportsTable(groupID);			
+			html += "<input  type=" + formElement("submit") + " value="+ formElement("Generate report") +">";
+			html += "</form>";
+		}
+		html+= "</div>";
+		html +="<div style='margin-left: 20px;' class='floati'>";
+		if(!groupID.equals("0")){
+			html += "<form name=" + formElement("selectFields") + " method=" + formElement("post")+ ">";
+			if(isAdmin){
+				html += "<input type='hidden' name='alreadySelected' value=" + formElement(groupID) + ">";
+			}
+			html += getUsersList(groupID);
+			html +="</br>";
+			html += "<select name='roles'>";
+			html += "<option value='0'>Select a role</option>";
+			html += "<option value='"+PROJECT_LEADER+"'>Project Leader</option>";
+			html += "<option value='"+t1+"'>t1</option>";
+			html += "<option value='"+t2+"'>t2</option>";
+			html += "<option value='"+t3+"'>t3</option>";
+			html += "</select>";		
+			html +="<p>Specify week(s) (i.e. 5 or 4-23) </p> <input type='text' name='weeks'>";
+			
+			html += "<input type='hidden' name='function' value='generateStatsReports'>";
+			html += "<input  type=" + formElement("submit") + " value="+ formElement("Generate statistics") +">";
+			html += "</form>";
+		}
+		html+= "</div>";
+		//print a list with all reports from the group where signed= 1
+		
+		
+		
+		//html += "<ul><li><a href='Statistics?function=busiestWeek'>Busy week</a></li>";
+	//	html += "<li><a href='Statistics?function=commonActivity'>Common</a></li>";
+	//	html += "<li><a href='Statistics?function=AllReports'>All reports</a></li>";
+	//	html += "<li><a href='Statistics?function=generateStatisticsReport'>Generate custom statistics</a></li>";
+		
+		return html;
+	}
+	private String getUsersList(String groupID){
+		String html ="";
+		html += "<select name='userID'>";
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select users.id, users.username from users inner join user_group on users.id = user_group.user_id where user_group.group_id = " + groupID);
+			html += "<option value='-1'>Select a user</option>";
+			while(rs.next()) {				
+				html += "<option value='"+rs.getInt("id")+"'>"+rs.getString("username")+"</option>";								
+			}
+			stmt.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		html += "</select>";		
 		return html;
 	}
 
+	private String getGroupsList(String currentgroupID){
+		String html ="";
+		html += "<select name='groupID'>";
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet groups = stmt.executeQuery("select * from groups");
+			while(groups.next()) {
+				if(currentgroupID.equals("" + groups.getInt("id"))){
+					html += "<option selected='true' value='"+groups.getInt("id")+"'>"+groups.getString("name")+"</option>";
+				}else{
+					html += "<option value='"+groups.getInt("id")+"'>"+groups.getString("name")+"</option>";
+				}				
+			}
+			stmt.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		html += "</select>";		
+		return html;
+	}
+	private String getReportsTable(String groupID){
+		String html ="";
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select reports.id, reports.date, reports.week, reports.total_time from reports inner join user_group on reports.user_group_id= user_group.id where user_group.group_id=" + groupID + " and reports.signed = 1 order by week asc");
+			//create table			
+			html += "<p>Time Reports:</p>";
+			html += "<table border=" + formElement("1") + ">";
+		    html += "<tr><td>Selection</td><td>Last update</td><td>Week</td><td>Total Time</td></tr>";
+		    int inWhile = 0;
+	    	
+		    while(rs.next()){		    	
+		    	inWhile = 1;
+		    	String reportID = ""+rs.getInt("id");
+		    	
+				Date date = rs.getDate("date"); 
+				int week = rs.getInt("week");
+				int totalTime = rs.getInt("total_time");				
+				//print in box
+				html += "<tr>";
+				html += "<td>" + "<input type=" + formElement("checkbox") + " name=" + formElement("reportID") +
+						" value=" + formElement(reportID) +"></td>";		//checkboxes
+				html += "<td>" + date.toString() + "</td>";
+				html += "<td>" + week + "</td>";
+				html += "<td>" + totalTime + "</td>";
+				html += "</tr>";
+			}
+		    html += "</table>";
+		    
+		    if (inWhile == 0){
+		    	html += "No reports to show";
+		    }
+		} catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("VendorError: " + e.getErrorCode());
+		}	
+		return html;
+	}
 }
