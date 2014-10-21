@@ -12,6 +12,8 @@ import java.sql.Statement;
 
 import org.junit.*;
 
+import sun.misc.Cleaner;
+
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
@@ -48,6 +50,7 @@ public abstract class PussTest {
 	
 	@BeforeClass
 	public static void initiateServerAndDB() {
+		shutDownServer();
 		startServer();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -56,6 +59,7 @@ public abstract class PussTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		
 	}
 	
@@ -69,9 +73,16 @@ public abstract class PussTest {
 		}
 	}
 	
+	@Before
+	public void setUp() throws SQLException{
+		clearDatabase();
+	}
 	@After
 	public void clearDatabase() throws SQLException {
-		String query = "delete from groups;";
+		
+		String query = "delete from user_group;";
+		sendSQLCommand(query);
+		query = "delete from groups;";
 		sendSQLCommand(query);
 		query = "delete from log;";
 		sendSQLCommand(query);
@@ -79,9 +90,8 @@ public abstract class PussTest {
 		sendSQLCommand(query);
 		query = "delete from reports;";
 		sendSQLCommand(query);
-		query = "delete from user_group;";
-		sendSQLCommand(query);
-		query = "delete from users where username <> 'admin'";
+
+		query = "delete from users where username <> 'admin';";
 		sendSQLCommand(query);
 	}
 	

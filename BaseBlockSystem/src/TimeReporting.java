@@ -100,11 +100,11 @@ public class TimeReporting extends servletBase{
 			ResultSet rs = stmt.executeQuery("select * from reports where user_group_id=" + userGroupID + " and signed=0 order by week asc");
 			//create table 
 			out.println("<h1>Time Reports - Update/Delete</h1>");
+			out.println("<form name=" + formElement("input") + " method=" + formElement("post") +">");	
 			out.println("Select a time report to update/delete");
 		    out.println("<table border=" + formElement("1") + ">");
 		    out.println("<tr><td>Selection</td><td>Last update</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
-		    int inWhile = 0;
-		    out.println("<form name=" + formElement("input") + " method=" + formElement("post") +">");	    	
+		    int inWhile = 0;		        	
 		    while(rs.next()){		    	
 		    	inWhile = 1;
 		    	String reportID = ""+rs.getInt("ID");
@@ -125,7 +125,7 @@ public class TimeReporting extends servletBase{
 				out.println("</tr>");
 			}
 		    out.println("</table>");
-		    out.println("<hidden name='function' value='updateReport'>");
+		    out.println("<input type='hidden' name='function' value='updateReport'>");
 		    
 		    out.println("<input  type=" + formElement("submit") + " name='update' value="+ formElement("Update") +">");
 		    out.println("<input  type=" + formElement("submit") + " name='delete' value="+ formElement("Delete") +">");
@@ -503,8 +503,6 @@ public class TimeReporting extends servletBase{
 			timeReports = getTimeReports(request, Integer.parseInt(submitStatistics));
 		}
 		
-		
-	
 		int userGroupID = (int) session.getAttribute("userGroupID");
 		if (!loggedIn(request)){
 			response.sendRedirect("LogIn");
@@ -521,9 +519,13 @@ public class TimeReporting extends servletBase{
 				viewReportList(userGroupID);
 				break;
 			case VIEW_REPORT:
-				if(reportID != null){		
+				out.println("<div class='floati'>");
+				if(reportID != null){
+					out.println("<h1>Time Reports - Report</h1>");
 					printViewReport(Integer.parseInt(reportID));
 				}
+				//viewReportList(userGroupID);
+				out.println("</div>");
 				//printViewReport(reportID);
 				break;
 			case UPDATE:
@@ -539,11 +541,14 @@ public class TimeReporting extends servletBase{
 				updateReportList(userGroupID);	
 			}
 				break;
-			case UPDATE_REPORT:  
-				if(reportID != null){		
-					printUpdateReport(Integer.parseInt(reportID));
-					
+			case UPDATE_REPORT: 
+				out.println("<div class='floati'>");
+				if(reportID != null){
+					out.println("<h1>Time Reports - Update</h1>");
+					printUpdateReport(Integer.parseInt(reportID));					
 				}
+				//updateReportList(userGroupID);	
+				out.println("</div>");
 				break;
 			case ADD_UPDATE_REPORT:
 				if(updateReport(Integer.parseInt(reportID),request)){
@@ -577,6 +582,7 @@ public class TimeReporting extends servletBase{
 				}
 				break;
 			case PRINT_NEW:
+				out.println("<h1>Time Reports - New</h1>");
 				int week = Integer.parseInt(weekStr);
 				printNewReport(week, out);
 				break;
@@ -598,11 +604,12 @@ public class TimeReporting extends servletBase{
 				break;
 			case PRINT_STATISTICS:
 				Statistics stats = new Statistics();
-				
-				boolean test = stats.generateSummarizedReport(timeReports, response);
-				if (!test) {
+				out.println("<div class='floati'>");
+				if (!stats.generateSummarizedReport(timeReports, response)) {
 					response.sendRedirect("TimeReporting?function=statistics&success=false");
 				}
+				statisticsReportList(userGroupID);
+				out.println("<div>");
 				break;
 			}
 		} else if (isAdmin()){

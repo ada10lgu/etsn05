@@ -108,8 +108,9 @@ public class Statistics extends servletBase {
 				}
 			}
 			
-			if(rs.first()){		
+			if(rs.first()){				
 				out = response.getWriter();
+				out.println("<h1>Statistical report</h1>");
 				out.println(ReportGenerator.viewReport(total));
 				return true;
 			}
@@ -184,9 +185,9 @@ public class Statistics extends servletBase {
 						int val = rs.getInt(ReportGenerator.lower_activities[i]);
 						total.put(ReportGenerator.lower_activities[i], total.get(ReportGenerator.lower_activities[i]) + val);
 					}
-				}
-				
+				}		
 				out = response.getWriter();
+				out.println("<h1>Summarized report</h1>");
 				out.println(ReportGenerator.viewReport(total));
 				return true;
 				
@@ -386,7 +387,7 @@ public class Statistics extends servletBase {
 			
 				switch(function){				
 				case "generateSelectedReports": //user selected reports from a table
-					out.println("<h1>Summarized report</h1>");
+					
 					String[] checkedIds = request.getParameterValues("reportID");					
 					if(checkedIds != null){
 						List<Integer> ids = new ArrayList<Integer>();
@@ -401,7 +402,7 @@ public class Statistics extends servletBase {
 					}
 					break;
 				case "generateStatsReports" :
-					System.out.println("YAY");
+					
 					String role = request.getParameter("roles");
 					String userID = request.getParameter("userID");
 					String weeks = request.getParameter("weeks");
@@ -438,7 +439,8 @@ public class Statistics extends servletBase {
 				html += "<input type='hidden' name='alreadySelected' value=" + formElement(groupID) + ">";
 			}
 			html += "<input type='hidden' name='function' value='generateSelectedReports'>";
-			html += getReportsTable(groupID);			
+			html += getReportsTable(groupID);		
+			html += "<p>Generate statistics report based on specified report:</p>";
 			html += "<input  type=" + formElement("submit") + " value="+ formElement("Generate report") +">";
 			html += "</form>";
 		}
@@ -449,8 +451,9 @@ public class Statistics extends servletBase {
 			if(isAdmin){
 				html += "<input type='hidden' name='alreadySelected' value=" + formElement(groupID) + ">";
 			}
+			html += "<p>Select a user</p>";
 			html += getUsersList(groupID);
-			html +="</br>";
+			html +="</br><p>or select a role</p>";
 			html += "<select name='roles'>";
 			html += "<option value='0'>Select a role</option>";
 			html += "<option value='"+PROJECT_LEADER+"'>Project Leader</option>";
@@ -458,8 +461,8 @@ public class Statistics extends servletBase {
 			html += "<option value='"+t2+"'>t2</option>";
 			html += "<option value='"+t3+"'>t3</option>";
 			html += "</select>";		
-			html +="<p>Specify week(s) (i.e. 5 or 4-23) </p> <input type='text' name='weeks'>";
-			
+			html +="<p>Specify week(s) (i.e. 5 or 4-23) </p> <input type='text' name='weeks'></br>";
+			html += "<p>Generate statistics report based on specified parameters:</p>";
 			html += "<input type='hidden' name='function' value='generateStatsReports'>";
 			html += "<input  type=" + formElement("submit") + " value="+ formElement("Generate statistics") +">";
 			html += "</form>";
