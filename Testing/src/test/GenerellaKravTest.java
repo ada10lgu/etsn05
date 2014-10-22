@@ -3,6 +3,7 @@ package test;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Test;
@@ -12,7 +13,11 @@ import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.WebResponse;
 import com.gargoylesoftware.htmlunit.html.DomElement;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
+import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.HtmlRadioButtonInput;
+import com.gargoylesoftware.htmlunit.html.HtmlSelect;
+import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 
 import org.junit.*;
 
@@ -49,7 +54,7 @@ public class GenerellaKravTest extends PussTest {
 	 * Alla typer av inloggade användare har tillgång till menyn på samtliga
 	 * sidor som visas av systemet [SRS krav 6.1.1]
 	 */
-	@Test
+	@Ignore
 	public void FT1_1_1() throws SQLException, MalformedURLException,
 			IOException {
 		final String group = "menygrupp";
@@ -89,6 +94,7 @@ public class GenerellaKravTest extends PussTest {
 	@Ignore
 	public void FT1_1_2() {
 		// FT1_1_1 testar detta.
+		assert(true);
 	}
 
 	/**
@@ -98,6 +104,7 @@ public class GenerellaKravTest extends PussTest {
 	@Ignore
 	public void FT1_1_3() {
 		// FT1_1_1 testar detta.
+		assert(true);
 	}
 
 	/**
@@ -113,7 +120,7 @@ public class GenerellaKravTest extends PussTest {
 	 * I en projektgupp får det finnas max två stycken projektledare och tre
 	 * typer av roller: t1, t2, och t3. [SRS krav 6.1.6]
 	 */
-	@Ignore
+	@Test
 	public void FT1_1_5() throws SQLException, MalformedURLException,
 			IOException {
 		final String group = "endast";
@@ -121,22 +128,29 @@ public class GenerellaKravTest extends PussTest {
 		final String leader2 = "maxen";
 		final String member = "member";
 
-		addGroup(group);
+		String groupNbr = Integer.toString(addGroup(group));
 		addUser(leader1, leader1, 0);
 		addUser(leader2, leader2, 0);
-		int memberNbr = addUser(member, member, 0);
+		String memberNbr = Integer.toString(addUser(member, member, 0));
 
 		addUserToGroup(leader1, group, "Project Leader");
 		addUserToGroup(leader2, group, "Project Leader");
 
 		HtmlPage page = login(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP);
-		page = switchPage(page, GROUP_HANDLING);
+		page = switchPage(page, GROUP_ADMIN);
+		page = switchPage(page, GROUP_ADMIN + "?editid=" + groupNbr);
 		
 		HtmlForm form = page.getFormByName("input");
-		List<DomElement> radioList = page.getElementsByName("selectedradiouser");
 		
-
+		List<HtmlInput> test = form.getInputsByName("selectedradiouser");
+		HtmlInput radio = form.getInputByValue(memberNbr);
+		radio.setChecked(true);
 		
+		HtmlSelect roleList = form.getSelectByName("role");
+		roleList.setSelectedAttribute("Project Leader", true);
+		
+		HtmlSubmitInput button = form.getInputByValue("Add user");
+		button.click();
 	}
 
 	/**
