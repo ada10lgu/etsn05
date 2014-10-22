@@ -16,6 +16,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
+import com.gargoylesoftware.htmlunit.WebAssert;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomElement;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
@@ -29,9 +30,126 @@ import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 
 public class TidrapporteringTest extends PussTest{
 	
-	private HtmlPage loginAdmin() throws FailingHttpStatusCodeException, MalformedURLException, IOException{
-		return login("admin", "adminpw", null);
+	private HtmlPage addStandardTimeReport(HtmlPage page, String week) throws IOException{		
+		HtmlPage newPage = switchPage(page, "TimeReporting?function=new");
+		HtmlForm form = newPage.getFormByName("input");
+		HtmlSubmitInput button = form.getInputByValue("Submit");
+		HtmlTextInput weekField = form.getInputByName("week");
+		weekField.setValueAttribute(week);
+		page = button.click();
+		
+		if (newPage.toString().equals(page.toString())){
+			return newPage;
+		}
+		
+		form = page.getForms().get(0);
+		
+		HtmlSubmitInput reportButton = form.getInputByValue("Save");
+		HtmlTextInput inputField = form.getInputByName("SVVR_U");
+		
+		inputField.setValueAttribute("30");
+
+		page = reportButton.click();
+		
+		
+		return page;
 	}
+	
+	private HtmlPage addTimeReport(HtmlPage page, String week, String input) throws IOException{
+		HtmlPage newPage = switchPage(page, "TimeReporting?function=new");
+		HtmlForm form = newPage.getFormByName("input");
+		HtmlSubmitInput button = form.getInputByValue("Submit");
+		HtmlTextInput weekField = form.getInputByName("week");
+		weekField.setValueAttribute(week);
+		page = button.click();
+		
+
+		
+		form = page.getForms().get(0);
+		
+		HtmlSubmitInput reportButton = form.getInputByValue("Save");
+		HtmlTextInput inputField = form.getInputByName("SVVR_U");
+		
+		inputField.setValueAttribute(input);
+
+		page = reportButton.click();
+		
+		
+		return page;
+	}
+	
+	private void newUserAddTimeReport(String name, String password, String groupName, Boolean newGroup, String role) throws SQLException, FailingHttpStatusCodeException, MalformedURLException, IOException{			
+		int groupId;
+		HtmlPage page;
+		if (newGroup){
+			groupId = addGroup(groupName);
+		} else{
+			ResultSet rs = sendSQLQuery("select id from groups where name = '" + groupName + "';");
+			rs.next();
+			groupId = rs.getInt(1);
+		}
+		int userId =addUser(name,password, 0);
+		assignGroup(userId, groupId, role);
+		
+		page = login(name, password, groupName);
+		page = addStandardTimeReport(page, "5");
+		switchPage(page, "LogIn");
+	}
+	
+	private int addMemberA(String groupName, Boolean newGroup) throws SQLException{
+		int groupId;
+		if (newGroup){
+			groupId = addGroup(groupName);
+		} else{
+			ResultSet rs = sendSQLQuery("select id from groups where name = '" + groupName + "';");
+			rs.next();
+			groupId = rs.getInt(1);
+		}
+		int userId =addUser("kallekal","kallekal", 0);
+		int userGroupId = assignGroup(userId, groupId, "t1");
+		
+		return userGroupId;
+	}
+	
+	private void addMember(String name, String password, String groupName, Boolean newGroup) throws SQLException{
+		int groupId;
+		if (newGroup){
+			groupId = addGroup(groupName);
+		} else{
+			ResultSet rs = sendSQLQuery("select id from groups where name = '" + groupName + "';");
+			rs.next();
+			groupId = rs.getInt(1);
+		}
+		int userId =addUser(name,password, 0);
+		assignGroup(userId, groupId, "t1");
+	}
+	
+	private void addLeaderA(String groupName, Boolean newGroup) throws SQLException{
+		int groupId;
+		if (newGroup){
+			groupId = addGroup(groupName);
+		} else{
+			ResultSet rs = sendSQLQuery("select id from groups where name = '" + groupName + "';");
+			rs.next();
+			groupId = rs.getInt(1);
+		}
+		int userId =addUser("leaderal","leaderal", 0);
+		assignGroup(userId, groupId, "Project Leader");
+	}
+	
+	private HtmlPage loginMemberA() throws FailingHttpStatusCodeException, MalformedURLException, IOException{
+		return login("kallekal", "kallekal", "Projekt1");
+	}	
+	
+	
+	private HtmlPage loginLeaderA() throws FailingHttpStatusCodeException, MalformedURLException, IOException{
+		return login("leaderal", "leaderal", "Projekt1");
+	}
+	
+	private void logOut(HtmlPage page) throws IOException{
+		switchPage(page, "LogIn");
+	}
+	
 
 	@Test
 	public void FT3_1_1() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
@@ -247,4 +365,306 @@ public class TidrapporteringTest extends PussTest{
 		webClient.closeAllWindows();
 		
 	}
+	
+	@Test
+	public void FT3_1_4() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{
+		//En projektmedlem kan endast se sina egna tidrapporter
+		clearDatabase();
+		
+		//Skapa Projektmedlem A kallekal i ny projekt "Projekt1"
+		
+		String name = "kallekal";
+		String password = "kallekal";
+		String groupName = "Projekt1";
+		int userId =addUser(name,password, 0);
+		int groupId = addGroup(groupName);
+		int userGroupId = assignGroup(userId, groupId, "t1");
+		
+		newUserAddTimeReport("sallesal", "sallesal", "Projekt2", true, "t1");
+		newUserAddTimeReport("talletal", "talletal", "Projekt1", false, "t1");
+
+		//Projektmedlem A loggar in
+		
+		HtmlPage page =null;
+		HtmlForm form = null;
+		
+		page = login(name, password, groupName);
+		
+		page = addStandardTimeReport(page, "4");
+		page = addStandardTimeReport(page, "5");
+		page = addStandardTimeReport(page, "6");
+		page = addStandardTimeReport(page, "7");
+	
+		
+		//Kolla vilka rapporter kallekal kan se
+		page = switchPage(page, "TimeReporting?function=view");
+		form = page.getFormByName("input");		
+		List<DomElement> radioList = page.getElementsByIdAndOrName("reportID");
+		
+		int size = radioList.size();
+		
+		assertTrue("A kan inte se endast sina egna tidrapporter", size == 4);
+
+		
+		webClient.closeAllWindows();
+		
+		
+	}
+	
+
+	//MANUELLT
+	@Ignore
+	public void FT3_1_5() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+		//Projektmedlem A försöker ta bort en av sina signerade tidrapporter
+		
+		addMemberA("Projekt1", true);
+		addLeaderA("Projekt1", false);
+		HtmlPage page = loginMemberA();		
+		page = addStandardTimeReport(page,"4");
+		
+		switchPage(page, "TimeReporting?function=update"); //TODO remove
+		WebAssert.assertFormPresent(page, "input"); //TODO remove
+		
+		logOut(page);
+		
+		page = loginLeaderA();
+		page = switchPage(page, "ReportHandling");
+		
+		HtmlForm form = page.getFormByName("input");		
+		List<DomElement> radioList = page.getElementsByIdAndOrName("reportID");
+		
+		HtmlRadioButtonInput radio;
+		DomElement dom = radioList.get(0);
+		radio = (HtmlRadioButtonInput) dom;		
+		radio.click();
+		System.out.print(page.asText()); //TODO remove
+		HtmlSubmitInput button = form.getInputByValue("View");
+		System.out.println(page.toString());
+		page = button.click();
+		System.out.print(page.asText()); //TODO remove
+		System.out.println(page.toString());
+		
+		
+		WebAssert.assertFormPresent(page, "input"); //TODO remove
+		form = page.getFormByName("input");
+		
+		
+		System.out.print(page.asXml()); //TODO remove
+		System.out.print(page.asText()); //TODO remove
+		
+		HtmlSubmitInput button2 = form.getInputByValue("Sign");
+		
+		page = button2.click();
+		logOut(page);
+		
+		page = loginMemberA();		
+		page = switchPage(page, "TimeReporting?function=update");
+		
+		WebAssert.assertFormNotPresent(page, "input");
+		
+
+	}
+	
+	//MANUELLT
+	@Ignore
+	public void FT3_1_6() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+		//Projektmedlem försöker redigera en signerad tidrapport
+		
+		addMemberA("Projekt1", true);
+		addLeaderA("Projekt1", false);
+		HtmlPage page = loginMemberA();		
+		page = addStandardTimeReport(page,"4");
+		
+		switchPage(page, "TimeReporting?function=update"); //TODO remove
+		WebAssert.assertFormPresent(page, "input"); //TODO remove
+		
+		logOut(page);
+		
+		page = loginLeaderA();
+		page = switchPage(page, "ReportHandling");
+		
+		HtmlForm form = page.getFormByName("input");		
+		List<DomElement> radioList = page.getElementsByIdAndOrName("reportID");
+		
+		HtmlRadioButtonInput radio;
+		DomElement dom = radioList.get(0);
+		radio = (HtmlRadioButtonInput) dom;		
+		radio.click();
+		HtmlSubmitInput button = form.getInputByValue("View");
+		page = button.click();
+		
+		System.out.println(page.toString()); //TODO remove
+		
+		WebAssert.assertFormPresent(page, "input"); //TODO remove
+		form = page.getFormByName("input");
+		
+		HtmlSubmitInput button2 = form.getInputByValue("Sign");
+		
+		page = button2.click();
+		logOut(page);
+		
+		page = loginMemberA();		
+		page = switchPage(page, "TimeReporting?function=update");
+		
+		WebAssert.assertFormNotPresent(page, "input");
+	}
+	
+	@Test
+	public void FT3_2_1() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+		//Projektledaren har tillgång till samtliga projektmedlemmars tidrapporter i sin projekt-
+		//grupp
+		
+		addLeaderA("Projekt1", true);
+		addMember("asdfgh", "asdfgh", "Projekt1", false);
+		addMember("qwerty", "qwerty", "Projekt1", false);
+		addMember("zxcvbn", "zxcvbn", "Projekt1", false);
+		
+		HtmlPage page = login("qwerty", "qwerty", "Projekt1");
+		page = addStandardTimeReport(page,"4");
+		logOut(page);
+		page = login("asdfgh", "asdfgh", "Projekt1");
+		page = addStandardTimeReport(page,"4");
+		logOut(page);
+		page = login("zxcvbn", "zxcvbn", "Projekt1");
+		page = addStandardTimeReport(page,"4");
+		logOut(page);
+		
+		page = loginLeaderA();
+		
+		page = switchPage(page, "ReportHandling");
+		List<DomElement> radioList = page.getElementsByIdAndOrName("reportID");
+		
+		int size = radioList.size();
+		
+		assertTrue("A kan inte se alla tidrapporter", size==3);
+	}
+	
+	//MANUELLT
+	@Ignore
+	public void FT3_2_2() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+		//Projektledaren lyckas godkänna en ej tidigare signerad tidrapport från en medlem i sin
+		//projektgrupp
+		
+		int userGroupId = addMemberA("Projekt1", true);
+		addLeaderA("Projekt1", false);
+		HtmlPage page = loginMemberA();		
+		page = addStandardTimeReport(page,"4");
+		
+		switchPage(page, "TimeReporting?function=update"); //TODO remove
+		WebAssert.assertFormPresent(page, "input"); //TODO remove
+		
+		logOut(page);
+		
+		page = loginLeaderA();
+		page = switchPage(page, "ReportHandling");
+		
+		HtmlForm form = page.getFormByName("input");		
+		List<DomElement> radioList = page.getElementsByIdAndOrName("reportID");
+		
+		HtmlRadioButtonInput radio;
+		DomElement dom = radioList.get(0);
+		radio = (HtmlRadioButtonInput) dom;		
+		radio.click();
+		HtmlSubmitInput button = form.getInputByValue("View");
+		page = button.click();
+		
+		System.out.println(page.toString()); //TODO remove
+		
+		WebAssert.assertFormPresent(page, "input"); //TODO remove
+		form = page.getFormByName("input");
+		
+		HtmlSubmitInput button2 = form.getInputByValue("Sign");
+		
+		page = button2.click();
+		
+		ResultSet rs = sendSQLQuery("select count(*) from reports where user_group_id = " + userGroupId + ";");
+		rs.next();
+		
+		
+		assertTrue("ble", rs.getInt(1)==0);
+
+	}
+	
+	
+	//////////////////////////
+	//FT3.2.3-13 GÖRS MANUELLT
+	//////////////////////////
+	
+	//FT3.3.1 MANUELLT
+	
+	
+	@Test
+	public void FT3_3_2() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+		//Ogiltig tidinformation
+		
+		int userGroupId = addMemberA("Projekt1", true);
+		HtmlPage page = loginMemberA();
+		
+		page = addTimeReport(page, "4", "123456");
+		page = addTimeReport(page, "5", "123:5");
+		page = addTimeReport(page, "5", "/");
+		ResultSet rs = sendSQLQuery("select count(*) from reports where user_group_id = " + userGroupId + ";");
+		rs.next();
+		
+		assertTrue("SDs", rs.getInt(1)==0);
+	}
+	
+	@Test
+	public void FT3_3_3() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+		//Giltig tidinformation
+		
+		int userGroupId = addMemberA("Projekt1", true);
+		HtmlPage page = loginMemberA();
+		
+		page = addTimeReport(page, "4", "01239");
+		page = addTimeReport(page, "5", "0");
+		ResultSet rs = sendSQLQuery("select count(*) from reports where user_group_id = " + userGroupId + ";");
+		rs.next();
+		
+		assertTrue("SDs", rs.getInt(1)==2);
+	}
+	
+	@Test
+	public void FT3_3_4() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+		//Ogiltig vecka
+		
+		int userGroupId = addMemberA("Projekt1", true);
+		HtmlPage page = loginMemberA();
+		
+		page = addStandardTimeReport(page, "123");
+		page = addStandardTimeReport(page, "1:" );
+		page = addStandardTimeReport(page, "/");
+		ResultSet rs = sendSQLQuery("select count(*) from reports where user_group_id = " + userGroupId + ";");
+		rs.next();
+		
+		assertTrue("SDs", rs.getInt(1)==0);
+	}
+	
+	@Test
+	public void FT3_3_5() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+
+	}
+	
+	@Test
+	public void FT3_3_6() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+
+	}
+	
+	@Test
+	public void FT3_3_7() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+
+	}
+	
+	@Test
+	public void FT3_3_8() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+
+	}
+	
+	@Test
+	public void FT3_3_9() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{	
+
+	}
+	
+	
+	
 }
