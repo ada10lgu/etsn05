@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Ignore;
@@ -16,6 +18,7 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.WebClientOptions;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
+import com.gargoylesoftware.htmlunit.html.HtmlOption;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
@@ -705,6 +708,7 @@ public class AutentiseringTest extends PussTest{
 		System.out.println("FT2_4_1");
 	}
 	
+	//Check again
 	@Test
 	public void FT2_5_1(){
 		
@@ -720,6 +724,72 @@ public class AutentiseringTest extends PussTest{
 		}
 		webClient.getOptions().setThrowExceptionOnFailingStatusCode(true);
 		System.out.println("FT2_5_1");	
+	}
+	
+	@Test
+	public void FT2_5_2(){
+		String group1 = "HellOnearth";
+		String group2 = "LadderToHeaven";
+		String group3 = "FightersZaron";
+		
+		int groupId1 = -1;
+		int groupId2 = -1;
+		int groupId3 = -1;
+		
+		HtmlPage page = null;
+		HtmlForm form = null;
+		HtmlSelect select = null;
+		
+		try {
+			groupId1 = addGroup(group1);
+			groupId2 = addGroup(group2);
+			groupId3 = addGroup(group3);
+			webClient = new WebClient();
+			
+			page = webClient.getPage(LOGIN_URL);
+			form = page.getFormByName("input");
+			select = form.getSelectByName("groupID");
+			
+			List<HtmlOption> list = select.getOptions();
+			int counter = 0;
+			
+			for(HtmlOption option: list){
+				if(option.asText().equals(group1) || option.asText().equals(group2) || option.asText().equals(group3)){
+					counter++;
+				}
+			}
+			assertEquals("Not all opotions represented", 3, counter);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("FT2_5_2");
+	}
+	
+	@Test
+	public void FT2_5_3(){
+		String username = "MrMarsh";
+		String password = "easter";
+		
+		String group = "HairClubForMen";
+		
+		int groupId = -1;
+		int userId = -1;
+		
+		HtmlPage page = null;
+		
+		try {
+			userId = addUser(username, password, 0);
+			groupId = addGroup(group);
+			assignGroup(userId, groupId, "t1");
+			
+			page = login(username, password, null);
+			assertEquals("Managed to log in without selecting a group",  LOGIN_URL,page.getUrl().toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("FT2_5_3");
+		
 	}
 	
 	@Test
@@ -755,5 +825,66 @@ public class AutentiseringTest extends PussTest{
 		System.out.println("FT2_5_4");
 	}
 	
+	@Test
+	public void FT2_5_5(){
+		String username = "MrMarsh";
+		String password = "easter";
+		
+		String group1 = "HairClubForMen";
+		String group2 = "HairClubForWomen";
+		
+		int groupId = -1;
+		int userId = -1;
+		
+		HtmlPage page = null;
+		
+		try {
+			userId = addUser(username, password, 0);
+			groupId = addGroup(group1);
+			addGroup(group2);
+			assignGroup(userId, groupId, "t1");
+			page = login(username, password, group2);
+			assertEquals("Managed to log in without selecting a group",  LOGIN_URL, page.getUrl().toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("FT2_5_5");
+		
+	}
 
+	@Test
+	public void FT2_5_6(){
+		String group1 = "HairClubForMen";
+		String group2 = "HairClubForWomen";
+		String group3 = "HairClubForGoats";
+		String group4 = "HairClubForCows";
+		
+		ArrayList<String> groups = new ArrayList<String>();
+		
+		groups.add(group1);
+		groups.add(group2);
+		groups.add(group3);
+		groups.add(group4);
+		
+		
+		HtmlPage page = null;
+		HtmlAnchor anchor = null;
+		
+		try {
+			for(String group: groups){
+				addGroup(group);
+			}
+			
+			for(String group: groups){
+				page = login(ADMIN_USERNAME, ADMIN_PASSWORD, group2);
+				assertEquals("Managed to log in without selecting a group",  START_URL, page.getUrl().toString());
+				anchor = page.getAnchorByHref("LogIn");
+				page = anchor.click();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("FT2_5_5");
+		
+	}	
 }
