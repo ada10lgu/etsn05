@@ -225,8 +225,9 @@ public class TidrapporteringTest extends PussTest{
 		
 		HtmlRadioButtonInput radio = null;
 		DomElement dom = radioList.get(0);
-		radio = (HtmlRadioButtonInput) dom;		
+		radio = (HtmlRadioButtonInput) dom;
 		radio.click();
+		System.out.println(updatePage.asXml());//TODO remove
 		HtmlSubmitInput deleteButton = updateForm.getInputByValue("Delete");
 		
 		ResultSet rs = sendSQLQuery("select count(*) from reports where user_group_id = " + userGroupId + ";");
@@ -234,6 +235,7 @@ public class TidrapporteringTest extends PussTest{
 		assertTrue("blabla", rs.getInt(1) != 0 );
 				
 		deleteButton.click();
+		System.out.println(updatePage.asXml()); //TODO remove
 		
 		ResultSet rs2 = sendSQLQuery("select count(*) from reports where user_group_id = " + userGroupId + ";");
 		rs2.next();

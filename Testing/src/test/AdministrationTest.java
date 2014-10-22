@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.commons.lang3.text.translate.NumericEntityEscaper;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -110,35 +111,67 @@ public class AdministrationTest extends PussTest {
 	}
 
 	private HtmlPage addUserToGroup(HtmlPage page, int userId) throws IOException {
+		return addUserToGroup(page, userId, "Project Leader");
+	}
 
-		List<DomElement> list1 =  page.getElementsByIdAndOrName("selectedradiouser");
+	private HtmlPage addUserToGroup(HtmlPage page, int userId, String role) throws IOException {
+
+		List<DomElement> list1 = page.getElementsByIdAndOrName("selectedradiouser");
 		System.out.println("number of DomElements: " + list1.size());
+
 		HtmlRadioButtonInput radioButton = null;
-		for(DomElement element : list1) {
+		// System.out.println("page innan klick: " + page.asXml());
+		for (DomElement element : list1) {
 			radioButton = (HtmlRadioButtonInput) element;
-			System.out.println("checked attribute: " + radioButton.getCheckedAttribute());
-//			System.out.println(radioButton.getValueAttribute());
-			if(String.valueOf(userId).equals(radioButton.getValueAttribute())) {
+			System.out.println("id: " + radioButton.getValueAttribute());
+			if (String.valueOf(userId).equals(radioButton.getValueAttribute())) {
 				System.out.println("match!");
+				// radioButton.setChecked(true);
+				radioButton.click();
+				// radioButton.setAttribute("selected", "selected");
+				if (radioButton.isChecked()) {
+					System.out.println("radiobutton är checked");
+				} else {
+					System.out.println("radiobutton är inte checked");
+				}
+				System.out.println("radioButton: " + radioButton.asXml());
+				break;
+			}
+		}
+
+		HtmlForm form = page.getFormByName("input");
+		System.out.println("form: " + form.asXml());
+		final HtmlSelect groupList = form.getSelectByName("role");
+		groupList.setSelectedAttribute(groupList.getOptionByText(role), true);
+
+		HtmlSubmitInput button = form.getInputByValue("Add user");
+		System.out.println("button: " + button.asXml());
+		System.out.println("page innan Add user: " + page.asXml());
+		page = button.click();		
+		System.out.println("page efter Add user: " + page.asXml());
+		assertNotEquals("admin står kvar på samma sida", GROUP_HANDLING_URL, page.getUrl().toString());
+		assertNotEquals("ett felmeddelande gavs när användaren skulle läggas till", GROUP_HANDLING_URL + "?operation=FailedAdd", page.getUrl().toString());
+		assertEquals("användaren lades inte till", GROUP_HANDLING_URL + "?operation=Added", page.getUrl().toString());
+		return page;
+		// return button.click();
+	}
+
+	private HtmlPage changeUserRole(HtmlPage page, String username, String role) throws IOException {
+		List<DomElement> elements = page.getElementsByIdAndOrName("changename");
+		for (DomElement element : elements) {
+			HtmlRadioButtonInput radioButton = (HtmlRadioButtonInput) element;
+			if (radioButton.getValueAttribute().equals(username)) {
 				radioButton.click();
 				break;
 			}
-			
 		}
+
 		HtmlForm form = page.getFormByName("input");
-//		List<HtmlRadioButtonInput> radioButtons = form.getRadioButtonsByName("selectedradiouser");
-//		System.out.println("radio button listas storlek: " + radioButtons.size());
-//		for (HtmlRadioButtonInput radioButton : radioButtons) {
-//			System.out.println("radio button räknad");
-//			if (String.valueOf(userId).equals(radioButton.getValueAttribute())) {
-//				radioButton.click();
-//				radioButton.setChecked(true); //??
-//				System.out.println("Radiobutton klickad");
-//				break;
-//			}
-//		}
-		HtmlSubmitInput button = form.getInputByValue("Add user");
-		radioButton.setChecked(true);
+
+		final HtmlSelect groupList = form.getSelectByName("role");
+		groupList.setSelectedAttribute(groupList.getOptionByText(role), true);
+
+		HtmlSubmitInput button = form.getInputByValue("Change role");
 		return button.click();
 	}
 
@@ -397,11 +430,13 @@ public class AdministrationTest extends PussTest {
 	@Test
 	public void FT4_4_6() throws Exception {
 		// TODO trasigt test?
+
 		// förberedelser
 		String username1 = "user1";
 		String password1 = "pass12";
 		String username2 = "user2";
 		String password2 = "pass12";
+		String role = "t1";
 		int userId2 = -1;
 
 		String[] groupNames = { "group1", "group2" };
@@ -414,18 +449,20 @@ public class AdministrationTest extends PussTest {
 		}
 		HtmlPage page = null;
 		page = login("admin", "adminpw", null);
-		
+
 		// lägg till användare två i grupperna
 		for (int i = 0; i < groupNames.length; i++) {
 			page = getPageByAnchor(page, "ProjectGroupAdmin");
 			page = getPageByAnchor(page, "ProjectGroupAdmin?editid=" + groupIds[i]);
-			page = addUserToGroup(page, userId2);
+			assertEquals("admin är inte på gruppediteringssidan", GROUP_HANDLING_URL, page.getUrl().toString());
+			// System.in.read();
+			page = addUserToGroup(page, userId2, role);
 
 			ResultSet rs = sendSQLQuery("select count(*) from user_group where user_id = " + userId2 + " and group_id = " + groupIds[i] + ";");
 			rs.next();
 			System.out.println("om noll så har ingen användare lagts till i gruppen: " + rs.getInt(1));
 		}
-		
+
 		// kontrollera att användare två är med i bägge grupperna
 		for (int i = 0; i < groupNames.length; i++) {
 			ResultSet rs = sendSQLQuery("select count(*) from user_group where user_id = " + userId2 + " and group_id = " + groupIds[i] + ";");
@@ -469,11 +506,11 @@ public class AdministrationTest extends PussTest {
 		addUserToGroup(username, groupName, role);
 
 		HtmlPage page = login("admin", "adminpw", null);
-		
+
 		ResultSet rs = sendSQLQuery("select count(*) from users where username = '" + username + "'");
 		rs.next();
 		assertEquals("användaren finns inte från början", 1, rs.getInt(1));
-		
+
 		// navigera till administration
 		page = getPageByAnchor(page, "Administration");
 		// delete user from project
@@ -524,4 +561,444 @@ public class AdministrationTest extends PussTest {
 
 	}
 
+	@Test
+	public void FT4_4_10() throws Exception {
+		// förberedelser
+		String usernameTemplate = "user";
+		String password = "pass12";
+		String groupName = "group1";
+		String role1 = "t1";
+		String role2 = "t2";
+		int totalNumberOfUsers = 20;
+		int groupId = addGroup(groupName);
+		String username = null;
+		int userId = -1;
+		for (int i = 0; i < totalNumberOfUsers; i++) {
+			username = usernameTemplate + i;
+			userId = addUser(username, password, 0);
+			addUserToGroup(username, groupName, role1);
+		}
+//		userId = addUser(usernameTemplate + totalNumberOfUsers, password, 0);
+		HtmlPage page = login("admin", "adminpw", null);
+
+		// navigera till gruppadministration
+		page = getPageByAnchor(page, "ProjectGroupAdmin");
+		page = getPageByAnchor(page, "ProjectGroupAdmin?editid=" + groupId);
+		assertEquals("admin är inte på group handling sidan", GROUP_HANDLING_URL, page.getUrl().toString());
+
+		// lägg till en till användare
+		addUserToGroup(page, userId, role2);
+
+		// kontrollera att det finns 20 användare i gruppen
+		ResultSet rs = sendSQLQuery("select count(*) from user_group where group_id = " + groupId + ";");
+		rs.next();
+		assertEquals("fel antal användare i gruppen", totalNumberOfUsers, rs.getInt(1));
+	}
+
+	@Test
+	public void FT4_4_11() throws Exception {
+		// förberedelser
+		String usernameTemplate = "user";
+		String password = "pass12";
+		String groupName = "group1";
+		String role1 = "t1";
+		String role2 = "t2";
+		int totalNumberOfUsers = 21;
+		int groupId = addGroup(groupName);
+		String username = null;
+		int userId = -1;
+		for (int i = 0; i < totalNumberOfUsers; i++) {
+			username = usernameTemplate + i;
+			userId = addUser(username, password, 0);
+			addUserToGroup(username, groupName, role1);
+		}
+		HtmlPage page = login("admin", "adminpw", null);
+
+		// navigera till gruppadministration
+		page = getPageByAnchor(page, "ProjectGroupAdmin");
+		page = getPageByAnchor(page, "ProjectGroupAdmin?editid=" + groupId);
+		assertEquals("admin är inte på group handling sidan", GROUP_HANDLING_URL, page.getUrl().toString());
+
+		// lägg till en till användare
+		addUserToGroup(page, userId, role2);
+
+		// kontrollera att det finns 20 användare i gruppen och att den 21:a
+		// användaren inte är tillagd i gruppen
+		ResultSet rs = sendSQLQuery("select count(*) from user_group where group_id = " + groupId + ";");
+		rs.next();
+		assertEquals("fel antal användare i gruppen", totalNumberOfUsers - 1, rs.getInt(1));
+
+		rs = sendSQLQuery("select count(*) from user_group where group_id = " + groupId + "and user_id = " + userId + ";");
+		rs.next();
+		assertEquals("för många användare tillagda i gruppen", 0, rs.getInt(1));
+	}
+
+	@Test
+	public void FT4_4_12() throws Exception {
+		// förberedelser
+		String leaderName = "leader";
+		String usernameTemplate = "user";
+		String password = "pass12";
+		String groupName = "group1";
+		String role1 = "t1";
+		String[] roles = { "t1", "t2", "t3" };
+		int numberOfUsers = roles.length;
+		int[] userIds = new int[numberOfUsers];
+
+		addGroup(groupName);
+		addUser(leaderName, password, 0);
+		addUserToGroup(leaderName, groupName, "Project Leader");
+		for (int i = 0; i < numberOfUsers; i++) {
+			String username = usernameTemplate + i;
+			userIds[i] = addUser(username, password, 0);
+			addUserToGroup(username, groupName, role1);
+		}
+
+		HtmlPage page = login(leaderName, password, groupName);
+
+		// navigera till gruppediteringssidan
+		assertTrue("Den inloggade användaren är inte project leader", page.asText().contains("Project Management"));
+		page = getPageByAnchor(page, "ProjectLeader");
+
+		// byt roll på användarna
+		for (int i = 0; i < numberOfUsers; i++) {
+			page = changeUserRole(page, usernameTemplate + i, roles[i]);
+		}
+
+		// kontrollera att alla har rätt roll
+		ResultSet rs = sendSQLQuery("select count(*) from user_group where role <> 'Project Leader';");
+		rs.next();
+		assertEquals("fel antal användare i gruppen", numberOfUsers, rs.getInt(1));
+
+		for (int i = 0; i < numberOfUsers; i++) {
+			rs = sendSQLQuery("select role from user_group where user_id = " + userIds[i] + ";");
+			rs.next();
+			assertEquals("en användare har fel roll", roles[i], rs.getString(1));
+		}
+	}
+
+	@Test
+	public void FT4_4_13() throws Exception {
+		// förberedelser
+		String leaderName = "leader";
+		String usernameTemplate = "user";
+		String password = "pass12";
+		String groupName = "group1";
+		String role1 = "t1";
+		String[] roles = { "t1", "t2", "t3", "t4" };
+		int numberOfUsers = roles.length;
+		int[] userIds = new int[numberOfUsers];
+
+		addGroup(groupName);
+		addUser(leaderName, password, 0);
+		addUserToGroup(leaderName, groupName, "Project Leader");
+		for (int i = 0; i < numberOfUsers; i++) {
+			String username = usernameTemplate + i;
+			userIds[i] = addUser(username, password, 0);
+			addUserToGroup(username, groupName, role1);
+		}
+
+		HtmlPage page = login(leaderName, password, groupName);
+
+		// navigera till gruppediteringssidan
+		assertTrue("Den inloggade användaren är inte project leader", page.asText().contains("Project Management"));
+		page = getPageByAnchor(page, "ProjectLeader");
+
+		// byt roll på användarna
+		for (int i = 0; i < numberOfUsers; i++) {
+			try {
+				page = changeUserRole(page, usernameTemplate + i, roles[i]);
+				assertNotEquals("en användare med rollen " + roles[numberOfUsers - 1] + " las till", roles[i], roles[numberOfUsers - 1]);
+			} catch (Exception e) {
+				assertEquals("en användare med rollen " + roles[i] + " kunde inte läggas till", roles[i], roles[numberOfUsers - 1]);
+			}
+		}
+
+		// kontrollera att alla har rätt roll
+		ResultSet rs = sendSQLQuery("select count(*) from user_group where role <> 'Project Leader';");
+		rs.next();
+		assertEquals("fel antal användare i gruppen", numberOfUsers, rs.getInt(1));
+
+		for (int i = 0; i < numberOfUsers - 1; i++) {
+			rs = sendSQLQuery("select role from user_group where user_id = " + userIds[i] + ";");
+			rs.next();
+			if (i < numberOfUsers - 1) {
+				assertEquals("en användare har inte tilldeltas sin roll", roles[i], rs.getString(1));
+			} else {
+				assertNotEquals("en användare har tilldelats rollen " + roles[numberOfUsers - 1], roles[i], rs.getString(1));
+			}
+		}
+	}
+
+	@Test
+	public void FT4_4_14() throws Exception {
+		// förberedelser
+		String leaderName = "leader";
+		String usernameTemplate = "user";
+		String password = "pass12";
+		String groupName = "group1";
+		String initialRole = "t2";
+		String newRole = "t1";
+		int numberOfUsers = 6;
+		int[] userIds = new int[numberOfUsers];
+
+		addGroup(groupName);
+		addUser(leaderName, password, 0);
+		addUserToGroup(leaderName, groupName, "Project Leader");
+		for (int i = 0; i < numberOfUsers; i++) {
+			String username = usernameTemplate + i;
+			userIds[i] = addUser(username, password, 0);
+			addUserToGroup(username, groupName, initialRole);
+		}
+
+		HtmlPage page = login(leaderName, password, groupName);
+
+		// navigera till gruppediteringssidan
+		assertTrue("Den inloggade användaren är inte project leader", page.asText().contains("Project Management"));
+		page = getPageByAnchor(page, "ProjectLeader");
+
+		// byt roll på användarna
+		for (int i = 0; i < numberOfUsers; i++) {
+			String username = usernameTemplate + i;
+			page = changeUserRole(page, username, newRole);
+		}
+
+		// kontrollera att alla har rätt roll
+		ResultSet rs = sendSQLQuery("select count(*) from groups");
+		rs.next();
+		assertEquals("incorrect number of groups", 1, rs.getInt(1));
+
+		rs = sendSQLQuery("select count(*) from user_group where role = '" + newRole + "';");
+		rs.next();
+		assertEquals("incorrect number of users with role " + newRole, numberOfUsers, rs.getInt(1));
+	}
+	
+	@Test
+	public void FT4_4_15() throws Exception {
+		// förberedelser
+		String leaderName = "leader";
+		String usernameTemplate = "user";
+		String password = "pass12";
+		String groupName = "group1";
+		String initialRole = "t3";
+		String newRole = "t2";
+		int numberOfUsers = 6;
+		int[] userIds = new int[numberOfUsers];
+
+		addGroup(groupName);
+		addUser(leaderName, password, 0);
+		addUserToGroup(leaderName, groupName, "Project Leader");
+		for (int i = 0; i < numberOfUsers; i++) {
+			String username = usernameTemplate + i;
+			userIds[i] = addUser(username, password, 0);
+			addUserToGroup(username, groupName, initialRole);
+		}
+
+		HtmlPage page = login(leaderName, password, groupName);
+
+		// navigera till gruppediteringssidan
+		assertTrue("Den inloggade användaren är inte project leader", page.asText().contains("Project Management"));
+		page = getPageByAnchor(page, "ProjectLeader");
+
+		// byt roll på användarna
+		for (int i = 0; i < numberOfUsers; i++) {
+			String username = usernameTemplate + i;
+			page = changeUserRole(page, username, newRole);
+		}
+
+		// kontrollera att alla har rätt roll
+		ResultSet rs = sendSQLQuery("select count(*) from groups");
+		rs.next();
+		assertEquals("incorrect number of groups", 1, rs.getInt(1));
+
+		rs = sendSQLQuery("select count(*) from user_group where role = '" + newRole + "';");
+		rs.next();
+		assertEquals("incorrect number of users with role " + newRole, numberOfUsers, rs.getInt(1));
+	}
+	
+	@Test
+	public void FT4_4_16() throws Exception {
+		// förberedelser
+		String leaderName = "leader";
+		String usernameTemplate = "user";
+		String password = "pass12";
+		String groupName = "group1";
+		String initialRole = "t1";
+		String newRole = "t3";
+		int numberOfUsers = 6;
+		int[] userIds = new int[numberOfUsers];
+
+		addGroup(groupName);
+		addUser(leaderName, password, 0);
+		addUserToGroup(leaderName, groupName, "Project Leader");
+		for (int i = 0; i < numberOfUsers; i++) {
+			String username = usernameTemplate + i;
+			userIds[i] = addUser(username, password, 0);
+			addUserToGroup(username, groupName, initialRole);
+		}
+
+		HtmlPage page = login(leaderName, password, groupName);
+
+		// navigera till gruppediteringssidan
+		assertTrue("Den inloggade användaren är inte project leader", page.asText().contains("Project Management"));
+		page = getPageByAnchor(page, "ProjectLeader");
+
+		// byt roll på användarna
+		for (int i = 0; i < numberOfUsers; i++) {
+			String username = usernameTemplate + i;
+			page = changeUserRole(page, username, newRole);
+		}
+
+		// kontrollera att alla har rätt roll
+		ResultSet rs = sendSQLQuery("select count(*) from groups");
+		rs.next();
+		assertEquals("incorrect number of groups", 1, rs.getInt(1));
+
+		rs = sendSQLQuery("select count(*) from user_group where role = '" + newRole + "';");
+		rs.next();
+		assertEquals("incorrect number of users with role " + newRole, numberOfUsers, rs.getInt(1));
+	}
+	
+	@Test
+	public void FT4_4_17() throws Exception {
+		// förberedelser
+		String leaderName = "leader";
+		String usernameTemplate = "user";
+		String password = "pass12";
+		String groupName = "group1";
+		String initialRole = "t2";
+		String newRole = "t1";
+		int numberOfUsers = 7;
+		int[] userIds = new int[numberOfUsers];
+
+		addGroup(groupName);
+		addUser(leaderName, password, 0);
+		addUserToGroup(leaderName, groupName, "Project Leader");
+		for (int i = 0; i < numberOfUsers; i++) {
+			String username = usernameTemplate + i;
+			userIds[i] = addUser(username, password, 0);
+			addUserToGroup(username, groupName, initialRole);
+		}
+
+		HtmlPage page = login(leaderName, password, groupName);
+
+		// navigera till gruppediteringssidan
+		assertTrue("Den inloggade användaren är inte project leader", page.asText().contains("Project Management"));
+		page = getPageByAnchor(page, "ProjectLeader");
+
+		// byt roll på användarna
+		for (int i = 0; i < numberOfUsers; i++) {
+			String username = usernameTemplate + i;
+			page = changeUserRole(page, username, newRole);
+		}
+
+		// kontrollera att alla har rätt roll
+		ResultSet rs = sendSQLQuery("select count(*) from groups");
+		rs.next();
+		assertEquals("incorrect number of groups", 1, rs.getInt(1));
+
+		rs = sendSQLQuery("select count(*) from user_group where role = '" + newRole + "';");
+		rs.next();
+		assertEquals("incorrect number of users with role " + newRole, numberOfUsers - 1, rs.getInt(1));
+		
+		rs = sendSQLQuery("select count(*) from user_group where role = '" + initialRole + "';");
+		rs.next();
+		assertEquals("incorrect number of users with role " + newRole, 1, rs.getInt(1));
+	}
+	
+	@Test
+	public void FT4_4_18() throws Exception {
+		// förberedelser
+		String leaderName = "leader";
+		String usernameTemplate = "user";
+		String password = "pass12";
+		String groupName = "group1";
+		String initialRole = "t3";
+		String newRole = "t2";
+		int numberOfUsers = 7;
+		int[] userIds = new int[numberOfUsers];
+
+		addGroup(groupName);
+		addUser(leaderName, password, 0);
+		addUserToGroup(leaderName, groupName, "Project Leader");
+		for (int i = 0; i < numberOfUsers; i++) {
+			String username = usernameTemplate + i;
+			userIds[i] = addUser(username, password, 0);
+			addUserToGroup(username, groupName, initialRole);
+		}
+
+		HtmlPage page = login(leaderName, password, groupName);
+
+		// navigera till gruppediteringssidan
+		assertTrue("Den inloggade användaren är inte project leader", page.asText().contains("Project Management"));
+		page = getPageByAnchor(page, "ProjectLeader");
+
+		// byt roll på användarna
+		for (int i = 0; i < numberOfUsers; i++) {
+			String username = usernameTemplate + i;
+			page = changeUserRole(page, username, newRole);
+		}
+
+		// kontrollera att alla har rätt roll
+		ResultSet rs = sendSQLQuery("select count(*) from groups");
+		rs.next();
+		assertEquals("incorrect number of groups", 1, rs.getInt(1));
+
+		rs = sendSQLQuery("select count(*) from user_group where role = '" + newRole + "';");
+		rs.next();
+		assertEquals("incorrect number of users with role " + newRole, numberOfUsers - 1, rs.getInt(1));
+		
+		rs = sendSQLQuery("select count(*) from user_group where role = '" + initialRole + "';");
+		rs.next();
+		assertEquals("incorrect number of users with role " + newRole, 1, rs.getInt(1));
+	}
+	
+	@Test
+	public void FT4_4_19() throws Exception {
+		// förberedelser
+		String leaderName = "leader";
+		String usernameTemplate = "user";
+		String password = "pass12";
+		String groupName = "group1";
+		String initialRole = "t1";
+		String newRole = "t3";
+		int numberOfUsers = 7;
+		int[] userIds = new int[numberOfUsers];
+
+		addGroup(groupName);
+		addUser(leaderName, password, 0);
+		addUserToGroup(leaderName, groupName, "Project Leader");
+		for (int i = 0; i < numberOfUsers; i++) {
+			String username = usernameTemplate + i;
+			userIds[i] = addUser(username, password, 0);
+			addUserToGroup(username, groupName, initialRole);
+		}
+
+		HtmlPage page = login(leaderName, password, groupName);
+
+		// navigera till gruppediteringssidan
+		assertTrue("Den inloggade användaren är inte project leader", page.asText().contains("Project Management"));
+		page = getPageByAnchor(page, "ProjectLeader");
+
+		// byt roll på användarna
+		for (int i = 0; i < numberOfUsers; i++) {
+			String username = usernameTemplate + i;
+			page = changeUserRole(page, username, newRole);
+		}
+
+		// kontrollera att alla har rätt roll
+		ResultSet rs = sendSQLQuery("select count(*) from groups");
+		rs.next();
+		assertEquals("incorrect number of groups", 1, rs.getInt(1));
+
+		rs = sendSQLQuery("select count(*) from user_group where role = '" + newRole + "';");
+		rs.next();
+		assertEquals("incorrect number of users with role " + newRole, numberOfUsers - 1, rs.getInt(1));
+		
+		rs = sendSQLQuery("select count(*) from user_group where role = '" + initialRole + "';");
+		rs.next();
+		assertEquals("incorrect number of users with role " + newRole, 1, rs.getInt(1));
+	}
+
+	//TODO resten av administration:data
 }
