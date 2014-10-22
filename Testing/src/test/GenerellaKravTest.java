@@ -1,7 +1,10 @@
 package test;
 
+import static org.junit.Assert.*;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,6 +21,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlRadioButtonInput;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
+import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 
 import org.junit.*;
 
@@ -37,10 +41,8 @@ public class GenerellaKravTest extends PussTest {
 			int menuStartIndex = content.indexOf("<div class='menu'>");
 			int menuEndIndex = content.indexOf("</div>") + "</div>".length();
 
-			if (menuStartIndex < 0 || menuEndIndex < "</div>".length()) {
-				Assert.fail("Menu not available on page: "
-						+ page.getUrl().toString());
-			}
+			Assert.assertFalse("Menu not available on page: "
+						+ page.getUrl().toString() + " for user: " + username, menuStartIndex < 0 || menuEndIndex < "</div>".length());
 
 			String menu = content.substring(menuStartIndex, menuEndIndex);
 
@@ -54,7 +56,7 @@ public class GenerellaKravTest extends PussTest {
 	 * Alla typer av inloggade användare har tillgång till menyn på samtliga
 	 * sidor som visas av systemet [SRS krav 6.1.1]
 	 */
-	@Ignore
+	@Test
 	public void FT1_1_1() throws SQLException, MalformedURLException,
 			IOException {
 		final String group = "menygrupp";
@@ -91,36 +93,38 @@ public class GenerellaKravTest extends PussTest {
 	 * Menyn ska ge tillgång till de funktionaliteter som en användare besitter
 	 * [SRS krav 6.1.2]
 	 */
-	@Ignore
+	@Test
 	public void FT1_1_2() {
 		// FT1_1_1 testar detta.
-		assert(true);
 	}
 
 	/**
 	 * Menyns innehåll ska vara samma på varje sida som visas av systemet [SRS
 	 * krav 6.1.3]
 	 */
-	@Ignore
+	@Test
 	public void FT1_1_3() {
 		// FT1_1_1 testar detta.
-		assert(true);
 	}
 
 	/**
 	 * Försök ge inkorrekt input till systemet (felaktiga tecken,
 	 * SQL-injections) [SRS krav 6.1.4]
 	 */
-	@Ignore
-	public void FT1_1_4() {
-
+	@Test
+	public void FT1_1_4() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException {
+		HtmlPage page = login(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP);
+		page = switchPage(page, ADMINISTRATION);
+		webClient.getPage(ADMINISTRATION_URL + "?deletename=" + ADMIN_USERNAME + "&deleteid=1");
+		ResultSet rs = getUserByName(ADMIN_USERNAME);
+		assertTrue("The admin was deleted.", rs.next());
 	}
 
 	/**
 	 * I en projektgupp får det finnas max två stycken projektledare och tre
 	 * typer av roller: t1, t2, och t3. [SRS krav 6.1.6]
 	 */
-	@Test
+	@Ignore
 	public void FT1_1_5() throws SQLException, MalformedURLException,
 			IOException {
 		final String group = "endast";
@@ -142,7 +146,6 @@ public class GenerellaKravTest extends PussTest {
 		
 		HtmlForm form = page.getFormByName("input");
 		
-		List<HtmlInput> test = form.getInputsByName("selectedradiouser");
 		HtmlInput radio = form.getInputByValue(memberNbr);
 		radio.setChecked(true);
 		
@@ -150,6 +153,8 @@ public class GenerellaKravTest extends PussTest {
 		roleList.setSelectedAttribute("Project Leader", true);
 		
 		HtmlSubmitInput button = form.getInputByValue("Add user");
+
+		System.in.read();
 		button.click();
 	}
 
@@ -167,14 +172,36 @@ public class GenerellaKravTest extends PussTest {
 		final String user2 = "greger";
 		final String user3 = "fusroad";
 
-		addGroup(group);
-		addUser(user1, user1, 0);
-		addUser(user2, user2, 0);
-		addUser(user3, user3, 0);
+		String groupNbr = Integer.toString(addGroup(group));
+		String memberNbr1 = Integer.toString(addUser(user1, user1, 0));
+		String memberNbr2 = Integer.toString(addUser(user2, user2, 0));
+		String memberNbr3 = Integer.toString(addUser(user3, user3, 0));
 
 		HtmlPage page = login(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP);
 		page = switchPage(page, GROUP_ADMIN);
-
+		
+		HtmlForm form = page.getFormByName("input");
+		HtmlTextInput projectName = form.getInputByName("projectname");
+		projectName.setValueAttribute("watyoudo");
+		
+		HtmlSubmitInput button = form.getInputByValue("Add project");
+		page = button.click();
+		
+		assertEquals("Could not start adding a new group.", GROUP_HANDLING_URL, page.getUrl().toString());
+	
+		form = page.getFormByName("input");
+		
+		HtmlInput radio = form.getInputByName("selectedradiouser");
+		radio = form.getInputByValue(memberNbr1);
+		radio.setChecked(true);
+		
+		HtmlSelect roleList = form.getSelectByName("role");
+		roleList.setSelectedAttribute("Project Leader", true);
+		
+		button = form.getInputByValue("Add user");
+		button.click();
+		
+		System.in.read();
 	}
 
 	/**
@@ -224,4 +251,11 @@ public class GenerellaKravTest extends PussTest {
 	public void FT1_4_4() {
 
 	}
+	
+	@Ignore
+	public void ST1_2_1() {
+		
+	}
+	
+	
 }
