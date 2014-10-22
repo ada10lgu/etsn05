@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Ignore;
@@ -14,18 +16,21 @@ import org.junit.Test;
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.WebClientOptions;
+import com.gargoylesoftware.htmlunit.html.DomElement;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
+import com.gargoylesoftware.htmlunit.html.HtmlOption;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
+import com.gargoylesoftware.htmlunit.html.HtmlRadioButtonInput;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 
 public class AutentiseringTest extends PussTest{
 	
-	//not working do manuall
-	@Ignore
+	//not working do manually
+	@Test
 	public void FT2_1_1(){
 		
 		String groupname = "groupz";
@@ -44,13 +49,6 @@ public class AutentiseringTest extends PussTest{
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.exit(1);
-		}
-		
-		try {
-			System.in.read();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		HtmlPage page = null;
@@ -85,16 +83,11 @@ public class AutentiseringTest extends PussTest{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		try {
-			deleteGroup(groupname);
-			deleteUser(username);
-			System.out.println("FT2_1_1");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 
 		assertEquals(username + " could not log in", START_URL, page.getUrl().toString());
 	    assertEquals(username + " could log in a second time", LOGIN_URL, page2.getUrl().toString());
+	
+	    System.out.println("FT2_1_1");
 	}
 
 	@Test
@@ -705,6 +698,7 @@ public class AutentiseringTest extends PussTest{
 		System.out.println("FT2_4_1");
 	}
 	
+	//Check again
 	@Test
 	public void FT2_5_1(){
 		
@@ -720,6 +714,72 @@ public class AutentiseringTest extends PussTest{
 		}
 		webClient.getOptions().setThrowExceptionOnFailingStatusCode(true);
 		System.out.println("FT2_5_1");	
+	}
+	
+	@Test
+	public void FT2_5_2(){
+		String group1 = "HellOnearth";
+		String group2 = "LadderToHeaven";
+		String group3 = "FightersZaron";
+		
+		int groupId1 = -1;
+		int groupId2 = -1;
+		int groupId3 = -1;
+		
+		HtmlPage page = null;
+		HtmlForm form = null;
+		HtmlSelect select = null;
+		
+		try {
+			groupId1 = addGroup(group1);
+			groupId2 = addGroup(group2);
+			groupId3 = addGroup(group3);
+			webClient = new WebClient();
+			
+			page = webClient.getPage(LOGIN_URL);
+			form = page.getFormByName("input");
+			select = form.getSelectByName("groupID");
+			
+			List<HtmlOption> list = select.getOptions();
+			int counter = 0;
+			
+			for(HtmlOption option: list){
+				if(option.asText().equals(group1) || option.asText().equals(group2) || option.asText().equals(group3)){
+					counter++;
+				}
+			}
+			assertEquals("Not all opotions represented", 3, counter);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("FT2_5_2");
+	}
+	
+	@Test
+	public void FT2_5_3(){
+		String username = "MrMarsh";
+		String password = "easter";
+		
+		String group = "HairClubForMen";
+		
+		int groupId = -1;
+		int userId = -1;
+		
+		HtmlPage page = null;
+		
+		try {
+			userId = addUser(username, password, 0);
+			groupId = addGroup(group);
+			assignGroup(userId, groupId, "t1");
+			
+			page = login(username, password, null);
+			assertEquals("Managed to log in without selecting a group",  LOGIN_URL,page.getUrl().toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("FT2_5_3");
+		
 	}
 	
 	@Test
@@ -755,5 +815,366 @@ public class AutentiseringTest extends PussTest{
 		System.out.println("FT2_5_4");
 	}
 	
+	@Test
+	public void FT2_5_5(){
+		String username = "MrMarsh";
+		String password = "easter";
+		
+		String group1 = "HairClubForMen";
+		String group2 = "HairClubForWomen";
+		
+		int groupId = -1;
+		int userId = -1;
+		
+		HtmlPage page = null;
+		
+		try {
+			userId = addUser(username, password, 0);
+			groupId = addGroup(group1);
+			addGroup(group2);
+			assignGroup(userId, groupId, "t1");
+			page = login(username, password, group2);
+			assertEquals("Managed to log in without selecting a group",  LOGIN_URL, page.getUrl().toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("FT2_5_5");
+		
+	}
+
+	@Test
+	public void FT2_5_6(){
+		String group1 = "HairClubForMen";
+		String group2 = "HairClubForWomen";
+		String group3 = "HairClubForGoats";
+		String group4 = "HairClubForCows";
+		
+		ArrayList<String> groups = new ArrayList<String>();
+		
+		groups.add(group1);
+		groups.add(group2);
+		groups.add(group3);
+		groups.add(group4);
+		
+		
+		HtmlPage page = null;
+		HtmlAnchor anchor = null;
+		
+		try {
+			for(String group: groups){
+				addGroup(group);
+			}
+			
+			for(String group: groups){
+				page = login(ADMIN_USERNAME, ADMIN_PASSWORD, group2);
+				assertEquals("Admin could not log in on group " + group,  START_URL, page.getUrl().toString());
+				anchor = page.getAnchorByHref("LogIn");
+				page = anchor.click();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("FT2_5_5");
+		
+	}	
+
+	//Kontrollera vad som anges vid kravljustrering eftersom motstridiga krav
+	@Test
+	public void ST2_1_1(){
+		
+		System.out.println("ST2_1_1");
+	}
+	
+	@Test
+	public void ST2_1_2(){
+		
+		String username = "Randy";
+		String password = "awwwww";
+		String group = "HairClubForMen";
+		
+		int userId = -1;
+		int groupId = -1;
+		
+		HtmlPage page = null;
+		HtmlAnchor anchor = null;
+		try {
+			userId = addUser(username, password, 0);
+			groupId = addGroup(group);
+			assignGroup(userId, groupId, "t1");
+			
+			page = login(username, password, group);
+			anchor = page.getAnchorByText("Logout");
+			page = anchor.click();
+			
+			assertEquals("Could not logout" , LOGIN_URL, page.getUrl().toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		assertTrue(page.asText().contains("You are now logged out"));
+		
+		System.out.println("ST2_1_2");
+	}
+	
+	@Test
+	public void ST2_1_3(){
+		
+		String username = "Timmy";
+		String password = "ttimmy";
+		String group = "Cripps";
+		
+		int userId = -1;
+		int groupId = -1;
+		
+		HtmlPage page = null;
+		
+		try {
+			userId = addUser(username, password, 0);
+			groupId = addGroup(group);
+			assignGroup(userId, groupId, "t1");
+			
+			page = login(username, "timmy", group);
+			assertEquals("Logged in with wrong password",  LOGIN_URL, page.getUrl().toString());
+			
+			assertTrue(page.asText().contains("That was not a valid user name / password."));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("ST2_1_3");
+	}
+
+	//Do parts manually
+	@Test
+	public void ST2_2_1(){
+		String username1 = "Randy";
+		String password1 = "wedidn";
+		String username2 = "Granpa";
+		String password2 = "billyy";
+		
+		
+		String group1 = "HairClua";
+		String group2 = "HairClub";
+		String group3 = "HairCluc";
+		String group4 = "HairClud";
+		String group5 = "HairClue";
+		String group6 = "HairCluf";
+		List<String> groups = new ArrayList<String>();
+		
+		groups.add(group1);
+		groups.add(group2);
+		groups.add(group3);
+		groups.add(group4);
+		groups.add(group5);
+		
+		
+		int userId1 = -1;
+		int userId2 = -1;
+		
+		HtmlPage page = null;
+		HtmlForm form = null;
+		HtmlTextInput addProject = null;
+		HtmlSubmitInput submit = null;
+
+		
+		
+		try {
+			userId1 = addUser(username1, password1, 0);
+			userId2 = addUser(username2, password2, 0);
+			
+			page = login(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP);
+			page = webClient.getPage(GROUP_ADMIN_URL);
+			
+			assertEquals("Not on GroupHandling page", GROUP_ADMIN_URL, page.getUrl().toString());
+			
+			
+			form = page.getFormByName("input");
+			addProject = form.getInputByName("projectname");
+			submit = form.getInputByValue("Add project");
+			addProject.setValueAttribute(group6);
+			page = submit.click();
+			
+			assertEquals("Not on GroupHandling_URL", GROUP_HANDLING_URL, page.getUrl().toString());
+			
+			//From here do the rest manually, see step ST2_2_1 step 3a-6
+			System.out.println("Press enter to continue test ST2_2_1");
+			System.in.read();
+			
+			page = webClient.getPage(GROUP_ADMIN_URL);
+			form = page.getFormByName("input");
+			addProject = form.getInputByName("projectname");
+			submit = form.getInputByValue("Add project");
+			addProject.setValueAttribute(group6);
+			page = submit.click();
+			
+			assertEquals(group6 + " could be created twice", GROUP_ADMIN_URL, page.getUrl().toString());
+			assertTrue(page.asText().contains("Error"));
+
+			clearDatabase();
+			
+			//Check manually if not passing since it didn't fulfill the criteria when written
+			page = login(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP);
+			page = webClient.getPage(GROUP_ADMIN_URL);
+
+			form = page.getFormByName("input");
+			addProject = form.getInputByName("projectname");
+			submit = form.getInputByValue("Add project");
+			addProject.setValueAttribute(group6);
+			page = submit.click();
+			
+			assertEquals(group6 + " could be created with no available users", START_URL, page.getUrl().toString());
+			assertTrue(page.asText().contains("Error"));
+			
+			clearDatabase();
+			
+			for(String g: groups){
+				addGroup(g);
+			}
+			
+			page = login(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP);
+			page = webClient.getPage(GROUP_ADMIN_URL);
+
+			form = page.getFormByName("input");
+			addProject = form.getInputByName("projectname");
+			submit = form.getInputByValue("Add project");
+			addProject.setValueAttribute(group6);
+			page = submit.click();
+			
+			assertTrue(page.asText().contains("Error"));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("ST2_2_1");
+	}
+
+	//Dosn't follow the scenario described in scenario 6.4.6 at all.
+	//all functionallity appears to exist though.
+	@Test
+	public void ST2_2_2(){
+		
+		String userTemplate = "Butters";
+		String password = "butter";
+		
+		String role = "Project Leader";
+		
+		String group1 = "Cows";
+		String group2 = "Sheep";
+		
+		int userId = -1;
+		int groupId = -1;
+		
+		try {
+			groupId = addGroup(group1);
+			for(int k = 0; k <= 20; k++){
+				String username = userTemplate + k;
+				userId = addUser(username, password, 0);
+				if(k == 1){
+					role = "t1";
+				}
+				if(k == 7){
+					role = "t2";
+				}
+				if(k == 11){
+					role = "Project Leader";
+					groupId = addGroup(group2);
+				}
+				if(k == 12){
+					role = "t1";
+				}
+				if(k == 18){
+					role = "t2";
+				}
+				assignGroup(userId, groupId, role);
+			}			
+			System.out.println("Press enter to continue with test ST2_2_2");
+			System.in.read();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		
+		//1b ????
+	}
+
+	//Doesn't follow the scenario described in scenario 6.4.7 at all.
+	//all functionallity except the remove solo project leader appears to
+	//exist though.
+	@Test
+	public void ST2_2_3(){
+		
+		String userTemplate = "Butters";
+		String password = "butter";
+		
+		String role = "Project Leader";
+		
+		String group1 = "Cows";
+		String group2 = "Sheep";
+		
+		List<Integer> userIds = new ArrayList<Integer>();
+		int groupId = -1;
+		int groupId1 = -1;
+		int groupId2 = -1;
+				
+		HtmlPage page = null;
+		HtmlAnchor anchor = null;
+		
+		try {
+			groupId = groupId1 = addGroup(group1);
+			for(int k = 0; k <= 20; k++){
+				String username = userTemplate + k;
+				userIds.add(addUser(username, password, 0));
+				if(k == 1){
+					role = "t1";
+				}
+				if(k == 7){
+					role = "t2";
+				}
+				if(k == 11){
+					role = "Project Leader";
+					groupId = groupId2 = addGroup(group2);
+				}
+				if(k == 12){
+					role = "t1";
+				}
+				if(k == 18){
+					role = "t2";
+				}
+				assignGroup(userIds.get(k), groupId, role);
+			}			
+			
+			page = login(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP);
+			page = webClient.getPage(GROUP_ADMIN_URL);
+			
+			assertEquals("Not on GroupHandling page", GROUP_ADMIN_URL, page.getUrl().toString());
+
+			anchor = page.getAnchorByHref("ProjectGroupAdmin?editid="+groupId1);
+			page = anchor.click();
+
+			for(int k = 0; k < 11; k++){
+				if(k == 0){
+					anchor = page.getAnchorByHref("GroupHandling?deletename="+userIds.get(k));
+					page = anchor.click();
+					assertTrue("The only Project Leader was deleted when there were others in the group", page.asText().contains("User was not removed because there\nis only one project leader left."));
+					assertEquals("Not on deleted user URL",  "http://localhost:8080/BaseBlockSystem/GroupHandling?operation=FailedRemoved", page.getUrl().toString());
+				}else{
+				anchor = page.getAnchorByHref("GroupHandling?deletename="+userIds.get(k));
+				page = anchor.click();
+				assertTrue("User " + k + " was not deleted", page.asText().contains("User was removed"));
+				assertEquals("Not on deleted user URL",  "http://localhost:8080/BaseBlockSystem/GroupHandling?operation=Removed", page.getUrl().toString());
+				}
+			}
+			
+			page = webClient.getPage(GROUP_ADMIN_URL);
+			anchor = page.getAnchorByHref("ProjectGroupAdmin?deletename="+group2);
+			page = anchor.click();
+			assertTrue("ProjectGroup" + group2 + " was not deleted", page.asText().contains("Project group was successfully removed"));
+			assertEquals("Not on deleted group URL","http://localhost:8080/BaseBlockSystem/ProjectGroupAdmin?deletename="+group2, page.getUrl().toString());
+			
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 
 }
