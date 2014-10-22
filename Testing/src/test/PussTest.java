@@ -175,7 +175,7 @@ public abstract class PussTest {
 	
 
 
-	private ResultSet getUserByName(String username) throws SQLException {
+	protected ResultSet getUserByName(String username) throws SQLException {
 		String query = "select id from users where username = '" + username + "';";
 		return sendSQLQuery(query);
 	}
