@@ -97,7 +97,9 @@ public abstract class PussTest {
 		sendSQLCommand(query);
 		query = "delete from log;";
 		sendSQLCommand(query);
-		query = "delete from users where username <> 'admin';";
+		query = "delete from users;";
+		sendSQLCommand(query);
+		query = "insert into users(id, username, password, is_admin) values (1, 'admin', 'adminpw', 1);";
 		sendSQLCommand(query);
 	}
 		

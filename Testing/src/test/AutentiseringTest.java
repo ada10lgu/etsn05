@@ -6,12 +6,14 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.WebClientOptions;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -134,14 +136,8 @@ public class AutentiseringTest extends PussTest{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
-		try {
-			deleteGroup(groupname);
-			deleteUser(username);
-			System.out.println("FT2_1_2");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		assertEquals(username + " could was still logged in despite restart", LOGIN_URL, page.getUrl().toString());
+		assertEquals(username + " was still logged in despite restart", LOGIN_URL, page.getUrl().toString());
+		System.out.println("FT2_1_2");
 	}
 
 	@Test
@@ -567,12 +563,166 @@ public class AutentiseringTest extends PussTest{
 		
 	}
 
+	//Ignored because it takes time to run
+	@Ignore
 	public void FT2_2_2(){
+		String username = "MrSlave";
+		String password = "slaves";
+		String group = "SPElementary";
+		
+		int userId = -1;
+		int groupId = -1;
+		
+		HtmlPage page = null;
+		
+		try {
+			userId = addUser(username, password, 0);
+			groupId = addGroup(group);
+			assignGroup(userId, groupId, "t1");
+			
+
+			page = login(username, password, group);
+			TimeUnit.MINUTES.sleep(20);
+			page = webClient.getPage(TIMEREPORTING_URL);
+			assertEquals("Still has access to TIMEREPORTING_URL even after 20 min of inactivity",LOGIN_URL, page.getUrl().toString());
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		assertTrue(page.asText().contains("Error"));
+		System.out.println("FT2_2_2");
+	}
+
+	@Test
+	public void FT2_3_1(){
+		String user1 = "Satan";
+		String pass1 = "myhell";
+		String role1 = "Project Leader";
+		
+		String user2 = "Johnsson";
+		String pass2 = "siiiir";
+		String role2 = "t1";
+		
+		String group = "LadderToHeaven";
+		
+		int userId1 = -1;
+		int userId2 = -1;
+		int groupId = -1;
+		
+		HtmlPage page = null;
+		HtmlAnchor anch = null;
+		
+		try {
+			userId1 = addUser(user1, pass1, 0);
+			userId2 = addUser(user2, pass2, 0);
+			groupId = addGroup(group);
+			assignGroup(userId1, groupId, role1);
+			assignGroup(userId2, groupId, role2);
+			
+			page = login(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP);
+			page = webClient.getPage(ADMINISTRATION_URL);
+
+			anch = page.getAnchorByHref("Administration?deletename="+user2+"&deleteid="+userId2);
+			page = anch.click();
+			
+			anch = page.getAnchorByHref("Administration?deletename="+user1+"&deleteid="+userId1);
+			page = anch.click();
+			
+			ResultSet rs = sendSQLQuery("select * from users;");
+			while (rs.next()){
+				if(rs.getString("username").equals(user1) || rs.getString("username").equals(user2)){
+					fail(user1 + " or " + user2 + " was not removed");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("FT2_3_1");
 		
 	}
 	
 	@Test
+	public void FT2_3_2(){
+		
+		int adminId = -1;
+		
+		HtmlPage page = null;
+		
+		try {
+			adminId = getUserId("admin");
+			page = login("admin", "adminpw", null);
+			
+			page = webClient.getPage(ADMINISTRATION_URL + "?deletename=admin&deleteid=" + adminId);
+			
+			ResultSet rs = sendSQLQuery("select * from users;");
+			Boolean deleted = true;
+			
+			while(rs.next()){
+				if(rs.getString("username").equals("admin")){
+					deleted = false;
+					break;
+				}
+			}
+			assertTrue("Admin has been deleted!",!deleted);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("FT2_3_2");
+		
+	}
+
+	@Test
+	public void FT2_4_1(){
+		String user1 = "Jesus";
+		String pass1 = "lookat";
+		String role = "t1";
+		
+		String group = "Redskins";
+		
+		int userId = -1;
+		int groupId = -1;
+		
+		HtmlPage page = null;
+		try {
+			login(user1, pass1, group);
+			fail("Non registered user could log in");
+		} catch (Exception e) {
+		}
+		try {
+			userId = addUser(user1, pass1, 0);
+			groupId = addGroup(group);
+			assignGroup(userId, groupId, role);
+			page = login(user1, pass1, group);
+			assertEquals("Not redirected to function page", START_URL, page.getUrl().toString());
+			page = webClient.getPage(TIMEREPORTING_URL);
+			assertEquals("No access to logged in functionallity", TIMEREPORTING_URL, page.getUrl().toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("FT2_4_1");
+	}
 	
+	@Test
+	public void FT2_5_1(){
+		
+		HtmlPage page = null;
+		try {
+			page = login("admin", "adminp", null);
+			webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
+			page = webClient.getPage(CHANGE_PASSWORD_URL);
+			assertEquals("Could reach logged in pages without logging in", LOGIN_URL, page.getUrl().toString());
+		} catch (Exception e) {
+			assertEquals("Could reach logged in pages without logging in", LOGIN_URL, page.getUrl().toString());
+			e.printStackTrace();
+		}
+		webClient.getOptions().setThrowExceptionOnFailingStatusCode(true);
+		System.out.println("FT2_5_1");	
+	}
+	
+	@Test
 	public void FT2_5_4(){
 		
 		String groupname = "groupz";
@@ -601,14 +751,8 @@ public class AutentiseringTest extends PussTest{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
-		try {
-			deleteGroup(groupname);
-			deleteUser(username);
-			System.out.println("FT2_5_4");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		assertEquals(username + " could not log in", START_URL, page.getUrl().toString());
+		System.out.println("FT2_5_4");
 	}
 	
 
