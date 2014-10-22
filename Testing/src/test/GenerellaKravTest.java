@@ -3,12 +3,21 @@ package test;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.junit.Test;
 
+import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.WebResponse;
+import com.gargoylesoftware.htmlunit.html.DomElement;
+import com.gargoylesoftware.htmlunit.html.HtmlForm;
+import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.HtmlRadioButtonInput;
+import com.gargoylesoftware.htmlunit.html.HtmlSelect;
+import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 
 import org.junit.*;
 
@@ -16,18 +25,21 @@ public class GenerellaKravTest extends PussTest {
 
 	private void checkMenuAs(String username, String password,
 			String groupName, String[] userPages, String expectedMenu)
-			throws MalformedURLException, IOException {
-		HtmlPage page = login(username, password, groupName);
+			throws FailingHttpStatusCodeException, IOException {
+		HtmlPage page = null;
+		page = login(username, password, groupName);
+
 		for (int i = 0; i < userPages.length; i++) {
 			page = switchPage(page, userPages[i]);
 			WebResponse response = page.getWebResponse();
 			String content = response.getContentAsString();
 
-			int menuStartIndex = content.indexOf("<div class = 'menu'>");
+			int menuStartIndex = content.indexOf("<div class='menu'>");
 			int menuEndIndex = content.indexOf("</div>") + "</div>".length();
 
-			if (menuStartIndex > -1 || menuEndIndex > -1 + "</div>".length()) {
-				Assert.fail("Menu not available on page: " + userPages[i]);
+			if (menuStartIndex < 0 || menuEndIndex < "</div>".length()) {
+				Assert.fail("Menu not available on page: "
+						+ page.getUrl().toString());
 			}
 
 			String menu = content.substring(menuStartIndex, menuEndIndex);
@@ -42,16 +54,16 @@ public class GenerellaKravTest extends PussTest {
 	 * Alla typer av inloggade användare har tillgång till menyn på samtliga
 	 * sidor som visas av systemet [SRS krav 6.1.1]
 	 */
-	@Test
+	@Ignore
 	public void FT1_1_1() throws SQLException, MalformedURLException,
 			IOException {
 		final String group = "menygrupp";
 		final String leader = "victor";
 		final String member = "mrsmith";
 
-		final String expectedAdminMenu = "<div class='menu'><ul><li><a href='Administration'>Administration</a><ul><li><a href='Administration'>Users</a></li><li><a href='ProjectGroupAdmin'>Group</a></li></ul></li><li><a href='LogIn'>Logout</a></li></ul></div>";
-		final String expectedLeaderMenu = "<div class='menu'><ul><li><a href='Administration'>Administration</a><ul><li><a href='Administration'>Users</a></li><li><a href='ProjectGroupAdmin'>Group</a></li></ul></li><li><a href='LogIn'>Logout</a></li></ul></div>";
-		final String expectedMemberMenu = "<div class='menu'><ul><li><a href='Administration'>Administration</a><ul><li><a href='Administration'>Users</a></li><li><a href='ProjectGroupAdmin'>Group</a></li></ul></li><li><a href='LogIn'>Logout</a></li></ul></div>";
+		final String expectedAdminMenu = "<div class='menu'><ul><li><a href='Administration'>Administration</a><ul><li><a href='Administration'>Users</a></li><li><a href='ProjectGroupAdmin'>Group</a></li></ul></li><li><a href='ProjectLeader'>Project Management</a><ul><li><a href='ProjectLeader'>Users</a></li><li><a href='ReportHandling'>Reports</a></li><li><a href='Statistics'>Statistics</a></li></ul></li><li><a href='LogIn'>Logout</a></li></ul></div>";
+		final String expectedLeaderMenu = "<div class='menu'><ul><li><a href='ProjectLeader'>Project Management</a><ul><li><a href='ProjectLeader'>Users</a></li><li><a href='ReportHandling'>Reports</a></li><li><a href='Statistics'>Statistics</a></li></ul></li><li><a href='TimeReporting?function=view'>Time Reports</a><ul><li><a href='TimeReporting?function=view'>View</a></li><li><a href='TimeReporting?function=update'>Update</a></li><li><a href='TimeReporting?function=new'>New</a></li><li><a href='TimeReporting?function=statistics'>Statistics</a></li></ul></li><li><a href='ChangePassword'>Change Password</a></li><li><a href='LogIn'>Logout</a></li></ul></div>";
+		final String expectedMemberMenu = "<div class='menu'><ul><li><a href='TimeReporting?function=view'>Time Reports</a><ul><li><a href='TimeReporting?function=view'>View</a></li><li><a href='TimeReporting?function=update'>Update</a></li><li><a href='TimeReporting?function=new'>New</a></li><li><a href='TimeReporting?function=statistics'>Statistics</a></li></ul></li><li><a href='ChangePassword'>Change Password</a></li><li><a href='LogIn'>Logout</a></li></ul></div>";
 
 		addGroup(group);
 		addUser(leader, leader, 0);
@@ -59,14 +71,15 @@ public class GenerellaKravTest extends PussTest {
 		addUserToGroup(leader, group, "Project Leader");
 		addUserToGroup(member, group, "t1");
 
-		String[] adminPages = { GROUP_ADMIN, START, ADMINISTRATION };
+		String[] adminPages = { GROUP_ADMIN, ADMINISTRATION, PROJECT_LEADER,
+				REPORT_HANDLING, STATISTICS };
 
 		String[] leaderPages = { PROJECT_LEADER, TIMEREPORTING,
-				TIMEREPORTING_UPDATE, TIMEREPORTING_NEW,
-				TIMEREPORTING_STATISTICS, REPORT_HANDLING,
-				CHANGE_PASSWORD, START };
+				TIMEREPORTING_UPDATE, TIMEREPORTING_NEW, REPORT_HANDLING,
+				CHANGE_PASSWORD };
 
-		String[] memberPages = { START, ADMINISTRATION };
+		String[] memberPages = { TIMEREPORTING, TIMEREPORTING_UPDATE,
+				TIMEREPORTING_NEW, TIMEREPORTING_STATISTICS, CHANGE_PASSWORD };
 
 		checkMenuAs(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP, adminPages,
 				expectedAdminMenu);
@@ -81,6 +94,7 @@ public class GenerellaKravTest extends PussTest {
 	@Ignore
 	public void FT1_1_2() {
 		// FT1_1_1 testar detta.
+		assert(true);
 	}
 
 	/**
@@ -90,6 +104,7 @@ public class GenerellaKravTest extends PussTest {
 	@Ignore
 	public void FT1_1_3() {
 		// FT1_1_1 testar detta.
+		assert(true);
 	}
 
 	/**
@@ -105,7 +120,7 @@ public class GenerellaKravTest extends PussTest {
 	 * I en projektgupp får det finnas max två stycken projektledare och tre
 	 * typer av roller: t1, t2, och t3. [SRS krav 6.1.6]
 	 */
-	@Ignore
+	@Test
 	public void FT1_1_5() throws SQLException, MalformedURLException,
 			IOException {
 		final String group = "endast";
@@ -113,24 +128,52 @@ public class GenerellaKravTest extends PussTest {
 		final String leader2 = "maxen";
 		final String member = "member";
 
-		addGroup(group);
+		String groupNbr = Integer.toString(addGroup(group));
 		addUser(leader1, leader1, 0);
 		addUser(leader2, leader2, 0);
-		addUser(member, member, 0);
+		String memberNbr = Integer.toString(addUser(member, member, 0));
 
 		addUserToGroup(leader1, group, "Project Leader");
 		addUserToGroup(leader2, group, "Project Leader");
 
 		HtmlPage page = login(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP);
 		page = switchPage(page, GROUP_ADMIN);
+		page = switchPage(page, GROUP_ADMIN + "?editid=" + groupNbr);
+		
+		HtmlForm form = page.getFormByName("input");
+		
+		List<HtmlInput> test = form.getInputsByName("selectedradiouser");
+		HtmlInput radio = form.getInputByValue(memberNbr);
+		radio.setChecked(true);
+		
+		HtmlSelect roleList = form.getSelectByName("role");
+		roleList.setSelectedAttribute("Project Leader", true);
+		
+		HtmlSubmitInput button = form.getInputByValue("Add user");
+		button.click();
 	}
 
 	/**
 	 * Varje projekt har minst en och max två användare som besitter rollen som
 	 * projektledare [SRS krav 6.1.8]
+	 * 
+	 * @throws SQLException
 	 */
 	@Ignore
-	public void FT1_2_1() {
+	public void FT1_2_1() throws SQLException, FailingHttpStatusCodeException,
+			MalformedURLException, IOException {
+		final String group = "thegroup";
+		final String user1 = "andreas";
+		final String user2 = "greger";
+		final String user3 = "fusroad";
+
+		addGroup(group);
+		addUser(user1, user1, 0);
+		addUser(user2, user2, 0);
+		addUser(user3, user3, 0);
+
+		HtmlPage page = login(ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_GROUP);
+		page = switchPage(page, GROUP_ADMIN);
 
 	}
 
