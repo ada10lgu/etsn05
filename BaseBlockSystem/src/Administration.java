@@ -103,6 +103,16 @@ public class Administration extends servletBase {
 	 */
 	private boolean deleteUser(int userID) {
 		try{
+			ResultSet r = conn.createStatement().executeQuery("select * from users where ID=" + userID);
+			if(r.first()){//check if the user to be deleted exist
+				String username = r.getString("userName"); // and then check if the user is not admin. 
+				if(username.equals("admin")){
+					return false; //don't allow removal of admin
+				}
+			}else{
+				return false; //user doesn't exist so don't try to remove
+			}
+			
 			Statement stmt = conn.createStatement();
 			Statement stmt2 = conn.createStatement();
 			boolean removeGroup = false;
@@ -208,7 +218,7 @@ public class Administration extends servletBase {
 					if (checkNewName(deleteName)) {						
 						String deleteidString = request.getParameter("deleteid");
 						int deleteid=Integer.parseInt(deleteidString);
-						System.out.println("id: "+deleteid);
+						//System.out.println("id: "+deleteid);
 						if(!deleteUser(deleteid)){
 							out.println("<p>Error: Failed to remove user</p>");
 						}
