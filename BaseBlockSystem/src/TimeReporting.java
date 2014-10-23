@@ -23,17 +23,17 @@ public class TimeReporting extends servletBase{
 	private PrintWriter out;
 	private HttpSession session;
 	private String function = null;
-	protected static final String VIEW = "view";
-	protected static final String VIEW_REPORT = "viewReport";
-	protected static final String UPDATE = "update";
-	protected static final String UPDATE_REPORT = "updateReport";
-	protected static final String ADD_UPDATE_REPORT = "addUpdateReport";
+	private static final String VIEW = "view";
+	private static final String VIEW_REPORT = "viewReport";
+	private static final String UPDATE = "update";
+	private static final String UPDATE_REPORT = "updateReport";
+	private static final String ADD_UPDATE_REPORT = "addUpdateReport";
 	
-	protected static final String NEW = "new";
-	protected static final String PRINT_NEW = "printNew";
-	protected static final String ADD_NEW = "addNew";
-	protected static final String STATISTICS = "statistics";
-	protected static final String PRINT_STATISTICS = "printStatistics";
+	private static final String NEW = "new";
+	private static final String PRINT_NEW = "printNew";
+	private static final String ADD_NEW = "addNew";
+	private static final String STATISTICS = "statistics";
+	private static final String PRINT_STATISTICS = "printStatistics";
 	
 	
 	public TimeReporting(){
