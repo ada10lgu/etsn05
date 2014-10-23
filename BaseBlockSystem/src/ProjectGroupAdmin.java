@@ -30,11 +30,56 @@ public class ProjectGroupAdmin extends servletBase {
 		String html;
     	html = "<p> <form name=" + formElement("input");
     	html += " method=" + formElement("post");
-    	html += "<p> Project name: <input type=" + formElement("text") + " name=" + formElement("projectname") + '>';    	
+    	html += "<p> Project name: <input type=" + formElement("text") + " name=" + formElement("projectname") + '>';
+    	html += "<input type='hidden' value='checkGroup' name='function'>";
     	html += "<input type=" + formElement("submit") + "value=" + formElement("Add project") + '>';
     	html += "</form>";
     	return html;
 	}
+	
+	/**
+	 * Lists all users
+	 * @param out: needed for printing
+	 * @param groupID: don't print already added users
+	 * @param inGroup: check if you want to list users inside of group
+	 */
+	private void listUsers(PrintWriter out, String newGroupName){
+		try {
+			out.println("<div>");
+			Statement stmt = conn.createStatement();
+			stmt = conn.createStatement();			
+			ResultSet rs = stmt.executeQuery("select * from users order by username asc");
+			out.println("<p>Add projectleader to: " + newGroupName + "</p>");
+			out.println("<form name=" + formElement("input") + " method=" + formElement("post") + ">");
+			out.println("<table border=" + formElement("1") + ">");
+			out.println("<tr><td>Username</td><td>Select user</td></tr>");		
+			while (rs.next( )) {				
+				String name = rs.getString("username");						
+				if(!rs.getString("username").equals(ADMIN)){
+					out.println("<tr>");
+					out.println("<td>" + name + "</td>");
+					String userID = "" + rs.getInt("id");
+					
+					out.println("<td>" + "<input type=" + formElement("radio") + " name=" + formElement("selectedradiouser") +
+								" value=" + formElement(userID) +"></td>");		//radiobutton
+					
+					out.println("</tr>");
+				}
+			}
+			out.println("</table>");			
+			out.println("<input type='hidden' value='"+ newGroupName +"' name='groupName'>");
+			out.println("<input type='hidden' value='addUserAndGroup' name='function'>");
+			out.println("<input type=" + formElement("submit") + "value=" + formElement("Add user") + '>');			
+			out.println("</form>");
+			out.println("</div>");
+			stmt.close();
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+		}
+	}
+	
 
 	/**
 	 * Adds a new project group. Has to be followed by a successful call of addUserToGroup(userID,groupID, 
@@ -44,7 +89,7 @@ public class ProjectGroupAdmin extends servletBase {
 	 */
 	private int addProject(String name) {
 		int resultOk = -1;
-		try{
+		try{			
 			Statement stmt = conn.createStatement();
 			String statement = "insert into groups (name) values('" + name + "')";
 			stmt.executeUpdate(statement);
@@ -64,6 +109,53 @@ public class ProjectGroupAdmin extends servletBase {
 	}
 	
 	/**
+	 * Checks and make sures there are more than admin in the system so that a group can be added
+	 * @return True if more than admin exist in system
+	 */
+	private boolean usersInSystem(){
+		try{
+			ResultSet rs = conn.createStatement().executeQuery("select COUNT(*) AS total from users");			
+			rs.first();
+			int nbrOfUsers = rs.getInt("total");
+			if(nbrOfUsers > 1){ //check if there are more users than just admin
+				return true;
+			}else{
+				return false;
+			}
+		}catch(Exception ex){
+			return false;
+		}				
+	}
+	
+	/**
+	 * Checks if it's ok to add a user to a group and if it's ok the user is added
+	 * @param userID: The id of the user who will be added to the group.
+	 * @param groupID: The id of the group to which the user will be added to.
+	 * @param role: The role the user will have in the group.
+	 * @return boolean: true if the user was successfully added
+	 * @throws SQLException
+	 */
+	private boolean addAsRoleOk(String userID, int groupID, String role) throws SQLException {
+		Statement stmt = conn.createStatement();		    
+		ResultSet rs = stmt.executeQuery("select * from user_group where group_id = '" + groupID + "'");
+		int total = 0, roleCounter = 0;
+		boolean roleAlreadyAssigned = false;
+		while (rs.next( )) {
+			total++;
+			if (rs.getString("role").equals(role)) {
+				roleCounter++;
+			}
+		}
+		if (((role.equals(PROJECT_LEADER) && roleCounter<2) || (!role.equals(PROJECT_LEADER) && roleCounter<6)) && total < 20 && !roleAlreadyAssigned) {
+			String statement = "insert into user_group (user_id, group_id, role) values('" + userID + "', '" + groupID + "', '" + role + "')";
+			stmt.executeUpdate(statement);
+			return true;
+		}
+		return false;
+	}
+
+	
+	/**
 	 * Deletes a project group
 	 * @param projectID: The id of the project group which will be deleted
 	 * @return boolean: True if the project is deleted successfully
@@ -80,8 +172,6 @@ public class ProjectGroupAdmin extends servletBase {
 				conn.createStatement().executeUpdate("Delete from report_times where report_id=" + rs.getInt("reports.id"));
 				conn.createStatement().executeUpdate("Delete from reports where id=" + rs.getInt("reports.id"));
 			}
-			
-			
 			String statement = "delete from user_group where group_id=" + projectID;
 			conn.createStatement().executeUpdate(statement); 
 			statement = "delete from groups where id=" + projectID;
@@ -147,8 +237,6 @@ public class ProjectGroupAdmin extends servletBase {
 		    	ResultSet rsUsersInGroup = stmt2.executeQuery("select * from user_group where group_id = '" + groupID + "'");
 		    	while(rsUsersInGroup.next()){
 		    		String role = rsUsersInGroup.getString("role");
-		    		
-		    		
 		    	}		    	
 		    	String deleteURL = "ProjectGroupAdmin?deletename="+name;
 		    	String deleteCode = "<a href=" + formElement(deleteURL) +
@@ -200,6 +288,7 @@ public class ProjectGroupAdmin extends servletBase {
 		PrintWriter out = response.getWriter();
 		out.println(getPageIntro());
 		out.println(printMainMenu(request));
+		out.println("<div class='floati'>");
 		String myName = "";
     	HttpSession session = request.getSession(true);
     	Object nameObj = session.getAttribute("name");
@@ -214,34 +303,63 @@ public class ProjectGroupAdmin extends servletBase {
 				out.println("<h1>Project group administration page " + "</h1>");
 				
 				// check if the administrator wants to add a new project group in the form
-				String newName = request.getParameter("projectname");
-				
-				if (newName != null) {
-					int nbrOfGroups = 0;
-					try {
-						Statement stmt = conn.createStatement();
-						ResultSet rs = stmt.executeQuery("select count(*) AS total from groups");
-						rs.first();
-						nbrOfGroups = rs.getInt("total");
-					} catch (SQLException e) {
-					}
-					if (nbrOfGroups <5){
-						if (checkNewName(newName)) {
-							int addPossible = addProject(newName);
-							if (addPossible == -1) {
-								out.println("<p>Error: Suggested project group name not possible to add</p>");
-							} else {
-								session.setAttribute("groupHandlingID", addPossible);
-								response.sendRedirect("GroupHandling");
-							}
-
-						} else {
-							out.println("<p>Error: Suggested name not allowed</p>");
-						}
-					} else
-						out.println("<p>Error: The system does not allow more groups than 5.</p>");
-				}
 					
+				String function = request.getParameter("function");
+				if(function != null){
+					System.out.println("YAY FUNCTION");
+					System.out.println(function);
+					if(function.equals("checkGroup")){
+						String newName = request.getParameter("projectname");	
+						if (newName != null) {
+							int nbrOfGroups = 0;
+							try {
+								Statement stmt = conn.createStatement();
+								ResultSet rs = stmt.executeQuery("select count(*) AS total from groups");
+								rs.first();
+								nbrOfGroups = rs.getInt("total");
+							} catch (SQLException e) {
+							}
+							if (nbrOfGroups < 5 && usersInSystem()){
+								if (checkNewName(newName)) {	
+									listUsers(out, newName); //print the user add form
+									//response.sendRedirect("ProjectGroupAdmin?function=selectUsers&groupName=" + newName);
+								} else {
+									out.println("<p>Error: Suggested name not allowed</p>");
+								}
+							} else{
+								out.println("<p>Error: The system does not allow more groups than 5.</p>");
+							}						
+						}
+					}else if(function.equals("addUserAndGroup")){						
+						String newGroupName = request.getParameter("groupName");
+						if(newGroupName != null){
+							//start by creating the group
+							//then add the user to the group
+							//if the user wasn't added remove the group and go to start
+							//if the user was added, redirect to groupHandling
+							String userIdString = request.getParameter("selectedradiouser");							
+							if (userIdString != null) {
+								int addPossible = addProject(newGroupName);
+								if (addPossible == -1) {
+									out.println("<p>Error: Suggested project group name not possible to add</p>");							
+								}else{									
+									try {
+										if(addAsRoleOk(userIdString, addPossible, PROJECT_LEADER)){
+											session.setAttribute("groupHandlingID", addPossible);
+											response.sendRedirect("GroupHandling");	
+										}else{
+											deleteProject(addPossible);
+											response.sendRedirect("projectGroupAdmin?ERROR=true");
+										}
+									} catch (SQLException e) {										
+									}									
+								}
+							}							
+						}
+					}
+				}else{
+					System.out.println("No function");
+				}
 				//check if the administrator wants to delete a project by clicking the URL in the list
 				String deleteName = request.getParameter("deletename");
 				if (deleteName != null) {
@@ -269,7 +387,7 @@ public class ProjectGroupAdmin extends servletBase {
 					response.sendRedirect("GroupHandling");		
 				}
 				listGroups(out);
-				
+				out.println("</div>");
 				out.println("</body></html>");
 			} else  // name not admin
 				response.sendRedirect("Start");
