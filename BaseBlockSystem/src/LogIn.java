@@ -81,7 +81,13 @@ public class LogIn extends servletBase {
 					if (checkGroup(groupID, userID, name, out)) { 
 						userOk = true;
 					}
-				}				
+				}
+				rs = conn.createStatement().executeQuery("select COUNT(*) as total from log"); //checks number of logged in users
+				rs.first();
+				int nbr = rs.getInt("total");
+				if(nbr > 50){
+					userOk = false;
+				}
 				stmt.close();
 				if (userOk) { // if the user is accepted, save the session variables
 					session.setAttribute("session", session.getId());
