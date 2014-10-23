@@ -40,7 +40,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 
-\fancyhead[R]{Datum: \today | Version: 1.1 | Dokumentnummer: PUSS144404}
+\fancyhead[R]{Datum: \today | Version: 1.2 | Dokumentnummer: PUSS144404}
 
 
 \title{STLDD - Software Top Level Design Document: NewPussSystem}                  	
@@ -68,7 +68,8 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.8 & 15 oktoboer 2014 & SG & Uppdaterat sessionsvariabler.\\
 0.9 & 16 oktober 2014 & SG & Lade till groupID som sessionsvariabel.\\
 1.0 & 17 oktober 2014 & SG & Ändringar i klasserna och metodbeskrivningarna samt klassdiagrammet. Färdig för baseline.\\
-1.1 & 22 oktober 2014 & SG & Tagit bort privata metoder, samt uppdaterat klassdiagrammet. Även lagt till en saknad metodbeskrivning i ReportGenerator. 
+1.1 & 22 oktober 2014 & SG & Tagit bort privata metoder, samt uppdaterat klassdiagrammet. Även lagt till en saknad metodbeskrivning i ReportGenerator.\\
+1.2 & 23 oktober 2014 & SG & Lag till klassen changePassword, uppdaterat klassdiagrammet och klassmetoder enligt problemrapporter. 
 
 \end{tabular}
 \newpage
@@ -143,7 +144,13 @@ Systemet är implementerat i en Tomcat server med följande klasser och klassmet
 
 \vspace{5mm}
 \begin{hangparas}{1.5em}{1}
-\textbf{class Start} Den här servleten ärver från ServletBase och skapar den statiska menyn som finns tillgänglig för användaren på alla sidor i systemet.\\
+\textbf{class Start} Den här servleten ärver från ServletBase och skapar den statiska menyn som finns tillgänglig för användaren på alla sidor i systemet.
+\end{hangparas}
+
+
+\vspace{5mm}
+\begin{hangparas}{1.5em}{1}
+\textbf{class ChangePassword} Den här servleten ärver från ServletBase och innehåller en html form för att användare ska kunna byta sitt lösenord.\\
 \end{hangparas}
 
 \subsection{Klassmetoder}
@@ -212,31 +219,12 @@ Prints out a time report html-form prefilled with data.\\
 \end{hangparas}
  
 
-\subsubsection{class ProjectLeader}
-
-\begin{hangparas}{1.5em}{1}
-public void showAllUsers(int groupID, PrintWriter out)\\
-Shows a list of all the users in the system.\\
-@param groupID: The group which members should be listed.
-@param out: PrintWriter object needed for print outs.
-\end{hangparas}
-
-\vspace{5mm}
-\begin{hangparas}{1.5em}{1}
-public boolean changeRole(int userGroupID, String role)\\
-Assigns a role to a user in a project group.\\
-@param userGroupID: The user to be assigned a role, and in which group.\\
-@param role: Which role to assign.\\
-@return boolean: True if the user was successfully added.
-\end{hangparas}
-
-
 \section{Klassdiagram}
 Ett klassdiagram med alla klasser visas i Figur \ref{umldiagram}.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=160mm]{UML.jpg}
+\includegraphics[width=140mm]{UML.jpg}
 \caption{Klassdiagram över alla klasser i systemet. \label{umldiagram}}
 \end{figure}
 
