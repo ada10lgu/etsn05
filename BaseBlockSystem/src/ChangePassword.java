@@ -31,6 +31,11 @@ public class ChangePassword extends servletBase {
 		return html;
 	}
 	
+	/**
+	 * Check and makes sure the password is valid. 
+	 * @param newPass: String the password to check
+	 * @return True if the password is valid
+	 */
 	private boolean checkNewPass(String newPass){
 		if(newPass.length() != PASSWORD_LENGTH){ //password har wrong length
 			return false; //password has wrong length
