@@ -34,7 +34,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 
-\fancyhead[R]{Datum: \today | Version: 1.0 | Dokumentnummer: PUSS144401}
+\fancyhead[R]{Datum: \today | Version: 1.1 | Dokumentnummer: PUSS144401}
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
@@ -88,6 +88,7 @@ Lade till krav, kapitel 6.3\\
 \\
 1.0 & 13 oktober 2014 & SG & Baseline.
 \\
+1.1 & 23 oktober 2014 & SG & Krav 6.3.15,17,19,21 har utgått. Krav 6.3.13,14,16,18,20 ändrats för att specificiera signerade tidrapporter. Krav 6.3.31 ändrats (format på datum i tidrapporter).
 \end{tabular}
 \newpage
 \section{Inledning}       
@@ -330,15 +331,15 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{10}{Projektledaren skall ha tillgång till samtliga projektmedlemmars tidrapporter i den projektgrupp den är projektledare för.}
 			\requirement{11}{Projektledaren skall kunna godkänna ej tidigare godkända tidrapporter från projektmedlemmar i sin projektgrupp.}
 			\requirement{12}{Projektledaren skall kunna ta tillbaka sitt godkännande från en tidigare godkänd gruppmedlems tidrapport, i sin projektgrupp.}
-			\requirement{13}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare för samtliga veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{14}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll för samtliga veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{15}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet. Med summering menas att samma aktivitet i alla tidrapporter läggs ihop i en ny tidrapport.}
-			\requirement{16}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per vecka. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{17}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare och aktivitet. Med summering menas att samma aktivitet i alla tidrapporter från samma användare läggs ihop i en ny tidrapport.}
-			\requirement{18}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per användare för utvalda veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{19}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll och aktivitet. Med summering menas att samma aktivitet i alla tidrapporter från samma roll läggs ihop i en ny tidrapport.}
-			\requirement{20}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per roll för utvalda veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
-			\requirement{21}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera tidrapporter per aktivitet och vecka. Med summering menas att samma aktivitet i alla tidrapporter från samma vecka läggs ihop i en ny tidrapport.}
+			\requirement{13}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera signerade tidrapporter per användare för samtliga veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{14}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera signerade tidrapporter per roll för samtliga veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{15}{Utgått.}
+			\requirement{16}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera signerade tidrapporter per vecka. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{17}{Utgått.}
+			\requirement{18}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera signerade tidrapporter per användare för utvalda veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{19}{Utgått.}
+			\requirement{20}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera signerade tidrapporter per roll för utvalda veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{21}{Utgått.}
 
 			\begin{figure}[H]
 				\centering
@@ -357,7 +358,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{28}{Utgått.}
 			\requirement{29}{En tidrapport skall innehålla information om användarnamn.}
 			\requirement{30}{En tidrapport skall innehålla information om projektgruppsnamn.}
-			\requirement{31}{En tidrapport skall innehålla information om datum. Datum skrivs på formatet ``dag månad år'', där dag representeras av två siffror (ascii (decimal) värden 48-57), månaden som namnet på månaden (ascii (decimal) värden 97-122) , och år med fyra siffor (ascii (decimal) värden 48-57).}
+			\requirement{31}{En tidrapport skall innehålla information om datum. Datum skrivs på formatet ``åååå-mm-dd'', där år representeras med fyra siffor (ascii (decimal) värden 48-57), månaden av två siffror (ascii (decimal) värden 48-57) och dag av två siffror (ascii (decimal) värden 48-57).}
 			\requirement{32}{En tidrapport skall innehålla information om veckonummer.}
 			\requirement{33}{Det skall tydligt framgå om en tidrapport är signerad eller inte.}
 			\requirement{34}{Nygenererade tidrapporter är alltid osignerade.}

@@ -10,10 +10,10 @@
 \contentsline {subsection}{\numberline {6.1}Generella krav}{6}
 \contentsline {subsection}{\numberline {6.2}Autentisering}{9}
 \contentsline {subsection}{\numberline {6.3}Tidrapportering}{10}
-\contentsline {subsection}{\numberline {6.4}Administration}{18}
-\contentsline {section}{\numberline {7}Kvalitetskrav}{24}
-\contentsline {subsection}{\numberline {7.1}Underh\IeC {\r a}ll}{24}
-\contentsline {subsection}{\numberline {7.2}Prestanda}{24}
-\contentsline {subsection}{\numberline {7.3}Anv\IeC {\"a}ndarv\IeC {\"a}nlighet}{24}
-\contentsline {section}{\numberline {8}Projektkrav}{24}
-\contentsline {subsection}{\numberline {8.1}Utvecklingsmilj\IeC {\"o}}{24}
+\contentsline {subsection}{\numberline {6.4}Administration}{17}
+\contentsline {section}{\numberline {7}Kvalitetskrav}{23}
+\contentsline {subsection}{\numberline {7.1}Underh\IeC {\r a}ll}{23}
+\contentsline {subsection}{\numberline {7.2}Prestanda}{23}
+\contentsline {subsection}{\numberline {7.3}Anv\IeC {\"a}ndarv\IeC {\"a}nlighet}{23}
+\contentsline {section}{\numberline {8}Projektkrav}{23}
+\contentsline {subsection}{\numberline {8.1}Utvecklingsmilj\IeC {\"o}}{23}
