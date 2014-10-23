@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 public class ChangePassword extends servletBase {
 
 	private static final long serialVersionUID = 1L;
-
+	private static final int PASSWORD_LENGTH = 6;
 	/**
 	 * generates a form for changing password
 	 * @return HTML code for the form
@@ -29,6 +29,21 @@ public class ChangePassword extends servletBase {
 		html += "<input type=" + formElement("submit") + "value=" + formElement("Change") + '>';
 		html += "</form>";
 		return html;
+	}
+	
+	private boolean checkNewPass(String newPass){
+		if(newPass.length() != PASSWORD_LENGTH){ //password har wrong length
+			return false; //password has wrong length
+		}else{
+			for(int i =0; i < PASSWORD_LENGTH; i++){
+				int ci = (int)newPass.charAt(i);
+				boolean thisOk = (ci>=97 && ci<=122); 
+				if(!thisOk){
+					return false; //password has incorrect character
+				}
+			}
+		}		
+		return true; //password has right length and right chars.		
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -67,7 +82,9 @@ public class ChangePassword extends servletBase {
 						while (rs.next( )) {
 							pw = rs.getString("password");
 						}
-						if (pw.equals(oldPw)) {
+						if(!checkNewPass(newPw)){
+							out.println("<p>Error: New password has incorrect length or not allowed characters</p>");
+						}else if (pw.equals(oldPw)) {
 							stmt = conn.createStatement();
 							statement = "Update users SET password='"+newPw+"' where ID=" + id; 
 							stmt.executeUpdate(statement);
