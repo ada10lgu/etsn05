@@ -7,8 +7,8 @@
 \contentsline {subsection}{\numberline {3}Black-box test}{4}
 \contentsline {section}{\numberline {\hspace *{-1.0em}}\IeC {\"O}versikt}{4}
 \contentsline {section}{\numberline {\hspace *{-1.0em}}Testmilj\IeC {\"o}er}{4}
-\contentsline {section}{\numberline {\hspace *{-1.0em}}Testfall}{4}
-\contentsline {subsection}{\numberline {1}Enhetstest}{4}
+\contentsline {section}{\numberline {\hspace *{-1.0em}}Testfall}{5}
+\contentsline {subsection}{\numberline {1}Enhetstest}{5}
 \contentsline {subsection}{\numberline {2}Funktionstest}{5}
 \contentsline {subsection}{\numberline {3}Systemtest}{5}
 \contentsline {subsection}{\numberline {4}Regressionstest}{5}
