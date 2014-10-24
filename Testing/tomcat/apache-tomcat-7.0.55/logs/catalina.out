@@ -35234,3 +35234,2169 @@ okt 24, 2014 2:38:46 EM org.apache.coyote.AbstractProtocol start
 INFO: Starting ProtocolHandler ["ajp-bio-8009"]
 okt 24, 2014 2:38:46 EM org.apache.catalina.startup.Catalina start
 INFO: Server startup in 1633 ms
+okt 24, 2014 3:40:17 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:40:17 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:40:18 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:40:18 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:40:18 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:40:18 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:40:18 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:40:18 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:40:18 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:40:18 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:40:18 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:40:18 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:40:18 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 383 ms
+okt 24, 2014 3:40:18 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:40:18 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:40:18 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:40:18 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 449 ms
+okt 24, 2014 3:40:18 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:40:18 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 128 ms
+okt 24, 2014 3:40:18 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:40:19 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 135 ms
+okt 24, 2014 3:40:19 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:40:19 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 112 ms
+okt 24, 2014 3:40:19 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:40:19 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 116 ms
+okt 24, 2014 3:40:19 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:40:19 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 523 ms
+okt 24, 2014 3:40:19 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:40:19 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:40:19 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1516 ms
+okt 24, 2014 3:40:21 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:40:21 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:40:21 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:40:21 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:40:21 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:40:21 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:40:21 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:40:21 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:40:21 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:40:36 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:40:36 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:40:36 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:40:36 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 372 ms
+okt 24, 2014 3:40:36 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:40:36 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:40:36 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:40:37 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 452 ms
+okt 24, 2014 3:40:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:40:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 131 ms
+okt 24, 2014 3:40:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:40:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 143 ms
+okt 24, 2014 3:40:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:40:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 113 ms
+okt 24, 2014 3:40:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:40:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 113 ms
+okt 24, 2014 3:40:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:40:38 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 356 ms
+okt 24, 2014 3:40:38 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:40:38 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:40:38 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1354 ms
+okt 24, 2014 3:41:30 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:41:30 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:41:30 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:41:30 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:41:30 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:41:30 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:41:30 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:41:30 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:41:30 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:41:30 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:41:30 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:41:30 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:41:30 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 375 ms
+okt 24, 2014 3:41:30 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:41:30 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:41:30 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:41:31 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 447 ms
+okt 24, 2014 3:41:31 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:41:31 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 130 ms
+okt 24, 2014 3:41:31 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:41:31 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 140 ms
+okt 24, 2014 3:41:31 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:41:31 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 115 ms
+okt 24, 2014 3:41:31 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:41:31 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 115 ms
+okt 24, 2014 3:41:31 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:41:32 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 398 ms
+okt 24, 2014 3:41:32 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:41:32 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:41:32 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1392 ms
+okt 24, 2014 3:43:25 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:43:25 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:43:25 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:43:25 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:43:25 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:43:25 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:43:25 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:43:25 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:43:25 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:43:25 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:43:25 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:43:25 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:43:25 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 371 ms
+okt 24, 2014 3:43:25 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:43:25 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:43:25 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:43:26 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 457 ms
+okt 24, 2014 3:43:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:43:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 130 ms
+okt 24, 2014 3:43:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:43:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 145 ms
+okt 24, 2014 3:43:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:43:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 115 ms
+okt 24, 2014 3:43:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:43:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 115 ms
+okt 24, 2014 3:43:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:43:27 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 544 ms
+okt 24, 2014 3:43:27 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:43:27 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:43:27 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1555 ms
+okt 24, 2014 3:46:24 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:46:24 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:46:24 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:46:24 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:46:24 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:46:24 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:46:24 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:46:24 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:46:24 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:46:24 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:46:24 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:46:24 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:46:24 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 373 ms
+okt 24, 2014 3:46:24 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:46:24 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:46:24 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:46:25 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 463 ms
+okt 24, 2014 3:46:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:46:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 130 ms
+okt 24, 2014 3:46:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:46:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 136 ms
+okt 24, 2014 3:46:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:46:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 114 ms
+okt 24, 2014 3:46:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:46:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 119 ms
+okt 24, 2014 3:46:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:46:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 534 ms
+okt 24, 2014 3:46:26 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:46:26 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:46:26 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1549 ms
+okt 24, 2014 3:46:34 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:46:34 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:46:34 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:46:34 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:46:34 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:46:34 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:46:34 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:46:34 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:46:34 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:46:34 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:46:34 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:46:34 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:46:34 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 368 ms
+okt 24, 2014 3:46:34 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:46:34 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:46:34 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:46:34 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 460 ms
+okt 24, 2014 3:46:34 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:46:35 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 128 ms
+okt 24, 2014 3:46:35 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:46:35 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 145 ms
+okt 24, 2014 3:46:35 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:46:35 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 109 ms
+okt 24, 2014 3:46:35 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:46:35 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 112 ms
+okt 24, 2014 3:46:35 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:46:35 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 357 ms
+okt 24, 2014 3:46:35 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:46:35 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:46:35 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1357 ms
+okt 24, 2014 3:48:08 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:48:08 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:48:08 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:48:08 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:48:08 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:48:08 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:48:08 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:48:08 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:48:08 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:48:08 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:48:08 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:48:08 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:48:08 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 381 ms
+okt 24, 2014 3:48:08 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:48:08 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:48:08 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:48:09 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 464 ms
+okt 24, 2014 3:48:09 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:48:09 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 133 ms
+okt 24, 2014 3:48:09 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:48:09 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 147 ms
+okt 24, 2014 3:48:09 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:48:09 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 115 ms
+okt 24, 2014 3:48:09 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:48:09 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 114 ms
+okt 24, 2014 3:48:09 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:48:10 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 429 ms
+okt 24, 2014 3:48:10 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:48:10 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:48:10 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1446 ms
+okt 24, 2014 3:48:35 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:48:35 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:48:35 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:48:35 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:48:35 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:48:35 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:48:35 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:48:35 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:48:35 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:48:55 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:48:55 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:48:55 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:48:55 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 360 ms
+okt 24, 2014 3:48:55 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:48:55 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:48:55 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:48:55 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 452 ms
+okt 24, 2014 3:48:55 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:48:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 129 ms
+okt 24, 2014 3:48:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:48:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 137 ms
+okt 24, 2014 3:48:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:48:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 110 ms
+okt 24, 2014 3:48:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:48:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 111 ms
+okt 24, 2014 3:48:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:48:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 304 ms
+okt 24, 2014 3:48:56 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:48:56 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:48:56 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1289 ms
+okt 24, 2014 3:50:50 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:50:50 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:50:50 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:50:50 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:50:50 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:50:50 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:50:50 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:50:50 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:50:50 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:50:50 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:50:51 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:50:51 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:50:51 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 389 ms
+okt 24, 2014 3:50:51 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:50:51 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:50:51 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:50:51 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 459 ms
+okt 24, 2014 3:50:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:50:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 126 ms
+okt 24, 2014 3:50:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:50:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 142 ms
+okt 24, 2014 3:50:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:50:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 113 ms
+okt 24, 2014 3:50:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:50:52 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 115 ms
+okt 24, 2014 3:50:52 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:50:52 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 460 ms
+okt 24, 2014 3:50:52 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:50:52 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:50:52 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1464 ms
+SQLException: Illegal operation on empty result set.
+SQLState: S1000
+VendorError: 0
+SQLException: Illegal operation on empty result set.
+SQLState: S1000
+VendorError: 0
+okt 24, 2014 3:53:01 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:53:01 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:53:01 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:53:01 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:53:01 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:53:01 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:53:01 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:53:01 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:53:01 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:53:01 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:53:01 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:53:01 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:53:01 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 385 ms
+okt 24, 2014 3:53:01 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:53:01 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:53:01 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:53:02 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 454 ms
+okt 24, 2014 3:53:02 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:53:02 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 132 ms
+okt 24, 2014 3:53:02 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:53:02 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 146 ms
+okt 24, 2014 3:53:02 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:53:02 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 118 ms
+okt 24, 2014 3:53:02 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:53:02 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 113 ms
+okt 24, 2014 3:53:02 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:53:03 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 481 ms
+okt 24, 2014 3:53:03 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:53:03 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:53:03 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1505 ms
+okt 24, 2014 3:53:04 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:53:04 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:53:04 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:53:05 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:53:05 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:53:05 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:53:05 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:53:05 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:53:05 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:54:37 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:54:38 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:54:38 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:54:38 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 367 ms
+okt 24, 2014 3:54:38 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:54:38 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:54:38 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:54:38 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 491 ms
+okt 24, 2014 3:54:38 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:54:38 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 136 ms
+okt 24, 2014 3:54:38 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:54:38 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 149 ms
+okt 24, 2014 3:54:38 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:54:39 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 117 ms
+okt 24, 2014 3:54:39 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:54:39 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 128 ms
+okt 24, 2014 3:54:39 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:54:39 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 556 ms
+okt 24, 2014 3:54:39 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:54:39 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:54:39 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1633 ms
+okt 24, 2014 3:55:32 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:55:32 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:55:32 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:55:32 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:55:32 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:55:32 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:55:32 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:55:32 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:55:32 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:55:32 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:55:32 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:55:32 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:55:32 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 390 ms
+okt 24, 2014 3:55:32 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:55:32 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:55:32 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:55:33 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 449 ms
+okt 24, 2014 3:55:33 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:55:33 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 129 ms
+okt 24, 2014 3:55:33 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:55:33 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 141 ms
+okt 24, 2014 3:55:33 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:55:33 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 110 ms
+okt 24, 2014 3:55:33 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:55:33 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 111 ms
+okt 24, 2014 3:55:33 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:55:33 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 333 ms
+okt 24, 2014 3:55:33 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:55:33 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:55:33 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1318 ms
+okt 24, 2014 3:55:35 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:55:35 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:55:35 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:55:35 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:55:35 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:55:35 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:55:35 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:55:35 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:55:35 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:55:57 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:55:57 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:55:57 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:55:57 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 371 ms
+okt 24, 2014 3:55:57 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:55:57 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:55:57 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:55:58 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 470 ms
+okt 24, 2014 3:55:58 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:55:58 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 134 ms
+okt 24, 2014 3:55:58 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:55:58 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 148 ms
+okt 24, 2014 3:55:58 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:55:58 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 116 ms
+okt 24, 2014 3:55:58 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:55:58 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 117 ms
+okt 24, 2014 3:55:58 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:55:58 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 444 ms
+okt 24, 2014 3:55:58 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:55:58 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:55:58 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1478 ms
+okt 24, 2014 3:56:49 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:56:49 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:56:49 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:56:49 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:56:49 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:56:49 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:56:49 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:56:49 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:56:49 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:56:49 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:56:49 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:56:49 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:56:49 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 371 ms
+okt 24, 2014 3:56:49 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:56:49 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:56:49 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:56:49 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 451 ms
+okt 24, 2014 3:56:49 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:56:50 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 137 ms
+okt 24, 2014 3:56:50 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:56:50 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 136 ms
+okt 24, 2014 3:56:50 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:56:50 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 112 ms
+okt 24, 2014 3:56:50 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:56:50 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 116 ms
+okt 24, 2014 3:56:50 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:56:50 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 335 ms
+okt 24, 2014 3:56:50 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:56:50 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:56:50 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1333 ms
+okt 24, 2014 3:56:52 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:56:52 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:56:52 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:56:52 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:56:52 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:56:52 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:56:52 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:56:52 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:56:52 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:57:55 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:57:55 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:57:55 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:57:55 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 359 ms
+okt 24, 2014 3:57:55 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:57:55 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:57:55 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:57:56 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 460 ms
+okt 24, 2014 3:57:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:57:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 131 ms
+okt 24, 2014 3:57:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:57:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 150 ms
+okt 24, 2014 3:57:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:57:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 116 ms
+okt 24, 2014 3:57:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:57:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 114 ms
+okt 24, 2014 3:57:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:57:57 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 370 ms
+okt 24, 2014 3:57:57 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:57:57 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:57:57 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1390 ms
+okt 24, 2014 3:57:59 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:57:59 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:57:59 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:57:59 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:57:59 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:57:59 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:57:59 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:57:59 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:57:59 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:58:06 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 3:58:07 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:58:07 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:58:07 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 365 ms
+okt 24, 2014 3:58:07 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 3:58:07 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 3:58:07 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 3:58:07 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 464 ms
+okt 24, 2014 3:58:07 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 3:58:07 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 133 ms
+okt 24, 2014 3:58:07 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 3:58:07 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 144 ms
+okt 24, 2014 3:58:07 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 3:58:08 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 110 ms
+okt 24, 2014 3:58:08 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 3:58:08 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 111 ms
+okt 24, 2014 3:58:08 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 3:58:08 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 340 ms
+okt 24, 2014 3:58:08 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:58:08 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:58:08 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1348 ms
+okt 24, 2014 3:58:10 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 3:58:10 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:58:10 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:58:10 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 3:58:10 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 3:58:10 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:58:10 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 3:58:10 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 3:58:10 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:00:00 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:00:00 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:00:00 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:00:00 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 367 ms
+okt 24, 2014 4:00:00 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:00:00 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:00:00 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:00:01 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 475 ms
+okt 24, 2014 4:00:01 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:00:01 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 135 ms
+okt 24, 2014 4:00:01 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:00:01 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 157 ms
+okt 24, 2014 4:00:01 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:00:01 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 112 ms
+okt 24, 2014 4:00:01 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:00:01 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 124 ms
+okt 24, 2014 4:00:01 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:00:02 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 580 ms
+okt 24, 2014 4:00:02 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:00:02 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:00:02 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1635 ms
+t1in changeRole
+t2in changeRole
+t3in changeRole
+t1in changeRole
+t2in changeRole
+t3in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+okt 24, 2014 4:00:07 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:00:07 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:00:08 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:00:08 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:00:08 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:00:08 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:00:08 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:00:08 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:00:08 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:00:41 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:00:41 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:00:41 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:00:41 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 358 ms
+okt 24, 2014 4:00:41 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:00:41 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:00:41 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:00:41 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 456 ms
+okt 24, 2014 4:00:41 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:00:41 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 133 ms
+okt 24, 2014 4:00:41 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:00:42 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 139 ms
+okt 24, 2014 4:00:42 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:00:42 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 118 ms
+okt 24, 2014 4:00:42 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:00:42 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 116 ms
+okt 24, 2014 4:00:42 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:00:42 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 351 ms
+okt 24, 2014 4:00:42 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:00:42 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:00:42 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1361 ms
+SQLException: Duplicate entry 'group1' for key 'name'
+SQLState: 23000
+VendorError: 1062
+SQLException: Duplicate entry 'group1' for key 'name'
+SQLState: 23000
+VendorError: 1062
+okt 24, 2014 4:02:23 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:02:23 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:02:23 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:02:23 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:02:23 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:02:23 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:02:23 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:02:23 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:02:23 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:02:23 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:02:23 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:02:23 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:02:23 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 373 ms
+okt 24, 2014 4:02:23 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:02:23 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:02:23 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:02:24 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 448 ms
+okt 24, 2014 4:02:24 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:02:24 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 129 ms
+okt 24, 2014 4:02:24 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:02:24 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 133 ms
+okt 24, 2014 4:02:24 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:02:24 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 113 ms
+okt 24, 2014 4:02:24 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:02:24 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 113 ms
+okt 24, 2014 4:02:24 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:02:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 465 ms
+okt 24, 2014 4:02:25 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:02:25 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:02:25 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1446 ms
+t1in changeRole
+t2in changeRole
+t3in changeRole
+t1in changeRole
+t2in changeRole
+t3in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+okt 24, 2014 4:02:31 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:02:31 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:02:31 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:02:31 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:02:31 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:02:31 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:02:31 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:02:31 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:02:31 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:02:45 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:02:45 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:02:45 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:02:45 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 362 ms
+okt 24, 2014 4:02:45 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:02:45 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:02:45 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:02:46 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 459 ms
+okt 24, 2014 4:02:46 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:02:46 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 129 ms
+okt 24, 2014 4:02:46 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:02:46 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 141 ms
+okt 24, 2014 4:02:46 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:02:46 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 113 ms
+okt 24, 2014 4:02:46 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:02:46 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 109 ms
+okt 24, 2014 4:02:46 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:02:47 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 341 ms
+okt 24, 2014 4:02:47 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:02:47 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:02:47 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1338 ms
+t1in changeRole
+t2in changeRole
+t3in changeRole
+t1in changeRole
+t2in changeRole
+t3in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+okt 24, 2014 4:02:53 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:02:53 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:02:53 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:02:53 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:02:53 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:02:53 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:02:53 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:02:53 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:02:53 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:03:51 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:03:52 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:03:52 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:03:52 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 366 ms
+okt 24, 2014 4:03:52 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:03:52 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:03:52 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:03:52 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 473 ms
+okt 24, 2014 4:03:52 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:03:52 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 130 ms
+okt 24, 2014 4:03:52 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:03:52 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 145 ms
+okt 24, 2014 4:03:52 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:03:53 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 118 ms
+okt 24, 2014 4:03:53 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:03:53 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 119 ms
+okt 24, 2014 4:03:53 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:03:53 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 404 ms
+okt 24, 2014 4:03:53 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:03:53 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:03:53 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1437 ms
+okt 24, 2014 4:04:50 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:04:50 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:04:50 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:04:50 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:04:50 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:04:50 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:04:50 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:04:50 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:04:50 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:04:50 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:04:50 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:04:50 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:04:50 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 385 ms
+okt 24, 2014 4:04:50 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:04:50 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:04:50 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:04:51 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 454 ms
+okt 24, 2014 4:04:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:04:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 128 ms
+okt 24, 2014 4:04:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:04:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 136 ms
+okt 24, 2014 4:04:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:04:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 115 ms
+okt 24, 2014 4:04:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:04:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 113 ms
+okt 24, 2014 4:04:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:04:51 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 355 ms
+okt 24, 2014 4:04:51 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:04:51 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:04:51 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1347 ms
+t1in changeRole
+t2in changeRole
+t3in changeRole
+t1in changeRole
+t2in changeRole
+t3in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+okt 24, 2014 4:04:58 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:04:58 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:04:58 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:04:58 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:04:58 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:04:58 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:04:58 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:04:58 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:04:58 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:06:14 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:06:14 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:06:14 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:06:14 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 366 ms
+okt 24, 2014 4:06:14 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:06:14 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:06:14 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:06:15 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 473 ms
+okt 24, 2014 4:06:15 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:06:15 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 133 ms
+okt 24, 2014 4:06:15 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:06:15 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 143 ms
+okt 24, 2014 4:06:15 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:06:15 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 110 ms
+okt 24, 2014 4:06:15 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:06:15 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 118 ms
+okt 24, 2014 4:06:15 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:06:15 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 408 ms
+okt 24, 2014 4:06:15 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:06:15 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:06:15 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1434 ms
+okt 24, 2014 4:16:38 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:16:38 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:16:38 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:16:38 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:16:38 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:16:38 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:16:38 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:16:38 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:16:38 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:16:38 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:16:38 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:16:38 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:16:38 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 373 ms
+okt 24, 2014 4:16:38 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:16:38 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:16:38 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:16:39 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 464 ms
+okt 24, 2014 4:16:39 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:16:39 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 131 ms
+okt 24, 2014 4:16:39 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:16:39 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 147 ms
+okt 24, 2014 4:16:39 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:16:39 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 116 ms
+okt 24, 2014 4:16:39 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:16:39 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 124 ms
+okt 24, 2014 4:16:39 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:16:40 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 528 ms
+okt 24, 2014 4:16:40 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:16:40 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:16:40 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1569 ms
+SQLException: Illegal operation on empty result set.
+SQLState: S1000
+VendorError: 0
+SQLException: Illegal operation on empty result set.
+SQLState: S1000
+VendorError: 0
+t1in changeRole
+t2in changeRole
+t3in changeRole
+t1in changeRole
+t2in changeRole
+t3in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+okt 24, 2014 4:18:24 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:18:24 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:18:24 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:18:24 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:18:25 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:18:25 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:18:25 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:18:25 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:18:25 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:19:24 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:19:25 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:19:25 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:19:25 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 364 ms
+okt 24, 2014 4:19:25 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:19:25 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:19:25 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:19:25 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 467 ms
+okt 24, 2014 4:19:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:19:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 122 ms
+okt 24, 2014 4:19:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:19:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 161 ms
+okt 24, 2014 4:19:25 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:19:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 116 ms
+okt 24, 2014 4:19:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:19:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 116 ms
+okt 24, 2014 4:19:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:19:26 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 569 ms
+okt 24, 2014 4:19:26 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:19:26 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:19:26 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1602 ms
+okt 24, 2014 4:19:28 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:19:28 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:19:28 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:19:28 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:19:28 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:19:28 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:19:28 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:19:28 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:19:28 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:20:04 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:20:04 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:20:04 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:20:04 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 363 ms
+okt 24, 2014 4:20:04 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:20:04 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:20:04 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:20:05 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 457 ms
+okt 24, 2014 4:20:05 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:20:05 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 127 ms
+okt 24, 2014 4:20:05 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:20:05 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 140 ms
+okt 24, 2014 4:20:05 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:20:05 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 109 ms
+okt 24, 2014 4:20:05 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:20:05 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 111 ms
+okt 24, 2014 4:20:05 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:20:06 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 366 ms
+okt 24, 2014 4:20:06 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:20:06 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:20:06 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1354 ms
+okt 24, 2014 4:20:08 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:20:08 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:20:08 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:20:08 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:20:08 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:20:08 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:20:08 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:20:08 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:20:08 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:21:56 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:21:56 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:21:56 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:21:56 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 364 ms
+okt 24, 2014 4:21:56 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:21:56 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:21:56 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:21:56 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 482 ms
+okt 24, 2014 4:21:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:21:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 133 ms
+okt 24, 2014 4:21:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:21:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 150 ms
+okt 24, 2014 4:21:56 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:21:57 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 122 ms
+okt 24, 2014 4:21:57 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:21:57 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 123 ms
+okt 24, 2014 4:21:57 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:21:57 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 499 ms
+okt 24, 2014 4:21:57 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:21:57 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:21:57 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1560 ms
+okt 24, 2014 4:26:26 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:26:26 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:26:26 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:26:26 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:26:26 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:26:26 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:26:26 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:26:26 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:26:26 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:26:26 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:26:26 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:26:26 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:26:26 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 387 ms
+okt 24, 2014 4:26:26 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:26:26 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:26:26 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:26:27 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 480 ms
+okt 24, 2014 4:26:27 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:26:27 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 137 ms
+okt 24, 2014 4:26:27 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:26:27 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 152 ms
+okt 24, 2014 4:26:27 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:26:27 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 113 ms
+okt 24, 2014 4:26:27 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:26:27 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 115 ms
+okt 24, 2014 4:26:27 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:26:28 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 563 ms
+okt 24, 2014 4:26:28 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:26:28 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:26:28 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1623 ms
+okt 24, 2014 4:26:30 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:26:30 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:26:30 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:26:30 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:26:30 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:26:30 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:26:30 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:26:30 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:26:30 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:27:10 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:27:10 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:27:10 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:27:10 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 366 ms
+okt 24, 2014 4:27:10 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:27:10 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:27:10 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:27:10 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 465 ms
+okt 24, 2014 4:27:10 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:27:11 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 133 ms
+okt 24, 2014 4:27:11 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:27:11 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 146 ms
+okt 24, 2014 4:27:11 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:27:11 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 121 ms
+okt 24, 2014 4:27:11 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:27:11 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 116 ms
+okt 24, 2014 4:27:11 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:27:11 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 344 ms
+okt 24, 2014 4:27:11 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:27:11 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:27:11 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1371 ms
+okt 24, 2014 4:31:21 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:31:21 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:31:21 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:31:21 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:31:21 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:31:21 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:31:21 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:31:21 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:31:21 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:31:21 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:31:21 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:31:21 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:31:21 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 380 ms
+okt 24, 2014 4:31:21 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:31:21 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:31:21 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:31:21 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 469 ms
+okt 24, 2014 4:31:21 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:31:22 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 131 ms
+okt 24, 2014 4:31:22 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:31:22 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 144 ms
+okt 24, 2014 4:31:22 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:31:22 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 110 ms
+okt 24, 2014 4:31:22 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:31:22 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 115 ms
+okt 24, 2014 4:31:22 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:31:22 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 557 ms
+okt 24, 2014 4:31:22 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:31:22 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:31:22 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1587 ms
+okt 24, 2014 4:31:24 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:31:24 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:31:24 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:31:24 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:31:24 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:31:24 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:31:24 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:31:24 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:31:24 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:31:36 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 24, 2014 4:31:36 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:31:36 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:31:36 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 366 ms
+okt 24, 2014 4:31:36 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 24, 2014 4:31:36 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 24, 2014 4:31:37 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 24, 2014 4:31:37 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 450 ms
+okt 24, 2014 4:31:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 24, 2014 4:31:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 127 ms
+okt 24, 2014 4:31:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 24, 2014 4:31:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 130 ms
+okt 24, 2014 4:31:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 24, 2014 4:31:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 109 ms
+okt 24, 2014 4:31:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 24, 2014 4:31:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 114 ms
+okt 24, 2014 4:31:37 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 24, 2014 4:31:38 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 331 ms
+okt 24, 2014 4:31:38 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:31:38 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:31:38 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1307 ms
+t1in changeRole
+t2in changeRole
+t3in changeRole
+t1in changeRole
+t2in changeRole
+t3in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t1in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t2in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+t3in changeRole
+okt 24, 2014 4:31:51 EM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+okt 24, 2014 4:31:51 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:31:51 EM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:31:51 EM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+okt 24, 2014 4:31:51 EM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/BaseBlockSystem] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+okt 24, 2014 4:31:51 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:31:51 EM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+okt 24, 2014 4:31:51 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+okt 24, 2014 4:31:51 EM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
