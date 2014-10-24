@@ -274,7 +274,22 @@ public class ProjectGroupAdmin extends servletBase {
 		}
 		out.println(addProjectForm());
 	}
-
+	
+	private boolean checkGroupExist(String groupID){
+		try {
+			ResultSet rs = conn.createStatement().executeQuery("select COUNT(*) as total from groups where id = " + groupID);
+			if(rs.first()){
+				int count = rs.getInt("total");
+				if(count == 1){
+					return true; //exist another group with the same name
+				}
+			}
+		} catch (SQLException e) {	
+			return false;
+		}
+		return false;
+	}
+	
 	/**
 	 * 
 	 */
@@ -394,8 +409,12 @@ public class ProjectGroupAdmin extends servletBase {
 				String editIDString = request.getParameter("editid");
 				if(editIDString != null){
 					int editID = Integer.parseInt(editIDString);
-					session.setAttribute("groupHandlingID", editID);
-					response.sendRedirect("GroupHandling");		
+					if(checkGroupExist(editIDString)){
+						session.setAttribute("groupHandlingID", editID);
+						response.sendRedirect("GroupHandling");
+					}else{
+						out.println("<p>Error: The group you are trying to edit does no exist.</p>");
+					}							
 				}
 				listGroups(out);
 				out.println("</div>");
