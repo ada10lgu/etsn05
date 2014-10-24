@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.apache.commons.lang3.text.translate.NumericEntityEscaper;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -115,45 +114,32 @@ public class AdministrationTest extends PussTest {
 	}
 
 	private HtmlPage addUserToGroup(HtmlPage page, int userId, String role) throws IOException {
-
+		System.out.println("lägg till användare med id: " + userId + " med roll: " + role + " i grupp");
+		System.in.read();
+		
+		/*
 		List<DomElement> list1 = page.getElementsByIdAndOrName("selectedradiouser");
-		System.out.println("number of DomElements: " + list1.size());
 
 		HtmlRadioButtonInput radioButton = null;
-		// System.out.println("page innan klick: " + page.asXml());
 		for (DomElement element : list1) {
 			radioButton = (HtmlRadioButtonInput) element;
-			System.out.println("id: " + radioButton.getValueAttribute());
 			if (String.valueOf(userId).equals(radioButton.getValueAttribute())) {
-				System.out.println("match!");
-				// radioButton.setChecked(true);
 				radioButton.click();
-				// radioButton.setAttribute("selected", "selected");
-				if (radioButton.isChecked()) {
-					System.out.println("radiobutton är checked");
-				} else {
-					System.out.println("radiobutton är inte checked");
-				}
-				System.out.println("radioButton: " + radioButton.asXml());
 				break;
 			}
 		}
 
 		HtmlForm form = page.getFormByName("input");
-		System.out.println("form: " + form.asXml());
 		final HtmlSelect groupList = form.getSelectByName("role");
 		groupList.setSelectedAttribute(groupList.getOptionByText(role), true);
 
 		HtmlSubmitInput button = form.getInputByValue("Add user");
-		System.out.println("button: " + button.asXml());
-		System.out.println("page innan Add user: " + page.asXml());
-		page = button.click();		
-		System.out.println("page efter Add user: " + page.asXml());
+		page = button.click();
 		assertNotEquals("admin står kvar på samma sida", GROUP_HANDLING_URL, page.getUrl().toString());
 		assertNotEquals("ett felmeddelande gavs när användaren skulle läggas till", GROUP_HANDLING_URL + "?operation=FailedAdd", page.getUrl().toString());
 		assertEquals("användaren lades inte till", GROUP_HANDLING_URL + "?operation=Added", page.getUrl().toString());
+		*/
 		return page;
-		// return button.click();
 	}
 
 	private HtmlPage changeUserRole(HtmlPage page, String username, String role) throws IOException {
@@ -263,7 +249,7 @@ public class AdministrationTest extends PussTest {
 		page = nameNewGroup(page, projectGroupName1);
 		assertEquals("Admin kunde inte skapa projektgrupp med namnet: " + projectGroupName1, GROUP_HANDLING_URL, page.getUrl().toString());
 
-		page = addUserToGroup(page, userId);
+//		page = addUserToGroup(page, userId);
 
 		// navigera till projektgruppsadministrationssidan.
 		page = getPageByAnchor(page, "ProjectGroupAdmin");
@@ -273,7 +259,7 @@ public class AdministrationTest extends PussTest {
 		// lägg till projektgrupp
 		page = nameNewGroup(page, projectGroupName2);
 		assertEquals("Admin hamnde inte på gruppediteringssidan", GROUP_HANDLING_URL, page.getUrl().toString());
-		addUserToGroup(page, userId);
+//		addUserToGroup(page, userId);
 		assertEquals("Admin kunde inte skapa projektgrupp med namnet: " + projectGroupName1, GROUP_HANDLING_URL, page.getUrl().toString());
 
 		// make sure the right content is in the database
@@ -576,9 +562,10 @@ public class AdministrationTest extends PussTest {
 		for (int i = 0; i < totalNumberOfUsers; i++) {
 			username = usernameTemplate + i;
 			userId = addUser(username, password, 0);
-			addUserToGroup(username, groupName, role1);
+			if(i < totalNumberOfUsers - 1) {
+				addUserToGroup(username, groupName, role1);
+			}
 		}
-//		userId = addUser(usernameTemplate + totalNumberOfUsers, password, 0);
 		HtmlPage page = login("admin", "adminpw", null);
 
 		// navigera till gruppadministration
@@ -610,7 +597,9 @@ public class AdministrationTest extends PussTest {
 		for (int i = 0; i < totalNumberOfUsers; i++) {
 			username = usernameTemplate + i;
 			userId = addUser(username, password, 0);
-			addUserToGroup(username, groupName, role1);
+			if(i < totalNumberOfUsers - 1) {
+				addUserToGroup(username, groupName, role1);
+			}
 		}
 		HtmlPage page = login("admin", "adminpw", null);
 
@@ -628,7 +617,7 @@ public class AdministrationTest extends PussTest {
 		rs.next();
 		assertEquals("fel antal användare i gruppen", totalNumberOfUsers - 1, rs.getInt(1));
 
-		rs = sendSQLQuery("select count(*) from user_group where group_id = " + groupId + "and user_id = " + userId + ";");
+		rs = sendSQLQuery("select count(*) from user_group where group_id = " + groupId + " and user_id = " + userId + ";");
 		rs.next();
 		assertEquals("för många användare tillagda i gruppen", 0, rs.getInt(1));
 	}
@@ -772,7 +761,7 @@ public class AdministrationTest extends PussTest {
 		rs.next();
 		assertEquals("incorrect number of users with role " + newRole, numberOfUsers, rs.getInt(1));
 	}
-	
+
 	@Test
 	public void FT4_4_15() throws Exception {
 		// förberedelser
@@ -815,7 +804,7 @@ public class AdministrationTest extends PussTest {
 		rs.next();
 		assertEquals("incorrect number of users with role " + newRole, numberOfUsers, rs.getInt(1));
 	}
-	
+
 	@Test
 	public void FT4_4_16() throws Exception {
 		// förberedelser
@@ -858,7 +847,7 @@ public class AdministrationTest extends PussTest {
 		rs.next();
 		assertEquals("incorrect number of users with role " + newRole, numberOfUsers, rs.getInt(1));
 	}
-	
+
 	@Test
 	public void FT4_4_17() throws Exception {
 		// förberedelser
@@ -900,12 +889,12 @@ public class AdministrationTest extends PussTest {
 		rs = sendSQLQuery("select count(*) from user_group where role = '" + newRole + "';");
 		rs.next();
 		assertEquals("incorrect number of users with role " + newRole, numberOfUsers - 1, rs.getInt(1));
-		
+
 		rs = sendSQLQuery("select count(*) from user_group where role = '" + initialRole + "';");
 		rs.next();
 		assertEquals("incorrect number of users with role " + newRole, 1, rs.getInt(1));
 	}
-	
+
 	@Test
 	public void FT4_4_18() throws Exception {
 		// förberedelser
@@ -947,12 +936,12 @@ public class AdministrationTest extends PussTest {
 		rs = sendSQLQuery("select count(*) from user_group where role = '" + newRole + "';");
 		rs.next();
 		assertEquals("incorrect number of users with role " + newRole, numberOfUsers - 1, rs.getInt(1));
-		
+
 		rs = sendSQLQuery("select count(*) from user_group where role = '" + initialRole + "';");
 		rs.next();
 		assertEquals("incorrect number of users with role " + newRole, 1, rs.getInt(1));
 	}
-	
+
 	@Test
 	public void FT4_4_19() throws Exception {
 		// förberedelser
@@ -994,11 +983,19 @@ public class AdministrationTest extends PussTest {
 		rs = sendSQLQuery("select count(*) from user_group where role = '" + newRole + "';");
 		rs.next();
 		assertEquals("incorrect number of users with role " + newRole, numberOfUsers - 1, rs.getInt(1));
-		
+
 		rs = sendSQLQuery("select count(*) from user_group where role = '" + initialRole + "';");
 		rs.next();
 		assertEquals("incorrect number of users with role " + newRole, 1, rs.getInt(1));
 	}
 
-	//TODO resten av administration:data
+	@Test
+	public void FT4_4_20() throws Exception {
+		HtmlPage page = login("admin", "adminpw", null);
+		try {
+			page = getPageByAnchor(page, "Administration");
+		} catch(Exception e) {
+			fail("Administratören kunde inte komma åt administrationssidan");
+		}
+	}
 }
