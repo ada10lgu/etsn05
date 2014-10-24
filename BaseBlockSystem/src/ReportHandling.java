@@ -260,19 +260,21 @@ public class ReportHandling extends servletBase{
 		out.println("<h1>Project Management " + "</h1>");
 		HttpSession session = request.getSession(true);
 		int groupID;
-		
-		if(request.getParameter("OK") != null){
-			String newGroupIDStr = request.getParameter("SelectedGroupID");
-			if (newGroupIDStr != null) {
-				int newGroupID = Integer.parseInt(newGroupIDStr);
-				if(newGroupID != 0){
-					groupID = newGroupID;
-					session.setAttribute("groupID", newGroupIDStr);
+		if (!loggedIn(request))
+			response.sendRedirect("LogIn");
+		else
+		{	
+			if(request.getParameter("OK") != null){
+				String newGroupIDStr = request.getParameter("SelectedGroupID");
+				if (newGroupIDStr != null) {
+					int newGroupID = Integer.parseInt(newGroupIDStr);
+					if(newGroupID != 0){
+						groupID = newGroupID;
+						session.setAttribute("groupID", newGroupIDStr);
+					}
 				}
-			}
-		}
-		
-		Object groupIDObject = session.getAttribute("groupID");		
+			}			
+			Object groupIDObject = session.getAttribute("groupID");		
 			groupID = Integer.parseInt((String) groupIDObject);
 			if(groupID > 0){
 				String reportIDString = request.getParameter("reportID");
@@ -304,5 +306,6 @@ public class ReportHandling extends servletBase{
 			} else {
 				listAllGroups(out);
 			}
+		}
 	}
 }

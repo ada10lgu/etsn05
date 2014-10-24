@@ -348,69 +348,73 @@ public class Statistics extends servletBase {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("name");
 		boolean isAdmin = username.equals("admin");
-		if (projectLeaderOrAdmin(username)) {
-			PrintWriter out = response.getWriter();
-			access.updateLog(null, null); // check timestamps
-			int groupID = Integer.parseInt((String)session.getAttribute("groupID"));
-			out = response.getWriter();
-			out.println(getPageIntro());
-			out.println(printMainMenu(request));
-			out.println("<div class='floati'>");
-			String selectedGroup = "";
-			if(!isAdmin){
-				selectedGroup = "" + groupID;
-			}else{
-				String gr = request.getParameter("groupID");
-				if(gr == null){
-					String gr_sel = request.getParameter("alreadySelected");
-					if(gr_sel == null){
-						selectedGroup = "0";
-					}else{
-						selectedGroup = gr_sel;
-						System.out.println("ALREADY SEL");
-					}
+		if (!loggedIn(request))
+			response.sendRedirect("LogIn");
+		else
+		{	
+			if (projectLeaderOrAdmin(username)) {
+				PrintWriter out = response.getWriter();
+				access.updateLog(null, null); // check timestamps
+				int groupID = Integer.parseInt((String)session.getAttribute("groupID"));
+				out = response.getWriter();
+				out.println(getPageIntro());
+				out.println(printMainMenu(request));
+				out.println("<div class='floati'>");
+				String selectedGroup = "";
+				if(!isAdmin){
+					selectedGroup = "" + groupID;
 				}else{
-					selectedGroup = gr;
-				}
-			}
-			String function = request.getParameter("function");
-			if(function != null){
-			
-				switch(function){				
-				case "generateSelectedReports": //user selected reports from a table
-					
-					String[] checkedIds = request.getParameterValues("reportID");					
-					if(checkedIds != null){
-						List<Integer> ids = new ArrayList<Integer>();
-						for(String s : checkedIds){
-							ids.add(Integer.parseInt(s));							
-						}					
-						if(ids.size() != 0){
-							if(!generateSummarizedReport(ids, response)){
-								out.println("No report was generated");
-							}
-						}						
+					String gr = request.getParameter("groupID");
+					if(gr == null){
+						String gr_sel = request.getParameter("alreadySelected");
+						if(gr_sel == null){
+							selectedGroup = "0";
+						}else{
+							selectedGroup = gr_sel;
+							System.out.println("ALREADY SEL");
+						}
+					}else{
+						selectedGroup = gr;
 					}
-					break;
-				case "generateStatsReports" :
-					
-					String role = request.getParameter("roles");
-					String userID = request.getParameter("userID");
-					String weeks = request.getParameter("weeks");
-					if(!generateStatisticsReport(selectedGroup, userID, role, weeks, response)){
-						out.println("No report was generated");
-					}
-					break;
 				}
+				String function = request.getParameter("function");
+				if(function != null){
 				
+					switch(function){				
+					case "generateSelectedReports": //user selected reports from a table
+						
+						String[] checkedIds = request.getParameterValues("reportID");					
+						if(checkedIds != null){
+							List<Integer> ids = new ArrayList<Integer>();
+							for(String s : checkedIds){
+								ids.add(Integer.parseInt(s));							
+							}					
+							if(ids.size() != 0){
+								if(!generateSummarizedReport(ids, response)){
+									out.println("No report was generated");
+								}
+							}						
+						}
+						break;
+					case "generateStatsReports" :
+						
+						String role = request.getParameter("roles");
+						String userID = request.getParameter("userID");
+						String weeks = request.getParameter("weeks");
+						if(!generateStatisticsReport(selectedGroup, userID, role, weeks, response)){
+							out.println("No report was generated");
+						}
+						break;
+					}
+					
+					
+				}
+				out.print(printOptions(selectedGroup, isAdmin)); 
+				
+				out.println("</div>");
 				
 			}
-			out.print(printOptions(selectedGroup, isAdmin)); 
-			
-			out.println("</div>");
-			
-		}
-			
+		}	
 	}
 	
 	/**
