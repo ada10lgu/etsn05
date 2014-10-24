@@ -194,6 +194,17 @@ public class ProjectGroupAdmin extends servletBase {
      * @return True if the project name corresponds to the requirements
      */
 	private boolean checkNewName(String name) {
+		//check if the same name exist in db
+		try {
+			ResultSet rs = conn.createStatement().executeQuery("select COUNT(*) as total from groups where name = '" + name +"'");
+			if(rs.first()){
+				int count = rs.getInt("total");
+				if(count == 1){
+					return false; //exist another group with the same name
+				}
+			}
+		} catch (SQLException e) {			
+		}
 		int length = name.length();
 		boolean ok = (length>=5 && length<=10);
 		if (ok)
@@ -317,12 +328,16 @@ public class ProjectGroupAdmin extends servletBase {
 								nbrOfGroups = rs.getInt("total");
 							} catch (SQLException e) {
 							}
-							if (nbrOfGroups < 5 && usersInSystem()){
-								if (checkNewName(newName)) {	
-									listUsers(out, newName); //print the user add form
-									//response.sendRedirect("ProjectGroupAdmin?function=selectUsers&groupName=" + newName);
-								} else {
-									out.println("<p>Error: Suggested name not allowed</p>");
+							if (nbrOfGroups < 5){
+								if(usersInSystem()){
+									if (checkNewName(newName)) {
+										listUsers(out, newName); //print the user add form
+										//response.sendRedirect("ProjectGroupAdmin?function=selectUsers&groupName=" + newName);
+									} else {
+										out.println("<p>Error: Suggested name not allowed</p>");
+									}
+								}else{
+									out.println("<p>Error: There are no users in the system.</p>");
 								}
 							} else{
 								out.println("<p>Error: The system does not allow more groups than 5.</p>");
