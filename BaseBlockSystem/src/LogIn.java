@@ -85,7 +85,7 @@ public class LogIn extends servletBase {
 				rs = conn.createStatement().executeQuery("select COUNT(*) as total from log"); //checks number of logged in users
 				rs.first();
 				int nbr = rs.getInt("total");
-				if(nbr > 50){
+				if(nbr >= 50){
 					userOk = false;
 				}
 				stmt.close();
