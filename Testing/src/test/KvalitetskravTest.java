@@ -28,7 +28,6 @@ public class KvalitetskravTest extends PussTest {
 		for (int i = 0; i < numberOfUsers; i++) {
 			webClients[i] = new WebClient();
 			String username = usernameTemplate + i;
-			System.out.println("username: " + username);
 			addUser(username, password, 0);
 			addUserToGroup(username, groupName, role);
 		}
@@ -53,8 +52,9 @@ public class KvalitetskravTest extends PussTest {
 		//kontrollera vem som är inloggad
 		for (int i = 0; i < numberOfUsers; i++) {
 			HtmlPage page = pages[i];
+			page.refresh();
 			if (i < numberOfUsers - 1) {
-				assertNotEquals("användare nummer " + (i + 1) + " blev inte inloggad", LOGIN_URL, page.getUrl().toString());
+				assertEquals("användare nummer " + (i + 1) + " blev inte inloggad", START_URL, page.getUrl().toString());
 			} else {
 				assertEquals("användare nummer " + (i + 1) + " blev inloggad", LOGIN_URL, page.getUrl().toString());
 			}
