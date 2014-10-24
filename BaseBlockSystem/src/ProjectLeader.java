@@ -68,7 +68,7 @@ public class ProjectLeader extends servletBase {
 					rs1.first();
 					int userIDint = rs1.getInt("user_group.ID");
 					if(!changeRole(userIDint, role)) {
-						out.println("<p>User role was not changed, likely due to too many users having that role</p>");
+						out.println("<p>User role change is not allowed.</p>");
 					}
 					showAllUsers(groupID, out);
 				} catch (SQLException ex) {
