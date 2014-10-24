@@ -305,9 +305,7 @@ public class ProjectGroupAdmin extends servletBase {
 				// check if the administrator wants to add a new project group in the form
 					
 				String function = request.getParameter("function");
-				if(function != null){
-					System.out.println("YAY FUNCTION");
-					System.out.println(function);
+				if(function != null){					
 					if(function.equals("checkGroup")){
 						String newName = request.getParameter("projectname");	
 						if (newName != null) {
@@ -357,8 +355,6 @@ public class ProjectGroupAdmin extends servletBase {
 							}							
 						}
 					}
-				}else{
-					System.out.println("No function");
 				}
 				//check if the administrator wants to delete a project by clicking the URL in the list
 				String deleteName = request.getParameter("deletename");
