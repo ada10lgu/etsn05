@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 1.1 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 1.2 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -63,6 +63,7 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.8 & 10 oktober 2014 & TG & Ändringar efter formell granskning\\
 1.0 & 16 oktober 2014 & TG & godkänd efter formell granskning\\
 1.1 & 24 oktober 2014 & TG & uppdaterad efter SVVS 1.0. FT 3.2.6, 3.2.8, 3.2.10, 3.2.12 har utgått. \\
+1.2 & 26 oktober 2014 & TG & uppdaterad efter SVVS 1.1 och SRS 1.2. ST 2.1.1 har utgått. ST 1.4.1 har uppdaterats efter figur 5 i SRS\\
 
 \end{tabular}
 \section{1 Inledning}       
@@ -2347,10 +2348,10 @@ Utgått
 \item Klicka på ``Utse projektledare''.
 \item Välj V2:s namn i listan.
 \item Klicka på ``OK''.
-\item Klicka på ``Byta grupp på användare''.
-\item Välj M i listan över användare.
-\item Välj G2 i listan över projektgrupper.
-\item Klicka på ``OK''.
+%\item Klicka på ``Byta grupp på användare''.
+%\item Välj M i listan över användare.
+%\item Välj G2 i listan över projektgrupper.
+%\item Klicka på ``OK''.
 \item Klicka på ``Administrationsvyn''.
 \item Klicka på ``Projektgrupper''.
 \item Klicka på ``Ta bort projektgrupper''.
@@ -2430,24 +2431,26 @@ subsubsection{Användare}
 \item
 \textbf{Administratören kan skapa projektgrupp.}
 
-\emph{Starttillstånd:} Administratören A är inloggad, sidan för att redigera projekgrupper visas.
+Utgått
 
-\emph{Sluttillstånd:} A är inloggad.
+%\emph{Starttillstånd:} Administratören A är inloggad, sidan för att redigera projekgrupper visas.
 
-\begin{enumerate}
-\item A väljer att skapa projektgrupp.
-\item A får nu fylla i ett projektgruppsnamn och tycker därefter på ''ok''.
-\item 
-\begin{enumerate}
-\item A får nu en lista över alla användare i systemet, första användare som läggs till tilldelas automatiskt projektledarrollen.
-\item Projektgruppsnamnet existerar redan, A informeras och skickas tillbaka till steg 3.
-\item A får ett felmeddelande om inga fler användare existerar, sedan omdirigeras A till huvudsidan.
-\item A får ett felmeddelande om inga fler projektgrupper kan skapas eftersom maxantalet redan är uppnått.
-\end{enumerate}
-\item A kan därefter lägga till fler projektgruppsmedlemmar. A kan dessutom lägga till ytterliggare en projektledare. Sedan klickar A på ''ok''.
-\item Kontrollera att en projektgrupp skapats
-\item Kontrollera att A omdirigeras till en sida som meddelar att en projektgrupp skapats.
-\end{enumerate}
+%\emph{Sluttillstånd:} A är inloggad.
+
+%\begin{enumerate}
+%\item A väljer att skapa projektgrupp.
+%\item A får nu fylla i ett projektgruppsnamn och tycker därefter på ''ok''.
+%\item 
+%\begin{enumerate}
+%\item A får nu en lista över alla användare i systemet, första användare som läggs %till tilldelas automatiskt projektledarrollen.
+%\item Projektgruppsnamnet existerar redan, A informeras och skickas tillbaka till steg 3.
+%\item A får ett felmeddelande om inga fler användare existerar, sedan omdirigeras A till huvudsidan.
+%\item A får ett felmeddelande om inga fler projektgrupper kan skapas eftersom maxantalet redan är uppnått.
+%\end{enumerate}
+%\item A kan därefter lägga till fler projektgruppsmedlemmar. A kan dessutom lägga till ytterliggare en projektledare. Sedan klickar A på ''ok''.
+%\item Kontrollera att en projektgrupp skapats
+%\item Kontrollera att A omdirigeras till en sida som meddelar att en projektgrupp skapats.
+%\end{enumerate}
 
 \item
 \textbf{Administratören kan lägga till eller ändra roll på projektmedlemmar i en projektgrupp.}

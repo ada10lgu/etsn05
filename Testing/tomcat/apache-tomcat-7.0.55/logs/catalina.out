@@ -37400,3 +37400,45 @@ okt 24, 2014 4:31:51 EM org.apache.coyote.AbstractProtocol destroy
 INFO: Destroying ProtocolHandler ["http-bio-8080"]
 okt 24, 2014 4:31:51 EM org.apache.coyote.AbstractProtocol destroy
 INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+okt 26, 2014 5:47:48 EM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+okt 26, 2014 5:47:48 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+okt 26, 2014 5:47:48 EM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+okt 26, 2014 5:47:48 EM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 410 ms
+okt 26, 2014 5:47:48 EM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+okt 26, 2014 5:47:48 EM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+okt 26, 2014 5:47:48 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+okt 26, 2014 5:47:48 EM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 613 ms
+okt 26, 2014 5:47:48 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+okt 26, 2014 5:47:49 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 162 ms
+okt 26, 2014 5:47:49 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+okt 26, 2014 5:47:49 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 187 ms
+okt 26, 2014 5:47:49 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+okt 26, 2014 5:47:49 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 127 ms
+okt 26, 2014 5:47:49 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+okt 26, 2014 5:47:49 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 155 ms
+okt 26, 2014 5:47:49 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+okt 26, 2014 5:47:50 EM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 802 ms
+okt 26, 2014 5:47:50 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+okt 26, 2014 5:47:50 EM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+okt 26, 2014 5:47:50 EM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 2136 ms
