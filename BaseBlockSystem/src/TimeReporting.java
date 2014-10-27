@@ -123,8 +123,7 @@ public class TimeReporting extends servletBase{
 		    out.println("<input type='hidden' name='function' value='updateReport'>");
 		    
 		    out.println("<input  type=" + formElement("submit") + " name='update' value="+ formElement("Update") +">");
-		    out.println("<input  type=" + formElement("submit") + " name='delete' value="+ formElement("Delete") +">");
-		    out.println("</form>");
+		    out.println("<input  type=" + formElement("submit") + "onclick=" + formElement("return confirm('Are you sure you want to delete report?')") + " name='delete' value="+ formElement("Delete") +">");
 		    if (inWhile == 0){
 		    	out.println("No reports to show");
 		    }
