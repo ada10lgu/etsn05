@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 0.14 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 1.0 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -62,11 +62,13 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.7 & 16 september 2014 & TG & Små omformuleringar \\
 0.8 & 16 september 2014 & TG & Anpassning efter SRS v0.17\\
 0.9 & 22 september 2014 & TG & Anpassning efter SRS v0.18 och ändringar efter den formella granskningen \\
-v0.10 & 22 september & TG & La till test för två nya krav \\
-v0.11 & 23 september & TG & Anpassat efter SRS v0.19 \\
-v0.12 & 26 september & TG & Anpassat efter SRS v0.20 och informell granskning, omformuleringar, rättning av stavfel. Ang. informell granskning, "valda tidrapporter" är taget direkt från SRS, datumet för PR är inte utskrivet i SDP\\
-v0.13 & 30 september & TG & Tagit bort test som utgått\\
-v0.14 & 5 oktober & TG & Anpassad efter SRS v0.21\\
+v0.10 & 22 september 2014 & TG & La till test för två nya krav \\
+v0.11 & 23 september 2014 & TG & Anpassat efter SRS v0.19 \\
+v0.12 & 26 september 2014 & TG & Anpassat efter SRS v0.20 och informell granskning, omformuleringar, rättning av stavfel. Ang. informell granskning, "valda tidrapporter" är taget direkt från SRS, datumet för PR är inte utskrivet i SDP\\
+v0.13 & 30 september 2014 & TG & Tagit bort test som utgått\\
+v0.14 & 5 oktober 2014 & TG & Anpassad efter SRS v0.21\\
+v1.0 & 24 oktober 2014 & TG & baseline, fixad efter SRS 1.1. FT 3.2.6, 3.2.8, 3.2.10, 3.2.12 har utgått. FT 3.2.4, 3.2.5, 3.2.7, 3.2.9, 3.2.11 är uppdaterade\\
+v1.1 & 26 oktober 2014 & TG & uppdaterad efter SRS v1.2. ST 2.1.1 har utgått\\
 
 \end{tabular}
 \section{Inledning}       
@@ -416,39 +418,49 @@ Projektledaren lyckas ta tillbaka sitt godkännande från en tidigare godkänd t
 
 %ändrad 23/9**
 \item
-Projektledaren lyckas generera statistik i form av tidrapporter per användare för samtliga veckor \req[6.3.13]
+Projektledare genererar en statistik i form av en tidrapport med den totala tid som en användare har lagt
+%Projektledaren lyckas generera statistik i form av tidrapporter per användare för samtliga veckor 
+\req[6.3.13]
 
 %ändrad 23/9**
 \item
-Projektledaren lyckas generera statistik i form av tidrapporter per roll för samtliga veckor \req[6.3.14]
+Projektledaren lyckas generera statistik i form av tidrapporter per roll för samtliga veckor. Alltså generera en tidrapport med summan av alla tid som varje medlem av en given roll har lagt ner på varje moment. \req[6.3.14]
 
 %ändrad 23/9**
 \item
-Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet \req[6.3.15]
+%Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet 
+Utgått
+\req[6.3.15]
 
 %ändrad 23/9**
 \item
-Projektledaren lyckas generera statistik i form av tidrapporter per vecka \req[6.3.16]
+Projektledaren lyckas generera statistik i form av tidrapporter per vecka. Alltså generera en tidrapport med den total tid som har lagts på varje moment under en given vecka \req[6.3.16]
 
 %ändrad 23/9**
 \item
-Projektledaren lyckas generera statistik i form av tidrapporter per användare och aktivitet \req[6.3.17]
+%Projektledaren lyckas generera statistik i form av tidrapporter per användare och aktivitet 
+Utgått
+\req[6.3.17]
 
 %ändrad 23/9**
 \item
-Projektledaren lyckas generera statistik i form av tidrapporter per användare för utvalda veckor \req[6.3.18]
+Projektledaren lyckas generera statistik i form av tidrapporter per användare för utvalda veckor. Alltså summera all tid för varje moment för en given användare och givna veckor \req[6.3.18]
 
 %ändrad 23/9**
 \item
-Projektledaren lyckas generera statistik i form av tidrapporter per roll och aktivitet \req[6.3.19]
+%Projektledaren lyckas generera statistik i form av tidrapporter per roll och aktivitet 
+Utgått
+\req[6.3.19]
 
 %ändrad 23/9**
 \item
-Projektledaren lyckas generera statistik i form av tidrapporter per roll för utvalda veckor \req[6.3.20]
+Projektledaren lyckas generera statistik i form av tidrapporter per roll för utvalda veckor. Alltså summera all tid för varje moment för en given roll och givna veckor. \req[6.3.20]
 
 %ändrad 23/9**
 \item
-Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet och vecka \req[6.3.21]
+%Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet och vecka 
+Utgått
+\req[6.3.21]
 
 %ändrad 23/9*
 %ändrad 23/9**
@@ -791,8 +803,9 @@ Alla steg i flödeschemat i figur 4 i SRS stödjs \req[6.1.13, 6.4.21]
 
 \begin{ST}
 \item
-\emph{Manuell miljö:} Genomför och verifiera utkomst av scenario 6.1.1 ifrån referens 3 (SRS för grundsystem).
-\req[6.2.10]
+Utgått
+%\emph{Manuell miljö:} Genomför och verifiera utkomst av scenario 6.1.1 ifrån referens 3 (SRS för grundsystem).
+%\req[6.2.10]
 \item
 \emph{Manuell miljö:} Genomför och verifiera utkomst av scenario 6.1.2 ifrån referens 3 (SRS för grundsystem).
 \req[6.2.11]

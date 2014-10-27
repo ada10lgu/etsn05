@@ -21,10 +21,12 @@ public class ReportHandling extends servletBase{
 	private PrintWriter out;
 	private String sort;
 	private int reportID;
+	private String type; 
 	
 	public ReportHandling(){
 		super();
 		sort = "username asc";
+		type = "all";
 		reportID = -1;
 	}
 
@@ -55,17 +57,25 @@ public class ReportHandling extends servletBase{
 			}
 			s.close();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select users.username, user_group.role, reports.id, reports.date, reports.week, reports.total_time, reports.signed "
-											+ " from user_group INNER JOIN reports on user_group.id = reports.user_group_id "
-											+ " INNER JOIN users on user_group.user_id = users.id"
-											+ " where user_group.group_id =" + groupID+ " order by "+ sort);
+			String sql = "select users.username, user_group.role, reports.id, reports.date, reports.week, reports.total_time, reports.signed "
+					+ " from user_group INNER JOIN reports on user_group.id = reports.user_group_id "
+					+ " INNER JOIN users on user_group.user_id = users.id"
+					+ " where user_group.group_id =" + groupID;
+			if(type.equals("signed")){
+				sql += " and reports.signed = 1 ";
+			}else if(type.equals("unsigned")){
+				sql += " and reports.signed = 0 ";
+			}			
+			sql += " order by "+ sort;
+			ResultSet rs = stmt.executeQuery(sql);
 			out.println("<div class='floati'>");
 			out.println("<b>Time reports for "+groupName+"</b>");
 			out.println("<table border=" + formElement("1") + ">");
 			out.println("<tr><td>Selection</td><td>Username</td><td>Last update</td><td>Week</td><td>Total Time</td><td>Signed</td></tr>");
 			
-			out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post"));
+			out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post") + ">");
 			out.println(selectSortList());
+			out.println(selectReportTypes());
 			out.println("<input type=" + formElement("submit") + " name='sort' value="+ formElement("Sort") + '>');
 			while(rs.next()){
 		    	String reportID = ""+rs.getInt("ID");
@@ -93,10 +103,14 @@ public class ReportHandling extends servletBase{
 		
 	}
 	
+	/**
+	 * Lists all groups as a html select box
+	 * @param out: Used to print the from
+	 */
 	private void listAllGroups(PrintWriter out){
 		try {
 			String html = "";
-			html += "<p> <form name=" + formElement("input") + " method=" + formElement("post");
+			html += "<p> <form name=" + formElement("input") + " method=" + formElement("post") + ">";
 			html += "<br><select name='SelectedGroupID'>";
 			html += "<option value='0' selected='true'>Select group: </option>";
 			Statement stmt = conn.createStatement();
@@ -106,6 +120,7 @@ public class ReportHandling extends servletBase{
 						+ rs.getString("name") + "</option>";
 			}
 			html += "</select>";
+			
 			html += "<input type=" + formElement("submit") + " name='OK' value="+ formElement("OK") + '>';
 			html += "</form>";
 			out.println(html);	
@@ -138,6 +153,37 @@ public class ReportHandling extends servletBase{
 				+ "Roll stigande" + "</option>";
 		html += "<option value=" + formElement("role asc") + ">"
 				+ "Roll fallande" + "</option>";
+		html += "</select>";
+		return html;
+	}
+	
+	/**
+	 * Construct html string for selecting wether to show signe/unsigned/all reports
+	 * @return a html string
+	 */
+	private String selectReportTypes(){
+		String html = "";
+		html += "<br><select name='type'>";
+		if(type.equals("all")){
+			html += "<option value='all' selected='true'>All</option>";
+			html += "<option value='signed'>"
+					+ "Signed" + "</option>";
+			html += "<option value='unsigned'>"
+					+ "Not Signed" + "</option>";
+		}else if(type.equals("signed")){
+			html += "<option value='all'>All</option>";
+			html += "<option value='signed' selected='true'>"
+					+ "Signed" + "</option>";
+			html += "<option value='unsigned'>"
+					+ "Not Signed" + "</option>";
+		}else if(type.equals("unsigned")){
+			html += "<option value='all'>All</option>";
+			html += "<option value='signed'>"
+					+ "Signed" + "</option>";
+			html += "<option value='unsigned' selected='true'>"
+					+ "Not Signed" + "</option>";
+		}
+		
 		html += "</select>";
 		return html;
 	}
@@ -260,19 +306,21 @@ public class ReportHandling extends servletBase{
 		out.println("<h1>Project Management " + "</h1>");
 		HttpSession session = request.getSession(true);
 		int groupID;
-		
-		if(request.getParameter("OK") != null){
-			String newGroupIDStr = request.getParameter("SelectedGroupID");
-			if (newGroupIDStr != null) {
-				int newGroupID = Integer.parseInt(newGroupIDStr);
-				if(newGroupID != 0){
-					groupID = newGroupID;
-					session.setAttribute("groupID", newGroupIDStr);
+		if (!loggedIn(request))
+			response.sendRedirect("LogIn");
+		else
+		{	
+			if(request.getParameter("OK") != null){
+				String newGroupIDStr = request.getParameter("SelectedGroupID");
+				if (newGroupIDStr != null) {
+					int newGroupID = Integer.parseInt(newGroupIDStr);
+					if(newGroupID != 0){
+						groupID = newGroupID;
+						session.setAttribute("groupID", newGroupIDStr);
+					}
 				}
-			}
-		}
-		
-		Object groupIDObject = session.getAttribute("groupID");		
+			}			
+			Object groupIDObject = session.getAttribute("groupID");		
 			groupID = Integer.parseInt((String) groupIDObject);
 			if(groupID > 0){
 				String reportIDString = request.getParameter("reportID");
@@ -295,7 +343,11 @@ public class ReportHandling extends servletBase{
 						if(!sortOrder.equals("0")){
 							sort = sortOrder;
 						}
-					}	
+					}
+					String types = request.getParameter("type");
+					if(types != null){
+						type = types;
+					}
 					if(session.getAttribute("name").equals(ADMIN)){
 						listAllGroups(out);
 					}
@@ -304,5 +356,6 @@ public class ReportHandling extends servletBase{
 			} else {
 				listAllGroups(out);
 			}
+		}
 	}
 }

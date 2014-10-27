@@ -153,7 +153,7 @@ public class GroupHandling extends servletBase {
 				out.println("<tr><td>Username</td><td>Select user</td></tr>");
 			}
 
-			out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post"));
+			out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post") + ">");
 			while (rs.next( )) {
 				ResultSet rsGroup = stmt2.executeQuery("select * from user_group where user_id=" + 
 								rs.getInt("id") + " AND group_id=" + groupID); //if this != null the user is already member of group

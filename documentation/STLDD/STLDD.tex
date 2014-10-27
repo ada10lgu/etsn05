@@ -40,7 +40,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 
-\fancyhead[R]{Datum: \today | Version: 1.2 | Dokumentnummer: PUSS144404}
+\fancyhead[R]{Datum: \today | Version: 1.4 | Dokumentnummer: PUSS144404}
 
 
 \title{STLDD - Software Top Level Design Document: NewPussSystem}                  	
@@ -69,7 +69,9 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.9 & 16 oktober 2014 & SG & Lade till groupID som sessionsvariabel.\\
 1.0 & 17 oktober 2014 & SG & Ändringar i klasserna och metodbeskrivningarna samt klassdiagrammet. Färdig för baseline.\\
 1.1 & 22 oktober 2014 & SG & Tagit bort privata metoder, samt uppdaterat klassdiagrammet. Även lagt till en saknad metodbeskrivning i ReportGenerator.\\
-1.2 & 23 oktober 2014 & SG & Lag till klassen changePassword, uppdaterat klassdiagrammet och klassmetoder enligt problemrapporter. 
+1.2 & 23 oktober 2014 & SG & Lag till klassen changePassword, uppdaterat klassdiagrammet och klassmetoder enligt problemrapporter. \\
+1.3 & 24 oktober 2014 & SG & Uppdaterat sekvensdiagrammen för då man lyckas lägga till och ta bort en tidrapport, samt tagit bort sekvensdiagram för då man misslyckas med dessa operationer. Uppdaterat sekvensdiagrammen för då man lyckas och misslyckas lista tidsrapporter. \\
+1.4 & 26 oktober 2014 & SG & Åtgärdat PR21. Uppdaterat sekvensdiagrammen enligt PR22.
 
 \end{tabular}
 \newpage
@@ -79,7 +81,7 @@ Dokumentet beskriver högnivådesignen för NewPussSystem tidrapporteringssystem
 
 \section{Referensdokument}
 \begin{enumerate}
-\item SRS - Software Requirements Specification (Dokumentnummer PUSS144401, version 0.21)
+\item SRS - Software Requirements Specification (Dokumentnummer PUSS144401, version 1.2)
 \item STLDD - Software Top Level Design Document: BaseBlockSystem (Dokumentnummer PUSS12004, version 1.0)
 \end{enumerate}
 
@@ -477,37 +479,41 @@ Figur \ref{newReport} visar hur servleten TimeReporting hanterar en förfrågan 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=90mm]{newReport_successful.jpg}
+\includegraphics[width=90mm]{newReport_successful_n.jpg}
 \caption{Visar sekvensen av de grundläggande metodanrop som sker då användaren framgångsrikt skapar en ny tidrapport i klassen TimeReporting.
 \label{newReport}}
 \end{figure}
 
 \noindent
-Figur \ref{removeReport} visar hur servleten TimeReporting hanterar en förfrågan om att ta bort en tidrapport och Figur \ref{removeReportFail} visar hur det hanteras när den misslyckas.
+Figur \ref{removeReport} visar hur servleten TimeReporting hanterar en förfrågan om att ta bort en tidrapport.
+%och Figur \ref{removeReportFail} visar hur det hanteras när den misslyckas.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=90mm]{removeReport_successful.jpg}
+\includegraphics[width=90mm]{removeReport_successful_n.jpg}
 \caption{Visar sekvensen av de grundläggande metodanrop som sker i klassen TimeReporting då användaren framgångsrikt tar bort en tidrapport som inte är signerad.
 \label{removeReport}}
 \end{figure}
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=90mm]{removeReport_unsuccessful.jpg}
-\caption{Visar sekvensen av de grundläggande metodanrop som sker i klassen TimeReporting då användaren misslyckat försöker ta bort en tidrapport som är signerad.
-\label{removeReportFail}}
-\end{figure}
+%följande skall tas bort
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[width=90mm]{removeReport_unsuccessful.jpg}
+%\caption{Visar sekvensen av de grundläggande metodanrop som sker i klassen TimeReporting då användaren misslyckat försöker ta bort en tidrapport som är signerad.
+%\label{removeReportFail}}
+%\end{figure}
 
 \noindent
-Figur \ref{updateReportSigned} visar hur servleten TimeReporting hanterar en förfrågan om att uppdatera en tidrapport som redan blivit signerad och Figur \ref{updateReportUnsigned} visar hur en förfrågan om att uppdatera en tidrapport som ännu inte blivit signerad hanteras.
+%Figur \ref{updateReportSigned} visar hur servleten TimeReporting hanterar en förfrågan om att uppdatera en tidrapport som redan blivit signerad och 
+Figur \ref{updateReportUnsigned} visar hur en förfrågan om att uppdatera en tidrapport som ännu inte blivit signerad hanteras.
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=90mm]{updateReport_signed.jpg}
-\caption{Visar sekvensen av de grundläggande metodanrop som sker i klassen TimeReporting då användaren misslyckat försöker uppdatera en tidrapport som är signerad.
-\label{updateReportSigned}}
-\end{figure}
+%följande skall tas bort
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[width=90mm]{updateReport_signed.jpg}
+%\caption{Visar sekvensen av de grundläggande metodanrop som sker i klassen TimeReporting då användaren misslyckat försöker uppdatera en tidrapport som är signerad.
+%\label{updateReportSigned}}
+%\end{figure}
 
 \begin{figure}[h!]
 \centering
@@ -521,14 +527,14 @@ Figur \ref{viewReportList} visar hur servleten TimeReporting hanterar en förfr�
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=90mm]{viewReportList_successful.jpg}
+\includegraphics[width=90mm]{viewReportList_successful_n.jpg}
 \caption{Visar sekvensen av de grundläggande metodanrop som sker i klassen TimeReporting då användaren framgångsrikt listar alla sina befintliga tidrapporter.
 \label{viewReportList}}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=90mm]{viewReportList_unsuccessful.jpg}
+\includegraphics[width=90mm]{viewReportList_unsuccessful_n.jpg}
 \caption{Visar sekvensen av de grundläggande metodanrop som sker i klassen TimeReporting då användaren misslyckat försöker lista alla sina befintliga tidrapporter, då denne inte har några befintliga tidrapporter.
 \label{viewReportListFail}}
 \end{figure}
@@ -546,13 +552,13 @@ Figur \ref{assignRole} visar hur servleten ProjectLeader hanterar en förfrågan
 
 \subsection{ReportHandling}
 
-Figur \ref{showAllViewReport} visar hur servleten ReportHandling hanterar en förfrågan om att visa alla tidrapporter i projektgruppen, signerade samt osignerade. Figur \ref{signedReport} visar hur servleten ProjectLeader hanterar en förfrågan om att signera en rapport.
+Figur \ref{showAllReports} visar hur servleten ReportHandling hanterar en förfrågan om att visa alla tidrapporter i projektgruppen, signerade samt osignerade. Figur \ref{signedReport} visar hur servleten ProjectLeader hanterar en förfrågan om att signera en rapport.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=90mm]{showAllViewReport.jpg}
+\includegraphics[width=90mm]{showAllReports.jpg}
 \caption{Sekvensdiagram som visar hur klassen ReportHandling hanterar en förfrågan om att visa alla tidrapporter i en projektgrupp.
-\label{showAllViewReport}}
+\label{showAllReports}}
 \end{figure}
 
 \begin{figure}[h!]
@@ -563,28 +569,12 @@ Figur \ref{showAllViewReport} visar hur servleten ReportHandling hanterar en fö
 \end{figure}
 
 \subsection{Statistics}
-Figur \ref{busiestWeek} visar hur servleten Statistics hanterar en förfrågan om att visa vilken vecka som har flest totala inlagda minuter.\\
-Figur \ref{commonActivity} visar hur servleten Statistics hanterar en förfrågan om att visa vilken aktivitet som har flest totala inlagda minuter.\\
 Figur \ref{generateStatisticsReport} visar hur servleten Statistics hanterar en förfrågan om att visa en tidrapport som sammanfattar arbetet utfört i en viss aktivitet av en viss grupp/undergrupp under en specifik tid.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=90mm]{busiestWeek.jpg}
-\caption{Sekvensdiagram som visar hur en förfrågan om att visa vilken vecka som har flest totala inlagda minuter hanteras i klassen Statistics.
-\label{busiestWeek}}
-\end{figure}
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=90mm]{commonActivity.jpg}
-\caption{Sekvensdiagram som beskriver hur en förfrågan om att visa vilken aktivitet som har flest totala inlagda minuter hanteras i klassen Statistics.
-\label{commonActivity}}
-\end{figure}
-
-\begin{figure}[h!]
-\centering
 \includegraphics[width=90mm]{generateStatisticsReport.jpg}
-\caption{Sekvensdiagram som visar hur klassen Statistics hanterar en förfrågan om att visa en tidrapport som sammanfattar arbetet utfört i en viss aktivitet av en viss grupp/undergrupp under en specifik tid.
+\caption{Sekvensdiagram som visar hur klassen Statistics hanterar en förfrågan om att visa en tidrapport som sammanfattar arbetet utfört av en viss grupp/undergrupp för valda veckor.
 \label{generateStatisticsReport}}
 \end{figure}
 

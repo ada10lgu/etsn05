@@ -209,7 +209,7 @@ public class Administration extends servletBase {
 						if (!addPossible)
 							out.println("<p>Error: Suggested user name not possible to add</p>");
 					}	else
-						out.println("<p>Error: Suggesten name not allowed</p>");
+						out.println("<p>Error: Suggested name not allowed</p>");
 				}
 
 				// check if the administrator wants to delete a user by clicking the URL in the list

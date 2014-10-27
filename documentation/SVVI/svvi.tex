@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 1.0 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 1.2 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -62,6 +62,8 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 0.7 & 7 oktober 2014 & TG & Ändringar efter informell granskning och SVVS v0.14\\
 0.8 & 10 oktober 2014 & TG & Ändringar efter formell granskning\\
 1.0 & 16 oktober 2014 & TG & godkänd efter formell granskning\\
+1.1 & 24 oktober 2014 & TG & uppdaterad efter SVVS 1.0. FT 3.2.6, 3.2.8, 3.2.10, 3.2.12 har utgått. \\
+1.2 & 26 oktober 2014 & TG & uppdaterad efter SVVS 1.1 och SRS 1.2. ST 2.1.1 har utgått. ST 1.4.1 har uppdaterats efter figur 5 i SRS\\
 
 \end{tabular}
 \section{1 Inledning}       
@@ -817,16 +819,18 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet}
 
-\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+Utgått
 
-\emph{Sluttillstånd:} Oförändrat.
+%\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
 
-\begin{enumerate}
-\item A väljer Aktivitet 1 och ``Samtliga veckor''.
-\item A trycker på ``Generera statistik''.
-\item Statistiken visas i form av en tidrapport för med endast Aktivitet 1 ifylld med värdet 30 på Subaktivitet 1 och 70 på Subaktivitet 2.
-\item Klicka på ``Tillbaka''.
-\end{enumerate}
+%\emph{Sluttillstånd:} Oförändrat.
+
+%\begin{enumerate}
+%\item A väljer Aktivitet 1 och ``Samtliga veckor''.
+%\item A trycker på ``Generera statistik''.
+%\item Statistiken visas i form av en tidrapport för med endast Aktivitet 1 ifylld med %värdet 30 på Subaktivitet 1 och 70 på Subaktivitet 2.
+%\item Klicka på ``Tillbaka''.
+%\end{enumerate}
 
 
 \item
@@ -847,16 +851,18 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per användare och aktivitet}
 
-\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+Utgått
 
-\emph{Sluttillstånd:} Oförändrat.
+%\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
 
-\begin{enumerate}
-\item A väljer M1 och Aktivitet 1.
-\item A trycker på ``Generera statistik''.
-\item Statistiken visas i form av en tidrapport för M1 med värdet 10 på Aktivitet 1, Subaktivitet 1 och 20 på Aktivitet 1, Subaktivitet 2.
-\item Klicka på ``Tillbaka''.
-\end{enumerate}
+%\emph{Sluttillstånd:} Oförändrat.
+
+%\begin{enumerate}
+%\item A väljer M1 och Aktivitet 1.
+%\item A trycker på ``Generera statistik''.
+%\item Statistiken visas i form av en tidrapport för M1 med värdet 10 på Aktivitet 1, Subaktivitet 1 och 20 på Aktivitet 1, Subaktivitet 2.
+%\item Klicka på ``Tillbaka''.
+%\end{enumerate}
 
 
 \item
@@ -877,16 +883,18 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per roll och aktivitet}
 
-\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1, M2 och är projektmedlemmar i G, M1 och M2 har rollen t1, M3 har rollen t2. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter. M3 har en tidrapportering T5 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 40 minuter och en T6 i vecka 2 på 20 minuter.
+Utgått
 
-\emph{Sluttillstånd:} Oförändrat.
+%\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1, M2 och är projektmedlemmar i G, M1 och M2 har rollen t1, M3 har rollen t2. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter. M3 har en tidrapportering T5 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 40 minuter och en T6 i vecka 2 på 20 minuter.
 
-\begin{enumerate}
-\item A väljer t1 och Aktivitet 1.
-\item A trycker på ``Generera statistik''.
-\item Statistiken visas i form av en tidrapport med värdet 10 på Aktivitet 1, Subaktivitet 1, 90 på Aktivitet 1, Subaktivitet 2 och 30 på Aktivitet 2, Subaktivitet 1.
-\item Klicka på ``Tillbaka''.
-\end{enumerate}
+%\emph{Sluttillstånd:} Oförändrat.
+
+%\begin{enumerate}
+%\item A väljer t1 och Aktivitet 1.
+%\item A trycker på ``Generera statistik''.
+%\item Statistiken visas i form av en tidrapport med värdet 10 på Aktivitet 1, Subaktivitet 1, 90 på Aktivitet 1, Subaktivitet 2 och 30 på Aktivitet 2, Subaktivitet 1.
+%\item Klicka på ``Tillbaka''.
+%\end{enumerate}
 
 
 \item
@@ -907,16 +915,18 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per aktivitet och vecka}
 
-\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1, M2 och är projektmedlemmar i G, M1 och M2 har rollen t1, M3 har rollen t2. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter. M3 har en tidrapportering T5 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 40 minuter och en T6 i vecka 2 på 20 minuter.
+Utgått
 
-\emph{Sluttillstånd:} Oförändrat.
+%\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1, M2 och är projektmedlemmar i G, M1 och M2 har rollen t1, M3 har rollen t2. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter. M3 har en tidrapportering T5 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 40 minuter och en T6 i vecka 2 på 20 minuter.
 
-\begin{enumerate}
-\item A väljer Aktivitet 1 för vecka 2 och 4.
-\item A trycker på ``Generera statistik''.
-\item Statistiken visas i form av en tidrapport med värdet 10 på Aktivitet 1, Subaktivitet 1 och 130 på Aktivitet 1, Subaktivitet 2.
-\item Klicka på ``Tillbaka''.
-\end{enumerate}
+%\emph{Sluttillstånd:} Oförändrat.
+
+%\begin{enumerate}
+%\item A väljer Aktivitet 1 för vecka 2 och 4.
+%\item A trycker på ``Generera statistik''.
+%\item Statistiken visas i form av en tidrapport med värdet 10 på Aktivitet 1, Subaktivitet 1 och 130 på Aktivitet 1, Subaktivitet 2.
+%\item Klicka på ``Tillbaka''.
+%\end{enumerate}
 
 
 \item
@@ -2079,6 +2089,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \end{enumerate}
 
 %FT 4.4.17 
+\item
 \textbf{Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen ''t1''}
 
 \emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G.
@@ -2100,6 +2111,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \end{enumerate}
 
 %FT 4.4.18 
+\item
 \textbf{Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen ''t2''}
 
 \emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G.
@@ -2121,6 +2133,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \end{enumerate}
 
 %FT 4.4.19 
+\item
 \textbf{Projektledaren försöker tilldela 7 projektmedlemmar i sitt projekt rollen ''t3''}
 
 \emph{Starttillstånd} Projektledare A är inloggad. Användare U1-U7 och en projektgrupp G finns i systemet. U1-U7 är medlemmar i G.
@@ -2335,10 +2348,10 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item Klicka på ``Utse projektledare''.
 \item Välj V2:s namn i listan.
 \item Klicka på ``OK''.
-\item Klicka på ``Byta grupp på användare''.
-\item Välj M i listan över användare.
-\item Välj G2 i listan över projektgrupper.
-\item Klicka på ``OK''.
+%\item Klicka på ``Byta grupp på användare''.
+%\item Välj M i listan över användare.
+%\item Välj G2 i listan över projektgrupper.
+%\item Klicka på ``OK''.
 \item Klicka på ``Administrationsvyn''.
 \item Klicka på ``Projektgrupper''.
 \item Klicka på ``Ta bort projektgrupper''.
@@ -2418,24 +2431,26 @@ subsubsection{Användare}
 \item
 \textbf{Administratören kan skapa projektgrupp.}
 
-\emph{Starttillstånd:} Administratören A är inloggad, sidan för att redigera projekgrupper visas.
+Utgått
 
-\emph{Sluttillstånd:} A är inloggad.
+%\emph{Starttillstånd:} Administratören A är inloggad, sidan för att redigera projekgrupper visas.
 
-\begin{enumerate}
-\item A väljer att skapa projektgrupp.
-\item A får nu fylla i ett projektgruppsnamn och tycker därefter på ''ok''.
-\item 
-\begin{enumerate}
-\item A får nu en lista över alla användare i systemet, första användare som läggs till tilldelas automatiskt projektledarrollen.
-\item Projektgruppsnamnet existerar redan, A informeras och skickas tillbaka till steg 3.
-\item A får ett felmeddelande om inga fler användare existerar, sedan omdirigeras A till huvudsidan.
-\item A får ett felmeddelande om inga fler projektgrupper kan skapas eftersom maxantalet redan är uppnått.
-\end{enumerate}
-\item A kan därefter lägga till fler projektgruppsmedlemmar. A kan dessutom lägga till ytterliggare en projektledare. Sedan klickar A på ''ok''.
-\item Kontrollera att en projektgrupp skapats
-\item Kontrollera att A omdirigeras till en sida som meddelar att en projektgrupp skapats.
-\end{enumerate}
+%\emph{Sluttillstånd:} A är inloggad.
+
+%\begin{enumerate}
+%\item A väljer att skapa projektgrupp.
+%\item A får nu fylla i ett projektgruppsnamn och tycker därefter på ''ok''.
+%\item 
+%\begin{enumerate}
+%\item A får nu en lista över alla användare i systemet, första användare som läggs %till tilldelas automatiskt projektledarrollen.
+%\item Projektgruppsnamnet existerar redan, A informeras och skickas tillbaka till steg 3.
+%\item A får ett felmeddelande om inga fler användare existerar, sedan omdirigeras A till huvudsidan.
+%\item A får ett felmeddelande om inga fler projektgrupper kan skapas eftersom maxantalet redan är uppnått.
+%\end{enumerate}
+%\item A kan därefter lägga till fler projektgruppsmedlemmar. A kan dessutom lägga till ytterliggare en projektledare. Sedan klickar A på ''ok''.
+%\item Kontrollera att en projektgrupp skapats
+%\item Kontrollera att A omdirigeras till en sida som meddelar att en projektgrupp skapats.
+%\end{enumerate}
 
 \item
 \textbf{Administratören kan lägga till eller ändra roll på projektmedlemmar i en projektgrupp.}
@@ -2919,7 +2934,7 @@ inom en sekund.}
 
 \begin{enumerate}
 
-\item Administratören försöker generera statistik 40 gånger. Tiden det tar innan servern svarar mäts varje gång.
+\item Administratören försöker logga in 40 gånger. Tiden det tar innan servern svarar mäts varje gång.
 
 \item Den uppmätta tiden utvärderas och bör inte vara högre än en (1) sekund fler än två (2) gånger.
 

@@ -68,7 +68,7 @@ public class ProjectLeader extends servletBase {
 					rs1.first();
 					int userIDint = rs1.getInt("user_group.ID");
 					if(!changeRole(userIDint, role)) {
-						out.println("<p>User role was not changed, likely due to too many users having that role</p>");
+						out.println("<p>User role change is not allowed.</p>");
 					}
 					showAllUsers(groupID, out);
 				} catch (SQLException ex) {
@@ -93,7 +93,7 @@ public class ProjectLeader extends servletBase {
 	private void listAllGroups(PrintWriter out){
 		try {
 			String html = "";
-			html += "<p> <form name=" + formElement("input") + " method=" + formElement("post");
+			html += "<p> <form name=" + formElement("input") + " method=" + formElement("post") + ">";
 			html += "<br><select name='SelectedGroupID'>";
 			html += "<option value='0' selected='true'>Select group: </option>";
 			Statement stmt = conn.createStatement();
@@ -170,7 +170,7 @@ public class ProjectLeader extends servletBase {
 				out.println("<p><b>Users in "+groupName+"</b></p>");
 				out.println("<table border=" + formElement("1") + ">");
 				out.println("<tr><td>NAME</td><td>ROLE</td><td>Select user</td>");
-				out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post"));
+				out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post") + ">");
 				out.println("</tr>");
 				while (rs.next( )) {
 

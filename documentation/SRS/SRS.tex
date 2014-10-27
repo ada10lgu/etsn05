@@ -34,7 +34,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 
-\fancyhead[R]{Datum: \today | Version: 1.1 | Dokumentnummer: PUSS144401}
+\fancyhead[R]{Datum: \today | Version: 1.2 | Dokumentnummer: PUSS144401}
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
@@ -89,6 +89,8 @@ Lade till krav, kapitel 6.3\\
 1.0 & 13 oktober 2014 & SG & Baseline.
 \\
 1.1 & 23 oktober 2014 & SG & Krav 6.3.15,17,19,21 har utgått. Krav 6.3.13,14,16,18,20 ändrats för att specificiera signerade tidrapporter. Krav 6.3.31 ändrats (format på datum i tidrapporter).
+\\
+1.2 & 24 oktober 2014 & SG & Figur 5 har uppdaterats. Scenario 6.4.6 redigerats för att beskriva mer specifik när det gäller att lägga till projektmedlemmar i en projektgrupp. Krav 6.2.10 har utgått.
 \end{tabular}
 \newpage
 \section{Inledning}       
@@ -223,7 +225,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{8}{Krav 6.2.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 \subsubsection*{Användare}
 			\requirement{9}{Utgått.}
-			\requirement{10}{Krav 6.1.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{10}{Utgått.}
 			\requirement{11}{Krav 6.1.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{12}{Krav 6.1.5 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{13}{Krav 6.1.8 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
@@ -573,23 +575,25 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
     \hline
     
     \multicolumn{2}{|p{13cm}|}{ \indent\scenario{6}} \\
-    \textbf{Syfte} & Lägga till/ändra roll på projektmedlem i projektgrupp.\\
+    \textbf{Syfte} & Lägga till projektmedlem i projektgrupp.\\
     \textbf{Trigger} & Användaren vill lägga till eller ändra projektmedlemmens roll. \\
     \textbf{Förutsättning} & Användaren måste vara inloggad som administratör.\\
     \hline
 
 	\multicolumn{2}{|p{13cm}|}{\textbf{Subuppgifter}:} \\
 
-	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer ''redigera projektmedlemmar''.}\\
-	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med samtliga projektgrupper och projektmedlemmar och en lista med samtliga användare i systemet som inte är projektmedlemmar överhuvudtaget.}\\
-	\multicolumn{2}{|p{13cm}|}{3. Användaren har nu möjlighet att flytta över projektmedlemmar och icke projektmedlemmar till olika projektgrupper. Denne kan även ange vilken roll som projekt-medlemmen eller -medlemmarna ska ha.} \\	
-	\multicolumn{2}{|p{13cm}|}{4. Användaren bekräftar genom att trycka ``OK''. Denne dirigeras till en sida med den nya informationen samt en bekräftelse.} \\	
+	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer ''redigera grupper''. .}\\
+	\multicolumn{2}{|p{13cm}|}{2. Användaren får upp en lista med samtliga projektgrupper.}\\
+	\multicolumn{2}{|p{13cm}|}{3. Användaren väljer vilken grupp som skall redigeras.} \\	
+	\multicolumn{2}{|p{13cm}|}{4. Användaren får upp en lista med projektmedlemmar och en lista med samtliga användare i systemet som inte är projektmedlemmar överhuvudtaget.} \\	
+	\multicolumn{2}{|p{13cm}|}{5. Användaren har nu möjlighet att flytta över projektmedlemmar och icke projektmedlemmar till projektgruppen. Denne kan även ange vilken roll som projektmedlemmen som flyttas över ska ha.} \\	
+	\multicolumn{2}{|p{13cm}|}{6. Användaren bekräftar genom att trycka OK. Denne dirigeras till en sida med den nya informationen samt en bekräftelse.} \\
 	\hline
     \multicolumn{2}{|p{13cm}|}{\textbf{Varianter}: }\\
     \multicolumn{2}{|p{13cm}|}{1a. Det existerar inga projektgrupper/projektmedlemmar. Användaren informeras om detta och skickas tillbaka till huvudsidan.}\\
-    \multicolumn{2}{|p{13cm}|}{4a. Användaren får felmeddelande då denne försökt att flytta över en projektledare som är den enda i sin projektgrupp. Denne ombedes att tillsätta en ny projektledare i gruppen innan förflyttning kan äga rum. Användaren dirigeras till steg 3.} \\
-    \multicolumn{2}{|p{13cm}|}{4b. Användaren ska informeras om någon av projektgrupperna eller projektrollsgrupperna (projektledare, t1, t2 eller t3) har max antal användare. Denne ska inte ha möjlighet att lägga till fler projektmedlemmar i den nämnda gruppen. Användaren skickas tillbaka till steg 3.}\\
-    \multicolumn{2}{|p{13cm}|}{4c. Om användaren tilldelar en projektmedlem en projektledaroll ska användaren informeras om projektmedlemmens projektgrupp redan har max antal projektledare. Användaren ska då inte ha möjlighet att lägga till fler projektledare i den nämnda projektgruppen. Användaren skickas tillbaka till steg 3.}\\
+    \multicolumn{2}{|p{13cm}|}{6a. Användaren får felmeddelande då denne försökt att flytta över en projektledare som är den enda i sin projektgrupp. Denne ombedes att tillsätta en ny projektledare i gruppen innan förflyttning kan äga rum. Användaren dirigeras till steg 3.} \\
+    \multicolumn{2}{|p{13cm}|}{6b. Användaren ska informeras om någon av projektgrupperna eller projektrollsgrupperna (projektledare, t1, t2 eller t3) har max antal användare. Denne ska inte ha möjlighet att lägga till fler projektmedlemmar i den nämnda gruppen. Användaren skickas tillbaka till steg 3.}\\
+    \multicolumn{2}{|p{13cm}|}{6c. Om användaren tilldelar en projektmedlem en projektledaroll ska användaren informeras om projektmedlemmens projektgrupp redan har max antal projektledare. Användaren ska då inte ha möjlighet att lägga till fler projektledare i den nämnda projektgruppen. Användaren skickas tillbaka till steg 3.}\\
 
     \hline
 \end{tabular}
