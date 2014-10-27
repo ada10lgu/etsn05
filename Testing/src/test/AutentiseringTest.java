@@ -15,14 +15,17 @@ import org.junit.Test;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.DomElement;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlOption;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
+import com.gargoylesoftware.htmlunit.html.HtmlRadioButtonInput;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
+import com.sun.org.apache.bcel.internal.generic.Select;
 
 public class AutentiseringTest extends PussTest{
 	
@@ -476,9 +479,9 @@ public class AutentiseringTest extends PussTest{
 			assertNotEquals(null, logOutButton);
 			
 //			Do Manually doesn't work
-//			page = webClient.getPage(GROUP_HANDLING_URL);
-//			logOutButton = page.getAnchorByHref(logOutLink);
-//			assertNotEquals(null, logOutButton);
+			page = webClient.getPage(GROUP_HANDLING_URL);
+			logOutButton = page.getAnchorByHref(logOutLink);
+			assertNotEquals(null, logOutButton);
 			
 			page = webClient.getPage(PROJECT_LEADER_URL);
 			logOutButton = page.getAnchorByHref(logOutLink);
@@ -695,21 +698,59 @@ public class AutentiseringTest extends PussTest{
 		System.out.println("FT2_4_1");
 	}
 	
-	//Check again
+	//Some sites accessible
 	@Test
 	public void FT2_5_1(){
 		
-		HtmlPage page = null;
 		try {
-			page = login("admin", "adminp", null);
-			webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
+			HtmlPage page = webClient.getPage(LOGIN_URL);
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			
+			page = webClient.getPage(ADMINISTRATION_URL);
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			
+			page = webClient.getPage(GROUP_ADMIN_URL);
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			
+			page = webClient.getPage(GROUP_HANDLING_URL);;
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			
+			page = webClient.getPage(PROJECT_LEADER_URL);
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			
+			page = webClient.getPage(REPORT_HANDLING_URL);
+//			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			
+//			page = webClient.getPage(STATISTICS_URL);
+//			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			
+			page = webClient.getPage(TIMEREPORTING_URL);
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			
 			page = webClient.getPage(CHANGE_PASSWORD_URL);
-			assertEquals("Could reach logged in pages without logging in", LOGIN_URL, page.getUrl().toString());
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			
+			page = webClient.getPage(PROJECT_LEADER_URL);
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+					
+			page = webClient.getPage(TIMEREPORTING_URL);
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			
+			page = webClient.getPage(TIMEREPORTING_URL_UPDATE);
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			
+			page = webClient.getPage(TIMEREPORTING_URL_NEW);
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			
+			page = webClient.getPage(TIMEREPORTING_URL_STATISTICS);
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			
+			page = webClient.getPage(CHANGE_PASSWORD_URL);	
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			
 		} catch (Exception e) {
-			assertEquals("Could reach logged in pages without logging in", LOGIN_URL, page.getUrl().toString());
 			e.printStackTrace();
 		}
-		webClient.getOptions().setThrowExceptionOnFailingStatusCode(true);
 		System.out.println("FT2_5_1");	
 	}
 	
@@ -991,9 +1032,16 @@ public class AutentiseringTest extends PussTest{
 			addProject.setValueAttribute(group6);
 			page = submit.click();
 			
+			List<DomElement> list1 = page.getElementsByIdAndOrName("selectedradiouser");
+			HtmlRadioButtonInput radioButton = (HtmlRadioButtonInput) list1.get(0);
+			radioButton.setChecked(true);
+			
+			HtmlSubmitInput addUser = page.getFormByName("input").getInputByValue("Add user");
+			page = addUser.click();
+
 			assertEquals("Not on GroupHandling_URL", GROUP_HANDLING_URL, page.getUrl().toString());
 			
-			//From here do the rest manually, see step ST2_2_1 step 3a-6
+			System.out.println("From here do the rest manually, see step ST2_2_1 step 3a-6");
 			System.out.println("Press enter to continue test ST2_2_1");
 			System.in.read();
 			
@@ -1006,7 +1054,7 @@ public class AutentiseringTest extends PussTest{
 			
 			assertEquals(group6 + " could be created twice", GROUP_ADMIN_URL, page.getUrl().toString());
 			assertTrue(page.asText().contains("Error"));
-
+			System.in.read();
 			clearDatabase();
 			
 			//Check manually if not passing since it didn't fulfill the criteria when written
@@ -1020,6 +1068,12 @@ public class AutentiseringTest extends PussTest{
 			page = submit.click();
 			
 			assertEquals(group6 + " could be created with no available users", START_URL, page.getUrl().toString());
+			ResultSet rs = sendSQLQuery("select * from groups");
+			while(rs.next()){
+				if(rs.getString("name").equals(group6)){
+					fail(group6 + "could be created with no available users");
+				}
+			}
 			assertTrue(page.asText().contains("Error"));
 			
 			clearDatabase();

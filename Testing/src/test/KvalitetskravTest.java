@@ -1,5 +1,7 @@
 package test;
 
+import org.junit.Test;
+
 public class KvalitetskravTest extends PussTest {
 	@Test
 	public void ST5_5_1() {
