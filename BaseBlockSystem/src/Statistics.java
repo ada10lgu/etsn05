@@ -347,11 +347,10 @@ public class Statistics extends servletBase {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("name");
-		boolean isAdmin = username.equals("admin");
 		if (!loggedIn(request))
 			response.sendRedirect("LogIn");
-		else
-		{	
+		else {
+			boolean isAdmin = username.equals("admin");
 			if (projectLeaderOrAdmin(username)) {
 				PrintWriter out = response.getWriter();
 				access.updateLog(null, null); // check timestamps
