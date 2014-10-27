@@ -172,7 +172,9 @@ public class AutentiseringTest extends PussTest{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		assertTrue(page.asText().contains("Error: Suggesten name not allowed"));
+		assertEquals("On the URL where add Stan is sent",  "http://localhost:8080/BaseBlockSystem/Administration?addname=Stan", page.getUrl().toString());
+		System.out.println(page.asText());
+		assertTrue(page.asText().contains("Error: Suggested name not allowed"));
 		System.out.println("FT2_1_3");
 	}
 	
@@ -211,7 +213,8 @@ public class AutentiseringTest extends PussTest{
 					fail("EricCartman has been added!");
 				}
 			}
-			assertTrue(page.asText().contains("Error: Suggesten name not allowed"));
+			assertEquals("On the URL where add Stan is sent",  "http://localhost:8080/BaseBlockSystem/Administration?addname=EricCartman", page.getUrl().toString());
+			assertTrue(page.asText().contains("Error: Suggested name not allowed"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -254,7 +257,8 @@ public class AutentiseringTest extends PussTest{
 					fail("Mr Garrison has been added!");
 				}
 			}
-			assertTrue(page.asText().contains("Error: Suggesten name not allowed"));
+			assertEquals("On the URL where add Stan is sent",  "http://localhost:8080/BaseBlockSystem/Administration?addname=Mr+Garrison", page.getUrl().toString());
+			assertTrue(page.asText().contains("Error: Suggested name not allowed"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1067,7 +1071,8 @@ public class AutentiseringTest extends PussTest{
 			addProject.setValueAttribute(group6);
 			page = submit.click();
 			
-			assertEquals(group6 + " could be created with no available users", START_URL, page.getUrl().toString());
+			assertTrue(group6 + " could be created with no available users", page.asText().contains("Error"));
+			
 			ResultSet rs = sendSQLQuery("select * from groups");
 			while(rs.next()){
 				if(rs.getString("name").equals(group6)){
