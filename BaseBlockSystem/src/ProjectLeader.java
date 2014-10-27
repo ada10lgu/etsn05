@@ -86,7 +86,48 @@ public class ProjectLeader extends servletBase {
 				showAllUsers(groupID, out);
 			}
 		} else {
-			out.println("<p>You do not have access to this page</p>");
+			listAllProjectMembers(groupID, out);
+		}
+	}
+	/**
+	 * This function is not intended for the ProjectLeader but is instead performed if a regular users wants to list Group Members
+	 * @param groupID
+	 * @param out
+	 */
+	private void listAllProjectMembers(int groupID, PrintWriter out) {
+		try {
+			Statement s = conn.createStatement();		    
+			ResultSet r = s.executeQuery("select * from groups where ID = "+groupID);
+			String groupName = "";
+			if (r.first()) {
+				groupName = r.getString("name");
+			}
+
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("select * from user_group INNER JOIN users on user_group.user_id = users.ID where user_group.group_id = "
+							+ groupID + "");
+			out.println("<p><b>Users in "+groupName+"</b></p>");
+			out.println("<table border=" + formElement("1") + ">");
+			out.println("<tr><td>NAME</td><td>ROLE</td>");
+			out.println("<p> <form name=" + formElement("input") + " method=" + formElement("post") + ">");
+			out.println("</tr>");
+			while (rs.next( )) {
+
+				String name = rs.getString("username");
+				String role = rs.getString("role");
+				out.println("<tr>");
+				out.println("<td>" + name + "</td>");
+				out.println("<td>" + role + "</td>");
+				out.println("</tr>");
+			}
+			out.println("</table>");
+			out.println("</form>");
+			stmt.close();
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
 		}
 	}
 

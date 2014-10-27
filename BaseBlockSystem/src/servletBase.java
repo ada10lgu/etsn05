@@ -152,7 +152,10 @@ public class servletBase extends HttpServlet {
         	menu+= "<li><a href='Statistics'>Statistics</a></li>";
         	menu+= "</ul>";
         	menu+= "</li>";
-    	}    	
+    	}
+    	if(!(role.equals(PROJECT_LEADER) || role.equals(ADMIN))) {
+    		menu+= "<li><a href='ProjectLeader'>Project members</a>";
+    	}
     	if(!role.equals(ADMIN)){
     		menu+= "<li><a href='TimeReporting?function=view'>Time Reports</a>";
         	menu+= "<ul>";
