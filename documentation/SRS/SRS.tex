@@ -34,7 +34,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 
-\fancyhead[R]{Datum: \today | Version: 1.2 | Dokumentnummer: PUSS144401}
+\fancyhead[R]{Datum: \today | Version: 1.3 | Dokumentnummer: PUSS144401}
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
@@ -91,6 +91,8 @@ Lade till krav, kapitel 6.3\\
 1.1 & 23 oktober 2014 & SG & Krav 6.3.15,17,19,21 har utgått. Krav 6.3.13,14,16,18,20 ändrats för att specificiera signerade tidrapporter. Krav 6.3.31 ändrats (format på datum i tidrapporter).
 \\
 1.2 & 24 oktober 2014 & SG & Figur 5 har uppdaterats. Scenario 6.4.6 redigerats för att beskriva mer specifik när det gäller att lägga till projektmedlemmar i en projektgrupp. Krav 6.2.10 har utgått.
+\\
+1.3 & 30 oktober 2014 & SG & Krav 6.3.24 har utgått. Scenario 6.4.2 och Scenario 6.4.3 uppdaterades så att "dialogruta" ersättes med "bekräftelse". Figur 6 har uppdaterats.
 \end{tabular}
 \newpage
 \section{Inledning}       
@@ -353,7 +355,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 
 		\subsubsection*{Data}
 			\requirement{23}{Tidrapportering sker i antal minuter.}
-			\requirement{24}{Namnet på aktivitet och subaktivitet ska bestå av 3-5 tecken respektive 1 tecken, ascii (decimal) värden 48-57 och 97-122 är tillåtna.}
+			\requirement{24}{Utgått.}
 			\requirement{25}{Tidinformationen får innehålla 1-5 tecken per aktivitetsruta, ascii (decimal) värden 48-57.}	
 			\requirement{26}{Veckonumret får innehålla 1-2 tecken, ascii (decimal) värden 48-57.}
 			\requirement{27}{Utgått.}
@@ -431,7 +433,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer en rapport den vill godkänna.}\\
 	\multicolumn{2}{|p{13cm}|}{2. Efter att ha kollat igenom rapporten och funnit den ``OK'' väljer den att godkänna.} \\	
 	\multicolumn{2}{|p{13cm}|}{3. Användaren trycker på knappen för att godkänna aktuell rapport.} \\
-	\multicolumn{2}{|p{13cm}|}{4. En dialogruta beskriver att rapporten blivigt godkänd.} \\
+	\multicolumn{2}{|p{13cm}|}{4. En bekräftelse visar att rapporten blivit godkänd.} \\
 	\multicolumn{2}{|p{13cm}|}{5. Användaren dirigeras tillbaka till sidan över alla tidrapporter.} \\
 	
 		
@@ -459,7 +461,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 
 	\multicolumn{2}{|p{13cm}|}{1. Användaren väljer en rapport den vill godkänna.}\\	
 	\multicolumn{2}{|p{13cm}|}{2. Användaren trycker på knappen för att ta tillbaka sitt godkänande av rapporten.} \\
-	\multicolumn{2}{|p{13cm}|}{3. En dialogruta beskriver att rapporten ej längre är godkänd.} \\
+	\multicolumn{2}{|p{13cm}|}{3. En bekräftelse visar att rapporten ej längre är godkänd. } \\
 	\multicolumn{2}{|p{13cm}|}{4. Användaren dirigeras tillbaka till sidan över alla tidrapporter.} \\
 		
 	\hline
