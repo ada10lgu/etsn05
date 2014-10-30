@@ -186,6 +186,7 @@ public class GroupHandling extends servletBase {
 			if(!inGroup){
 				out.println(selectRoleList());
 				out.println("<p><input type=" + formElement("submit") + "value=" + formElement("Add user") + '>');
+				out.println("<p><input type=" + formElement("button") + "value=" + formElement("OK") + " onclick=" + "window.location.href='ProjectGroupAdmin?mess=GroupUpdated'" + '>');
 			}
 			out.println("</form>");
 			out.println("</div>");
