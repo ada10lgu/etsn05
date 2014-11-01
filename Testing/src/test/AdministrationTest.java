@@ -286,7 +286,7 @@ public class AdministrationTest extends PussTest {
 		page = nameNewGroup(page, projectGroupName);
 
 		assertEquals("Admin kunde skapa en grupp med ett upptaget namn", GROUP_ADMIN_URL, page.getUrl().toString());
-		assertTrue("Inget felmeddelande visas", page.asText().contains("Error: Suggested project group name not possible to add"));
+		assertTrue("Inget felmeddelande visas", page.asText().contains("Error: Suggested name not allowed"));
 	}
 
 	@Test
