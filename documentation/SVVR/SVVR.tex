@@ -1,0 +1,281 @@
+\documentclass[a4paper]{article}
+\usepackage[pdftex]{graphicx}
+\usepackage{anysize}
+\marginsize{3cm}{3cm}{3cm}{3cm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{titleref}
+
+\usepackage[swedish]{babel}      
+\usepackage{epstopdf}     % För svensk avstavning och svenska
+\usepackage[osf]{mathpazo} % Palatino with smallcaps and oldstyle numbers
+\usepackage[scaled]{helvet} % Helvetica, scaled 95%
+\usepackage[titletoc]{appendix}
+
+\usepackage{fancyhdr}
+
+\fancyhf{}
+\fancyhead[L]{Ansvarig: TG}
+\fancyhead[R]{Datum: \today |Version: 1.0 | Dokumentnummer: PUSS144403}
+
+\newcommand\invisiblesubsubsection[1]{%
+  \refstepcounter{subsubsection}%
+  \addcontentsline{toc}{subsubsection}{\protect\numberline{\thesubsubsection}#1}%
+  \sectionmark{#1}}
+
+\renewcommand{\thesection}{\hspace*{-1.0em}}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+
+\newlist{FT}{enumerate}{1}
+\setlist[FT]{label=FT \thesubsubsection.\arabic*}
+
+\newlist{ST}{enumerate}{1}
+\setlist[ST]{label=ST \thesubsubsection.\arabic*}
+
+\def\reqinside{\hfil\penalty 100 \hfilneg \hbox}
+\def \req [#1]{\reqinside{[SRS krav #1]}}
+
+\def\myurl{\hfil\penalty 100 \hfilneg \hbox}
+
+\title{SVVS - Software Verification and Validation Specification: NewPussSystem}                  	
+\author{Testgruppen \\ Axel Ulmestig | Axel Goteman | Sefik Ceric \\ Victor Johnsson | Johan Kellerth Fredlund}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+\tableofcontents
+\newpage
+
+\section*{Dokumenthistorik}
+
+\begin{tabular}{ l l l p{9cm} }
+Ver. & Datum & Ansv. & Beskrivning \\\hline
+0.1 & 11 september 2014 & TG & Första utkast \\
+\end{tabular}
+\section{Inledning}       
+
+\section{Referensdokument}
+%\begin{enumerate}
+%\item System Requirements Specification v0.21
+%\item Programvaruutveckling för stora system - Projekthandledning
+%\item System Requirements Specification: BaseBlockSystem
+%\end{enumerate}
+
+\section{Definitioner}
+
+\subsection{Dokument}
+
+\begin{enumerate}
+
+\item SDP: Software Development Plan
+
+\item SRS: System Requirements Specification
+
+\item SVVS: Software Verification and Validation Specification
+
+\item STLDD: Software Top Level Design Document
+
+\item SVVR: Software Verification and Validation Report
+
+\item SSD: System Specification Document
+
+\item PFR: Project Final Report
+
+
+\end{enumerate}
+
+\section{Test Resultat}
+%Skriv resultat under de rubriker de ska ha
+
+\section{Funktionstestsspecifikation}
+Efter varje testfall står vilket eller vilka krav som det testar (Ref. 1).
+
+%+++++++++++++++++++++++++++% 
+%BÖRJAN på FT:generella krav%
+%+++++++++++++++++++++++++++%
+
+\subsection{Generella krav}
+
+\subsubsection{Användare}
+
+\subsubsection{Projektledare}
+
+\subsubsection{Administratör}
+
+\subsubsection{Data}
+
+%+++++++++++++++++++++++++++% 
+%SLUTET på FT:generella krav%
+%+++++++++++++++++++++++++++%
+
+
+
+
+
+%++++++++++++++++++++++++++% 
+%BÖRJAN på FT:autentisering%
+%++++++++++++++++++++++++++%
+%Sektion av Axel G
+
+\subsection{Autentisering}
+
+\subsubsection{Övergripande}
+
+%Användare
+\subsubsection{Användare}
+
+%Administratör
+\subsubsection{Administratör}
+
+%Data
+\subsubsection{Data}
+
+%++++++++++++++++++++++++++% 
+%SLUTET på FT:autentisering%
+%++++++++++++++++++++++++++%
+
+
+
+
+
+
+
+%++++++++++++++++++++++++++++% 
+%BÖRJAN på FT:tidrapportering%
+%++++++++++++++++++++++++++++%
+%Johan
+\subsection{Tidrapportering}
+
+%tidrapportering
+\subsubsection{Projektmedlem}
+
+%tidrapportering
+\subsubsection{Projektledare}
+
+%tidrapportering
+\subsubsection{Data}
+
+%+++++++++++++++++++++++++++%
+%SLUT på FT:Tidrapportering+%
+%+++++++++++++++++++++++++++%
+
+
+
+
+
+
+%+++++++++++++++++++++++++++%
+%början på FT:Administration%
+%+++++++++++++++++++++++++++%
+%------Victor Johnsson------
+
+\subsection{Administration}
+\subsubsection{Övergripande}
+
+\subsubsection{Projektledare}
+
+\subsubsection{Administratör}
+
+\subsubsection{Data}
+
+%+++++++++++++++++++++++++++% 
+%slutet på FT:Administration%
+%+++++++++++++++++++++++++++%
+
+
+%!!!!!!!!!!!!!
+%!!!!!!!!!!!!!
+%!!!!!!!!!!!!!
+%HÄR BÖRJAR ST
+%!!!!!!!!!!!!!
+%!!!!!!!!!!!!!
+%!!!!!!!!!!!!!
+
+\newpage
+
+\section{Systemtestspecifikation}
+
+%+++++++++++++++++++++++++++%
+%BÖRJAN på ST:generella krav%
+%+++++++++++++++++++++++++++%
+\subsection{Generella krav}
+
+\invisiblesubsubsection{Användare}
+
+\subsubsection{Projektmedlem}
+
+\subsubsection{Projektledare}
+
+\subsubsection{Administratör}
+
+\invisiblesubsubsection{Data}
+
+%+++++++++++++++++++++++++%
+%SLUT på ST:generella krav%
+%+++++++++++++++++++++++++%
+
+
+%++++++++++++++++++++++++++%
+%BÖRJAN på ST:autentisering%
+%++++++++++++++++++++++++++%
+\subsection{Autentisering}
+
+\subsubsection{Användare}
+
+\subsubsection{Administratör}
+
+%++++++++++++++++++++++++%
+%SLUT på ST:autentisering%
+%++++++++++++++++++++++++%
+
+
+
+%++++++++++++++++++++++++++++%
+%BÖRJAN på ST:tidrapportering%
+%++++++++++++++++++++++++++++%
+%Johan
+\subsection{Tidrapportering}
+\subsubsection{Projektmedlem}
+
+\subsubsection{Projektledare}
+
+%++++++++++++++++++++++++++%
+%SLUT på ST:tidrapportering%
+%++++++++++++++++++++++++++%
+
+
+
+
+%+++++++++++++++++++++++++++%
+%BÖRJAN på ST:Administration%
+%+++++++++++++++++++++++++++%
+%------Victor Johnsson------
+
+\subsection{Administration}
+\invisiblesubsubsection{Övergripande}
+
+\subsubsection{Projektledare}
+
+\subsubsection{Administratör}
+
+\invisiblesubsubsection{Data}
+
+%+++++++++++++++++++++++++++%
+%SLUTET på ST:Administration%
+%+++++++++++++++++++++++++++%
+
+
+
+
+\subsection{Kvalitetskrav}
+
+\subsubsection{Prestanda}
+
+% prestanda slut
+
+
+
+\end{document}
