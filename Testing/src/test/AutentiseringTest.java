@@ -1050,7 +1050,6 @@ public class AutentiseringTest extends PussTest{
 			
 			assertEquals(group6 + " could be created twice", GROUP_ADMIN_URL, page.getUrl().toString());
 			assertTrue(page.asText().contains("Error"));
-			System.in.read();
 			clearDatabase();
 			
 			//Check manually if not passing since it didn't fulfill the criteria when written
