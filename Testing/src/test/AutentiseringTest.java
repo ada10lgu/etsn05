@@ -914,7 +914,7 @@ public class AutentiseringTest extends PussTest{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("FT2_5_5");
+		System.out.println("FT2_5_6");
 		
 	}	
 	
