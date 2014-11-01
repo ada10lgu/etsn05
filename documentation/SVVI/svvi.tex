@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 1.2 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 1.3 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -64,6 +64,7 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 1.0 & 16 oktober 2014 & TG & godkänd efter formell granskning\\
 1.1 & 24 oktober 2014 & TG & uppdaterad efter SVVS 1.1. FT 3.2.6, 3.2.8, 3.2.10, 3.2.12 har utgått. \\
 1.2 & 26 oktober 2014 & TG & uppdaterad efter SVVS 1.2 och SRS 1.2. ST 2.1.1 har utgått. ST 1.4.1 har uppdaterats efter figur 5 i SRS\\
+1.3 & 1 november 2014 & TG & Små uppdateringar\\
 
 \end{tabular}
 \section{1 Inledning}       
@@ -72,8 +73,8 @@ Detta dokument innehåller detaljerade testinstruktioner som ska genomföras und
 
 \section{2 Referensdokument}
 \begin{enumerate}
-\item System Validation and Verification Specification 1.0
-\item Software Requirements Specification 0.21
+\item System Validation and Verification Specification 1.2
+\item Software Requirements Specification 1.3
 \end{enumerate}
 
 
@@ -655,7 +656,10 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, ny tidrapport visas.
 
 \begin{enumerate}
-\item A trycker på ``Skapa en ny tidrapport''.
+\item A trycker på ``New'' och skriver in ``1'' i fältet.
+\item A trycker på ``Submit''.
+\item A skriver in ``20'' i aktivitet 1, subaktivitet 1.
+\item A trycker på ``Save''.
 \item Kontrollera i databasen att tidrapportern är skapad.
 \item Kontrollera i databasen att tidrapporten inte är signerad när den skapas.
 \end{enumerate}
@@ -668,10 +672,10 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, T har nu 30 minuter registrerat på Aktivitet 1, Subaktivitet 1.
 
 \begin{enumerate}
-\item A trycker på ``Uppdatera tidrapport''.
+\item A trycker på ``Update''.
 \item A väljer T.
 \item A skriver in 30 i fältet Aktivitet 1, Subaktivitet 1.
-\item A trycker på ``Spara''.
+\item A trycker på ``Save''.
 \item Kontrollera i databasen att T har 30 minuter på Aktivitet 1, Subaktivitet 1.
 \end{enumerate}
 
@@ -683,9 +687,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering. Tidrapport raderad.
 
 \begin{enumerate}
-\item A trycker på ``Ta bort tidrapport''.
+\item A trycker på ``Update''.
 \item A väljer en av sina egna osignerade tidrapporter.
-\item A trycker på knappen ``Radera''.
+\item A trycker på knappen ``Delete''.
 \item Kontrollera i databasen att tidrapporten är raderad.
 \end{enumerate}
 
@@ -698,7 +702,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A tryck på ``Visa tidrapporter''.
+\item A tryck på ``View''.
 \item Kontrollera att denne endast ser sina egna två tidrapporter.
 \end{enumerate}
 
@@ -711,9 +715,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A trycker på ``Ta bort tidrapporter''.
-\item A väljer sin signerade tidrapport.
-\item Kontrollera att funktionaliteten för att radera tidrapporten inte finns.
+\item A trycker på ``Update''.
+\item Kontrollera att A inte kan se sin signerade rapport på Update sidan.
 \end{enumerate}
 
 \item
@@ -724,9 +727,8 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A trycker på ``Uppdatera tidrapport''.
-\item A väljer sin signerade tidrapport.
-\item Kontrollera att funktionaliteten för att redigera tidrapporten inte finns.
+\item A trycker på ``Update''.
+\item Kontrollera att A inte kan se sin signerade rapport på Update sidan.
 \end{enumerate}
 
 \end{FT}
@@ -739,12 +741,12 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren har tillgång till samtliga projektmedlemmars tidrapporter i sin projektgrupp}
 
-\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Hantera tidrapporter'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 1 på 10 minuter och en T2 i vecka 2 på 20 minuter. M2 har en tidrapportering T3 för Aktivitet 1, Subaktivitet 1, i vecka Aktivitet 1, Subaktivitet 1 på 10 minuter och en T4 i vecka 3 på 20 minuter. 
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Project Management'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 1 på 10 minuter och en T2 i vecka 2 på 20 minuter. M2 har en tidrapportering T3 för Aktivitet 1, Subaktivitet 1, i vecka Aktivitet 1, Subaktivitet 1 på 10 minuter och en T4 i vecka 3 på 20 minuter. 
 
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A trycker på ``generera tidrapporter''.
+\item A trycker på ``Reports''.
 \item Kontrollera att A kan se tidrapporterna T1 till T4.
 \end{enumerate}
 
@@ -752,14 +754,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren lyckas godkänna en ej tidigare signerad tidrapport från en medlem i sin projektgrupp}
 
-\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Hantera tidrapporter'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M är en projektmedlem i G. M har en tidrapportering T för Aktivitet 1, Subaktivitet 1, i vecka 1 på 10 minuter. T är osignerad.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Reports'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M är en projektmedlem i G. M har en tidrapportering T för Aktivitet 1, Subaktivitet 1, i vecka 1 på 10 minuter. T är osignerad.
 
 \emph{Sluttillstånd:} Oförändrat förutom att T är signerat.
 
 \begin{enumerate}
-\item A trycker på ``Signera'' vid T.
-\item T visas.
-\item A trycker på ``Signera''.
+\item A väljer T
+\item A trycker på ``Sign''.
 \item Kontrollera i databasen att tidrapporten är signerad.
 \end{enumerate}
 
@@ -772,10 +773,9 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \emph{Sluttillstånd:} Oförändrat förutom att T är osignerad.
 
 \begin{enumerate}
-\item A trycker på ``Avsignera'' vid T.
-\item T visas.
-\item A trycker på ``Avsignera''.
-\item Kontrollera i databasen att tidrapporten är signerad.
+\item A väljer T
+\item A trycker på ``Unsign'' vid T.
+\item Kontrollera i databasen att tidrapporten inte är signerad.
 \end{enumerate}
 
 
@@ -783,15 +783,14 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per användare för samtliga veckor}
 
-\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M är projektmedlem i G. M har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. 
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Statistics'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M är projektmedlem i G. M har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. 
 
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A väljer M och ``Samtliga veckor''.
-\item A trycker på ``Generera statistik''.
-\item Statistiken visas i form av en tidrapport med M och värdet 60 på Aktivitet 1, Subaktivitet 1.
-\item Klicka på ``Tillbaka''.
+\item A väljer M.
+\item A trycker på ``Genererate statistics''.
+\item Kontrollera att en ny tidrapport visas med alla Ms tidrapporter summerade.
 \end{enumerate}
 
 
@@ -799,15 +798,14 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per roll för samtliga veckor}
 
-\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 1, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Statistics'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 1, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
 
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A väljer t1 och ``Samtliga veckor''.
-\item A trycker på ``Generera statistik''.
-\item Statistiken visas i form av en tidrapport för rollen t1 och värdet 130 på Aktivitet 1, Subaktivitet 1.
-\item Klicka på ``Tillbaka''.
+\item A väljer t1.
+\item A trycker på ``Genererate statistics''.
+\item Kontrollera att en ny tidrapport visas med alla tidrapporter för rollen t1 summerade.
 \end{enumerate}
 
 
@@ -831,15 +829,14 @@ Utgått
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per vecka}
 
-\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Statistics'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 i vecka 3 på 20 minuter och en T3 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
 
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A väljer både M1 och M2 och vecka 2.
-\item A trycker på ``Generera statistik''.
-\item Statistiken visas i form av en tidrapport med M1 och M2 och värdet 10 på Aktivitet 1, Subaktivitet 1 och 20 på Aktivitet 1, Subaktivitet 2.
-\item Klicka på ``Tillbaka''.
+\item A väljer vecka 2.
+\item A trycker på ``Genererate statistics''.
+\item Kontrollera att statistiken visas i form av en tidrapport med M1 och M2s tidrapporter för vecka 2.
 \end{enumerate}
 
 
@@ -863,15 +860,14 @@ Utgått
 \item
 \textbf{Projektledaren lyckas generera statistik i form av tidrapporter per användare för utvalda veckor}
 
-\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Generera statistik'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
+\emph{Starttillstånd:} Projektledare är A inloggad, inne på ``Statistics'', se figur 4 i referens 2. A är projektledare i projektgrupp G. M1 och M2 är projektmedlemmar i G, båda har rollen t1. M1 har en tidrapportering T1 för Aktivitet 1, Subaktivitet 1, i vecka 2 på 10 minuter, en T2 för Aktivitet 1, Subaktivitet 2, i vecka 3 på 20 minuter och en T3 för Aktivitet 2, Subaktivitet 1 i vecka 4 på 30 minuter. M2 har en tidrapportering T4 för Aktivitet 1, Subaktivitet 2, i vecka 1 på 50 minuter och en T5 i vecka 2 på 20 minuter.
 
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
 \item A väljer M1 för vecka 1, 2 och 4.
-\item A trycker på ``Generera statistik''.
-\item Statistiken visas i form av en tidrapport för M1 med värdet 10 på Aktivitet 1, Subaktivitet 1 och 30 på Aktivitet 2, Subaktivitet 1.
-\item Klicka på ``Tillbaka''.
+\item A trycker på ``Genererate statistics''.
+\item Kontrollera att en ny tidrapport visas med M1s rapporter för vecka 1,2 och 4.
 \end{enumerate}
 
 
@@ -900,10 +896,9 @@ Utgått
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A väljer t1 och vecka 1, 2 och 4.
-\item A trycker på ``Generera statistik''.
-\item Statistiken visas i form av en tidrapport med värdet 10 på Aktivitet 1, Subaktivitet 1, 30 på Aktivitet 2, Subaktivitet 1 och 70 på Aktivitet 1, Subaktivitet 2.
-\item Klicka på ``Tillbaka''.
+\item A väljer t2 för vecka 1, 2 och 4.
+\item A trycker på ``Genererate statistics''.
+\item Kontrollera att en ny tidrapport visas med t2 rapporter för vecka 1,2 och 4.
 \end{enumerate}
 
 
@@ -970,16 +965,7 @@ Utgått
 
 \item\textbf{Aktivitetsnamn och subaktivitetsnamn har rätt utseende}
 
-\emph{Starttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 20 minuter registrerat på Aktivitet 1, Subaktivitet 1, finns i systemet.
-
-\emph{Sluttillstånd:} Oförändrat.
-
-\begin{enumerate}
-\item A trycker på ``Uppdatera tidrapport''.
-\item A väljer T.
-\item För alla aktivitetsnamn, kontrollera att de består av 3-5 tecken och ascii värden 48-57 och 97-122 (0-9 och a-z).
-\item För alla subaktivitetsnamn, kontrollera att de består av 1 tecken och ascii värden 48-57 och 97-122 (0-9 och a-z).
-\end{enumerate}
+Utgått
 
 \item\textbf{Ogiltig tidinformation}
 
@@ -988,18 +974,18 @@ Utgått
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A trycker på ``Uppdatera tidrapport''.
+\item A trycker på ``Update''.
 \item A väljer T.
 \item A Skriver in ``123456'' på Aktivitet 1, Subaktivitet 1.
-\item A trycker på ``Spara''.
+\item A trycker på ``Save''.
 \item Ett felmeddelande som säger att tidrapporten innehåller ogilitg tidinformation visas.
 \item A trycker på ``OK''.
 \item A Skriver in ``123:5'' på Aktivitet 1, Subaktivitet 1.
-\item A trycker på ``Spara''.
+\item A trycker på ``Save''.
 \item Ett felmeddelande som säger att tidrapporten innehåller ogilitg tidinformation visas.
 \item A trycker på ``OK''.
 \item A Skriver in ``/'' på Aktivitet 1, Subaktivitet 1.
-\item A trycker på ``Spara''.
+\item A trycker på ``Save''.
 \item Ett felmeddelande som säger att tidrapporten innehåller ogilitg tidinformation visas.
 \item A trycker på ``OK''.
 \end{enumerate}
@@ -1012,11 +998,11 @@ Utgått
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering, se figur 3 i referens 2. En osignerad tidrapport T för A med 1239 minuter registrerat på Aktivitet 1, Subaktivitet 1 och 0 minuter registrerat på Aktivitet 1, Subaktivitet 2, finns i systemet.
 
 \begin{enumerate}
- \item A trycker på ``Uppdatera tidrapport''.
+ \item A trycker på ``Update''.
  \item A väljer T.
  \item A Skriver in ``01239'' på Aktivitet 1, Subaktivitet 1.
  \item A Skriver in ``0'' på Aktivitet 1, Subaktivitet 2.
- \item A trycker på ``Spara''.
+ \item A trycker på ``Save''.
 \end{enumerate}
 
 \item\textbf{Ogiltigt veckonummer}
@@ -1026,18 +1012,18 @@ Utgått
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A trycker på ``Uppdatera tidrapport''.
+\item A trycker på ``Update''.
 \item A väljer T.
 \item A Skriver in ``123'' på veckonummer.
-\item A trycker på ``Spara''.
+\item A trycker på ``Save''.
 \item Ett felmeddelande som säger att tidrapporten innehåller ogilitgt veckonummer visas.
 \item A trycker på ``OK''.
 \item A Skriver in ``1:'' på veckonummer.
-\item A trycker på ``Spara''.
+\item A trycker på ``Save''.
 \item Ett felmeddelande som säger att tidrapporten innehåller ogilitgt veckonummer visas.
 \item A trycker på ``OK''.
 \item A Skriver in ``/'' på veckonummer.
-\item A trycker på ``Spara''.
+\item A trycker på ``Save''.
 \item Ett felmeddelande som säger att tidrapporten innehåller ogilitgt veckonummer visas.
 \item A trycker på ``OK''.
 \end{enumerate}
@@ -1049,10 +1035,10 @@ Utgått
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
- \item A trycker på ``Uppdatera tidrapport''.
+ \item A trycker på ``Update''.
  \item A väljer T.
  \item A Skriver in ``90'' på veckonummer.
- \item A trycker på ``Spara''.
+ \item A trycker på ``Save''.
 \end{enumerate}
 
 % \item
@@ -1123,7 +1109,7 @@ Utgått
 \emph{Sluttillstånd:} Projektmedlem A inloggad, inne på funktionalitetssidan för tidrapportering.
 
 \begin{enumerate}
-\item A Tryck på visa tidrapporter
+\item A trycker på ``View''.
 \item A väljer godtycklig tidrapport
 \item Kontrollera att det visas tydligt om tidrapporten är godkänd eller ej.
 \end{enumerate}
@@ -1135,7 +1121,7 @@ Utgått
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A trycker på ``Uppdatera tidrapport''.
+\item A trycker på ``Update''.
 \item A väljer T.
 \item Kontrollera att aktivitetsnamnen är unika.
 \end{enumerate}
@@ -1147,7 +1133,7 @@ Utgått
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A trycker på ``Uppdatera tidrapport''.
+\item A trycker på ``Update''.
 \item A väljer T.
 \item Kontrollera att subaktivitetsnamnen är unika.
 \end{enumerate}
@@ -1159,11 +1145,11 @@ Utgått
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item A trycker på ``Uppdatera tidrapport''.
+\item A trycker på ``Update''.
 \item A väljer T.
 \item Kontrollera att tidrapporten har rätt utseende, se figur 8 i referens 2.
 \item Kontrollera att A:s namn är ifyllt i Namn.
-\item Kontrollera att Datum för senaste ändring är ifyllt på formatet ``dag månad år''.
+\item Kontrollera att Datum för senaste ändring är ifyllt på formatet ``år-månad-dag''.
 \item Kontrollera att Projektgrupp är A:s projektgruppsnamn.
 \item Kontrollera att det finns ett veckonummer.
 \end{enumerate}
@@ -2525,11 +2511,11 @@ Utgått
 \item[] (b) 100
 \item[] (c) Ingenting
 \end{itemize}
-\item För varje fall i steg 3a-c trycker A på ``OK''
+\item För varje fall i steg 3a-c trycker A på ``Submit''
 \item Kontrollera att ingen tidrapport genereras.
 \item Kontrollera att ett felmeddelande genereras om att veckonumret är otillåtet.
 \item Kontrollera att A skickas tillbaka till sidan där man skriver in veckonummer.
-\item A skriver in 51 i I och trycer på ``OK''.
+\item A skriver in 51 i I och trycer på ``Submit''.
 \item Kontrollera att en ny tidrapport genereras med veckonumret 51 samt dagens datum ifyllt.
 \item A skriver in i godtycklig ruta:
 \begin{itemize}
@@ -2537,15 +2523,15 @@ Utgått
 \item[] (b) 123456
 \end{itemize}
 \item Kontrollera att A kan skriva in tidinformationen i 10a-b
-\item För varje fall i steg 10a-b trycker A på ``Skicka''. 
+\item För varje fall i steg 10a-b trycker A på ``Save''. 
 \item Kontrollera att ingen tidrapport sparas och att sidan för specificerad tidrapport laddas om.
 \item A skriver in 30 i godtycklig ruta och 150 i en annan.
-\item A trycker på ``Skicka''.
+\item A trycker på ``Save''.
 \item Kontrollera att tidrapporten är skapad och att A får en bekräftelse om att den är sparad i databasen.
 \item Kontrollera att användaren kan se totaltiden från tidrapporten.
 \item A skriver in URL för funktionalitetssidan för tidrapportering.
-\item Kontrollera att A kan se, under fältet I, information om att tidrapporten för vecka 51 var senast sparad samt dagens datum.
-\item A skriver in 51 i fältet I och trycker på ``OK''.
+\item Kontrollera att A kan se, under fältet I, information om att tidrapporten för vecka 51 var senast sparad.
+\item A skriver in 51 i fältet I och trycker på ``Submit''.
 \item Kontrollera att en ny tidrapport inte skapas.
 \item Kontrollera att denna rapport hämtas från databasen och visas för A.
 \item Kontrollera att den visade rapporten kan redigeras.
@@ -2561,32 +2547,32 @@ Utgått
 
 \begin{enumerate}
 \item A skriver in URL för funktionalitetssidan för tidrapportering och får tillgång till sidan.
-\item A väljer ``Ta bort/redigera tidrapport''.
+\item A väljer ``Update''.
 \item Kontrollera att A får upp en lista med tidrapporter.
 \item A väljer tidrapporten för vecka 12.
 \item Kontrollera att funktionaliten för redigering eller radering av tidrapporten inte finns.
-\item A skriver in URL för ``Ta bort/redigera tidrapporter''.
+\item A skriver in URL för ``Update''.
 \item A väljer tidrapporten för vecka 51.
-\item Kontrollera att A kan välja både ``Redigera'' och ``Ta bort''.
-\item A trycker på ``Redigera''.
+\item Kontrollera att A kan välja både ``Delete'' och ``Update''.
+\item A trycker på ``Update''.
 \item Användaren skriver in i godtycklig tom ruta:
 \begin{itemize}
 \item[] (a) Text som inte är ascii
 \item[] (b) 123456
 \end{itemize}
-\item För varje fall i steg 12a-b trycker A på ``Skicka''. 
+\item För varje fall i steg 12a-b trycker A på ``Save''. 
 \item Kontrollera att ingen tidrapport sparas och att sidan för specificerad tidrapport laddas om.
-\item A skriver in 100 i godtycklig tom ruta och trycker på ``OK''.
+\item A skriver in 100 i godtycklig tom ruta och trycker på ``Submit''.
 \item Kontrollera att tidrapporten är uppdaterad.
-\item A skriver in URL för ``Ta bort/redigera tidrapporter''.
+\item A skriver in URL för ``Update''.
 \item A väljer vecka 51.
-\item A trycker på ``Ta bort''.
+\item A trycker på ``Delete''.
 \item Kontrollera att en bekräftelseruta visas.
-\item A trycker på ``Nej''.
+\item A trycker på ``Cancel''.
 \item Kontrollera att tidrapporten inte är borttagen och att sidan där tidrapporten listas visas.
 \item A väljer vecka 51.
-\item A trycker på ``Ta bort''.
-\item A trycker på ``Ja''.
+\item A trycker på ``Delete''.
+\item A trycker på ``Ok''.
 \item Kontrollera att tidrapport är borttagen.
 \end{enumerate}
 
@@ -2603,22 +2589,21 @@ Utgått
 \item A loggar in, fel lösenord rätt användarnamn. Misslyckas, sidan laddas om.
 \item A skriver in rätt lösenord och rätt användarnamn, lyckas, huvudsidan visas.
 \item Kontrollera att A kan se projektmedlemsfunktionaliteter på funktionalitetssidan I.
-\item A väljer ``Lista medlemmar''.
+\item A väljer ``Project members''.
 \item Kontrollera att alla projektmedlemmar i As grupp listas.
 \item A går tillbaka till I.
-\item A väljer ``Tidrapportering''.
-\item A väljer ``Ny tidrapport''
-\item Fyller i tidrapport, 50 i godtycklig ruta, trycker på ``Skicka'', lyckas. Tidrapport x skapad.
+\item A väljer ``Time Reports''.
+\item A väljer ``New''
+\item Fyller i tidrapport, 50 i godtycklig ruta, trycker på ``Save'', lyckas. Tidrapport x skapad.
 \item A går tillbaka till I.
-\item A väljer "Redigera tidrapport".
+\item A väljer "Update".
 \item Kontrollera att gamla tidrapporter listas.
 \item Väljer tidrapport y, kan inte redigera.
-\item A går tillbaka till ``Redigera tidrapport''.
+\item A går tillbaka till ``Update''.
 \item A väljer tidrapport x.
 \item A ändrar/tar bort rapporten.
-\item A väljer ``Visa statistik''.
-\item Kontrollera att olika sorters statistik listas (statistik per användare, per roll etc.).
-\item A genererar statistik per roll, alla veckor.
+\item A väljer ``statistics''.
+\item Kontrollera att A kan summera sina tidrapporter.
 \item A loggar ut.
 \item Kontrollera att A är utloggad.
 
@@ -2645,27 +2630,27 @@ Utgått
 \item A skriver in fel lösenord, rätt användarnamn. Misslyckas, sidan laddas om.
 \item A skriver in rätt lösenord och rätt användarnamn. Lyckas logga in.
 \item Kontrollera att A har tillgång till projektledarfuntionaliteter.
-\item A väljer ``Lista medlemmar''.
+\item A väljer ``Project Management''.
 \item Kontrollera att A ser alla medlemmar och dess roller.
 \item A byter roll på medlem B till t2.
 \item A klickar på menyn.
-\item A väljer ``Tidrapportering''.
-\item A väljer ``Ny tidrapport''.
-\item A fyller in ny tidrapport och trycker på ``Skicka''.
+\item A väljer ``Time Reports''.
+\item A väljer ``New''.
+\item A fyller in ny tidrapport och trycker på ``Save''.
 \item Kontrollera att tidrapport är skapad.
-\item A skriver in URL för ``Tidrapportering''.
-\item A trycker ``Redigera tidrapport''.
+\item A skriver in URL för ``Time Reports''.
+\item A trycker ``Update''.
 \item Kontrollera att en lista med tidrapporter kan ses.
 \item A försöker redigera/ta bort sin signerade rapport, går inte.
 \item A ändrar/tar bort sin osignerade rapport.
-\item A skriver URL ``Tidrapportering''.
-\item A väljer ``Visa statistik''.
+\item A skriver URL ``Time Reports''.
+\item A väljer ``Statistics'' i ``Project Management''.
 \item Kontrollera att A kan se en lista med statistik (per användare, per roll etc.)
 \item A väljer statistik per användare för alla veckor.
-\item A trycker ``Generera''.
+\item A trycker ``Generera statistics''.
 \item Kontrollera att A kan se statistiken.
-\item A skriver URL ``Tidrapportering''.
-\item A väljer ``Visa alla tidrapporter''.
+\item A skriver URL ``Project Management''.
+\item A väljer ``Reports''.
 \item A väljer projektmedlem B, sätter tidrapport x till godkänd.
 \item A loggar ut.
 \item Kontrollera att A är utloggad.
