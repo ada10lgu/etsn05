@@ -29,7 +29,6 @@ import com.sun.org.apache.bcel.internal.generic.Select;
 
 public class AutentiseringTest extends PussTest{
 	
-	//not working do manually
 	@Test
 	public void FT2_1_1(){
 		
@@ -173,7 +172,6 @@ public class AutentiseringTest extends PussTest{
 			e.printStackTrace();
 		}
 		assertEquals("On the URL where add Stan is sent",  "http://localhost:8080/BaseBlockSystem/Administration?addname=Stan", page.getUrl().toString());
-		System.out.println(page.asText());
 		assertTrue(page.asText().contains("Error: Suggested name not allowed"));
 		System.out.println("FT2_1_3");
 	}
@@ -579,7 +577,9 @@ public class AutentiseringTest extends PussTest{
 			
 
 			page = login(username, password, group);
-			TimeUnit.MINUTES.sleep(20);
+			System.out.print("Waiting for 21 minuites...");
+			TimeUnit.MINUTES.sleep(21);
+			System.out.println("Done!");
 			page = webClient.getPage(TIMEREPORTING_URL);
 			assertEquals("Still has access to TIMEREPORTING_URL even after 20 min of inactivity",LOGIN_URL, page.getUrl().toString());
 					
@@ -587,7 +587,6 @@ public class AutentiseringTest extends PussTest{
 			e.printStackTrace();
 		}
 		
-		assertTrue(page.asText().contains("Error"));
 		System.out.println("FT2_2_2");
 	}
 
@@ -702,8 +701,7 @@ public class AutentiseringTest extends PussTest{
 		System.out.println("FT2_4_1");
 	}
 	
-	//Some sites accessible
-	@Test
+		@Test
 	public void FT2_5_1(){
 		
 		try {
@@ -723,10 +721,10 @@ public class AutentiseringTest extends PussTest{
 			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
 			
 			page = webClient.getPage(REPORT_HANDLING_URL);
-//			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
 			
-//			page = webClient.getPage(STATISTICS_URL);
-//			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
+			page = webClient.getPage(STATISTICS_URL);
+			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
 			
 			page = webClient.getPage(TIMEREPORTING_URL);
 			assertEquals("Not on login page",  LOGIN_URL, page.getUrl().toString());
@@ -919,13 +917,6 @@ public class AutentiseringTest extends PussTest{
 		System.out.println("FT2_5_5");
 		
 	}	
-
-	//Kontrollera vad som anges vid kravljustrering eftersom motstridiga krav
-	@Test
-	public void ST2_1_1(){
-		
-		System.out.println("ST2_1_1");
-	}
 	
 	@Test
 	public void ST2_1_2(){
@@ -1045,6 +1036,7 @@ public class AutentiseringTest extends PussTest{
 
 			assertEquals("Not on GroupHandling_URL", GROUP_HANDLING_URL, page.getUrl().toString());
 			
+//			System.out.println(page.asText());
 			System.out.println("From here do the rest manually, see step ST2_2_1 step 3a-6");
 			System.out.println("Press enter to continue test ST2_2_1");
 			System.in.read();
