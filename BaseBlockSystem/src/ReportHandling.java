@@ -333,9 +333,12 @@ public class ReportHandling extends servletBase{
 					String buttonUnsign = request.getParameter("unsign");
 					if(buttonSign != null){
 						signTimeReport(reportID);
+						out.println("Report has been signed.");
 					}	
 					if(buttonUnsign != null){
 						unsignTimeReport(reportID);	
+						out.println("Report has been unsigned.");
+						
 					}			
 					String buttonSort = request.getParameter("sort");
 					if(buttonSort != null){

@@ -67,7 +67,7 @@ public class Statistics extends servletBase {
 			
 			if(!userID.equals("-1")){
 				end += " and user_group.user_id =  " + userID;
-			}else if(role != null){
+			}else if(!role.equals("0")) { //This row used to be }else if(role != null) { , but null is never sent as role so it was always performed. I think it's correct now
 				end += " and user_group.role = " + formElement(role);
 			}
 			
@@ -347,11 +347,10 @@ public class Statistics extends servletBase {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("name");
-		boolean isAdmin = username.equals("admin");
 		if (!loggedIn(request))
 			response.sendRedirect("LogIn");
-		else
-		{	
+		else {
+			boolean isAdmin = username.equals("admin");
 			if (projectLeaderOrAdmin(username)) {
 				PrintWriter out = response.getWriter();
 				access.updateLog(null, null); // check timestamps

@@ -2372,24 +2372,26 @@ Utgått
 %++++++++++++++++++++++++++%
 \subsection{Autentisering}
 
-subsubsection{Användare}
+\subsubsection{Användare}
 
 \begin{ST}
-
+%
 \item
 \textbf{Användare kan logga in.}
 
-\emph{Starttillstånd:} Användaren A är inte inloggad.
-
-\emph{Sluttillstånd:} A är inloggad.
-
-\begin{enumerate}
-\item A når systemet.
-\item A ombedes ange användarnamn och lösenord på inloggningssidan.
-\item A anger korrekt användarnamn och lösenord.
-\item Kontrollera att A är inloggad
-\item Kontrollera att A vidarebefodras till en sida där funktionaliteten för en inloggad användare finns tillgänglig.
-\end{enumerate}
+Utgått
+%
+%\emph{Starttillstånd:} Användaren A är inte inloggad.
+%
+%\emph{Sluttillstånd:} A är inloggad.
+%
+%\begin{enumerate}
+%\item A når systemet.
+%\item A ombedes ange användarnamn och lösenord på inloggningssidan.
+%\item A anger korrekt användarnamn och lösenord.
+%\item Kontrollera att A är inloggad
+%\item Kontrollera att A vidarebefodras till en sida där funktionaliteten för en inloggad användare finns tillgänglig.
+%\end{enumerate}
 
 \item
 \textbf{Användare kan logga ut.}
@@ -2431,26 +2433,24 @@ subsubsection{Användare}
 \item
 \textbf{Administratören kan skapa projektgrupp.}
 
-Utgått
+\emph{Starttillstånd:} Administratören A är inloggad, sidan för att redigera projekgrupper visas.
 
-%\emph{Starttillstånd:} Administratören A är inloggad, sidan för att redigera projekgrupper visas.
+\emph{Sluttillstånd:} A är inloggad.
 
-%\emph{Sluttillstånd:} A är inloggad.
-
-%\begin{enumerate}
-%\item A väljer att skapa projektgrupp.
-%\item A får nu fylla i ett projektgruppsnamn och tycker därefter på ''ok''.
-%\item 
-%\begin{enumerate}
-%\item A får nu en lista över alla användare i systemet, första användare som läggs %till tilldelas automatiskt projektledarrollen.
-%\item Projektgruppsnamnet existerar redan, A informeras och skickas tillbaka till steg 3.
-%\item A får ett felmeddelande om inga fler användare existerar, sedan omdirigeras A till huvudsidan.
-%\item A får ett felmeddelande om inga fler projektgrupper kan skapas eftersom maxantalet redan är uppnått.
-%\end{enumerate}
-%\item A kan därefter lägga till fler projektgruppsmedlemmar. A kan dessutom lägga till ytterliggare en projektledare. Sedan klickar A på ''ok''.
-%\item Kontrollera att en projektgrupp skapats
-%\item Kontrollera att A omdirigeras till en sida som meddelar att en projektgrupp skapats.
-%\end{enumerate}
+\begin{enumerate}
+\item A väljer att skapa projektgrupp.
+\item A får nu fylla i ett projektgruppsnamn och tycker därefter på ''ok''.
+\item 
+\begin{enumerate}
+\item A får nu en lista över alla användare i systemet, första användare som läggs %till tilldelas automatiskt projektledarrollen.
+\item Projektgruppsnamnet existerar redan, A informeras och skickas tillbaka till steg 3.
+\item A får ett felmeddelande om inga fler användare existerar, sedan omdirigeras A till huvudsidan.
+\item A får ett felmeddelande om inga fler projektgrupper kan skapas eftersom maxantalet redan är uppnått.
+\end{enumerate}
+\item A kan därefter lägga till fler projektgruppsmedlemmar. A kan dessutom lägga till ytterliggare en projektledare. Sedan klickar A på ''ok''.
+\item Kontrollera att en projektgrupp skapats
+\item Kontrollera att A omdirigeras till en sida som meddelar att en projektgrupp skapats.
+\end{enumerate}
 
 \item
 \textbf{Administratören kan lägga till eller ändra roll på projektmedlemmar i en projektgrupp.}

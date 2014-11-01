@@ -40,7 +40,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 
-\fancyhead[R]{Datum: \today | Version: 1.4 | Dokumentnummer: PUSS144404}
+\fancyhead[R]{Datum: \today | Version: 1.5 | Dokumentnummer: PUSS144404}
 
 
 \title{STLDD - Software Top Level Design Document: NewPussSystem}                  	
@@ -71,7 +71,8 @@ Ver. & Datum & Ansv. & Beskrivning \\\hline
 1.1 & 22 oktober 2014 & SG & Tagit bort privata metoder, samt uppdaterat klassdiagrammet. Även lagt till en saknad metodbeskrivning i ReportGenerator.\\
 1.2 & 23 oktober 2014 & SG & Lag till klassen changePassword, uppdaterat klassdiagrammet och klassmetoder enligt problemrapporter. \\
 1.3 & 24 oktober 2014 & SG & Uppdaterat sekvensdiagrammen för då man lyckas lägga till och ta bort en tidrapport, samt tagit bort sekvensdiagram för då man misslyckas med dessa operationer. Uppdaterat sekvensdiagrammen för då man lyckas och misslyckas lista tidsrapporter. \\
-1.4 & 26 oktober 2014 & SG & Åtgärdat PR21. Uppdaterat sekvensdiagrammen enligt PR22.
+1.4 & 26 oktober 2014 & SG & Åtgärdat PR21. Uppdaterat sekvensdiagrammen enligt PR22.\\
+1.5 & 30 oktober 2014 & SG & Uppdaterat sekvensdiagrammen för klassen ProjectGroupHandling enligt PR27.
 
 \end{tabular}
 \newpage
@@ -431,40 +432,6 @@ Figur \ref{addGroup} visar hur servleten ProjectGroupAdmin hanterar en förfråg
 \end{figure}
 
 \noindent
-Figur \ref{addUserToGroup} visar hur servleten ProjectGroupAdmin hanterar en förfrågan om att lägga till en användare i en projektgrupp, medan Figur \ref{addUserToGroupFail} visar hur det hanteras när den misslyckas.
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=90mm]{SeqDia__addUserToGroup_FINAL.jpg}
-\caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en förfrågan om att lägga till en användare i en projektgrupp.
-\label{addUserToGroup}}
-\end{figure}
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=90mm]{SeqDia__addUserToGroup_Fail_FINAL.jpg}
-\caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en misslyckad förfrågan om att lägga till en användare i en projektgrupp.
-\label{addUserToGroupFail}}
-\end{figure}
-
-\noindent
-Figur \ref{removeUserFromGroup} visar hur servleten ProjectGroupAdmin hanterar en förfrågan om att ta bort en användare från en projektgrupp, medan Figur \ref{removeUserFromGroupFail} visar hur det hanteras när den misslyckas.
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=90mm]{SeqDia__removeUserFromGroup_FINAL.jpg}
-\caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en förfrågan om att ta bort en användare från en projektgrupp.
-\label{removeUserFromGroup}}
-\end{figure}
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=90mm]{SeqDia__removeUserFromGroup_Fail_FINAL.jpg}
-\caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en misslyckad förfrågan om att ta bort en användare från en projektgrupp.
-\label{removeUserFromGroupFail}}
-\end{figure}
-
-\noindent
 Figur \ref{removeGroup} visar hur servleten ProjectGroupAdmin hanterar en förfrågan om att ta bort en projektgrupp.
 
 \begin{figure}[h!]
@@ -473,6 +440,44 @@ Figur \ref{removeGroup} visar hur servleten ProjectGroupAdmin hanterar en förfr
 \caption{Sekvensdiagram som visar hur klassen ProjectGroupAdmin hanterar en förfrågan om att ta bort en projektgrupp.
 \label{removeGroup}}
 \end{figure}
+
+
+
+\subsection{class GroupHandling}
+Figur \ref{addUserToGroup} visar hur servleten GroupHandling hanterar en förfrågan om att lägga till en användare i en projektgrupp, medan Figur \ref{addUserToGroupFail} visar hur det hanteras när den misslyckas.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=90mm]{SeqDia__addUserToGroup_FINAL.jpg}
+\caption{Sekvensdiagram som visar hur klassen GroupHandling hanterar en förfrågan om att lägga till en användare i en projektgrupp.
+\label{addUserToGroup}}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=90mm]{SeqDia__addUserToGroup_Fail_FINAL.jpg}
+\caption{Sekvensdiagram som visar hur klassen GroupHandling hanterar en misslyckad förfrågan om att lägga till en användare i en projektgrupp.
+\label{addUserToGroupFail}}
+\end{figure}
+
+\noindent
+Figur \ref{removeUserFromGroup} visar hur servleten GroupHandling hanterar en förfrågan om att ta bort en användare från en projektgrupp, medan Figur \ref{removeUserFromGroupFail} visar hur det hanteras när den misslyckas.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=90mm]{SeqDia__removeUserFromGroup_FINAL.jpg}
+\caption{Sekvensdiagram som visar hur klassen GroupHandling hanterar en förfrågan om att ta bort en användare från en projektgrupp.
+\label{removeUserFromGroup}}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=90mm]{SeqDia__removeUserFromGroup_Fail_FINAL.jpg}
+\caption{Sekvensdiagram som visar hur klassen GroupHandling hanterar en misslyckad förfrågan om att ta bort en användare från en projektgrupp.
+\label{removeUserFromGroupFail}}
+\end{figure}
+
+
 
 \subsection{TimeReporting}
 Figur \ref{newReport} visar hur servleten TimeReporting hanterar en förfrågan om att skapa en ny tidrapport som läggs till i databasen.

@@ -329,7 +329,12 @@ public class ProjectGroupAdmin extends servletBase {
 				out.println("<h1>Project group administration page " + "</h1>");
 				
 				// check if the administrator wants to add a new project group in the form
-					
+				String mess = request.getParameter("mess");
+				if(mess!=null){
+					if(mess.equals("GroupUpdated")){
+						out.println("Project group has been updated.");
+					}					
+				}
 				String function = request.getParameter("function");
 				if(function != null){					
 					if(function.equals("checkGroup")){
