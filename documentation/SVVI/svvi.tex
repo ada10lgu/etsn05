@@ -171,7 +171,7 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{enumerate}
 \item Logga in A i systemet.
 \item Klicka på Administration i menyn.
-\item I adressfältet i webbläsaren, lägg till: ``?deletename=\texttt{"}admin\texttt{"}'', och tryck enter.
+\item I adressfältet i webbläsaren, lägg till: ``?deletename=\texttt{"}admin\texttt{"}\&deleteid=1'', och tryck enter.
 \item Kontrollera att ett felmeddelande visas som tyder på att det är fel input.
 \item Kontrollera i databasen att användaren ``admin'' fortfarande finns kvar.
 \item Logga ut A.
@@ -179,14 +179,12 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 
 \item \textbf{Projektledarantal och rollantal i en projektgrupp}
 
-\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Redigera projektmedlemmar'' (Figur 5, Ref. 2). Det finns en projektgrupp G, två projektledare P1 och P2 och en projektmedlem M (Alla medlemmar i G).
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ProjectLeader för grupp G (Figur 5, Ref. 2). Det finns en projektgrupp G, två projektledare P1 och P2 och en projektmedlem M (Alla medlemmar i G).
 
 \emph{Sluttillstånd:} oförändrat
 
 \begin{enumerate}
-\item Försök tilldela rollen t4 till M
-\item Kontrollera att ett felmeddelande visas som visar att denna roll inte finns tillgänglig.
-\item Kontrollera i databasen att M inte har fått rollen t4.
+\item Försök tilldela rollen t4 till M.
 \item Försök tilldela rollen ``Projektledare'' till M.
 \item Kontrollera att ett felmeddelande visas som visar att det inte kan finnas fler projektledare.
 \item Kontrollera i databasen att M inte har fått rollen ``Projektledare''.
@@ -216,16 +214,15 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{FT}
 \item \textbf{Projektledarantal}
 
-\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns 3 vanliga användare V1, V2 och V3 i systemet.
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``ProjectGroupAdmin'' (Figur 5, Ref. 2). Det finns 3 vanliga användare V1, V2 och V3 i systemet.
 
-\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgrupper''. Det finns en projektgrupp G där V1 och V2 är projektledare och en vanlig användare V3 i systemet.
+\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``ProjectGroupAdmin''. Det finns en projektgrupp G där V1 och V2 är projektledare och en vanlig användare V3 i systemet.
 
 \begin{enumerate}
-\item Klicka på ``Skapa projektgrupp'' och specificera grupp G och användare V1 som projektledare.
-\item Lägg till V2 och V3 i projektgruppen. Klicka ``OK''.
-\item Klicka på ``Redigera projektmedlemmar'' för projektet G och ge rollen ``Projektledare'' till V2, klicka ``OK''.
-\item Ge rollen ``Projektledare'' till V3 för projektgruppen G, klicka ``OK''.
-\item Kontrollera att ett felmeddelande visas som visar att det inte kan finnas fler projektledare.
+\item Klicka på ``Add project'' och specificera grupp G och användare V1 som projektledare.
+\item Lägg till V1 som projektledare i projektgruppen genom att markera V1 och klicka på ``Add user''.
+\item Lägg till V2 som projektledare i projektgruppen genom att markera V2, välj rollen ``Project Leader'' och klicka på ``Add user''.
+\item Försök lägga till V3 som projektledare i projektgruppen genom att markera V3, välj rollen ``Project Leader'' och klicka på ``Add user''.
 \item Kontrollera i databasen att V3 inte har fått rollen ``Projektledare''.
 \end{enumerate}
 
@@ -235,15 +232,13 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{FT}
 \item \textbf{Administratören får inte vara med i ett projekt}
 
-\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns en projektgrupp G.
+\emph{Starttillstånd:} Administratören A är inloggad och befinner sig på sidan ``ProjectGroupAdmin'' (Figur 5, Ref. 2). Det finns en projektgrupp G.
 
-\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``Projektgrupper''. Det finns en projektgrupp G.
+\emph{Sluttillstånd:} Administratören A är inloggad och befinner sig på sidan ``ProjectGroupAdmin''. Det finns en projektgrupp G.
 
 \begin{enumerate}
-\item För projektet G klicka på ``Lägg till projektmedlem''.
-\item Välj ``admin'' i listan över användare, klicka på ``OK''.
-\item Kontrollera att ett felmeddelande visas som visar att Administratören inte får vara med i ett projekt.
-\item Kontrollera att ``admin'' inte finns tillagd i G.
+\item För projektet G klicka på ``edit''.
+\item Kontrollera att ``admin'' inte finns i lista för användare som kan läggas till.
 \end{enumerate}
 \end{FT}
 
@@ -251,56 +246,56 @@ Detaljerade testinstruktioner för testfallen i ref. 1. Testfall dokumenteras i 
 \begin{FT}
 \item \textbf{Förfrågan innan borttagning av projektledare}
 
-\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns två projektledare i systemet, L1 och L2. L1 och L2 är projektledare för projektgrupp G.
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Administration'' (Figur 5, Ref. 2). Det finns två projektledare i systemet, L1 och L2. L1 och L2 är projektledare för projektgrupp G.
 
-\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper''. Projektledare L1 finns inte kvar i systemet. Projektledare L2 är projektledare för projektgrupp G.
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Administration''. Projektledare L1 finns inte kvar i systemet. Projektledare L2 är projektledare för projektgrupp G.
 
 \begin{enumerate}
-\item Klicka på ``Ta bort användare'' för L1.
+\item Klicka på ``delete'' för L1.
 \item Kontrollera att en bekräftelseruta visas som frågar om du verkligen vill ta bort L1 från G.
-\item Klicka ``Ja''.
+\item Klicka ``OK''.
 \item Kontrollera att en lista över användare visas där L1 inte är med.
 \item Kontrollera i databasen att L1 inte finns kvar.
 \end{enumerate}
 
 \item \textbf{Förfrågan innan borttagning av vanlig användare}
 
-\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns en vanlig användare V i systemet.
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Administration'' (Figur 5, Ref. 2). Det finns en vanlig användare V i systemet.
 
-\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper''. Vanlig användare L finns inte kvar i systemet.
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Administration''. Vanlig användare L finns inte kvar i systemet.
 
 \begin{enumerate}
-\item Klicka på ``Ta bort användare'' för V.
+\item Klicka på ``delete'' för V.
 \item Kontrollera att en bekräftelseruta visas som frågar om du verkligen vill ta bort L1 från G.
-\item Klicka ``Ja''.
+\item Klicka ``OK''.
 \item Kontrollera att en lista över användare visas där V inte är med.
 \item Kontrollera i databasen att V inte finns kvar.
 \end{enumerate}
 
 \item \textbf{Förfrågan innan ångrad borttagning av projektledare}
 
-\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns en projektledare L i systemet.
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Administration'' (Figur 5, Ref. 2). Det finns en projektledare L i systemet.
 
-\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper''. Det finns en projektledare L i systemet.
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Administration''. Det finns en projektledare L i systemet.
 
 \begin{enumerate}
-\item Klicka på ``Ta bort användare'' för L.
+\item Klicka på ``delete'' för L.
 \item Kontrollera att en bekräftelseruta visas som frågar om du verkligen vill ta bort L1 från G.
-\item Klicka ``Nej''.
+\item Klicka ``Cancel''.
 \item Kontrollera att en lista över användare visas där L är med.
 \item Kontrollera i databasen att L finns kvar.
 \end{enumerate}
 
 \item \textbf{Förfrågan innan ångrad borttagning av vanlig användare}
 
-\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper'' (Figur 5, Ref. 2). Det finns en vanlig användare V i systemet.
+\emph{Starttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Administration'' (Figur 5, Ref. 2). Det finns en vanlig användare V i systemet.
 
-\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Projektgrupper''. Det finns en vanlig användare V i systemet.
+\emph{Sluttillstånd:} Administratören A är inloggad i systemet och befinner sig på sidan ``Administration''. Det finns en vanlig användare V i systemet.
 
 \begin{enumerate}
-\item Klicka på ``Ta bort användare'' för V.
+\item Klicka på ``delete'' för V.
 \item Kontrollera att en bekräftelseruta visas som frågar om du verkligen vill ta bort L1 från G.
-\item Klicka ``Nej''.
+\item Klicka ``Cancel''.
 \item Kontrollera att en lista över användare visas där V är med.
 \item Kontrollera i databasen att V finns kvar.
 \end{enumerate}
@@ -2199,36 +2194,35 @@ Utgått
 
 \emph{Starttillstånd:} Projektmedlemmen M är inte inloggad i systemet. M och Projektledaren L är båda medlemmar i projektgruppen G.
 
-\emph{Sluttillstånd:} Projektmedlemmen M är inte inloggad i systemet. M och Projektledaren L är båda medlemmar i projektgruppen G. En osignerad tidsrapport T för projekt G, projektmedlem M och vecka 1 finns i systemet med 20 minuter på möte registrerat. M har lösenordet ``abcdefgh''.
+\emph{Sluttillstånd:} Projektmedlemmen M är inte inloggad i systemet. M och Projektledaren L är båda medlemmar i projektgruppen G. En osignerad tidsrapport T för projekt G, projektmedlem M och vecka 1 finns i systemet med 20 minuter på möte registrerat. M har lösenordet ``abcdef''.
 
 \begin{enumerate}
-\item Skriv rätt användarnamn och felaktigt lösenord för M.
-\item Klicka på ``Logga in''.
+\item Skriv rätt användarnamn och felaktigt lösenord för M och grupp G.
+\item Klicka på ``Submit''.
 \item Kontrollera att M fortfarande befinner sig på inloggningssidan.
-\item Skriv in rätt användarnamn och rätt lösenord för M.
-\item Klicka på ``Logga in''.
-\item Klicka på ``Tidrapportering''.
-\item Klicka på projekt G.
-\item Klicka på lägg till tidrapport.
-\item Skriv 1 i fältet för vecka.
+\item Skriv in rätt användarnamn och rätt lösenord för M och grupp G.
+\item Klicka på ``Submit''.
+\item Klicka på ``New'' under ``Time Reports''.
+\item Skriv in veckonummer 1.
+\item Klicka på ``Submit''.
 \item Skriv 30 i fältet för möte.
-\item Klicka på ``Lägg till'', tidsrapporten som skapades kallas för T.
+\item Klicka på ``Save'', tidsrapporten som skapades kallas för T.
 \item Klicka på ``Visa'' för tidrapport för vecka 1.
 \item Kontrollera att det i fältet ``möte'' står 30.
-\item Klicka på ``Tillbaka''.
-\item Klicka på ``Redigera rapport'' för tidrapport T.
-\item Ändra fältet ``möte'' till 20.
-\item Klicka på ``Redigera rapport''.
+\item Klicka på ``Update'' under ``Time Reports''.
+\item Markera tidrapport T och tryck på ``Update''.
+\item Ändra fältet ``Meeting'' till 20.
+\item Klicka på ``Save''.
 \item Kontrollera i databasen att det i tidsrapporten T står 20 för möte.
-\item Klicka på ``Visa projektinformation''.
+\item Klicka på ``Project members''.
 \item Kontrollera att projektnamnet för G syns och att M och L står med som medlemmar i projektet.
-\item Klicka på ``Ändra lösenord''.
+\item Klicka på ``Change Password''.
 \item Skriv det nya lösenordet ``k''.
 \item Kontrollera att du fortfarande befinner dig på samma sida.
 \item Kontrollera i databasen att lösenordet inte är ``k''.
-\item Skriv in det nya lösenordet ``abcdefgh''.
-\item Kontrollera i databasen att lösenordet är ``abcdefgh''.
-\item Klicka på ``Logga ut''
+\item Skriv in det nya lösenordet ``abcdef''.
+\item Kontrollera i databasen att lösenordet är ``abcdef''.
+\item Klicka på ``Logout''
 \item Kontrollera att du befinner dig på inloggningssidan.
 
 \end{enumerate}
@@ -2244,19 +2238,19 @@ Utgått
 \emph{Sluttillstånd:} Oförändrat.
 
 \begin{enumerate}
-\item Klicka på ``Generera statistik'' för G.
+\item Klicka på ``Statistics'' under ``ProjectManagement''.
+\item Markera alla rapporter och klicka på ``Generate report''.
 \item Kontrollera att statistik visas för G, sammanlagd tid rapporterad skall vara 60 minuter.
-\item Gå tillbaka till projektgruppsadmininstrationssidan.
-\item Klicka på ``Hantera tidsrapporter''.
-\item Avsignera tidsrapport T1.
+\item Klicka på ``Reports'' under ``ProjectManagement''.
+\item Markera T1 och klicka på ``View''.
+\item Klicka på ``Unsign''.
 \item Kontrollera att tidsrapporten T1 inte är signerad i databasen.
-\item Signera tidsrapport T1.
+\item Markera T1 och klicka på ``View''.
+\item Klicka på ``Sign''.
 \item Kontrollera att tidsrapporten T1 är signerad i databasen.
-\item Gå tillbaka till projektgruppsadmininstrationssidan.
-\item Klicka på ``Hantera användare'' för projektet G.
+\item Klicka på ``Users'' under ``ProjectManagement''.
 \item Kontrollera att alla projektmedlemmar visas.
-\item För projektmedlem M1, klicka på ``Byt roll''.
-\item Välj t2.
+\item För projektmedlem M1, välj roll t2 och klicka på ``Change role''.
 \item Kontrollera i databasen att rollen för M1 i grupp G har ändrats i databasen.
 \end{enumerate}
 \end{ST}
@@ -2317,45 +2311,36 @@ Utgått
 
 \begin{enumerate}
 \item Skriv in rätt användarnamn för A och fel lösenord.
-\item Klicka på ``Logga in''.
+\item Klicka på ``Submit''.
 \item Kontrollera att du fortfarande befinner dig på inloggningssidan.
 \item Skriv in rätt användarnamn för A och rätt lösenord.
-\item Klicka på ``Logga in''.
-\item Klicka på ``Administrationsvyn''.
-\item Klicka på ``Lista användare''.
+\item Klicka på ``Administration''.
 \item Kontrollera att en lista med användarnamnen och lösenorden för A, V1 och V2 visas.
-\item Klicka på ``Lägg till användare''.
-\item Skriv in ``Kalle''.
-\item Klicka på ``Lägg till'', användaren som skapas refererars till som V3.
+\item Skriv in ``kalle''.
+\item Klicka på ``Add user''. Användaren som skapas refererars till som V3.
 \item Kontrollera att en lista med användarnamnen och lösenorden för A, V1, V2 och V3 visas.
-\item Klicka på ``Ta bort användare'' brevid V3:s rad i listan.
+\item Klicka på ``delete'' brevid V3:s rad i listan.
 \item Klicka på ``OK''.
 \item Kontrollera att en lista med användarnamnen och lösenorden för A, V1 och V2 visas.
-\item Klicka på ``Administrationsvyn''.
-\item Klicka på ``Projektgrupper''.
-\item Klicka på ``Skapa projektgrupp''.
-\item Skriv in projektgruppsnamnet ``grupp123'' och V1s användarnamn som projektledare.
-\item Klicka på ``Skapa projektgrupp'', projektgruppen refereras till som G2.
-\item Klicka på ``Lägg till användare i projektgrupp''.
+\item Klicka på ``Group'' under ``Administration''.
+\item Skriv in projektgruppsnamnet ``grupp123'', gruppen refereras till som G2.
+\item Klicka på ``Add project''.
+\item Välj V1 och klicka på ``Add user''.
 \item Välj V2:s användarnamn i listan.
-\item Klicka på ``OK''.
-\item Klicka på ``Projektgrupper''. %Ta bort projektgrupp
-\item Klicka på ``Ta bort användare i projektgrupper''.
-\item Klicka på ``Ta bort'' vid V2.
-\item Klicka på ``Redigera projektmedlemmar''.
-\item Kontrollera att en lista med G1 och G2 visas samt V1, V2, M och L.
-\item Klicka på ``Tilldela roll'' för V1, sätt V1:s roll till t1.
-\item Klicka på ``Utse projektledare''.
-\item Välj V2:s namn i listan.
-\item Klicka på ``OK''.
+\item Välj rollen t1.
+\item Klicka på ``Add user''.
+\item Klicka på ``Project Management''.
+\item Välj G2 och tryck på ``OK''.
+\item Välj V2 och välj rollen t2.
+\item Klicka på ``Change role''.
+\item Välj V2:s namn i listan och välj Project Leader.
+\item Klicka på ``Change role''.
 %\item Klicka på ``Byta grupp på användare''.
 %\item Välj M i listan över användare.
 %\item Välj G2 i listan över projektgrupper.
 %\item Klicka på ``OK''.
-\item Klicka på ``Administrationsvyn''.
-\item Klicka på ``Projektgrupper''.
-\item Klicka på ``Ta bort projektgrupper''.
-\item Välj G2 i listan.
+\item Klicka på ``Group'' under ``Administration''.
+\item Klicka på ``delete'' för G2.
 \item Klicka på ``OK''.
 \item Klicka på ``Logga ut''. 
 \end{enumerate}
