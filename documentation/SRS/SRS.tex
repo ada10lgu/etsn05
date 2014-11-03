@@ -34,7 +34,7 @@
 \fancyhf{}
 \fancyhead[L]{Ansvarig: SG}
 
-\fancyhead[R]{Datum: \today | Version: 1.3 | Dokumentnummer: PUSS144401}
+\fancyhead[R]{Datum: \today | Version: 1.4 | Dokumentnummer: PUSS144401}
 
 
 \title{SRS - Software Requirements Specification: NewPussSystem}                  	
@@ -88,11 +88,13 @@ Lade till krav, kapitel 6.3\\
 \\
 1.0 & 13 oktober 2014 & SG & Baseline.
 \\
-1.1 & 23 oktober 2014 & SG & Krav 6.3.15,17,19,21 har utgått. Krav 6.3.13,14,16,18,20 ändrats för att specificiera signerade tidrapporter. Krav 6.3.31 ändrats (format på datum i tidrapporter).
+1.1 & 23 oktober 2014 & SG & Krav 6.3.15,17,19,21 har utgått. Krav 6.3.13,14,16,18,20 specificierar signerade tidrapporter. Krav 6.3.31 ändrats (format på datum i tidrapporter).
 \\
-1.2 & 24 oktober 2014 & SG & Figur 5 har uppdaterats. Scenario 6.4.6 redigerats för att beskriva mer specifik när det gäller att lägga till projektmedlemmar i en projektgrupp. Krav 6.2.10 har utgått.
+1.2 & 24 oktober 2014 & SG & Figur 5 har uppdaterats. Scenario 6.4.6 redigerats för att specificiera tillägning av projektmedlemmar i en projektgrupp. Krav 6.2.10 har utgått.
 \\
 1.3 & 30 oktober 2014 & SG & Krav 6.3.24 har utgått. Scenario 6.4.2 och Scenario 6.4.3 uppdaterades så att "dialogruta" ersättes med "bekräftelse". Figur 6 har uppdaterats.
+\\
+1.4 & 3 november 2014 & SG & Krav 6.2.4 och 6.2.8 har utgått. Krav 6.3.18 och 6.3.20 uppdaterades (konsekutiva veckor). Krav 8.1.4 tillåter nu att hemsidan är på engelska. Figur 8 uppdaterades.
 \end{tabular}
 \newpage
 \section{Inledning}       
@@ -220,11 +222,11 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{2}{Om en användare försöker logga in med ett användarkonto som redan är inloggat på en annan terminal, kommer den nya inloggningen ej att genomföras. Användaren informeras om detta.}
 			\requirement{3}{Utgått.}
 
-			\requirement{4}{Krav 6.1.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{4}{Utgått.}
 			\requirement{5}{Krav 6.2.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{6}{Krav 6.2.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 			\requirement{7}{Krav 6.2.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-			\requirement{8}{Krav 6.2.4 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
+			\requirement{8}{Utgått.}
 \subsubsection*{Användare}
 			\requirement{9}{Utgått.}
 			\requirement{10}{Utgått.}
@@ -340,9 +342,9 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{15}{Utgått.}
 			\requirement{16}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera signerade tidrapporter per vecka. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
 			\requirement{17}{Utgått.}
-			\requirement{18}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera signerade tidrapporter per användare för utvalda veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{18}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera signerade tidrapporter per användare för utvalda konsekutiva veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
 			\requirement{19}{Utgått.}
-			\requirement{20}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera signerade tidrapporter per roll för utvalda veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
+			\requirement{20}{Projektledaren skall kunna generera statistik över sitt projekt genom att summera signerade tidrapporter per roll för utvalda konsekutiva veckor. Med summering menas att summera alla aktivitetsrutor till en ny tidrapport.}
 			\requirement{21}{Utgått.}
 
 			\begin{figure}[H]
@@ -372,8 +374,8 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 			\requirement{38}{Subaktivitetsnamn måste vara unika.}
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=\textwidth]{tidrapportmall}
-				\caption{Grundmallen för tidrapporter. Mörkgråa fält är kodade i systemet, ljusgråa fält genereras av systemet, svarta fält ska vara tomma och vita fält fylls i av användaren. Text med en * måste stå ordagrant. Text som saknar * får bestämmas godtyckligt.}
+				\includegraphics[width=\textwidth]{tidrapportmall2}
+				\caption{Grundmallen för tidrapporter. Mörkgråa fält är godtycklig kodade i systemet, ljusgråa fält genereras av systemet, svarta fält ska vara tomma och vita fält fylls i av användaren.}
 				\label{image_gen_grundmall}
 			\end{figure}
 			\requirement{39}{Tidrapporten (grundmallen) ska se ut enligt figur 8.}
@@ -669,7 +671,7 @@ Kontextdiagram för NewPussSystem illustreras i figur \ref{image_kontext}.
 	\requirement{1}{Krav 8.1.1 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 	\requirement{2}{Krav 8.1.2 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
 	\requirement{3}{Krav 8.1.3 från Grundsystemet (Referensdokument 1) skall stödjas av systemet.}
-	\requirement{4}{Systemet samt projekt- och produktdokumentation skall skrivas på svenska. Java- koden skall följa standarden som finns på http://www.geosoft.no/development/javastyle.html, alla variabelnamn skall vara skrivna på engelska.}
+	\requirement{4}{Java- koden skall följa standarden som finns på http://www.geosoft.no/development/javastyle.html, alla variabelnamn skall vara skrivna på engelska.}
 
 
 
