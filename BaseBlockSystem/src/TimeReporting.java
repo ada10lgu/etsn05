@@ -736,7 +736,7 @@ public class TimeReporting extends servletBase{
 		int userGroupID = (int) session.getAttribute("userGroupID");
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select week from reports where id=(select max(id) from reports) and user_group_id="+userGroupID);
+			ResultSet rs = stmt.executeQuery("select week from reports where id=(select max(id) from reports where user_group_id="+userGroupID+")");
 			if(rs.first()){
 				latestWeek = rs.getInt("week");
 				message += "The latest report that was created was week " + latestWeek;
