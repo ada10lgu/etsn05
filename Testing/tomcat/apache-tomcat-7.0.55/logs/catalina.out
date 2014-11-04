@@ -38301,3 +38301,12 @@ INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
 10100
 10100
 10100
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
