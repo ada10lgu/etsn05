@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 1.0 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 1.1 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -53,14 +53,16 @@
 
 \begin{tabular}{ l l l p{9cm} }
 Ver. & Datum & Ansv. & Beskrivning \\\hline
-1.0 & 1 november 2014 & TG & Sammanställning av test från 23 oktober till 1 november samt kommentarer \\
+1.0 & 1 november 2014 & TG & Sammanställning av testresultat från 23 oktober till 1 november samt kommentarer \\
+1.1 & 4 november 2014 & TG & Sammanställning av testresultat från 4 november\\
+
 \end{tabular}
      
 
 \section{Referensdokument}
 \begin{enumerate}
-\item System Requirements Specification v1.3
-\item System Verification and Validation Instructions v1.3
+\item System Requirements Specification v1.4
+\item System Verification and Validation Instructions v1.4
 \end{enumerate}
 
 
@@ -520,19 +522,19 @@ FT 3.2.4 & Passerat & \\
 \hline
 FT 3.2.5 & Passerat & \\
 \hline
-FT 3.2.6 & Utgått & \\
+FT 3.2.6 &  & Utgått\\
 \hline
 FT 3.2.7 & Ej Passerat & Kan inte endast välja t.ex. vecka 1 och trycka på “Generate statistics” och få upp alla tidrapporter för vecka 1. Ingen statistik genereras då. Enda sättet att välja alla tidrapporter för vald vecka är att välja dessa manuellt. Ineffektivt om det skulle finnas 100 tidrapporter för vecka 1. \\
 \hline
-FT 3.2.8 & Utgått & \\
+FT 3.2.8 &  & Utgått\\
 \hline
 FT 3.2.9 & Ej Passerat &  Kan endast välja en vecka eller flera veckor i rad. Kan inte summera vecka 1-2 och 4 för en användare i en ny tidrapport. Har testat att mata in “1-2, 4”, “1-2 4”, “1-2 and 4”, “1-2 or 4”. (Kanske ändra i SRSen så att systemet endast behöver klara av veckor i rad????). Ni bör också specificera i statistikrapporten vilka veckor den syftar på istället för att det står “-1” vid “Week”. “1-4” om det är för veckorna 1-4, “1-2 and 4” om det är 1-2 och 4. Men det är inget krav.\\
 \hline
-FT 3.2.10 & Utgått & \\
+FT 3.2.10 &  & Utgått\\
 \hline
 FT 3.2.11 & Ej Passerat & Kan endast välja en vecka eller flera veckor i rad. Kan inte summera vecka 1-2 och 4 för en roll i en ny tidrapport.\\
 \hline
-FT 3.2.12 & Utgått & \\
+FT 3.2.12 &  & Utgått\\
 \hline
 FT 3.2.13 & Passerat & \\
 \hline
@@ -592,19 +594,19 @@ FT 3.2.4 & Passerat & \\
 \hline
 FT 3.2.5 & Passerat & \\
 \hline
-FT 3.2.6 & Utgått & \\
+FT 3.2.6 &  & Utgått\\
 \hline
 FT 3.2.7 & Passerat & \\
 \hline
-FT 3.2.8 & Utgått & \\
+FT 3.2.8 &  & Utgått\\
 \hline
 FT 3.2.9 & Ej Passerat &  Kan endast välja en vecka eller flera veckor i rad. Kan inte summera vecka 1-2 och 4 för en användare i en ny tidrapport vilket systemet ska klara. Kanske ändra i SRSen så att systemet endast behöver klara av veckor i rad?. \\
 \hline
-FT 3.2.10 & Utgått & \\
+FT 3.2.10 &  & Utgått\\
 \hline
 FT 3.2.11 & Ej Passerat & Kan endast välja en vecka eller flera veckor i rad. Kan inte summera vecka 1-2 och 4 för en roll i en ny tidrapport vilket systemet ska klara. Kanske ändra i SRSen så att systemet endast behöver klara av veckor i rad?.\\
 \hline
-FT 3.2.12 & Utgått & \\
+FT 3.2.12 &  & Utgått\\
 \hline
 FT 3.2.13 & Passerat & \\
 \hline
@@ -663,19 +665,19 @@ FT 3.2.4 & Passerat & \\
 \hline
 FT 3.2.5 & Passerat & \\
 \hline
-FT 3.2.6 & Utgått & \\
+FT 3.2.6 &  & Utgått\\
 \hline
 FT 3.2.7 & Passerat & \\
 \hline
-FT 3.2.8 & Utgått & \\
+FT 3.2.8 &  & Utgått\\
 \hline
 FT 3.2.9 & Ej Passerat &  Kan endast välja en vecka eller flera veckor i rad. Kan inte summera vecka 1-2 och 4 för en användare i en ny tidrapport vilket systemet ska klara. Kanske ändra i SRSen så att systemet endast behöver klara av veckor i rad?. \\
 \hline
-FT 3.2.10 & Utgått & \\
+FT 3.2.10 &  & Utgått\\
 \hline
 FT 3.2.11 & Ej Passerat & Kan endast välja en vecka eller flera veckor i rad. Kan inte summera vecka 1-2 och 4 för en roll i en ny tidrapport vilket systemet ska klara. Kanske ändra i SRSen så att systemet endast behöver klara av veckor i rad?.\\
 \hline
-FT 3.2.12 & Utgått & \\
+FT 3.2.12 &  & Utgått\\
 \hline
 FT 3.2.13 & Passerat & \\
 \hline
@@ -696,6 +698,77 @@ FT 3.3.7 & Passerat & \\
 FT 3.3.8 & Passerat & \\
 \hline
 FT 3.3.9 & Ej Passerat & Texten är på engelska. Enligt krav 6.3.39 måste det stå, “Namn”, “Datum”, “Projektgrupp”, “Vecka” osv. och inte “Name”, “Week”, “Date”. Kan ändras i SRS. \\
+\hline
+ST 3.1.1 & Passerat & \\
+\hline
+ST 3.1.2 & Passerat & \\
+\hline
+ST 3.1.3 & Passerat & \\
+\hline
+ST 3.2.1 & Passerat & \\
+\hline
+\end{tabular}
+
+\subsubsection{4 november}
+\begin{tabular}{| l | l | p{9cm} |}
+\hline
+Testfall &  Passerat/Ej Passerat & Kommentar\\
+\hline
+FT 3.1.1 & Passerat & \\
+\hline
+FT 3.1.2 & Passerat & \\
+\hline
+FT 3.1.3 & Passerat & \\
+\hline
+FT 3.1.4 & Passerat & \\
+\hline
+FT 3.1.5 & Passerat & \\
+\hline
+FT 3.1.6 & Passerat & \\
+\hline
+FT 3.2.1 & Passerat & \\
+\hline
+FT 3.2.2 & Passerat & \\
+\hline
+FT 3.2.3 & Passerat & \\
+\hline
+FT 3.2.4 & Passerat & \\
+\hline
+FT 3.2.5 & Passerat & \\
+\hline
+FT 3.2.6 &  & Utgått\\
+\hline
+FT 3.2.7 & Passerat & \\
+\hline
+FT 3.2.8 &  & Utgått\\
+\hline
+FT 3.2.9 & Passerat &  \\
+\hline
+FT 3.2.10 & Utgått & \\
+\hline
+FT 3.2.11 & Passerat & \\
+\hline
+FT 3.2.12 &  & Utgått\\
+\hline
+FT 3.2.13 & Passerat & \\
+\hline
+FT 3.3.1 &  & Utgått\\
+\hline
+FT 3.3.2 & Passerat & \\
+\hline
+FT 3.3.3 & Passerat & \\
+\hline
+FT 3.3.4 & Passerat & \\
+\hline
+FT 3.3.5 & Passerat & \\
+\hline
+FT 3.3.6 & Passerat & \\
+\hline
+FT 3.3.7 & Passerat & \\
+\hline
+FT 3.3.8 & Passerat & \\
+\hline
+FT 3.3.9 & Passerat & \\
 \hline
 ST 3.1.1 & Passerat & \\
 \hline
@@ -963,9 +1036,9 @@ FT 4.3.29 & Passerat & \\
 \hline
 FT 4.3.30 & Passerat & \\
 \hline
-FT 4.3.31 & & Utgått elnigt SVVI\\
+FT 4.3.31 & & Utgått enligt SVVI\\
 \hline
-FT 4.3.32 & & Utgått elnigt SVVI\\
+FT 4.3.32 & & Utgått enligt SVVI\\
 \hline
 FT 4.4.1 & Passerat & \\
 \hline
