@@ -89,7 +89,8 @@ public class AutentiseringTest extends PussTest{
 	    System.out.println("FT2_1_1");
 	}
 
-	@Test
+	//Utgått
+	@Ignore
 	public void FT2_1_2(){
 		
 		String groupname = "groupz";
