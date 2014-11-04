@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.8.22)  4 NOV 2014 10:31
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.8.22)  4 NOV 2014 11:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -507,19 +507,19 @@ n-log-gad. Osig-ne-rad tidrap-port x och sig-ne-rad tidrap-
  []
 
 [41] [42] [43]
-Underfull \hbox (badness 10000) in paragraph at lines 2807--2809
+Underfull \hbox (badness 10000) in paragraph at lines 2803--2805
 
  []
 
 [44] [45]
-LaTeX Font Info:    Try loading font information for OMS+pplj on input line 293
-2.
-LaTeX Font Info:    No file OMSpplj.fd. on input line 2932.
+LaTeX Font Info:    Try loading font information for OMS+pplj on input line 292
+8.
+LaTeX Font Info:    No file OMSpplj.fd. on input line 2928.
 
 
 LaTeX Font Warning: Font shape `OMS/pplj/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 2932.
+(Font)              for symbol `textbullet' on input line 2928.
 
 [46] (./svvi.aux)
 
@@ -542,7 +542,7 @@ rc8a.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/font
 s/type1/urw/palatino/uplri8a.pfb>
-Output written on svvi.pdf (46 pages, 158898 bytes).
+Output written on svvi.pdf (46 pages, 154542 bytes).
 PDF statistics:
  184 PDF objects out of 1000 (max. 8388607)
  127 compressed objects within 2 object streams

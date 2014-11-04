@@ -38310,3 +38310,93 @@ VendorError: 0
 SQLException: No operations allowed after connection closed.
 SQLState: 08003
 VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+SQLException: No operations allowed after connection closed.
+SQLState: 08003
+VendorError: 0
+nov 04, 2014 10:43:17 FM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+nov 04, 2014 10:43:17 FM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+nov 04, 2014 10:43:17 FM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+nov 04, 2014 10:43:17 FM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 415 ms
+nov 04, 2014 10:43:17 FM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+nov 04, 2014 10:43:17 FM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+nov 04, 2014 10:43:17 FM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war
+nov 04, 2014 10:43:18 FM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/BaseBlockSystem.war has finished in 512 ms
+nov 04, 2014 10:43:18 FM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs
+nov 04, 2014 10:43:18 FM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/docs has finished in 150 ms
+nov 04, 2014 10:43:18 FM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager
+nov 04, 2014 10:43:18 FM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/host-manager has finished in 166 ms
+nov 04, 2014 10:43:18 FM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT
+nov 04, 2014 10:43:18 FM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/ROOT has finished in 131 ms
+nov 04, 2014 10:43:18 FM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager
+nov 04, 2014 10:43:18 FM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/manager has finished in 127 ms
+nov 04, 2014 10:43:18 FM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples
+nov 04, 2014 10:43:19 FM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /h/d2/n/atf10aul/git/etsn05/Testing/tomcat/apache-tomcat-7.0.55/webapps/examples has finished in 899 ms
+nov 04, 2014 10:43:19 FM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+nov 04, 2014 10:43:19 FM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+nov 04, 2014 10:43:19 FM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 2041 ms
