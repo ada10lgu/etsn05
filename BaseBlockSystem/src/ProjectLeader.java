@@ -35,6 +35,7 @@ public class ProjectLeader extends servletBase {
 		HttpSession session = request.getSession(true);
 		Object nameObj = session.getAttribute("name");
 		Object groupObj = session.getAttribute("groupID");
+		Object userGroupIdObj = session.getAttribute("userGroupID");
 		int groupID = Integer.parseInt((String) groupObj);
 		if(request.getParameter("OK") != null){
 			String newGroupIDStr = request.getParameter("SelectedGroupID");
@@ -56,7 +57,7 @@ public class ProjectLeader extends servletBase {
 
 		if (!loggedIn(request)) { //Check that user is logged in
 			response.sendRedirect("LogIn");
-		} else if (projectLeaderOrAdmin(myName)) { //Check that user is allowed
+		} else if (projectLeaderOrAdmin(myName, userGroupIdObj)) { //Check that user is allowed
 			out.println("<h1>Project Management " + "</h1>");
 			if (username != null && !role.equals("0")) {
 				if (myName.equals("admin")) {
@@ -68,7 +69,7 @@ public class ProjectLeader extends servletBase {
 					rs1.first();
 					int userIDint = rs1.getInt("user_group.ID");
 					if(!changeRole(userIDint, role)) {
-						out.println("<p>User role change is not allowed.</p>");
+						out.println("<p>User role change is not allowed. If the group is full, please contact admin to swap roles between users.</p>");
 					}
 					showAllUsers(groupID, out);
 				} catch (SQLException ex) {
@@ -158,15 +159,17 @@ public class ProjectLeader extends servletBase {
 	 * @param myName
 	 * @return true if the user is admin/project leader, else false
 	 */
-	private boolean projectLeaderOrAdmin(String myName) {
+	private boolean projectLeaderOrAdmin(String myName, Object userGroupIdObj) {
 		if (myName.equals("admin")) {
 			return true;
 		} else {
 			try {
+				int userGroupId = 0;
+				if (userGroupIdObj != null) {
+					userGroupId = (int) userGroupIdObj;
+				}
 				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt
-						.executeQuery("select * from user_group INNER JOIN users on user_group.user_id = users.ID where users.username = '"
-								+ myName + "'");
+				ResultSet rs = stmt.executeQuery("select * from user_group where id="+userGroupId);
 				if (rs.first()) {
 					String role = rs.getString("role");
 					if (role.equals("Project Leader")) {
@@ -275,19 +278,24 @@ public class ProjectLeader extends servletBase {
 			rs2.first();
 			int groupID = rs2.getInt("group_id");
 			String currentRole = rs2.getString("role");
-			System.out.println(role+ "in changeRole");
+			//System.out.println(role+ "in changeRole");
 			Statement stmt1 = conn.createStatement();
 			ResultSet rs1 = stmt1.executeQuery("select * from user_group where group_id = "+groupID);
 			int roleCount = 0;
 			int plCount = 0;
+			int totalCount = 0;
 			while (rs1.next()) {
+				totalCount++;
 				if (rs1.getString("role").equals(PROJECT_LEADER)) {
 					plCount++;
 				} else if (rs1.getString("role").equals(role)){
 					roleCount++;
 				}
 			}
-			if (currentRole.equals(PROJECT_LEADER) && plCount == 1) {
+			if (totalCount == 20) {
+				return false;
+			}
+			else if (currentRole.equals(PROJECT_LEADER) && plCount == 1) {
 				return false;
 			} else {
 				if ((role.equals(PROJECT_LEADER) && plCount < 2) || ((!role.equals(PROJECT_LEADER)) && roleCount < 6)) {

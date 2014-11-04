@@ -17,7 +17,7 @@
 
 \fancyhf{}
 \fancyhead[L]{Ansvarig: TG}
-\fancyhead[R]{Datum: \today |Version: 1.0 | Dokumentnummer: PUSS144403}
+\fancyhead[R]{Datum: \today |Version: 1.1 | Dokumentnummer: PUSS144403}
 
 \newcommand\invisiblesubsubsection[1]{%
   \refstepcounter{subsubsection}%
@@ -38,7 +38,7 @@
 
 \def\myurl{\hfil\penalty 100 \hfilneg \hbox}
 
-\title{SVVS - Software Verification and Validation Specification: NewPussSystem}                  	
+\title{SVVR - Software Verification and Validation Report: NewPussSystem}                  	
 \author{Testgruppen \\ Axel Ulmestig | Axel Goteman | Sefik Ceric \\ Victor Johnsson | Johan Kellerth Fredlund}
 \date{}
 
@@ -53,39 +53,19 @@
 
 \begin{tabular}{ l l l p{9cm} }
 Ver. & Datum & Ansv. & Beskrivning \\\hline
-0.1 & 11 september 2014 & TG & Första utkast \\
+1.0 & 1 november 2014 & TG & Sammanställning av testresultat från 23 oktober till 1 november samt kommentarer \\
+1.1 & 4 november 2014 & TG & Sammanställning av testresultat från 4 november\\
+
 \end{tabular}
-\section{Inledning}       
+     
 
 \section{Referensdokument}
-%\begin{enumerate}
-%\item System Requirements Specification v0.21
-%\item Programvaruutveckling för stora system - Projekthandledning
-%\item System Requirements Specification: BaseBlockSystem
-%\end{enumerate}
-
-\section{Definitioner}
-
-\subsection{Dokument}
-
 \begin{enumerate}
-
-\item SDP: Software Development Plan
-
-\item SRS: System Requirements Specification
-
-\item SVVS: Software Verification and Validation Specification
-
-\item STLDD: Software Top Level Design Document
-
-\item SVVR: Software Verification and Validation Report
-
-\item SSD: System Specification Document
-
-\item PFR: Project Final Report
-
-
+\item System Requirements Specification v1.4
+\item System Verification and Validation Instructions v1.4
 \end{enumerate}
+
+
 
 \section{Testresultat}
 %Skriv resultat under de rubriker de ska ha
@@ -258,7 +238,7 @@ Testfall &  Passerat/Ej Passerat & Kommentar\\
 \hline
 FT 2.1.1 & Passerat & \\
 \hline
-FT 2.1.2 & Passerat & \\
+FT 2.1.2 & Passerat & Misslyckas vid granskning\\
 \hline
 FT 2.1.3 & Passerat & \\
 \hline
@@ -298,7 +278,7 @@ ST 2.1.3 & Passerat & \\
 \hline
 ST 2.2.1 & Ej Passerat & Det går att skapa en projektgrupp när det inte finns några användare i systemet\\
 \hline
-ST 2.2.2 & Ej Passerat & Om en grupp är full så kan du inte som projektledare byta roll på någon utan att be adminen ta bort en användare från gruppen och sedan lägga till den igen när projektledaren ordnat de roller som den vill ändra.\\
+ST 2.2.2 & Passerat & \\
 \hline
 ST 2.2.3 & Passerat & \\
 \hline
@@ -311,7 +291,7 @@ Testfall &  Passerat/Ej Passerat & Kommentar\\
 \hline
 FT 2.1.1 & Passerat & \\
 \hline
-FT 2.1.2 & Passerat & \\
+FT 2.1.2 & Passerat & Misslyckas vid granskning\\
 \hline
 FT 2.1.3 & Passerat & \\
 \hline
@@ -329,11 +309,11 @@ FT 2.2.1 & Passerat & \\
 \hline
 FT 2.3.1 & Passerat & \\
 \hline
-FT 2.3.2 & Ej Passerat & \\
+FT 2.3.2 & Passerat & \\
 \hline
 FT 2.4.1 & Passerat & \\
 \hline
-FT 2.5.1 & Ej Passerat & Sidorna ''ReportHandling'' och ''Statistics'' gick att komma åt utan att vara inloggad\\
+FT 2.5.1 & Ej Passerat & Sidorna "ReportHandling" och "Statistics" gick att komma åt utan att vara inloggad\\
 \hline
 FT 2.5.2 & Passerat & \\
 \hline
@@ -349,9 +329,9 @@ ST 2.1.2 & Passerat & \\
 \hline
 ST 2.1.3 & Passerat & \\
 \hline
-ST 2.2.1 & Ej Passerat & Om en ny projektgrupp skapas när det inte finns några användare i systemet så fås ett felmeddelande ''No more than 5 groups allowed'' oavsett hur många grupper som finns i systemet. Om en andra grupp skapas med samma namn som den första så fås inte ett felmeddelande förränst man försöker lägga till fler meddlemmar.\\
+ST 2.2.1 & Ej Passerat & Om en ny projektgrupp skapas när det inte finns några användare i systemet så fås ett felmeddelande "No more than 5 groups allowed" oavsett hur många grupper som finns i systemet. Om en andra grupp skapas med samma namn som den första så fås inte ett felmeddelande förränst man försöker lägga till fler meddlemmar.\\
 \hline
-ST 2.2.2 & Ej Passerat & Om en grupp är full så kan du inte som projektledare byta roll på någon utan att be adminen ta bort en användare från gruppen och sedan lägga till den igen när projektledaren ordnat de roller som den vill ändra.\\
+ST 2.2.2 & Passerat & \\
 \hline
 ST 2.2.3 & Passerat & \\
 \hline
@@ -364,7 +344,7 @@ Testfall &  Passerat/Ej Passerat & Kommentar\\
 \hline
 FT 2.1.1 & Passerat & \\
 \hline
-FT 2.1.2 & Passerat & \\
+FT 2.1.2 & Passerat & Misslyckas vid granskning\\
 \hline
 FT 2.1.3 & Passerat & \\
 \hline
@@ -404,16 +384,72 @@ ST 2.1.3 & Passerat & \\
 \hline
 ST 2.2.1 & Passerat & \\
 \hline
-ST 2.2.2 & Ej Passerat & Om en grupp är full så kan du inte som projektledare byta roll på någon utan att be adminen ta bort en användare från gruppen och sedan lägga till den igen när projektledaren ordnat de roller som den vill ändra.\\
+ST 2.2.2 & Passerat & \\
 \hline
 ST 2.2.3 & Passerat & \\
 \hline
 \end{tabular}
 
+\subsubsection{4 November}
+\begin{tabular}{| l | l | p{9cm} |}
+\hline
+Testfall &  Passerat/Ej Passerat & Kommentar\\
+\hline
+FT 2.1.1 & Passerat & \\
+\hline
+FT 2.1.2 & Passerat & Utgått\\  
+\hline
+FT 2.1.3 & Passerat & \\
+\hline
+FT 2.1.4 & Passerat & \\
+\hline
+FT 2.1.5 & Passerat & \\
+\hline
+FT 2.1.6 & Passerat & \\
+\hline
+FT 2.1.7 & Passerat & \\
+\hline
+FT 2.1.8 & Passerat & \\
+\hline
+FT 2.2.1 & Passerat & \\
+\hline
+FT 2.3.1 & Passerat & \\
+\hline
+FT 2.3.2 & Passerat & \\
+\hline
+FT 2.4.1 & Passerat & \\
+\hline
+FT 2.5.1 & Passerat & \\
+\hline
+FT 2.5.2 & Passerat & \\
+\hline
+FT 2.5.3 & Passerat & \\
+\hline
+FT 2.5.4 & Passerat & \\
+\hline
+FT 2.5.5 & Passerat & \\
+\hline
+FT 2.5.6 & Passerat & \\
+\hline
+ST 2.1.2 & Passerat & \\
+\hline
+ST 2.1.3 & Passerat & \\
+\hline
+ST 2.2.1 & Passerat & \\
+\hline
+ST 2.2.2 & Passerat & \\
+\hline
+ST 2.2.3 & Ej Passerat & Om en projektmedlem har en skriven tidsrapport så kan den inte tas bort, man får istället ett felmeddelande som säger att denna projektmedlem är sista projektledaren i gruppen och kan därför ej tas bort.\\
+\hline
+\end{tabular}
 
 %++++++++++++++++++++++++++% 
 %SLUTET på FT:autentisering%
 %++++++++++++++++++++++++++%
+
+
+
+
 
 
 
@@ -422,6 +458,362 @@ ST 2.2.3 & Passerat & \\
 %++++++++++++++++++++++++++++%
 %Johan
 \subsection{Tidrapportering}
+
+\subsubsection{23 oktober}
+\begin{tabular}{| l | l | p{9cm} |}
+\hline
+Testfall &  Passerat/Ej Passerat & Kommentar\\
+\hline
+FT 3.1.1 & Passerat & \\
+\hline
+FT 3.1.2 & Passerat & \\
+\hline
+FT 3.1.3 & Passerat & \\
+\hline
+FT 3.1.4 & Passerat & \\
+\hline
+FT 3.1.5 & Passerat & \\
+\hline
+FT 3.1.6 & Passerat & \\
+\hline
+FT 3.2.1 & Passerat & \\
+\hline
+FT 3.2.2 & Passerat & \\
+\hline
+FT 3.2.3 & Passerat & \\
+\hline
+FT 3.2.4 & Passerat & \\
+\hline
+FT 3.2.5 & Passerat & \\
+\hline
+FT 3.2.6 & Ej Passerat & Kan inte välja att generera statistik per aktivitet \\
+\hline
+FT 3.2.7 & Ej Passerat & Kan inte summera alla tidrapporter för en vecka \\
+\hline
+FT 3.2.8 & Ej Passerat &  Kan inte välja aktivitet \\
+\hline
+FT 3.2.9 & Ej Passerat &  Kan inte välja vecka 1-2 och 4 när man ska generera statistik\\
+\hline
+FT 3.2.10 & Ej Passerat & Kan inte välja aktivitet \\
+\hline
+FT 3.2.11 & Ej Passerat & Kan inte välja vecka 1-2 och 4 när man ska generera statistik \\
+\hline
+FT 3.2.12 & Ej Passerat & Kan inte välja aktivitet \\
+\hline
+FT 3.2.13 & Passerat & \\
+\hline
+FT 3.3.1 & Ej Passerat & Aktivitet ”Final report”>5 tecken \\
+\hline
+FT 3.3.2 & Passerat & \\
+\hline
+FT 3.3.3 & Passerat & \\
+\hline
+FT 3.3.4 & Passerat & \\
+\hline
+FT 3.3.5 & Passerat & \\
+\hline
+FT 3.3.6 & Passerat & \\
+\hline
+FT 3.3.7 & Passerat & \\
+\hline
+FT 3.3.8 & Passerat & \\
+\hline
+FT 3.3.9 & Ej Passerat & Står ”acitivity” istället för activity, texten är på engelska. Date är inte i form ”dag månad år” \\
+\hline
+ST 3.1.1 & Passerat &  Steg 19. Reviderat krav SRS? Ska det stå dagens datum under fältet.\\
+\hline
+ST 3.1.2 & Ej Passerat & Steg 18. Får ingen bekräftelseruta. \\
+\hline
+ST 3.1.3 & Ej Passerat & Funktionalitet saknas: ”Lista projektmedlemmar”. (figur 6 SRS) \\
+\hline
+ST 3.2.1 & Passerat & \\
+\hline
+\end{tabular}
+
+\subsubsection{25 oktober}
+\begin{tabular}{| l | l | p{9cm} |}
+\hline
+Testfall &  Passerat/Ej Passerat & Kommentar\\
+\hline
+FT 3.1.1 & Passerat & \\
+\hline
+FT 3.1.2 & Passerat & \\
+\hline
+FT 3.1.3 & Passerat & \\
+\hline
+FT 3.1.4 & Passerat & \\
+\hline
+FT 3.1.5 & Passerat & \\
+\hline
+FT 3.1.6 & Passerat & \\
+\hline
+FT 3.2.1 & Passerat & \\
+\hline
+FT 3.2.2 & Passerat & \\
+\hline
+FT 3.2.3 & Passerat & \\
+\hline
+FT 3.2.4 & Passerat & \\
+\hline
+FT 3.2.5 & Passerat & \\
+\hline
+FT 3.2.6 &  & Utgått\\
+\hline
+FT 3.2.7 & Ej Passerat & Kan inte endast välja t.ex. vecka 1 och trycka på “Generate statistics” och få upp alla tidrapporter för vecka 1. Ingen statistik genereras då. Enda sättet att välja alla tidrapporter för vald vecka är att välja dessa manuellt. Ineffektivt om det skulle finnas 100 tidrapporter för vecka 1. \\
+\hline
+FT 3.2.8 &  & Utgått\\
+\hline
+FT 3.2.9 & Ej Passerat &  Kan endast välja en vecka eller flera veckor i rad. Kan inte summera vecka 1-2 och 4 för en användare i en ny tidrapport. Har testat att mata in “1-2, 4”, “1-2 4”, “1-2 and 4”, “1-2 or 4”. (Kanske ändra i SRSen så att systemet endast behöver klara av veckor i rad????). Ni bör också specificera i statistikrapporten vilka veckor den syftar på istället för att det står “-1” vid “Week”. “1-4” om det är för veckorna 1-4, “1-2 and 4” om det är 1-2 och 4. Men det är inget krav.\\
+\hline
+FT 3.2.10 &  & Utgått\\
+\hline
+FT 3.2.11 & Ej Passerat & Kan endast välja en vecka eller flera veckor i rad. Kan inte summera vecka 1-2 och 4 för en roll i en ny tidrapport.\\
+\hline
+FT 3.2.12 &  & Utgått\\
+\hline
+FT 3.2.13 & Passerat & \\
+\hline
+FT 3.3.1 & Ej Passerat & Aktivitet ”Final report” i en tidrapport är mer än 5 tecken vilket strider mot krav 6.3.24. Skicka en problemrapport till SRSen om ni vill ha kvar långa aktivitetsnamn. \\
+\hline
+FT 3.3.2 & Passerat & \\
+\hline
+FT 3.3.3 & Passerat & \\
+\hline
+FT 3.3.4 & Passerat & \\
+\hline
+FT 3.3.5 & Passerat & \\
+\hline
+FT 3.3.6 & Passerat & \\
+\hline
+FT 3.3.7 & Passerat & \\
+\hline
+FT 3.3.8 & Passerat & \\
+\hline
+FT 3.3.9 & Ej Passerat & Texten är på engelska. Enligt krav 6.3.39 måste det stå, “Namn”, “Datum”, “Projektgrupp”, “Vecka” osv. och inte “Name”, “Week”, “Date”. Om ni vill ha det på engelska skicka en problemrapport till SRSen angående krav 6.3.39 så kan de ändra kravet som specifikt säger att det ska stå “Namn”, “Datum” osv. \\
+
+\hline
+ST 3.1.1 & Passerat & \\
+\hline
+ST 3.1.2 & Ej Passerat & Steg 18. Får ingen bekräftelseruta. \\
+\hline
+ST 3.1.3 & Ej Passerat & Funktionalitet saknas: ”Lista projektmedlemmar”. (figur 6 SRS) \\
+\hline
+ST 3.2.1 & Passerat & \\
+\hline
+\end{tabular}
+
+\subsubsection{30 oktober}
+\begin{tabular}{| l | l | p{9cm} |}
+\hline
+Testfall &  Passerat/Ej Passerat & Kommentar\\
+\hline
+FT 3.1.1 & Passerat & \\
+\hline
+FT 3.1.2 & Passerat & \\
+\hline
+FT 3.1.3 & Passerat & \\
+\hline
+FT 3.1.4 & Passerat & \\
+\hline
+FT 3.1.5 & Passerat & \\
+\hline
+FT 3.1.6 & Passerat & \\
+\hline
+FT 3.2.1 & Passerat & \\
+\hline
+FT 3.2.2 & Passerat & \\
+\hline
+FT 3.2.3 & Passerat & \\
+\hline
+FT 3.2.4 & Passerat & \\
+\hline
+FT 3.2.5 & Passerat & \\
+\hline
+FT 3.2.6 &  & Utgått\\
+\hline
+FT 3.2.7 & Passerat & \\
+\hline
+FT 3.2.8 &  & Utgått\\
+\hline
+FT 3.2.9 & Ej Passerat &  Kan endast välja en vecka eller flera veckor i rad. Kan inte summera vecka 1-2 och 4 för en användare i en ny tidrapport vilket systemet ska klara. Kanske ändra i SRSen så att systemet endast behöver klara av veckor i rad?. \\
+\hline
+FT 3.2.10 &  & Utgått\\
+\hline
+FT 3.2.11 & Ej Passerat & Kan endast välja en vecka eller flera veckor i rad. Kan inte summera vecka 1-2 och 4 för en roll i en ny tidrapport vilket systemet ska klara. Kanske ändra i SRSen så att systemet endast behöver klara av veckor i rad?.\\
+\hline
+FT 3.2.12 &  & Utgått\\
+\hline
+FT 3.2.13 & Passerat & \\
+\hline
+FT 3.3.1 & Ej Passerat & Aktivitet ”Final report” i en tidrapport är mer än 5 tecken vilket strider mot krav 6.3.24. \\
+\hline
+FT 3.3.2 & Passerat & \\
+\hline
+FT 3.3.3 & Passerat & \\
+\hline
+FT 3.3.4 & Passerat & \\
+\hline
+FT 3.3.5 & Passerat & \\
+\hline
+FT 3.3.6 & Passerat & \\
+\hline
+FT 3.3.7 & Passerat & \\
+\hline
+FT 3.3.8 & Passerat & \\
+\hline
+FT 3.3.9 & Ej Passerat & Texten är på engelska. Enligt krav 6.3.39 måste det stå, “Namn”, “Datum”, “Projektgrupp”, “Vecka” osv. och inte “Name”, “Week”, “Date”. Kan ändras i SRS. \\
+\hline
+ST 3.1.1 & Passerat & \\
+\hline
+ST 3.1.2 & Passerat & \\
+\hline
+ST 3.1.3 & Passerat & \\
+\hline
+ST 3.2.1 & Passerat & \\
+\hline
+\end{tabular}
+
+\subsubsection{1 november}
+\begin{tabular}{| l | l | p{9cm} |}
+\hline
+Testfall &  Passerat/Ej Passerat & Kommentar\\
+\hline
+FT 3.1.1 & Passerat & \\
+\hline
+FT 3.1.2 & Passerat & \\
+\hline
+FT 3.1.3 & Passerat & \\
+\hline
+FT 3.1.4 & Passerat & \\
+\hline
+FT 3.1.5 & Passerat & \\
+\hline
+FT 3.1.6 & Passerat & \\
+\hline
+FT 3.2.1 & Passerat & \\
+\hline
+FT 3.2.2 & Passerat & \\
+\hline
+FT 3.2.3 & Passerat & \\
+\hline
+FT 3.2.4 & Passerat & \\
+\hline
+FT 3.2.5 & Passerat & \\
+\hline
+FT 3.2.6 &  & Utgått\\
+\hline
+FT 3.2.7 & Passerat & \\
+\hline
+FT 3.2.8 &  & Utgått\\
+\hline
+FT 3.2.9 & Ej Passerat &  Kan endast välja en vecka eller flera veckor i rad. Kan inte summera vecka 1-2 och 4 för en användare i en ny tidrapport vilket systemet ska klara. Kanske ändra i SRSen så att systemet endast behöver klara av veckor i rad?. \\
+\hline
+FT 3.2.10 &  & Utgått\\
+\hline
+FT 3.2.11 & Ej Passerat & Kan endast välja en vecka eller flera veckor i rad. Kan inte summera vecka 1-2 och 4 för en roll i en ny tidrapport vilket systemet ska klara. Kanske ändra i SRSen så att systemet endast behöver klara av veckor i rad?.\\
+\hline
+FT 3.2.12 &  & Utgått\\
+\hline
+FT 3.2.13 & Passerat & \\
+\hline
+FT 3.3.1 & Passerat & \\
+\hline
+FT 3.3.2 & Passerat & \\
+\hline
+FT 3.3.3 & Passerat & \\
+\hline
+FT 3.3.4 & Passerat & \\
+\hline
+FT 3.3.5 & Passerat & \\
+\hline
+FT 3.3.6 & Passerat & \\
+\hline
+FT 3.3.7 & Passerat & \\
+\hline
+FT 3.3.8 & Passerat & \\
+\hline
+FT 3.3.9 & Ej Passerat & Texten är på engelska. Enligt krav 6.3.39 måste det stå, “Namn”, “Datum”, “Projektgrupp”, “Vecka” osv. och inte “Name”, “Week”, “Date”. Kan ändras i SRS. \\
+\hline
+ST 3.1.1 & Passerat & \\
+\hline
+ST 3.1.2 & Passerat & \\
+\hline
+ST 3.1.3 & Passerat & \\
+\hline
+ST 3.2.1 & Passerat & \\
+\hline
+\end{tabular}
+
+\subsubsection{4 november}
+\begin{tabular}{| l | l | p{9cm} |}
+\hline
+Testfall &  Passerat/Ej Passerat & Kommentar\\
+\hline
+FT 3.1.1 & Passerat & \\
+\hline
+FT 3.1.2 & Passerat & \\
+\hline
+FT 3.1.3 & Passerat & \\
+\hline
+FT 3.1.4 & Passerat & \\
+\hline
+FT 3.1.5 & Passerat & \\
+\hline
+FT 3.1.6 & Passerat & \\
+\hline
+FT 3.2.1 & Passerat & \\
+\hline
+FT 3.2.2 & Passerat & \\
+\hline
+FT 3.2.3 & Passerat & \\
+\hline
+FT 3.2.4 & Passerat & \\
+\hline
+FT 3.2.5 & Passerat & \\
+\hline
+FT 3.2.6 &  & Utgått\\
+\hline
+FT 3.2.7 & Passerat & \\
+\hline
+FT 3.2.8 &  & Utgått\\
+\hline
+FT 3.2.9 & Passerat &  \\
+\hline
+FT 3.2.10 & Utgått & \\
+\hline
+FT 3.2.11 & Passerat & \\
+\hline
+FT 3.2.12 &  & Utgått\\
+\hline
+FT 3.2.13 & Passerat & \\
+\hline
+FT 3.3.1 &  & Utgått\\
+\hline
+FT 3.3.2 & Passerat & \\
+\hline
+FT 3.3.3 & Passerat & \\
+\hline
+FT 3.3.4 & Passerat & \\
+\hline
+FT 3.3.5 & Passerat & \\
+\hline
+FT 3.3.6 & Passerat & \\
+\hline
+FT 3.3.7 & Passerat & \\
+\hline
+FT 3.3.8 & Passerat & \\
+\hline
+FT 3.3.9 & Passerat & \\
+\hline
+ST 3.1.1 & Passerat & \\
+\hline
+ST 3.1.2 & Passerat & \\
+\hline
+ST 3.1.3 & Passerat & \\
+\hline
+ST 3.2.1 & Passerat & \\
+\hline
+\end{tabular}
 
 %+++++++++++++++++++++++++++%
 %SLUT på FT:Tidrapportering+%
@@ -444,134 +836,134 @@ ST 2.2.3 & Passerat & \\
 \hline
 Testcase &  Failed & Comment\\
 \hline
-FT 4.1.1 & & \\
+FT 4.1.1 & Passerat & \\
 \hline
-FT 4.1.2 & & \\
+FT 4.1.2 & Passerat & \\
 \hline
-FT 4.1.3 & & \\
+FT 4.1.3 & Passerat & \\
 \hline
-FT 4.1.4 & & \\
+FT 4.1.4 & Passerat & \\
 \hline
-FT 4.2.1 & & \\
+FT 4.2.1 & Passerat & \\
 \hline
-FT 4.2.2 & Failed & Projektledare har inte möjlighet att lista bara ej godkända tidrapporter.\\
+FT 4.2.2 & Ej Passerat & Projektledare har inte möjlighet att lista bara ej godkända tidrapporter.\\
 \hline
-FT 4.2.3 & Failed & Projektledare har inte möjlighet att lista bara godkända tidrapporter.\\
+FT 4.2.3 & Ej Passerat & Projektledare har inte möjlighet att lista bara godkända tidrapporter.\\
 \hline
-FT 4.2.4 & & \\
+FT 4.2.4 & Passerat & \\
 \hline
-FT 4.2.5 & & \\
+FT 4.2.5 & Passerat & \\
 \hline
-FT 4.2.6 & & \\
+FT 4.2.6 & Passerat & \\
 \hline
-FT 4.2.7 & & \\
+FT 4.2.7 & Passerat & \\
 \hline
-ST 4.2.8 & & \\
+ST 4.2.8 & Passerat & \\
 \hline
-ST 4.2.9 & & \\
+ST 4.2.9 & Passerat & \\
 \hline
-ST 4.3.1 & & \\
+ST 4.3.1 & Passerat & \\
 \hline
-FT 4.3.2 & Failed & Administratör har inte möjlighet att lista bara ej godkända tidrapporter. \\
+FT 4.3.2 & Ej Passerat & Administratör har inte möjlighet att lista bara ej godkända tidrapporter. \\
 \hline
-FT 4.3.3 & Failed & Administratör har inte möjlighet att lista bara godkända tidrapporter\\
+FT 4.3.3 & Ej Passerat & Administratör har inte möjlighet att lista bara godkända tidrapporter\\
 \hline
-FT 4.3.4 & & \\
+FT 4.3.4 & Passerat & \\
 \hline
-FT 4.3.5 & & \\
+FT 4.3.5 & Passerat & \\
 \hline
-FT 4.3.6 & & \\
+FT 4.3.6 & Passerat & \\
 \hline
-FT 4.3.7 & & \\
+FT 4.3.7 & Passerat & \\
 \hline
-FT 4.3.8 & & \\
+FT 4.3.8 & Passerat & \\
 \hline
-FT 4.3.9 & & \\
+FT 4.3.9 & Passerat & \\
 \hline
-FT 4.3.10 & Failed & Administratör får inte bekräftelse att projektgrupp är skappat. \\
+FT 4.3.10 & Ej Passerat & Administratör får inte bekräftelse att projektgrupp är skappat. \\
 \hline
-FT 4.3.11 & & \\
+FT 4.3.11 & Passerat & \\
 \hline
-FT 4.3.12 & & \\
+FT 4.3.12 & Passerat & \\
 \hline
-FT 4.3.13 & & \\
+FT 4.3.13 & Passerat & \\
 \hline
-FT 4.3.14 & & \\
+FT 4.3.14 & Passerat & \\
 \hline
-FT 4.3.15 & & \\
+FT 4.3.15 & Passerat & \\
 \hline
-FT 4.3.16 & & \\
+FT 4.3.16 & Passerat & \\
 \hline
-FT 4.3.17 & & \\
+FT 4.3.17 & Passerat & \\
 \hline
-FT 4.3.18 & & \\
+FT 4.3.18 & Passerat & \\
 \hline
-FT 4.3.19 & & \\
+FT 4.3.19 & Passerat & \\
 \hline
-FT 4.3.20 & & \\
+FT 4.3.20 & Passerat & \\
 \end{tabular}
 
 \begin{tabular}{| l | l | p{11cm} |}
 \hline
-Testcase &  Failed & Comment\\
+Testcase & Ej Passerat & Comment\\
 \hline
-FT 4.3.21 & & \\
+FT 4.3.21 & Passerat & \\
 \hline
-FT 4.3.22 & & \\
+FT 4.3.22 & Passerat & \\
 \hline
-FT 4.3.23 & & \\
+FT 4.3.23 & Passerat & \\
 \hline
-FT 4.3.24 & & \\
+FT 4.3.24 & Passerat & \\
 \hline
-FT 4.3.25 & & \\
+FT 4.3.25 & Passerat & \\
 \hline
-FT 4.3.26 & & \\
+FT 4.3.26 & Passerat & \\
 \hline
-FT 4.3.27 & & \\
+FT 4.3.27 & Passerat & \\
 \hline
-FT 4.3.28 & & \\
+FT 4.3.28 & Passerat & \\
 \hline
-FT 4.3.29 & & \\
+FT 4.3.29 & Passerat & \\
 \hline
-FT 4.3.30 & & \\
+FT 4.3.30 & Passerat & \\
 \hline
 FT 4.3.31 & & Utgått elnigt SVVI\\
 \hline
 FT 4.3.32 & & Utgått elnigt SVVI\\
 \hline
-FT 4.4.1 & & \\
+FT 4.4.1 & Passerat & \\
 \hline
-FT 4.4.2 & & \\
+FT 4.4.2 & Passerat & \\
 \hline
-FT 4.4.3 & Failed & Administratör får inte bekräftelse att kan inte använda upptagen projektgruppnamn \\
+FT 4.4.3 & Ej Passerat & Administratör får inget felmeddelande då hen försöker skapa en grupp med ett upptaget projektgruppnamn \\
 \hline
-FT 4.4.4 & & \\
+FT 4.4.4 & Passerat & \\
 \hline
-FT 4.4.5 & & \\
+FT 4.4.5 & Passerat & \\
 \hline
-FT 4.4.6 & & \\
+FT 4.4.6 & Passerat & \\
 \hline
-FT 4.4.7 & & \\
+FT 4.4.7 & Ej Passerat & En grupp går att skapa utan medlemmar\\
 \hline
-FT 4.4.8 & & \\
+FT 4.4.8 & Passerat & \\
 \hline
-FT 4.4.9 & & \\
+FT 4.4.9 & Passerat & \\
 \hline
-FT 4.4.10 & & \\
+FT 4.4.10 & Passerat & \\
 \hline
-FT 4.4.11 & & \\
+FT 4.4.11 & Passerat & \\
 \hline
-FT 4.4.12 & & \\
+FT 4.4.12 & Passerat & \\
 \hline
-FT 4.4.13 & & \\
+FT 4.4.13 & Passerat & \\
 \hline
-FT 4.4.14 & & \\
+FT 4.4.14 & Passerat & \\
 \hline
-FT 4.4.15 & & \\
+FT 4.4.15 & Passerat & \\
 \hline
-FT 4.4.16 & & \\
+FT 4.4.16 & Passerat & \\
 \hline
-FT 4.4.17 & & \\
+FT 4.4.17 & Passerat & \\
 \hline
 \end{tabular}
 
@@ -587,134 +979,135 @@ FT 4.4.17 & & \\
 \hline
 Testcase &  Failed & Comment\\
 \hline
-FT 4.1.1 & & \\
+FT 4.1.1 & Passerat & \\
 \hline
-FT 4.1.2 & & \\
+FT 4.1.2 & Passerat & \\
 \hline
-FT 4.1.3 & & \\
+FT 4.1.3 & Passerat & \\
 \hline
-FT 4.1.4 & & \\
+FT 4.1.4 & Passerat & \\
 \hline
-FT 4.2.1 & & \\
+FT 4.2.1 & Passerat & \\
 \hline
-FT 4.2.2 & Failed & Projektledare har inte möjlighet att lista bara ej godkända tidrapporter.\\
+FT 4.2.2 & Ej Passerat & Projektledare har inte möjlighet att lista bara ej godkända tidrapporter.\\
 \hline
-FT 4.2.3 & Failed & Projektledare har inte möjlighet att lista bara godkända tidrapporter.\\
+FT 4.2.3 & Ej Passerat & Projektledare har inte möjlighet att lista bara godkända tidrapporter.\\
 \hline
-FT 4.2.4 & & \\
+FT 4.2.4 & Passerat & \\
 \hline
-FT 4.2.5 & & \\
+FT 4.2.5 & Passerat & \\
 \hline
-FT 4.2.6 & & \\
+FT 4.2.6 & Passerat & \\
 \hline
-FT 4.2.7 & & \\
+FT 4.2.7 & Passerat & \\
 \hline
-ST 4.2.8 & & \\
+ST 4.2.8 & Passerat & \\
 \hline
-ST 4.2.9 & & \\
+ST 4.2.9 & Passerat & \\
 \hline
-ST 4.3.1 & & \\
+ST 4.3.1 & Passerat & \\
 \hline
-FT 4.3.2 & Failed & Administratör har inte möjlighet att lista bara ej godkända tidrapporter. \\
+FT 4.3.2 & Ej Passerat & Administratör har inte möjlighet att lista bara ej godkända tidrapporter. \\
 \hline
-FT 4.3.3 & Failed & Administratör har inte möjlighet att lista bara godkända tidrapporter\\
+FT 4.3.3 & Ej Passerat & Administratör har inte möjlighet att lista bara godkända tidrapporter\\
 \hline
-FT 4.3.4 & & \\
+FT 4.3.4 & Passerat & \\
 \hline
-FT 4.3.5 & & \\
+FT 4.3.5 & Passerat & \\
 \hline
-FT 4.3.6 & & \\
+FT 4.3.6 & Passerat & \\
 \hline
-FT 4.3.7 & & \\
+FT 4.3.7 & Passerat & \\
 \hline
-FT 4.3.8 & & \\
+FT 4.3.8 & Passerat & \\
 \hline
-FT 4.3.9 & & \\
+FT 4.3.9 & Passerat & \\
 \hline
-FT 4.3.10 & Failed & Administratör får inte bekräftelse att projektgrupp är skappat. \\
+FT 4.3.10 & Ej Passerat & Administratör får inte bekräftelse att projektgrupp är skappat. \\
 \hline
-FT 4.3.11 & & \\
+FT 4.3.11 & Passerat & \\
 \hline
-FT 4.3.12 & & \\
+FT 4.3.12 & Passerat & \\
 \hline
-FT 4.3.13 & & \\
+FT 4.3.13 & Passerat & \\
 \hline
-FT 4.3.14 & & \\
+FT 4.3.14 & Passerat & \\
 \hline
-FT 4.3.15 & & \\
+FT 4.3.15 & Passerat & \\
 \hline
-FT 4.3.16 & & \\
+FT 4.3.16 & Passerat & \\
 \hline
-FT 4.3.17 & & \\
+FT 4.3.17 & Passerat & \\
 \hline
-FT 4.3.18 & & \\
+FT 4.3.18 & Passerat & \\
 \hline
-FT 4.3.19 & & \\
+FT 4.3.19 & Passerat & \\
 \hline
-FT 4.3.20 & & \\
+FT 4.3.20 & Passerat & \\
+\hline
 \end{tabular}
 
 \begin{tabular}{| l | l | p{11cm} |}
 \hline
 Testcase &  Failed & Comment\\
 \hline
-FT 4.3.21 & & \\
+FT 4.3.21 & Passerat & \\
 \hline
-FT 4.3.22 & & \\
+FT 4.3.22 & Passerat & \\
 \hline
-FT 4.3.23 & & \\
+FT 4.3.23 & Passerat & \\
 \hline
-FT 4.3.24 & & \\
+FT 4.3.24 & Passerat & \\
 \hline
-FT 4.3.25 & & \\
+FT 4.3.25 & Passerat & \\
 \hline
-FT 4.3.26 & & \\
+FT 4.3.26 & Passerat & \\
 \hline
-FT 4.3.27 & & \\
+FT 4.3.27 & Passerat & \\
 \hline
-FT 4.3.28 & & \\
+FT 4.3.28 & Passerat & \\
 \hline
-FT 4.3.29 & & \\
+FT 4.3.29 & Passerat & \\
 \hline
-FT 4.3.30 & & \\
+FT 4.3.30 & Passerat & \\
 \hline
-FT 4.3.31 & & Utgått elnigt SVVI\\
+FT 4.3.31 & & Utgått enligt SVVI\\
 \hline
-FT 4.3.32 & & Utgått elnigt SVVI\\
+FT 4.3.32 & & Utgått enligt SVVI\\
 \hline
-FT 4.4.1 & & \\
+FT 4.4.1 & Passerat & \\
 \hline
-FT 4.4.2 & & \\
+FT 4.4.2 & Passerat & \\
 \hline
-FT 4.4.3 & Failed & Administratör får inte bekräftelse att kan inte använda upptagen projektgruppnamn \\
+FT 4.4.3 & Ej Passerat & Administratören hamnar på sidan för att lägga till ledare i gruppen då hen försöker skapa en grupp med ett upptaget namn\\
 \hline
-FT 4.4.4 & & \\
+FT 4.4.4 & Passerat & \\
 \hline
-FT 4.4.5 & & \\
+FT 4.4.5 & Passerat & \\
 \hline
-FT 4.4.6 & & \\
+FT 4.4.6 & Passerat & \\
 \hline
-FT 4.4.7 & & \\
+FT 4.4.7 & Passerat & \\
 \hline
-FT 4.4.8 & & \\
+FT 4.4.8 & Passerat & \\
 \hline
-FT 4.4.9 & & \\
+FT 4.4.9 & Passerat & \\
 \hline
-FT 4.4.10 & & \\
+FT 4.4.10 & Passerat & \\
 \hline
-FT 4.4.11 & & \\
+FT 4.4.11 & Passerat & \\
 \hline
-FT 4.4.12 & & \\
+FT 4.4.12 & Passerat & \\
 \hline
-FT 4.4.13 & & \\
+FT 4.4.13 & Passerat & \\
 \hline
-FT 4.4.14 & & \\
+FT 4.4.14 & Passerat & \\
 \hline
-FT 4.4.15 & & \\
+FT 4.4.15 & Passerat & \\
 \hline
-FT 4.4.16 & & \\
+FT 4.4.16 & Passerat & \\
 \hline
-FT 4.4.17 & & \\
+FT 4.4.17 & Passerat & \\
 \hline
 \end{tabular}
 
@@ -726,134 +1119,135 @@ FT 4.4.17 & & \\
 \hline
 Testcase &  Failed & Comment\\
 \hline
-FT 4.1.1 & & \\
+FT 4.1.1 & Passerat & \\
 \hline
-FT 4.1.2 & & \\
+FT 4.1.2 & Passerat & \\
 \hline
-FT 4.1.3 & & \\
+FT 4.1.3 & Passerat & \\
 \hline
-FT 4.1.4 & & \\
+FT 4.1.4 & Passerat & \\
 \hline
-FT 4.2.1 & & \\
+FT 4.2.1 & Passerat & \\
 \hline
-FT 4.2.2 & & \\
+FT 4.2.2 & Passerat & \\
 \hline
-FT 4.2.3 & & \\
+FT 4.2.3 & Passerat & \\
 \hline
-FT 4.2.4 & & \\
+FT 4.2.4 & Passerat & \\
 \hline
-FT 4.2.5 & & \\
+FT 4.2.5 & Passerat & \\
 \hline
-FT 4.2.6 & & \\
+FT 4.2.6 & Passerat & \\
 \hline
-FT 4.2.7 & & \\
+FT 4.2.7 & Passerat & \\
 \hline
-ST 4.2.8 & & \\
+ST 4.2.8 & Passerat & \\
 \hline
-ST 4.2.9 & & \\
+ST 4.2.9 & Passerat & \\
 \hline
-ST 4.3.1 & & \\
+ST 4.3.1 & Passerat & \\
 \hline
-FT 4.3.2 & & \\
+FT 4.3.2 & Passerat & \\
 \hline
-FT 4.3.3 & &  \\
+FT 4.3.3 & Passerat &  \\
 \hline
-FT 4.3.4 & & \\
+FT 4.3.4 & Passerat & \\
 \hline
-FT 4.3.5 & & \\
+FT 4.3.5 & Passerat & \\
 \hline
-FT 4.3.6 & & \\
+FT 4.3.6 & Passerat & \\
 \hline
-FT 4.3.7 & & \\
+FT 4.3.7 & Passerat & \\
 \hline
-FT 4.3.8 & & \\
+FT 4.3.8 & Passerat & \\
 \hline
-FT 4.3.9 & & \\
+FT 4.3.9 & Passerat & \\
 \hline
-FT 4.3.10 & & \\
+FT 4.3.10 & Passerat & \\
 \hline
-FT 4.3.11 & & \\
+FT 4.3.11 & Passerat & \\
 \hline
-FT 4.3.12 & & \\
+FT 4.3.12 & Passerat & \\
 \hline
-FT 4.3.13 & & \\
+FT 4.3.13 & Passerat & \\
 \hline
-FT 4.3.14 & & \\
+FT 4.3.14 & Passerat & \\
 \hline
-FT 4.3.15 & & \\
+FT 4.3.15 & Passerat & \\
 \hline
-FT 4.3.16 & & \\
+FT 4.3.16 & Passerat & \\
 \hline
-FT 4.3.17 & & \\
+FT 4.3.17 & Passerat & \\
 \hline
-FT 4.3.18 & & \\
+FT 4.3.18 & Passerat & \\
 \hline
-FT 4.3.19 & & \\
+FT 4.3.19 & Passerat & \\
 \hline
-FT 4.3.20 & & \\
+FT 4.3.20 & Passerat & \\
+\hline
 \end{tabular}
 
 \begin{tabular}{| l | l | p{11cm} |}
 \hline
 Testcase &  Failed & Comment\\
 \hline
-FT 4.3.21 & & \\
+FT 4.3.21 & Passerat & \\
 \hline
-FT 4.3.22 & & \\
+FT 4.3.22 & Passerat & \\
 \hline
-FT 4.3.23 & & \\
+FT 4.3.23 & Passerat & \\
 \hline
-FT 4.3.24 & & \\
+FT 4.3.24 & Passerat & \\
 \hline
-FT 4.3.25 & & \\
+FT 4.3.25 & Passerat & \\
 \hline
-FT 4.3.26 & & \\
+FT 4.3.26 & Passerat & \\
 \hline
-FT 4.3.27 & & \\
+FT 4.3.27 & Passerat & \\
 \hline
-FT 4.3.28 & & \\
+FT 4.3.28 & Passerat & \\
 \hline
-FT 4.3.29 & & \\
+FT 4.3.29 & Passerat & \\
 \hline
-FT 4.3.30 & & \\
+FT 4.3.30 & Passerat & \\
 \hline
-FT 4.3.31 & & Utgått elnigt SVVI\\
+FT 4.3.31 & & Utgått enligt SVVI\\
 \hline
-FT 4.3.32 & & Utgått elnigt SVVI\\
+FT 4.3.32 & & Utgått enligt SVVI\\
 \hline
-FT 4.4.1 & & \\
+FT 4.4.1 & Passerat & \\
 \hline
-FT 4.4.2 & & \\
+FT 4.4.2 & Passerat & \\
 \hline
-FT 4.4.3 & & \\
+FT 4.4.3 & Passerat & \\
 \hline
-FT 4.4.4 & & \\
+FT 4.4.4 & Passerat & \\
 \hline
-FT 4.4.5 & & \\
+FT 4.4.5 & Passerat & \\
 \hline
-FT 4.4.6 & & \\
+FT 4.4.6 & Passerat & \\
 \hline
-FT 4.4.7 & & \\
+FT 4.4.7 & Passerat & \\
 \hline
-FT 4.4.8 & & \\
+FT 4.4.8 & Passerat & \\
 \hline
-FT 4.4.9 & & \\
+FT 4.4.9 & Passerat & \\
 \hline
-FT 4.4.10 & & \\
+FT 4.4.10 & Passerat & \\
 \hline
-FT 4.4.11 & & \\
+FT 4.4.11 & Passerat & \\
 \hline
-FT 4.4.12 & & \\
+FT 4.4.12 & Passerat & \\
 \hline
-FT 4.4.13 & & \\
+FT 4.4.13 & Passerat & \\
 \hline
-FT 4.4.14 & & \\
+FT 4.4.14 & Passerat & \\
 \hline
-FT 4.4.15 & & \\
+FT 4.4.15 & Passerat & \\
 \hline
-FT 4.4.16 & & \\
+FT 4.4.16 & Passerat & \\
 \hline
-FT 4.4.17 & & \\
+FT 4.4.17 & Passerat & \\
 \hline
 \end{tabular}
 

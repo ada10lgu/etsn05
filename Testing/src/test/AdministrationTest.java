@@ -175,7 +175,6 @@ public class AdministrationTest extends PussTest {
 		// förberedelser
 		String username = "user1";
 		String password = "pass12";
-		String group = null; // admin behöver inte ange grupp
 		String tooShortGroupName = "brie";
 		String tooLongGroupName = "creamcheese";
 		String badCharGroupName = "cheddar?";
@@ -268,12 +267,9 @@ public class AdministrationTest extends PussTest {
 		// förberedelser
 		String username = "leader";
 		String password = "leader";
-		String group = null;
 		String projectGroupName = "getost";
-		int userId = -1;
-		int groupId = -1;
-		userId = addUser(username, password, 0);
-		groupId = addGroup(projectGroupName);
+		addUser(username, password, 0);
+		addGroup(projectGroupName);
 		HtmlPage page = null;
 		page = login("admin", "adminpw", null);
 
