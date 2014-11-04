@@ -2680,9 +2680,7 @@ Utgått
 \item
 \textbf{Genomför scenario 6.4.1 i SRS som projektledare}
 
-\emph{**Vilka typer av statistik och rapporter som finns att välja mellan är just nu okänt}
-
-\emph{Starttillstånd:} Projektledare PL inloggad.
+\emph{Starttillstånd:} Projektledare PL inloggad. En projektgrupp G finns. PL är projektledare i G. En användare U finns i systemet och är medlem i G. U har två tidrapporter för olika veckor.
 
 \emph{Sluttillstånd:} Oförändrad.
 
@@ -2692,13 +2690,11 @@ PL navigerar till tidrapportering och sedan till visa statistik (se ref. 2, figu
 \item 
 PL väljer "Generera statistik" i menyn
 \item
-PL väljer [typ av statistik]
+PL väljer U
 \item 
-PL väljer [typ av rapport]
+PL väljer 'alla veckor'
 \item
-Kontrollera att rapport av typ [typ av rapport] visas.
-\item
-Kontrollera att statistik av typ [typ av statistik] visas.
+Kontrollera att rapport med tiden från båda veckorna visas.
 \end{enumerate}
 
 \item
@@ -2766,15 +2762,15 @@ Kontrollera att rapporten är godkänd i databasen
 
 \begin{enumerate}
 \item
-A väljer "Generera statistik" i menyn (se ref. 2, figur 7).
-\item
-A väljer [typ av statistik]
+A navigerar till tidrapportering och sedan till visa statistik (se ref. 2, figur 7).
 \item 
-A väljer [typ av rapport]
+A väljer "Generera statistik" i menyn
 \item
-Kontrollera att rapport av typ [typ av rapport] visas.
+A väljer U
+\item 
+A väljer 'alla veckor'
 \item
-Kontrollera att statistik av typ [typ av statistik] visas.
+Kontrollera att rapport med tiden från båda veckorna visas.
 \end{enumerate}
 
 \item
